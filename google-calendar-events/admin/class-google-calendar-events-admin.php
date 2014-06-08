@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name.
+ * Google Calendar Events Admin
  *
  * @package   GCE Admin
- * @author    Your Name <email@example.com>
+ * @author    Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2014 Your Name or Company Name
+ * @link      http://philderksen.com
+ * @copyright 2014 Phil Derksen
  */
 
 
@@ -15,7 +15,7 @@ class Google_Calendar_Events_Admin {
 	/**
 	 * Instance of this class.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 *
 	 * @var      object
 	 */
@@ -24,7 +24,7 @@ class Google_Calendar_Events_Admin {
 	/**
 	 * Slug of the plugin screen.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 *
 	 * @var      string
 	 */
@@ -34,7 +34,7 @@ class Google_Calendar_Events_Admin {
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
-	 * @since     1.0.0
+	 * @since     2.0.0
 	 */
 	private function __construct() {
 
@@ -54,7 +54,7 @@ class Google_Calendar_Events_Admin {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @since     1.0.0
+	 * @since     2.0.0
 	 *
 	 * @return    object    A single instance of this class.
 	 */
@@ -71,13 +71,13 @@ class Google_Calendar_Events_Admin {
 	/**
 	 * Register the administration menu for this plugin into the WordPress Dashboard menu.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 */
 	public function add_plugin_admin_menu() {
 
 		$this->plugin_screen_hook_suffix[] = add_menu_page(
-			$this->plugin_slug . ' ' . __( 'Settings', 'gce' ),
-			$this->plugin_slug,
+			$this->get_plugin_title() . ' ' . __( 'Settings', 'gce' ),
+			$this->get_plugin_title(),
 			'manage_options',
 			$this->plugin_slug,
 			array( $this, 'display_plugin_admin_page' )
@@ -87,16 +87,25 @@ class Google_Calendar_Events_Admin {
 	/**
 	 * Render the settings page for this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 */
 	public function display_plugin_admin_page() {
 		include_once( 'views/admin.php' );
+	}
+	
+	/**
+	 * Return plugin name
+	 * 
+	 * @since 2.0.0
+	 */
+	function get_plugin_title() {
+		return __( 'Google Calendar Events', 'gce' );
 	}
 
 	/**
 	 * Add settings action link to the plugins page.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 */
 	public function add_action_links( $links ) {
 
