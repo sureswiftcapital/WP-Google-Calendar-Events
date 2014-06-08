@@ -82,6 +82,25 @@ class Google_Calendar_Events_Admin {
 			$this->plugin_slug,
 			array( $this, 'display_plugin_admin_page' )
 		);
+		
+		// Add help submenu page
+		$this->plugin_screen_hook_suffix[] = add_submenu_page(
+			$this->plugin_slug,
+			__( 'Help', 'gce' ),
+			__( 'Help', 'gce' ),
+			'manage_options',
+			$this->plugin_slug . '_help',
+			array( $this, 'display_admin_help_page' )
+		);
+	}
+	
+	/**
+	 * Render the help page for this plugin.
+	 *
+	 * @since    2.0.0
+	 */
+	public function display_admin_help_page() {
+		include_once( 'views/help.php' );
 	}
 
 	/**
