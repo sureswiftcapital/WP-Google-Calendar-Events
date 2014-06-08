@@ -51,10 +51,19 @@ class Google_Calendar_Events_Admin {
 		// Add admin menu
 		//add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 		
+		// Setup admin side constants
+		add_action( 'init', array( $this, 'define_admin_constants' ) );
+		
+	}
+	
+	public static function define_admin_constants() {
+		if( ! defined( 'GCE_ADMIN_DIR' ) ) {
+			define( 'GCE_ADMIN_DIR', dirname( __FILE__ ) );
+		}
 	}
 	
 	public static function admin_includes() {
-		include( 'includes/cpt.php' );
+		include( 'includes/gce-feed.php' );
 	}
 
 	/**
