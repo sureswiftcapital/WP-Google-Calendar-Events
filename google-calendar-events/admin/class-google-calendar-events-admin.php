@@ -37,6 +37,8 @@ class Google_Calendar_Events_Admin {
 	 * @since     2.0.0
 	 */
 	private function __construct() {
+		
+		$this->admin_includes();
 
 		$plugin = Google_Calendar_Events::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
@@ -47,8 +49,12 @@ class Google_Calendar_Events_Admin {
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 		
 		// Add admin menu
-		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
+		//add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 		
+	}
+	
+	public static function admin_includes() {
+		include( 'includes/cpt.php' );
 	}
 
 	/**
