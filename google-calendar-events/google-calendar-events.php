@@ -26,6 +26,10 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Include shared admin and public files
+//require( plugin_dir_path( __FILE__ ) . 'includes/widgets.php' );
+
+
 /*
  * Include the main plugin file
  *
@@ -51,7 +55,7 @@ add_action( 'plugins_loaded', array( 'Google_Calendar_Events', 'get_instance' ) 
  * If we are2 in admin then load the Admin class
  */
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
-
+	
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-google-calendar-events-admin.php' );
 	add_action( 'plugins_loaded', array( 'Google_Calendar_Events_Admin', 'get_instance' ) );
 
