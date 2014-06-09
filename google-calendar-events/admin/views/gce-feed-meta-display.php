@@ -1,11 +1,46 @@
 
 
-<p>Feed URL</p>
-<p>Retrieve events from</p>
-<p>Retrieve Events until</p>
-<p>Maximum number of events to retrieve</p>
-<p>Date Format</p>
-<p>Time Format</p>
-<p>Timezone adjustment</p>
-<p>Cache duration</p>
-<p>Show multiple day events on each day?</p>
+<div class="gce-meta-control">
+	<label>Feed URL</label>
+	<input type="text" class="" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Retrieve Events From</label>
+	<input type="text" class="" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Retrieve Events Until</label>
+	<input type="text" class="" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Maximum Number of Events to Retrieve</label>
+	<input type="text" class="" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Date Format</label>
+	<input type="text" class="" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Time Format</label>
+	<input type="text" class="" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Timezone Adjustment</label>
+	<input type="text" class="" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Cache Duration</label>
+	<input type="text" class="" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Multiple Day Events</label>
+	<input type="checkbox" /> Show on each day
+</div>

@@ -54,6 +54,13 @@ class Google_Calendar_Events_Admin {
 		// Setup admin side constants
 		add_action( 'init', array( $this, 'define_admin_constants' ) );
 		
+		// Add admin styles
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
+		
+	}
+	
+	public static function enqueue_admin_styles() {
+		wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ) );
 	}
 	
 	public static function define_admin_constants() {

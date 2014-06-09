@@ -1,0 +1,13 @@
+
+.gce-meta-control {
+	margin-bottom: 15px;
+}
+
+.gce-meta-control label {
+	display: block;
+	font-weight: bold;
+}
+
+.gce-meta-control input[type="text"] {
+	width: 33%;
+}
