@@ -17,6 +17,11 @@
 
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
-	<!-- @TODO: Provide markup for your options page here. -->
+	<?php
+		settings_fields( 'gce_settings_general' );
+		do_settings_sections( 'gce_settings_general' );
+		
+		submit_button();
+	?>
 
 </div>

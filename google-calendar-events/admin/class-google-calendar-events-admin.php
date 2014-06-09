@@ -49,7 +49,7 @@ class Google_Calendar_Events_Admin {
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 		
 		// Add admin menu
-		//add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
+		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 		
 		// Setup admin side constants
 		add_action( 'init', array( $this, 'define_admin_constants' ) );
@@ -70,7 +70,16 @@ class Google_Calendar_Events_Admin {
 	}
 	
 	public static function admin_includes() {
+		
+		global $gce_options;
+		
+		include_once( 'includes/register-settings.php' );
+		
 		include( 'includes/gce-feed.php' );
+		
+		
+		$gce_options = gce_get_settings();
+
 	}
 
 	/**
@@ -97,22 +106,22 @@ class Google_Calendar_Events_Admin {
 	 */
 	public function add_plugin_admin_menu() {
 
-		$this->plugin_screen_hook_suffix[] = add_menu_page(
+		/*$this->plugin_screen_hook_suffix[] = add_menu_page(
 			$this->get_plugin_title() . ' ' . __( 'Settings', 'gce' ),
 			$this->get_plugin_title(),
 			'manage_options',
 			$this->plugin_slug,
 			array( $this, 'display_plugin_admin_page' )
-		);
+		);*/
 		
 		// Add help submenu page
 		$this->plugin_screen_hook_suffix[] = add_submenu_page(
-			$this->plugin_slug,
-			__( 'Help', 'gce' ),
-			__( 'Help', 'gce' ),
+			'edit.php?post_type=gce_feed',
+			__( 'Settings', 'gce' ),
+			__( 'Settings', 'gce' ),
 			'manage_options',
-			$this->plugin_slug . '_help',
-			array( $this, 'display_admin_help_page' )
+			$this->plugin_slug . '_settings',
+			array( $this, 'display_admin_page' )
 		);
 	}
 	
@@ -130,7 +139,7 @@ class Google_Calendar_Events_Admin {
 	 *
 	 * @since    2.0.0
 	 */
-	public function display_plugin_admin_page() {
+	public function display_admin_page() {
 		include_once( 'views/admin.php' );
 	}
 	
