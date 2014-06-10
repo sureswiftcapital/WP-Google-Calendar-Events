@@ -38,7 +38,7 @@ class Google_Calendar_Events_Admin {
 	 */
 	private function __construct() {
 		
-		$this->admin_includes();
+		//$this->admin_includes();
 
 		$plugin = Google_Calendar_Events::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
@@ -54,6 +54,9 @@ class Google_Calendar_Events_Admin {
 		// Setup admin side constants
 		add_action( 'init', array( $this, 'define_admin_constants' ) );
 		
+		// Setup admin settings
+		add_action( 'init', array( $this, 'register_settings' ) );
+		
 		// Add admin styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		
@@ -65,17 +68,17 @@ class Google_Calendar_Events_Admin {
 	
 	public static function define_admin_constants() {
 		if( ! defined( 'GCE_ADMIN_DIR' ) ) {
-			define( 'GCE_ADMIN_DIR', dirname( __FILE__ ) );
+			define( 'GCE_DIR', dirname( __FILE__ ) );
 		}
 	}
 	
-	public static function admin_includes() {
+	public static function register_settings() {
 		
 		global $gce_options;
 		
-		include_once( 'includes/register-settings.php' );
+		include_once( 'includes/admin/register-settings.php' );
 		
-		include( 'includes/gce-feed.php' );
+		//include( 'includes/gce-feed.php' );
 		
 		
 		$gce_options = gce_get_settings();
@@ -130,9 +133,9 @@ class Google_Calendar_Events_Admin {
 	 *
 	 * @since    2.0.0
 	 */
-	public function display_admin_help_page() {
+	/*public function display_admin_help_page() {
 		include_once( 'views/help.php' );
-	}
+	}*/
 
 	/**
 	 * Render the settings page for this plugin.
@@ -140,7 +143,7 @@ class Google_Calendar_Events_Admin {
 	 * @since    2.0.0
 	 */
 	public function display_admin_page() {
-		include_once( 'views/admin.php' );
+		include_once( 'views/admin/admin.php' );
 	}
 	
 	/**

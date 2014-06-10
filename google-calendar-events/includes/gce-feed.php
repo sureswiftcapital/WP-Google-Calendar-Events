@@ -54,5 +54,5 @@ add_action( 'add_meta_boxes', 'gce_cpt_meta' );
 
 
 function gce_display_meta() {
-	include_once( GCE_ADMIN_DIR . '/views/gce-feed-meta-display.php' );
+	include_once( GCE_DIR . '/views/admin/gce-feed-meta-display.php' );
 }

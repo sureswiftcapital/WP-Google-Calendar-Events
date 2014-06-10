@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Include the main plugin file
  *
  */
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-google-calendar-events.php' );
+require_once( 'class-google-calendar-events.php' );
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
@@ -56,7 +56,7 @@ add_action( 'plugins_loaded', array( 'Google_Calendar_Events', 'get_instance' ) 
  */
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 	
-	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-google-calendar-events-admin.php' );
+	require_once( 'class-google-calendar-events-admin.php' );
 	add_action( 'plugins_loaded', array( 'Google_Calendar_Events_Admin', 'get_instance' ) );
 
 }

@@ -46,7 +46,21 @@ class Google_Calendar_Events {
 	 * @since     1.0.0
 	 */
 	private function __construct() {
-
+		$this->includes();
+	}
+	
+	public static function includes() {
+		
+		// First include common files between admin and public
+		include_once( 'includes/gce-feed.php' );
+		
+		// Now include files specifically for public or admin
+		if( is_admin() ) {
+			// Admin includes
+			//include_once( 'includes/admin/gce-feed-meta-display.php' );
+		} else {
+			// Public includes
+		}
 	}
 
 	/**
