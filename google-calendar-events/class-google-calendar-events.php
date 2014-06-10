@@ -51,16 +51,23 @@ class Google_Calendar_Events {
 	
 	public static function includes() {
 		
+		global $gce_options;
+		
 		// First include common files between admin and public
 		include_once( 'includes/gce-feed.php' );
+		include_once( 'includes/register-settings.php' );
+		
+		// Need to get the settings here since it is needed for both sides
+		$gce_options = gce_get_settings();
 		
 		// Now include files specifically for public or admin
 		if( is_admin() ) {
 			// Admin includes
-			//include_once( 'includes/admin/gce-feed-meta-display.php' );
 		} else {
 			// Public includes
+			include_once( 'views/public/public.php' );
 		}
+		
 	}
 
 	/**
