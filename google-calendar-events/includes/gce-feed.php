@@ -56,3 +56,42 @@ add_action( 'add_meta_boxes', 'gce_cpt_meta' );
 function gce_display_meta() {
 	include_once( GCE_DIR . '/views/admin/gce-feed-meta-display.php' );
 }
+
+
+function gce_save_meta( $post_id ) {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return $post_id;
+	}
+
+		// An array to hold all of our post meta ids so we can run them through a loop
+		$post_meta_fields = array(
+			'gce_feed_url',
+			'gce_retrieve_from',
+			'gce_retrieve_until',
+			'gce_retrieve_max',
+			'gce_date_format',
+			'gce_time_format',
+			'gce_timezone',
+			'gce_cache',
+			'gce_multi_day_events'
+		);
+		
+		$post_meta_fields = apply_filters( 'gce_feed_meta', $post_meta_fields );
+
+		// Record sharing disable
+
+		if ( current_user_can( 'edit_post', $post_id ) ) {
+			// Loop through our array and make sure it is posted and not empty in order to update it, otherwise we delete it
+			foreach ( $post_meta_fields as $pmf ) {
+				if ( isset( $_POST[$pmf] ) && !empty( $_POST[$pmf] ) ) {
+					update_post_meta( $post_id, $pmf, sanitize_text_field( stripslashes( $_POST[$pmf] ) ) );
+				} else {
+					delete_post_meta( $post_id, $pmf );
+				}
+			}
+		}
+
+
+		return $post_id;
+}
+add_action( 'save_post', 'gce_save_meta' );
