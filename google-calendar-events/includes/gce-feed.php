@@ -34,7 +34,7 @@ function gce_setup_cpt() {
 		'has_archive'        => false,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'supports'           => array( 'title' )
+		'supports'           => array( 'title', 'editor' )
 	);
 	
 	register_post_type( 'gce_feed', $args );
