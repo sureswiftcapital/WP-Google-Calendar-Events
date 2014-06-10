@@ -1,4 +1,7 @@
-
+<div class="gce-meta-control">
+	<strong>Feed ID:</strong> {ID}<br />
+	<strong>Feed Shortcode:</strong> {shortcode}
+</div>
 
 <div class="gce-meta-control">
 	<label>Feed URL</label>
