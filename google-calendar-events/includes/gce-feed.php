@@ -78,8 +78,6 @@ function gce_save_meta( $post_id ) {
 		
 		$post_meta_fields = apply_filters( 'gce_feed_meta', $post_meta_fields );
 
-		// Record sharing disable
-
 		if ( current_user_can( 'edit_post', $post_id ) ) {
 			// Loop through our array and make sure it is posted and not empty in order to update it, otherwise we delete it
 			foreach ( $post_meta_fields as $pmf ) {
@@ -95,3 +93,31 @@ function gce_save_meta( $post_id ) {
 		return $post_id;
 }
 add_action( 'save_post', 'gce_save_meta' );
+
+
+/*
+ * When the post is saved we will create the feed for it using the post meta options
+ * 
+ * @since 2.0.0
+ */
+function gce_create_feed( $post_id ) {
+	// If autosaving or is not a 'feed' post type then we don't need to run
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || get_post_type( $post_id ) != 'gce_feed' ) {
+			return $post_id;
+	}
+	
+	// Setup a new Feed from the post meta
+	$gce_feed_url         = get_post_meta( $post_id, 'gce_feed_url', true );
+	$gce_retrieve_from    = get_post_meta( $post_id, 'gce_retrieve_from', true );
+	$gce_retrieve_until   = get_post_meta( $post_id, 'gce_retrieve_until', true );
+	$gce_retrieve_max     = get_post_meta( $post_id, 'gce_retrieve_max', true );
+	$gce_date_format      = get_post_meta( $post_id, 'gce_date_format', true );
+	$gce_time_format      = get_post_meta( $post_id, 'gce_time_format', true );
+	$gce_timezone         = get_post_meta( $post_id, 'gce_timezone', true );
+	$gce_cache            = get_post_meta( $post_id, 'gce_cache', true );
+	$gce_multi_day_events = get_post_meta( $post_id, 'gce_multi_day_events', true );
+	
+	$feed_url = new GCE_Feed();
+	
+}
+add_action( 'save_post', 'gce_create_feed', 20 );
