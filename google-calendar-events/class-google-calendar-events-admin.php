@@ -45,9 +45,6 @@ class Google_Calendar_Events_Admin {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 		
-		// Add admin menu
-		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
-		
 		// Setup admin side constants
 		add_action( 'init', array( $this, 'define_admin_constants' ) );
 		
@@ -81,24 +78,6 @@ class Google_Calendar_Events_Admin {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Register the administration menu for this plugin into the WordPress Dashboard menu.
-	 *
-	 * @since    2.0.0
-	 */
-	public function add_plugin_admin_menu() {
-
-		// Add help submenu page to "feed" CPT
-		$this->plugin_screen_hook_suffix[] = add_submenu_page(
-			'edit.php?post_type=gce_feed',
-			__( 'Settings', 'gce' ),
-			__( 'Settings', 'gce' ),
-			'manage_options',
-			$this->plugin_slug . '_settings',
-			array( $this, 'display_admin_page' )
-		);
 	}
 
 	/**
