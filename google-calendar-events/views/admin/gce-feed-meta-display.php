@@ -25,12 +25,38 @@
 
 <div class="gce-meta-control">
 	<label>Retrieve Events From</label>
+	<select>
+		<option name="" id="" value="">Now</option>
+		<option name="" id="" value="">00:00 Today</option>
+		<option name="" id="" value="">Start of current week</option>
+		<option name="" id="" value="">Start of current month</option>
+		<option name="" id="" value="">End of current month</option>
+		<option name="" id="" value="">The beginning of time</option>
+		<!-- maybe take out the specific date / time option?
+		<option name="" id="" value="">Specific date / time</option>
+		-->
+	</select>
+	<!-- If we take out specific date/time option then we don't need this input box
 	<input type="text" class="" name="gce_retrieve_from" id="gce_retrieve_from" value="<?php echo $gce_retrieve_from; ?>" />
+	-->
 </div>
 
 <div class="gce-meta-control">
 	<label>Retrieve Events Until</label>
+	<select>
+		<option name="" id="" value="">Now</option>
+		<option name="" id="" value="">00:00 Today</option>
+		<option name="" id="" value="">Start of current week</option>
+		<option name="" id="" value="">Start of current month</option>
+		<option name="" id="" value="">End of current month</option>
+		<option name="" id="" value="">The end of time</option>
+		<!-- maybe take out the specific date / time option?
+		<option name="" id="" value="">Specific date / time</option>
+		-->
+	</select>
+	<!-- If we take out specific date/time option then we don't need this input box
 	<input type="text" class="" name="gce_retrieve_until" id="gce_retrieve_until" value="<?php echo $gce_retrieve_until; ?>" />
+	-->
 </div>
 
 <div class="gce-meta-control">
