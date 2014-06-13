@@ -88,7 +88,8 @@ function gce_save_meta( $post_id ) {
 				}
 			}
 		}
-
+		
+		// Should we just create the URL right here and then save the URL to the post meta?
 
 		return $post_id;
 }
@@ -121,3 +122,19 @@ function gce_create_feed( $post_id ) {
 	
 }
 add_action( 'save_post', 'gce_create_feed', 20 );
+
+
+function content_test( $content ) {
+	global $post;
+	
+	$new_content = $content;
+	
+	if( get_post_type( $post->ID ) == 'gce_feed' ) {
+		
+		
+		$new_content .= "[CALENDAR HERE]";
+	}
+	
+	return $new_content;
+}
+add_filter( 'the_content', 'content_test' );

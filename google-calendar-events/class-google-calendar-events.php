@@ -61,6 +61,9 @@ class Google_Calendar_Events {
 		} else {
 			// Public includes
 			include_once( 'views/public/public.php' );
+			include_once( 'includes/class-gce-feed.php' );
+			include_once( 'includes/class-gce-event.php' );
+			include_once( 'includes/class-gce-parser.php' );
 		}
 		
 	}
