@@ -25,13 +25,13 @@
 
 <div class="gce-meta-control">
 	<label>Retrieve Events From</label>
-	<select>
-		<option name="" id="" value="">Now</option>
-		<option name="" id="" value="">00:00 Today</option>
-		<option name="" id="" value="">Start of current week</option>
-		<option name="" id="" value="">Start of current month</option>
-		<option name="" id="" value="">End of current month</option>
-		<option name="" id="" value="">The beginning of time</option>
+	<select name="gce_retrieve_from">
+		<option value="now" <?php selected( $gce_retrieve_from, 'now', true ); ?>>Now</option>
+		<option value="today" <?php selected( $gce_retrieve_from, 'today', true ); ?>>00:00 Today</option>
+		<option value="start_week" <?php selected( $gce_retrieve_from, 'start_week', true ); ?>>Start of current week</option>
+		<option value="start_month" <?php selected( $gce_retrieve_from, 'start_month', true ); ?>>Start of current month</option>
+		<option value="end_month" <?php selected( $gce_retrieve_from, 'end_month', true ); ?>>End of current month</option>
+		<option value="start_time" <?php selected( $gce_retrieve_from, 'start_time', true ); ?>>The beginning of time</option>
 		<!-- maybe take out the specific date / time option?
 		<option name="" id="" value="">Specific date / time</option>
 		-->
@@ -43,13 +43,13 @@
 
 <div class="gce-meta-control">
 	<label>Retrieve Events Until</label>
-	<select>
-		<option name="" id="" value="">Now</option>
-		<option name="" id="" value="">00:00 Today</option>
-		<option name="" id="" value="">Start of current week</option>
-		<option name="" id="" value="">Start of current month</option>
-		<option name="" id="" value="">End of current month</option>
-		<option name="" id="" value="">The end of time</option>
+	<select name="gce_retrieve_until">
+		<option value="now" <?php selected( $gce_retrieve_until, 'now', true ); ?>>Now</option>
+		<option value="today" <?php selected( $gce_retrieve_until, 'today', true ); ?>>00:00 Today</option>
+		<option value="start_week" <?php selected( $gce_retrieve_until, 'start_week', true ); ?>>Start of current week</option>
+		<option value="start_month" <?php selected( $gce_retrieve_until, 'start_month', true ); ?>>Start of current month</option>
+		<option value="end_month" <?php selected( $gce_retrieve_until, 'end_month', true ); ?>>End of current month</option>
+		<option value="end_time" <?php selected( $gce_retrieve_until, 'end_time', true ); ?>>The end of time</option>
 		<!-- maybe take out the specific date / time option?
 		<option name="" id="" value="">Specific date / time</option>
 		-->

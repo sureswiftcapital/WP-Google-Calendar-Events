@@ -118,7 +118,7 @@ function gce_create_feed( $post_id ) {
 	$gce_cache            = get_post_meta( $post_id, 'gce_cache', true );
 	$gce_multi_day_events = get_post_meta( $post_id, 'gce_multi_day_events', true );
 	
-	$feed_url = new GCE_Feed();
+	//$feed_url = new GCE_Feed();
 	
 }
 add_action( 'save_post', 'gce_create_feed', 20 );
