@@ -7,6 +7,9 @@ class GCE_Feed {
 	
 	private $events = array();
 	
+	private $feed_start = 0;
+	private $feed_end = 2145916800;
+	
 	public function __construct( $id, $url, $start, $end, $max, $date_format, $time_format, $timezone, $cache, $multiple_day_events ) {
 		$this->id                  = $id;
 		$this->feed_url            = $url;
@@ -25,7 +28,7 @@ class GCE_Feed {
 	private function create_feed_url() {
 		
 		//Break the feed URL up into its parts (scheme, host, path, query)
-		echo $this->feed_url;
+		//echo $this->feed_url;
 		
 		$url_parts = parse_url( $this->feed_url );
 
@@ -37,12 +40,12 @@ class GCE_Feed {
 		//Add the default parameters to the querystring (retrieving JSON, not XML)
 		$query = '?alt=json&singleevents=true&sortorder=ascending';
 
-		$gmt_offset = $this->timezone * 3600;
+		//$gmt_offset = $this->timezone * 3600;
 
 		//Append the feed specific parameters to the querystring
-		//$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->start - $gmt_offset );
-		//$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->end - $gmt_offset );
-		//$query .= '&max-results=' . $this->max;
+		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->feed_start );
+		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->feed_end );
+		$query .= '&max-results=' . $this->max;
 
 		//if ( ! empty( $this->timezone ) )
 		//	$query .= '&ctz=' . $this->timezone;
@@ -56,6 +59,7 @@ class GCE_Feed {
 		$this->display_url = $scheme_and_host . $path . $query;
 		
 		$this->create_feed( $this->display_url );
+		
 		
 	}
 	
@@ -72,6 +76,8 @@ class GCE_Feed {
 				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
 				'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
 			) );
+		
+		//$this->events[] = $raw_data;
 
 			//If $raw_data is a WP_Error, something went wrong
 			if ( ! is_wp_error( $raw_data ) ) {
@@ -91,8 +97,8 @@ class GCE_Feed {
 								$description = esc_html( $event['content']['$t'] );
 								$link        = esc_url( $event['link'][0]['href'] );
 								$location    = esc_html( $event['gd$where'][0]['valueString'] );
-								$start_time  = $this->iso_to_ts( $event['gd$when'][0]['startTime'] );
-								$end_time    = $this->iso_to_ts( $event['gd$when'][0]['endTime'] );
+								$start_time  = /*$this->iso_to_ts(*/ $event['gd$when'][0]['startTime']; /*);*/
+								$end_time    = /*$this->iso_to_ts(*/ $event['gd$when'][0]['endTime']; /*);*/
 
 								//Create a GCE_Event using the above data. Add it to the array of events
 								$this->events[] = $id . ' ' . $title . ' ' . $description . ' ' . $location . ' ' . $start_time . ' ' . $end_time . ' ' . $link;

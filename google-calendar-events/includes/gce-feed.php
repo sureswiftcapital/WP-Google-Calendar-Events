@@ -81,8 +81,12 @@ function gce_save_meta( $post_id ) {
 		if ( current_user_can( 'edit_post', $post_id ) ) {
 			// Loop through our array and make sure it is posted and not empty in order to update it, otherwise we delete it
 			foreach ( $post_meta_fields as $pmf ) {
-				if ( isset( $_POST[$pmf] ) && !empty( $_POST[$pmf] ) ) {
-					update_post_meta( $post_id, $pmf, sanitize_text_field( stripslashes( $_POST[$pmf] ) ) );
+				if ( isset( $_POST[$pmf] ) && ! empty( $_POST[$pmf] ) ) {
+					if( $pmf == 'gce_feed_url' ) {
+						update_post_meta( $post_id, $pmf, esc_url( $_POST[$pmf] ) );
+					} else {
+						update_post_meta( $post_id, $pmf, sanitize_text_field( stripslashes( $_POST[$pmf] ) ) );
+					}
 				} else {
 					delete_post_meta( $post_id, $pmf );
 				}
@@ -143,8 +147,10 @@ function content_test( $content ) {
 		$events = get_option( 'gce_events' );
 		
 		if( ! empty( $feed[$post->ID] ) ) {
-			$new_content .= '<pre>' . print_r( $events, true ) . '</pre>';
-			$new_content .= $feed[$post->ID];
+			//$new_content .= '<pre>' . print_r( $events, true ) . '</pre>';
+			//$new_content .= $feed[$post->ID];
+			
+			// Setup output for the calendar here
 		}
 	}
 	
