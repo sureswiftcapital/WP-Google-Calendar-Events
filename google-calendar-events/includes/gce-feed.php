@@ -118,8 +118,16 @@ function gce_create_feed( $post_id ) {
 	$gce_cache            = get_post_meta( $post_id, 'gce_cache', true );
 	$gce_multi_day_events = get_post_meta( $post_id, 'gce_multi_day_events', true );
 	
-	//$feed_url = new GCE_Feed();
+	$feed_url = new GCE_Feed( $post_id, $gce_feed_url, $gce_retrieve_from, $gce_retrieve_until, $gce_retrieve_max, $gce_date_format, $gce_time_format, $gce_timezone, $gce_cache, $gce_multi_day_events );
 	
+	$feeds = get_option( 'gce_feeds' );
+	$events = get_option( 'gce_events' );
+	
+	$feeds[$post_id] = $feed_url->get_display_url();
+	$events[$post_id] = $feed_url->get_events();
+	
+	update_option( 'gce_feeds', $feeds );
+	update_option( 'gce_events', $events );
 }
 add_action( 'save_post', 'gce_create_feed', 20 );
 
@@ -131,8 +139,13 @@ function content_test( $content ) {
 	
 	if( get_post_type( $post->ID ) == 'gce_feed' ) {
 		
+		$feed = get_option( 'gce_feeds' );
+		$events = get_option( 'gce_events' );
 		
-		$new_content .= "[CALENDAR HERE]";
+		if( ! empty( $feed[$post->ID] ) ) {
+			$new_content .= '<pre>' . print_r( $events, true ) . '</pre>';
+			$new_content .= $feed[$post->ID];
+		}
 	}
 	
 	return $new_content;

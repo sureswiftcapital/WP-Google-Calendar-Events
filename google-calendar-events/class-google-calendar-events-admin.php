@@ -58,7 +58,7 @@ class Google_Calendar_Events_Admin {
 	}
 	
 	public static function define_admin_constants() {
-		if( ! defined( 'GCE_ADMIN_DIR' ) ) {
+		if( ! defined( 'GCE_DIR' ) ) {
 			define( 'GCE_DIR', dirname( __FILE__ ) );
 		}
 	}

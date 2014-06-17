@@ -47,6 +47,13 @@ class Google_Calendar_Events {
 	 */
 	private function __construct() {
 		$this->includes();
+		$this->setup_constants();
+	}
+	
+	public static function setup_constants() {
+		if( ! defined( 'GCE_DIR' ) ) {
+			define( 'GCE_DIR', dirname( __FILE__ ) );
+		}
 	}
 	
 	public static function includes() {
@@ -58,12 +65,13 @@ class Google_Calendar_Events {
 		// Now include files specifically for public or admin
 		if( is_admin() ) {
 			// Admin includes
+			include_once( 'includes/class-new-gce-feed.php' );
 		} else {
 			// Public includes
 			include_once( 'views/public/public.php' );
-			include_once( 'includes/class-gce-feed.php' );
-			include_once( 'includes/class-gce-event.php' );
-			include_once( 'includes/class-gce-parser.php' );
+			//include_once( 'includes/class-gce-feed.php' );
+			//include_once( 'includes/class-gce-event.php' );
+			//include_once( 'includes/class-gce-parser.php' );
 		}
 		
 	}
