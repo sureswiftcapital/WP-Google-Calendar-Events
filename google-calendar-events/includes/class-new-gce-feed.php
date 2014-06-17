@@ -10,22 +10,33 @@ class GCE_Feed {
 	private $feed_start = 0;
 	private $feed_end = 2145916800;
 	
-	public function __construct( $id, $url, $start, $end, $max, $date_format, $time_format, $timezone, $cache, $multiple_day_events ) {
-		$this->id                  = $id;
-		$this->feed_url            = $url;
-		$this->start               = $start;
-		$this->end                 = $end;
-		$this->max                 = $max;
-		$this->date_format         = $date_format;
-		$this->time_format         = $time_format;
-		$this->timezone            = $timezone;
-		$this->cache               = $cache;
-		$this->multiple_day_events = $multiple_day_events;
+	public function __construct( $id ) {
+		// Set the ID
+		$this->id = $id;
 		
-		$this->create_feed_url();
+		// Set up all other data based on the ID
+		$this->setup_attributes();
+		
+		// Now create the Feed
+		$this->create_feed();
+		
+		
 	}
 	
-	private function create_feed_url() {
+	private function setup_attributes() {
+		
+		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
+		$this->start               = get_post_meta( $this->id, 'gce_retrieve_from', true );
+		$this->end                 = get_post_meta( $this->id, 'gce_retrieve_until', true );
+		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
+		$this->date_format         = get_post_meta( $this->id, 'gce_date_format', true );
+		$this->time_format         = get_post_meta( $this->id, 'gce_time_format', true );
+		$this->timezone            = get_post_meta( $this->id, 'gce_timezone', true );
+		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
+		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
+	}
+	
+	private function create_feed() {
 		
 		//Break the feed URL up into its parts (scheme, host, path, query)
 		//echo $this->feed_url;
@@ -58,20 +69,17 @@ class GCE_Feed {
 		//Put the URL back together
 		$this->display_url = $scheme_and_host . $path . $query;
 		
-		$this->create_feed( $this->display_url );
+		$this->get_feed_data( $this->display_url );
 		
 		
 	}
 	
-	public function get_display_url() {
-		return $this->display_url;
-	}
-	
-	public function get_events() {
+	public function display() {
 		return print_r( $this->events, true );
 	}
+
 	
-	private function create_feed( $url ) {
+	private function get_feed_data( $url ) {
 		$raw_data = wp_remote_get( $url, array(
 				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
 				'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully

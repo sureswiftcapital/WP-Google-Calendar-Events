@@ -25,7 +25,7 @@ function gce_setup_cpt() {
 
 	$args = array(
 		'labels'             => $labels,
-		'public'             => false,
+		'public'             => false, // This removes the 'view' and 'preview' links from what I can tell
 		'publicly_queryable' => true,
 		'show_ui'            => true,
 		'show_in_menu'       => true,
@@ -112,7 +112,7 @@ function gce_create_feed( $post_id ) {
 	}
 	
 	// Setup a new Feed from the post meta
-	$gce_feed_url         = get_post_meta( $post_id, 'gce_feed_url', true );
+	/*$gce_feed_url         = get_post_meta( $post_id, 'gce_feed_url', true );
 	$gce_retrieve_from    = get_post_meta( $post_id, 'gce_retrieve_from', true );
 	$gce_retrieve_until   = get_post_meta( $post_id, 'gce_retrieve_until', true );
 	$gce_retrieve_max     = get_post_meta( $post_id, 'gce_retrieve_max', true );
@@ -131,9 +131,9 @@ function gce_create_feed( $post_id ) {
 	$events[$post_id] = $feed_url->get_events();
 	
 	update_option( 'gce_feeds', $feeds );
-	update_option( 'gce_events', $events );
+	update_option( 'gce_events', $events );*/
 }
-add_action( 'save_post', 'gce_create_feed', 20 );
+//add_action( 'save_post', 'gce_create_feed', 20 );
 
 
 function content_test( $content ) {
@@ -156,4 +156,4 @@ function content_test( $content ) {
 	
 	return $new_content;
 }
-add_filter( 'the_content', 'content_test' );
+//add_filter( 'the_content', 'content_test' );
