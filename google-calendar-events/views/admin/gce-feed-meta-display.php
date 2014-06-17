@@ -2,6 +2,8 @@
 	
 	global $post;
 	
+	$post_id = $post->ID;
+	
 	$gce_feed_url         = get_post_meta( $post->ID, 'gce_feed_url', true );
 	$gce_retrieve_from    = get_post_meta( $post->ID, 'gce_retrieve_from', true );
 	$gce_retrieve_until   = get_post_meta( $post->ID, 'gce_retrieve_until', true );
@@ -14,8 +16,8 @@
 ?>
 
 <div class="gce-meta-control">
-	<strong>Feed ID:</strong> {ID}<br />
-	<strong>Feed Shortcode:</strong> {shortcode}
+	<strong>Feed ID:</strong> <?php echo $post_id; ?><br />
+	<strong>Feed Shortcode:</strong> [gce-feed id="<?php echo $post_id; ?>"]
 </div>
 
 <div class="gce-meta-control">

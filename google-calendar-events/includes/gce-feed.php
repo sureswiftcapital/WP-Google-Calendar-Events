@@ -25,7 +25,7 @@ function gce_setup_cpt() {
 
 	$args = array(
 		'labels'             => $labels,
-		'public'             => true,
+		'public'             => false,
 		'publicly_queryable' => true,
 		'show_ui'            => true,
 		'show_in_menu'       => true,
@@ -34,7 +34,7 @@ function gce_setup_cpt() {
 		'has_archive'        => false,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'supports'           => array( 'title', 'editor' )
+		'supports'           => array( 'title', 'revisions' )
 	);
 	
 	register_post_type( 'gce_feed', $args );
