@@ -1,21 +1,12 @@
 <?php
-class GCE_Event{
-	private $id;
-	private $title;
-	private $description;
-	private $location;
-	private $start_time;
-	private $end_time;
-	private $link;
-	private $type;
-	private $num_in_day;
-	private $pos;
-	private $feed;
-	private $day_type;
-	private $time_now;
-	private $regex;
 
-	function __construct( $id, $title, $description, $location, $start_time, $end_time, $link ) {
+class GCE_Event {
+	
+	private $feed;
+	
+	function __construct( GCE_Feed $feed, $id, $title, $description, $location, $start_time, $end_time, $link ) {
+		
+		$this->feed = $feed;
 		$this->id = $id;
 		$this->title = $title;
 		$this->description = $description;
@@ -39,19 +30,7 @@ class GCE_Event{
 			$this->day_type = 'SPD';
 		}
 	}
-
-	function get_start_time() {
-		return $this->start_time;
-	}
-
-	function get_end_time() {
-		return $this->end_time;
-	}
-
-	function get_day_type() {
-		return $this->day_type;
-	}
-
+	
 	//Returns an array of days (as UNIX timestamps) that this events spans
 	function get_days() {
 		//Round start date to nearest day
@@ -60,7 +39,7 @@ class GCE_Event{
 		$days = array();
 
 		//If multiple day events should be handled, and this event is a multi-day event, add multiple day event to required days
-		if ( $this->feed->get_multi_day() && ( 'MPD' == $this->day_type || 'MWD' == $this->day_type ) ) {
+		/*if ( $this->feed->get_multi_day() && ( 'MPD' == $this->day_type || 'MWD' == $this->day_type ) ) {
 			$on_next_day = true;
 			$next_day = $start_time;
 
@@ -76,10 +55,10 @@ class GCE_Event{
 				}
 				$next_day += 86400;
 			}
-		} else {
+		} else {*/
 			//Add event into array of events for that day
 			$days[] = $start_time;
-		}
+		//}
 
 		return $days;
 	}
@@ -102,6 +81,92 @@ class GCE_Event{
 		//	return $this->use_builder();
 
 		return $this->use_old_display_options();
+	}
+	
+	//Return the event markup using the old display options
+	function use_old_display_options() {
+		$display_options = array(
+					'display_start'         => 'none',
+					'display_end'           => 'none',
+					'display_location'      => '',
+					'display_desc'          => '',
+					//'display_link'          => '',
+					'display_start_text'    => '',
+					'display_end_text'      => '',
+					'display_location_text' => '',
+					'display_desc_text'     => '',
+					'display_desc_limit'    => '',
+					'display_link_text'     => '',
+					'display_link_target'   => '',
+					'display_separator'     => ''
+				);
+
+		$markup = '<p class="gce-' . $this->type . '-event">' . esc_html( $this->title )  . '</p>';
+
+		$start_end = array();
+
+		//If start date / time should be displayed, set up array of start date and time
+		if ( 'none' != $display_options['display_start'] ) {
+			$sd = $this->start_time;
+			$start_end['start'] = array(
+				'time' => date_i18n( $this->feed->get_time_format(), $sd ),
+				'date' => date_i18n( $this->feed->get_date_format(), $sd )
+			);
+		}
+
+		//If end date / time should be displayed, set up array of end date and time
+		if ( 'none' != $display_options['display_end'] ) {
+			$ed = $this->end_time;
+			$start_end['end'] = array(
+				'time' => date_i18n( $this->feed->get_time_format(), $ed ),
+				'date' => date_i18n( $this->feed->get_date_format(), $ed )
+			);
+		}
+
+		//Add the correct start / end, date / time information to $markup
+		foreach ( $start_end as $start_or_end => $info ) {
+			$markup .= '<p class="gce-' . $this->type . '-' . $start_or_end . '"><span>' . esc_html( $display_options['display_' . $start_or_end . '_text'] ) . '</span> ';
+
+			switch ( $display_options['display_' . $start_or_end] ) {
+				case 'time': $markup .= esc_html( $info['time'] );
+					break;
+				case 'date': $markup .= esc_html( $info['date'] );
+					break;
+				case 'time-date': $markup .= esc_html( $info['time'] . $display_options['display_separator'] . $info['date'] );
+					break;
+				case 'date-time': $markup .= esc_html( $info['date'] . $display_options['display_separator'] . $info['time'] );
+			}
+
+			$markup .= '</p>';
+		}
+
+		//If location should be displayed (and is not empty) add to $markup
+		if ( isset( $display_options['display_location'] ) ) {
+			$event_location = $this->location;
+			if ( '' != $event_location )
+				$markup .= '<p class="gce-' . $this->type . '-loc"><span>' . esc_html( $display_options['display_location_text'] ) . '</span> ' . esc_html( $event_location ) . '</p>';
+		}
+
+		//If description should be displayed (and is not empty) add to $markup
+		if ( isset($display_options['display_desc'] ) ) {
+			$event_desc = $this->description;
+
+			if ( '' != $event_desc ) {
+				//Limit number of words of description to display, if required
+				if ( '' != $display_options['display_desc_limit'] ) {
+					preg_match( '/([\S]+\s*){0,' . $display_options['display_desc_limit'] . '}/', $this->description, $event_desc );
+					$event_desc = trim( $event_desc[0] );
+				}
+
+				$markup .= '<p class="gce-' . $this->type . '-desc"><span>' . $display_options['display_desc_text'] . '</span> ' . make_clickable( nl2br( esc_html( $event_desc ) ) ) . '</p>';
+			}
+		}
+
+		//If link should be displayed add to $markup
+		if ( isset($display_options['display_link'] ) )
+			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->get_timezone() ) . '"' . ( ( isset( $display_options['display_link_target'] ) ) ? ' target="_blank"' : '' ) . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
+
+		return $markup;
 	}
 
 	//Returns the difference between two times in human-readable format. Based on a patch for human_time_diff posted in the WordPress trac (http://core.trac.wordpress.org/ticket/9272) by Viper007Bond 
@@ -148,6 +213,6 @@ class GCE_Event{
 			$smallest = array_pop( $units ); 
 			return sprintf( $smallest[0], 1 ); 
 		} 
-	} 
+	}
+	
 }
-?>

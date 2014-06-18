@@ -10,7 +10,7 @@ function gce_feed_shortcode( $attr ) {
 	if( ! empty( $id ) ) {
 		$feed = new GCE_Feed( $id );
 		
-		return '<pre>' . $feed->display() . '</pre>';
+		return $feed->display();
 	}
 	
 	return '';
