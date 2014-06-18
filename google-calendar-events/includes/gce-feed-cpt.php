@@ -71,7 +71,7 @@ function gce_save_meta( $post_id ) {
 			'gce_retrieve_max',
 			'gce_date_format',
 			'gce_time_format',
-			'gce_timezone',
+			'gce_timezone_offset',
 			'gce_cache',
 			'gce_multi_day_events'
 		);
@@ -98,62 +98,3 @@ function gce_save_meta( $post_id ) {
 		return $post_id;
 }
 add_action( 'save_post', 'gce_save_meta' );
-
-
-/*
- * When the post is saved we will create the feed for it using the post meta options
- * 
- * @since 2.0.0
- */
-function gce_create_feed( $post_id ) {
-	// If autosaving or is not a 'feed' post type then we don't need to run
-	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || get_post_type( $post_id ) != 'gce_feed' ) {
-			return $post_id;
-	}
-	
-	// Setup a new Feed from the post meta
-	/*$gce_feed_url         = get_post_meta( $post_id, 'gce_feed_url', true );
-	$gce_retrieve_from    = get_post_meta( $post_id, 'gce_retrieve_from', true );
-	$gce_retrieve_until   = get_post_meta( $post_id, 'gce_retrieve_until', true );
-	$gce_retrieve_max     = get_post_meta( $post_id, 'gce_retrieve_max', true );
-	$gce_date_format      = get_post_meta( $post_id, 'gce_date_format', true );
-	$gce_time_format      = get_post_meta( $post_id, 'gce_time_format', true );
-	$gce_timezone         = get_post_meta( $post_id, 'gce_timezone', true );
-	$gce_cache            = get_post_meta( $post_id, 'gce_cache', true );
-	$gce_multi_day_events = get_post_meta( $post_id, 'gce_multi_day_events', true );
-	
-	$feed_url = new GCE_Feed( $post_id, $gce_feed_url, $gce_retrieve_from, $gce_retrieve_until, $gce_retrieve_max, $gce_date_format, $gce_time_format, $gce_timezone, $gce_cache, $gce_multi_day_events );
-	
-	$feeds = get_option( 'gce_feeds' );
-	$events = get_option( 'gce_events' );
-	
-	$feeds[$post_id] = $feed_url->get_display_url();
-	$events[$post_id] = $feed_url->get_events();
-	
-	update_option( 'gce_feeds', $feeds );
-	update_option( 'gce_events', $events );*/
-}
-//add_action( 'save_post', 'gce_create_feed', 20 );
-
-
-function content_test( $content ) {
-	global $post;
-	
-	$new_content = $content;
-	
-	if( get_post_type( $post->ID ) == 'gce_feed' ) {
-		
-		$feed = get_option( 'gce_feeds' );
-		$events = get_option( 'gce_events' );
-		
-		if( ! empty( $feed[$post->ID] ) ) {
-			//$new_content .= '<pre>' . print_r( $events, true ) . '</pre>';
-			//$new_content .= $feed[$post->ID];
-			
-			// Setup output for the calendar here
-		}
-	}
-	
-	return $new_content;
-}
-//add_filter( 'the_content', 'content_test' );

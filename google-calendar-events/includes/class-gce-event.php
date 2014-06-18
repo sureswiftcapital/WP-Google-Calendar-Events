@@ -14,6 +14,9 @@ class GCE_Event {
 		$this->start_time = $start_time;
 		$this->end_time = $end_time;
 		$this->link = $link;
+		
+		echo 'Start Time: ' . $this->start_time . '<br>';
+		echo 'End Time: ' . $this->end_time . '<br>';
 
 		//Calculate which day type this event is (SWD = single whole day, SPD = single part day, MWD = multiple whole day, MPD = multiple part day)
 		if ( ( $start_time + 86400 ) <= $end_time ) {
@@ -39,7 +42,7 @@ class GCE_Event {
 		$days = array();
 
 		//If multiple day events should be handled, and this event is a multi-day event, add multiple day event to required days
-		/*if ( $this->feed->get_multi_day() && ( 'MPD' == $this->day_type || 'MWD' == $this->day_type ) ) {
+		if ( $this->feed->multiple_day_events && ( 'MPD' == $this->day_type || 'MWD' == $this->day_type ) ) {
 			$on_next_day = true;
 			$next_day = $start_time;
 
@@ -47,7 +50,7 @@ class GCE_Event {
 				//If the end time of the event is after 00:00 on the next day (therefore, not doesn't end on this day)
 				if ( $this->end_time > $next_day ) {
 					//If $next_day is within the event retrieval date range (specified by retrieve events from / until settings)
-					if ( $next_day >= $this->feed->get_feed_start() && $next_day < $this->feed->get_feed_end() ) {
+					if ( $next_day >= $this->feed->start && $next_day < $this->feed->end ) {
 						$days[] = $next_day;
 					}
 				} else {
@@ -55,10 +58,10 @@ class GCE_Event {
 				}
 				$next_day += 86400;
 			}
-		} else {*/
+		} else {
 			//Add event into array of events for that day
 			$days[] = $start_time;
-		//}
+		}
 
 		return $days;
 	}
@@ -76,27 +79,23 @@ class GCE_Event {
 
 		$this->time_now = current_time( 'timestamp' );
 
-		//Use the builder or the old display options to create the markup, depending on user choice
-		//if ( $this->feed->get_use_builder() )
-		//	return $this->use_builder();
-
 		return $this->use_old_display_options();
 	}
 	
 	//Return the event markup using the old display options
 	function use_old_display_options() {
 		$display_options = array(
-					'display_start'         => 'none',
-					'display_end'           => 'none',
+					'display_start'         => 'time',
+					'display_end'           => 'time',
 					'display_location'      => '',
 					'display_desc'          => '',
-					//'display_link'          => '',
-					'display_start_text'    => '',
-					'display_end_text'      => '',
+					'display_link'          => 1,
+					'display_start_text'    => 'Start:',
+					'display_end_text'      => 'End:',
 					'display_location_text' => '',
 					'display_desc_text'     => '',
 					'display_desc_limit'    => '',
-					'display_link_text'     => '',
+					'display_link_text'     => 'Click here for event',
 					'display_link_target'   => '',
 					'display_separator'     => ''
 				);
@@ -109,8 +108,8 @@ class GCE_Event {
 		if ( 'none' != $display_options['display_start'] ) {
 			$sd = $this->start_time;
 			$start_end['start'] = array(
-				'time' => date_i18n( $this->feed->get_time_format(), $sd ),
-				'date' => date_i18n( $this->feed->get_date_format(), $sd )
+				'time' => date_i18n( $this->feed->time_format, $sd ),
+				'date' => date_i18n( $this->feed->date_format, $sd )
 			);
 		}
 
@@ -118,8 +117,8 @@ class GCE_Event {
 		if ( 'none' != $display_options['display_end'] ) {
 			$ed = $this->end_time;
 			$start_end['end'] = array(
-				'time' => date_i18n( $this->feed->get_time_format(), $ed ),
-				'date' => date_i18n( $this->feed->get_date_format(), $ed )
+				'time' => date_i18n( $this->feed->time_format, $ed ),
+				'date' => date_i18n( $this->feed->date_format, $ed )
 			);
 		}
 
@@ -138,6 +137,8 @@ class GCE_Event {
 			}
 
 			$markup .= '</p>';
+			
+			//$markup .= '<pre>Startend: ' . print_r( $start_end, true ) . '</pre>';
 		}
 
 		//If location should be displayed (and is not empty) add to $markup
@@ -164,7 +165,7 @@ class GCE_Event {
 
 		//If link should be displayed add to $markup
 		if ( isset($display_options['display_link'] ) )
-			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->get_timezone() ) . '"' . ( ( isset( $display_options['display_link_target'] ) ) ? ' target="_blank"' : '' ) . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
+			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->timezone_offset ) . '"' . ( ( isset( $display_options['display_link_target'] ) ) ? ' target="_blank"' : '' ) . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
 
 		return $markup;
 	}

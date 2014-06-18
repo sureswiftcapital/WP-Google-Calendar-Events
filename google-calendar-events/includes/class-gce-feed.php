@@ -3,7 +3,7 @@
 
 class GCE_Feed {
 	
-	private $id, $feed_url, $start, $end, $max, $date_format, $time_format, $timezone, $cache, $multiple_day_events, $display_url;
+	public $id, $feed_url, $start, $end, $max, $date_format, $time_format, $timezone_offset, $cache, $multiple_day_events, $display_url;
 	
 	private $events = array();
 	
@@ -31,7 +31,7 @@ class GCE_Feed {
 		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
 		$this->date_format         = get_post_meta( $this->id, 'gce_date_format', true );
 		$this->time_format         = get_post_meta( $this->id, 'gce_time_format', true );
-		$this->timezone            = get_post_meta( $this->id, 'gce_timezone', true );
+		$this->timezone_offset     = get_post_meta( $this->id, 'gce_timezone_offset', true );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
 	}
