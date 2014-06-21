@@ -15,8 +15,6 @@ class GCE_Event {
 		$this->end_time = $end_time;
 		$this->link = $link;
 		
-		echo 'Start Time: ' . $this->start_time . '<br>';
-		echo 'End Time: ' . $this->end_time . '<br>';
 
 		//Calculate which day type this event is (SWD = single whole day, SPD = single part day, MWD = multiple whole day, MPD = multiple part day)
 		if ( ( $start_time + 86400 ) <= $end_time ) {

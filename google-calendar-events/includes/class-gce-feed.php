@@ -75,7 +75,7 @@ class GCE_Feed {
 	}
 	
 	public function display() {
-		return $this->get_grid();
+		return '<div class="gce-page-grid" id="gce-page-grid">' . $this->get_grid() . '</div>';
 	}
 
 	
