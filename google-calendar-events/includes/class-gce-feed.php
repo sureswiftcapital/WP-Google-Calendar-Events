@@ -51,20 +51,16 @@ class GCE_Feed {
 		//Add the default parameters to the querystring (retrieving JSON, not XML)
 		$query = '?alt=json&singleevents=true&sortorder=ascending';
 
-		//$gmt_offset = $this->timezone * 3600;
+		$gmt_offset = $this->timezone_offset * 3600;
 
 		//Append the feed specific parameters to the querystring
-		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->feed_start );
-		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->feed_end );
+		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->feed_start - $gmt_offset );
+		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->feed_end - $gmt_offset );
 		$query .= '&max-results=' . $this->max;
 
-		//if ( ! empty( $this->timezone ) )
-		//	$query .= '&ctz=' . $this->timezone;
-
-		//If enabled, use experimental 'fields' parameter of Google Data API, so that only necessary data is retrieved. This *significantly* reduces amount of data to retrieve and process
-		//$general_options = get_option( GCE_GENERAL_OPTIONS_NAME );
-		//if ( $general_options['fields'] )
-		//	$query .= '&fields=entry(title,link[@rel="alternate"],content,gd:where,gd:when,gCal:uid)';
+		if ( ! empty( $this->timezone_offset ) && $this->timezone_offset != 'default' ) {
+			$query .= '&ctz=' . $this->timezone_offset;
+		}
 
 		//Put the URL back together
 		$this->display_url = $scheme_and_host . $path . $query;
