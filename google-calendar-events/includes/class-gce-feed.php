@@ -3,12 +3,22 @@
 
 class GCE_Feed {
 	
-	public $id, $feed_url, $start, $end, $max, $date_format, $time_format, $timezone_offset, $cache, $multiple_day_events, $display_url;
+	public $id,
+		   $feed_url,
+		   $start,
+		   $end,
+		   $max,
+		   $date_format,
+		   $time_format,
+		   $timezone_offset,
+		   $cache,
+		   $multiple_day_events,
+		   $display_url;
 	
 	private $events = array();
 	
-	private $feed_start = 0;
-	private $feed_end = 2145916800;
+	/*public $start = 0;
+	private $end = 2145916800;*/
 	
 	public function __construct( $id ) {
 		// Set the ID
@@ -26,20 +36,23 @@ class GCE_Feed {
 	private function setup_attributes() {
 		
 		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
-		$this->start               = get_post_meta( $this->id, 'gce_retrieve_from', true );
-		$this->end                 = get_post_meta( $this->id, 'gce_retrieve_until', true );
+		$this->start               = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_from', true ), 'start' );
+		$this->end                 = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_until', true ), 'end' );
 		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
 		$this->date_format         = get_post_meta( $this->id, 'gce_date_format', true );
 		$this->time_format         = get_post_meta( $this->id, 'gce_time_format', true );
 		$this->timezone_offset     = get_post_meta( $this->id, 'gce_timezone_offset', true );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
+		
 	}
 	
 	private function create_feed() {
 		
 		//Break the feed URL up into its parts (scheme, host, path, query)
 		//echo $this->feed_url;
+		
+		echo $this->start;
 		
 		$url_parts = parse_url( $this->feed_url );
 
@@ -54,8 +67,8 @@ class GCE_Feed {
 		$gmt_offset = $this->timezone_offset * 3600;
 
 		//Append the feed specific parameters to the querystring
-		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->feed_start - $gmt_offset );
-		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->feed_end - $gmt_offset );
+		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->start - $gmt_offset );
+		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->end - $gmt_offset );
 		$query .= '&max-results=' . $this->max;
 
 		if ( ! empty( $this->timezone_offset ) && $this->timezone_offset != 'default' ) {
@@ -281,5 +294,39 @@ class GCE_Feed {
 	private function iso_to_ts( $iso ) {
 		sscanf( $iso, "%u-%u-%uT%u:%u:%uZ", $year, $month, $day, $hour, $minute, $second );
 		return mktime( $hour, $minute, $second, $month, $day, $year );
+	}
+	
+	// Return feed start
+	private function set_feed_length( $value, $type ) {
+		switch ( $value ) {
+			//Don't just use time() for 'now', as this will effectively make cache duration 1 second. Instead set to previous minute. 
+			//Events in Google Calendar cannot be set to precision of seconds anyway
+			case 'now':
+				$return = mktime( date( 'H' ), date( 'i' ), 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
+				break;
+			case 'today':
+				$return = mktime( 0, 0, 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
+				break;
+			case 'start_week':
+				$return = mktime( 0, 0, 0, date( 'm' ), ( date( 'j' ) - date( 'w' ) ), date( 'Y' ) );
+				break;
+			case 'start_month':
+				$return = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
+				break;
+			case 'end_month':
+				$return = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
+				break;
+			//case 'date':
+			//	$feed->feed_start = ;
+			//	break;
+			default:
+				if( $type == 'start' ) {
+					$return = 0; //any - 1970-01-01 00:00
+				} else {
+					$return = 2145916800;
+				}
+		}
+		
+		return $return;
 	}
 }
