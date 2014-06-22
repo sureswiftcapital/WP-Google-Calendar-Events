@@ -88,7 +88,12 @@ function gce_save_meta( $post_id ) {
 						update_post_meta( $post_id, $pmf, sanitize_text_field( stripslashes( $_POST[$pmf] ) ) );
 					}
 				} else {
-					delete_post_meta( $post_id, $pmf );
+					// We want max to be set to 25 by default if nothing is entered
+					if( $pmf == 'gce_retrieve_max' ) {
+						update_post_meta( $post_id, $pmf, 25 );
+					} else {
+						delete_post_meta( $post_id, $pmf );
+					}
 				}
 			}
 		}
