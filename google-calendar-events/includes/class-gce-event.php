@@ -84,7 +84,7 @@ class GCE_Event {
 	function use_old_display_options() {
 		$display_options = array(
 					'display_start'         => 'time',
-					'display_end'           => 'time',
+					'display_end'           => 'time-date',
 					'display_location'      => '',
 					'display_desc'          => '',
 					'display_link'          => 1,
@@ -95,7 +95,7 @@ class GCE_Event {
 					'display_desc_limit'    => '',
 					'display_link_text'     => 'Click here for event',
 					'display_link_target'   => '',
-					'display_separator'     => ''
+					'display_separator'     => ', '
 				);
 
 		$markup = '<p class="gce-' . $this->type . '-event">' . esc_html( $this->title )  . '</p>';

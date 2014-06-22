@@ -35,12 +35,15 @@ class GCE_Feed {
 	
 	private function setup_attributes() {
 		
+		$date_format = get_post_meta( $this->id, 'gce_date_format', true );
+		$time_format = get_post_meta( $this->id, 'gce_time_format', true );
+		
 		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
 		$this->start               = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_from', true ), 'start' );
 		$this->end                 = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_until', true ), 'end' );
 		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
-		$this->date_format         = get_post_meta( $this->id, 'gce_date_format', true );
-		$this->time_format         = get_post_meta( $this->id, 'gce_time_format', true );
+		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
+		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
 		$this->timezone_offset     = get_post_meta( $this->id, 'gce_timezone_offset', true );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
