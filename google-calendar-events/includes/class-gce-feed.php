@@ -55,7 +55,7 @@ class GCE_Feed {
 		//Break the feed URL up into its parts (scheme, host, path, query)
 		//echo $this->feed_url;
 		
-		echo $this->start;
+		//echo $this->start;
 		
 		$url_parts = parse_url( $this->feed_url );
 
@@ -87,7 +87,10 @@ class GCE_Feed {
 	}
 	
 	public function display() {
-		return '<div class="gce-page-grid" id="gce-page-grid">' . $this->get_grid() . '</div>';
+		// OLD calendar return
+		//return '<div class="gce-page-grid" id="gce-page-grid">' . $this->get_grid() . '</div>';
+		
+		return '<div id="calendar"></div>';
 	}
 
 	
@@ -331,5 +334,9 @@ class GCE_Feed {
 		}
 		
 		return $return;
+	}
+	
+	public function get_display_url() {
+		return $this->display_url;
 	}
 }

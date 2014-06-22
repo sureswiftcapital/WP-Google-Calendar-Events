@@ -54,9 +54,13 @@ class Google_Calendar_Events {
 		
 	}
 	
-	public static function setup_constants() {
+	public function setup_constants() {
 		if( ! defined( 'GCE_DIR' ) ) {
 			define( 'GCE_DIR', dirname( __FILE__ ) );
+		}
+		
+		if( ! defined( 'GCE_PLUGIN_SLUG' ) ) {
+			define( 'GCE_PLUGIN_SLUG', $this->plugin_slug );
 		}
 	}
 	
@@ -83,14 +87,24 @@ class Google_Calendar_Events {
 	}
 	
 	public function enqueue_public_scripts() {
+		// OLD calendar scripts
+		//wp_enqueue_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery-qtip.js', __FILE__ ), array( 'jquery' ), self::VERSION, true );
+		//wp_enqueue_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), self::VERSION, true );
 		
-		wp_enqueue_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery-qtip.js', __FILE__ ), array( 'jquery' ), self::VERSION, true );
-		wp_enqueue_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), self::VERSION, true );
-		
+		// FullCalendar scripts (new)
+		wp_enqueue_script( $this->plugin_slug . '-moment', plugins_url( 'js/moment.min.js', __FILE__ ), array(), self::VERSION, true );
+		wp_enqueue_script( $this->plugin_slug . '-fullcalendar', plugins_url( 'js/fullcalendar.min.js', __FILE__ ), array( 'jquery' ), self::VERSION, true );
+		wp_enqueue_script( $this->plugin_slug . '-gcal-extension', plugins_url( 'js/gcal.js', __FILE__ ), array( $this->plugin_slug . '-fullcalendar' ), self::VERSION, true );
+		wp_enqueue_script( $this->plugin_slug . '-public', plugins_url( 'js/public.js', __FILE__ ), array( $this->plugin_slug . '-fullcalendar' ), self::VERSION, true );
 	}
 	
 	public function enqueue_public_styles() {
-		wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array(), self::VERSION );
+		// OLD calendar CSS
+		//wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array(), self::VERSION );
+		
+		// FullCalendar CSS (new)
+		wp_enqueue_style( $this->plugin_slug . '-fullcalendar-css', plugins_url( 'css/fullcalendar.css', __FILE__ ), array(), self::VERSION );
+		wp_enqueue_style( $this->plugin_slug . '-fullcalendar-print', plugins_url( 'css/fullcalendar.print.css', __FILE__ ), array( ), self::VERSION, 'print' );
 	}
 
 	/**
