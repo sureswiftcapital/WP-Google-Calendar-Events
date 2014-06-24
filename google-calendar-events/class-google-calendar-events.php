@@ -53,8 +53,8 @@ class Google_Calendar_Events {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 		
 		// AJAX
-		add_action( 'wp_ajax_no_priv_gce_ajax', array( $this, 'gce_ajax' ) );
-		add_action( 'wp_ajax_gce_ajax', array( $this, 'gce_ajax' ) );
+		/*add_action( 'wp_ajax_no_priv_gce_ajax', array( $this, 'gce_ajax' ) );
+		add_action( 'wp_ajax_gce_ajax', array( $this, 'gce_ajax' ) );*/
 		
 	}
 	

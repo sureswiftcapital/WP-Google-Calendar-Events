@@ -194,16 +194,16 @@ class GCE_Display {
 			if ( $grouped ) {
 				$markup .=
 					'<li' . ( ( $key == $today ) ? ' class="gce-today"' : '' ) . '>' .
-					'<div class="gce-list-title">' . esc_html( $event_day[0]->title ) . ' ' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>' .
+					'<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>' .
 					'<ul>';
 			}
 
 			foreach ( $event_day as $num_in_day => $event ) {
 				//Create the markup for this event
 				$markup .=
-					'<li class="gce-feed-' . $event->id . '">' .
+					'<li class="gce-feed-' . $event->feed->id . '">' .
 					//If this isn't a grouped list and a date title should be displayed, add the date title
-					( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $event->title ) . ' ' . date_i18n( $event->feed->date_format, $key ) . '</div>' : '' ) .
+					( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $event->title ) . '</div>' : '' ) .
 					//Add the event markup
 					$event->get_event_markup( 'list', $num_in_day, $i ) .
 					'</li>';
