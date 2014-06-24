@@ -3,20 +3,30 @@
 
 function gce_feed_shortcode( $attr ) {
 	
+	global $post;
+	
 	extract( shortcode_atts( array(
-					'id' => null
+					'id' => null,
+					'display' => null
 				), $attr, 'gce_feed' ) );
 	
 	if( ! empty( $id ) ) {
 		$feed = new GCE_Feed( $id );
 		
-		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
+		/*wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
 				array( 
 					'url' => 'https://www.google.com/calendar/feeds/qs39fk8m91po76l92norrgr2b8%40group.calendar.google.com/public/basic',
 					'ajaxurl' => admin_url( 'admin-ajax.php' )
-				) );
+				) );*/
 		
-		return $feed->display();
+		if( empty( $display ) ) {
+			
+			$display_mode = get_post_meta( $post->ID, 'gce_display_mode', true );
+			
+			$display = ( ! empty( $display_mode ) ? $display_mode : 'grid' );
+		}
+		
+		return $feed->display( $display );
 	}
 	
 	return '';

@@ -86,12 +86,14 @@ class GCE_Feed {
 		
 	}
 	
-	public function display( $year = null, $month = null, $ajaxified = false ) {
+	public function display( $display, $year = null, $month = null, $ajaxified = false ) {
 		// OLD calendar return
 		
 		$display = new GCE_Display( $this->id, $this );
 		
 		return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_list( true ) . '</div>';
+		
+		
 	}
 
 	
