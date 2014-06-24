@@ -88,9 +88,7 @@ class GCE_Feed {
 	
 	public function display() {
 		// OLD calendar return
-		//return '<div class="gce-page-grid" id="gce-page-grid">' . $this->get_grid() . '</div>';
-		
-		return '<div id="calendar"></div>';
+		return '<div class="gce-page-grid" id="gce-page-grid">' . $this->get_grid() . '</div>';
 	}
 
 	
