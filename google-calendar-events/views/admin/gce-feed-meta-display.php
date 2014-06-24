@@ -13,6 +13,7 @@
 	//$gce_timezone_offset  = get_post_meta( $post->ID, 'gce_timezone_offset', true );
 	$gce_cache            = get_post_meta( $post->ID, 'gce_cache', true );
 	$gce_multi_day_events = get_post_meta( $post->ID, 'gce_multi_day_events', true );
+	$gce_display_mode     = get_post_meta( $post->ID, 'gce_display_mode', true );
 ?>
 
 <div class="gce-meta-control">
@@ -89,6 +90,15 @@
 <div class="gce-meta-control">
 	<label>Multiple Day Events</label>
 	<input type="checkbox" name="gce_multi_day_events" id="gce_multi_day_events" value="1" <?php checked( $gce_multi_day_events, 'yes' ); ?> /> Show on each day
+</div>
+
+<div class="gce-meta-control">
+	<label>Display Mode</label>
+	<select name="gce_display_mode">
+		<option value="grid" <?php selected( $gce_display_mode, 'grid', true ); ?>>Grid</option>
+		<option value="list" <?php selected( $gce_display_mode, 'list', true ); ?>>List</option>
+		<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped', true ); ?>>Grouped List</option>
+	</select>
 </div>
 
 
