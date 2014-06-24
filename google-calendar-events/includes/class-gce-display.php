@@ -164,7 +164,12 @@ class GCE_Display {
 		}
 		
 		
+		if( $ajaxified ) {
 		//Generate the calendar markup and return it
-		return gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
+			$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . $this->id . '", "' . $this->id . '", "' . absint( $this->feed->max ) . '", "' . 'Test Title Placeholder' . '", "page");});</script>';
+			return $markup . gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
+		} else {
+			return $markup . gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
+		}
 	}
 }

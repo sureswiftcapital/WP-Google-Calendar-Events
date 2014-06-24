@@ -4,9 +4,9 @@ function gce_ajaxify(target, feed_ids, max_events, title_text, type){
 		//Extract month and year
 		var month_year = jQuery(this).attr('name').split('-', 2);
 		//Add loading text to table caption
-		jQuery('#' + target + ' caption').html(GoogleCalendarEvents.loading);
+		jQuery('#' + target + ' caption').html('Loading...');
 		//Send AJAX request
-		jQuery.get(GoogleCalendarEvents.ajaxurl,{
+		jQuery.get(gce.ajaxurl,{
 			action:'gce_ajax',
 			gce_type:type,
 			gce_feed_ids:feed_ids,
@@ -16,6 +16,8 @@ function gce_ajaxify(target, feed_ids, max_events, title_text, type){
 			gce_month:month_year[0],
 			gce_year:month_year[1]
 		}, function(data){
+			
+			//console.log( 'Data Returned: ' + data );
 			//Replace existing data with returned AJAX data
 			if(type == 'widget'){
 				jQuery('#' + target).html(data);

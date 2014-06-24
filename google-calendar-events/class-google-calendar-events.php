@@ -52,6 +52,10 @@ class Google_Calendar_Events {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 		
+		// AJAX
+		add_action( 'wp_ajax_no_priv_gce_ajax', array( $this, 'gce_ajax' ) );
+		add_action( 'wp_ajax_gce_ajax', array( $this, 'gce_ajax' ) );
+		
 	}
 	
 	public function setup_constants() {
@@ -124,5 +128,33 @@ class Google_Calendar_Events {
 		}
 
 		return self::$instance;
+	}
+	
+	function gce_ajax() {
+		//global $post;
+		
+		
+		if ( isset( $_GET['gce_feed_ids'] ) ) {
+			$ids = $_GET['gce_feed_ids'];
+			$title = $_GET['gce_title_text'];
+			$max = $_GET['gce_max_events'];
+			$month = $_GET['gce_month'];
+			$year = $_GET['gce_year'];
+
+			$title = ( 'null' == $title ) ? null : $title;
+
+			if ( 'page' == $_GET['gce_type'] ) {
+				//The page grid markup to be returned via AJAX
+				$feed = new GCE_Feed( 1408 );
+				
+				echo $feed->display( $year, $month, true );
+			} /*elseif ( 'widget' == $_GET['gce_type'] ) {
+				$widget = esc_html( $_GET['gce_widget_id'] );
+
+				//The widget grid markup to be returned via AJAX
+				gce_widget_content_grid( $ids, $title, $max, $widget, true, $month, $year );
+			}*/
+		}
+		die();
 	}
 }
