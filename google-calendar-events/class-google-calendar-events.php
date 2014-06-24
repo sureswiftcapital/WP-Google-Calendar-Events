@@ -71,6 +71,7 @@ class Google_Calendar_Events {
 		include_once( 'includes/class-gce-feed.php' );
 		include_once( 'includes/class-gce-event.php' );
 		include_once( 'includes/shortcodes.php' );
+		include_once( 'includes/class-gce-display.php' );
 		
 		// Now include files specifically for public or admin
 		if( is_admin() ) {
