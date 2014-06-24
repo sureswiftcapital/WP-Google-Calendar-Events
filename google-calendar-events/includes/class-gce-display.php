@@ -172,4 +172,52 @@ class GCE_Display {
 			return $markup . gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
 		}
 	}
+	
+	
+	public function get_list( $grouped = false ) {
+		$time_now = current_time( 'timestamp' );
+
+		$event_days = $this->get_event_days();
+
+		//If event_days is empty, there are no events in the feed(s), so return a message indicating this
+		if( empty( $event_days) )
+			return '<p>' . __( 'There are currently no events to display.', 'gce' ) . '</p>';
+
+		$today = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
+
+		$i = 1;
+
+		$markup = '<ul class="gce-list">';
+
+		foreach ( $event_days as $key => $event_day ) {
+			//If this is a grouped list, add the date title and begin the nested list for this day
+			if ( $grouped ) {
+				$markup .=
+					'<li' . ( ( $key == $today ) ? ' class="gce-today"' : '' ) . '>' .
+					'<div class="gce-list-title">' . esc_html( $event_day[0]->title ) . ' ' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>' .
+					'<ul>';
+			}
+
+			foreach ( $event_day as $num_in_day => $event ) {
+				//Create the markup for this event
+				$markup .=
+					'<li class="gce-feed-' . $event->id . '">' .
+					//If this isn't a grouped list and a date title should be displayed, add the date title
+					( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $event->title ) . ' ' . date_i18n( $event->feed->date_format, $key ) . '</div>' : '' ) .
+					//Add the event markup
+					$event->get_event_markup( 'list', $num_in_day, $i ) .
+					'</li>';
+
+				$i++;
+			}
+
+			//If this is a grouped list, close the nested list for this day
+			if ( $grouped )
+				$markup .= '</ul></li>';
+		}
+
+		$markup .= '</ul>';
+
+		return $markup;
+	}
 }

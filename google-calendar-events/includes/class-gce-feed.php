@@ -91,7 +91,7 @@ class GCE_Feed {
 		
 		$display = new GCE_Display( $this->id, $this );
 		
-		return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_ajax( $year, $month, $ajaxified ) . '</div>';
+		return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_list( true ) . '</div>';
 	}
 
 	
@@ -157,7 +157,7 @@ class GCE_Feed {
 		return mktime( $hour, $minute, $second, $month, $day, $year );
 	}
 	
-	// Return feed start
+	// Return feed start/end
 	private function set_feed_length( $value, $type ) {
 		switch ( $value ) {
 			//Don't just use time() for 'now', as this will effectively make cache duration 1 second. Instead set to previous minute. 
@@ -184,6 +184,7 @@ class GCE_Feed {
 				if( $type == 'start' ) {
 					$return = 0; //any - 1970-01-01 00:00
 				} else {
+					// Set default end time
 					$return = 2145916800;
 				}
 		}

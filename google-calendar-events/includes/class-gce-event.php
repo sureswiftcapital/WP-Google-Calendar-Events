@@ -2,7 +2,7 @@
 
 class GCE_Event {
 	
-	private $feed;
+	public $feed;
 	
 	function __construct( GCE_Feed $feed, $id, $title, $description, $location, $start_time, $end_time, $link ) {
 		
