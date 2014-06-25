@@ -110,6 +110,7 @@ class GCE_Widget extends WP_Widget {
 						echo $feed->display( 'widget-grid' );
 						break;
 					case 'ajax':
+						echo '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-widget-' . $feed->id . '-container", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
 						echo $feed->display( 'widget-grid', null, null, true );
 						break;
 					case 'list':

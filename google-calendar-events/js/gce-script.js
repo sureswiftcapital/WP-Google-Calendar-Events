@@ -1,3 +1,10 @@
+
+/*
+ * TODOs
+ * 
+ * Rewrite the gce_ajaxify function to be more generic and less reliant on an ID being passed in?
+ */
+
 function gce_ajaxify(target, feed_ids, max_events, title_text, type){
 	//Add click event to change month links
 	jQuery('#' + target + ' .gce-change-month').click(function(){

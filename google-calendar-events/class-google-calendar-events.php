@@ -97,6 +97,12 @@ class Google_Calendar_Events {
 		// OLD calendar scripts
 		wp_enqueue_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery-qtip.js', __FILE__ ), array( 'jquery' ), self::VERSION, true );
 		wp_enqueue_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), self::VERSION, true );
+		
+		wp_localize_script( $this->plugin_slug . '-public', 'gce', 
+				array( 
+					//'url' => 'https://www.google.com/calendar/feeds/qs39fk8m91po76l92norrgr2b8%40group.calendar.google.com/public/basic',
+					'ajaxurl' => admin_url( 'admin-ajax.php' )
+				) );
 	}
 	
 	public function enqueue_public_styles() {

@@ -164,6 +164,7 @@ class GCE_Display {
 		
 		if( $ajaxified ) {
 		//Generate the calendar markup and return it
+			// target, feed_ids, max_events, title_text, type
 			$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . $this->id . '", "' . $this->id . '", "' . absint( $this->feed->max ) . '", "' . 'Test Title Placeholder' . '", "page");});</script>';
 			return $markup . gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
 		} else {

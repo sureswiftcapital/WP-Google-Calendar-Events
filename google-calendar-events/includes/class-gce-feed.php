@@ -94,7 +94,7 @@ class GCE_Feed {
 			case 'grid':
 				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
 			case 'widget-grid':
-				return '<div class="gce-widget-grid" id="' . $this->id . '-container">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
+				return '<div class="gce-widget-grid" id="gce-widget-' . $this->id . '-container">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
 			case 'ajax':
 				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, true ) . '</div>';
 			case 'list':
