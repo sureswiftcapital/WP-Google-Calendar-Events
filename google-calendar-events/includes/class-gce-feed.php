@@ -86,18 +86,25 @@ class GCE_Feed {
 		
 	}
 	
-	public function display( $display_type, $year = null, $month = null, $ajaxified = false ) {
+	public function display( $display_type, $year = null, $month = null, $ajax = false ) {
 		$display = new GCE_Display( $this->id, $this );
 		
+		// TODO Add options for the widget grid and lists so we can reuse this and not wrap the oute div HTML incorrectly
 		switch( $display_type ) {
 			case 'grid':
-				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid() . '</div>';
+				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
+			case 'widget-grid':
+				return '<div class="gce-widget-grid" id="' . $this->id . '-container">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
 			case 'ajax':
-				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( null, null, true ) . '</div>';
+				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
 			case 'list':
 				return '<div class="gce-page-list" id="gce-page-list-' . $this->id . '">' . $display->get_list( false ) . '</div>';
 			case 'list-grouped':
 				return '<div class="gce-page-list-gouped" id="gce-page-list-' . $this->id . '">' . $display->get_list( true ) . '</div>';
+			case 'widget-list':
+				return '<div class="gce-widget-list" id="' . $this->id . '-container">' . $display->get_list( false ) . '</div>';
+			case 'widget-list-grouped':
+				return '<div class="gce-widget-list" id="' . $this->id . '-container">' . $display->get_list( true ) . '</div>';
 		}
 		
 		//return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_list( true ) . '</div>';

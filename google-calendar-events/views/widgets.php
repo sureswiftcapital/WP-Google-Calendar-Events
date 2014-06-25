@@ -13,6 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * General Widget TODOs
+ * 
+ * Support multiple Feed IDs being inserted.
+ * 
+ */
+
 
 /**
  *  Class functions for the Pin It Button widgets
@@ -23,7 +30,7 @@ class GCE_Widget extends WP_Widget {
 	
 	function GCE_Widget() {
 		parent::__construct(
-			false, // TODO Add a name here, or will that throw off upgrade
+			false, // TODO Add a name here, or will that throw off upgrades?
 			$name = __( 'Google Calendar Events', 'gce' ),
 			array( 'description' => __( 'Display a list or calendar grid of events from one or more Google Calendar feeds you have added', 'gce' ) )
 		);
@@ -39,7 +46,8 @@ class GCE_Widget extends WP_Widget {
 		// TODO Grab feed by CPT ID
 		//$options = get_option( GCE_OPTIONS_NAME );
 	
-
+		// TODO Check if any feeds exist before processing
+		
 		//Check whether any feeds have been added yet
 		//if( is_array( $options ) && ! empty( $options ) ) {
 			//Output title stuff
@@ -49,7 +57,7 @@ class GCE_Widget extends WP_Widget {
 				echo $before_title . $title . $after_title;
 
 			$no_feeds_exist = true;
-				$feed_ids = array();
+			$feed_ids = array();
 
 			if ( '' != $instance['id'] ) {
 				//Break comma delimited list of feed ids into array
@@ -89,32 +97,23 @@ class GCE_Widget extends WP_Widget {
 				$title_text = ( $instance['display_title'] ) ? $instance['display_title_text'] : null;
 				$max_events = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
 				$sort_order = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
+				
+				// Set our feed object
+				$feed = new GCE_Feed( $feed_ids );
 
 				//Output correct widget content based on display type chosen
 				switch ( $instance['display_type'] ) {
 					case 'grid':
-						echo '<div class="gce-widget-grid" id="' . $args['widget_id'] . '-container">';
-						//Output main widget content as grid (no AJAX)
-						gce_widget_content_grid( $feed_ids, $title_text, $max_events, $args['widget_id'] . '-container' );
-						echo '</div>';
+						echo $feed->display( 'widget-grid' );
 						break;
 					case 'ajax':
-						echo '<div class="gce-widget-grid" id="' . $args['widget_id'] . '-container">';
-						//Output main widget content as grid (with AJAX)
-						gce_widget_content_grid( $feed_ids, $title_text, $max_events, $args['widget_id'] . '-container', true );
-						echo '</div>';
+						echo $feed->display( 'widget-grid', null, null, true );
 						break;
 					case 'list':
-						echo '<div class="gce-widget-list" id="' . $args['widget_id'] . '-container">';
-						//Output main widget content as list
-						gce_widget_content_list( $feed_ids, $title_text, $max_events, $sort_order );
-						echo '</div>';
+						echo $feed->display( 'widget-list' );
 						break;
 					case 'list-grouped':
-						echo '<div class="gce-widget-list" id="' . $args['widget_id'] . '-container">';
-						//Output main widget content as a grouped list
-						gce_widget_content_list( $feed_ids, $title_text, $max_events, $sort_order, true );
-						echo '</div>';
+						echo $feed->display( 'widget-list-grouped' );
 						break;
 				}
 			}
@@ -197,88 +196,4 @@ class GCE_Widget extends WP_Widget {
 	}
 }
 add_action( 'widgets_init', create_function( '', 'register_widget("GCE_Widget");' ) );
-
-
-// TODO Do we want these functions here or somewhere else?
-function gce_widget_content_grid( $feed_ids, $title_text, $max_events, $widget_id, $ajaxified = false, $month = null, $year = null ) {
-	//require_once WP_PLUGIN_DIR . '/' . GCE_PLUGIN_NAME . '/inc/gce-parser.php';
-
-	/*$ids = explode( '-', $feed_ids );
-
-	//Create new GCE_Parser object, passing array of feed id(s)
-	$grid = new GCE_Parser( $ids, $title_text, $max_events );
-
-	$num_errors = $grid->get_num_errors();
-
-	$markup = '';
-
-	//If there are less errors than feeds parsed, at least one feed must have parsed successfully so continue to display the grid
-	if ( $num_errors < count( $ids ) ) {
-		$ids = esc_attr( $ids );
-		$title_text = isset( $title_text ) ? esc_html( $title_text) : 'null';
-
-		//If there was at least one error, and user is an admin, output error messages
-		if ( $num_errors > 0 && current_user_can( 'manage_options' ) )
-			$markup .= $grid->error_messages();
-
-		//Add AJAX script if required
-		if ( $ajaxified )
-			$markup .= '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("' . $widget_id . '", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
-
-		$markup .= $grid->get_grid( $year, $month, $ajaxified );
-	} else {
-		//If current user is an admin, display an error message explaining problem. Otherwise, display a 'nice' error messsage
-		if ( current_user_can( 'manage_options' ) ) {
-			$markup .= $grid->error_messages();
-		} else {
-			$options = get_option( GCE_GENERAL_OPTIONS_NAME );
-			$markup .= $options['error'];
-		}
-	}*/
-	
-	$feed = new GCE_Feed( $feed_ids );
-	
-	$display = new GCE_Display( $feed->id, $feed );
-	
-	$markup = $display->get_grid();
-
-	echo $markup;
-}
-
-function gce_widget_content_list( $feed_ids, $title_text, $max_events, $sort_order, $grouped = false ) {
-	//require_once WP_PLUGIN_DIR . '/' . GCE_PLUGIN_NAME . '/inc/gce-parser.php';
-
-	/*$ids = explode( '-', $feed_ids );
-
-	//Create new GCE_Parser object, passing array of feed id(s)
-	$list = new GCE_Parser( $ids, $title_text, $max_events, $sort_order );
-
-	$num_errors = $list->get_num_errors();
-
-	//If there are less errors than feeds parsed, at least one feed must have parsed successfully so continue to display the list
-	if ( $num_errors < count( $ids ) ) {
-		//If there was at least one error, and user is an admin, output error messages
-		if ( $num_errors > 0 && current_user_can( 'manage_options' ) )
-			echo $list->error_messages();
-
-		echo $list->get_list( $grouped );
-	} else {
-		//If current user is an admin, display an error message explaining problem(s). Otherwise, display a 'nice' error messsage
-		if ( current_user_can( 'manage_options' ) ) {
-			echo $list->error_messages();
-		} else {
-			$options = get_option( GCE_GENERAL_OPTIONS_NAME );
-			echo $options['error'];
-		}
-	}*/
-	
-	$feed = new GCE_Feed( $feed_ids );
-	
-	$display = new GCE_Display( $feed->id, $feed );
-	
-	$markup = $display->get_list();
-
-	echo $markup;
-	
-}
 
