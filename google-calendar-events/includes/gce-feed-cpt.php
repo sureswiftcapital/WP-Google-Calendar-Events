@@ -104,3 +104,59 @@ function gce_save_meta( $post_id ) {
 		return $post_id;
 }
 add_action( 'save_post', 'gce_save_meta' );
+
+function gce_add_column_headers( $defaults ) {
+		
+	$new_columns = array( 
+		'cb'           => $defaults['cb'],
+		'feed-id'      => 'Feed ID',
+		'feed-sc'      => 'Feed Shortcode',
+		'max-events'   => 'Max Events',
+		'display-type' => 'Display Type'
+	);
+
+	return array_merge( $defaults, $new_columns );
+}
+add_filter( 'manage_gce_feed_posts_columns', 'gce_add_column_headers' );  
+
+function gce_column_content( $column_name, $post_ID ) {
+	
+	switch ( $column_name ) {
+
+		case 'feed-id': 
+		{
+			echo $post_ID;
+			break;
+		}
+
+		case 'feed-sc':
+		{
+			echo '[gce-feed id="' . $post_ID . '"]';
+			break;
+		}
+
+		case 'max-events':
+		{
+			$max = get_post_meta( $post_ID, 'gce_retrieve_max', true );
+			echo $max;
+			break;
+		}
+		
+		case 'display-type':
+		{
+			$display = get_post_meta( $post_ID, 'gce_display_mode', true );
+			
+			if( $display == 'grid' ) {
+				echo 'Grid';
+			} else if( $display == 'list' ) {
+				echo 'List';
+			} else { 
+				echo 'Grouped List';
+			}
+			
+			
+			break;
+		}
+	}
+}
+add_action( 'manage_gce_feed_posts_custom_column', 'gce_column_content', 10, 2 );
