@@ -17,7 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * General Widget TODOs
  * 
  * Support multiple Feed IDs being inserted.
- * 
+ * Get max number of events working
+ * Get sort order working
+ * Get tooltip title working
+ * Check on AJAX grid after fixing that issue elsewhere and make sure it works
  */
 
 
