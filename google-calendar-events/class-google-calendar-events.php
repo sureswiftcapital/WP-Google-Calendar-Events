@@ -53,8 +53,8 @@ class Google_Calendar_Events {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 		
 		// AJAX
-		/*add_action( 'wp_ajax_no_priv_gce_ajax', array( $this, 'gce_ajax' ) );
-		add_action( 'wp_ajax_gce_ajax', array( $this, 'gce_ajax' ) );*/
+		add_action( 'wp_ajax_no_priv_gce_ajax', array( $this, 'gce_ajax' ) );
+		add_action( 'wp_ajax_gce_ajax', array( $this, 'gce_ajax' ) );
 		
 	}
 	
@@ -144,18 +144,23 @@ class Google_Calendar_Events {
 			$year = $_GET['gce_year'];
 
 			$title = ( 'null' == $title ) ? null : $title;
-
+			
+			//echo '<pre>' . print_r( $_GET, true ) . '</pre>';
+			
+			//die();
+			$feed = new GCE_Feed( $ids );
+			
 			if ( 'page' == $_GET['gce_type'] ) {
 				//The page grid markup to be returned via AJAX
-				//$feed = new GCE_Feed(  );
 				
-				echo $feed->display( $year, $month, true );
-			} /*elseif ( 'widget' == $_GET['gce_type'] ) {
-				$widget = esc_html( $_GET['gce_widget_id'] );
+				echo $feed->display( 'ajax', $year, $month, true );
+			} elseif ( 'widget' == $_GET['gce_type'] ) {
+				//$widget = esc_html( $_GET['gce_widget_id'] );
 
 				//The widget grid markup to be returned via AJAX
-				gce_widget_content_grid( $ids, $title, $max, $widget, true, $month, $year );
-			}*/
+				//gce_widget_content_grid( $ids, $title, $max, $widget, true, $month, $year );
+				echo $feed->display( 'widget-grid', $year, $month, true );
+			}
 		}
 		die();
 	}

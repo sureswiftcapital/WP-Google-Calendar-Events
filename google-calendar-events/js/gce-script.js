@@ -18,10 +18,12 @@ function gce_ajaxify(target, feed_ids, max_events, title_text, type){
 		}, function(data){
 			
 			//console.log( 'Data Returned: ' + data );
+			//console.log( 'Target: ' + target );
 			//Replace existing data with returned AJAX data
 			if(type == 'widget'){
 				jQuery('#' + target).html(data);
 			}else{
+				//console.log( 'Replacing content...' );
 				jQuery('#' + target).replaceWith(data);
 			}
 			gce_tooltips('#' + target + ' .gce-has-events');
