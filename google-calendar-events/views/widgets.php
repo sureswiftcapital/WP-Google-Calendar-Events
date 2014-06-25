@@ -248,7 +248,7 @@ function gce_widget_content_grid( $feed_ids, $title_text, $max_events, $widget_i
 function gce_widget_content_list( $feed_ids, $title_text, $max_events, $sort_order, $grouped = false ) {
 	//require_once WP_PLUGIN_DIR . '/' . GCE_PLUGIN_NAME . '/inc/gce-parser.php';
 
-	$ids = explode( '-', $feed_ids );
+	/*$ids = explode( '-', $feed_ids );
 
 	//Create new GCE_Parser object, passing array of feed id(s)
 	$list = new GCE_Parser( $ids, $title_text, $max_events, $sort_order );
@@ -270,6 +270,15 @@ function gce_widget_content_list( $feed_ids, $title_text, $max_events, $sort_ord
 			$options = get_option( GCE_GENERAL_OPTIONS_NAME );
 			echo $options['error'];
 		}
-	}
+	}*/
+	
+	$feed = new GCE_Feed( $feed_ids );
+	
+	$display = new GCE_Display( $feed->id, $feed );
+	
+	$markup = $display->get_list();
+
+	echo $markup;
+	
 }
 
