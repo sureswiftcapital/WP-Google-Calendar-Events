@@ -86,13 +86,22 @@ class GCE_Feed {
 		
 	}
 	
-	public function display( $display, $year = null, $month = null, $ajaxified = false ) {
-		// OLD calendar return
-		
+	public function display( $display_type, $year = null, $month = null, $ajaxified = false ) {
 		$display = new GCE_Display( $this->id, $this );
 		
-		return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_list( true ) . '</div>';
+		switch( $display_type ) {
+			case 'grid':
+				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid() . '</div>';
+			case 'ajax':
+				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( null, null, true ) . '</div>';
+			case 'list':
+				return '<div class="gce-page-list" id="gce-page-list-' . $this->id . '">' . $display->get_list( false ) . '</div>';
+			case 'list-grouped':
+				return '<div class="gce-page-list-gouped" id="gce-page-list-' . $this->id . '">' . $display->get_list( true ) . '</div>';
+		}
 		
+		//return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_list( true ) . '</div>';
+		//return '<div class="gce-page-list" id="gce-page-list-' . $this->id . '">' . $display->get_list( false ) . '</div>';
 		
 	}
 

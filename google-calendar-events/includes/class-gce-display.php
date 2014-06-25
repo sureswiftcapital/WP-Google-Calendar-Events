@@ -38,7 +38,7 @@ class GCE_Display {
 			$event = $this->feed->events[$i];
 
 			//Check that event ends, or starts (or both) within the required date range. This prevents all-day events from before / after date range from showing up.
-			//if ( $event->get_end_time() > $event->get_feed()->get_feed_start() && $event->get_start_time() < $event->get_feed()->get_feed_end() ) {
+			if ( $event->end_time > $event->feed->start && $event->start_time < $event->feed->end ) {
 				foreach ( $event->get_days() as $day ) {
 					$event_days[$day][] = $event;
 				}
@@ -46,7 +46,7 @@ class GCE_Display {
 				//If maximum events to display isn't 0 (unlimited) decrement $max counter
 				if ( 0 != $this->feed->max )
 					$max--;
-			//}
+			}
 		}
 
 		return $event_days;
@@ -88,8 +88,6 @@ class GCE_Display {
 		$today = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
 		$i = 1;
-		
-		//echo '<pre>Event Days: ' . print_r( $event_days, true ) . '</pre>';
 
 		foreach ( $event_days as $key => $event_day ) {
 			//If event day is in the month and year specified (by $month and $year)
@@ -169,20 +167,21 @@ class GCE_Display {
 			$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . $this->id . '", "' . $this->id . '", "' . absint( $this->feed->max ) . '", "' . 'Test Title Placeholder' . '", "page");});</script>';
 			return $markup . gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
 		} else {
-			return $markup . gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
+			return gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
 		}
 	}
 	
 	
 	public function get_list( $grouped = false ) {
 		$time_now = current_time( 'timestamp' );
-
+		
+		// Get all the event days
 		$event_days = $this->get_event_days();
 
 		//If event_days is empty, there are no events in the feed(s), so return a message indicating this
 		if( empty( $event_days) )
 			return '<p>' . __( 'There are currently no events to display.', 'gce' ) . '</p>';
-
+		
 		$today = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
 		$i = 1;
@@ -212,8 +211,9 @@ class GCE_Display {
 			}
 
 			//If this is a grouped list, close the nested list for this day
-			if ( $grouped )
+			if ( $grouped ) {
 				$markup .= '</ul></li>';
+			}
 		}
 
 		$markup .= '</ul>';

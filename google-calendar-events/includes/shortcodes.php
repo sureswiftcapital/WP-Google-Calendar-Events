@@ -2,9 +2,7 @@
 
 
 function gce_feed_shortcode( $attr ) {
-	
-	global $post;
-	
+
 	extract( shortcode_atts( array(
 					'id' => null,
 					'display' => null
@@ -21,8 +19,8 @@ function gce_feed_shortcode( $attr ) {
 		
 		if( empty( $display ) ) {
 			
-			$display_mode = get_post_meta( $post->ID, 'gce_display_mode', true );
-			
+			$display_mode = get_post_meta( $id, 'gce_display_mode', true );
+					
 			$display = ( ! empty( $display_mode ) ? $display_mode : 'grid' );
 		}
 		
