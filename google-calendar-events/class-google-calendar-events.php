@@ -159,7 +159,7 @@ class Google_Calendar_Events {
 			if ( 'page' == $_GET['gce_type'] ) {
 				//The page grid markup to be returned via AJAX
 				
-				echo $feed->display( 'ajax', $year, $month, true );
+				echo $feed->display( 'grid', $year, $month, true );
 			} elseif ( 'widget' == $_GET['gce_type'] ) {
 				//$widget = esc_html( $_GET['gce_widget_id'] );
 

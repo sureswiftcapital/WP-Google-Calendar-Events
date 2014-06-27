@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Class GCE_Feed
+ * 
+ * Class to setup feed data from CPTs
+ */
+
 
 class GCE_Feed {
 	
@@ -53,10 +59,6 @@ class GCE_Feed {
 	private function create_feed() {
 		
 		//Break the feed URL up into its parts (scheme, host, path, query)
-		//echo $this->feed_url;
-		
-		//echo $this->start;
-		
 		$url_parts = parse_url( $this->feed_url );
 
 		$scheme_and_host = $url_parts['scheme'] . '://' . $url_parts['host'];
@@ -74,6 +76,7 @@ class GCE_Feed {
 		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->end - $gmt_offset );
 		$query .= '&max-results=' . $this->max;
 
+		// Set the timezone offset
 		if ( ! empty( $this->timezone_offset ) && $this->timezone_offset != 'default' ) {
 			$query .= '&ctz=' . $this->timezone_offset;
 		}
@@ -81,6 +84,7 @@ class GCE_Feed {
 		//Put the URL back together
 		$this->display_url = $scheme_and_host . $path . $query;
 		
+		// Get all the feed data
 		$this->get_feed_data( $this->display_url );
 		
 		
@@ -91,11 +95,11 @@ class GCE_Feed {
 		
 		// TODO Add options for the widget grid and lists so we can reuse this and not wrap the oute div HTML incorrectly
 		switch( $display_type ) {
-			case 'grid':
-				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
+			//case 'grid':
+			//	return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
 			case 'widget-grid':
 				return '<div class="gce-widget-grid" id="gce-widget-' . $this->id . '-container">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
-			case 'ajax':
+			case 'grid':
 				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, true ) . '</div>';
 			case 'list':
 				return '<div class="gce-page-list" id="gce-page-list-' . $this->id . '">' . $display->get_list( false ) . '</div>';

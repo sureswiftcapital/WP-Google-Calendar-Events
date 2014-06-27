@@ -131,7 +131,7 @@ function gce_column_content( $column_name, $post_ID ) {
 
 		case 'feed-sc':
 		{
-			echo '[gce-feed id="' . $post_ID . '"]';
+			echo '<code>[gce-feed id="' . $post_ID . '"]</code>';
 			break;
 		}
 
