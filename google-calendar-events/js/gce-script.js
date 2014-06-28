@@ -24,7 +24,7 @@ function gce_ajaxify(target, feed_ids, max_events, title_text, type){
 			gce_year:month_year[1]
 		}, function(data){
 			
-			//console.log( 'Data Returned: ' + data );
+			//console.log( 'Data Returned', data );
 			//console.log( 'Target: ' + target );
 			//Replace existing data with returned AJAX data
 			if(type == 'widget'){

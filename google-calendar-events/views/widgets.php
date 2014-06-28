@@ -17,10 +17,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * General Widget TODOs
  * 
  * Support multiple Feed IDs being inserted.
- * Get max number of events working
+ * Get max number of events working - currently is set to the same as the Feed, is that acceptable? (Going to go this route for now - removing the max events option from widget)
  * Get sort order working
  * Get tooltip title working
  * Check on AJAX grid after fixing that issue elsewhere and make sure it works
+ * 
+ * Removing AJAX option for now and combining with grid display
  */
 
 
@@ -53,6 +55,7 @@ class GCE_Widget extends WP_Widget {
 		
 		//Check whether any feeds have been added yet
 		//if( is_array( $options ) && ! empty( $options ) ) {
+		if( wp_count_posts( 'gce_feed' )->publish > 0 ) {
 			//Output title stuff
 			$title = empty( $instance['title'] ) ? '' : apply_filters( 'widget_title', $instance['title'] );
 
@@ -107,12 +110,13 @@ class GCE_Widget extends WP_Widget {
 				//Output correct widget content based on display type chosen
 				switch ( $instance['display_type'] ) {
 					case 'grid':
-						echo $feed->display( 'widget-grid' );
-						break;
-					case 'ajax':
 						echo '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-widget-' . $feed->id . '-container", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
 						echo $feed->display( 'widget-grid', null, null, true );
 						break;
+					//case 'ajax':
+					//	echo '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-widget-' . $feed->id . '-container", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
+					//	echo $feed->display( 'widget-grid', null, null, true );
+					//	break;
 					case 'list':
 						echo $feed->display( 'widget-list' );
 						break;
@@ -121,6 +125,13 @@ class GCE_Widget extends WP_Widget {
 						break;
 				}
 			}
+		} else {
+			if( current_user_can( 'manage_options' ) ) {
+				_e( 'You have not added any feeds yet.', 'gce' );
+			} else {
+				return;
+			}
+		}
 		//} else {
 		//	if ( current_user_can( 'manage_options' ) ) {
 		//		_e( 'No feeds have been added yet. You can add a feed in the Google Calendar Events settings.', 'gce' );
@@ -140,7 +151,7 @@ class GCE_Widget extends WP_Widget {
 		$instance['title']              = esc_html( $new_instance['title'] );
 		$instance['id']                 = esc_html( $new_instance['id'] );
 		$instance['display_type']       = esc_html( $new_instance['display_type'] );
-		$instance['max_events']         = absint( $new_instance['max_events'] );
+		//$instance['max_events']         = absint( $new_instance['max_events'] );
 		$instance['order']              = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
 		$instance['display_title']      = ( 'on' == $new_instance['display_title'] ) ? true : false;
 		$instance['display_title_text'] = wp_filter_kses( $new_instance['display_title_text'] );
@@ -157,7 +168,7 @@ class GCE_Widget extends WP_Widget {
 		$title         = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
 		$ids           = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
 		$display_type  = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
-		$max_events    = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
+		//$max_events    = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
 		$order         = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 		$display_title = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
 		$title_text    = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
@@ -167,29 +178,36 @@ class GCE_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $title; ?>" class="widefat" />
-		</p><p>
+		</p>
+		<p>
 			<label for="<?php echo $this->get_field_id( 'id' ); ?>">
 				<?php _e( 'Feeds to display, as a comma separated list (e.g. 1, 2, 4). Leave blank to display all feeds:', 'gce' ); ?>
 			</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'id' ); ?>" name="<?php echo $this->get_field_name( 'id' ); ?>" value="<?php echo $ids; ?>" class="widefat" />
-		</p><p>
+		</p>
+		<p>
 			<label for="<?php echo $this->get_field_id( 'display_type' ); ?>"><?php _e( 'Display events as:', 'gce' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'display_type' ); ?>" name="<?php echo $this->get_field_name( 'display_type' ); ?>" class="widefat">
-				<option value="grid"<?php selected( $display_type, 'grid' ); ?>><?php _e( 'Calendar Grid', 'gce' ); ?></option>
-				<option value="ajax"<?php selected( $display_type, 'ajax' ); ?>><?php _e( 'Calendar Grid - with AJAX', 'gce' ); ?></option>
+				<option value="grid"<?php selected( $display_type, 'grid' ); ?>><?php _e( 'Grid', 'gce' ); ?></option>
+				<!-- <option value="ajax"<?php selected( $display_type, 'ajax' ); ?>><?php _e( 'Calendar Grid - with AJAX', 'gce' ); ?></option> -->
 				<option value="list"<?php selected( $display_type, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
-				<option value="list-grouped"<?php selected( $display_type, 'list-grouped' );?>><?php _e( 'List - grouped by date', 'gce' ); ?></option>
+				<option value="list-grouped"<?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
 			</select>
-		</p><p>
+		</p>
+		<!--
+		<p>
 			<label for="<?php echo $this->get_field_id( 'max_events' ); ?>"><?php _e( 'Maximum no. events to display. Enter 0 to show all retrieved.' ); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'max_events' ); ?>" name="<?php echo $this->get_field_name( 'max_events' ); ?>" value="<?php echo $max_events; ?>" class="widefat" />
-		</p><p>
+		</p>
+		-->
+		<p>
 			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Sort order (only applies to lists):' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'order' ); ?>" name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat">
 				<option value="asc"<?php selected( $order, 'asc' ); ?>><?php _e( 'Ascending', 'gce' ); ?></option>
 				<option value="desc"<?php selected( $order, 'desc' ); ?>><?php _e( 'Descending', 'gce' ); ?></option>
 			</select>
-		</p><p>
+		</p>
+		<p>
 			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title on tooltip / list item? (e.g. \'Events on 7th March\') Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<br />
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'display_title' ); ?>" name="<?php echo $this->get_field_name( 'display_title' ); ?>"<?php checked( $display_title, true ); ?> value="on" />
