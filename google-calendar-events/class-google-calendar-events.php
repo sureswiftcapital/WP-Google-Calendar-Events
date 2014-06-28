@@ -70,6 +70,9 @@ class Google_Calendar_Events {
 	
 	public static function includes() {
 		
+		// TODO make sure these are all accurate and up to date
+		// Rearrange files according so we only run files when we absolutely need to
+		
 		// First include common files between admin and public
 		include_once( 'includes/gce-feed-cpt.php' );
 		include_once( 'includes/class-gce-feed.php' );
@@ -86,9 +89,6 @@ class Google_Calendar_Events {
 		} else {
 			// Public includes
 			include_once( 'views/public/public.php' );
-			//include_once( 'includes/class-gce-feed.php' );
-			//include_once( 'includes/class-gce-event.php' );
-			//include_once( 'includes/class-gce-parser.php' );
 		}
 		
 	}

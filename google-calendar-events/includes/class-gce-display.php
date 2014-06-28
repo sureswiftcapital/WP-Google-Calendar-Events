@@ -1,16 +1,9 @@
 <?php
 
+
+// TODO is there a way we can just extend this from GCE_Feed so we can make all the methods private?
+
 class GCE_Display {
-	
-	
-	// Class for display functions?
-	
-	// List
-	// Grid
-	// Ajax
-	// Grouped Grid
-	
-	// Do we really need a class for this?
 	
 	public function __construct( $id, GCE_Feed $feed ) {
 		$this->id = $id;
@@ -52,6 +45,11 @@ class GCE_Display {
 		return $event_days;
 	}
 	
+	/**
+	 * Return the markup for the 'Grid' display
+	 * 
+	 * @since 2.0.0
+	 */
 	public function get_grid ( $year = null, $month = null, $ajaxified = false ) {
 		require_once 'php-calendar.php';
 
@@ -172,7 +170,11 @@ class GCE_Display {
 		}
 	}
 	
-	
+	/**
+	 * Return the markup for the 'List' display
+	 * 
+	 * @since 2.0.0
+	 */
 	public function get_list( $grouped = false ) {
 		$time_now = current_time( 'timestamp' );
 		
