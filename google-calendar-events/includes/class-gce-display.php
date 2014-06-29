@@ -199,7 +199,7 @@ class GCE_Display {
 			if ( $grouped ) {
 				$markup .=
 					'<li' . ( ( $key == $today ) ? ' class="gce-today"' : '' ) . '>' .
-					'<div class="gce-list-title">' . date_i18n( $event_day[0]->merged_feeds->date_format, $key ) . 'test1</div>' .
+					'<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>' .
 					'<ul>';
 			}
 
