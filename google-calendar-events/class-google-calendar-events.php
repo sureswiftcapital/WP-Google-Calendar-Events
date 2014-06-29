@@ -152,23 +152,15 @@ class Google_Calendar_Events {
 
 			$title = ( 'null' == $title ) ? null : $title;
 			
-			//echo '<pre>' . print_r( $_GET, true ) . '</pre>';
-			
-			//die();
-			//$feed = new GCE_Feed( $ids );
-			
 			if ( 'page' == $_GET['gce_type'] ) {
 				//The page grid markup to be returned via AJAX
-				
-				//echo $feed->display( 'grid', $year, $month, true );
-				
 				echo gce_print_grid( $ids, null, 25, $month, $year );
 			} elseif ( 'widget' == $_GET['gce_type'] ) {
 				//$widget = esc_html( $_GET['gce_widget_id'] );
 
 				//The widget grid markup to be returned via AJAX
 				//gce_widget_content_grid( $ids, $title, $max, $widget, true, $month, $year );
-				echo $feed->display( 'widget-grid', $year, $month, true );
+				//echo $feed->display( 'widget-grid', $year, $month, true );
 			}
 		}
 		die();

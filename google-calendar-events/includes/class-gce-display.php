@@ -1,19 +1,11 @@
 <?php
 
-
-// TODO is there a way we can just extend this from GCE_Feed so we can make all the methods private?
-
-// This is actually our main class. All other classes should only need to be accessed by this class (I think)
-
 class GCE_Display {
 	
 	private $feeds, $merged_feeds;
 	
-	STATIC $calendar_id = 1;
-	
 	public function __construct( $ids, $title_text = null, $max_events = 0, $sort_order = 'asc' ) {
 		$this->id = $ids;
-		//$this->feed = $feed;
 		
 		$this->title = $title_text;
 		$this->max_events = $max_events;
@@ -27,24 +19,13 @@ class GCE_Display {
 
 		//Merge the feeds together into one array of events
 		foreach ( $this->feeds as $feed_id => $feed ) {
-			//$errors_occurred = $feed->error();
-
-			//if ( false === $errors_occurred )
-				$this->merged_feeds = array_merge( $this->merged_feeds, $feed->events );
-			//else
-			//	$this->errors[$feed_id] = $errors_occurred;
+			// TODO Add error checking back in eventually
+			$this->merged_feeds = array_merge( $this->merged_feeds, $feed->events );
 		}
 		
 		// TODO Sort events so that they are in correct order
 	}
-	
-	
-	// TODO Remove this?
-	public function get_ajax() {
-		return $this->get_grid( null, null, true );
-	}
-	
-	
+
 	//Returns array of days with events, with sub-arrays of events for that day
 	private function get_event_days() {
 		$event_days = array();
@@ -63,7 +44,6 @@ class GCE_Display {
 			
 			//Check that event ends, or starts (or both) within the required date range. This prevents all-day events from before / after date range from showing up.
 			if ( $event->end_time > $event->start_time && $event->start_time < $event->end_time ) {
-			//if ( $event[$i]['end_time'] > $event[$i]['start_time'] && $event[$i]['start_time'] < $event[$i]['end_time'] ) {
 				foreach ( $event->get_days() as $day ) {
 					$event_days[$day][] = $event;
 				}
@@ -82,17 +62,19 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_grid ( $year = null, $month = null, $ajaxified = false ) {
+	public function get_grid ( $year = null, $month = null ) {
 		require_once 'php-calendar.php';
 
 		$time_now = current_time( 'timestamp' );
 
 		//If year and month have not been passed as paramaters, use current month and year
-		if( ! isset( $year ) )
+		if( ! isset( $year ) ) {
 			$year = date( 'Y', $time_now );
+		}
 
-		if( ! isset( $month ) )
+		if( ! isset( $month ) ) {
 			$month = date( 'm', $time_now );
+		}
 
 		//Get timestamps for the start and end of current month
 		$current_month_start = mktime( 0, 0, 0, date( 'm', $time_now ), 1, date( 'Y', $time_now ) );
@@ -110,10 +92,6 @@ class GCE_Display {
 
 		//Get events data
 		$event_days = $this->get_event_days();
-
-		//If event_days is empty, then there are no events in the feed(s), so set ajaxified to false (Prevents AJAX calendar from allowing to endlessly click through months with no events)
-		if ( empty( $event_days ) )
-			$ajaxified = false;
 
 		$today = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
@@ -135,7 +113,7 @@ class GCE_Display {
 				$markup .= '<ul>';
 
 				foreach ( $event_day as $num_in_day => $event ) {
-					$feed_id = absint( $this->id );
+					$feed_id = absint( $event->id );
 					$markup .= '<li class="gce-tooltip-feed-' . $feed_id . '">' . $event->get_event_markup( 'tooltip', $num_in_day, $i ) . '</li>';
 
 					//Add CSS class for the feed from which this event comes. If there are multiple events from the same feed on the same day, the CSS class will only be added once.
@@ -151,12 +129,13 @@ class GCE_Display {
 					$css_classes[] = 'gce-multiple';
 
 				//If event day is today, add gce-today CSS class, otherwise add past or future class
-				if ( $key == $today )
+				if ( $key == $today ) {
 					$css_classes[] = 'gce-today gce-today-has-events';
-				elseif ( $key < $today )
+				} elseif ( $key < $today ) {
 					$css_classes[] = 'gce-day-past';
-				else
+				} else {
 					$css_classes[] = 'gce-day-future';
+				}
 
 				//Change array entry to array of link href, CSS classes, and markup for use in gce_generate_calendar (below)
 				$event_days[$key] = array( null, implode( ' ', $css_classes ), $markup );
@@ -177,29 +156,20 @@ class GCE_Display {
 
 		$pn = array();
 
-		//Only add previous / next functionality if AJAX grid is enabled
-		if ( $ajaxified ) {
-			//If there are events to display in a previous month, add previous month link
-			$prev_key = ( $nav_prev ) ? '&laquo;' : '&nbsp;';
-			$prev = ( $nav_prev ) ? date( 'm-Y', mktime( 0, 0, 0, $month - 1, 1, $year ) ) : null;
+		// Add previous / next functionality
+		//If there are events to display in a previous month, add previous month link
+		$prev_key = ( $nav_prev ) ? '&laquo;' : '&nbsp;';
+		$prev = ( $nav_prev ) ? date( 'm-Y', mktime( 0, 0, 0, $month - 1, 1, $year ) ) : null;
 
-			//If there are events to display in a future month, add next month link
-			$next_key = ( $nav_next ) ? '&raquo;' : '&nbsp;';
-			$next = ( $nav_next ) ? date( 'm-Y', mktime( 0, 0, 0, $month + 1, 1, $year ) ) : null;
+		//If there are events to display in a future month, add next month link
+		$next_key = ( $nav_next ) ? '&raquo;' : '&nbsp;';
+		$next = ( $nav_next ) ? date( 'm-Y', mktime( 0, 0, 0, $month + 1, 1, $year ) ) : null;
 
-			//Array of previous and next link stuff for use in gce_generate_calendar (below)
-			$pn = array( $prev_key => $prev, $next_key => $next );
-		}
+		//Array of previous and next link stuff for use in gce_generate_calendar (below)
+		$pn = array( $prev_key => $prev, $next_key => $next );
 		
-		
-		if( $ajaxified ) {
 		//Generate the calendar markup and return it
-			// target, feed_ids, max_events, title_text, type
-			//$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . self::$calendar_id . '", "' . self::$calendar_id . '", "' . absint( $this->max_events ) . '", "' . 'Test Title Placeholder' . '", "page");});</script>';
-			return /*$markup .*/ gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
-		} else {
-			return gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
-		}
+		return gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
 	}
 	
 	/**
@@ -214,8 +184,9 @@ class GCE_Display {
 		$event_days = $this->get_event_days();
 
 		//If event_days is empty, there are no events in the feed(s), so return a message indicating this
-		if( empty( $event_days) )
+		if( empty( $event_days) ) {
 			return '<p>' . __( 'There are currently no events to display.', 'gce' ) . '</p>';
+		}
 		
 		$today = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
@@ -237,7 +208,7 @@ class GCE_Display {
 				$markup .=
 					'<li class="gce-feed-' . $event->feed->id . '">' .
 					//If this isn't a grouped list and a date title should be displayed, add the date title
-					//
+					
 					// TODO Removing this for now, seems to just add a double event title to the list display
 					//( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $event->title ) . 'test2</div>' : '' ) .
 					
@@ -258,30 +229,4 @@ class GCE_Display {
 
 		return $markup;
 	}
-	
-	
-	// TODO Possibly just remove this and use something more similar to the old GCE for now.
-	/*public function print_calendar( $display_type, $year = null, $month = null ) {
-		
-		switch( $display_type ) {
-			//case 'grid':
-			//	return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
-			case 'widget-grid':
-				return '<div class="gce-widget-grid" id="gce-widget-' . self::$calendar_id . '-container">' . $this->get_grid( $year, $month, true ) . '</div>';
-			case 'grid':
-				return '<div class="gce-page-grid" id="gce-page-grid-' . self::$calendar_id . '">' . $this->get_grid( $year, $month, true ) . '</div>';
-			case 'list':
-				return '<div class="gce-page-list" id="gce-page-list-' . self::$calendar_id . '">' . $this->get_list( false ) . '</div>';
-			case 'list-grouped':
-				return '<div class="gce-page-list-gouped" id="gce-page-list-' . self::$calendar_id . '">' . $this->get_list( true ) . '</div>';
-			case 'widget-list':
-				return '<div class="gce-widget-list" id="' . self::$calendar_id . '-container">' . $this->get_list( false ) . '</div>';
-			case 'widget-list-grouped':
-				return '<div class="gce-widget-list" id="' . self::$calendar_id . '-container">' . $this->get_list( true ) . '</div>';
-		}
-		
-		$calendar_id++;
-	}*/
-	
-	
 }
