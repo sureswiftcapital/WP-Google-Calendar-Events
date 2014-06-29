@@ -23,6 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Check on AJAX grid after fixing that issue elsewhere and make sure it works
  * 
  * Removing AJAX option for now and combining with grid display
+ * Removed Checkbox for display tooltip title. I think it should just be a text box and if it is empty then we don't show anything, otherwise we do. Need to 
+ * make sure that this feature actually works though.
  */
 
 
@@ -100,7 +102,7 @@ class GCE_Widget extends WP_Widget {
 				//Turns feed_ids back into string or feed ids delimited by '-' ('1-2-3-4' for example)
 				$feed_ids = implode( '-', $feed_ids );
 
-				$title_text = ( $instance['display_title'] ) ? $instance['display_title_text'] : null;
+				$title_text = ( ! empty( $instance['display_title_text'] )  ? $instance['display_title_text'] : null );
 				$max_events = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
 				$sort_order = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 				
@@ -153,7 +155,7 @@ class GCE_Widget extends WP_Widget {
 		$instance['display_type']       = esc_html( $new_instance['display_type'] );
 		//$instance['max_events']         = absint( $new_instance['max_events'] );
 		$instance['order']              = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
-		$instance['display_title']      = ( 'on' == $new_instance['display_title'] ) ? true : false;
+		//$instance['display_title']      = ( 'on' == $new_instance['display_title'] ) ? true : false;
 		$instance['display_title_text'] = wp_filter_kses( $new_instance['display_title_text'] );
 		
 		return $instance;
@@ -208,10 +210,10 @@ class GCE_Widget extends WP_Widget {
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title on tooltip / list item? (e.g. \'Events on 7th March\') Grouped lists always have a title displayed.', 'gce' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title on tooltip / list item (e.g. \'Events on 7th March\') Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<br />
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'display_title' ); ?>" name="<?php echo $this->get_field_name( 'display_title' ); ?>"<?php checked( $display_title, true ); ?> value="on" />
-			<input type="text" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" style="width:90%;" />
+			<!--<input type="checkbox" id="<?php echo $this->get_field_id( 'display_title' ); ?>" name="<?php echo $this->get_field_name( 'display_title' ); ?>"<?php checked( $display_title, true ); ?> value="on" />-->
+			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" />
 		</p>
 			
 	<?php 
