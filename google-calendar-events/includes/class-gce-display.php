@@ -5,9 +5,33 @@
 
 class GCE_Display {
 	
-	public function __construct( $id, GCE_Feed $feed ) {
-		$this->id = $id;
-		$this->feed = $feed;
+	private $feeds, $merged_feeds;
+	
+	public function __construct( $ids, $title_text = null, $max_events = 0, $sort_order = 'asc' ) {
+		$this->id = $ids;
+		//$this->feed = $feed;
+		
+		$this->title = $title_text;
+		$this->max_events = $max_events;
+		$this->sort = $sort_order;
+		
+		foreach( $ids as $id ) {
+			$this->feeds[$id] = new GCE_Feed( $id );
+		}
+		
+		$this->merged_feeds = array();
+
+		//Merge the feeds together into one array of events
+		foreach ( $this->feeds as $feed_id => $feed ) {
+			//$errors_occurred = $feed->error();
+
+			//if ( false === $errors_occurred )
+				$this->merged_feeds = array_merge( $this->merged_feeds, $feed->events );
+			//else
+			//	$this->errors[$feed_id] = $errors_occurred;
+		}
+		
+		//echo '<pre>' . print_r( $this->merged_feeds, true ) . '</pre>';
 	}
 	
 	
@@ -21,23 +45,26 @@ class GCE_Display {
 		$event_days = array();
 
 		//Total number of events retrieved
-		$count = count( $this->feed->events );
+		$count = count( $this->merged_feeds );
 
 		//If maximum events to display is 0 (unlimited) set $max to 1, otherwise use maximum of events specified by user
-		$max = ( 0 == $this->feed->max ) ? 1 : $this->feed->max;
+		$max = ( 0 == $this->max_events ) ? 1 : $this->max_events;
 
 		//Loop through entire array of events, or until maximum number of events to be displayed has been reached
 		for ( $i = 0; $i < $count && $max > 0; $i++ ) {
-			$event = $this->feed->events[$i];
-
+			$event = $this->merged_feeds[$i];
+			
+			//echo '<pre>' . print_r( $this->merged_feeds[$i], true ) . '</pre>';
+			
 			//Check that event ends, or starts (or both) within the required date range. This prevents all-day events from before / after date range from showing up.
-			if ( $event->end_time > $event->feed->start && $event->start_time < $event->feed->end ) {
+			if ( $event->end_time > $event->start_time && $event->start_time < $event->end_time ) {
+			//if ( $event[$i]['end_time'] > $event[$i]['start_time'] && $event[$i]['start_time'] < $event[$i]['end_time'] ) {
 				foreach ( $event->get_days() as $day ) {
 					$event_days[$day][] = $event;
 				}
 
 				//If maximum events to display isn't 0 (unlimited) decrement $max counter
-				if ( 0 != $this->feed->max )
+				if ( 0 != $this->max_events )
 					$max--;
 			}
 		}
@@ -196,7 +223,7 @@ class GCE_Display {
 			if ( $grouped ) {
 				$markup .=
 					'<li' . ( ( $key == $today ) ? ' class="gce-today"' : '' ) . '>' .
-					'<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . 'test1</div>' .
+					'<div class="gce-list-title">' . date_i18n( $event_day[0]->merged_feeds->date_format, $key ) . 'test1</div>' .
 					'<ul>';
 			}
 

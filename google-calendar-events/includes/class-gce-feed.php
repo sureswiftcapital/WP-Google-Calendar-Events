@@ -217,4 +217,6 @@ class GCE_Feed {
 	public function get_display_url() {
 		return $this->display_url;
 	}
+	
+	
 }
