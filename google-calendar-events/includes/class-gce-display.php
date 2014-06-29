@@ -24,6 +24,20 @@ class GCE_Display {
 		}
 		
 		// TODO Sort events so that they are in correct order
+		//Sort the items into date order
+		if ( ! empty( $this->merged_feeds ) ) {
+			//echo 'hit 2';
+			usort( $this->merged_feeds, array( $this, 'compare' ) );
+		}
+	}
+
+	//Comparison function for use when sorting merged feed data (with usort)
+	function compare( $event1, $event2 ) {
+		//Sort ascending or descending
+		if ( 'asc' == $this->sort )
+			return $event1->start_time - $event2->start_time;
+
+		return $event2->start_time - $event1->start_time;
 	}
 
 	//Returns array of days with events, with sub-arrays of events for that day

@@ -18,7 +18,8 @@ function gce_feed_shortcode( $attr ) {
 		// TODO clean up this code! Make this more DRY somehow
 		
 		// check for a comma for multiple feeds
-		if( strpos( $id, ',' ) != -1 ) {
+		if( strpos( $id, ',' ) === false ) {
+			echo 'hit';
 			if( ! empty ( $display ) ) {
 				if( $display == 'list' ) {
 					return gce_print_list( $id, null, 25, 'asc', false );
@@ -41,8 +42,8 @@ function gce_feed_shortcode( $attr ) {
 			}
 		} else {
 		
-			$id = implode( '-', explode( ',', $id ) );
-			//$id = implode( '-', $id );
+			$id = explode( ',', $id );
+			$id = implode( '-', $id );
 
 			if( $display == 'list' ) {
 				return gce_print_list( $id, null, 25, 'asc', false );
@@ -87,7 +88,9 @@ function gce_print_grid( $feed_ids, $title_text, $max_events, $month = null, $ye
 
 function gce_print_list( $feed_ids, $title_text, $max_events, $sort_order, $grouped = false ) {
 	//require_once 'inc/gce-parser.php';
-
+	
+	//echo 'hit 1';
+	
 	$ids = explode( '-', $feed_ids );
 
 	//Create new GCE_Parser object, passing array of feed id(s)
