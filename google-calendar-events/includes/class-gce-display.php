@@ -195,8 +195,8 @@ class GCE_Display {
 		if( $ajaxified ) {
 		//Generate the calendar markup and return it
 			// target, feed_ids, max_events, title_text, type
-			$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . self::$calendar_id . '", "' . self::$calendar_id . '", "' . absint( $this->max_events ) . '", "' . 'Test Title Placeholder' . '", "page");});</script>';
-			return $markup . gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
+			//$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . self::$calendar_id . '", "' . self::$calendar_id . '", "' . absint( $this->max_events ) . '", "' . 'Test Title Placeholder' . '", "page");});</script>';
+			return /*$markup .*/ gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
 		} else {
 			return gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
 		}
@@ -259,7 +259,9 @@ class GCE_Display {
 		return $markup;
 	}
 	
-	public function print_calendar( $display_type, $year = null, $month = null ) {
+	
+	// TODO Possibly just remove this and use something more similar to the old GCE for now.
+	/*public function print_calendar( $display_type, $year = null, $month = null ) {
 		
 		switch( $display_type ) {
 			//case 'grid':
@@ -279,5 +281,7 @@ class GCE_Display {
 		}
 		
 		$calendar_id++;
-	}
+	}*/
+	
+	
 }
