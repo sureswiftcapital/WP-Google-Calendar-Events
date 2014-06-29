@@ -141,6 +141,7 @@ class Google_Calendar_Events {
 	function gce_ajax() {
 		//global $post;
 		
+		// TODO Need to change this up to use new code for displaying multiple feeds
 		
 		if ( isset( $_GET['gce_feed_ids'] ) ) {
 			$ids = $_GET['gce_feed_ids'];

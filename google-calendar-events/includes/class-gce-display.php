@@ -3,9 +3,13 @@
 
 // TODO is there a way we can just extend this from GCE_Feed so we can make all the methods private?
 
+// This is actually our main class. All other classes should only need to be accessed by this class (I think)
+
 class GCE_Display {
 	
 	private $feeds, $merged_feeds;
+	
+	STATIC $calendar_id = 1;
 	
 	public function __construct( $ids, $title_text = null, $max_events = 0, $sort_order = 'asc' ) {
 		$this->id = $ids;
@@ -31,10 +35,11 @@ class GCE_Display {
 			//	$this->errors[$feed_id] = $errors_occurred;
 		}
 		
-		//echo '<pre>' . print_r( $this->merged_feeds, true ) . '</pre>';
+		// TODO Sort events so that they are in correct order
 	}
 	
 	
+	// TODO Remove this?
 	public function get_ajax() {
 		return $this->get_grid( null, null, true );
 	}
@@ -190,7 +195,7 @@ class GCE_Display {
 		if( $ajaxified ) {
 		//Generate the calendar markup and return it
 			// target, feed_ids, max_events, title_text, type
-			$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . $this->id . '", "' . $this->id . '", "' . absint( $this->feed->max ) . '", "' . 'Test Title Placeholder' . '", "page");});</script>';
+			$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . self::$calendar_id . '", "' . self::$calendar_id . '", "' . absint( $this->max_events ) . '", "' . 'Test Title Placeholder' . '", "page");});</script>';
 			return $markup . gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
 		} else {
 			return gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
@@ -252,5 +257,27 @@ class GCE_Display {
 		$markup .= '</ul>';
 
 		return $markup;
+	}
+	
+	public function print_calendar( $display_type, $year = null, $month = null ) {
+		
+		switch( $display_type ) {
+			//case 'grid':
+			//	return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
+			case 'widget-grid':
+				return '<div class="gce-widget-grid" id="gce-widget-' . self::$calendar_id . '-container">' . $this->get_grid( $year, $month, true ) . '</div>';
+			case 'grid':
+				return '<div class="gce-page-grid" id="gce-page-grid-' . self::$calendar_id . '">' . $this->get_grid( $year, $month, true ) . '</div>';
+			case 'list':
+				return '<div class="gce-page-list" id="gce-page-list-' . self::$calendar_id . '">' . $this->get_list( false ) . '</div>';
+			case 'list-grouped':
+				return '<div class="gce-page-list-gouped" id="gce-page-list-' . self::$calendar_id . '">' . $this->get_list( true ) . '</div>';
+			case 'widget-list':
+				return '<div class="gce-widget-list" id="' . self::$calendar_id . '-container">' . $this->get_list( false ) . '</div>';
+			case 'widget-list-grouped':
+				return '<div class="gce-widget-list" id="' . self::$calendar_id . '-container">' . $this->get_list( true ) . '</div>';
+		}
+		
+		$calendar_id++;
 	}
 }

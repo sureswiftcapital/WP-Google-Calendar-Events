@@ -22,8 +22,11 @@ function gce_feed_shortcode( $attr ) {
 		}*/
 		
 		$display = new GCE_Display( explode( ',', $id ) );
-
-		return '<div class="gce-page-grid" id="gce-page-grid">' . $display->get_grid() . '</div>';
+		
+		return $display->print_calendar( 'grid' );
+		
+		// TODO with new code need to have a different display function so we can wrap the output correctly
+		//return '<div class="gce-page-grid" id="gce-page-grid">' . $display->get_grid() . '</div>';
 	}
 	
 	return '';
