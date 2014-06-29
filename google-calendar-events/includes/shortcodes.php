@@ -15,10 +15,43 @@ function gce_feed_shortcode( $attr ) {
 	// If the ID is empty we can't pull any data so we skip all this and return nothing
 	if( ! empty( $id ) ) {
 		
-		$id = explode( ',', $id );
-		$id = implode( '-', $id );
+		// TODO clean up this code! Make this more DRY somehow
 		
-		return gce_print_list( $id, null, 25, 'asc', true );
+		// check for a comma for multiple feeds
+		if( strpos( $id, ',' ) != -1 ) {
+			if( ! empty ( $display ) ) {
+				if( $display == 'list' ) {
+					return gce_print_list( $id, null, 25, 'asc', false );
+				} else if ( $display == 'list-grouped' ) {
+					return gce_print_list( $id, null, 25, 'asc', true );
+				} else {
+					return gce_print_grid( $id, null, 25 );
+				}
+			} else {
+				
+				$display = get_post_meta( $id, 'gce_display_mode', true );
+				
+				if( $display == 'list' ) {
+					return gce_print_list( $id, null, 25, 'asc', false );
+				} else if ( $display == 'list-grouped' ) {
+					return gce_print_list( $id, null, 25, 'asc', true );
+				} else {
+					return gce_print_grid( $id, null, 25 );
+				}
+			}
+		} else {
+		
+			$id = implode( '-', explode( ',', $id ) );
+			//$id = implode( '-', $id );
+
+			if( $display == 'list' ) {
+				return gce_print_list( $id, null, 25, 'asc', false );
+			} else if ( $display == 'list-grouped' ) {
+				return gce_print_list( $id, null, 25, 'asc', true );
+			} else {
+				return gce_print_grid( $id, null, 25 );
+			}
+		}
 	}
 	
 	return '';
