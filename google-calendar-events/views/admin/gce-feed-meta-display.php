@@ -100,7 +100,7 @@
 
 <div class="gce-meta-control">
 	<label>Multiple Day Events</label>
-	<input type="checkbox" name="gce_multi_day_events" id="gce_multi_day_events" value="1" <?php checked( $gce_multi_day_events, 'yes' ); ?> /> Show on each day
+	<input type="checkbox" name="gce_multi_day_events" id="gce_multi_day_events" value="1" <?php checked( $gce_multi_day_events, '1' ); ?> /> Show on each day
 </div>
 
 <div class="gce-meta-control">

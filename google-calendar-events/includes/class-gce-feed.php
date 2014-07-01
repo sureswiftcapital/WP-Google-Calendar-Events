@@ -38,7 +38,9 @@ class GCE_Feed {
 		
 		//echo '<pre>Before Cache: ' . print_r( $this->events, true ) . '</pre>';
 		
-		$this->cache_events();
+		if( $this->cache > 0 ) {
+			$this->cache_events();
+		}
 		
 		
 	}
@@ -59,7 +61,7 @@ class GCE_Feed {
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
 		$this->timezone_offset     = get_post_meta( $this->id, 'gce_timezone_offset', true );
-		$this->cache               = 43200; //get_post_meta( $this->id, 'gce_cache', true );
+		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
 		
 	}
