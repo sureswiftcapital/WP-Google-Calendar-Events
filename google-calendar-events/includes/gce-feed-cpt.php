@@ -34,7 +34,7 @@ function gce_setup_cpt() {
 		'has_archive'        => false,
 		'hierarchical'       => false,
 		'menu_position'      => null,
-		'supports'           => array( 'title', 'revisions' )
+		'supports'           => array( 'title' )
 	);
 	
 	register_post_type( 'gce_feed', $args );
@@ -165,3 +165,6 @@ function gce_column_content( $column_name, $post_ID ) {
 	}
 }
 add_action( 'manage_gce_feed_posts_custom_column', 'gce_column_content', 10, 2 );
+
+
+

@@ -36,7 +36,15 @@ class GCE_Feed {
 		// Now create the Feed
 		$this->create_feed();
 		
+		//echo '<pre>Before Cache: ' . print_r( $this->events, true ) . '</pre>';
 		
+		$this->cache_events();
+		
+		
+	}
+	
+	private function cache_events() {
+		set_transient( 'gce_feed_' . $this->id, $this->events, $this->cache );
 	}
 	
 	private function setup_attributes() {
@@ -51,7 +59,7 @@ class GCE_Feed {
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
 		$this->timezone_offset     = get_post_meta( $this->id, 'gce_timezone_offset', true );
-		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
+		$this->cache               = 43200; //get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
 		
 	}
@@ -124,14 +132,21 @@ class GCE_Feed {
 			) );
 		
 		//$this->events[] = $raw_data;
-
+		
+		// First check for transient data to use
+		if( false !== get_transient( 'gce_feed_' . $this->id ) ) {
+			//echo 'Found cached version<br>';
+			$this->events = get_transient( 'gce_feed_' . $this->id );
+			//echo '<pre>' . print_r( $this->events, true ) . '</pre>';
+		} else {
+			//echo 'Cached version not found<br>';
 			//If $raw_data is a WP_Error, something went wrong
 			if ( ! is_wp_error( $raw_data ) ) {
 				//If response code isn't 200, something went wrong
 				if ( 200 == $raw_data['response']['code'] ) {
 					//Attempt to convert the returned JSON into an array
 					$raw_data = json_decode( $raw_data['body'], true );
-
+					
 					//If decoding was successful
 					if ( ! empty( $raw_data ) ) {
 						//If there are some entries (events) to process
@@ -171,6 +186,7 @@ class GCE_Feed {
 				//Generate an error message from the returned WP_Error
 				$this->error = $raw_data->get_error_message() . ' Please ensure your feed URL is correct.';
 			}
+		}
 	}
 	
 	//Convert an ISO date/time to a UNIX timestamp

@@ -1,8 +1,14 @@
 <?php
-	
+
+
 	global $post;
 	
 	$post_id = $post->ID;
+	
+	if( isset( $_GET['clear_cache'] ) && $_GET['clear_cache'] == 1 ) {
+		delete_transient( 'gce_feed_' . $post_id );
+		echo 'The cache for this feed has been cleared.'; // TODO Turn this into an admin notice message if I can
+	}
 	
 	$gce_feed_url         = get_post_meta( $post->ID, 'gce_feed_url', true );
 	$gce_retrieve_from    = get_post_meta( $post->ID, 'gce_retrieve_from', true );
@@ -16,6 +22,11 @@
 	$gce_display_mode     = get_post_meta( $post->ID, 'gce_display_mode', true );
 ?>
 
+
+<div class="gce-meta-cotrol">
+	<a href="<?php echo add_query_arg( array( 'clear_cache' => true ) ); ?>" class="button-secondary">Clear Cache</a>
+</div>
+<br>
 <div class="gce-meta-control">
 	<strong>Feed ID:</strong> <?php echo $post_id; ?><br />
 	<strong>Feed Shortcode:</strong> [gce-feed id="<?php echo $post_id; ?>"]
@@ -121,3 +132,5 @@ function gce_add_timezone_field() {
 	return $timezone_list;
 
 }
+
+
