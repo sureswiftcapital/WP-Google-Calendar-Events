@@ -19,7 +19,6 @@ function gce_feed_shortcode( $attr ) {
 		
 		// check for a comma for multiple feeds
 		if( strpos( $id, ',' ) === false ) {
-			echo 'hit';
 			if( ! empty ( $display ) ) {
 				if( $display == 'list' ) {
 					return gce_print_list( $id, null, 25, 'asc', false );
