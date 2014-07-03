@@ -23,10 +23,8 @@ class GCE_Display {
 			$this->merged_feeds = array_merge( $this->merged_feeds, $feed->events );
 		}
 		
-		// TODO Sort events so that they are in correct order
-		//Sort the items into date order
+		// Sort the items into date order
 		if ( ! empty( $this->merged_feeds ) ) {
-			//echo 'hit 2';
 			usort( $this->merged_feeds, array( $this, 'compare' ) );
 		}
 	}

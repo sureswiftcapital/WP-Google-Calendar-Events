@@ -141,7 +141,7 @@ class Google_Calendar_Events {
 	function gce_ajax() {
 		//global $post;
 		
-		// TODO Get widget working
+		// TODO Get widget working with new multi-feed code
 		
 		if ( isset( $_GET['gce_feed_ids'] ) ) {
 			$ids = $_GET['gce_feed_ids'];

@@ -49,20 +49,14 @@ class GCE_Widget extends WP_Widget {
 		//Output before widget stuff
 		echo $before_widget;
 
-		//Get saved feed options
-		// TODO Grab feed by CPT ID
-		//$options = get_option( GCE_OPTIONS_NAME );
-	
-		// TODO Check if any feeds exist before processing
-		
-		//Check whether any feeds have been added yet
-		//if( is_array( $options ) && ! empty( $options ) ) {
+		// Check whether any feeds have been added yet
 		if( wp_count_posts( 'gce_feed' )->publish > 0 ) {
 			//Output title stuff
 			$title = empty( $instance['title'] ) ? '' : apply_filters( 'widget_title', $instance['title'] );
 
-			if ( ! empty( $title ) )
+			if ( ! empty( $title ) ) {
 				echo $before_title . $title . $after_title;
+			}
 
 			$no_feeds_exist = true;
 			$feed_ids = array();
@@ -134,14 +128,6 @@ class GCE_Widget extends WP_Widget {
 				return;
 			}
 		}
-		//} else {
-		//	if ( current_user_can( 'manage_options' ) ) {
-		//		_e( 'No feeds have been added yet. You can add a feed in the Google Calendar Events settings.', 'gce' );
-		//	} else {
-		//		$options = get_option( GCE_GENERAL_OPTIONS_NAME );
-		//		echo $options['error'];
-		//	}
-		//}
 
 		//Output after widget stuff
 		echo $after_widget;
@@ -162,9 +148,6 @@ class GCE_Widget extends WP_Widget {
 	}
 
 	function form( $instance ) {
-		//Get saved feed options
-		//$options = get_option( GCE_OPTIONS_NAME );
-
 		// TODO Old GCE Plugin displayed a message if there were no feeds created yet, add that in here eventtually
 		
 		$title         = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
@@ -176,7 +159,6 @@ class GCE_Widget extends WP_Widget {
 		$title_text    = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
 		
 		?>
-
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $title; ?>" class="widefat" />

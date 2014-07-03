@@ -103,7 +103,6 @@ class GCE_Feed {
 	public function display( $display_type, $year = null, $month = null, $ajax = false ) {
 		$display = new GCE_Display( $this->id, $this );
 		
-		// TODO Add options for the widget grid and lists so we can reuse this and not wrap the oute div HTML incorrectly
 		switch( $display_type ) {
 			//case 'grid':
 			//	return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
@@ -120,10 +119,6 @@ class GCE_Feed {
 			case 'widget-list-grouped':
 				return '<div class="gce-widget-list" id="' . $this->id . '-container">' . $display->get_list( true ) . '</div>';
 		}
-		
-		//return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_list( true ) . '</div>';
-		//return '<div class="gce-page-list" id="gce-page-list-' . $this->id . '">' . $display->get_list( false ) . '</div>';
-		
 	}
 
 	

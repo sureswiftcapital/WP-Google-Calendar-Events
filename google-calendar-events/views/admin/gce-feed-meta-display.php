@@ -1,6 +1,5 @@
 <?php
 
-
 	global $post;
 	
 	$post_id = $post->ID;
