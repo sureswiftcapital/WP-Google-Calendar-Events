@@ -6,7 +6,9 @@
 	
 	if( isset( $_GET['clear_cache'] ) && $_GET['clear_cache'] == 1 ) {
 		delete_transient( 'gce_feed_' . $post_id );
-		echo 'The cache for this feed has been cleared.'; // TODO Turn this into an admin notice message if I can
+		
+		add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
+		
 	}
 	
 	$gce_feed_url         = get_post_meta( $post->ID, 'gce_feed_url', true );

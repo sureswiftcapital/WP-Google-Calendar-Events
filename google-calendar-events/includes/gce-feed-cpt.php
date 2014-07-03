@@ -193,7 +193,9 @@ function gce_clear_cache() {
 		
 		delete_transient( 'gce_feed_' . $post_id );
 		
-		echo 'Cache has been cleared.';
+		add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
+		
+		settings_errors( 'gce-notices' );
 	}
 }
 add_action( 'admin_init', 'gce_clear_cache' );
