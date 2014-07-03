@@ -5,7 +5,7 @@
  * 
  * @since 2.0.0
  */
-function gce_feed_shortcode( $attr ) {
+function gce_gcal_shortcode( $attr ) {
 
 	extract( shortcode_atts( array(
 					'id' => null,
@@ -56,7 +56,7 @@ function gce_feed_shortcode( $attr ) {
 	
 	return '';
 }
-add_shortcode( 'gce-feed', 'gce_feed_shortcode' );
+add_shortcode( 'gcal', 'gce_gcal_shortcode' );
 
 
 
