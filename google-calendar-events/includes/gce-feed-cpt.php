@@ -186,16 +186,17 @@ add_filter( 'post_row_actions', 'gce_cpt_actions', 10, 2 );
  * 
  * @since 2.0.0
  */
-function gce_clear_cache() {
+function gce_clear_cache_link() {
 
 	if( isset( $_REQUEST['clear_cache'] ) ) {
 		$post_id = absint( $_REQUEST['clear_cache'] );
 		
-		delete_transient( 'gce_feed_' . $post_id );
+		//delete_transient( 'gce_feed_' . $post_id );
+		gce_clear_cache( $post_id );
 		
-		add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
+		
 		
 		settings_errors( 'gce-notices' );
 	}
 }
-add_action( 'admin_init', 'gce_clear_cache' );
+add_action( 'admin_init', 'gce_clear_cache_link' );

@@ -85,7 +85,7 @@ class Google_Calendar_Events {
 		// Now include files specifically for public or admin
 		if( is_admin() ) {
 			// Admin includes
-			
+			include_once( 'includes/admin/admin-functions.php' );
 		} else {
 			// Public includes
 			include_once( 'views/public/public.php' );

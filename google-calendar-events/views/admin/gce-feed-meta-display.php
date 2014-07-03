@@ -5,9 +5,11 @@
 	$post_id = $post->ID;
 	
 	if( isset( $_GET['clear_cache'] ) && $_GET['clear_cache'] == 1 ) {
-		delete_transient( 'gce_feed_' . $post_id );
+		//delete_transient( 'gce_feed_' . $post_id );
 		
-		add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
+		gce_clear_cache( $post_id );
+		
+		//add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
 		
 	}
 	
