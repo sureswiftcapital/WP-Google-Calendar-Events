@@ -166,5 +166,34 @@ function gce_column_content( $column_name, $post_ID ) {
 }
 add_action( 'manage_gce_feed_posts_custom_column', 'gce_column_content', 10, 2 );
 
+/**
+ * Add the "Clear Cache" action to the CPT action links
+ * 
+ * @since 2.0.0
+ */
+function gce_cpt_actions( $actions, $post ) {
+	if( $post->post_type == 'gce_feed' ) {
+		$actions['clear_cache'] = '<a href="' . add_query_arg( array( 'clear_cache' => $post->ID ) ). '">Clear Cache</a>';
+	}
+	
+	return $actions;
+}
+add_filter( 'post_row_actions', 'gce_cpt_actions', 10, 2 );
 
 
+/**
+ * Function to clear cache if on the post listing page
+ * 
+ * @since 2.0.0
+ */
+function gce_clear_cache() {
+
+	if( isset( $_REQUEST['clear_cache'] ) ) {
+		$post_id = absint( $_REQUEST['clear_cache'] );
+		
+		delete_transient( 'gce_feed_' . $post_id );
+		
+		echo 'Cache has been cleared.';
+	}
+}
+add_action( 'admin_init', 'gce_clear_cache' );
