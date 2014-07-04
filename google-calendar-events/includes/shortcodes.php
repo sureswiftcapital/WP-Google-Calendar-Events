@@ -9,11 +9,26 @@ function gce_gcal_shortcode( $attr ) {
 
 	extract( shortcode_atts( array(
 					'id' => null,
-					'display' => null
+					'display' => null,
+					'max' => 0,
+					'order' => 'asc',
+					'title' => null,
+					// OLD options that need to be supported still
+					//'id' => '',
+					'type' => null,
+					//'title' => null,
+					//'max' => 0,
+					//'order' => 'asc'
 				), $attr, 'gce_feed' ) );
 	
 	// If the ID is empty we can't pull any data so we skip all this and return nothing
 	if( ! empty( $id ) ) {
+		
+		// Port over old options
+		if( $type != null ) {
+			$display = $type;
+		}
+		
 		
 		// TODO clean up this code! Make this more DRY somehow
 		
@@ -21,22 +36,22 @@ function gce_gcal_shortcode( $attr ) {
 		if( strpos( $id, ',' ) === false ) {
 			if( ! empty ( $display ) ) {
 				if( $display == 'list' ) {
-					return gce_print_list( $id, null, 25, 'asc', false );
+					return gce_print_list( $id, $title, $max, $order, false );
 				} else if ( $display == 'list-grouped' ) {
-					return gce_print_list( $id, null, 25, 'asc', true );
+					return gce_print_list( $id, $title, $max, $order, true );
 				} else {
-					return gce_print_grid( $id, null, 25 );
+					return gce_print_grid( $id, $title, $max );
 				}
 			} else {
 				
 				$display = get_post_meta( $id, 'gce_display_mode', true );
 				
 				if( $display == 'list' ) {
-					return gce_print_list( $id, null, 25, 'asc', false );
+					return gce_print_list( $id, $title, $max, $order, false );
 				} else if ( $display == 'list-grouped' ) {
-					return gce_print_list( $id, null, 25, 'asc', true );
+					return gce_print_list( $id, $title, $max, $order, true );
 				} else {
-					return gce_print_grid( $id, null, 25 );
+					return gce_print_grid( $id, $title, $max );
 				}
 			}
 		} else {
@@ -45,11 +60,11 @@ function gce_gcal_shortcode( $attr ) {
 			$id = implode( '-', $id );
 
 			if( $display == 'list' ) {
-				return gce_print_list( $id, null, 25, 'asc', false );
+				return gce_print_list( $id, $title, $max, $order, false );
 			} else if ( $display == 'list-grouped' ) {
-				return gce_print_list( $id, null, 25, 'asc', true );
+				return gce_print_list( $id, $title, $max, $order, true );
 			} else {
-				return gce_print_grid( $id, null, 25 );
+				return gce_print_grid( $id, $title, $max );
 			}
 		}
 	}
@@ -57,6 +72,7 @@ function gce_gcal_shortcode( $attr ) {
 	return '';
 }
 add_shortcode( 'gcal', 'gce_gcal_shortcode' );
+add_shortcode( 'google-calendar-events', 'gce_gcal_shortcode' );
 
 
 

@@ -119,8 +119,9 @@ class GCE_Display {
 				$markup = '<div class="gce-event-info">';
 
 				//If title option has been set for display, add it
-				if ( isset( $this->title ) )
-					$markup .= '<div class="gce-tooltip-title">' . esc_html( $this->title ) . ' ' . date_i18n( $event_day[0]->get_feed()->get_date_format(), $key ) . '</div>';
+				if ( isset( $this->title ) ) {
+					$markup .= '<div class="gce-tooltip-title">' . esc_html( $this->title ) . ' ' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
+				}
 
 				$markup .= '<ul>';
 
