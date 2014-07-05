@@ -82,7 +82,9 @@ function gce_save_meta( $post_id ) {
 		'gce_timezone_offset',
 		'gce_cache',
 		'gce_multi_day_events',
-		'gce_display_mode'
+		'gce_display_mode',
+		'gce_custom_from',
+		'gce_custom_until'
 	);
 
 	$post_meta_fields = apply_filters( 'gce_feed_meta', $post_meta_fields );

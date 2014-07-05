@@ -23,6 +23,8 @@
 	$gce_cache            = get_post_meta( $post->ID, 'gce_cache', true );
 	$gce_multi_day_events = get_post_meta( $post->ID, 'gce_multi_day_events', true );
 	$gce_display_mode     = get_post_meta( $post->ID, 'gce_display_mode', true );
+	$gce_custom_from      = get_post_meta( $post->ID, 'gce_custom_from', true );
+	$gce_custom_until     = get_post_meta( $post->ID, 'gce_custom_until', true );
 ?>
 
 
@@ -50,10 +52,10 @@
 		<option value="end_month" <?php selected( $gce_retrieve_from, 'end_month', true ); ?>>End of current month</option>
 		<option value="start_time" <?php selected( $gce_retrieve_from, 'start_time', true ); ?>>The beginning of time</option>
 		<!-- maybe take out the specific date / time option? -->
-		<option value="custom_date">Specific date</option>
+		<option value="custom_date" <?php selected( $gce_retrieve_from, 'custom_date', true ); ?>>Specific date</option>
 	</select>
 	<!-- If we take out specific date/time option then we don't need this input box -->
-	<input type="text" class="gce-admin-hidden" name="gce_retrieve_from" id="gce_custom_from" value="" />
+	<input type="text" <?php echo ( $gce_retrieve_from != 'custom_date' ? 'class="gce-admin-hidden" ' : ' ' ); ?> name="gce_custom_from" id="gce_custom_from" value="<?php echo $gce_custom_from; ?>" />
 </div>
 
 <div class="gce-meta-control">
@@ -66,10 +68,10 @@
 		<option value="end_month" <?php selected( $gce_retrieve_until, 'end_month', true ); ?>>End of current month</option>
 		<option value="end_time" <?php selected( $gce_retrieve_until, 'end_time', true ); ?>>The end of time</option>
 		<!-- maybe take out the specific date / time option? -->
-		<option value="custom_date">Specific date</option>
+		<option value="custom_date" <?php selected( $gce_retrieve_until, 'custom_date', true ); ?>>Specific date</option>
 	</select>
 	<!-- If we take out specific date/time option then we don't need this input box -->
-	<input type="text" class="gce-admin-hidden" name="gce_retrieve_until" id="gce_custom_until" value="" />
+	<input type="text" <?php echo ( $gce_retrieve_until != 'custom_date' ? 'class="gce-admin-hidden" ' : ' ' ); ?> name="gce_custom_until" id="gce_custom_until" value="<?php echo $gce_custom_until; ?>" />
 </div>
 
 <div class="gce-meta-control">
