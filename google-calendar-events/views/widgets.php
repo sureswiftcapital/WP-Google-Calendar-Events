@@ -101,10 +101,11 @@ class GCE_Widget extends WP_Widget {
 				$sort_order = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 				
 				// Set our feed object
-				$feed = new GCE_Feed( $feed_ids );
+				//$feed = new GCE_Feed( $feed_ids );
+				$display = new GCE_Display( explode( '-', $feed_ids ) );
 
 				//Output correct widget content based on display type chosen
-				switch ( $instance['display_type'] ) {
+				/*switch ( $instance['display_type'] ) {
 					case 'grid':
 						echo '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-widget-' . $feed->id . '-container", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
 						echo $feed->display( 'widget-grid', null, null, true );
@@ -119,7 +120,13 @@ class GCE_Widget extends WP_Widget {
 					case 'list-grouped':
 						echo $feed->display( 'widget-list-grouped' );
 						break;
-				}
+				}*/
+				$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-widget-' . $feed_ids . '", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
+				$markup .= '<div class="gce-widget-grid" id="gce-widget-' . $feed_ids . '">';
+				$markup .= $display->get_grid( null, null, true );
+				$markup .= '</div>';
+				
+				echo $markup;
 			}
 		} else {
 			if( current_user_can( 'manage_options' ) ) {
