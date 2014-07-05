@@ -51,6 +51,13 @@ class Google_Calendar_Events_Admin {
 		// Add admin styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		
+		// Add admin scripts
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+		
+	}
+	
+	public static function enqueue_admin_scripts() {
+		wp_enqueue_script( 'gce-admin', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), null, true );
 	}
 	
 	public static function enqueue_admin_styles() {
