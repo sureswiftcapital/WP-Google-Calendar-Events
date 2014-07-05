@@ -64,6 +64,8 @@ class GCE_Feed {
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
 		
+		//echo 'Start: ' . $this->start . '<br>End: ' . $this->end;
+		
 	}
 	
 	private function create_feed() {
@@ -194,6 +196,9 @@ class GCE_Feed {
 	
 	// Return feed start/end
 	private function set_feed_length( $value, $type ) {
+		
+		//echo 'Value: ' . $value . '<br>Type: ' . $type . '<br>';
+		
 		switch ( $value ) {
 			//Don't just use time() for 'now', as this will effectively make cache duration 1 second. Instead set to previous minute. 
 			//Events in Google Calendar cannot be set to precision of seconds anyway
@@ -212,9 +217,29 @@ class GCE_Feed {
 			case 'end_month':
 				$return = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
 				break;
-			//case 'date':
-			//	$feed->feed_start = ;
-			//	break;
+			case 'custom_date':
+				if( $type == 'start' ) {
+					$date = get_post_meta( $this->id, 'gce_custom_from', true );
+					$fallback = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
+				} else {
+					$date = get_post_meta( $this->id, 'gce_custom_until', true );
+					$fallback = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
+				}
+				
+				//echo 'DATE: ' . $date . '<br>';
+				
+				if( ! empty( $date ) ) {
+					$date = explode( '/', $date );
+					$return = mktime( 0, 0, 0, $date[0], $date[1], $date[2] );
+				} else {
+					$return = $fallback;
+				}
+				
+				
+				//echo '<pre>' . print_r( $date, true ) . '</pre>';
+				
+				
+				break;
 			default:
 				if( $type == 'start' ) {
 					$return = 0; //any - 1970-01-01 00:00
@@ -223,6 +248,8 @@ class GCE_Feed {
 					$return = 2145916800;
 				}
 		}
+		
+		//echo 'Return: ' . $return . '<br>';
 		
 		return $return;
 	}
