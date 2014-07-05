@@ -202,9 +202,9 @@ class GCE_Feed {
 		switch ( $value ) {
 			//Don't just use time() for 'now', as this will effectively make cache duration 1 second. Instead set to previous minute. 
 			//Events in Google Calendar cannot be set to precision of seconds anyway
-			case 'now':
+			/*case 'now':
 				$return = mktime( date( 'H' ), date( 'i' ), 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
-				break;
+				break;*/
 			case 'today':
 				$return = mktime( 0, 0, 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
 				break;

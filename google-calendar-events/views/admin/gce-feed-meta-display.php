@@ -45,8 +45,8 @@
 <div class="gce-meta-control">
 	<label>Retrieve Events From</label>
 	<select name="gce_retrieve_from" id="gce_retrieve_from">
-		<option value="now" <?php selected( $gce_retrieve_from, 'now', true ); ?>>Now</option>
-		<option value="today" <?php selected( $gce_retrieve_from, 'today', true ); ?>>00:00 Today</option>
+		<!--<option value="now" <?php selected( $gce_retrieve_from, 'now', true ); ?>>Now</option>-->
+		<option value="today" <?php selected( $gce_retrieve_from, 'today', true ); ?>>Today</option>
 		<option value="start_week" <?php selected( $gce_retrieve_from, 'start_week', true ); ?>>Start of current week</option>
 		<option value="start_month" <?php selected( $gce_retrieve_from, 'start_month', true ); ?>>Start of current month</option>
 		<option value="end_month" <?php selected( $gce_retrieve_from, 'end_month', true ); ?>>End of current month</option>
@@ -61,8 +61,8 @@
 <div class="gce-meta-control">
 	<label>Retrieve Events Until</label>
 	<select name="gce_retrieve_until" id="gce_retrieve_until">
-		<option value="now" <?php selected( $gce_retrieve_until, 'now', true ); ?>>Now</option>
-		<option value="today" <?php selected( $gce_retrieve_until, 'today', true ); ?>>00:00 Today</option>
+		<!--<option value="now" <?php selected( $gce_retrieve_until, 'now', true ); ?>>Now</option>-->
+		<option value="today" <?php selected( $gce_retrieve_until, 'today', true ); ?>>Today</option>
 		<option value="start_week" <?php selected( $gce_retrieve_until, 'start_week', true ); ?>>Start of current week</option>
 		<option value="start_month" <?php selected( $gce_retrieve_until, 'start_month', true ); ?>>Start of current month</option>
 		<option value="end_month" <?php selected( $gce_retrieve_until, 'end_month', true ); ?>>End of current month</option>
