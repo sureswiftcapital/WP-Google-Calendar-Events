@@ -53,7 +53,7 @@
 		<option value="custom_date">Specific date</option>
 	</select>
 	<!-- If we take out specific date/time option then we don't need this input box -->
-	<input type="text" class="gce-admin-hidden" name="gce_retrieve_from" id="gce_custom_from" value="<?php echo $gce_retrieve_from; ?>" />
+	<input type="text" class="gce-admin-hidden" name="gce_retrieve_from" id="gce_custom_from" value="" />
 </div>
 
 <div class="gce-meta-control">
@@ -69,7 +69,7 @@
 		<option value="custom_date">Specific date</option>
 	</select>
 	<!-- If we take out specific date/time option then we don't need this input box -->
-	<input type="text" class="gce-admin-hidden" name="gce_retrieve_until" id="gce_custom_until" value="<?php echo $gce_retrieve_until; ?>" />
+	<input type="text" class="gce-admin-hidden" name="gce_retrieve_until" id="gce_custom_until" value="" />
 </div>
 
 <div class="gce-meta-control">

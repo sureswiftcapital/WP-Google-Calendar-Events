@@ -21,6 +21,9 @@
 				$('#gce_custom_until').hide();
 			}
 		});
+		
+		$('#gce_custom_from').datepicker();
+		$('#gce_custom_until').datepicker();
 	
 	});
 }(jQuery));
