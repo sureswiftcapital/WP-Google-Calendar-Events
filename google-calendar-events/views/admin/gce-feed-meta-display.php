@@ -50,7 +50,7 @@
 		<option value="end_month" <?php selected( $gce_retrieve_from, 'end_month', true ); ?>>End of current month</option>
 		<option value="start_time" <?php selected( $gce_retrieve_from, 'start_time', true ); ?>>The beginning of time</option>
 		<!-- maybe take out the specific date / time option? -->
-		<option value="custom_date">Specific date / time</option>
+		<option value="custom_date">Specific date</option>
 	</select>
 	<!-- If we take out specific date/time option then we don't need this input box -->
 	<input type="text" class="gce-admin-hidden" name="gce_retrieve_from" id="gce_custom_from" value="<?php echo $gce_retrieve_from; ?>" />
@@ -66,7 +66,7 @@
 		<option value="end_month" <?php selected( $gce_retrieve_until, 'end_month', true ); ?>>End of current month</option>
 		<option value="end_time" <?php selected( $gce_retrieve_until, 'end_time', true ); ?>>The end of time</option>
 		<!-- maybe take out the specific date / time option? -->
-		<option value="custom_date">Specific date / time</option>
+		<option value="custom_date">Specific date</option>
 	</select>
 	<!-- If we take out specific date/time option then we don't need this input box -->
 	<input type="text" class="gce-admin-hidden" name="gce_retrieve_until" id="gce_custom_until" value="<?php echo $gce_retrieve_until; ?>" />
