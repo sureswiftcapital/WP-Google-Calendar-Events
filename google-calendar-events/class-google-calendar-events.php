@@ -71,6 +71,8 @@ class Google_Calendar_Events {
 	 */
 	private function upgrade() {
 		include_once( 'includes/admin/upgrade.php' );
+		
+		update_option( 'gce_version', self::VERSION );
 	}
 	
 	/**

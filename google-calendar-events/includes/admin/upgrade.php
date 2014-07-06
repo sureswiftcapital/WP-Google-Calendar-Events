@@ -41,7 +41,6 @@ function gce_v2_upgrade() {
 		convert_to_cpt_posts( $value );
 	}
 	
-	// TODO update_option( 'gce_version', '2.0.0' ); - This might need to go into the main class so that we can use $this->version instead of hard coding the value
 	add_option( 'gce_upgrade_has_run', 1 );
 }
 
