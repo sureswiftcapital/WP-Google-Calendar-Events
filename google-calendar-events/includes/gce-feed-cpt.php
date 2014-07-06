@@ -147,7 +147,7 @@ function gce_column_content( $column_name, $post_ID ) {
 			echo $post_ID;
 			break;
 		case 'feed-sc':
-			echo '<code>[gce-feed id="' . $post_ID . '"]</code>';
+			echo '<code>[gcal id="' . $post_ID . '"]</code>';
 			break;
 		case 'max-events':
 			$max = get_post_meta( $post_ID, 'gce_retrieve_max', true );

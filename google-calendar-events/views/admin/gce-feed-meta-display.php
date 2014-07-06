@@ -34,7 +34,7 @@
 <br>
 <div class="gce-meta-control">
 	<strong>Feed ID:</strong> <?php echo $post_id; ?><br />
-	<strong>Feed Shortcode:</strong> [gce-feed id="<?php echo $post_id; ?>"]
+	<strong>Feed Shortcode:</strong> [gcal id="<?php echo $post_id; ?>"]
 </div>
 
 <div class="gce-meta-control">
