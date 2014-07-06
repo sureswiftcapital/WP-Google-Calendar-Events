@@ -102,7 +102,7 @@ class GCE_Widget extends WP_Widget {
 				
 				// Set our feed object
 				//$feed = new GCE_Feed( $feed_ids );
-				$display = new GCE_Display( explode( '-', $feed_ids ) );
+				//$display = new GCE_Display( explode( '-', $feed_ids ) );
 
 				//Output correct widget content based on display type chosen
 				/*switch ( $instance['display_type'] ) {
@@ -132,7 +132,11 @@ class GCE_Widget extends WP_Widget {
 					'widget'     => 1
 				);
 				
-				$markup = gce_print_calendar( $feed_ids, 'grid', $args );
+				if( 'list-grouped' == $instance['display_type'] ) {
+					$args['grouped'] = 1;
+				}
+				
+				$markup = gce_print_calendar( $feed_ids, $instance['display_type'], $args );
 				
 				echo $markup;
 			}
