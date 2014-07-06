@@ -143,7 +143,7 @@ class GCE_Feed {
 								$title       = esc_html( $event['title']['$t'] );
 								$description = esc_html( $event['content']['$t'] );
 								$link        = esc_url( $event['link'][0]['href'] );
-								$location    = esc_html( $event['gd$where'][0]['valueString'] );
+								$location    = ( isset( $event['gd$where'][0]['valueString'] ) ? esc_html( $event['gd$where'][0]['valueString'] ) : '' );
 								$start_time  = $this->iso_to_ts( $event['gd$when'][0]['startTime'] );
 								$end_time    = $this->iso_to_ts( $event['gd$when'][0]['endTime'] );
 
