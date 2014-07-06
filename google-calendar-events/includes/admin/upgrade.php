@@ -15,17 +15,28 @@
 // I put the priority to 20 here so it runs after the gce_feed CPT code and we don't get errors
 add_action( 'init', 'gce_upgrade', 20 );
 
+/**
+ * Main GCE Upgrade function. Call this and branch of from here depending on what we need to do
+ * 
+ * @since 2.0.0
+ */
 function gce_upgrade() {
 	
 	//delete_option( 'gce_upgrade_has_run' );
 	
 	$version = get_option( 'gce_version' );
 	
+	// Check if under version 2 and run the v2 upgrade if we are
 	if( version_compare( $version, '2.0.0', '<' ) && false === get_option( 'gce_upgrade_has_run' ) ) {
 		gce_v2_upgrade();
 	}
 }
 
+/*
+ * Run the upgrade to version 2.0.0
+ * 
+ * @since 2.0.0
+ */
 function gce_v2_upgrade() {
 	$old_options = get_option( 'gce_options' );
 	
@@ -37,19 +48,30 @@ function gce_v2_upgrade() {
 	add_option( 'gce_upgrade_has_run', 1 );
 }
 
+/**
+ * Converts the old database options to the new CPT layout for 2.0.0+
+ * 
+ * @since 2.0.0
+ */
 function convert_to_cpt_posts( $args ) {
+	// Setup our new post
 	$post = array(
-				'post_name'      => $args['title'],
-				'post_title'     => $args['title'],
-				'post_status'    => 'publish',
-				'post_type'      => 'gce_feed'
-			);
+			'post_name'      => $args['title'],
+			'post_title'     => $args['title'],
+			'post_status'    => 'publish',
+			'post_type'      => 'gce_feed'
+		);
 	
 	$post_id = wp_insert_post( $post );
 	
 	create_cpt_meta( $post_id, $args );
 }
 
+/**
+ * Add the CPT post meta based on options set for the old feeds prior to v2
+ * 
+ * @since 2.0.0
+ */
 function create_cpt_meta( $id, $args ) {
 	
 	// Convert the dropdown values to the new values for "Retrieve Events From"

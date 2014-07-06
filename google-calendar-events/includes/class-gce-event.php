@@ -1,21 +1,32 @@
 <?php
 
+/**
+ * Class GCE_Event
+ * 
+ * Class to hold of the events data and procees events to be returned for other use
+ * 
+ * @since 2.0.0
+ */
 class GCE_Event {
 	
 	public $feed;
 	
+	/**
+	 * Class constructor
+	 * 
+	 * @since 2.0.0
+	 */
 	function __construct( GCE_Feed $feed, $id, $title, $description, $location, $start_time, $end_time, $link ) {
 		
-		$this->feed = $feed;
-		$this->id = $id;
-		$this->title = $title;
+		$this->feed        = $feed;
+		$this->id          = $id;
+		$this->title       = $title;
 		$this->description = $description;
-		$this->location = $location;
-		$this->start_time = $start_time;
-		$this->end_time = $end_time;
-		$this->link = $link;
+		$this->location    = $location;
+		$this->start_time  = $start_time;
+		$this->end_time    = $end_time;
+		$this->link        = $link;
 		
-
 		//Calculate which day type this event is (SWD = single whole day, SPD = single part day, MWD = multiple whole day, MPD = multiple part day)
 		if ( ( $start_time + 86400 ) <= $end_time ) {
 			if ( ( $start_time + 86400 ) == $end_time ) {
@@ -32,7 +43,11 @@ class GCE_Event {
 		}
 	}
 	
-	//Returns an array of days (as UNIX timestamps) that this events spans
+	/**
+	 * Returns an array of days (as UNIX timestamps) that this events spans
+	 * 
+	 * @since 2.0.0
+	 */
 	function get_days() {
 		//Round start date to nearest day
 		$start_time = mktime( 0, 0, 0, date( 'm', $this->start_time ), date( 'd', $this->start_time ) , date( 'Y', $this->start_time ) );
@@ -64,7 +79,11 @@ class GCE_Event {
 		return $days;
 	}
 
-	//Returns the markup for this event, so that it can be used in the construction of a grid / list
+	/**
+	 * Returns the markup for this event, so that it can be used in the construction of a grid / list
+	 * 
+	 * @since 2.0.0
+	 */
 	function get_event_markup( $display_type, $num_in_day, $num ) {
 		//Set the display type (either tooltip or list)
 		$this->type = $display_type;
@@ -80,8 +99,13 @@ class GCE_Event {
 		return $this->use_old_display_options();
 	}
 	
-	//Return the event markup using the old display options
+	/**
+	 * Return the event markup using the old display options
+	 * 
+	 * @since 2.0.0
+	 */
 	function use_old_display_options() {
+		// TODO What to do with these? These are from the "Simple" output that doesn't use the builder
 		$display_options = array(
 					'display_start'         => 'time',
 					'display_end'           => 'time',
@@ -135,8 +159,6 @@ class GCE_Event {
 			}
 
 			$markup .= '</p>';
-			
-			//$markup .= '<pre>Startend: ' . print_r( $start_end, true ) . '</pre>';
 		}
 
 		//If location should be displayed (and is not empty) add to $markup
@@ -167,51 +189,4 @@ class GCE_Event {
 
 		return $markup;
 	}
-
-	//Returns the difference between two times in human-readable format. Based on a patch for human_time_diff posted in the WordPress trac (http://core.trac.wordpress.org/ticket/9272) by Viper007Bond 
-	function gce_human_time_diff( $from, $to = '', $limit = 1 ) {
-		$units = array(
-			31556926 => array( __( '%s year', GCE_TEXT_DOMAIN ),  __( '%s years', GCE_TEXT_DOMAIN ) ),
-			2629744  => array( __( '%s month', GCE_TEXT_DOMAIN ), __( '%s months', GCE_TEXT_DOMAIN ) ),
-			604800   => array( __( '%s week', GCE_TEXT_DOMAIN ),  __( '%s weeks', GCE_TEXT_DOMAIN ) ),
-			86400    => array( __( '%s day', GCE_TEXT_DOMAIN ),   __( '%s days', GCE_TEXT_DOMAIN ) ),
-			3600     => array( __( '%s hour', GCE_TEXT_DOMAIN ),  __( '%s hours', GCE_TEXT_DOMAIN ) ),
-			60       => array( __( '%s min', GCE_TEXT_DOMAIN ),   __( '%s mins', GCE_TEXT_DOMAIN ) ),
-		);
-
-		if ( empty( $to ) )
-			$to = time(); 
-
-		$from = (int) $from;
-		$to   = (int) $to;
-		$diff = (int) abs( $to - $from );
-
-		$items = 0;
-		$output = array();
-
-		foreach ( $units as $unitsec => $unitnames ) {
-			if ( $items >= $limit )
-				break; 
-
-			if ( $diff < $unitsec )
-				continue; 
-
-			$numthisunits = floor( $diff / $unitsec ); 
-			$diff = $diff - ( $numthisunits * $unitsec ); 
-			$items++; 
-
-			if ( $numthisunits > 0 )
-				$output[] = sprintf( _n( $unitnames[0], $unitnames[1], $numthisunits ), $numthisunits ); 
-		} 
-
-		$seperator = _x( ', ', 'human_time_diff' ); 
-
-		if ( ! empty( $output ) ) {
-			return implode( $seperator, $output ); 
-		} else {
-			$smallest = array_pop( $units ); 
-			return sprintf( $smallest[0], 1 ); 
-		} 
-	}
-	
 }

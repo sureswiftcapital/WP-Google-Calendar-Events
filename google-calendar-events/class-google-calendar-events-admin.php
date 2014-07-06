@@ -56,6 +56,11 @@ class Google_Calendar_Events_Admin {
 		
 	}
 	
+	/**
+	 * Enqueue scripts for the admin area
+	 * 
+	 * @since 2.0.0
+	 */
 	public static function enqueue_admin_scripts() {
 		
 		wp_enqueue_script( 'jquery' );
@@ -65,6 +70,11 @@ class Google_Calendar_Events_Admin {
 		wp_enqueue_script( 'gce-admin', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), null, true );
 	}
 	
+	/**
+	 * Enqueue styles for the admin area
+	 * 
+	 * @since 2.0.0
+	 */
 	public static function enqueue_admin_styles() {
 		
 		wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ) );
@@ -72,6 +82,11 @@ class Google_Calendar_Events_Admin {
 		wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ) );
 	}
 	
+	/**
+	 * Define constants that will be used throughout admin specific code
+	 * 
+	 * @since 2.0.0
+	 */
 	public static function define_admin_constants() {
 		if( ! defined( 'GCE_DIR' ) ) {
 			define( 'GCE_DIR', dirname( __FILE__ ) );
@@ -93,15 +108,6 @@ class Google_Calendar_Events_Admin {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Render the settings page for this plugin.
-	 *
-	 * @since    2.0.0
-	 */
-	public function display_admin_page() {
-		include_once( 'views/admin/admin.php' );
 	}
 	
 	/**

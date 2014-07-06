@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Adds the 'gce-feed' shortcode
+ * Adds support for the new [gcal] shortcode
+ * 
+ * Supports the old [google-calendar-events] shortcode
  * 
  * @since 2.0.0
  */

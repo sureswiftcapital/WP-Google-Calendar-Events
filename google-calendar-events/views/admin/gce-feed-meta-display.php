@@ -4,24 +4,24 @@
 	
 	$post_id = $post->ID;
 	
+	// Clear the cache if the button was clicked to do so
 	if( isset( $_GET['clear_cache'] ) && $_GET['clear_cache'] == 1 ) {
 		gce_clear_cache( $post_id );
 	}
 	
+	// Load up all post meta data
 	$gce_feed_url         = get_post_meta( $post->ID, 'gce_feed_url', true );
 	$gce_retrieve_from    = get_post_meta( $post->ID, 'gce_retrieve_from', true );
 	$gce_retrieve_until   = get_post_meta( $post->ID, 'gce_retrieve_until', true );
 	$gce_retrieve_max     = get_post_meta( $post->ID, 'gce_retrieve_max', true );
 	$gce_date_format      = get_post_meta( $post->ID, 'gce_date_format', true );
 	$gce_time_format      = get_post_meta( $post->ID, 'gce_time_format', true );
-	//$gce_timezone_offset  = get_post_meta( $post->ID, 'gce_timezone_offset', true );
 	$gce_cache            = get_post_meta( $post->ID, 'gce_cache', true );
 	$gce_multi_day_events = get_post_meta( $post->ID, 'gce_multi_day_events', true );
 	$gce_display_mode     = get_post_meta( $post->ID, 'gce_display_mode', true );
 	$gce_custom_from      = get_post_meta( $post->ID, 'gce_custom_from', true );
 	$gce_custom_until     = get_post_meta( $post->ID, 'gce_custom_until', true );
 	
-	//echo '<pre>' . print_r( get_post_meta( $post_id ), true ) . '</pre>';
 ?>
 
 
@@ -106,14 +106,20 @@
 
 
 <?php
-//Timezone offset
+/**
+ * Since we have a huge list of Timezones we use this to grab them 
+ * 
+ * @since 2.0.0
+ */
 function gce_add_timezone_field() {
 	global $post;
 	
 	$gce_timezone_offset  = get_post_meta( $post->ID, 'gce_timezone_offset', true );
 	
-	require_once 'timezone-choices.php';
+	require_once( 'timezone-choices.php' );
+	
 	$timezone_list = gce_get_timezone_choices();
+	
 	//Set selected="selected" for default option
 	if( ! empty( $gce_timezone_offset ) ) {
 		$timezone_list = str_replace(('<option value="' . $gce_timezone_offset . '"'), ('<option value="' . $gce_timezone_offset . '" selected="selected"'), $timezone_list);

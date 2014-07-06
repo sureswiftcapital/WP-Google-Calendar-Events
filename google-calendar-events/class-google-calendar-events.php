@@ -62,10 +62,20 @@ class Google_Calendar_Events {
 		
 	}
 	
-	function upgrade() {
+	/**
+	 * Load the upgrade file
+	 * 
+	 * @since 2.0.0
+	 */
+	private function upgrade() {
 		include_once( 'includes/admin/upgrade.php' );
 	}
 	
+	/**
+	 * Setup public constants 
+	 * 
+	 * @since 2.0.0
+	 */
 	public function setup_constants() {
 		if( ! defined( 'GCE_DIR' ) ) {
 			define( 'GCE_DIR', dirname( __FILE__ ) );
@@ -76,6 +86,11 @@ class Google_Calendar_Events {
 		}
 	}
 	
+	/**
+	 * Include all necessary files
+	 * 
+	 * @since 2.0.0
+	 */
 	public static function includes() {
 		// TODO make sure these are all accurate and up to date
 		// Rearrange files according so we only run files when we absolutely need to
@@ -98,20 +113,28 @@ class Google_Calendar_Events {
 		}
 	}
 	
+	/**
+	 * Load public facing scripts
+	 * 
+	 * @since 2.0.0
+	 */
 	public function enqueue_public_scripts() {
-		// OLD calendar scripts
+		
 		wp_enqueue_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery-qtip.js', __FILE__ ), array( 'jquery' ), self::VERSION, true );
 		wp_enqueue_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), self::VERSION, true );
 		
 		wp_localize_script( $this->plugin_slug . '-public', 'gce', 
 				array( 
-					//'url' => 'https://www.google.com/calendar/feeds/qs39fk8m91po76l92norrgr2b8%40group.calendar.google.com/public/basic',
 					'ajaxurl' => admin_url( 'admin-ajax.php' )
 				) );
 	}
 	
+	/*
+	 * Load public facing styles
+	 * 
+	 * @since 2.0.0
+	 */
 	public function enqueue_public_styles() {
-		// OLD calendar CSS
 		wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array(), self::VERSION );
 	}
 
@@ -143,6 +166,11 @@ class Google_Calendar_Events {
 		return self::$instance;
 	}
 	
+	/**
+	 * AJAX function for grid pagination
+	 * 
+	 * @since 2.0.0
+	 */
 	function gce_ajax() {
 		if ( isset( $_GET['gce_feed_ids'] ) ) {
 			$ids   = $_GET['gce_feed_ids'];

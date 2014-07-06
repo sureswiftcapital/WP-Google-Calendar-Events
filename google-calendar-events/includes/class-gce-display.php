@@ -1,15 +1,22 @@
 <?php
 
+/**
+ * Class GCE_Display
+ * 
+ * Processes the feed data for display.
+ * 
+ * @since 2.0.0
+ */
 class GCE_Display {
 	
 	private $feeds, $merged_feeds;
 	
 	public function __construct( $ids, $title_text = null, $max_events = 0, $sort_order = 'asc' ) {
-		$this->id = $ids;
 		
-		$this->title = $title_text;
+		$this->id         = $ids;
+		$this->title      = $title_text;
 		$this->max_events = $max_events;
-		$this->sort = $sort_order;
+		$this->sort       = $sort_order;
 		
 		foreach( $ids as $id ) {
 			$this->feeds[$id] = new GCE_Feed( $id );
@@ -29,7 +36,11 @@ class GCE_Display {
 		}
 	}
 
-	//Comparison function for use when sorting merged feed data (with usort)
+	/**
+	 * Comparison function for use when sorting merged feed data (with usort)
+	 * 
+	 * @since 2.0.0
+	 */
 	function compare( $event1, $event2 ) {
 		//Sort ascending or descending
 		if ( 'asc' == $this->sort )
@@ -38,7 +49,11 @@ class GCE_Display {
 		return $event2->start_time - $event1->start_time;
 	}
 
-	//Returns array of days with events, with sub-arrays of events for that day
+	/**
+	 * Returns array of days with events, with sub-arrays of events for that day
+	 * 
+	 * @since 2.0.0
+	 */
 	private function get_event_days() {
 		$event_days = array();
 
@@ -51,8 +66,6 @@ class GCE_Display {
 		//Loop through entire array of events, or until maximum number of events to be displayed has been reached
 		for ( $i = 0; $i < $count && $max > 0; $i++ ) {
 			$event = $this->merged_feeds[$i];
-			
-			//echo '<pre>' . print_r( $this->merged_feeds[$i], true ) . '</pre>';
 			
 			//Check that event ends, or starts (or both) within the required date range. This prevents all-day events from before / after date range from showing up.
 			if ( $event->end_time > $event->start_time && $event->start_time < $event->end_time ) {

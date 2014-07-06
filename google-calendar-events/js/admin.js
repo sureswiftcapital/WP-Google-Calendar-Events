@@ -22,16 +22,9 @@
 			}
 		});
 		
+		// Add jQuery date picker to our 2 custom date fields
 		$('#gce_custom_from').datepicker();
 		$('#gce_custom_until').datepicker();
-		
-		/*$('#gce_custom_from').on('change', function() {
-			$('#gce_custom_from_option').val($(this).val());
-		});*/
-		
-		/*$('#gce_custom_until').on('change', function() {
-			//$('#gce_retrieve_until:selected').val($(this).val());
-		});*/
 	
 	});
 }(jQuery));

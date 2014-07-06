@@ -1,4 +1,10 @@
-<?php 
+<?php
+
+/**
+ * Returns the HTML for the Timezone select box on the CPT screens
+ * 
+ * @since 2.0.0
+ */
 function gce_get_timezone_choices(){
 	return '
 	<select name="gce_timezone_offset">

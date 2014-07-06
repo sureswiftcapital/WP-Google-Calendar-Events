@@ -4,9 +4,9 @@
  * Class GCE_Feed
  * 
  * Class to setup feed data from CPTs
+ * 
+ * @since 2.0.0
  */
-
-
 class GCE_Feed {
 	
 	public $id,
@@ -23,9 +23,11 @@ class GCE_Feed {
 	
 	public $events = array();
 	
-	/*public $start = 0;
-	private $end = 2145916800;*/
-	
+	/**
+	 * Class constructor
+	 * 
+	 * @since 2.0.0
+	 */
 	public function __construct( $id ) {
 		// Set the ID
 		$this->id = $id;
@@ -41,10 +43,20 @@ class GCE_Feed {
 		}
 	}
 	
+	/**
+	 * Set the transient to cache the events
+	 * 
+	 * @since 2.0.0
+	 */
 	private function cache_events() {
 		set_transient( 'gce_feed_' . $this->id, $this->events, $this->cache );
 	}
 	
+	/**
+	 * Set all of the feed attributes from the post meta options
+	 * 
+	 * @since 2.0.0
+	 */
 	private function setup_attributes() {	
 		$date_format = get_post_meta( $this->id, 'gce_date_format', true );
 		$time_format = get_post_meta( $this->id, 'gce_time_format', true );
@@ -60,6 +72,11 @@ class GCE_Feed {
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
 	}
 	
+	/**
+	 * Create the feed URL 
+	 * 
+	 * @since 2.0.0
+	 */
 	private function create_feed() {
 		//Break the feed URL up into its parts (scheme, host, path, query)
 		$url_parts = parse_url( $this->feed_url );
@@ -91,28 +108,11 @@ class GCE_Feed {
 		$this->get_feed_data( $this->display_url );
 	}
 	
-	public function display( $display_type, $year = null, $month = null, $ajax = false ) {
-		$display = new GCE_Display( $this->id, $this );
-		
-		switch( $display_type ) {
-			//case 'grid':
-			//	return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
-			case 'widget-grid':
-				return '<div class="gce-widget-grid" id="gce-widget-' . $this->id . '-container">' . $display->get_grid( $year, $month, $ajax ) . '</div>';
-			case 'grid':
-				return '<div class="gce-page-grid" id="gce-page-grid-' . $this->id . '">' . $display->get_grid( $year, $month, true ) . '</div>';
-			case 'list':
-				return '<div class="gce-page-list" id="gce-page-list-' . $this->id . '">' . $display->get_list( false ) . '</div>';
-			case 'list-grouped':
-				return '<div class="gce-page-list-gouped" id="gce-page-list-' . $this->id . '">' . $display->get_list( true ) . '</div>';
-			case 'widget-list':
-				return '<div class="gce-widget-list" id="' . $this->id . '-container">' . $display->get_list( false ) . '</div>';
-			case 'widget-list-grouped':
-				return '<div class="gce-widget-list" id="' . $this->id . '-container">' . $display->get_list( true ) . '</div>';
-		}
-	}
-
-	
+	/**
+	 * Make remote call to get the feed data
+	 * 
+	 * @since 2.0.0
+	 */
 	private function get_feed_data( $url ) {
 		$raw_data = wp_remote_get( $url, array(
 				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
@@ -121,11 +121,8 @@ class GCE_Feed {
 		
 		// First check for transient data to use
 		if( false !== get_transient( 'gce_feed_' . $this->id ) ) {
-			//echo 'Found cached version<br>';
 			$this->events = get_transient( 'gce_feed_' . $this->id );
-			//echo '<pre>' . print_r( $this->events, true ) . '</pre>';
 		} else {
-			//echo 'Cached version not found<br>';
 			//If $raw_data is a WP_Error, something went wrong
 			if ( ! is_wp_error( $raw_data ) ) {
 				//If response code isn't 200, something went wrong
@@ -175,20 +172,24 @@ class GCE_Feed {
 		}
 	}
 	
-	//Convert an ISO date/time to a UNIX timestamp
+	/**
+	 * Convert an ISO date/time to a UNIX timestamp
+	 * 
+	 * @since 2.0.0
+	 */
 	private function iso_to_ts( $iso ) {
 		sscanf( $iso, "%u-%u-%uT%u:%u:%uZ", $year, $month, $day, $hour, $minute, $second );
 		return mktime( $hour, $minute, $second, $month, $day, $year );
 	}
 	
-	// Return feed start/end
+	/**
+	 * Return feed start/end
+	 * 
+	 * @since 2.0.0
+	 */
 	private function set_feed_length( $value, $type ) {
-		
-		//echo 'Value: ' . $value . '<br>Type: ' . $type . '<br>';
-		
+		// All times start at 00:00
 		switch ( $value ) {
-			//Don't just use time() for 'now', as this will effectively make cache duration 1 second. Instead set to previous minute. 
-			//Events in Google Calendar cannot be set to precision of seconds anyway
 			case 'today':
 				$return = mktime( 0, 0, 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
 				break;
@@ -216,7 +217,6 @@ class GCE_Feed {
 				} else {
 					$return = $fallback;
 				}
-
 				break;
 			default:
 				if( $type == 'start' ) {
@@ -228,9 +228,5 @@ class GCE_Feed {
 		}
 		
 		return $return;
-	}
-	
-	public function get_display_url() {
-		return $this->display_url;
 	}
 }

@@ -43,6 +43,11 @@ class GCE_Widget extends WP_Widget {
 		);
 	}
 
+	/**
+	 * Widget HTML output
+	 * 
+	 * @since 2.0.0
+	 */
 	function widget( $args, $instance ) {
 		extract( $args );
 
@@ -104,7 +109,6 @@ class GCE_Widget extends WP_Widget {
 					'title_text' => $title_text,
 					'max_events' => $max_events,
 					'sort'       => $sort_order,
-					//'grouped'    => 1,
 					'month'      => null,
 					'year'       => null,
 					'widget'     => 1
@@ -129,7 +133,12 @@ class GCE_Widget extends WP_Widget {
 		//Output after widget stuff
 		echo $after_widget;
 	}
-
+	
+	/**
+	 * Update settings when saved
+	 * 
+	 * @since 2.0.0
+	 */
 	function update( $new_instance, $old_instance ) {
 		
 		$instance                       = $old_instance;
@@ -138,12 +147,17 @@ class GCE_Widget extends WP_Widget {
 		$instance['display_type']       = esc_html( $new_instance['display_type'] );
 		//$instance['max_events']         = absint( $new_instance['max_events'] );
 		$instance['order']              = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
-		//$instance['display_title']      = ( 'on' == $new_instance['display_title'] ) ? true : false;
 		$instance['display_title_text'] = wp_filter_kses( $new_instance['display_title_text'] );
 		
 		return $instance;
 	}
-
+	
+	/**
+	 * 
+	 * @param type $instanceDisplay widget form in admin
+	 * 
+	 * @since 2.0.0
+	 */
 	function form( $instance ) {
 		// TODO Old GCE Plugin displayed a message if there were no feeds created yet, add that in here eventtually
 		

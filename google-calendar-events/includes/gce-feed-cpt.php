@@ -122,7 +122,7 @@ add_action( 'save_post', 'gce_save_meta' );
 function gce_clear_cache_on_save( $post_id ) {
 	gce_clear_cache( $post_id );
 }
-add_action( 'save_post', 'gce_clear_cache_on_save' );
+add_action( 'save_post_gce_feed', 'gce_clear_cache_on_save' );
 
 /**
  * Add column headers to our "All Feeds" CPT page
