@@ -8,12 +8,12 @@
 function gce_gcal_shortcode( $attr ) {
 
 	extract( shortcode_atts( array(
-					'id' => null,
+					'id'      => null,
 					'display' => 'grid',
-					'max' => 0,
-					'order' => 'asc',
-					'title' => null,
-					'type' => null,
+					'max'     => 0,
+					'order'   => 'asc',
+					'title'   => null,
+					'type'    => null,
 				), $attr, 'gce_feed' ) );
 	
 	// If the ID is empty we can't pull any data so we skip all this and return nothing
@@ -21,7 +21,11 @@ function gce_gcal_shortcode( $attr ) {
 		
 		// Port over old options
 		if( $type != null ) {
-			$display = $type;
+			if( 'ajax' == $type ) {
+				$display = 'grid';
+			} else {
+				$display = $type;
+			}
 		}
 		
 		$args = array(
