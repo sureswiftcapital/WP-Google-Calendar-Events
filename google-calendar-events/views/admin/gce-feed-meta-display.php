@@ -20,6 +20,8 @@
 	$gce_display_mode     = get_post_meta( $post->ID, 'gce_display_mode', true );
 	$gce_custom_from      = get_post_meta( $post->ID, 'gce_custom_from', true );
 	$gce_custom_until     = get_post_meta( $post->ID, 'gce_custom_until', true );
+	
+	//echo '<pre>' . print_r( get_post_meta( $post_id ), true ) . '</pre>';
 ?>
 
 

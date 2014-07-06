@@ -46,7 +46,11 @@ class Google_Calendar_Events {
 	 * @since     1.0.0
 	 */
 	private function __construct() {
+		
 		$this->includes();
+		$this->upgrade();
+		
+		
 		$this->setup_constants();
 		
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
@@ -56,6 +60,10 @@ class Google_Calendar_Events {
 		add_action( 'wp_ajax_no_priv_gce_ajax', array( $this, 'gce_ajax' ) );
 		add_action( 'wp_ajax_gce_ajax', array( $this, 'gce_ajax' ) );
 		
+	}
+	
+	function upgrade() {
+		include_once( 'includes/admin/upgrade.php' );
 	}
 	
 	public function setup_constants() {
