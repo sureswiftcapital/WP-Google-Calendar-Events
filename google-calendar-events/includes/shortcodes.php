@@ -9,7 +9,7 @@ function gce_gcal_shortcode( $attr ) {
 
 	extract( shortcode_atts( array(
 					'id' => null,
-					'display' => null,
+					'display' => 'grid',
 					'max' => 0,
 					'order' => 'asc',
 					'title' => null,
@@ -29,11 +29,22 @@ function gce_gcal_shortcode( $attr ) {
 			$display = $type;
 		}
 		
+		$args = array(
+			'title_text' => $title,
+			'max_events' => $max,
+			'sort'       => $order,
+			'grouped'    => ( $display == 'list-grouped' ? 1 : 0 ),
+			'month'      => null,
+			'year'       => null,
+			'widget'     => 0
+		);
+		
+		return gce_print_calendar( $id, $display, $args );
 		
 		// TODO clean up this code! Make this more DRY somehow
 		
 		// check for a comma for multiple feeds
-		if( strpos( $id, ',' ) === false ) {
+		/*if( strpos( $id, ',' ) === false ) {
 			if( ! empty ( $display ) ) {
 				if( $display == 'list' ) {
 					return gce_print_list( $id, $title, $max, $order, false );
@@ -66,7 +77,7 @@ function gce_gcal_shortcode( $attr ) {
 			} else {
 				return gce_print_grid( $id, $title, $max );
 			}
-		}
+		}*/
 	}
 	
 	return '';
@@ -75,61 +86,43 @@ add_shortcode( 'gcal', 'gce_gcal_shortcode' );
 add_shortcode( 'google-calendar-events', 'gce_gcal_shortcode' );
 
 
-
-function gce_print_grid( $feed_ids, $title_text, $max_events, $month = null, $year = null ) {
+/*
+ * @array $args
+ 			'title_text' => $title,
+			'max_events' => $max,
+			'sort'       => $order,
+			'grouped'    => 0,
+			'month'      => null,
+			'year'       => null,
+			'widget'     => 1
+ */
+function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
 	
-	// TODO Add error code checking back in eventually?
+	extract( $args );
 	
 	$ids = explode( '-', $feed_ids );
-
+	
 	//Create new display object, passing array of feed id(s)
-	$grid = new GCE_Display( $ids, $title_text, $max_events );
-
+	$d = new GCE_Display( $ids, $title_text, $max_events );
+	$markup = '';
 	
-	$feed_ids = esc_attr( $feed_ids );
-	$title_text = isset( $title_text ) ? esc_html( $title_text) : 'null';
-
-	$markup = '<div class="gce-page-grid" id="gce-page-grid-' . $feed_ids . '">';
-
-	// Automatically adding JS for AJAX now
-	$markup .= '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-page-grid-' . $feed_ids . '", "' . $feed_ids . '", "' . absint( $max_events ) . '", "' . $title_text . '", "page");});</script>';
+	if( 'grid' == $display ) {
+		
+		$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("' . ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids 
+					. '", "' . $feed_ids . '", "' . absint( $max_events ) . '", "' . $title_text . '", "' . ( $widget == 1 ? 'widget' : 'page' ) . '");});</script>';
+		
+		if( $widget == 1 ) {
+			$markup .= '<div class="gce-widget-grid" id="gce-widget-' . $feed_ids . '">';
+		} else {
+			$markup .= '<div class="gce-page-grid" id="gce-page-grid-' . $feed_ids . '">';
+		}
+		
+		$markup .= $d->get_grid();
+		$markup .= '</div>';
+		
+	} else if( 'list' == $display || 'list-grouped' == $display ) {
+		$markup = '<div class="gce-page-list">' . $d->get_list( $grouped ) . '</div>';
+	}
 	
-	// Get the actual calendar grid html
-	$markup .= $grid->get_grid( $year, $month, true ) . '</div>';
-
 	return $markup;
-}
-
-
-function gce_print_list( $feed_ids, $title_text, $max_events, $sort_order, $grouped = false ) {
-	//require_once 'inc/gce-parser.php';
-	
-	//echo 'hit 1';
-	
-	$ids = explode( '-', $feed_ids );
-
-	//Create new GCE_Parser object, passing array of feed id(s)
-	$list = new GCE_Display( $ids, $title_text, $max_events, $sort_order );
-
-	//$num_errors = $list->get_num_errors();
-
-	//If there are less errors than feeds parsed, at least one feed must have parsed successfully so continue to display the list
-	//if ( $num_errors < count( $ids ) ) {
-		$markup = '<div class="gce-page-list">' . $list->get_list( $grouped ) . '</div>';
-
-		//If there was at least one error, return the list markup with error messages (for admins only)
-		//if ( $num_errors > 0 && current_user_can( 'manage_options' ) )
-			//return $list->error_messages() . $markup;
-
-		//Otherwise just return the list markup
-		return $markup;
-	//} else {
-		//If current user is an admin, display an error message explaining problem(s). Otherwise, display a 'nice' error messsage
-	//	if ( current_user_can( 'manage_options' ) ) {
-	//		return $list->error_messages();
-	//	} else {
-	//		$options = get_option( GCE_GENERAL_OPTIONS_NAME );
-	//		return wp_kses_post( $options['error'] );
-	//	}
-	//}
 }

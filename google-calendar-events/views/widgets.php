@@ -121,10 +121,18 @@ class GCE_Widget extends WP_Widget {
 						echo $feed->display( 'widget-list-grouped' );
 						break;
 				}*/
-				$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-widget-' . $feed_ids . '", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
-				$markup .= '<div class="gce-widget-grid" id="gce-widget-' . $feed_ids . '">';
-				$markup .= $display->get_grid( null, null, true );
-				$markup .= '</div>';
+				
+				$args = array(
+					'title_text' => 'test',
+					'max_events' => 25,
+					'sort'       => 'asc',
+					'grouped'    => 1,
+					'month'      => 12,
+					'year'       => 1987,
+					'widget'     => 1
+				);
+				
+				$markup = gce_print_calendar( $feed_ids, 'grid', $args );
 				
 				echo $markup;
 			}
