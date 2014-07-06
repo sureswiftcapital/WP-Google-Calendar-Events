@@ -13,14 +13,16 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// TODO uninstall actions
-
-// Remove CPTs
+// Remove CPTs and transients
 $feeds = get_posts( array( 
 	'post_type' => 'gce_feed'
 ));
 
 foreach( $feeds as $f ) {
+	// delete the transient while we have the post ID available
+	delete_transient( 'gce_feed_' . $f->ID );
+	
+	// Now delete the post
 	wp_delete_post( $f->ID, true );
 }
 
