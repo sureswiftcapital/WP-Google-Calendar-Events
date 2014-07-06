@@ -4,14 +4,15 @@
  * Run our upgrade
  * 
  * TODO
- * Need to set an option to check the version
- * Need to only run if the version is less than 2.0.0
- * Setup code in a way to be easily expanded to other versions
- * Run this before all else
- * Old Feed Option(s) to CPT feeds
+ * Need to set an option to check the version (done)
+ * Need to only run if the version is less than 2.0.0 (done)
+ * Setup code in a way to be easily expanded to other versions (done) 
+ * Run this before all else (done, but changed to run after the CPT is created so we don't throw errors)
+ * Old Feed Option(s) to CPT feeds (done)
  * Will the widget settings transfer as is?
  */
 
+// I put the priority to 20 here so it runs after the gce_feed CPT code and we don't get errors
 add_action( 'init', 'gce_upgrade', 20 );
 
 function gce_upgrade() {
@@ -28,34 +29,11 @@ function gce_upgrade() {
 function gce_v2_upgrade() {
 	$old_options = get_option( 'gce_options' );
 	
-	//echo '<p>Dumping Old Options Data</p>';
-	//echo '<pre>' . print_r( $old_options, true ) . '</pre>';
-	
-	// Options we need to actually convert over
-	/*
-	 * id [id] - This is going to be tricky since the CPT uses a different system for setting the feed ID from the old version
-	 * title - 
-	 * url
-	 * retrieve_from
-	 * retrieve_until
-	 * retrieve_from_value*
-	 * retrieve_until_value*
-	 * max_events
-	 * date_format*
-	 * time_format*
-	 * timezone
-	 * cache_duration
-	 * multiple_day
-	 */
-	
-	
 	foreach( $old_options as $key => $value ) {
 		convert_to_cpt_posts( $value );
-		
-		//echo $value['title'] . '<br>';
 	}
 	
-	
+	// TODO update_option( 'gce_version', '2.0.0' ); - This might need to go into the main class so that we can use $this->version instead of hard coding the value
 	add_option( 'gce_upgrade_has_run', 1 );
 }
 
@@ -120,7 +98,7 @@ function create_cpt_meta( $id, $args ) {
 			break;
 	}
 	
-	// An array to hold all of our post meta ids so we can run them through a loop
+	// An array to hold all of our post meta ids and values so that we can loop through and add as post meta easily
 	$post_meta_fields = array(
 		'gce_feed_url'         => $args['url'],
 		'gce_retrieve_from'    => $from,
@@ -136,8 +114,8 @@ function create_cpt_meta( $id, $args ) {
 		'gce_custom_until'     => $args['retrieve_until_value']
 	);
 	
+	// Loop through each $post_meta_field and add as an entry
 	foreach( $post_meta_fields as $k => $v ) {
 		update_post_meta( $id, $k, $v );
-		echo 'ID: ' . $id . ', Key: ' . $k . ', Value: ' . $v . '<br>';
 	}
 }

@@ -95,7 +95,6 @@ class Google_Calendar_Events {
 			include_once( 'includes/admin/admin-functions.php' );
 		} else {
 			// Public includes
-			include_once( 'views/public/public.php' );
 		}
 	}
 	
