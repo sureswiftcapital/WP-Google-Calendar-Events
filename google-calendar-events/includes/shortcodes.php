@@ -13,12 +13,7 @@ function gce_gcal_shortcode( $attr ) {
 					'max' => 0,
 					'order' => 'asc',
 					'title' => null,
-					// OLD options that need to be supported still
-					//'id' => '',
 					'type' => null,
-					//'title' => null,
-					//'max' => 0,
-					//'order' => 'asc'
 				), $attr, 'gce_feed' ) );
 	
 	// If the ID is empty we can't pull any data so we skip all this and return nothing
@@ -40,44 +35,6 @@ function gce_gcal_shortcode( $attr ) {
 		);
 		
 		return gce_print_calendar( $id, $display, $args );
-		
-		// TODO clean up this code! Make this more DRY somehow
-		
-		// check for a comma for multiple feeds
-		/*if( strpos( $id, ',' ) === false ) {
-			if( ! empty ( $display ) ) {
-				if( $display == 'list' ) {
-					return gce_print_list( $id, $title, $max, $order, false );
-				} else if ( $display == 'list-grouped' ) {
-					return gce_print_list( $id, $title, $max, $order, true );
-				} else {
-					return gce_print_grid( $id, $title, $max );
-				}
-			} else {
-				
-				$display = get_post_meta( $id, 'gce_display_mode', true );
-				
-				if( $display == 'list' ) {
-					return gce_print_list( $id, $title, $max, $order, false );
-				} else if ( $display == 'list-grouped' ) {
-					return gce_print_list( $id, $title, $max, $order, true );
-				} else {
-					return gce_print_grid( $id, $title, $max );
-				}
-			}
-		} else {
-		
-			$id = explode( ',', $id );
-			$id = implode( '-', $id );
-
-			if( $display == 'list' ) {
-				return gce_print_list( $id, $title, $max, $order, false );
-			} else if ( $display == 'list-grouped' ) {
-				return gce_print_list( $id, $title, $max, $order, true );
-			} else {
-				return gce_print_grid( $id, $title, $max );
-			}
-		}*/
 	}
 	
 	return '';
@@ -87,19 +44,12 @@ add_shortcode( 'google-calendar-events', 'gce_gcal_shortcode' );
 
 
 /*
- * @array $args
- 			'title_text' => $title,
-			'max_events' => $max,
-			'sort'       => $order,
-			'grouped'    => 0,
-			'month'      => null,
-			'year'       => null,
-			'widget'     => 1
+ * Function to display the calendar to the screen
+ * 
+ * @since 2.0.0
  */
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
-	
-	//echo '<pre>$args before<br>' . print_r( $args, true ) . '</pre>';
-	
+
 	$defaults = array( 
 			'title_text' => '',
 			'max_events' => 25,
@@ -110,11 +60,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
 			'widget'     => 0
 		);
 	
-	//echo '<pre>$defaults<br>' . print_r( $defaults, true ) . '</pre>';
-	
 	$args = array_merge( $defaults, $args );
-	
-	//echo '<pre>$args after<br>' . print_r( $args, true ) . '</pre>';
 	
 	extract( $args );
 	

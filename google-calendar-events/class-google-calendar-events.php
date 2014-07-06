@@ -69,7 +69,6 @@ class Google_Calendar_Events {
 	}
 	
 	public static function includes() {
-		
 		// TODO make sure these are all accurate and up to date
 		// Rearrange files according so we only run files when we absolutely need to
 		
@@ -90,7 +89,6 @@ class Google_Calendar_Events {
 			// Public includes
 			include_once( 'views/public/public.php' );
 		}
-		
 	}
 	
 	public function enqueue_public_scripts() {
@@ -139,10 +137,6 @@ class Google_Calendar_Events {
 	}
 	
 	function gce_ajax() {
-		//global $post;
-		
-		// TODO Get widget working with new multi-feed code
-		
 		if ( isset( $_GET['gce_feed_ids'] ) ) {
 			$ids   = $_GET['gce_feed_ids'];
 			$title = $_GET['gce_title_text'];
@@ -160,20 +154,9 @@ class Google_Calendar_Events {
 			);
 			
 			if ( 'page' == $_GET['gce_type'] ) {
-				//The page grid markup to be returned via AJAX
-				//echo gce_print_grid( $ids, null, 25, $month, $year );
-				
 				echo gce_print_calendar( $ids, 'grid', $args );
-				
 			} elseif ( 'widget' == $_GET['gce_type'] ) {
-				//$widget = esc_html( $_GET['gce_widget_id'] );
-
-				//The widget grid markup to be returned via AJAX
-				//gce_widget_content_grid( $ids, $title, $max, $widget, true, $month, $year );
-				//echo gce_print_grid( $ids, null, 25, $month, $year );
-				
 				$args['widget'] = 1;
-				
 				echo gce_print_calendar( $ids, 'grid', $args );
 			}
 		}

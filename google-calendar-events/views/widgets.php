@@ -100,28 +100,6 @@ class GCE_Widget extends WP_Widget {
 				$max_events = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
 				$sort_order = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 				
-				// Set our feed object
-				//$feed = new GCE_Feed( $feed_ids );
-				//$display = new GCE_Display( explode( '-', $feed_ids ) );
-
-				//Output correct widget content based on display type chosen
-				/*switch ( $instance['display_type'] ) {
-					case 'grid':
-						echo '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-widget-' . $feed->id . '-container", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
-						echo $feed->display( 'widget-grid', null, null, true );
-						break;
-					//case 'ajax':
-					//	echo '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("gce-widget-' . $feed->id . '-container", "' . $feed_ids . '", "' . $max_events . '", "' . $title_text .'", "widget");});</script>';
-					//	echo $feed->display( 'widget-grid', null, null, true );
-					//	break;
-					case 'list':
-						echo $feed->display( 'widget-list' );
-						break;
-					case 'list-grouped':
-						echo $feed->display( 'widget-list-grouped' );
-						break;
-				}*/
-				
 				$args = array(
 					'title_text' => $title_text,
 					'max_events' => $max_events,
@@ -212,8 +190,6 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title on tooltip / list item (e.g. \'Events on 7th March\') Grouped lists always have a title displayed.', 'gce' ); ?></label>
-			<br />
-			<!--<input type="checkbox" id="<?php echo $this->get_field_id( 'display_title' ); ?>" name="<?php echo $this->get_field_name( 'display_title' ); ?>"<?php checked( $display_title, true ); ?> value="on" />-->
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" />
 		</p>
 			

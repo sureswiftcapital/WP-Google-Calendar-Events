@@ -5,12 +5,7 @@
 	$post_id = $post->ID;
 	
 	if( isset( $_GET['clear_cache'] ) && $_GET['clear_cache'] == 1 ) {
-		//delete_transient( 'gce_feed_' . $post_id );
-		
 		gce_clear_cache( $post_id );
-		
-		//add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
-		
 	}
 	
 	$gce_feed_url         = get_post_meta( $post->ID, 'gce_feed_url', true );
@@ -45,32 +40,26 @@
 <div class="gce-meta-control">
 	<label>Retrieve Events From</label>
 	<select name="gce_retrieve_from" id="gce_retrieve_from">
-		<!--<option value="now" <?php selected( $gce_retrieve_from, 'now', true ); ?>>Now</option>-->
 		<option value="today" <?php selected( $gce_retrieve_from, 'today', true ); ?>>Today</option>
 		<option value="start_week" <?php selected( $gce_retrieve_from, 'start_week', true ); ?>>Start of current week</option>
 		<option value="start_month" <?php selected( $gce_retrieve_from, 'start_month', true ); ?>>Start of current month</option>
 		<option value="end_month" <?php selected( $gce_retrieve_from, 'end_month', true ); ?>>End of current month</option>
 		<option value="start_time" <?php selected( $gce_retrieve_from, 'start_time', true ); ?>>The beginning of time</option>
-		<!-- maybe take out the specific date / time option? -->
 		<option value="custom_date" <?php selected( $gce_retrieve_from, 'custom_date', true ); ?>>Specific date</option>
 	</select>
-	<!-- If we take out specific date/time option then we don't need this input box -->
 	<input type="text" <?php echo ( $gce_retrieve_from != 'custom_date' ? 'class="gce-admin-hidden" ' : ' ' ); ?> name="gce_custom_from" id="gce_custom_from" value="<?php echo $gce_custom_from; ?>" />
 </div>
 
 <div class="gce-meta-control">
 	<label>Retrieve Events Until</label>
 	<select name="gce_retrieve_until" id="gce_retrieve_until">
-		<!--<option value="now" <?php selected( $gce_retrieve_until, 'now', true ); ?>>Now</option>-->
 		<option value="today" <?php selected( $gce_retrieve_until, 'today', true ); ?>>Today</option>
 		<option value="start_week" <?php selected( $gce_retrieve_until, 'start_week', true ); ?>>Start of current week</option>
 		<option value="start_month" <?php selected( $gce_retrieve_until, 'start_month', true ); ?>>Start of current month</option>
 		<option value="end_month" <?php selected( $gce_retrieve_until, 'end_month', true ); ?>>End of current month</option>
 		<option value="end_time" <?php selected( $gce_retrieve_until, 'end_time', true ); ?>>The end of time</option>
-		<!-- maybe take out the specific date / time option? -->
 		<option value="custom_date" <?php selected( $gce_retrieve_until, 'custom_date', true ); ?>>Specific date</option>
 	</select>
-	<!-- If we take out specific date/time option then we don't need this input box -->
 	<input type="text" <?php echo ( $gce_retrieve_until != 'custom_date' ? 'class="gce-admin-hidden" ' : ' ' ); ?> name="gce_custom_until" id="gce_custom_until" value="<?php echo $gce_custom_until; ?>" />
 </div>
 

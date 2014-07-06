@@ -36,21 +36,16 @@ class GCE_Feed {
 		// Now create the Feed
 		$this->create_feed();
 		
-		//echo '<pre>Before Cache: ' . print_r( $this->events, true ) . '</pre>';
-		
 		if( $this->cache > 0 ) {
 			$this->cache_events();
 		}
-		
-		
 	}
 	
 	private function cache_events() {
 		set_transient( 'gce_feed_' . $this->id, $this->events, $this->cache );
 	}
 	
-	private function setup_attributes() {
-		
+	private function setup_attributes() {	
 		$date_format = get_post_meta( $this->id, 'gce_date_format', true );
 		$time_format = get_post_meta( $this->id, 'gce_time_format', true );
 		
@@ -63,13 +58,9 @@ class GCE_Feed {
 		$this->timezone_offset     = get_post_meta( $this->id, 'gce_timezone_offset', true );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
-		
-		//echo 'Start: ' . $this->start . '<br>End: ' . $this->end;
-		
 	}
 	
 	private function create_feed() {
-		
 		//Break the feed URL up into its parts (scheme, host, path, query)
 		$url_parts = parse_url( $this->feed_url );
 
@@ -98,8 +89,6 @@ class GCE_Feed {
 		
 		// Get all the feed data
 		$this->get_feed_data( $this->display_url );
-		
-		
 	}
 	
 	public function display( $display_type, $year = null, $month = null, $ajax = false ) {
@@ -129,8 +118,6 @@ class GCE_Feed {
 				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
 				'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
 			) );
-		
-		//$this->events[] = $raw_data;
 		
 		// First check for transient data to use
 		if( false !== get_transient( 'gce_feed_' . $this->id ) ) {
@@ -202,9 +189,6 @@ class GCE_Feed {
 		switch ( $value ) {
 			//Don't just use time() for 'now', as this will effectively make cache duration 1 second. Instead set to previous minute. 
 			//Events in Google Calendar cannot be set to precision of seconds anyway
-			/*case 'now':
-				$return = mktime( date( 'H' ), date( 'i' ), 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
-				break;*/
 			case 'today':
 				$return = mktime( 0, 0, 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
 				break;
@@ -226,19 +210,13 @@ class GCE_Feed {
 					$fallback = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
 				}
 				
-				//echo 'DATE: ' . $date . '<br>';
-				
 				if( ! empty( $date ) ) {
 					$date = explode( '/', $date );
 					$return = mktime( 0, 0, 0, $date[0], $date[1], $date[2] );
 				} else {
 					$return = $fallback;
 				}
-				
-				
-				//echo '<pre>' . print_r( $date, true ) . '</pre>';
-				
-				
+
 				break;
 			default:
 				if( $type == 'start' ) {
@@ -249,14 +227,10 @@ class GCE_Feed {
 				}
 		}
 		
-		//echo 'Return: ' . $return . '<br>';
-		
 		return $return;
 	}
 	
 	public function get_display_url() {
 		return $this->display_url;
 	}
-	
-	
 }

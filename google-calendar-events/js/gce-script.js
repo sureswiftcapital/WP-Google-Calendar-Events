@@ -6,8 +6,7 @@
  */
 
 function gce_ajaxify(target, feed_ids, max_events, title_text, type){
-	
-	console.log( 'Target', target );
+
 	//Add click event to change month links
 	jQuery('#' + target + ' .gce-change-month').click(function(){
 		//Extract month and year
@@ -25,9 +24,6 @@ function gce_ajaxify(target, feed_ids, max_events, title_text, type){
 			gce_month:month_year[0],
 			gce_year:month_year[1]
 		}, function(data){
-			
-			//console.log( 'Data Returned', data );
-			//console.log( 'Target: ' + target );
 			//Replace existing data with returned AJAX data
 			if(type == 'widget'){
 				jQuery('#' + target).html(data);
