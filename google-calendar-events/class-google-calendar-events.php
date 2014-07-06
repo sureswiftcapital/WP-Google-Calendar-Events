@@ -47,7 +47,10 @@ class Google_Calendar_Events {
 	private function __construct() {
 		
 		$this->includes();
-		$this->upgrade();
+		
+		if( false === get_option( 'gce_upgrade_has_run' ) ) {
+			$this->upgrade();
+		}
 		
 		
 		$this->setup_constants();

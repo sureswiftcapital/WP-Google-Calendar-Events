@@ -125,16 +125,6 @@ add_action( 'save_post', 'gce_save_meta' );
 
 
 /**
- * Delete transient on post save so that the cache gets cleared on any settings changes
- * 
- * @since 2.0.0
- */
-function gce_clear_cache_on_save( $post_id ) {
-	gce_clear_cache( $post_id );
-}
-add_action( 'save_post_gce_feed', 'gce_clear_cache_on_save' );
-
-/**
  * Add column headers to our "All Feeds" CPT page
  * 
  * @since 2.0.0
