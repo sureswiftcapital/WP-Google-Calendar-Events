@@ -11,10 +11,10 @@
  * @wordpress-plugin
  * Plugin Name:       Google Calendar Events
  * Plugin URI:        @TODO
- * Description:       @TODO
+ * Description:       Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
  * Version:           2.0.0-beta1
  * Author:            Phil Derksen
- * Author URI:        @TODO
+ * Author URI:        http://philderksen.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       gce

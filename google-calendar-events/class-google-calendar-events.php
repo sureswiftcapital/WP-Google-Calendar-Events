@@ -92,8 +92,6 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public static function includes() {
-		// TODO make sure these are all accurate and up to date
-		// Rearrange files according so we only run files when we absolutely need to
 		
 		// First include common files between admin and public
 		include_once( 'includes/gce-feed-cpt.php' );

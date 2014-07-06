@@ -1,16 +1,5 @@
 <?php
 
-/**
- * Run our upgrade
- * 
- * TODO
- * Need to set an option to check the version (done)
- * Need to only run if the version is less than 2.0.0 (done)
- * Setup code in a way to be easily expanded to other versions (done) 
- * Run this before all else (done, but changed to run after the CPT is created so we don't throw errors)
- * Old Feed Option(s) to CPT feeds (done)
- * Will the widget settings transfer as is?
- */
 
 // I put the priority to 20 here so it runs after the gce_feed CPT code and we don't get errors
 add_action( 'init', 'gce_upgrade', 20 );
