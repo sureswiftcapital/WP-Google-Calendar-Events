@@ -1,3 +1,14 @@
+
+/**
+ * Public JS functions
+ *
+ * @package   GCE
+ * @author    Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
+ * @license   GPL-2.0+
+ * @copyright 2014 Phil Derksen
+ */
+
+
 function gce_ajaxify(target, feed_ids, max_events, title_text, type){
 
 	//Add click event to change month links

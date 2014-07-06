@@ -2,11 +2,13 @@
 
 /**
  * Class GCE_Event
- * 
- * Class to hold of the events data and procees events to be returned for other use
- * 
- * @since 2.0.0
+ *
+ * @package   GCE
+ * @author    Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
+ * @license   GPL-2.0+
+ * @copyright 2014 Phil Derksen
  */
+
 class GCE_Event {
 	
 	public $feed;

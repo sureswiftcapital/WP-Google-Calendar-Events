@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Upgrade functions
+ *
+ * @package   GCE
+ * @author    Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
+ * @license   GPL-2.0+
+ * @copyright 2014 Phil Derksen
+ */
 
 // I put the priority to 20 here so it runs after the gce_feed CPT code and we don't get errors
 add_action( 'init', 'gce_upgrade', 20 );

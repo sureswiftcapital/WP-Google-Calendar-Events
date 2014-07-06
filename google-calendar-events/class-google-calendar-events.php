@@ -1,12 +1,11 @@
 <?php
 /**
- * Plugin Name.
+ * Google Calendar Events Main Class
  *
- * @package   Plugin_Name
- * @author    Your Name <email@example.com>
+ * @package   GCE
+ * @author    Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2014 Your Name or Company Name
+ * @copyright 2014 Phil Derksen
  */
 
 

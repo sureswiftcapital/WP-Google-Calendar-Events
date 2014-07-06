@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Display for Feed Custom Post Types
+ *
+ * @package   GCE
+ * @author    Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
+ * @license   GPL-2.0+
+ * @copyright 2014 Phil Derksen
+ */
+
 	global $post;
 	
 	$post_id = $post->ID;

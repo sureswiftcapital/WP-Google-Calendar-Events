@@ -1,4 +1,12 @@
 <?php
+/**
+ * Admin helper functions
+ *
+ * @package   GCE
+ * @author    Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
+ * @license   GPL-2.0+
+ * @copyright 2014 Phil Derksen
+ */
 
 /**
  * Function to clear the cache out

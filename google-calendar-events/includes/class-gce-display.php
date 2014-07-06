@@ -2,11 +2,13 @@
 
 /**
  * Class GCE_Display
- * 
- * Processes the feed data for display.
- * 
- * @since 2.0.0
+ *
+ * @package   GCE
+ * @author    Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
+ * @license   GPL-2.0+
+ * @copyright 2014 Phil Derksen
  */
+
 class GCE_Display {
 	
 	private $feeds, $merged_feeds;
