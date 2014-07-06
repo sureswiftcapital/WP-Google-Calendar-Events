@@ -1,113 +1,176 @@
 === Google Calendar Events ===
-Contributors: (this should be a list of wordpress.org userids)
-Donate link: http://example.com/
-Tags: comments, spam
-Requires at least: 3.5.1
-Tested up to: 3.6
-Stable tag: 1.0.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Contributors: rosshanney
+Tags: google, google calendar, calendar, event, events, ajax, widget
+Requires at least: 3.0
+Tested up to: 3.5
+Stable tag: 0.7.2
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+= Features =
 
-A few notes about the sections above:
+* Parses Google Calendar feeds to extract events
+* Displays events as a list or within a calendar grid
+* Events from multiple Google Calendar feeds can be shown in a single list / grid
+* Lists and grids can be displayed in posts, pages or within a widget
+* Options to change the number of events retrieved, date / time format, cache duration etc
+* Complete customisation of the event information displayed
+* Calendar grids can have the ability to change the month displayed
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+Please visit the [plugin homepage](http://www.rhanney.co.uk/plugins/google-calendar-events) for how to get started and other help.
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+There is also a [demonstration page](http://www.rhanney.co.uk/plugins/google-calendar-events/gce-demo) showing the plugin in action.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+Use the automatic installer from within the WordPress admin, or:
 
-e.g.
+1. Download the `.zip` file by clicking on the Download button on the right
+1. Unzip the file
+1. Upload the `google-calendar-events` directory to your `plugins` directory
+1. Go to the Plugins page from within the WordPress administration
+1. Click Activate for Google Calendar Events
 
-= Using The WordPress Dashboard =
+After activation a new Google Calendar Events options menu will appear under Settings.
 
-1. Navigate to the 'Add New' in the plugins dashboard
-2. Search for 'plugin-name'
-3. Click 'Install Now'
-4. Activate the plugin on the Plugin dashboard
-
-= Uploading in WordPress Dashboard =
-
-1. Navigate to the 'Add New' in the plugins dashboard
-2. Navigate to the 'Upload' area
-3. Select `plugin-name.zip` from your computer
-4. Click 'Install Now'
-5. Activate the plugin in the Plugin dashboard
-
-= Using FTP =
-
-1. Download `plugin-name.zip`
-2. Extract the `plugin-name` directory to your computer
-3. Upload the `plugin-name` directory to the `/wp-content/plugins/` directory
-4. Activate the plugin in the Plugin dashboard
-
-
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
+You can now start adding feeds. Visit the [plugin homepage](http://www.rhanney.co.uk/plugins/google-calendar-events) for a more in-depth guide on getting started.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. The main plugin admin screen.
+1. The add feed admin screen.
+1. A page showing a full page calendar grid and various widgets.
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= 2.0.0 =
+
+* Moved to using CPTs for saving feeds.
+* Removed event display builder functionality.
+* New shortcode [gcal], but still supports old shortcode.
+
+= 0.7.2 =
+
+* Fixed a bug causing the "More details" Google Calendar information to be displayed in the wrong timezone
+* Fixed a bug that prevented setting the cache duration to 0 from working correctly
+* Fixed an issue that prevented Ajax from working with FORCE_SSL_ADMIN enabled
+* Now uses [wp_enqueue_scripts](http://wpdevel.wordpress.com/2011/12/12/use-wp_enqueue_scripts-not-wp_print_styles-to-enqueue-scripts-and-styles-for-the-frontend/)
+
+= 0.7.1 =
+
+* Fixed bug causing AJAX enabled calendar grids to not function correctly
+* Fixed bug causing all-day events from outside required date range to be displayed
+* Fixed bug causing tooltip date title heading setting to be ignored
+* Added further data sanitisation on output
+* Feeds with no events will now be cached to prevent HTTP requests on every page load
+
+= 0.7 =
+
+* Fixed bug causing event dates / times to be displayed in the wrong timezone
+* Changed the [link-path] Event Display Builder shortcode to [url]
+* Fixed an Opera specific CSS issue causing page lists to be hidden
+* Lists can now be displayed in descending or ascending order
+* Added [event-id] and [cal-id] Event Display Builder shortcodes
+* Added an offset parameter for date / time based Event Display Builder shortcodes
+* Added an autolink parameter for enabling / disabling automatic linking of URLs
+* Added gce-day-past or gce-day-future classes to calendar grid cells
+* Cleaned up CSS
+
+= 0.6 =
+
+* Drastically reduced memory usage
+* Improved feed data caching system
+* Improved error reporting
+* General performance and efficiency improvements
+* Added a few more shortcodes to the event display builder
+* Other [miscellaneous changes / additions and bug fixes](http://www.rhanney.co.uk/2011/04/29/google-calendar-events-0-6)
 
 = 0.5 =
-* List versions from most recent at top to oldest at bottom.
+
+* Added [event display builder](http://www.rhanney.co.uk/plugins/google-calendar-events/event-display-builder) feature, which vastly improves the customization possibilities of the plugin. This feature encompasses many of the most requested features, such as:
+    - All-day events can be handled differently than 'normal' events
+    - Start and end times / dates can be displayed on the same line (as can any other event information)
+    - HTML (and Markdown) entered in Google Calendar fields can be properly parsed
+* Start and end times for retrieval of events are now much more flexible
+* A custom error message for non-admin users can now be specified
+* No longer loads SimplePie when it is not required
+
+= 0.4.1 =
+
+* Fix / workaround for the long-running timezone bug. Please take a look at [this](http://www.rhanney.co.uk/2011/01/16/google-calendar-events-0-4-1) for more information.
+* Added additional 'Maximum no. events to display' option to widget / shortcode (mainly to address a further issue caused by the above fix)
+* i18n related bug fix
+* Added support for widget_title filter (courtesy of [James](http://lunasea-studios.com))
+* Added Hungarian (hu_HU) translation ([danieltakacs](http://ek.klog.hu))
+* Now using minified version of jQuery qTip script
+
+= 0.4 =
+
+* More control over how start and end dates / times are displayed
+* Events can now be limited to a specified timeframe (number of days)
+* Events on the same day in lists can now be shown under a single date title
+* JavaScript can now be added to the footer rather than the header, via an option
+* The 'Loading...' text can now be customized
+* Description text can now be limited to a specified number of words
+* Multi-day events can be shown on each day that they span ([sort of](http://www.rhanney.co.uk/2010/08/19/google-calendar-events-0-4#multiday))
+* Bug fixes
+* i18n / l10n fixes
+
+= 0.3.1 =
+
+* l10n / i18n fixes. Dates should now be localized correctly and should maintain localization after an AJAX request
+* MU / Multi-site issues. Issues preventing adding of feeds have been addressed
+
+= 0.3 =
+
+* Now allows events from multiple Google Calendar feeds to be displayed on a single calendar grid / list
+* Internationalization support added
+
+= 0.2.1 =
+
+* Added option to allow 'More details' links to open in new window / tab.
+* Added option to choose a specific timezone for each feed
+* Line breaks in an event description will now be preserved
+* Fixed a bug casing the title to not be displayed on lists
+* Other minor bug fixes
+
+= 0.2 =
+
+* Added customization options for how information is displayed.
+* Can now display: start time, end time and date, location, description and event link.
+* Tooltips now using qTip jQuery plugin.
+
+= 0.1.4 =
+
+* More bug fixes.
+
+= 0.1.3 =
+
+* Several bug fixes, including fixing JavaScript problems that prevented tooltips appearing.
+
+= 0.1.2 =
+
+* Bug fixes.
+
+= 0.1.1 =
+
+* Fix to prevent conflicts with other plugins.
+* Changes to readme.txt.
+
+= 0.1 =
+
+* Initial release.
 
 == Upgrade Notice ==
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
+= 2.0.0 = 
+
+This is a major upgrade to a new code base and structure. PLEASE make sure you backup your site before upgrading.
 
 = 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
 
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== Updates ==
-
-The basic structure of this plugin was cloned from the [WordPress-Plugin-Boilerplate](https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate) project.
-This plugin supports the [GitHub Updater](https://github.com/afragen/github-updater) plugin, so if you install that, this plugin becomes automatically updateable direct from GitHub. Any submission to WP.org repo will make this redundant.
+Event retrieval date / time range is now much more flexible. Also adds event display builder, which allows much greater customization of the event information displayed.
