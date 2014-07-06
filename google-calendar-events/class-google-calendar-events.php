@@ -144,23 +144,37 @@ class Google_Calendar_Events {
 		// TODO Get widget working with new multi-feed code
 		
 		if ( isset( $_GET['gce_feed_ids'] ) ) {
-			$ids = $_GET['gce_feed_ids'];
+			$ids   = $_GET['gce_feed_ids'];
 			$title = $_GET['gce_title_text'];
-			$max = $_GET['gce_max_events'];
+			$max   = $_GET['gce_max_events'];
 			$month = $_GET['gce_month'];
-			$year = $_GET['gce_year'];
+			$year  = $_GET['gce_year'];
 
 			$title = ( 'null' == $title ) ? null : $title;
+			
+			$args = array(
+				'title_text' => $title,
+				'max_events' => $max,
+				'month'      => $month,
+				'year'       => $year,
+			);
 			
 			if ( 'page' == $_GET['gce_type'] ) {
 				//The page grid markup to be returned via AJAX
 				//echo gce_print_grid( $ids, null, 25, $month, $year );
+				
+				echo gce_print_calendar( $ids, 'grid', $args );
+				
 			} elseif ( 'widget' == $_GET['gce_type'] ) {
 				//$widget = esc_html( $_GET['gce_widget_id'] );
 
 				//The widget grid markup to be returned via AJAX
 				//gce_widget_content_grid( $ids, $title, $max, $widget, true, $month, $year );
 				//echo gce_print_grid( $ids, null, 25, $month, $year );
+				
+				$args['widget'] = 1;
+				
+				echo gce_print_calendar( $ids, 'grid', $args );
 			}
 		}
 		die();

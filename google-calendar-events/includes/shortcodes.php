@@ -98,6 +98,24 @@ add_shortcode( 'google-calendar-events', 'gce_gcal_shortcode' );
  */
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
 	
+	//echo '<pre>$args before<br>' . print_r( $args, true ) . '</pre>';
+	
+	$defaults = array( 
+			'title_text' => '',
+			'max_events' => 25,
+			'sort'       => 'asc',
+			'grouped'    => 0,
+			'month'      => null,
+			'year'       => null,
+			'widget'     => 0
+		);
+	
+	//echo '<pre>$defaults<br>' . print_r( $defaults, true ) . '</pre>';
+	
+	$args = array_merge( $defaults, $args );
+	
+	//echo '<pre>$args after<br>' . print_r( $args, true ) . '</pre>';
+	
 	extract( $args );
 	
 	$ids = explode( '-', $feed_ids );
@@ -117,7 +135,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
 			$markup .= '<div class="gce-page-grid" id="gce-page-grid-' . $feed_ids . '">';
 		}
 		
-		$markup .= $d->get_grid();
+		$markup .= $d->get_grid( $year, $month );
 		$markup .= '</div>';
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {

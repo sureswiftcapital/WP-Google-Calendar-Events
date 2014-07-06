@@ -123,12 +123,12 @@ class GCE_Widget extends WP_Widget {
 				}*/
 				
 				$args = array(
-					'title_text' => 'test',
-					'max_events' => 25,
-					'sort'       => 'asc',
-					'grouped'    => 1,
-					'month'      => 12,
-					'year'       => 1987,
+					'title_text' => $title_text,
+					'max_events' => $max_events,
+					'sort'       => $sort_order,
+					//'grouped'    => 1,
+					'month'      => null,
+					'year'       => null,
 					'widget'     => 1
 				);
 				
