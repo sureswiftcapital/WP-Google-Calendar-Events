@@ -152,7 +152,14 @@ class GCE_Widget extends WP_Widget {
 	 * @since 2.0.0
 	 */
 	function form( $instance ) {
-		// TODO Old GCE Plugin displayed a message if there were no feeds created yet, add that in here eventtually
+		
+		// Check for existing feeds and if there are none then display a message and return
+		if( wp_count_posts( 'gce_feed' )->publish <= 0 ) {
+			echo '<p>' . __( 'There are no feeds created yet.', 'gce' ) . 
+					' <a href="' . admin_url( 'edit.php?post_type=gce_feed' ) . '">' . __( 'Add your first feed!', 'gce' ) . '</a>' . 
+					'</p>';
+			return;
+		}
 		
 		$title         = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
 		$ids           = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
