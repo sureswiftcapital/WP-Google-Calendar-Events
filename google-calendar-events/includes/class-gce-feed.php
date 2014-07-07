@@ -81,6 +81,15 @@ class GCE_Feed {
 	 */
 	private function create_feed() {
 		//Break the feed URL up into its parts (scheme, host, path, query)
+		
+		if( empty( $this->feed_url ) ) {
+			if( current_user_can( 'manage_options' ) ) {
+				echo '<p>' . __( 'The feed URL has not been set. Please make sure to set it correclty in the Feed settings.', 'gce' ) . '</p>';
+			}
+			
+			return;
+		}
+		
 		$url_parts = parse_url( $this->feed_url );
 
 		$scheme_and_host = $url_parts['scheme'] . '://' . $url_parts['host'];
