@@ -236,10 +236,7 @@ class GCE_Display {
 				$markup .=
 					'<li class="gce-feed-' . $event->feed->id . '">' .
 					//If this isn't a grouped list and a date title should be displayed, add the date title
-					
-					// TODO Removing this for now, seems to just add a double event title to the list display
-					//( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $event->title ) . 'test2</div>' : '' ) .
-					
+					( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . ' ' . date_i18n( $event->feed->date_format, $key ) . '</div>' : '' ) .
 					//Add the event markup
 					$event->get_event_markup( 'list', $num_in_day, $i ) .
 					'</li>';
