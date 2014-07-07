@@ -83,7 +83,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
 	$ids = explode( '-', $feed_ids );
 	
 	//Create new display object, passing array of feed id(s)
-	$d = new GCE_Display( $ids, $title_text, $max_events );
+	$d = new GCE_Display( $ids, $title_text, $max_events, $sort );
 	$markup = '';
 	
 	if( 'grid' == $display ) {

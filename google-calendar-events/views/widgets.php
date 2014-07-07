@@ -17,15 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * General Widget TODOs
  * 
- * Support multiple Feed IDs being inserted.
  * Get max number of events working - currently is set to the same as the Feed, is that acceptable? (Going to go this route for now - removing the max events option from widget)
- * Get sort order working
- * Get tooltip title working
- * Check on AJAX grid after fixing that issue elsewhere and make sure it works
- * 
- * Removing AJAX option for now and combining with grid display
- * Removed Checkbox for display tooltip title. I think it should just be a text box and if it is empty then we don't show anything, otherwise we do. Need to 
- * make sure that this feature actually works though.
  */
 
 
@@ -54,7 +46,7 @@ class GCE_Widget extends WP_Widget {
 
 		//Output before widget stuff
 		echo $before_widget;
-
+		
 		// Check whether any feeds have been added yet
 		if( wp_count_posts( 'gce_feed' )->publish > 0 ) {
 			//Output title stuff
@@ -146,7 +138,7 @@ class GCE_Widget extends WP_Widget {
 		$instance['title']              = esc_html( $new_instance['title'] );
 		$instance['id']                 = esc_html( $new_instance['id'] );
 		$instance['display_type']       = esc_html( $new_instance['display_type'] );
-		//$instance['max_events']         = absint( $new_instance['max_events'] );
+		$instance['max_events']         = absint( $new_instance['max_events'] );
 		$instance['order']              = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
 		$instance['display_title_text'] = wp_filter_kses( $new_instance['display_title_text'] );
 		
@@ -165,7 +157,7 @@ class GCE_Widget extends WP_Widget {
 		$title         = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
 		$ids           = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
 		$display_type  = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
-		//$max_events    = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
+		$max_events    = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
 		$order         = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 		$display_title = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
 		$title_text    = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
@@ -177,7 +169,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'id' ); ?>">
-				<?php _e( 'Feeds to display, as a comma separated list (e.g. 1, 2, 4). Leave blank to display all feeds:', 'gce' ); ?>
+				<?php _e( 'Feeds to display, as a comma separated list (e.g. 1, 2, 4)', 'gce' ); ?>
 			</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'id' ); ?>" name="<?php echo $this->get_field_name( 'id' ); ?>" value="<?php echo $ids; ?>" class="widefat" />
 		</p>
@@ -190,17 +182,17 @@ class GCE_Widget extends WP_Widget {
 				<option value="list-grouped"<?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
 			</select>
 		</p>
-		<!--
+		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'max_events' ); ?>"><?php _e( 'Maximum no. events to display. Enter 0 to show all retrieved.' ); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'max_events' ); ?>" name="<?php echo $this->get_field_name( 'max_events' ); ?>" value="<?php echo $max_events; ?>" class="widefat" />
 		</p>
-		-->
+		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Sort order (only applies to lists):' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'order' ); ?>" name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat">
-				<option value="asc"<?php selected( $order, 'asc' ); ?>><?php _e( 'Ascending', 'gce' ); ?></option>
-				<option value="desc"<?php selected( $order, 'desc' ); ?>><?php _e( 'Descending', 'gce' ); ?></option>
+				<option value="asc" <?php selected( $order, 'asc' ); ?>><?php _e( 'Ascending', 'gce' ); ?></option>
+				<option value="desc" <?php selected( $order, 'desc' ); ?>><?php _e( 'Descending', 'gce' ); ?></option>
 			</select>
 		</p>
 		<p>

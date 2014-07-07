@@ -61,7 +61,7 @@ class GCE_Display {
 
 		//Total number of events retrieved
 		$count = count( $this->merged_feeds );
-
+		
 		//If maximum events to display is 0 (unlimited) set $max to 1, otherwise use maximum of events specified by user
 		$max = ( 0 == $this->max_events ) ? 1 : $this->max_events;
 
