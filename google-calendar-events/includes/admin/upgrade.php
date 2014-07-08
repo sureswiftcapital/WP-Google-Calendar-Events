@@ -61,6 +61,8 @@ function convert_to_cpt_posts( $args ) {
 	$post_id = wp_insert_post( $post );
 	
 	create_cpt_meta( $post_id, $args );
+	
+	clear_old_transients( $args['id'] );
 }
 
 /**
@@ -137,4 +139,16 @@ function create_cpt_meta( $id, $args ) {
 	foreach( $post_meta_fields as $k => $v ) {
 		update_post_meta( $id, $k, $v );
 	}
+}
+
+
+/**
+ * Remove the old transient values from the database
+ * 
+ * @since 2.0.0
+ */
+function clear_old_transients( $id ) {
+	
+	delete_transient( 'gce_feed_' . $id );
+	delete_transient( 'gce_feed_' . $id . '_url' );
 }
