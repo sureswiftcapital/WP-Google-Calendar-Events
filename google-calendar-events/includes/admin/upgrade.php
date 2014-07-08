@@ -129,7 +129,8 @@ function create_cpt_meta( $id, $args ) {
 		'gce_multi_day_events' => ( $args['multiple_day'] == true ? 1 : 0 ),
 		'gce_display_mode'     => 'grid',
 		'gce_custom_from'      => $args['retrieve_from_value'],
-		'gce_custom_until'     => $args['retrieve_until_value']
+		'gce_custom_until'     => $args['retrieve_until_value'],
+		'old_gce_id'           => $args['id']
 	);
 	
 	// Loop through each $post_meta_field and add as an entry

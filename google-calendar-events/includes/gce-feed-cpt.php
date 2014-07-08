@@ -118,7 +118,7 @@ function gce_save_meta( $post_id ) {
 			}
 		}
 	}
-
+	
 	return $post_id;
 }
 add_action( 'save_post', 'gce_save_meta' );

@@ -27,6 +27,16 @@ function gce_gcal_shortcode( $attr ) {
 					'title'   => null,
 					'type'    => null,
 				), $attr, 'gce_feed' ) );
+
+	
+	// Check for an old ID attached to this feed ID first
+	$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$id&order=ASC" );
+	
+	if( $q->have_posts() ) {
+		$q->the_post();
+		// Set our ID to the old ID if found
+		$id = get_the_ID();
+	}
 	
 	// If the ID is empty we can't pull any data so we skip all this and return nothing
 	if( ! empty( $id ) ) {
@@ -65,7 +75,7 @@ add_shortcode( 'google-calendar-events', 'gce_gcal_shortcode' );
  * @since 2.0.0
  */
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
-
+	
 	$defaults = array( 
 			'title_text' => '',
 			'max_events' => 25,
