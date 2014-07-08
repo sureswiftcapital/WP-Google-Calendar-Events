@@ -48,9 +48,11 @@ function gce_register_settings() {
 				'desc'    => __( 'Choose how you want the start time displayed.', 'gce' ),
 				'type'    => 'select',
 				'options' => array(
-					'none'       => __( '', 'gce' ),
-					'horizontal' => __( '', 'gce' ),
-					'vertical'   => __( '', 'gce' )
+					'none'      => __( "Don't Display", 'gce' ),
+					'time'      => __( 'Start Time', 'gce' ),
+					'date'      => __( 'Start Date', 'gce' ),
+					'time-date' => _x( 'Time, Date', 'Option for how event date and time should be ordered. Order is important here.', 'gce' ),
+					'date-time' => _x( 'Date, Time', 'Option for how event date and time should be ordered. Order is important here.' , 'gce' )
 				)
 			),
 			'display_start_text' => array(
@@ -65,9 +67,11 @@ function gce_register_settings() {
 				'desc'    => __( 'Choose how you want the end time displayed.', 'gce' ),
 				'type'    => 'select',
 				'options' => array(
-					'none'       => __( '', 'gce' ),
-					'horizontal' => __( '', 'gce' ),
-					'vertical'   => __( '', 'gce' )
+					'none'      => __( "Don't Display", 'gce' ),
+					'time'      => __( 'End Time', 'gce' ),
+					'date'      => __( 'End Date', 'gce' ),
+					'time-date' => _x( 'Time, Date', 'Option for how event date and time should be ordered. Order is important here.', 'gce' ),
+					'date-time' => _x( 'Date, Time', 'Option for how event date and time should be ordered. Order is important here.' , 'gce' )
 				)
 			),
 			'display_end_text' => array(
@@ -80,7 +84,7 @@ function gce_register_settings() {
 				'id'   => 'display_location',
 				'name' => __( 'Display Location', 'gce' ),
 				'desc' => __( 'Display the location for the event.', 'gce' ),
-				'type' => 'check'
+				'type' => 'checkbox'
 			),
 			'display_location_text' => array(
 				'id'   => 'display_location_text',
@@ -92,7 +96,7 @@ function gce_register_settings() {
 				'id'   => 'display_desc',
 				'name' => __( 'Display Description', 'gce' ),
 				'desc' => __( 'Display the description for the event.', 'gce' ),
-				'type' => 'check'
+				'type' => 'checkbox'
 			),
 			'display_desc_text' => array(
 				'id'   => 'display_desc_text',
@@ -110,7 +114,7 @@ function gce_register_settings() {
 				'id'   => 'display_link',
 				'name' => __( 'Display Link', 'gce' ),
 				'desc' => __( 'Display the link to the event.', 'gce' ),
-				'type' => 'check'
+				'type' => 'checkbox'
 			),
 			'display_link_text' => array(
 				'id'   => 'display_link_text',
