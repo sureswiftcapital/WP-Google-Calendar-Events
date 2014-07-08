@@ -107,7 +107,7 @@ class GCE_Event {
 	 * @since 2.0.0
 	 */
 	function use_old_display_options() {
-		// TODO What to do with these? These are from the "Simple" output that doesn't use the builder
+		// TODO Make a general settings page and grab these values from there.
 		$display_options = array(
 					'display_start'         => 'time',
 					'display_end'           => 'time',

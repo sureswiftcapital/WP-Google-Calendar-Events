@@ -96,6 +96,7 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public static function includes() {
+		global $gce_options;
 		
 		// First include common files between admin and public
 		include_once( 'includes/gce-feed-cpt.php' );
@@ -113,6 +114,11 @@ class Google_Calendar_Events {
 		} else {
 			// Public includes
 		}
+		
+		// Setup our main settings options
+		include_once( 'includes/register-settings.php' );
+		
+		$gce_options = gce_get_settings();
 	}
 	
 	/**
