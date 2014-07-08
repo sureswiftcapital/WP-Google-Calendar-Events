@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="wrap">
+	<?php settings_errors(); ?>
 	<div id="gce-settings">
 		<div id="gce-settings-content">
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>

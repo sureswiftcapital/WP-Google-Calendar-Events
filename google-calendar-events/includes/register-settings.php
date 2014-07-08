@@ -20,24 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function gce_register_settings() {
 	
-	/*
-	array(
-		'display_start'         => 'time', // Select
-		'display_end'           => 'time', // Select
-		'display_location'      => '', // checkbox
-		'display_desc'          => '', // check
-		'display_link'          => 1, // checkbox
-		'display_start_text'    => 'Start:', // text
-		'display_end_text'      => 'End:', // text
-		'display_location_text' => '', // text
-		'display_desc_text'     => '', // text
-		'display_desc_limit'    => '', // text
-		'display_link_text'     => 'Click here for event', // text
-		'display_link_target'   => '', // check
-		'display_separator'     => '' // text
-	);
-	*/
-	
 	$gce_settings = array(
 
 		/* General Settings */

@@ -107,22 +107,8 @@ class GCE_Event {
 	 * @since 2.0.0
 	 */
 	function use_old_display_options() {
-		// TODO Make a general settings page and grab these values from there.
-		$display_options = array(
-					'display_start'         => 'time',
-					'display_end'           => 'time',
-					'display_location'      => '',
-					'display_desc'          => '',
-					'display_link'          => 1,
-					'display_start_text'    => 'Start:',
-					'display_end_text'      => 'End:',
-					'display_location_text' => '',
-					'display_desc_text'     => '',
-					'display_desc_limit'    => '',
-					'display_link_text'     => 'Click here for event',
-					'display_link_target'   => '',
-					'display_separator'     => ''
-				);
+		
+		$display_options = get_option( 'gce_settings_general' );
 
 		$markup = '<p class="gce-' . $this->type . '-event">' . esc_html( $this->title )  . '</p>';
 
@@ -155,9 +141,9 @@ class GCE_Event {
 					break;
 				case 'date': $markup .= esc_html( $info['date'] );
 					break;
-				case 'time-date': $markup .= esc_html( $info['time'] . $display_options['display_separator'] . $info['date'] );
+				case 'time-date': $markup .= esc_html( $info['time'] . ' on ' . $info['date'] );
 					break;
-				case 'date-time': $markup .= esc_html( $info['date'] . $display_options['display_separator'] . $info['time'] );
+				case 'date-time': $markup .= esc_html( $info['date'] . ' at ' . $info['time'] );
 			}
 
 			$markup .= '</p>';
