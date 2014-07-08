@@ -15,13 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * General Widget TODOs
- * 
- * Get max number of events working - currently is set to the same as the Feed, is that acceptable? (Going to go this route for now - removing the max events option from widget)
- */
-
-
-/**
  *  Class functions for the Pin It Button widgets
  *
  * @since 2.0.0
@@ -30,7 +23,7 @@ class GCE_Widget extends WP_Widget {
 	
 	function GCE_Widget() {
 		parent::__construct(
-			false, // TODO Add a name here, or will that throw off upgrades?
+			'gce_widget', // Adding a name here doesn't seem to affect the upgrade. If widget stuff starts acting weird then check this first though.
 			$name = __( 'Google Calendar Events', 'gce' ),
 			array( 'description' => __( 'Display a list or calendar grid of events from one or more Google Calendar feeds you have added', 'gce' ) )
 		);

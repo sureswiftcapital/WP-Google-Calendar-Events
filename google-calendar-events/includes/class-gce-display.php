@@ -28,7 +28,6 @@ class GCE_Display {
 
 		//Merge the feeds together into one array of events
 		foreach ( $this->feeds as $feed_id => $feed ) {
-			// TODO Add error checking back in eventually
 			$this->merged_feeds = array_merge( $this->merged_feeds, $feed->events );
 		}
 		
