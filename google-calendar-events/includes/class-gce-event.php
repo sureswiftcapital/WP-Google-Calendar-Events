@@ -98,16 +98,7 @@ class GCE_Event {
 
 		$this->time_now = current_time( 'timestamp' );
 
-		return $this->use_old_display_options();
-	}
-	
-	/**
-	 * Return the event markup using the old display options
-	 * 
-	 * @since 2.0.0
-	 */
-	function use_old_display_options() {
-		
+		// Setup the markup to return
 		$display_options = get_option( 'gce_settings_general' );
 
 		$markup = '<p class="gce-' . $this->type . '-event">' . esc_html( $this->title )  . '</p>';
@@ -173,8 +164,9 @@ class GCE_Event {
 
 		//If link should be displayed add to $markup
 		if ( isset($display_options['display_link'] ) )
-			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->timezone_offset ) . '"' . ( ( isset( $display_options['display_link_target'] ) ) ? ' target="_blank"' : '' ) . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
+			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->timezone_offset ) . '" target="_blank">' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
 
 		return $markup;
+		
 	}
 }
