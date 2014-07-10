@@ -33,6 +33,15 @@ if ( ! defined( 'WPINC' ) ) {
  */
 require_once( 'class-google-calendar-events.php' );
 
+/**
+ * Define constant pointing to this file
+ * 
+ * @since 2.0.0
+ */
+if( ! defined( 'GCE_MAIN_FILE' ) ) {
+	define( 'GCE_MAIN_FILE', __FILE__ );
+}
+
 /*
  * Get instance of our plugin
  * 
