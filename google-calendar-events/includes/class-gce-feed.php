@@ -178,7 +178,7 @@ class GCE_Feed {
 				}
 			}else{
 				//Generate an error message from the returned WP_Error
-				$this->error = $raw_data->get_error_message() . ' Please ensure your feed URL is correct.';
+				$this->error = $raw_data->get_error_message() . __( ' Please ensure your feed URL is correct.', 'gce' );
 			}
 		}
 	}
