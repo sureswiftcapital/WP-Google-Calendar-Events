@@ -18,10 +18,10 @@
  * @since 2.0.0
  */
 function gce_gcal_shortcode( $attr ) {
-
+	
 	extract( shortcode_atts( array(
 					'id'      => null,
-					'display' => 'grid',
+					'display' => '',
 					'max'     => 0,
 					'order'   => 'asc',
 					'title'   => null,
@@ -40,6 +40,10 @@ function gce_gcal_shortcode( $attr ) {
 	
 	// If the ID is empty we can't pull any data so we skip all this and return nothing
 	if( ! empty( $id ) ) {
+		
+		if( empty( $display ) ) {
+			$display = get_post_meta( $id, 'gce_display_mode', true );
+		}
 		
 		// Port over old options
 		if( $type != null ) {
