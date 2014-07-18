@@ -28,6 +28,10 @@ function gce_gcal_shortcode( $attr ) {
 					'type'    => null,
 				), $attr, 'gce_feed' ) );
 
+	// If no ID is specified then return
+	if( empty( $id ) ) {
+		return;
+	}
 	
 	// Check for an old ID attached to this feed ID first
 	$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$id&order=ASC" );
@@ -38,36 +42,32 @@ function gce_gcal_shortcode( $attr ) {
 		$id = get_the_ID();
 	}
 	
-	// If the ID is empty we can't pull any data so we skip all this and return nothing
-	if( ! empty( $id ) ) {
 		
-		if( empty( $display ) ) {
-			$display = get_post_meta( $id, 'gce_display_mode', true );
-		}
-		
-		// Port over old options
-		if( $type != null ) {
-			if( 'ajax' == $type ) {
-				$display = 'grid';
-			} else {
-				$display = $type;
-			}
-		}
-		
-		$args = array(
-			'title_text' => $title,
-			'max_events' => $max,
-			'sort'       => $order,
-			'grouped'    => ( $display == 'list-grouped' ? 1 : 0 ),
-			'month'      => null,
-			'year'       => null,
-			'widget'     => 0
-		);
-		
-		return gce_print_calendar( $id, $display, $args );
+	if( empty( $display ) ) {
+		$display = get_post_meta( $id, 'gce_display_mode', true );
 	}
+
+	// Port over old options
+	if( $type != null ) {
+		if( 'ajax' == $type ) {
+			$display = 'grid';
+		} else {
+			$display = $type;
+		}
+	}
+
+	$args = array(
+		'title_text' => $title,
+		'max_events' => $max,
+		'sort'       => $order,
+		'grouped'    => ( $display == 'list-grouped' ? 1 : 0 ),
+		'month'      => null,
+		'year'       => null,
+		'widget'     => 0
+	);
+
+	return gce_print_calendar( $id, $display, $args );
 	
-	return '';
 }
 add_shortcode( 'gcal', 'gce_gcal_shortcode' );
 add_shortcode( 'google-calendar-events', 'gce_gcal_shortcode' );
