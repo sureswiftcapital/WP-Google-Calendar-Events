@@ -106,7 +106,7 @@ class GCE_Event {
 		$start_end = array();
 
 		//If start date / time should be displayed, set up array of start date and time
-		if ( 'none' != $display_options['display_start'] ) {
+		if ( ! empty( $display_options['display_start'] ) && 'none' != $display_options['display_start'] ) {
 			$sd = $this->start_time;
 			$start_end['start'] = array(
 				'time' => date_i18n( $this->feed->time_format, $sd ),
@@ -115,7 +115,7 @@ class GCE_Event {
 		}
 
 		//If end date / time should be displayed, set up array of end date and time
-		if ( 'none' != $display_options['display_end'] ) {
+		if ( ! empty( $display_options['display_end'] ) && 'none' != $display_options['display_end'] ) {
 			$ed = $this->end_time;
 			$start_end['end'] = array(
 				'time' => date_i18n( $this->feed->time_format, $ed ),
@@ -126,15 +126,17 @@ class GCE_Event {
 		//Add the correct start / end, date / time information to $markup
 		foreach ( $start_end as $start_or_end => $info ) {
 			$markup .= '<p class="gce-' . $this->type . '-' . $start_or_end . '"><span>' . esc_html( $display_options['display_' . $start_or_end . '_text'] ) . '</span> ';
-
-			switch ( $display_options['display_' . $start_or_end] ) {
-				case 'time': $markup .= esc_html( $info['time'] );
-					break;
-				case 'date': $markup .= esc_html( $info['date'] );
-					break;
-				case 'time-date': $markup .= esc_html( $info['time'] . ' on ' . $info['date'] );
-					break;
-				case 'date-time': $markup .= esc_html( $info['date'] . ' at ' . $info['time'] );
+			
+			if( ! empty( $display_options['display_' . $start_or_end] ) ) {
+				switch ( $display_options['display_' . $start_or_end] ) {
+					case 'time': $markup .= esc_html( $info['time'] );
+						break;
+					case 'date': $markup .= esc_html( $info['date'] );
+						break;
+					case 'time-date': $markup .= esc_html( $info['time'] . ' on ' . $info['date'] );
+						break;
+					case 'date-time': $markup .= esc_html( $info['date'] . ' at ' . $info['time'] );
+				}
 			}
 
 			$markup .= '</p>';
