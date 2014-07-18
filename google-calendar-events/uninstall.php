@@ -42,6 +42,7 @@ delete_post_meta_by_key( 'gce_custom_until' );
 // Remove options
 delete_option( 'gce_upgrade_has_run' );
 delete_option( 'gce_version' );
+delete_option( 'gce_settings_general' );
 
 // Remove widgets
 delete_option( 'widget_gce_widget' );
