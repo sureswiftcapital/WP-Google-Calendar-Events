@@ -41,6 +41,8 @@ function gce_v2_upgrade() {
 		convert_to_cpt_posts( $value );
 	}
 	
+	update_widget_feed_ids();
+	
 	add_option( 'gce_upgrade_has_run', 1 );
 }
 
@@ -151,4 +153,46 @@ function clear_old_transients( $id ) {
 	
 	delete_transient( 'gce_feed_' . $id );
 	delete_transient( 'gce_feed_' . $id . '_url' );
+}
+
+
+/** 
+ * Update widget IDs
+ * 
+ * @since 2.0.0
+ */
+function update_widget_feed_ids() {
+	
+	$widget = get_option( 'widget_gce_widget' );
+	
+	if( is_array( $widget ) && ! empty( $widget ) ) {
+		foreach( $widget as $a => $b ) {
+			if( ! is_array( $b ) ) {
+				continue;
+			} 
+
+			foreach( $b as $k => $v ) {
+
+				if( $k != 'id' ) {
+					continue;
+				}
+
+				$id = $v;
+
+				$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$id&order=ASC" );
+
+				if( $q->have_posts() ) {
+
+					$q->the_post();
+					// Set our ID to the old ID if found
+					$id = get_the_ID();
+				}
+
+				$widget[$a][$k] = $id;
+			}
+		}
+		
+		update_option( 'widget_gce_widget', $widget );
+	}
+	
 }

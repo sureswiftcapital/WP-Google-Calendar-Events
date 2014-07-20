@@ -18,7 +18,7 @@
  * @since 2.0.0
  */
 function gce_gcal_shortcode( $attr ) {
-	
+
 	extract( shortcode_atts( array(
 					'id'      => null,
 					'display' => '',

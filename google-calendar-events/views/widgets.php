@@ -23,7 +23,7 @@ class GCE_Widget extends WP_Widget {
 	
 	function GCE_Widget() {
 		parent::__construct(
-			'gce_widget', // Adding a name here doesn't seem to affect the upgrade. If widget stuff starts acting weird then check this first though.
+			false, // Adding a name here doesn't seem to affect the upgrade. If widget stuff starts acting weird then check this first though.
 			$name = __( 'Google Calendar Events', 'gce' ),
 			array( 'description' => __( 'Display a list or calendar grid of events from one or more Google Calendar feeds you have added', 'gce' ) )
 		);
