@@ -52,7 +52,7 @@ class GCE_Widget extends WP_Widget {
 			$no_feeds_exist = true;
 			$feed_ids = array();
 
-			if ( '' != $instance['id'] ) {
+			if ( ! empty( $instance['id'] ) ) {
 				//Break comma delimited list of feed ids into array
 				$feed_ids = explode( ',', str_replace( ' ', '', $instance['id'] ) );
 
@@ -68,22 +68,17 @@ class GCE_Widget extends WP_Widget {
 						$no_feeds_exist = false;
 				}
 			} else {
-				foreach ( $options as $feed ) {
-					$feed_ids[] = $feed['id'];
-				}
-
-				$no_feeds_exist = false;
-			}
-
-			//Check that at least one valid feed id has been entered
-			if ( empty( $feed_ids ) || $no_feeds_exist ) {
 				if ( current_user_can( 'manage_options' ) ) {
 					_e( 'No valid Feed IDs have been entered for this widget. Please check that you have entered the IDs correctly in the widget settings (Appearance > Widgets), and that the Feeds have not been deleted.', 'gce' );
 				} else {
 					$options = get_option( GCE_GENERAL_OPTIONS_NAME );
 					echo $options['error'];
 				}
-			} else {
+
+			}
+
+			//Check that at least one valid feed id has been entered
+			if ( ! empty( $feed_ids ) ) {
 				//Turns feed_ids back into string or feed ids delimited by '-' ('1-2-3-4' for example)
 				$feed_ids = implode( '-', $feed_ids );
 
