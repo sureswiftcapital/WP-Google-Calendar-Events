@@ -33,18 +33,23 @@ function gce_gcal_shortcode( $attr ) {
 		return;
 	}
 	
-	// Check for an old ID attached to this feed ID first
-	$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$id&order=ASC" );
+	$feed_ids = explode( ',', $id );
 	
-	if( $q->have_posts() ) {
-		$q->the_post();
-		// Set our ID to the old ID if found
-		$id = get_the_ID();
-	}
+	foreach( $feed_ids as $id ) {
+		// Check for an old ID attached to this feed ID first
+		$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$id&order=ASC" );
+
+		if( $q->have_posts() ) {
+			$q->the_post();
+			// Set our ID to the old ID if found
+			$id = get_the_ID();
+		}
+	
 	
 		
-	if( empty( $display ) ) {
-		$display = get_post_meta( $id, 'gce_display_mode', true );
+		if( empty( $display ) ) {
+			$display = get_post_meta( $id, 'gce_display_mode', true );
+		}
 	}
 
 	// Port over old options
@@ -65,8 +70,10 @@ function gce_gcal_shortcode( $attr ) {
 		'year'       => null,
 		'widget'     => 0
 	);
+	
+	$feed_ids = implode( '-', $feed_ids );
 
-	return gce_print_calendar( $id, $display, $args );
+	return gce_print_calendar( $feed_ids, $display, $args );
 	
 }
 add_shortcode( 'gcal', 'gce_gcal_shortcode' );
