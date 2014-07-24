@@ -59,8 +59,7 @@ class Google_Calendar_Events {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 		
 		// AJAX
-		add_action( 'wp_ajax_no_priv_gce_ajax', array( $this, 'gce_ajax' ) );
-		add_action( 'wp_ajax_gce_ajax', array( $this, 'gce_ajax' ) );
+		
 		
 		// Load plugin text domain
 		add_action( 'plugins_loaded', array( $this, 'plugin_textdomain' ) );
@@ -102,6 +101,7 @@ class Google_Calendar_Events {
 		global $gce_options;
 		
 		// First include common files between admin and public
+		include_once( 'includes/misc-functions.php' );
 		include_once( 'includes/gce-feed-cpt.php' );
 		include_once( 'includes/class-gce-feed.php' );
 		include_once( 'includes/class-gce-event.php' );
@@ -176,39 +176,7 @@ class Google_Calendar_Events {
 
 		return self::$instance;
 	}
-	
-	/**
-	 * AJAX function for grid pagination
-	 * 
-	 * @since 2.0.0
-	 */
-	function gce_ajax() {
-		if ( isset( $_GET['gce_feed_ids'] ) ) {
-			$ids   = $_GET['gce_feed_ids'];
-			$title = $_GET['gce_title_text'];
-			$max   = $_GET['gce_max_events'];
-			$month = $_GET['gce_month'];
-			$year  = $_GET['gce_year'];
 
-			$title = ( 'null' == $title ) ? null : $title;
-			
-			$args = array(
-				'title_text' => $title,
-				'max_events' => $max,
-				'month'      => $month,
-				'year'       => $year,
-			);
-			
-			if ( 'page' == $_GET['gce_type'] ) {
-				echo gce_print_calendar( $ids, 'grid', $args );
-			} elseif ( 'widget' == $_GET['gce_type'] ) {
-				$args['widget'] = 1;
-				echo gce_print_calendar( $ids, 'grid', $args );
-			}
-		}
-		die();
-	}
-	
 	/**
 	 * Load the plugin text domain for translation.
 	 *
