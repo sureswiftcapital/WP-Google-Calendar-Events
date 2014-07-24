@@ -27,28 +27,27 @@ function gce_gcal_shortcode( $attr ) {
 					'title'   => null,
 					'type'    => null,
 				), $attr, 'gce_feed' ) );
-
+	
 	// If no ID is specified then return
 	if( empty( $id ) ) {
 		return;
 	}
 	
 	$feed_ids = explode( ',', $id );
-	
-	foreach( $feed_ids as $id ) {
+
+	foreach( $feed_ids as $k => $v ) {
 		// Check for an old ID attached to this feed ID first
-		$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$id&order=ASC" );
+		$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$v&order=ASC" );
 
 		if( $q->have_posts() ) {
 			$q->the_post();
 			// Set our ID to the old ID if found
-			$id = get_the_ID();
+			$feed_ids[$k] = get_the_ID();
+			$v = get_the_ID();
 		}
-	
-	
-		
+
 		if( empty( $display ) ) {
-			$display = get_post_meta( $id, 'gce_display_mode', true );
+			$display = get_post_meta( $v, 'gce_display_mode', true );
 		}
 	}
 
