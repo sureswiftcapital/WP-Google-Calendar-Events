@@ -103,6 +103,12 @@ function gce_register_settings() {
 				'name' => __( 'Link Text', 'gce' ),
 				'desc' => __( 'Text of the link displayed.', 'gce' ),
 				'type' => 'text'
+			),
+			'save_settings' => array(
+				'id'   => 'save_settings',
+				'name' => __( 'Save Settings', 'gce' ),
+				'desc' => __( 'Save your settings when uninstalling this plugin. Useful when upgrading or re-installing.', 'gce' ),
+				'type' => 'checkbox'
 			)
 		)
 	);
@@ -283,6 +289,7 @@ function gce_get_settings() {
 		$general['display_end_text']   = _x( 'Ends:', 'Default for "End Text" setting', 'gce' );
 		$general['display_link']       = 1;
 		$general['display_link_text']  = _x( 'More details...', 'Default for "Link Text" setting', 'gce' );
+		$general['save_settings']      = 1;
 		
 		update_option( 'gce_settings_general', $general );
 	}
