@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- *  Class functions for the Pin It Button widgets
+ *  Class functions for the GCE widgets
  *
  * @since 2.0.0
  */
