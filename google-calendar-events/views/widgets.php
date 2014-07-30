@@ -70,11 +70,7 @@ class GCE_Widget extends WP_Widget {
 			} else {
 				if ( current_user_can( 'manage_options' ) ) {
 					_e( 'No valid Feed IDs have been entered for this widget. Please check that you have entered the IDs correctly in the widget settings (Appearance > Widgets), and that the Feeds have not been deleted.', 'gce' );
-				} else {
-					$options = get_option( GCE_GENERAL_OPTIONS_NAME );
-					echo $options['error'];
-				}
-
+				} 
 			}
 
 			//Check that at least one valid feed id has been entered
