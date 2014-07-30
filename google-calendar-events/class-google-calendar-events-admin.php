@@ -41,9 +41,7 @@ class Google_Calendar_Events_Admin {
 		$plugin = Google_Calendar_Events::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 		
-		// Add an action link pointing to the options page.
-		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
-		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( plugin_dir_path( __FILE__ ) . $this->plugin_slug . '.php' ), array( $this, 'add_action_links' ) );
 		
 		// Setup admin side constants
 		add_action( 'init', array( $this, 'define_admin_constants' ) );
@@ -147,7 +145,8 @@ class Google_Calendar_Events_Admin {
 
 		return array_merge(
 			array(
-				'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
+				'settings' => '<a href="' . admin_url( 'edit.php?post_type=gce_feed&page=google-calendar-events_general_settings' ) . '">' . __( 'Settings', 'gce' ) . '</a>',
+				'feeds'    => '<a href="' . admin_url( 'edit.php?post_type=gce_feed' ) . '">' . __( 'Feeds', 'gce' ) . '</a>'
 			),
 			$links
 		);
