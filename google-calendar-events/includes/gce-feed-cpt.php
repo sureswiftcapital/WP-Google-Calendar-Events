@@ -20,7 +20,7 @@ function gce_setup_cpt() {
 	$labels = array(
 		'name'               => __( 'Feeds', 'gce' ),
 		'singular_name'      => __( 'Feed', 'gce' ),
-		'menu_name'          => __( 'Google Calendar Events', 'gce' ),
+		'menu_name'          => __( 'GCal Events', 'gce' ),
 		'name_admin_bar'     => __( 'Feed', 'gce' ),
 		'add_new'            => __( 'Add New', 'gce' ),
 		'add_new_item'       => __( 'Add New Feed', 'gce' ),
