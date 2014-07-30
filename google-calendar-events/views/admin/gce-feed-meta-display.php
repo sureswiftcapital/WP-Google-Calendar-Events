@@ -45,7 +45,7 @@
 
 <div class="gce-meta-control">
 	<label>Feed URL</label>
-	<input type="text" class="" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
+	<input type="text" class="large-text" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
 </div>
 
 <div class="gce-meta-control">

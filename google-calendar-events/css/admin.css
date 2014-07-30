@@ -16,10 +16,6 @@
 	font-weight: bold;
 }
 
-.gce-meta-control input[type="text"] {
-	width: 33%;
-}
-
 .gce-admin-hidden { 
 	display: none;
 }
