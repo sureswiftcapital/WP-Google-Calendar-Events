@@ -13,36 +13,51 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// Remove CPTs and transients
-$feeds = get_posts( array( 
-	'post_type' => 'gce_feed'
-));
+$general = get_option( 'gce_settings_general' );
 
-foreach( $feeds as $f ) {
-	// delete the transient while we have the post ID available
-	delete_transient( 'gce_feed_' . $f->ID );
+// If this is empty then it means it is unchecked and we should delete everything
+if ( empty( $general['save_settings'] ) ) {
 	
-	// Now delete the post
-	wp_delete_post( $f->ID, true );
+	/*** VERSION 2.0.0 GCE OPTIONS ***/
+	
+	// Remove CPTs and transients
+	$feeds = get_posts( array( 
+		'post_type' => 'gce_feed'
+	));
+
+	foreach( $feeds as $f ) {
+		// delete the transient while we have the post ID available
+		delete_transient( 'gce_feed_' . $f->ID );
+
+		// Now delete the post
+		wp_delete_post( $f->ID, true );
+	}
+
+	// Remove all post meta
+	delete_post_meta_by_key( 'gce_feed_url' );
+	delete_post_meta_by_key( 'gce_retrieve_from' );
+	delete_post_meta_by_key( 'gce_retrieve_until' );
+	delete_post_meta_by_key( 'gce_retrieve_max' );
+	delete_post_meta_by_key( 'gce_date_format' );
+	delete_post_meta_by_key( 'gce_time_format' );
+	delete_post_meta_by_key( 'gce_cache' );
+	delete_post_meta_by_key( 'gce_multi_day_events' );
+	delete_post_meta_by_key( 'gce_display_mode' );
+	delete_post_meta_by_key( 'gce_custom_from' );
+	delete_post_meta_by_key( 'gce_custom_until' );
+
+	// Remove options
+	delete_option( 'gce_upgrade_has_run' );
+	delete_option( 'gce_version' );
+	delete_option( 'gce_settings_general' );
+
+	// Remove widgets
+	delete_option( 'widget_gce_widget' );
+	
+	
+	/*** OLD GCE VERSION OPTIONS ***/
+	
+	delete_option( 'gce_options' );
+	delete_option( 'gce_general' );
+	delete_option( 'gce_clear_old_transients' );
 }
-
-// Remove all post meta
-delete_post_meta_by_key( 'gce_feed_url' );
-delete_post_meta_by_key( 'gce_retrieve_from' );
-delete_post_meta_by_key( 'gce_retrieve_until' );
-delete_post_meta_by_key( 'gce_retrieve_max' );
-delete_post_meta_by_key( 'gce_date_format' );
-delete_post_meta_by_key( 'gce_time_format' );
-delete_post_meta_by_key( 'gce_cache' );
-delete_post_meta_by_key( 'gce_multi_day_events' );
-delete_post_meta_by_key( 'gce_display_mode' );
-delete_post_meta_by_key( 'gce_custom_from' );
-delete_post_meta_by_key( 'gce_custom_until' );
-
-// Remove options
-delete_option( 'gce_upgrade_has_run' );
-delete_option( 'gce_version' );
-delete_option( 'gce_settings_general' );
-
-// Remove widgets
-delete_option( 'widget_gce_widget' );
