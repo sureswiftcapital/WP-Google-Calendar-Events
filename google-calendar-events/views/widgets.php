@@ -164,7 +164,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'id' ); ?>">
-				<?php _e( 'Feeds to display, as a comma separated list (e.g. 1, 2, 4)', 'gce' ); ?>
+				<?php _e( 'Feeds to display, as a comma separated list (e.g. 101,102,103)', 'gce' ); ?>
 			</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'id' ); ?>" name="<?php echo $this->get_field_name( 'id' ); ?>" value="<?php echo $ids; ?>" class="widefat" />
 		</p>
