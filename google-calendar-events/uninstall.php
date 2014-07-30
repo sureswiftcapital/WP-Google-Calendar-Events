@@ -22,7 +22,12 @@ if ( empty( $general['save_settings'] ) ) {
 	
 	// Remove CPTs and transients
 	$feeds = get_posts( array( 
-		'post_type' => 'gce_feed'
+		'post_type' => 'gce_feed',
+		'post_status' => array( 
+			'any',
+			'trash',
+			'auto-draft'
+		)
 	));
 
 	foreach( $feeds as $f ) {
