@@ -27,8 +27,8 @@ function gce_setup_cpt() {
 		'new_item'           => __( 'New Feed', 'gce' ),
 		'edit_item'          => __( 'Edit Feed', 'gce' ),
 		'view_item'          => __( 'View Feed', 'gce' ),
-		'all_items'          => __( 'All Feeds', 'gce' ),
-		'search_items'       => __( 'Search Feeds', 'gce' ),
+		'all_items'          => __( 'All GCal Feeds', 'gce' ),
+		'search_items'       => __( 'Search GCal Feeds', 'gce' ),
 		'not_found'          => __( 'No feeds found.', 'gce' ),
 		'not_found_in_trash' => __( 'No feeds found in Trash.', 'gce' )
 	);
@@ -43,7 +43,6 @@ function gce_setup_cpt() {
 		'capability_type'    => 'post',
 		'has_archive'        => false,
 		'hierarchical'       => false,
-		'menu_position'      => 80,
 		'menu_icon'          => 'dashicons-calendar',
 		'supports'           => array( 'title' )
 	);
