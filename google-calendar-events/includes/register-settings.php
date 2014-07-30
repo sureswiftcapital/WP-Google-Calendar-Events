@@ -270,8 +270,7 @@ function gce_missing_callback( $args ) {
  * 
  */
 function gce_get_settings() {
-	
-	
+
 	// Set default settings
 	// If this is the first time running we need to set the defaults
 	if ( ! get_option( 'gce_upgrade_has_run' ) ) {
@@ -283,7 +282,7 @@ function gce_get_settings() {
 		$general['display_start_text'] = _x( 'Starts:', 'Default for "Start Text" setting', 'gce' );
 		$general['display_end_text']   = _x( 'Ends:', 'Default for "End Text" setting', 'gce' );
 		$general['display_link']       = 1;
-		$general['display_link_text']  = _x( 'Learn More', 'Default for "Link Text" setting', 'gce' );
+		$general['display_link_text']  = _x( 'More details...', 'Default for "Link Text" setting', 'gce' );
 		
 		update_option( 'gce_settings_general', $general );
 	}
