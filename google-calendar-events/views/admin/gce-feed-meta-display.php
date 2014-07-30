@@ -82,11 +82,13 @@
 <div class="gce-meta-control">
 	<label>Date Format</label>
 	<input type="text" class="" name="gce_date_format" id="gce_date_format" value="<?php echo $gce_date_format; ?>" />
+	<span class="description">(Leave blank to use the default)</span>
 </div>
 
 <div class="gce-meta-control">
 	<label>Time Format</label>
 	<input type="text" class="" name="gce_time_format" id="gce_time_format" value="<?php echo $gce_time_format; ?>" />
+	<span class="description">(Leave blank to use the default)</span>
 </div>
 
 <div class="gce-meta-control">
