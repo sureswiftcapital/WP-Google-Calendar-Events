@@ -43,7 +43,8 @@ function gce_setup_cpt() {
 		'capability_type'    => 'post',
 		'has_archive'        => false,
 		'hierarchical'       => false,
-		'menu_position'      => null,
+		'menu_position'      => 80,
+		'menu_icon'          => 'dashicons-calendar',
 		'supports'           => array( 'title' )
 	);
 	
