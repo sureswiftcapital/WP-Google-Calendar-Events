@@ -1,9 +1,9 @@
 === Google Calendar Events ===
-Contributors: rosshanney
-Tags: google, google calendar, calendar, event, events, ajax, widget
-Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 0.7.2
+Contributors: pderksen, nickyoung87, rosshanney
+Tags: google calendar, google, calendar, events, gcal
+Requires at least: 3.6.1
+Tested up to: 4.0
+Stable tag: trunk
 
 Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
 
@@ -49,9 +49,9 @@ You can now start adding feeds. Visit the [plugin homepage](http://www.rhanney.c
 
 = 2.0.0 =
 
-* Moved to using CPTs for saving feeds.
+* Now using custom post types for storing and customizing Google calendar feeds.
 * Removed event display builder functionality.
-* New shortcode [gcal], but still supports old shortcode.
+* Introduced the shortcode `[gcal]`, with the old shortcode still supported.
 
 = 0.7.2 =
 
