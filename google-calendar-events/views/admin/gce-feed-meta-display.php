@@ -30,6 +30,7 @@
 	$gce_display_mode     = get_post_meta( $post->ID, 'gce_display_mode', true );
 	$gce_custom_from      = get_post_meta( $post->ID, 'gce_custom_from', true );
 	$gce_custom_until     = get_post_meta( $post->ID, 'gce_custom_until', true );
+	$gce_search_query     = get_post_meta( $post->ID, 'gce_search_query', true );
 	
 ?>
 
@@ -46,6 +47,11 @@
 <div class="gce-meta-control">
 	<label>Feed URL</label>
 	<input type="text" class="large-text" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Search Query</label>
+	<input type="text" class="" name="gce_search_query" id="gce_search_query" value="<?php echo $gce_search_query; ?>" />
 </div>
 
 <div class="gce-meta-control">

@@ -94,7 +94,8 @@ function gce_save_meta( $post_id ) {
 		'gce_multi_day_events',
 		'gce_display_mode',
 		'gce_custom_from',
-		'gce_custom_until'
+		'gce_custom_until',
+		'gce_search_query'
 	);
 
 	$post_meta_fields = apply_filters( 'gce_feed_meta', $post_meta_fields );
