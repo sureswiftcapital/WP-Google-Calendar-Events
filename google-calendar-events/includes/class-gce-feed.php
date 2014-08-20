@@ -21,7 +21,8 @@ class GCE_Feed {
 		   $timezone_offset,
 		   $cache,
 		   $multiple_day_events,
-		   $display_url;
+		   $display_url,
+		   $search_query;
 	
 	public $events = array();
 	
@@ -72,6 +73,7 @@ class GCE_Feed {
 		$this->timezone_offset     = get_post_meta( $this->id, 'gce_timezone_offset', true );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
+		$this->search_query        = get_post_meta( $this->id, 'gce_search_query', true );
 	}
 	
 	/**
@@ -110,6 +112,10 @@ class GCE_Feed {
 		// Set the timezone offset
 		if ( ! empty( $this->timezone_offset ) && $this->timezone_offset != 'default' ) {
 			$query .= '&ctz=' . $this->timezone_offset;
+		}
+		
+		if ( ! empty( $this->search_query ) ) {
+			$query .= '&q=' . rawurlencode( $this->search_query ); 
 		}
 
 		//Put the URL back together
