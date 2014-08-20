@@ -31,7 +31,7 @@
 	$gce_custom_from      = get_post_meta( $post->ID, 'gce_custom_from', true );
 	$gce_custom_until     = get_post_meta( $post->ID, 'gce_custom_until', true );
 	$gce_search_query     = get_post_meta( $post->ID, 'gce_search_query', true );
-	
+	$gce_expand_recurring = get_post_meta( $post->ID, 'gce_expand_recurring', true );
 ?>
 
 
@@ -52,6 +52,11 @@
 <div class="gce-meta-control">
 	<label>Search Query</label>
 	<input type="text" class="" name="gce_search_query" id="gce_search_query" value="<?php echo $gce_search_query; ?>" />
+</div>
+
+<div class="gce-meta-control">
+	<label>Expand Recurring Events?</label>
+	<input type="checkbox" name="gce_expand_recurring" id="gce_expand_recurring" value="1" <?php checked( $gce_expand_recurring, '1' ); ?> /> Yes
 </div>
 
 <div class="gce-meta-control">
