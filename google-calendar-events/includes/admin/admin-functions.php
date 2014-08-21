@@ -23,7 +23,12 @@ function gce_clear_cache( $id ) {
 function gce_default_editor_content( $content, $post ) {
 	
 	if( $post->post_type == 'gce_feed' ) {
-		$content = 'This is the default text';
+		$content  = '<div class="gce-list-event gce-tooltip-event">[event-title]</div>' . "\n";
+		$content .= '<div><span>Starts:</span> [start-time]</div>' . "\n";
+		$content .= '<div><span>Ends:</span> [end-date] - [end-time]</div>' . "\n";
+		$content .= '[if-location]<div><span>Location:</span> [location]</div>[/if-location]' . "\n";
+		$content .= '[if-description]<div><span>Description:</span> [description]</div>[/if-description]' . "\n";
+		$content .= '<div>[link newwindow="true"]More details...[/link]</div>' . "\n";
 	}
 	
 	return $content;
