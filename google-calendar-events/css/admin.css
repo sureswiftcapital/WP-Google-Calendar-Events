@@ -19,3 +19,12 @@
 .gce-admin-hidden { 
 	display: none;
 }
+
+#gce-display-options-wrap .gce-meta-control span.description {
+	display: block;
+	margin-top: 5px;
+}
+
+#gce-display-options-wrap .gce-meta-control span.description p {
+	margin-top: 5px;
+}

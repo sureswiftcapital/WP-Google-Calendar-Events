@@ -19,3 +19,13 @@ function gce_clear_cache( $id ) {
 	
 	add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
 }
+
+function gce_default_editor_content( $content, $post ) {
+	
+	if( $post->post_type == 'gce_feed' ) {
+		$content = 'This is the default text';
+	}
+	
+	return $content;
+}
+add_filter( 'default_content', 'gce_default_editor_content', 10, 2 );
