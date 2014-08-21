@@ -22,7 +22,8 @@ class GCE_Feed {
 		   $cache,
 		   $multiple_day_events,
 		   $display_url,
-		   $search_query;
+		   $search_query,
+		   $expand_recurring;
 	
 	public $events = array();
 	
@@ -74,6 +75,7 @@ class GCE_Feed {
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
 		$this->search_query        = get_post_meta( $this->id, 'gce_search_query', true );
+		$this->expand_recurring    = get_post_meta( $this->id, 'gce_expand_recurring', true );
 	}
 	
 	/**
@@ -100,7 +102,7 @@ class GCE_Feed {
 		$path = substr( $url_parts['path'], 0, strrpos( $url_parts['path'], '/' ) ) . '/full-noattendees';
 
 		//Add the default parameters to the querystring (retrieving JSON, not XML)
-		$query = '?alt=json&singleevents=true&sortorder=ascending';
+		$query = '?alt=json&sortorder=ascending';
 
 		$gmt_offset = $this->timezone_offset * 3600;
 
@@ -116,6 +118,10 @@ class GCE_Feed {
 		
 		if ( ! empty( $this->search_query ) ) {
 			$query .= '&q=' . rawurlencode( $this->search_query ); 
+		}
+		
+		if ( $this->expand_recurring ) {
+			$query .= '&singleevents=true';
 		}
 
 		//Put the URL back together
