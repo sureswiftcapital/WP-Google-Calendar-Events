@@ -45,22 +45,22 @@
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Feed URL', 'gce' ); ?></label>
+	<label for="gce_feed_url"><?php _e( 'Feed URL', 'gce' ); ?></label>
 	<input type="text" class="large-text" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Search Query', 'gce' ); ?></label>
+	<label for="gce_search_query"><?php _e( 'Search Query', 'gce' ); ?></label>
 	<input type="text" class="" name="gce_search_query" id="gce_search_query" value="<?php echo $gce_search_query; ?>" />
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Expand Recurring Events?', 'gce' ); ?></label>
+	<label for="gce_expand_recurring"><?php _e( 'Expand Recurring Events?', 'gce' ); ?></label>
 	<input type="checkbox" name="gce_expand_recurring" id="gce_expand_recurring" value="1" <?php checked( $gce_expand_recurring, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Retrieve Events From', 'gce' ); ?></label>
+	<label for="gce_retrieve_from"><?php _e( 'Retrieve Events From', 'gce' ); ?></label>
 	<select name="gce_retrieve_from" id="gce_retrieve_from">
 		<option value="today" <?php selected( $gce_retrieve_from, 'today', true ); ?>><?php _e( 'Today', 'gce' ); ?></option>
 		<option value="start_week" <?php selected( $gce_retrieve_from, 'start_week', true ); ?>><?php _e( 'Start of current week', 'gce' ); ?></option>
@@ -73,7 +73,7 @@
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Retrieve Events Until', 'gce' ); ?></label>
+	<label for="gce_retrieve_until"><?php _e( 'Retrieve Events Until', 'gce' ); ?></label>
 	<select name="gce_retrieve_until" id="gce_retrieve_until">
 		<option value="today" <?php selected( $gce_retrieve_until, 'today', true ); ?>><?php _e( 'Today', 'gce' ); ?></option>
 		<option value="start_week" <?php selected( $gce_retrieve_until, 'start_week', true ); ?>><?php _e( 'Start of current week', 'gce' ); ?></option>
@@ -86,40 +86,40 @@
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Maximum Number of Events to Retrieve', 'gce' ); ?></label>
+	<label for="gce_retrieve_max"><?php _e( 'Maximum Number of Events to Retrieve', 'gce' ); ?></label>
 	<input type="text" class="" name="gce_retrieve_max" id="gce_retrieve_max" value="<?php echo $gce_retrieve_max; ?>" />
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Date Format', 'gce' ); ?></label>
+	<label for="gce_date_format"><?php _e( 'Date Format', 'gce' ); ?></label>
 	<input type="text" class="" name="gce_date_format" id="gce_date_format" value="<?php echo $gce_date_format; ?>" />
 	<span class="description"><?php _x( '(Leave blank to use the default)', 'References the Date Format option', 'gce' ); ?></span>
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Time Format', 'gce' ); ?></label>
+	<label for="gce_time_format"><?php _e( 'Time Format', 'gce' ); ?></label>
 	<input type="text" class="" name="gce_time_format" id="gce_time_format" value="<?php echo $gce_time_format; ?>" />
 	<span class="description"><?php _x( '(Leave blank to use the default)', 'References the Time Format option', 'gce' ); ?></span>
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Timezone Adjustment', 'gce' ); ?></label>
+	<label for="gce_timezone_offset"><?php _e( 'Timezone Adjustment', 'gce' ); ?></label>
 	<?php echo gce_add_timezone_field(); ?>
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Cache Duration', 'gce' ); ?></label>
+	<label for="gce_cache"><?php _e( 'Cache Duration', 'gce' ); ?></label>
 	<input type="text" class="" name="gce_cache" id="gce_cache" value="<?php echo $gce_cache; ?>" />
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Multiple Day Events', 'gce' ); ?></label>
+	<label for="gce_multi_day_events"><?php _e( 'Multiple Day Events', 'gce' ); ?></label>
 	<input type="checkbox" name="gce_multi_day_events" id="gce_multi_day_events" value="1" <?php checked( $gce_multi_day_events, '1' ); ?> /> <?php _e( 'Show on each day', 'gce' ); ?>
 </div>
 
 <div class="gce-meta-control">
-	<label><?php _e( 'Display Mode', 'gce' ); ?></label>
-	<select name="gce_display_mode">
+	<label for="gce_display_mode"><?php _e( 'Display Mode', 'gce' ); ?></label>
+	<select name="gce_display_mode" id="gce_display_mode">
 		<option value="grid" <?php selected( $gce_display_mode, 'grid', true ); ?>><?php _e( 'Grid', 'gce' ); ?></option>
 		<option value="list" <?php selected( $gce_display_mode, 'list', true ); ?>><?php _e( 'List', 'gce' ); ?></option>
 		<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped', true ); ?>><?php _e( 'Grouped List', 'gce' ); ?></option>
