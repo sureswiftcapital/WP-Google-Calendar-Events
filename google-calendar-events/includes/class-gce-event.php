@@ -99,8 +99,22 @@ class GCE_Event {
 		$this->time_now = current_time( 'timestamp' );
 
 		// Setup the markup to return
-		$display_options = get_option( 'gce_settings_general' );
-
+		//$display_options = get_option( 'gce_settings_general' );
+		
+		$display_options['display_start']         = get_post_meta( $this->feed->id, 'gce_display_start', true );
+		$display_options['display_start_text']    = get_post_meta( $this->feed->id, 'gce_display_start_text', true );
+		$display_options['display_end']           = get_post_meta( $this->feed->id, 'gce_display_end', true );
+		$display_options['display_end_text']      = get_post_meta( $this->feed->id, 'gce_display_end_text', true );
+		$display_options['display_location']      = get_post_meta( $this->feed->id, 'gce_display_location', true );
+		$display_options['display_location_text'] = get_post_meta( $this->feed->id, 'gce_display_location_text', true );
+		$display_options['display_desc']          = get_post_meta( $this->feed->id, 'gce_display_description', true );
+		$display_options['display_desc_text']     = get_post_meta( $this->feed->id, 'gce_display_description_text', true );
+		$display_options['display_desc_limit']    = get_post_meta( $this->feed->id, 'gce_display_description_max', true );
+		$display_options['display_link']          = get_post_meta( $this->feed->id, 'gce_display_link', true );
+		$display_options['display_link_text']     = get_post_meta( $this->feed->id, 'gce_display_link_text', true );
+		$display_options['display_separator']     = get_post_meta( $this->feed->id, 'gce_display_separator', true );
+		$display_options['display_link_target']   = get_post_meta( $this->feed->id, 'gce_display_link_tab', true );
+		
 		$markup = '<p class="gce-' . $this->type . '-event">' . esc_html( $this->title )  . '</p>';
 
 		$start_end = array();
@@ -133,9 +147,9 @@ class GCE_Event {
 						break;
 					case 'date': $markup .= esc_html( $info['date'] );
 						break;
-					case 'time-date': $markup .= esc_html( $info['time'] . ' on ' . $info['date'] );
+					case 'time-date': $markup .= esc_html( $info['time'] . $display_options['display_separator'] . $info['date'] );
 						break;
-					case 'date-time': $markup .= esc_html( $info['date'] . ' at ' . $info['time'] );
+					case 'date-time': $markup .= esc_html( $info['date'] . $display_options['display_separator'] . $info['time'] );
 				}
 			}
 
@@ -165,8 +179,10 @@ class GCE_Event {
 		}
 
 		//If link should be displayed add to $markup
-		if ( isset($display_options['display_link'] ) )
-			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->timezone_offset ) . '" target="_blank">' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
+		if ( isset($display_options['display_link'] ) ) {
+			$target = ( ! empty( $display_options['display_link_target'] ) ? 'target="blank"' : '' );
+			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->timezone_offset ) . '" ' . $target . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
+		}
 
 		return $markup;
 		

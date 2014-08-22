@@ -37,10 +37,10 @@
 		<span class="description">Select how to display the start date / time.</span>
 		<select name="gce_display_start">
 			<option value="none" <?php selected( $gce_display_start, 'none', true ); ?>>None</option>
-			<option value="start_time" <?php selected( $gce_display_start, 'start_time', true ); ?>>Start time</option>
-			<option value="start_date" <?php selected( $gce_display_start, 'start_date', true ); ?>>Start date</option>
-			<option value="start_time_date" <?php selected( $gce_display_start, 'start_time_date', true ); ?>>Start time and date</option>
-			<option value="start_date_time" <?php selected( $gce_display_start, 'start_date_time', true ); ?>>Start date and time</option>
+			<option value="time" <?php selected( $gce_display_start, 'time', true ); ?>>Start time</option>
+			<option value="date" <?php selected( $gce_display_start, 'date', true ); ?>>Start date</option>
+			<option value="time-date" <?php selected( $gce_display_start, 'time-date', true ); ?>>Start time and date</option>
+			<option value="date-time" <?php selected( $gce_display_start, 'date-time', true ); ?>>Start date and time</option>
 		</select>
 		<span class="description">Text to display before the start time.</span>
 		<input type="text" name="gce_display_start_text" value="<?php echo $gce_display_start_text; ?>" />
@@ -51,10 +51,10 @@
 		<span class="description">Select how to display the end date / time.</span>
 		<select name="gce_display_end">
 			<option value="none" <?php selected( $gce_display_end, 'none', true ); ?>>None</option>
-			<option value="end_time" <?php selected( $gce_display_end, 'end_time', true ); ?>>End time</option>
-			<option value="end_date" <?php selected( $gce_display_end, 'end_date', true ); ?>>End date</option>
-			<option value="end_time_date" <?php selected( $gce_display_end, 'end_time_date', true ); ?>>End time and date</option>
-			<option value="end_date_time" <?php selected( $gce_display_end, 'end_date_time', true ); ?>>End date and time</option>
+			<option value="time" <?php selected( $gce_display_end, 'time', true ); ?>>End time</option>
+			<option value="date" <?php selected( $gce_display_end, 'date', true ); ?>>End date</option>
+			<option value="time-date" <?php selected( $gce_display_end, 'time-date', true ); ?>>End time and date</option>
+			<option value="date-time" <?php selected( $gce_display_end, 'date-time', true ); ?>>End date and time</option>
 		</select>
 		<span class="description">Text to display before the end time.</span>
 		<input type="text" name="gce_display_end_text" value="<?php echo $gce_display_end_text; ?>" />

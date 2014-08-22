@@ -132,7 +132,7 @@ function gce_save_meta( $post_id ) {
 				if( $pmf == 'gce_feed_url' ) {
 					update_post_meta( $post_id, $pmf, esc_url( $_POST[$pmf] ) );
 				} else {
-					update_post_meta( $post_id, $pmf, sanitize_text_field( stripslashes( $_POST[$pmf] ) ) );
+					update_post_meta( $post_id, $pmf, stripslashes( $_POST[$pmf] ) );
 				}
 			} else {
 				// We want max to be set to 25 by default if nothing is entered
