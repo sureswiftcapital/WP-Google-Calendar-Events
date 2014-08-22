@@ -16,7 +16,7 @@
  */
 function gce_get_timezone_choices(){
 	return '
-	<select name="gce_timezone_offset">
+	<select name="gce_timezone_offset" id="gce_timezone_offset">
 		<option value="default">Default</option>
 		<optgroup label="Africa">
 			<option value="Africa/Abidjan">Abidjan</option>
