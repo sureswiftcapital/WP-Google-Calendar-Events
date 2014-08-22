@@ -16,6 +16,16 @@
 	font-weight: bold;
 }
 
+#gce-display-options-wrap .gce-meta-control label {
+	font-weight: normal;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+#gce-display-options-wrap .gce-meta-control p label {
+	display: inline;
+}
+
 .gce-admin-hidden { 
 	display: none;
 }
