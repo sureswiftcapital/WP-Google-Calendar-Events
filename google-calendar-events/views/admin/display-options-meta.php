@@ -27,11 +27,16 @@
 	$gce_display_link             = get_post_meta( $post->ID, 'gce_display_link', true );
 	$gce_display_link_tab         = get_post_meta( $post->ID, 'gce_display_link_tab', true );
 	$gce_display_link_text        = get_post_meta( $post->ID, 'gce_display_link_text', true );
+	$gce_display_simple           = get_post_meta( $post->ID, 'gce_display_simple', true );
 	
 ?>
 
 
 <div id="gce-display-options-wrap">
+	<div class="gce-meta-control">
+		<p><input type="checkbox" name="gce_display_simple" value="1" <?php checked( $gce_display_simple, '1' ); ?> />Use the simple display options below instead of the Event Builder</p>
+	</div>
+	
 	<div class="gce-meta-control">
 		<label>Start date / time display</label>
 		<span class="description">Select how to display the start date / time.</span>

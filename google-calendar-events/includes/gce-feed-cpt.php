@@ -120,7 +120,8 @@ function gce_save_meta( $post_id ) {
 		'gce_display_description_max',
 		'gce_display_link',
 		'gce_display_link_tab',
-		'gce_display_link_text'
+		'gce_display_link_text',
+		'gce_display_simple'
 	);
 
 	$post_meta_fields = apply_filters( 'gce_feed_meta', $post_meta_fields );
