@@ -252,4 +252,11 @@ class GCE_Feed {
 		
 		return $return;
 	}
+	
+	function get_builder() {
+		
+		$this->builder = get_post( $this->id )->post_content;
+		
+		return $this->builder;
+	}
 }

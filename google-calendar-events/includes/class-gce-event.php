@@ -87,6 +87,15 @@ class GCE_Event {
 	 * @since 2.0.0
 	 */
 	function get_event_markup( $display_type, $num_in_day, $num ) {
+		
+		// First check if we use the builder or not
+		$use_simple = get_post_meta( $this->feed->id, 'gce_display_simple', true );
+		
+		if( empty( $use_simple ) ) {
+			return $this->use_builder();
+		}
+		
+		
 		//Set the display type (either tooltip or list)
 		$this->type = $display_type;
 
@@ -186,5 +195,299 @@ class GCE_Event {
 
 		return $markup;
 		
+	}
+	
+	//Return the event markup using the builder
+	function use_builder() {
+		//Array of valid shortcodes
+		$shortcodes = array(
+			//Event / feed information shortcodes
+
+			'event-title',    //The event title
+			'start-time',     //The start time of the event (uses the time format from the feed options, if it is set. Otherwise uses the default WordPress time format)
+			'start-date',     //The start date of the event (uses the date format from the feed options, if it is set. Otherwise uses the default WordPress date format)
+			'start-custom',   //The start time / date of the event (uses a custom PHP date format, specified in the 'format' attribute)
+			'start-human',    //The difference between the start time of the event and the time now, in human-readable format, such as '1 hour', '4 days', '15 mins'
+			'end-time',       //The end time of the event (uses the time format from the feed options, if it is set. Otherwise uses the default WordPress time format)
+			'end-date',       //The end date of the event (uses the date format from the feed options, if it is set. Otherwise uses the default WordPress date format)
+			'end-custom',     //The end time / date of the event (uses a custom PHP date format, specified in the 'format' attribute)
+			'end-human',      //The difference between the end time of the event and the time now, in human-readable format, such as '1 hour', '4 days', '15 mins'
+			'location',       //The event location
+			'description',    //The event deescription (number of words can be limited by the 'limit' attribute)
+			'link',           //Anything within this shortcode (including further shortcodes) will be linked to the Google Calendar page for this event
+			'url',            //The raw link URL to the Google Calendar page for this event (can be used to construct more customized links)
+			'feed-id',        //The ID of this feed (Can be useful for constructing feed specific CSS classes)
+			'feed-title',     //The feed title
+			'maps-link',      //Anything within this shortcode (including further shortcodes) will be linked to a Google Maps page based on whatever is specified for the event location
+			'length',         //How long the events lasts, in human-readable format
+			'event-num',      //The position of the event in the current list, or the position of the event in the current month (for grids)
+			'event-id',       //The event UID (unique identifier assigned by Google)
+			'cal-id',         //The calendar ID
+
+			//Anything between the opening and closing tags of the following logical shortcodes (including further shortcodes) will only be displayed if:
+
+			'if-all-day',     //This is an all-day event
+			'if-not-all-day', //This is not an all-day event
+			'if-title',       //The event has a title
+			'if-description', //The event has a description
+			'if-location',    //The event has a location
+			'if-tooltip',     //The current display type is 'tooltip'
+			'if-list',        //The current display type is 'list'
+			'if-now',         //The event is taking place now (after the start time, but before the end time)
+			'if-not-now',     //The event is not taking place now (may have ended or not yet started)
+			'if-started',     //The event has started (and even if it has ended)
+			'if-not-started', //The event has not yet started
+			'if-ended',       //The event has ended
+			'if-not-ended',   //The event has not ended (and even if it hasn't started)
+			'if-first',       //The event is the first in the day
+			'if-not-first',   //The event is not the first in the day
+			'if-multi-day',   //The event spans multiple days
+			'if-single-day'   //The event does not span multiple days
+		);
+
+		$this->regex = '/(.?)\[(' . implode( '|', $shortcodes ) . ')\b(.*?)(?:(\/))?\](?:(.+?)\[\/\2\])?(.?)/s';
+
+		return $this->look_for_shortcodes( $this->feed->get_builder() );
+	}
+
+	//Look through the EDB markup for shortcodes
+	function look_for_shortcodes( $markup ) {
+		return preg_replace_callback( $this->regex, array( $this, 'process_shortcode' ), $markup );
+	}
+
+	//Parse a shortcode, returning the appropriate event information
+	//Much of this code is 'borrowed' from WordPress' own shortcode handling stuff!
+	function process_shortcode( $m ) {
+		if ( '[' == $m[1] && ']' == $m[6] )
+			return substr( $m[0], 1, -1 );
+
+		//Extract any attributes contained in the shortcode
+		extract( shortcode_atts( array(
+			'newwindow' => 'false',
+			'format'    => '',
+			'limit'     => '0',
+			'html'      => 'false',
+			'markdown'  => 'false',
+			'precision' => '1',
+			'offset'    => '0',
+			'autolink'  => 'true'
+		), shortcode_parse_atts( $m[3] ) ) );
+
+		//Sanitize the attributes
+		$newwindow = ( 'true' === $newwindow );
+		$format    = esc_attr( $format );
+		$limit     = absint( $limit );
+		$html      = ( 'true' === $html );
+		$markdown  = ( 'true' === $markdown );
+		$precision = absint( $precision );
+		$offset    = intval( $offset );
+		$autolink  = ( 'true' === $autolink );
+
+		//Do the appropriate stuff depending on which shortcode we're looking at. See valid shortcode list (above) for explanation of each shortcode
+		switch ( $m[2] ) {
+			case 'event-title':
+				$title = esc_html( trim( $this->title ) );
+
+				if ( $markdown && function_exists( 'Markdown' ) )
+					$title = Markdown( $title );
+
+				if ( $html )
+					$title = wp_kses_post( html_entity_decode( $title ) );
+
+				return $m[1] . $title . $m[6];
+
+			case 'start-time':
+				return $m[1] . date_i18n( $this->feed->time_format, $this->start_time + $offset ) . $m[6];
+
+			case 'start-date':
+				return $m[1] . date_i18n( $this->feed->date_format, $this->start_time + $offset ) . $m[6];
+
+			case 'start-custom':
+				return $m[1] . date_i18n( $format, $this->start_time + $offset ) . $m[6];
+
+			case 'start-human':
+				return $m[1] . $this->gce_human_time_diff( $this->start_time + $offset, $this->time_now, $precision ) . $m[6];
+
+			case 'end-time':
+				return $m[1] . date_i18n( $this->feed->time_format, $this->end_time + $offset ) . $m[6];
+
+			case 'end-date':
+				return $m[1] . date_i18n( $this->feed->date_format, $this->end_time + $offset ) . $m[6];
+
+			case 'end-custom':
+				return $m[1] . date_i18n( $format, $this->end_time + $offset ) . $m[6];
+
+			case 'end-human':
+				return $m[1] . $this->gce_human_time_diff( $this->end_time + $offset, $this->time_now, $precision ) . $m[6];
+
+			case 'location':
+				$location = esc_html( trim( $this->location ) );
+
+				if ( $markdown && function_exists( 'Markdown' ) )
+					$location = Markdown( $location );
+
+				if ( $html )
+					$location = wp_kses_post( html_entity_decode( $location ) );
+
+				return $m[1] . $location . $m[6];
+
+			case 'description':
+				$description = esc_html( trim( $this->description ) );
+
+				//If a word limit has been set, trim the description to the required length
+				if ( 0 != $limit ) {
+					preg_match( '/([\S]+\s*){0,' . $limit . '}/', esc_html( $this->description ), $description );
+					$description = trim( $description[0] );
+				}
+
+				if ( $markdown || $html ) {
+					if ( $markdown && function_exists( 'Markdown' ) )
+						$description = Markdown( $description );
+
+					if ( $html )
+						$description = wp_kses_post( html_entity_decode( $description ) );
+				}else{
+					//Otherwise, preserve line breaks
+					$description = nl2br( $description );
+
+					//Make URLs clickable if required
+					if ( $autolink )
+						$description = make_clickable( $description );
+				}
+
+				return $m[1] . $description . $m[6];
+
+			case 'link':
+				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
+				return $m[1] . '<a href="' . esc_url( $this->link . '&ctz=' . $this->feed->timezone_offset ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
+
+			case 'url':
+				return $m[1] . esc_url( $this->link . '&ctz=' . $this->feed->get_timezone() ) . $m[6];
+
+			case 'feed-id':
+				return $m[1] . intval( $this->feed->get_feed_id() ) . $m[6];
+
+			case 'feed-title':
+				return $m[1] . esc_html( $this->feed->get_feed_title() ) . $m[6];
+
+			case 'maps-link':
+				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
+				return $m[1] . '<a href="' . esc_url( 'http://maps.google.com?q=' . urlencode( $this->location ) ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
+
+			case 'length':
+				return $m[1] . $this->gce_human_time_diff( $this->start_time, $this->end_time, $precision ) . $m[6];
+
+			case 'event-num':
+				return $m[1] . intval( $this->pos ) . $m[6];
+
+			case 'event-id':
+				return $m[1] . esc_html( $this->id ) . $m[6];
+
+			case 'cal-id':
+				$cal_id = explode( '/', $this->feed->get_feed_url() );
+				return $m[1] . esc_html( $cal_id[5] ) . $m[6];
+
+			case 'if-all-day':
+				if ( 'SWD' == $this->day_type || 'MWD' == $this->day_type )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-not-all-day':
+				if ( 'SPD' == $this->day_type || 'MPD' == $this->day_type )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-title':
+				if ( '' != $this->title )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-description':
+				if ( '' != $this->description )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-location':
+				if ( '' != $this->location )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-tooltip':
+				if ( 'tooltip' == $this->type )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-list':
+				if ( 'list' == $this->type )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-now':
+				if ( $this->time_now >= $this->start_time && $this->time_now < $this->end_time )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-not-now':
+				if ( $this->end_time < $this->time_now || $this->start_time > $this->time_now )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-started':
+				if ( $this->start_time < $this->time_now )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-not-started':
+				if ( $this->start_time > $this->time_now )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-ended':
+				if ( $this->end_time < $this->time_now )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-not-ended':
+				if ( $this->end_time > $this->time_now )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-first':
+				if ( 0 == $this->num_in_day )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-not-first':
+				if ( 0 != $this->num_in_day )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-multi-day':
+				if ( 'MPD' == $this->day_type || 'MWD' == $this->day_type )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-single-day':
+				if ( 'SPD' == $this->day_type || 'SWD' == $this->day_type )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+		}
 	}
 }
