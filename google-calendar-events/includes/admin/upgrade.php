@@ -37,6 +37,11 @@ function gce_upgrade() {
 function gce_v2_upgrade() {
 	$old_options = get_option( 'gce_options' );
 	
+	
+	//echo '<pre>' . print_r( $old_options, true ) . '</pre>';
+	
+	//die();
+	
 	if( false !== $old_options ) {
 	
 		foreach( $old_options as $key => $value ) {
@@ -62,6 +67,10 @@ function convert_to_cpt_posts( $args ) {
 			'post_status'    => 'publish',
 			'post_type'      => 'gce_feed'
 		);
+	
+	if( $args['use_builder'] == true ) {
+		$post['post_content'] = $args['builder'];
+	}
 	
 	$post_id = wp_insert_post( $post );
 	
