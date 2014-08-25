@@ -142,12 +142,37 @@ function create_cpt_meta( $id, $args ) {
 		'gce_time_format'      => $args['time_format'],
 		'gce_timezone_offset'  => $args['timezone'],
 		'gce_cache'            => $args['cache_duration'],
-		'gce_multi_day_events' => ( $args['multiple_day'] == true ? 1 : 0 ),
+		'gce_multi_day_events' => ( $args['multiple_day'] == 'on' ? '1' : '0' ),
 		'gce_display_mode'     => 'grid',
 		'gce_custom_from'      => gce_convert_timestamp( $args['retrieve_from_value'] ),
 		'gce_custom_until'     => gce_convert_timestamp( $args['retrieve_until_value'] ),
 		'old_gce_id'           => $args['id']
 	);
+	
+	if( $args['use_builder'] == 'false' || $args['use_builder'] == false ) {
+		$display_meta = array( 
+			'gce_display_simple'            => 1,
+			'gce_display_start'             => $args['display_start'],
+			'gce_display_start_text'        => $args['display_start_text'],
+			'gce_display_end'               => $args['display_end'],
+			'gce_display_end_text'          => $args['display_end_text'],
+			'gce_display_separator'         => $args['display_separator'],
+			'gce_display_location'          => ( $args['display_location'] == 'on' ? '1' : '0' ),
+			'gce_display_location_text'     => $args['display_location_text'],
+			'gce_display_description'       => ( $args['display_desc'] == 'on' ? '1' : '0' ),
+			'gce_display_description_text'  => $args['display_desc_text'],
+			'gce_display_description_max'   => $args['display_desc_limit'],
+			'gce_display_link'              => ( $args['display_link'] == 'on' ? '1' : '0' ),
+			'gce_display_link_tab'          => ( $args['display_link_target'] == 'on' ? '1' : '0' ),
+			'gce_display_link_text'         => $args['display_link_text']
+		);
+		
+		$post_meta_fields = array_merge( $post_meta_fields, $display_meta );
+	}
+	
+	//echo '<pre>' . print_r( $post_meta_fields, true ) . '</pre>';
+	
+	//die();
 	
 	// Loop through each $post_meta_field and add as an entry
 	foreach( $post_meta_fields as $k => $v ) {
