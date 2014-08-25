@@ -95,8 +95,10 @@ class GCE_Feed {
 		}
 		
 		$url_parts = parse_url( $this->feed_url );
+		
+		$scheme = ( is_ssl() ? 'https://' : 'http://' );
 
-		$scheme_and_host = $url_parts['scheme'] . '://' . $url_parts['host'];
+		$scheme_and_host = $scheme . $url_parts['host'];
 
 		//Remove the exisitng projection from the path, and replace it with '/full-noattendees'
 		$path = substr( $url_parts['path'], 0, strrpos( $url_parts['path'], '/' ) ) . '/full-noattendees';
