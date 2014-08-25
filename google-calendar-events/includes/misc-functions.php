@@ -79,5 +79,5 @@ function gce_ajax() {
    }
    die();
 }
-add_action( 'wp_ajax_no_priv_gce_ajax', 'gce_ajax' );
+add_action( 'wp_ajax_nopriv_gce_ajax', 'gce_ajax' );
 add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
