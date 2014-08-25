@@ -195,8 +195,11 @@ class GCE_Display {
 		//Array of previous and next link stuff for use in gce_generate_calendar (below)
 		$pn = array( $prev_key => $prev, $next_key => $next );
 		
+		
+		$start_day = get_option( 'start_of_week' );
+		
 		//Generate the calendar markup and return it
-		return gce_generate_calendar( $year, $month, $event_days, 1, null, 0, $pn );
+		return gce_generate_calendar( $year, $month, $event_days, 1, null, $start_day, $pn );
 	}
 	
 	/**
