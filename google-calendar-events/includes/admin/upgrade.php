@@ -132,6 +132,8 @@ function create_cpt_meta( $id, $args ) {
 			break;
 	}
 	
+	$gce_expand_recurring = ( isset( $args['expand_recurring'] ) ? ( $args['expand_recurring'] == 'true' ? '1' : '0' ) : '1' );
+	
 	// An array to hold all of our post meta ids and values so that we can loop through and add as post meta easily
 	$post_meta_fields = array(
 		'gce_feed_url'         => $args['url'],
@@ -148,7 +150,7 @@ function create_cpt_meta( $id, $args ) {
 		'gce_custom_until'     => gce_convert_timestamp( $args['retrieve_until_value'] ),
 		'old_gce_id'           => $args['id'],
 		'gce_search_query'     => ( isset( $args['query'] ) ? $args['query'] : '' ),
-		'gce_expand_recurring' => ( isset( $args['expand_recurring'] ) && $args['expand_recurring'] == 'true' ? '1' : '0' )
+		'gce_expand_recurring' => $gce_expand_recurring
 	);
 	
 	if( $args['use_builder'] == 'false' || $args['use_builder'] == false ) {
