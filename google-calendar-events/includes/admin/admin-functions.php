@@ -20,6 +20,14 @@ function gce_clear_cache( $id ) {
 	add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
 }
 
+/**
+ * Function that runs when a new Feed CPT is made
+ * Adds the default editor content for the event builder
+ * Adds default post meta options
+ * 
+ * @since 2.0.0
+ */
+
 function gce_default_editor_content( $content, $post ) {
 	
 	if( $post->post_type == 'gce_feed' ) {
@@ -29,6 +37,8 @@ function gce_default_editor_content( $content, $post ) {
 		$content .= '[if-location]<div><span>Location:</span> [location]</div>[/if-location]' . "\n";
 		$content .= '[if-description]<div><span>Description:</span> [description]</div>[/if-description]' . "\n";
 		$content .= '<div>[link newwindow="true"]More details...[/link]</div>' . "\n";
+		
+		add_post_meta( $post->ID, 'gce_expand_recurring', 1 );
 	}
 	
 	return $content;
