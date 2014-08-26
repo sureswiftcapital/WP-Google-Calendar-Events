@@ -55,6 +55,7 @@ if ( empty( $general['save_settings'] ) ) {
 	delete_option( 'gce_upgrade_has_run' );
 	delete_option( 'gce_version' );
 	delete_option( 'gce_settings_general' );
+	delete_option( 'gce_cpt_setup' );
 
 	// Remove widgets
 	delete_option( 'widget_gce_widget' );

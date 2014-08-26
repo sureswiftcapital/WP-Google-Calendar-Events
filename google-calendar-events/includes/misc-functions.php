@@ -81,3 +81,16 @@ function gce_ajax() {
 }
 add_action( 'wp_ajax_nopriv_gce_ajax', 'gce_ajax' );
 add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
+
+
+
+function gce_feed_content( $content ) {
+	global $post;
+	
+	if( $post->post_type == 'gce_feed' ) {
+		$content = '[gcal id="' . $post->ID . '"]';
+	}
+	
+	return $content;
+}
+add_filter( 'the_content', 'gce_feed_content' );

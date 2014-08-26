@@ -35,7 +35,7 @@ function gce_setup_cpt() {
 
 	$args = array(
 		'labels'             => $labels,
-		'public'             => false, // This removes the 'view' and 'preview' links from what I can tell
+		'public'             => true, // This removes the 'view' and 'preview' links from what I can tell
 		'publicly_queryable' => true,
 		'show_ui'            => true,
 		'show_in_menu'       => true,
@@ -48,6 +48,13 @@ function gce_setup_cpt() {
 	);
 	
 	register_post_type( 'gce_feed', $args );
+	
+	// MUST ONLY RUN ONCE!
+	if( false === get_option( 'gce_cpt_setup' ) ) {
+		flush_rewrite_rules();
+		update_option( 'gce_cpt_setup', 1 );
+	}
+	
 }
 add_action( 'init', 'gce_setup_cpt' );
 
