@@ -47,17 +47,26 @@
 <table class="form-table">
 	<tr>
 		<th scope="row"><label for="gce_feed_url"><?php _e( 'Feed URL', 'gce' ); ?></label></th>
-		<td><input type="text" class="large-text" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" /></td>
+		<td>
+			<input type="text" class="large-text" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
+			<p class="description"><?php _e( 'The XML URL to your feed.', 'gce' ); ?></p>
+		</td>
 	</tr>
 
 	<tr>
 		<th scope="row"><label for="gce_search_query"><?php _e( 'Search Query', 'gce' ); ?></label></th>
-		<td><input type="text" class="" name="gce_search_query" id="gce_search_query" value="<?php echo $gce_search_query; ?>" /></td>
+		<td>
+			<input type="text" class="" name="gce_search_query" id="gce_search_query" value="<?php echo $gce_search_query; ?>" />
+			<p class="description"><?php _e( 'Find and show events based on a search query.', 'gce' ); ?></p>
+		</td>
 	</tr>
 
 	<tr>
 		<th scope="row"><label for="gce_expand_recurring"><?php _e( 'Expand Recurring Events?', 'gce' ); ?></label></th>
-		<td><input type="checkbox" name="gce_expand_recurring" id="gce_expand_recurring" value="1" <?php checked( $gce_expand_recurring, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?></td>
+		<td>
+			<input type="checkbox" name="gce_expand_recurring" id="gce_expand_recurring" value="1" <?php checked( $gce_expand_recurring, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
+			<p class="description"><?php _e( 'This will show recurring events each time they occur, otherwise it will only show the event the first time it occurs.', 'gce' ); ?></p>
+		</td>
 	</tr>
 
 	<tr>
@@ -72,6 +81,7 @@
 				<option value="custom_date" <?php selected( $gce_retrieve_from, 'custom_date', true ); ?>><?php _e( 'Specific date', 'gce' ); ?></option>
 			</select>
 			<input type="text" <?php echo ( $gce_retrieve_from != 'custom_date' ? 'class="gce-admin-hidden" ' : ' ' ); ?> name="gce_custom_from" id="gce_custom_from" value="<?php echo $gce_custom_from; ?>" />
+			<p class="description"><?php _e( 'The point in time at which to start retrieving events.', 'gce' ); ?></p>
 		</td>
 	</tr>
 
@@ -87,12 +97,16 @@
 				<option value="custom_date" <?php selected( $gce_retrieve_until, 'custom_date', true ); ?>><?php _e( 'Specific date', 'gce' ); ?></option>
 			</select>
 			<input type="text" <?php echo ( $gce_retrieve_until != 'custom_date' ? 'class="gce-admin-hidden" ' : ' ' ); ?> name="gce_custom_until" id="gce_custom_until" value="<?php echo $gce_custom_until; ?>" />
+			<p class="description"><?php _e( 'The point in time at which to stop retrieving events.', 'gce' ); ?></p>
 		</td>
 	</tr>
 
 	<tr>
-		<th scope="row"><label for="gce_retrieve_max"><?php _e( 'Maximum Number of Events to Retrieve', 'gce' ); ?></label></th>
-		<td><input type="text" class="" name="gce_retrieve_max" id="gce_retrieve_max" value="<?php echo $gce_retrieve_max; ?>" /><td>
+		<th scope="row"><label for="gce_retrieve_max"><?php _e( 'Max Number of Events', 'gce' ); ?></label></th>
+		<td>
+			<input type="text" class="" name="gce_retrieve_max" id="gce_retrieve_max" value="<?php echo $gce_retrieve_max; ?>" />
+			<p class="description"><?php _e( 'Maximum number of events to show.', 'gce' ); ?></p>
+		<td>
 	</tr>
 
 	<tr>
@@ -113,17 +127,26 @@
 
 	<tr>
 		<th scope="row"><label for="gce_timezone_offset"><?php _e( 'Timezone Adjustment', 'gce' ); ?></label></th>
-		<td><?php echo gce_add_timezone_field(); ?></td>
+		<td>
+			<?php echo gce_add_timezone_field(); ?>
+			<p class="description"><?php _e( 'If you are having problems with dates and times displaying in the wrong timezone, select a city in your required timezone here.', 'gce' ); ?></p>
+		</td>
 	</tr>
 
 	<tr>
 		<th scope="row"><label for="gce_cache"><?php _e( 'Cache Duration', 'gce' ); ?></label></th>
-		<td><input type="text" class="" name="gce_cache" id="gce_cache" value="<?php echo $gce_cache; ?>" /><td>
+		<td>
+			<input type="text" class="" name="gce_cache" id="gce_cache" value="<?php echo $gce_cache; ?>" />
+			<p class="description"><?php _e( 'The length of time, in seconds, to cache the feed (43200 = 12 hours). If this feed changes regularly, you may want to reduce the cache duration.', 'gce' ); ?></p>
+		<td>
 	</tr>
 
 	<tr>
 		<th scope="row"><label for="gce_multi_day_events"><?php _e( 'Multiple Day Events', 'gce' ); ?></label></th>
-		<td><input type="checkbox" name="gce_multi_day_events" id="gce_multi_day_events" value="1" <?php checked( $gce_multi_day_events, '1' ); ?> /> <?php _e( 'Show on each day', 'gce' ); ?></td>
+		<td>
+			<input type="checkbox" name="gce_multi_day_events" id="gce_multi_day_events" value="1" <?php checked( $gce_multi_day_events, '1' ); ?> /> <?php _e( 'Show on each day', 'gce' ); ?>
+			<p class="description"><?php _e( 'Show events that span multiple days on each day that they span, rather than just the first day.', 'gce' ); ?></p>
+		</td>
 	</tr>
 
 	<tr>
@@ -134,6 +157,7 @@
 				<option value="list" <?php selected( $gce_display_mode, 'list', true ); ?>><?php _e( 'List', 'gce' ); ?></option>
 				<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped', true ); ?>><?php _e( 'Grouped List', 'gce' ); ?></option>
 			</select>
+			<p class="description"><?php _e( 'Choose how you want your calendar to be displayed.', 'gce' ); ?></p>
 		</td>
 	</tr>
 </table>
