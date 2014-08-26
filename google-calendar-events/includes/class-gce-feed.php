@@ -88,7 +88,7 @@ class GCE_Feed {
 		
 		if( empty( $this->feed_url ) ) {
 			if( current_user_can( 'manage_options' ) ) {
-				echo '<p>' . __( 'The feed URL has not been set. Please make sure to set it correclty in the Feed settings.', 'gce' ) . '</p>';
+				echo '<p>' . __( 'The feed URL has not been set. Please make sure to set it correctly in the Feed settings.', 'gce' ) . '</p>';
 			}
 			
 			return;
