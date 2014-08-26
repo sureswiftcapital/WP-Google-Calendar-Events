@@ -117,6 +117,11 @@ class Google_Calendar_Events {
 		} else {
 			// Public includes
 		}
+		
+		// Setup our main settings options
+		include_once( 'includes/register-settings.php' );
+		
+		$gce_options = gce_get_settings();
 	}
 	
 	/**

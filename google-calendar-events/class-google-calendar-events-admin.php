@@ -51,6 +51,25 @@ class Google_Calendar_Events_Admin {
 		
 		// Add admin scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+		
+		// Add the options page and menu item.
+		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ), 2 );
+	}
+	
+	public function add_plugin_admin_menu() {
+		// Add Help submenu page
+		$this->plugin_screen_hook_suffix[] = add_submenu_page(
+			'edit.php?post_type=gce_feed',
+			__( 'General Settings', 'gce' ),
+			__( 'General Settings', 'gce' ),
+			'manage_options',
+			$this->plugin_slug . '_general_settings',
+			array( $this, 'display_admin_page' )
+		);
+	}
+	
+	public function display_admin_page() {
+		include_once( 'views/admin/admin.php' );
 	}
 	
 	/**
@@ -125,6 +144,7 @@ class Google_Calendar_Events_Admin {
 
 		return array_merge(
 			array(
+				'settings' => '<a href="' . admin_url( 'edit.php?post_type=gce_feed&page=google-calendar-events_general_settings' ) . '">' . __( 'Settings', 'gce' ) . '</a>',
 				'feeds'    => '<a href="' . admin_url( 'edit.php?post_type=gce_feed' ) . '">' . __( 'Feeds', 'gce' ) . '</a>'
 			),
 			$links
