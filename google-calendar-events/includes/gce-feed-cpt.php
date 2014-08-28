@@ -67,16 +67,17 @@ function gce_feed_messages( $messages ) {
 	global $post, $post_ID;
 
 	$url1 = '<a href="' . get_permalink( $post_ID ) . '">';
-	$url2 = 'Feed';
+	$url2 = 'feed';
 	$url3 = '</a>';
+	$s1   = 'Feed';
 
 	$messages['gce_feed'] = array(
-		1  => sprintf( __( '%2$s updated. %1$sView %2$s%3$s.', 'gce' ), $url1, $url2, $url3 ),
-		4  => sprintf( __( '%2$s updated. %1$sView %2$s%3$s.', 'gce' ), $url1, $url2, $url3 ),
-		6  => sprintf( __( '%2$s published. %1$sView %2$s%3$s.', 'gce' ), $url1, $url2, $url3 ),
-		7  => sprintf( __( '%2$s saved. %1$sView %2$s%3$s.', 'gce' ), $url1, $url2, $url3 ),
-		8  => sprintf( __( '%2$s submitted. %1$sView %2$s%3$s.', 'gce' ), $url1, $url2, $url3 ),
-		10 => sprintf( __( '%2$s draft updated. %1$sView %2$s%3$s.', 'gce' ), $url1, $url2, $url3 )
+		1  => sprintf( __( '%4$s updated. %1$sView %2$s%3$s', 'gce' ), $url1, $url2, $url3, $s1 ),
+		4  => sprintf( __( '%4$s updated. %1$sView %2$s%3$s', 'gce' ), $url1, $url2, $url3, $s1 ),
+		6  => sprintf( __( '%4$s published. %1$sView %2$s%3$s', 'gce' ), $url1, $url2, $url3, $s1 ),
+		7  => sprintf( __( '%4$s saved. %1$sView %2$s%3$s', 'gce' ), $url1, $url2, $url3, $s1 ),
+		8  => sprintf( __( '%4$s submitted. %1$sView %2$s%3$s', 'gce' ), $url1, $url2, $url3, $s1 ),
+		10 => sprintf( __( '%4$s draft updated. %1$sView %2$s%3$s', 'gce' ), $url1, $url2, $url3, $s1 )
 	);
 
 	return $messages;
