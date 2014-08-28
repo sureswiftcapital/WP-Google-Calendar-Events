@@ -39,12 +39,14 @@
 	<a href="<?php echo add_query_arg( array( 'clear_cache' => true ) ); ?>" class="button-secondary"><?php _e( 'Clear Cache', 'gce' ); ?></a>
 </div>
 
-<div>
-	<strong><?php _e( 'Feed ID:', 'gce' ); ?></strong> <?php echo $post_id; ?><br>
-	<strong><?php _e( 'Feed Shortcode:', 'gce' ); ?></strong> [gcal id="<?php echo $post_id; ?>"]
-</div>
-
 <table class="form-table">
+	<tr>
+		<th scope="row"><?php _e( 'Feed Shortcode', 'gce' ); ?></th>
+		<td>
+			<code>[gcal id="<?php echo $post_id; ?>"]</code>
+			<p class="description"><?php _e( 'Use this shortcode to display this Google Calendar feed in any post or page.', 'gce' ); ?></p>
+		</td>
+	</tr>
 	<tr>
 		<th scope="row"><label for="gce_feed_url"><?php _e( 'Feed URL', 'gce' ); ?></label></th>
 		<td>
