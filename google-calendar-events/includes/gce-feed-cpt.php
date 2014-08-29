@@ -268,3 +268,9 @@ function gce_clear_cache_link() {
 	}
 }
 add_action( 'admin_init', 'gce_clear_cache_link' );
+
+
+function gce_clear_cache_on_save( $post_id ) {
+	delete_transient( 'gce_feed_' . $post_id );
+}
+add_action( 'save_post_gce_feed', 'gce_clear_cache_on_save' );
