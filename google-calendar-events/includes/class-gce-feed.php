@@ -195,6 +195,13 @@ class GCE_Feed {
 				$this->error = $raw_data->get_error_message() . __( ' Please ensure your feed URL is correct.', 'gce' );
 			}
 		}
+		
+		if( ! empty( $this->error ) ) {
+			if( current_user_can( 'manage_options' ) ) {
+				echo $this->error;
+				return;
+			}
+		}
 	}
 	
 	/**
