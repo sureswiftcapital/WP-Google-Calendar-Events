@@ -35,10 +35,6 @@
 ?>
 
 
-<div class="gce-meta-cotrol">
-	<a href="<?php echo add_query_arg( array( 'clear_cache' => true ) ); ?>" class="button-secondary"><?php _e( 'Clear Cache', 'gce' ); ?></a>
-</div>
-
 <table class="form-table">
 	<tr>
 		<th scope="row"><?php _e( 'Feed Shortcode', 'gce' ); ?></th>
@@ -168,6 +164,22 @@
 			<p class="description"><?php _e( 'Choose how you want your calendar to be displayed.', 'gce' ); ?></p>
 		</td>
 	</tr>
+	
+	<tr>
+		<th scope="row"><?php _e( 'Clear Cache', 'gce' ); ?></th>
+		<td>
+			<a href="<?php echo add_query_arg( array( 'clear_cache' => true ) ); ?>" class="button-secondary"><?php _e( 'Clear Cache', 'gce' ); ?></a>
+			<p class="description">
+				<?php 
+				printf( __( 'This will clear your feed cache. This also automatically happens when you save your changes. %s' . 
+						     'If you make changes you %sMUST%s save first or your changes will be lost.' ), '<br>', '<strong>', '</strong>' ); 
+				?>
+			</p>
+		</td>
+	</tr>
+	<div class="gce-meta-cotrol">
+	
+</div>
 </table>
 
 
