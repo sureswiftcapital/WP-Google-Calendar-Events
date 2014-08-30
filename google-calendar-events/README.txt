@@ -49,6 +49,7 @@ You can now start adding feeds. Visit the [plugin homepage](http://www.rhanney.c
 
 = 2.0.0 =
 
+* Plugin architecture/code rewrite.
 * Now using custom post types for storing and customizing Google calendar feeds.
 * Removed event display builder functionality.
 * Introduced the shortcode `[gcal]`, with the old shortcode still supported.
