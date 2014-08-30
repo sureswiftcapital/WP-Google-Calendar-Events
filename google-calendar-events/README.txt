@@ -54,6 +54,16 @@ You can now start adding feeds. Visit the [plugin homepage](http://www.rhanney.c
 * Removed event display builder functionality.
 * Introduced the shortcode `[gcal]`, with the old shortcode still supported.
 
+= 0.7.3.1 =
+
+* Include missing file: upgrade-notice.php.
+
+= 0.7.3 =
+
+* Added warning about upcoming version 2.0 release.
+* Added option to save settings upon uninstall.
+* Tested with WordPress 4.0.
+
 = 0.7.2 =
 
 * Fixed a bug causing the "More details" Google Calendar information to be displayed in the wrong timezone
