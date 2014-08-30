@@ -3,7 +3,7 @@ Contributors: pderksen, nickyoung87, rosshanney
 Tags: google calendar, google, calendar, events, gcal
 Requires at least: 3.7.4
 Tested up to: 4.0
-Stable tag: trunk
+Stable tag: 0.7.3.1
 
 Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
 
