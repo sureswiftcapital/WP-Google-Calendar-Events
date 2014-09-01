@@ -38,3 +38,10 @@
 #gce-display-options-wrap .gce-meta-control span.description p {
 	margin-top: 5px;
 }
+
+#gce-admin-promo {
+	background-color: #fcf8e3;
+	border: 1px solid #faebbe;
+	color: #8a6d3b;
+	padding: 15px;
+}
