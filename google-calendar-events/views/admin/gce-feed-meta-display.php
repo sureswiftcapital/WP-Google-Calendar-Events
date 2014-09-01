@@ -36,14 +36,17 @@
 
 <div id="gce-admin-promo">
 	<?php echo __( 'We\'re <strong>smack dab</strong> in the middle of building additional features for this plugin.', 'gce' ); ?>
-	<a href="http://wordpress.org/support/topic/what-features-would-you-like-to-see-2" target="_blank">
-		<?php echo __( 'Let us know what you need.', 'gce' ); ?>
-	</a><br/>
+	<strong>
+		<a href="http://wordpress.org/support/topic/what-features-would-you-like-to-see-2" target="_blank">
+			<?php echo __( 'Let us know what you need.', 'gce' ); ?>
+		</a>
+	</strong>
+	<br/>
 	<br/>
 
-	<?php echo __( 'Want to stay in the loop?', 'gce' ); ?>
+	<?php echo __( 'Want to know when we release something new?', 'gce' ); ?>
 	<strong>
-		<a href="http://eepurl.com/0_VsT" target="_blank" class="button-primary">
+		<a href="http://eepurl.com/0_VsT" target="_blank">
 			<?php echo __( 'Get Plugin Update Notifications', 'gce' ); ?>
 		</a>
 	</strong>
