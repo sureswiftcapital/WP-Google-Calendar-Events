@@ -25,6 +25,14 @@ Please visit the [plugin homepage](http://www.rhanney.co.uk/plugins/google-calen
 
 There is also a [demonstration page](http://www.rhanney.co.uk/plugins/google-calendar-events/gce-demo) showing the plugin in action.
 
+###Feature Requests and Updates###
+
+* [Submit feature requests in our support forums.](https://wordpress.org/support/plugin/google-calendar-events)
+* [Get notified of major updates.](http://eepurl.com/0_VsT)
+* [Follow this project on Github](https://github.com/pderksen/WP-Google-Calendar-Events).
+
+This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a web developer based in the UK specialising in WordPress and PHP.
+
 == Installation ==
 
 Use the automatic installer from within the WordPress admin, or:
