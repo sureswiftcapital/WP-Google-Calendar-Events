@@ -82,8 +82,6 @@ function gce_ajax() {
 add_action( 'wp_ajax_nopriv_gce_ajax', 'gce_ajax' );
 add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
 
-
-
 function gce_feed_content( $content ) {
 	global $post;
 	
@@ -94,3 +92,26 @@ function gce_feed_content( $content ) {
 	return $content;
 }
 add_filter( 'the_content', 'gce_feed_content' );
+
+/**
+ * Google Analytics campaign URL.
+ *
+ * @since   2.0.0
+ *
+ * @param   string  $base_url Plain URL to navigate to
+ * @param   string  $source   GA "source" tracking value
+ * @param   string  $medium   GA "medium" tracking value
+ * @param   string  $campaign GA "campaign" tracking value
+ * @return  string  $url      Full Google Analytics campaign URL
+ */
+function gce_ga_campaign_url( $base_url, $source, $medium, $campaign ) {
+	// $medium examples: 'sidebar_link', 'banner_image'
+
+	$url = add_query_arg( array(
+		'utm_source'   => $source,
+		'utm_medium'   => $medium,
+		'utm_campaign' => $campaign
+	), $base_url );
+
+	return $url;
+}
