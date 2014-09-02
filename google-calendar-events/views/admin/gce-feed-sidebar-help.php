@@ -2,7 +2,7 @@
 	<ul>
 		<li>
 			<div class="dashicons dashicons-arrow-right-alt2"></div>
-			<a href="<?php echo gce_ga_campaign_url( 'http://wpdocs.philderksen.com/google-calendar-events/', 'gce_lite', 'sidebar_link', 'docs' ); ?>" target="_blank">
+			<a href="<?php echo sc_ga_campaign_url( 'http://wpdocs.philderksen.com/google-calendar-events/', 'gce_lite', 'sidebar_link', 'docs' ); ?>" target="_blank">
 				<?php _e( 'Documentation', 'sc' ); ?></a>
 		</li>
 
