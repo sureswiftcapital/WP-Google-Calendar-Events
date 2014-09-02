@@ -35,11 +35,11 @@
 ?>
 
 <div id="gce-admin-promo">
-	<?php echo __( 'We\'re <strong>smack dab</strong> in the middle of building additional features for this plugin.', 'gce' ); ?>
+	<?php echo __( 'We\'re <strong>smack dab</strong> in the middle of building additional features for this plugin. Have ideas?', 'gce' ); ?>
 	<strong>
 		<a href="http://wordpress.org/support/topic/what-features-would-you-like-to-see-2" target="_blank">
-			<?php echo __( 'Let us know what you need', 'gce' ); ?>
-		</a>.
+			<?php echo __( 'Tell us what you\'re looking for', 'gce' ); ?>
+		</a>
 	</strong>
 	<br/>
 	<br/>
@@ -47,8 +47,8 @@
 	<?php echo __( 'Want to know when we release something new?', 'gce' ); ?>
 	<strong>
 		<a href="http://eepurl.com/0_VsT" target="_blank">
-			<?php echo __( 'Get notified of major plugin features', 'gce' ); ?>
-		</a>.
+			<?php echo __( 'Get notified of major plugin updates', 'gce' ); ?>
+		</a>
 	</strong>
 </div>
 
