@@ -490,4 +490,50 @@ class GCE_Event {
 				return '';
 		}
 	}
+	
+	//Returns the difference between two times in human-readable format. Based on a patch for human_time_diff posted in the WordPress trac (http://core.trac.wordpress.org/ticket/9272) by Viper007Bond 
+	function gce_human_time_diff( $from, $to = '', $limit = 1 ) {
+		$units = array(
+			31556926 => array( __( '%s year', 'gce' ),  __( '%s years', 'gce' ) ),
+			2629744  => array( __( '%s month', 'gce' ), __( '%s months', 'gce' ) ),
+			604800   => array( __( '%s week', 'gce' ),  __( '%s weeks', 'gce' ) ),
+			86400    => array( __( '%s day', 'gce' ),   __( '%s days', 'gce' ) ),
+			3600     => array( __( '%s hour', 'gce' ),  __( '%s hours', 'gce' ) ),
+			60       => array( __( '%s min', 'gce' ),   __( '%s mins', 'gce' ) ),
+		);
+
+		if ( empty( $to ) )
+			$to = time(); 
+
+		$from = (int) $from;
+		$to   = (int) $to;
+		$diff = (int) abs( $to - $from );
+
+		$items = 0;
+		$output = array();
+
+		foreach ( $units as $unitsec => $unitnames ) {
+			if ( $items >= $limit )
+				break; 
+
+			if ( $diff < $unitsec )
+				continue; 
+
+			$numthisunits = floor( $diff / $unitsec ); 
+			$diff = $diff - ( $numthisunits * $unitsec ); 
+			$items++; 
+
+			if ( $numthisunits > 0 )
+				$output[] = sprintf( _n( $unitnames[0], $unitnames[1], $numthisunits ), $numthisunits ); 
+		} 
+
+		$seperator = _x( ', ', 'human_time_diff' ); 
+
+		if ( ! empty( $output ) ) {
+			return implode( $seperator, $output ); 
+		} else {
+			$smallest = array_pop( $units ); 
+			return sprintf( $smallest[0], 1 ); 
+		} 
+	} 
 }
