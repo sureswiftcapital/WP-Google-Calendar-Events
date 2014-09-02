@@ -21,31 +21,47 @@ Parses Google Calendar feeds and displays the events as a calendar grid or list 
 * Complete customisation of the event information displayed
 * Calendar grids can have the ability to change the month displayed
 
-Please visit the [plugin homepage](http://www.rhanney.co.uk/plugins/google-calendar-events) for how to get started and other help.
-
-There is also a [demonstration page](http://www.rhanney.co.uk/plugins/google-calendar-events/gce-demo) showing the plugin in action.
+[Plugin Documentation & Getting Started](http://wpdocs.philderksen.com/google-calendar-events/?utm_source=wordpress_org&utm_medium=link&utm_campaign=gce_lite)
 
 ###Feature Requests and Updates###
 
-* [Submit feature requests in our support forums.](https://wordpress.org/support/plugin/google-calendar-events)
-* [Get notified of major updates.](http://eepurl.com/0_VsT)
-* [Follow this project on Github](https://github.com/pderksen/WP-Google-Calendar-Events).
+* [Submit feature requests in our support forums](https://wordpress.org/support/plugin/google-calendar-events)
+* [Get notified of major feature updates](http://eepurl.com/0_VsT)
+* [Follow this project on Github](https://github.com/pderksen/WP-Google-Calendar-Events)
 
 This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a web developer based in the UK specialising in WordPress and PHP.
 
 == Installation ==
 
-Use the automatic installer from within the WordPress admin, or:
+There are three ways to install this plugin.
 
-1. Download the `.zip` file by clicking on the Download button on the right
-1. Unzip the file
-1. Upload the `google-calendar-events` directory to your `plugins` directory
-1. Go to the Plugins page from within the WordPress administration
-1. Click Activate for Google Calendar Events
+= 1. Admin Search =
+1. In your Admin, go to menu Plugins > Add.
+1. Search for `Google Calendar`.
+1. Find the plugin that's labeled `Google Calendar Events`.
+1. Look for the author name `Phil Derksen` on the plugin.
+1. Click to install.
+1. Activate the plugin.
+1. A new menu item `GCal Events` will appear in the main menu.
 
-After activation a new Google Calendar Events options menu will appear under Settings.
+= 2. Download & Upload =
+1. Download the plugin (a zip file) on the right column of this page.
+1. In your Admin, go to menu Plugins > Add.
+1. Select the tab "Upload".
+1. Upload the .zip file you just downloaded.
+1. Activate the plugin.
+1. A new menu item `GCal Events` will appear in the main menu.
 
-You can now start adding feeds. Visit the [plugin homepage](http://www.rhanney.co.uk/plugins/google-calendar-events) for a more in-depth guide on getting started.
+= 3. FTP Upload =
+1. Download the plugin (.zip file) on the right column of this page.
+1. Unzip the zip file contents.
+1. Upload the `google-calendar-events` folder to the `/wp-content/plugins/` directory of your site.
+1. Activate the plugin through the 'Plugins' menu in WordPress.
+1. A new menu item `GCal Events` will appear in the main menu.
+
+== Frequently Asked Questions ==
+
+[Plugin Documentation & Getting Started](http://wpdocs.philderksen.com/google-calendar-events/?utm_source=wordpress_org&utm_medium=link&utm_campaign=gce_lite)
 
 == Screenshots ==
 
@@ -59,8 +75,7 @@ You can now start adding feeds. Visit the [plugin homepage](http://www.rhanney.c
 
 * Plugin architecture/code rewrite.
 * Now using custom post types for storing and customizing Google calendar feeds.
-* Removed event display builder functionality.
-* Introduced the shortcode `[gcal]`, with the old shortcode still supported.
+* Introduced the shortcode `[gcal]` (old shortcode still supported).
 
 = 0.7.3.1 =
 
