@@ -104,7 +104,7 @@ class GCE_Feed {
 		$path = substr( $url_parts['path'], 0, strrpos( $url_parts['path'], '/' ) ) . '/full-noattendees';
 
 		//Add the default parameters to the querystring (retrieving JSON, not XML)
-		$query = '?alt=json&sortorder=ascending';
+		$query = '?alt=json&singleevents=true&sortorder=ascending&orderby=starttime';
 
 		$gmt_offset = $this->timezone_offset * 3600;
 
