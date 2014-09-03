@@ -206,7 +206,3 @@ There are three ways to install this plugin.
 = 2.0.0 = 
 
 This is a major upgrade to a new code base and structure. PLEASE make sure you backup your site before upgrading.
-
-= 0.5 =
-
-Event retrieval date / time range is now much more flexible. Also adds event display builder, which allows much greater customization of the event information displayed.
