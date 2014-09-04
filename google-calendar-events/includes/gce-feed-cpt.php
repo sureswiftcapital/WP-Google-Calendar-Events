@@ -43,7 +43,7 @@ function gce_setup_cpt() {
 		'capability_type'    => 'post',
 		'has_archive'        => false,
 		'hierarchical'       => false,
-		'menu_icon'          => 'dashicons-calendar',
+		'menu_icon'          => plugins_url( '/assets/gcal-icon-16x16.png', GCE_MAIN_FILE ),
 		'supports'           => array( 'title', 'editor' )
 	);
 	
