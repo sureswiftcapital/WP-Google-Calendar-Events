@@ -4,6 +4,8 @@ Tags: google calendar, google, calendar, events, gcal
 Requires at least: 3.7.4
 Tested up to: 4.0
 Stable tag: 0.7.3.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
 
@@ -204,7 +206,3 @@ There are three ways to install this plugin.
 = 2.0.0 = 
 
 This is a major upgrade to a new code base and structure. PLEASE make sure you backup your site before upgrading.
-
-= 0.5 =
-
-Event retrieval date / time range is now much more flexible. Also adds event display builder, which allows much greater customization of the event information displayed.
