@@ -83,7 +83,7 @@ class Google_Calendar_Events_Admin {
 		
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 		
-		wp_enqueue_script( 'gce-admin', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), null, true );
+		wp_enqueue_script( 'gce-admin', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), Google_Calendar_Events::VERSION, true );
 	}
 	
 	/**
@@ -95,7 +95,7 @@ class Google_Calendar_Events_Admin {
 		
 		wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ) );
 		
-		wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ) );
+		wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ), array(), Google_Calendar_Events::VERSION, 'all' );
 	}
 	
 	/**
