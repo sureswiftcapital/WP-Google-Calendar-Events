@@ -140,7 +140,7 @@ class GCE_Display {
 				$markup .= '<ul>';
 
 				foreach ( $event_day as $num_in_day => $event ) {
-					$feed_id = absint( $event->id );
+					$feed_id = absint( $event->feed->id );
 					$markup .= '<li class="gce-tooltip-feed-' . $feed_id . '">' . $event->get_event_markup( 'tooltip', $num_in_day, $i ) . '</li>';
 
 					//Add CSS class for the feed from which this event comes. If there are multiple events from the same feed on the same day, the CSS class will only be added once.
