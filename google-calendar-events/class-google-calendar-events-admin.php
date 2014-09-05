@@ -93,7 +93,7 @@ class Google_Calendar_Events_Admin {
 	 */
 	public static function enqueue_admin_styles() {
 		
-		wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ) );
+		wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ), array(), Google_Calendar_Events::VERSION );
 		
 		wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ), array(), Google_Calendar_Events::VERSION, 'all' );
 	}
