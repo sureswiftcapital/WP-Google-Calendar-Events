@@ -20,6 +20,8 @@ class Google_Calendar_Events_Admin {
 	 * @var      object
 	 */
 	protected static $instance = null;
+	
+	protected $version = '';
 
 	/**
 	 * Slug of the plugin screen.
@@ -40,6 +42,8 @@ class Google_Calendar_Events_Admin {
 
 		$plugin = Google_Calendar_Events::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
+		
+		$this->version = $plugin->get_plugin_version();
 		
 		add_filter( 'plugin_action_links_' . plugin_basename( plugin_dir_path( __FILE__ ) . $this->plugin_slug . '.php' ), array( $this, 'add_action_links' ) );
 		
@@ -77,13 +81,13 @@ class Google_Calendar_Events_Admin {
 	 * 
 	 * @since 2.0.0
 	 */
-	public static function enqueue_admin_scripts() {
+	public function enqueue_admin_scripts() {
 		
 		wp_enqueue_script( 'jquery' );
 		
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 		
-		wp_enqueue_script( 'gce-admin', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), Google_Calendar_Events::VERSION, true );
+		wp_enqueue_script( 'gce-admin', plugins_url( 'js/admin.js', __FILE__ ), array( 'jquery' ), $this->version, true );
 	}
 	
 	/**
@@ -91,11 +95,11 @@ class Google_Calendar_Events_Admin {
 	 * 
 	 * @since 2.0.0
 	 */
-	public static function enqueue_admin_styles() {
+	public function enqueue_admin_styles() {
 		
-		wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ), array(), Google_Calendar_Events::VERSION );
+		wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ), array(), $this->version );
 		
-		wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ), array(), Google_Calendar_Events::VERSION, 'all' );
+		wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ), array(), $this->version, 'all' );
 	}
 	
 	/**
@@ -103,7 +107,7 @@ class Google_Calendar_Events_Admin {
 	 * 
 	 * @since 2.0.0
 	 */
-	public static function define_admin_constants() {
+	public function define_admin_constants() {
 		if( ! defined( 'GCE_DIR' ) ) {
 			define( 'GCE_DIR', dirname( __FILE__ ) );
 		}
@@ -131,7 +135,7 @@ class Google_Calendar_Events_Admin {
 	 * 
 	 * @since 2.0.0
 	 */
-	function get_plugin_title() {
+	public function get_plugin_title() {
 		return __( 'Google Calendar Events', 'gce' );
 	}
 

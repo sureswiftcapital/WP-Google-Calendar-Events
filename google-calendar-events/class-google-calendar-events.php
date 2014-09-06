@@ -14,16 +14,17 @@ class Google_Calendar_Events {
 	/**
 	 * Plugin version, used for cache-busting of style and script file references.
 	 *
-	 * @since   1.0.0
+	 * @since   2.0.0
 	 *
 	 * @var     string
 	 */
-	const VERSION = '2.0.0-beta1';
+	//const VERSION = '2.0.0-beta1';
+	protected $version = '2.0.0-beta1';
 
 	/**
 	 * Unique identifier for the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 *
 	 * @var      string
 	 */
@@ -32,7 +33,7 @@ class Google_Calendar_Events {
 	/**
 	 * Instance of this class.
 	 *
-	 * @since    1.0.0
+	 * @since    2.0.0
 	 *
 	 * @var      object
 	 */
@@ -42,7 +43,7 @@ class Google_Calendar_Events {
 	 * Initialize the plugin by setting localization and loading public scripts
 	 * and styles.
 	 *
-	 * @since     1.0.0
+	 * @since     2.0.0
 	 */
 	private function __construct() {
 		
@@ -74,7 +75,7 @@ class Google_Calendar_Events {
 	private function upgrade() {
 		include_once( 'includes/admin/upgrade.php' );
 		
-		update_option( 'gce_version', self::VERSION );
+		update_option( 'gce_version', $this->version );
 	}
 	
 	/**
@@ -131,8 +132,8 @@ class Google_Calendar_Events {
 	 */
 	public function enqueue_public_scripts() {
 		
-		wp_enqueue_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery-qtip.js', __FILE__ ), array( 'jquery' ), self::VERSION, true );
-		wp_enqueue_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), self::VERSION, true );
+		wp_enqueue_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery-qtip.js', __FILE__ ), array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), $this->version, true );
 		
 		wp_localize_script( $this->plugin_slug . '-public', 'gce', 
 				array( 
@@ -146,18 +147,29 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public function enqueue_public_styles() {
-		wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array(), self::VERSION );
+		wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array(), $this->version );
 	}
 
 	/**
 	 * Return the plugin slug.
 	 *
+	 * @since    2.0.0
+	 *
+	 * @return    Plugin version variable.
+	 */
+	public function get_plugin_slug() {
+		return $this->plugin_slug;
+	}
+	
+	/**
+	 * Return the plugin version.
+	 *
 	 * @since    1.0.0
 	 *
 	 * @return    Plugin slug variable.
 	 */
-	public function get_plugin_slug() {
-		return $this->plugin_slug;
+	public function get_plugin_version() {
+		return $this->version;
 	}
 
 	/**
