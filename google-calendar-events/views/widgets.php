@@ -95,7 +95,7 @@ class GCE_Widget extends WP_Widget {
 					$args['grouped'] = 1;
 				}
 				
-				$markup = gce_print_calendar( $feed_ids, $instance['display_type'], $args );
+				$markup = gce_print_calendar( $feed_ids, $instance['display_type'], $args, true );
 				
 				echo $markup;
 			}

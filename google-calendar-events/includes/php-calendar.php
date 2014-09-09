@@ -17,7 +17,7 @@ Changes made to original PHP Calendar script by me (Ross Hanney):
 - Replaced gmmktime() with mktime()
 */
 
-function gce_generate_calendar( $year, $month, $days = array(), $day_name_length = 3, $month_href = NULL, $first_day = 0, $pn = array() ) {
+function gce_generate_calendar( $year, $month, $days = array(), $day_name_length = 3, $month_href = NULL, $first_day = 0, $pn = array(), $widget = false ) {
 	global $wp_locale;
 
 	$first_of_month = mktime( 0, 0, 0, $month, 1, $year );
@@ -38,12 +38,23 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	#Begin calendar. Uses a real <caption>. See http://diveintomark.org/archives/2002/07/03
 	list( $p, $pl ) = each( $pn );
 	list( $n, $nl ) = each( $pn ); #previous and next links, if applicable
-
-	if ( $p )
-		$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . ' Back</a>' ) : $p ) . '</span>&nbsp;';
-	if ( $n )
-		$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">Next ' . $n . '</a>' ) : $n ) . '</span>';
-
+	
+	if ( $p ) {
+		if( $widget ) {
+			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
+		} else {
+			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . ' Back</a>' ) : $p ) . '</span>&nbsp;';
+		}
+	}
+	
+	if ( $n ) {
+		if( $widget ) {
+			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">' . $n . '</a>' ) : $n ) . '</span>';
+		} else {
+			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">Next ' . $n . '</a>' ) : $n ) . '</span>';
+		}
+	}
+	
 	$calendar = '<table class="gce-calendar">' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . ( ( $month_href ) ? ( '<a href="' . esc_attr( $month_href ) . '">' . $title . '</a>' ) : $title ) . '</span>' . $n . "</caption>\n<tr>";
 
 	if ( $day_name_length ) { #if the day names should be shown ($day_name_length > 0)

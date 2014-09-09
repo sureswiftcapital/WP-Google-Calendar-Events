@@ -5,7 +5,7 @@
  * 
  * @since 2.0.0
  */
-function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
+function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
 	
 	$defaults = array( 
 			'title_text' => '',
@@ -38,7 +38,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array() ) {
 			$markup .= '<div class="gce-page-grid" id="gce-page-grid-' . $feed_ids . '">';
 		}
 		
-		$markup .= $d->get_grid( $year, $month );
+		$markup .= $d->get_grid( $year, $month, $widget );
 		$markup .= '</div>';
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {

@@ -88,7 +88,7 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_grid ( $year = null, $month = null ) {
+	public function get_grid ( $year = null, $month = null, $widget = false ) {
 		require_once 'php-calendar.php';
 
 		$time_now = current_time( 'timestamp' );
@@ -199,7 +199,7 @@ class GCE_Display {
 		$start_day = get_option( 'start_of_week' );
 		
 		//Generate the calendar markup and return it
-		return gce_generate_calendar( $year, $month, $event_days, 1, null, $start_day, $pn );
+		return gce_generate_calendar( $year, $month, $event_days, 1, null, $start_day, $pn, $widget );
 	}
 	
 	/**
