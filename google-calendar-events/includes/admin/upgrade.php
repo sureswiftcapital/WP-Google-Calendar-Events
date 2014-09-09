@@ -19,18 +19,11 @@ add_action( 'init', 'gce_upgrade', 20 );
  */
 function gce_upgrade() {
 	
-	//echo 'Upgrade function hit<br>';
-	
-	//delete_option( 'gce_upgrade_has_run' );
-	
 	$version = get_option( 'gce_version' );
-	
-	//echo 'VERSION: ' . $version . '<br>';
 	
 	if( ! empty( $version ) ) {
 		// Check if under version 2 and run the v2 upgrade if we are
 		if( version_compare( $version, '2.0.0-beta1', '<' ) && false === get_option( 'gce_upgrade_has_run' ) ) {
-			//echo 'Run upgrade...<br>';
 			gce_v2_upgrade();
 		}
 	}
@@ -48,11 +41,6 @@ function gce_upgrade() {
  */
 function gce_v2_upgrade() {
 	$old_options = get_option( 'gce_options' );
-	
-	
-	//echo '<pre>' . print_r( $old_options, true ) . '</pre>';
-	
-	//die();
 	
 	if( false !== $old_options ) {
 	
@@ -184,10 +172,6 @@ function create_cpt_meta( $id, $args ) {
 		$post_meta_fields = array_merge( $post_meta_fields, $display_meta );
 	}
 	
-	//echo '<pre>' . print_r( $post_meta_fields, true ) . '</pre>';
-	
-	//die();
-	
 	// Loop through each $post_meta_field and add as an entry
 	foreach( $post_meta_fields as $k => $v ) {
 		update_post_meta( $id, $k, $v );
@@ -199,7 +183,6 @@ function gce_convert_timestamp( $t ) {
 	return date( 'm/d/Y', $t );
 }
 
-
 /**
  * Remove the old transient values from the database
  * 
@@ -210,7 +193,6 @@ function clear_old_transients( $id ) {
 	delete_transient( 'gce_feed_' . $id );
 	delete_transient( 'gce_feed_' . $id . '_url' );
 }
-
 
 /** 
  * Update widget IDs
