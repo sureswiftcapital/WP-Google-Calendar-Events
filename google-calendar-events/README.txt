@@ -67,9 +67,13 @@ There are three ways to install this plugin.
 
 == Screenshots ==
 
-1. The main plugin admin screen.
-1. The add feed admin screen.
-1. A page showing a full page calendar grid and various widgets.
+1. Grid display in full page with tooltip
+1. Grid display in widget
+1. List display in widget
+1. Simple display options
+1. Calendar feed settings
+1. Calendar widget settings
+1. Event display builder editor
 
 == Changelog ==
 
