@@ -19,14 +19,26 @@ add_action( 'init', 'gce_upgrade', 20 );
  */
 function gce_upgrade() {
 	
+	//echo 'Upgrade function hit<br>';
+	
 	//delete_option( 'gce_upgrade_has_run' );
 	
 	$version = get_option( 'gce_version' );
 	
-	// Check if under version 2 and run the v2 upgrade if we are
-	if( version_compare( $version, '2.0.0', '<' ) && false === get_option( 'gce_upgrade_has_run' ) ) {
-		gce_v2_upgrade();
+	//echo 'VERSION: ' . $version . '<br>';
+	
+	if( ! empty( $version ) ) {
+		// Check if under version 2 and run the v2 upgrade if we are
+		if( version_compare( $version, '2.0.0-beta1', '<' ) && false === get_option( 'gce_upgrade_has_run' ) ) {
+			//echo 'Run upgrade...<br>';
+			gce_v2_upgrade();
+		}
 	}
+	
+	$new_version = Google_Calendar_Events::get_instance()->get_plugin_version();
+	update_option( 'gce_version', $new_version );
+	
+	add_option( 'gce_upgrade_has_run', 1 );
 }
 
 /*
@@ -50,8 +62,6 @@ function gce_v2_upgrade() {
 
 		update_widget_feed_ids();
 	}
-	
-	add_option( 'gce_upgrade_has_run', 1 );
 }
 
 /**

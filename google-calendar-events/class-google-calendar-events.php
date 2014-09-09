@@ -48,6 +48,12 @@ class Google_Calendar_Events {
 		
 		$this->includes();
 		
+		$old = get_option( 'gce_version' );
+		
+		if( version_compare( $old, $this->version, '<' ) ) {
+			delete_option( 'gce_upgrade_has_run' );
+		}
+		
 		if( false === get_option( 'gce_upgrade_has_run' ) ) {
 			$this->upgrade();
 		}
@@ -73,8 +79,6 @@ class Google_Calendar_Events {
 	 */
 	private function upgrade() {
 		include_once( 'includes/admin/upgrade.php' );
-		
-		update_option( 'gce_version', $this->version );
 	}
 	
 	/**
