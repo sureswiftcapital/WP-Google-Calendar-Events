@@ -57,7 +57,12 @@
 .gce-page-grid .gce-calendar .gce-prev{ /* Previous and next month links */
 	cursor:pointer;
 	display:inline-block;
-	width:8%;
+	width:5%;
+	white-space: nowrap;
+}
+
+.gce-page-grid .gce-calendar .gce-prev{
+	float: left;
 }
 
 .gce-page-grid .gce-calendar .gce-month-title{ /* Month title */
@@ -137,6 +142,11 @@
 	cursor:pointer;
 	display:inline-block;
 	width:5%;
+	white-space: nowrap;
+}
+
+.gce-widget-grid .gce-calendar .gce-prev{
+	float: left;
 }
 
 .gce-widget-grid .gce-calendar .gce-month-title{ /* Month title in caption at top of table */
