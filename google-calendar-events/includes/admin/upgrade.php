@@ -234,17 +234,42 @@ function update_widget_feed_ids() {
 				}
 
 				$id = $v;
+				
+				$multi = str_replace( ' ', '', $v );
+				
+				$multi = explode( ',', $id );
+				
+				if( is_array( $multi ) ) {
+					
+					$new_ids = '';
+					
+					foreach( $multi as $m ) {
+						$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$m&order=ASC" );
 
-				$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$id&order=ASC" );
+						if( $q->have_posts() ) {
 
-				if( $q->have_posts() ) {
+							$q->the_post();
+							// Set our ID to the old ID if found
+							$m = get_the_ID();
+							
+							$new_ids .= $m . ',';
+						}
+					}
+					
+					$widget[$a][$k] = substr( $new_ids, 0, -1 );
+				} else {
 
-					$q->the_post();
-					// Set our ID to the old ID if found
-					$id = get_the_ID();
+					$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$id&order=ASC" );
+
+					if( $q->have_posts() ) {
+
+						$q->the_post();
+						// Set our ID to the old ID if found
+						$id = get_the_ID();
+					}
+
+					$widget[$a][$k] = $id;
 				}
-
-				$widget[$a][$k] = $id;
 			}
 		}
 		
