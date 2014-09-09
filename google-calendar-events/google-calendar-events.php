@@ -9,16 +9,16 @@
  * @copyright 2014 Phil Derksen
  *
  * @wordpress-plugin
- * Plugin Name:       Google Calendar Events
- * Plugin URI:        https://github.com/pderksen/WP-Google-Calendar-Events
- * Description:       Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
- * Version:           2.0.0-beta1
- * Author:            Phil Derksen
- * Author URI:        http://philderksen.com
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       gce
- * Domain Path:       /languages
+ * Plugin Name: Google Calendar Events
+ * Plugin URI:  https://github.com/pderksen/WP-Google-Calendar-Events
+ * Description: Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
+ * Version:     2.0.0
+ * Author:      Phil Derksen
+ * Author URI:  http://philderksen.com
+ * License:     GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: gce
+ * Domain Path: /languages
  */
 
 // If this file is called directly, abort.
