@@ -36,7 +36,7 @@
 	<div class="gce-meta-control">
 		<p>
 			<input type="checkbox" name="gce_display_simple" id="gce_display_simple" value="1" <?php checked( $gce_display_simple, '1' ); ?> />
-			<label for="gce_display_simple"><?php _e( 'Use the simple display options below instead of the Event Builder', 'gce' ); ?></label>
+			<label for="gce_display_simple" id="gce-simple-display-label"><?php _e( 'Check this box to use the simple display options below instead of the Event Builder code on the left.', 'gce' ); ?></label>
 		</p>
 	</div>
 	

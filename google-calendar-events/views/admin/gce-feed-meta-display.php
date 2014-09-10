@@ -37,8 +37,8 @@
 <div id="gce-admin-promo">
 	<?php echo __( 'We\'re <strong>smack dab</strong> in the middle of building additional features for this plugin. Have ideas?', 'gce' ); ?>
 	<strong>
-		<a href="http://wordpress.org/support/topic/what-features-would-you-like-to-see-2" target="_blank">
-			<?php echo __( 'Tell us what you\'re looking for', 'gce' ); ?>
+		<a href="https://trello.com/b/ZQSzsarY" target="_blank">
+			<?php echo __( 'Visit our roadmap and tell us what you\'re looking for', 'gce' ); ?>
 		</a>
 	</strong>
 	<br/>
