@@ -77,6 +77,11 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.1 =
+
+* Added language folder.
+* Major bug fixes that were causing fatal errors.
+
 = 2.0.0 =
 
 * Plugin rewritten from scratch.
