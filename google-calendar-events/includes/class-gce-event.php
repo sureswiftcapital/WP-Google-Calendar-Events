@@ -88,12 +88,7 @@ class GCE_Event {
 	 */
 	function get_event_markup( $display_type, $num_in_day, $num ) {
 		
-		// First check if we use the builder or not
-		$use_simple = get_post_meta( $this->feed->id, 'gce_display_simple', true );
 		
-		if( empty( $use_simple ) ) {
-			return $this->use_builder();
-		}
 		
 		
 		//Set the display type (either tooltip or list)
@@ -106,6 +101,13 @@ class GCE_Event {
 		$this->pos = $num;
 
 		$this->time_now = current_time( 'timestamp' );
+
+		// First check if we use the builder or not
+		$use_simple = get_post_meta( $this->feed->id, 'gce_display_simple', true );
+		
+		if( empty( $use_simple ) ) {
+			return $this->use_builder();
+		}
 
 		// Setup the markup to return
 		//$display_options = get_option( 'gce_settings_general' );
@@ -362,13 +364,13 @@ class GCE_Event {
 				return $m[1] . '<a href="' . esc_url( $this->link . '&ctz=' . $this->feed->timezone_offset ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
 
 			case 'url':
-				return $m[1] . esc_url( $this->link . '&ctz=' . $this->feed->get_timezone() ) . $m[6];
+				return $m[1] . esc_url( $this->link . '&ctz=' . $this->feed->timezone_offset ) . $m[6];
 
 			case 'feed-id':
-				return $m[1] . intval( $this->feed->get_feed_id() ) . $m[6];
+				return $m[1] . intval( $this->feed->id ) . $m[6];
 
 			case 'feed-title':
-				return $m[1] . esc_html( $this->feed->get_feed_title() ) . $m[6];
+				return $m[1] . esc_html( $this->feed->title ) . $m[6];
 
 			case 'maps-link':
 				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
@@ -384,7 +386,7 @@ class GCE_Event {
 				return $m[1] . esc_html( $this->id ) . $m[6];
 
 			case 'cal-id':
-				$cal_id = explode( '/', $this->feed->get_feed_url() );
+				$cal_id = explode( '/', $this->feed->feed_url );
 				return $m[1] . esc_html( $cal_id[5] ) . $m[6];
 
 			case 'if-all-day':

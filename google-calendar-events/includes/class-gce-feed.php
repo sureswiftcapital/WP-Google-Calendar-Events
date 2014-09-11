@@ -23,7 +23,8 @@ class GCE_Feed {
 		   $multiple_day_events,
 		   $display_url,
 		   $search_query,
-		   $expand_recurring;
+		   $expand_recurring,
+		   $title;
 	
 	public $events = array();
 	
@@ -76,6 +77,7 @@ class GCE_Feed {
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
 		$this->search_query        = get_post_meta( $this->id, 'gce_search_query', true );
 		$this->expand_recurring    = get_post_meta( $this->id, 'gce_expand_recurring', true );
+		$this->title               = get_the_title( $this->id );
 	}
 	
 	/**
