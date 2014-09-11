@@ -57,14 +57,18 @@
 		<th scope="row"><?php _e( 'Feed Shortcode', 'gce' ); ?></th>
 		<td>
 			<code>[gcal id="<?php echo $post_id; ?>"]</code>
-			<p class="description"><?php _e( 'Use this shortcode to display this Google Calendar feed in any post or page.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Copy and paste this shortcode to display this Google Calendar feed in any post or page.', 'gce' ); ?></p>
 		</td>
 	</tr>
 	<tr>
-		<th scope="row"><label for="gce_feed_url"><?php _e( 'Feed URL', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_feed_url"><?php _e( 'GCal Feed URL', 'gce' ); ?></label></th>
 		<td>
 			<input type="text" class="large-text" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
-			<p class="description"><?php _e( 'The XML URL to your feed.', 'gce' ); ?></p>
+			<p class="description">
+				<?php _e( 'The Google Calendar feed URL.', 'gce' ); ?><br/>
+				<?php _e( 'Example', 'gce' ); ?>: <code>https://www.google.com/calendar/feeds/em3luo1919fjcjum4j874j5ejg%40group.calendar.google.com/public/basic</code><br/>
+				<a href="http://wpdocs.philderksen.com/google-calendar-events/getting-started/find-feed-url/" target="_blank"><?php _e( 'How to find your GCal feed URL', 'gce' ); ?></a>
+			</p>
 		</td>
 	</tr>
 
