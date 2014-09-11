@@ -66,4 +66,5 @@ if ( empty( $general['save_settings'] ) ) {
 	delete_option( 'gce_options' );
 	delete_option( 'gce_general' );
 	delete_option( 'gce_clear_old_transients' );
+	delete_option( 'gce_show_upgrade_notice' );
 }

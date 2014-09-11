@@ -26,6 +26,11 @@
 	display: inline;
 }
 
+#gce-display-options-wrap .gce-meta-control label#gce-simple-display-label {
+	font-weight: bold;
+	color: #cb4d4d;
+}
+
 .gce-admin-hidden { 
 	display: none;
 }
