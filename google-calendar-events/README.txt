@@ -79,8 +79,7 @@ There are three ways to install this plugin.
 
 = 2.0.1 =
 
-* Added language folder.
-* Major bug fixes that were causing fatal errors.
+* Fixed display errors with certain event builder shortcodes.
 
 = 2.0.0 =
 
