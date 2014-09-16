@@ -33,6 +33,8 @@ Parses Google Calendar feeds and displays the events as a calendar grid or list 
 
 This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a web developer based in the UK specialising in WordPress and PHP.
 
+Spanish translation provided by Eduardo Larequi of [educacion.navarra.es/web/pnte/](http://www.educacion.navarra.es/web/pnte/).
+
 == Installation ==
 
 There are three ways to install this plugin.
@@ -76,6 +78,10 @@ There are three ways to install this plugin.
 1. Event display builder editor
 
 == Changelog ==
+
+= 2.0.2 =
+
+* Added Spanish translation (thanks to Eduardo Larequi of [educacion.navarra.es/web/pnte/](http://www.educacion.navarra.es/web/pnte/)).
 
 = 2.0.1 =
 
