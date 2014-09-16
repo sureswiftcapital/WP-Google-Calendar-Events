@@ -206,10 +206,10 @@ function gce_add_column_headers( $defaults ) {
 		
 	$new_columns = array( 
 		'cb'           => $defaults['cb'],
-		'feed-id'      => 'Feed ID',
-		'feed-sc'      => 'Feed Shortcode',
-		'max-events'   => 'Max Events',
-		'display-type' => 'Display Type'
+		'feed-id'      => __( 'Feed ID', 'gce' ),
+		'feed-sc'      => __( 'Feed Shortcode', 'gce' ),
+		'max-events'   => __( 'Max Events', 'gce' ),
+		'display-type' => __( 'Display Type', 'gce' )
 	);
 
 	return array_merge( $defaults, $new_columns );
@@ -240,11 +240,11 @@ function gce_column_content( $column_name, $post_ID ) {
 			$display = get_post_meta( $post_ID, 'gce_display_mode', true );
 			
 			if( $display == 'grid' ) {
-				echo 'Grid';
+				echo __( 'Grid', 'gce' );
 			} else if( $display == 'list' ) {
-				echo 'List';
+				echo __( 'List', 'gce' );
 			} else { 
-				echo 'Grouped List';
+				echo __( 'Grouped List', 'gce' );
 			}
 			break;
 	}

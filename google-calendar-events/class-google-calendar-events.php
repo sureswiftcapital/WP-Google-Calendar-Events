@@ -68,8 +68,7 @@ class Google_Calendar_Events {
 		
 		
 		// Load plugin text domain
-		add_action( 'plugins_loaded', array( $this, 'plugin_textdomain' ) );
-		
+		$this->plugin_textdomain();
 	}
 	
 	/**
