@@ -83,6 +83,7 @@ There are three ways to install this plugin.
 
 * Added Spanish translation (thanks to Eduardo Larequi of [educacion.navarra.es/web/pnte/](http://www.educacion.navarra.es/web/pnte/)).
 * Fixed timezone issues by forcing calendar feeds to use the timezone selected in the site's General Settings. Feed-specific timezone setting removed.
+* Fixed a bug with recurring events display.
 
 = 2.0.1 =
 
