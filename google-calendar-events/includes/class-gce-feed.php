@@ -108,18 +108,16 @@ class GCE_Feed {
 		//Add the default parameters to the querystring (retrieving JSON, not XML)
 		$query = '?alt=json&sortorder=ascending&orderby=starttime';
 
-		//$gmt_offset = $this->timezone_offset * 3600;
+		$gmt_offset = get_option( 'gmt_offset' ) * 3600;
 
 		//Append the feed specific parameters to the querystring
-		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->start /* - $gmt_offset */);
-		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->end /* - $gmt_offset */ );
+		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->start - $gmt_offset );
+		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->end - $gmt_offset );
 		$query .= '&max-results=' . $this->max;
 
 		// Set the timezone offset
 		if ( ! empty( $this->timezone_offset ) && $this->timezone_offset != 'default' ) {
 			$query .= '&ctz=' . $this->timezone_offset;
-		} else if ( ! empty( $this->timezone_offset ) && $this->timezone_offset == 'default' ) {
-			$query .= '&ctz=' . get_option( 'timezone_string' );
 		}
 		
 		if ( ! empty( $this->search_query ) ) {
