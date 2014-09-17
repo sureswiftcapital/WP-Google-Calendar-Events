@@ -192,7 +192,7 @@ class GCE_Event {
 		//If link should be displayed add to $markup
 		if ( isset($display_options['display_link'] ) ) {
 			$target = ( ! empty( $display_options['display_link_target'] ) ? 'target="blank"' : '' );
-			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '&amp;ctz=' . esc_html( $this->feed->timezone_offset ) . '" ' . $target . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
+			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $this->link ) . '" ' . $target . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
 		}
 
 		return $markup;
@@ -361,10 +361,10 @@ class GCE_Event {
 
 			case 'link':
 				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
-				return $m[1] . '<a href="' . esc_url( $this->link . '&ctz=' . $this->feed->timezone_offset ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
+				return $m[1] . '<a href="' . esc_url( $this->link ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
 
 			case 'url':
-				return $m[1] . esc_url( $this->link . '&ctz=' . $this->feed->timezone_offset ) . $m[6];
+				return $m[1] . esc_url( $this->link ) . $m[6];
 
 			case 'feed-id':
 				return $m[1] . intval( $this->feed->id ) . $m[6];

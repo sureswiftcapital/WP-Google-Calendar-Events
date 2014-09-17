@@ -140,7 +140,6 @@ function create_cpt_meta( $id, $args ) {
 		'gce_retrieve_max'     => $args['max_events'],
 		'gce_date_format'      => $args['date_format'],
 		'gce_time_format'      => $args['time_format'],
-		'gce_timezone_offset'  => $args['timezone'],
 		'gce_cache'            => $args['cache_duration'],
 		'gce_multi_day_events' => ( $args['multiple_day'] == 'true' || $args['multiple_day'] == true ? '1' : '0' ),
 		'gce_display_mode'     => 'grid',

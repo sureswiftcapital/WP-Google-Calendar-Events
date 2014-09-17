@@ -18,7 +18,6 @@ class GCE_Feed {
 		   $max,
 		   $date_format,
 		   $time_format,
-		   $timezone_offset,
 		   $cache,
 		   $multiple_day_events,
 		   $display_url,
@@ -72,7 +71,6 @@ class GCE_Feed {
 		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
-		$this->timezone_offset     = get_post_meta( $this->id, 'gce_timezone_offset', true );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
 		$this->multiple_day_events = get_post_meta( $this->id, 'gce_multi_day_events', true );
 		$this->search_query        = get_post_meta( $this->id, 'gce_search_query', true );
@@ -114,11 +112,6 @@ class GCE_Feed {
 		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->start - $gmt_offset );
 		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->end - $gmt_offset );
 		$query .= '&max-results=' . $this->max;
-
-		// Set the timezone offset
-		if ( ! empty( $this->timezone_offset ) && $this->timezone_offset != 'default' ) {
-			$query .= '&ctz=' . $this->timezone_offset;
-		}
 		
 		if ( ! empty( $this->search_query ) ) {
 			$query .= '&q=' . rawurlencode( $this->search_query ); 

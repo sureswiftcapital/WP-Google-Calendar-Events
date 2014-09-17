@@ -145,7 +145,6 @@ function gce_save_meta( $post_id ) {
 		'gce_retrieve_max',
 		'gce_date_format',
 		'gce_time_format',
-		'gce_timezone_offset',
 		'gce_cache',
 		'gce_multi_day_events',
 		'gce_display_mode',

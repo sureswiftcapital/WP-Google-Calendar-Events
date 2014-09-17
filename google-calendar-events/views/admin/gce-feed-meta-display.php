@@ -151,14 +151,6 @@
 	</tr>
 
 	<tr>
-		<th scope="row"><label for="gce_timezone_offset"><?php _e( 'Timezone Adjustment', 'gce' ); ?></label></th>
-		<td>
-			<?php echo gce_add_timezone_field(); ?>
-			<p class="description"><?php _e( 'If you are having problems with dates and times displaying in the wrong timezone, select a city in your required timezone here.', 'gce' ); ?></p>
-		</td>
-	</tr>
-
-	<tr>
 		<th scope="row"><label for="gce_cache"><?php _e( 'Cache Duration', 'gce' ); ?></label></th>
 		<td>
 			<input type="text" class="" name="gce_cache" id="gce_cache" value="<?php echo $gce_cache; ?>" />
@@ -199,32 +191,3 @@
 		</td>
 	</tr>
 </table>
-
-
-<?php
-/**
- * Since we have a huge list of Timezones we use this to grab them 
- * 
- * @since 2.0.0
- */
-function gce_add_timezone_field() {
-	global $post;
-	
-	$gce_timezone_offset  = get_post_meta( $post->ID, 'gce_timezone_offset', true );
-	
-	require_once( 'timezone-choices.php' );
-	
-	$timezone_list = gce_get_timezone_choices();
-	
-	//Set selected="selected" for default option
-	if( ! empty( $gce_timezone_offset ) ) {
-		$timezone_list = str_replace(('<option value="' . $gce_timezone_offset . '"'), ('<option value="' . $gce_timezone_offset . '" selected="selected"'), $timezone_list);
-	} else {
-		$timezone_list = str_replace( '<option value="default">Default</option>', '<option value="default" selected="selected">Default</option>', $timezone_list );
-	}
-	
-	return $timezone_list;
-
-}
-
-
