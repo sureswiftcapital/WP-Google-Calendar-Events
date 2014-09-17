@@ -44,10 +44,10 @@
 	<br/>
 	<br/>
 
-	<?php echo __( 'Want to know when we release something new?', 'gce' ); ?>
+	<?php echo __( 'Want to be in the know?', 'gce' ); ?>
 	<strong>
 		<a href="http://eepurl.com/0_VsT" target="_blank">
-			<?php echo __( 'Get notified of major plugin updates', 'gce' ); ?>
+			<?php echo __( 'Get notified when new features are released', 'gce' ); ?>
 		</a>
 	</strong>
 </div>
