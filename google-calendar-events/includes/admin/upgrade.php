@@ -141,7 +141,7 @@ function create_cpt_meta( $id, $args ) {
 		'gce_date_format'      => $args['date_format'],
 		'gce_time_format'      => $args['time_format'],
 		'gce_cache'            => $args['cache_duration'],
-		'gce_multi_day_events' => ( $args['multiple_day'] == 'true' || $args['multiple_day'] == true ? '1' : '0' ),
+		'gce_multi_day_events' => ( $args['multiple_day'] != 'false' ? '1' : '0' ),
 		'gce_display_mode'     => 'grid',
 		'gce_custom_from'      => gce_convert_timestamp( $args['retrieve_from_value'] ),
 		'gce_custom_until'     => gce_convert_timestamp( $args['retrieve_until_value'] ),
