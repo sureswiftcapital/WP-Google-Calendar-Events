@@ -15,13 +15,13 @@
 		<li>
 			<div class="dashicons dashicons-arrow-right-alt2"></div>
 			<a href="http://eepurl.com/0_VsT" target="_blank">
-				<?php _e( 'Get Notified of Major Updates', 'gce' ); ?></a>
+				<?php _e( 'Get new feature release notifications', 'gce' ); ?></a>
 		</li>
 
 		<li>
 			<div class="dashicons dashicons-arrow-right-alt2"></div>
 			<a href="http://wordpress.org/support/view/plugin-reviews/google-calendar-events" target="_blank">
-				<?php _e( 'Now Accepting 5-Star Reviews!', 'gce' ); ?></a>
+				<?php _e( 'Mind a plugin rating? Thanks!', 'gce' ); ?></a>
 		</li>
 	</ul>
 </div>
