@@ -79,6 +79,30 @@ function gce_ajax() {
 add_action( 'wp_ajax_nopriv_gce_ajax', 'gce_ajax' );
 add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
 
+
+/**
+* AJAX function for grid pagination
+* 
+* @since 2.0.0
+*/
+function gce_ajax_list() {
+  
+	$grouped = $_GET['gce_grouped'];
+	$start   = $_GET['gce_month'];
+	$end     = $start + 1;
+	$ids     = $_GET['gce_feed_ids'];
+	$title_text   = $_GET['gce_title_text'];
+	$sort = $_GET['gce_sort'];
+	
+	$d = new GCE_Display( explode( '-', $ids ), $title_text, $sort );
+
+	echo $d->get_list( $grouped, $start, $end );
+	   
+	die();
+}
+add_action( 'wp_ajax_nopriv_gce_ajax_list', 'gce_ajax_list' );
+add_action( 'wp_ajax_gce_ajax_list', 'gce_ajax_list' );
+
 function gce_feed_content( $content ) {
 	global $post;
 	

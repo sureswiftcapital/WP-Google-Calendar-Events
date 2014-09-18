@@ -52,6 +52,33 @@ function gce_tooltips(target_items){
 	});
 }
 
-jQuery(document).ready(function(){
+jQuery(document).ready(function($){
 	gce_tooltips('.gce-has-events');
+	
+	$('.gce-change-month-list').on( 'click', function(e) {
+		
+		e.preventDefault();
+		
+		var month = $(this).data('gce-month');
+		var grouped = $(this).parent().parent().data('gce-grouped');
+		var title_text = $(this).parent().parent().data('gce-title');
+		var feed_ids = $(this).parent().parent().data( 'gce-feeds');
+		var sort = $(this).parent().parent().data('gce-sort');
+		
+		//Add loading text to table caption
+		$('.gce-month-title').html('Loading...');
+		
+		//Send AJAX request
+		jQuery.get(gce.ajaxurl,{
+			action:'gce_ajax_list',
+			gce_feed_ids:feed_ids,
+			gce_title_text:title_text,
+			gce_month: month,
+			gce_grouped: grouped,
+			gce_sort: sort
+		}, function(data){
+			console.log( 'Data', data);
+			$('.gce-page-list').html(data);
+		});
+	});
 });
