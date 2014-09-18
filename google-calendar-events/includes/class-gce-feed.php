@@ -13,7 +13,6 @@ class GCE_Feed {
 	
 	public $id,
 		   $feed_url,
-		   $max,
 		   $date_format,
 		   $time_format,
 		   $cache,
@@ -64,7 +63,6 @@ class GCE_Feed {
 		$time_format = get_post_meta( $this->id, 'gce_time_format', true );
 		
 		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
-		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
@@ -106,8 +104,6 @@ class GCE_Feed {
 
 		//Append the feed specific parameters to the querystring
 		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) );
-		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', 2145916800 );
-		//$query .= '&max-results=' . $this->max;
 		
 		if ( ! empty( $this->search_query ) ) {
 			$query .= '&q=' . rawurlencode( $this->search_query ); 

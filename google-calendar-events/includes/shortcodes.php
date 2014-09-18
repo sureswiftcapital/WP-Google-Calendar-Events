@@ -22,7 +22,6 @@ function gce_gcal_shortcode( $attr ) {
 	extract( shortcode_atts( array(
 					'id'      => null,
 					'display' => '',
-					'max'     => 0,
 					'order'   => 'asc',
 					'title'   => null,
 					'type'    => null,
@@ -62,7 +61,6 @@ function gce_gcal_shortcode( $attr ) {
 
 	$args = array(
 		'title_text' => $title,
-		'max_events' => $max,
 		'sort'       => $order,
 		'grouped'    => ( $display == 'list-grouped' ? 1 : 0 ),
 		'month'      => null,

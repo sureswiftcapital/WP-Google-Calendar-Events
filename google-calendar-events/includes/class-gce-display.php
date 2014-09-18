@@ -13,11 +13,10 @@ class GCE_Display {
 	
 	private $feeds, $merged_feeds;
 	
-	public function __construct( $ids, $title_text = null, $max_events = 0, $sort_order = 'asc' ) {
+	public function __construct( $ids, $title_text = null, $sort_order = 'asc' ) {
 		
 		$this->id         = $ids;
 		$this->title      = $title_text;
-		$this->max_events = $max_events;
 		$this->sort       = $sort_order;
 		
 		foreach( $ids as $id ) {
@@ -61,11 +60,9 @@ class GCE_Display {
 		//Total number of events retrieved
 		$count = count( $this->merged_feeds );
 		
-		//If maximum events to display is 0 (unlimited) set $max to 1, otherwise use maximum of events specified by user
-		$max = ( 0 == $this->max_events ) ? 1 : $this->max_events;
 
 		//Loop through entire array of events, or until maximum number of events to be displayed has been reached
-		for ( $i = 0; $i < $count && $max > 0; $i++ ) {
+		for ( $i = 0; $i < $count; $i++ ) {
 			$event = $this->merged_feeds[$i];
 			
 			//Check that event ends, or starts (or both) within the required date range. This prevents all-day events from before / after date range from showing up.
@@ -73,10 +70,6 @@ class GCE_Display {
 				foreach ( $event->get_days() as $day ) {
 					$event_days[$day][] = $event;
 				}
-
-				//If maximum events to display isn't 0 (unlimited) decrement $max counter
-				if ( 0 != $this->max_events )
-					$max--;
 			}
 		}
 

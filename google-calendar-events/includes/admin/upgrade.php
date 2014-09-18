@@ -84,52 +84,6 @@ function convert_to_cpt_posts( $args ) {
  */
 function create_cpt_meta( $id, $args ) {
 	
-	// Convert the dropdown values to the new values for "Retrieve Events From"
-	switch( $args['retrieve_from'] ) {
-		case 'now':
-		case 'today':
-			$from = 'today';
-			break;
-		case 'week':
-			$from = 'start_week';
-			break;
-		case 'month-start':
-			$from = 'start_month';
-			break;
-		case 'month-end':
-			$from = 'end_month';
-			break;
-		case 'date':
-			$from = 'custom_date';
-			break;
-		default: 
-			$from = 'start_time';
-			break;
-	}
-	
-	// Convert the dropdown values to the new values for "Retrieve Events Until"
-	switch( $args['retrieve_until'] ) {
-		case 'now':
-		case 'today':
-			$until = 'today';
-			break;
-		case 'week':
-			$until = 'start_week';
-			break;
-		case 'month-start':
-			$until = 'start_month';
-			break;
-		case 'month-end':
-			$until = 'end_month';
-			break;
-		case 'date':
-			$until = 'custom_date';
-			break;
-		default: 
-			$until = 'end_time';
-			break;
-	}
-	
 	$gce_expand_recurring = ( isset( $args['expand_recurring'] ) ? ( $args['expand_recurring'] == 'true' ? '1' : '0' ) : '1' );
 	
 	// An array to hold all of our post meta ids and values so that we can loop through and add as post meta easily
@@ -137,7 +91,6 @@ function create_cpt_meta( $id, $args ) {
 		'gce_feed_url'         => $args['url'],
 		'gce_retrieve_from'    => $from,
 		'gce_retrieve_until'   => $until,
-		'gce_retrieve_max'     => $args['max_events'],
 		'gce_date_format'      => $args['date_format'],
 		'gce_time_format'      => $args['time_format'],
 		'gce_cache'            => $args['cache_duration'],

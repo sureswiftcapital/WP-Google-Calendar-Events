@@ -79,12 +79,10 @@ class GCE_Widget extends WP_Widget {
 				$feed_ids = implode( '-', $feed_ids );
 
 				$title_text = ( ! empty( $instance['display_title_text'] )  ? $instance['display_title_text'] : null );
-				$max_events = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
 				$sort_order = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 				
 				$args = array(
 					'title_text' => $title_text,
-					'max_events' => $max_events,
 					'sort'       => $sort_order,
 					'month'      => null,
 					'year'       => null,
@@ -122,7 +120,6 @@ class GCE_Widget extends WP_Widget {
 		$instance['title']              = esc_html( $new_instance['title'] );
 		$instance['id']                 = esc_html( $new_instance['id'] );
 		$instance['display_type']       = esc_html( $new_instance['display_type'] );
-		$instance['max_events']         = absint( $new_instance['max_events'] );
 		$instance['order']              = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
 		$instance['display_title_text'] = wp_filter_kses( $new_instance['display_title_text'] );
 		
@@ -148,7 +145,6 @@ class GCE_Widget extends WP_Widget {
 		$title         = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
 		$ids           = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
 		$display_type  = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
-		$max_events    = ( isset( $instance['max_events'] ) ) ? $instance['max_events'] : 0;
 		$order         = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 		$display_title = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
 		$title_text    = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
@@ -172,11 +168,6 @@ class GCE_Widget extends WP_Widget {
 				<option value="list"<?php selected( $display_type, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
 				<option value="list-grouped"<?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
 			</select>
-		</p>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id( 'max_events' ); ?>"><?php _e( 'Maximum no. events to display. Enter 0 to show all retrieved.' ); ?></label>
-			<input type="text" id="<?php echo $this->get_field_id( 'max_events' ); ?>" name="<?php echo $this->get_field_name( 'max_events' ); ?>" value="<?php echo $max_events; ?>" class="widefat" />
 		</p>
 		
 		<p>

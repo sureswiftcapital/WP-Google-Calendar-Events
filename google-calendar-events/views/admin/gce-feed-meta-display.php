@@ -20,7 +20,6 @@
 	
 	// Load up all post meta data
 	$gce_feed_url         = get_post_meta( $post->ID, 'gce_feed_url', true );
-	$gce_retrieve_max     = get_post_meta( $post->ID, 'gce_retrieve_max', true );
 	$gce_date_format      = get_post_meta( $post->ID, 'gce_date_format', true );
 	$gce_time_format      = get_post_meta( $post->ID, 'gce_time_format', true );
 	$gce_cache            = get_post_meta( $post->ID, 'gce_cache', true );
@@ -84,14 +83,6 @@
 			<input type="checkbox" name="gce_expand_recurring" id="gce_expand_recurring" value="1" <?php checked( $gce_expand_recurring, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
 			<p class="description"><?php _e( 'This will show recurring events each time they occur, otherwise it will only show the event the first time it occurs.', 'gce' ); ?></p>
 		</td>
-	</tr>
-
-	<tr>
-		<th scope="row"><label for="gce_retrieve_max"><?php _e( 'Max Number of Events', 'gce' ); ?></label></th>
-		<td>
-			<input type="text" class="" name="gce_retrieve_max" id="gce_retrieve_max" value="<?php echo $gce_retrieve_max; ?>" />
-			<p class="description"><?php _e( 'Maximum number of events to show.', 'gce' ); ?></p>
-		<td>
 	</tr>
 
 	<tr>
