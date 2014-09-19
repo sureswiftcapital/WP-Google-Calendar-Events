@@ -129,7 +129,7 @@ class GCE_Feed {
 	 * 
 	 * @since 2.0.0
 	 */
-	private function get_feed_data( $url ) {
+	private function get_feed_data( $url ) {	
 		$raw_data = wp_remote_get( $url, array(
 				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
 				'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
@@ -194,7 +194,6 @@ class GCE_Feed {
 			}
 		} else {
 			if( $this->cache > 0 && false === get_transient( 'gce_feed_' . $this->id ) ) {
-				echo 'Caching...<br>';
 				$this->cache_events();
 			}
 		}
