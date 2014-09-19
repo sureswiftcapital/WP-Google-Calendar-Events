@@ -79,6 +79,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.3 =
+
+* Fixed a caching bug.
+
 = 2.0.2 =
 
 * Added Spanish translation (thanks to Eduardo Larequi of [educacion.navarra.es/web/pnte/](http://www.educacion.navarra.es/web/pnte/)).
