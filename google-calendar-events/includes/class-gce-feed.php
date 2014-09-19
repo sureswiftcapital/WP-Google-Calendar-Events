@@ -38,10 +38,6 @@ class GCE_Feed {
 		
 		// Now create the Feed
 		$this->create_feed();
-		
-		if( $this->cache > 0 ) {
-			$this->cache_events();
-		}
 	}
 	
 	/**
@@ -106,7 +102,7 @@ class GCE_Feed {
 		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) );
 		
 		if ( ! empty( $this->search_query ) ) {
-			$query .= '&q=' . rawurlencode( $this->search_query ); 
+			$query .= '&q=' . rawurlencode( $this->search_query );
 		}
 		
 		if ( $this->expand_recurring ) {
@@ -187,6 +183,11 @@ class GCE_Feed {
 			if( current_user_can( 'manage_options' ) ) {
 				echo $this->error;
 				return;
+			}
+		} else {
+			if( $this->cache > 0 && false === get_transient( 'gce_feed_' . $this->id ) ) {
+				echo 'Caching...<br>';
+				$this->cache_events();
 			}
 		}
 	}
