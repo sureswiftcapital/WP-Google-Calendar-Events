@@ -13,6 +13,9 @@ class GCE_Feed {
 	
 	public $id,
 		   $feed_url,
+		   $start,
+		   $end,
+		   $max,
 		   $date_format,
 		   $time_format,
 		   $cache,
@@ -59,6 +62,9 @@ class GCE_Feed {
 		$time_format = get_post_meta( $this->id, 'gce_time_format', true );
 		
 		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
+		$this->start               = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_from', true ), 'start' );
+		$this->end                 = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_until', true ), 'end' );
+		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
@@ -99,7 +105,9 @@ class GCE_Feed {
 		$gmt_offset = get_option( 'gmt_offset' ) * 3600;
 
 		//Append the feed specific parameters to the querystring
-		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) - $gmt_offset );
+		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $this->start - $gmt_offset );
+		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $this->end - $gmt_offset );
+		$query .= '&max-results=' . $this->max;
 		
 		if ( ! empty( $this->search_query ) ) {
 			$query .= '&q=' . rawurlencode( $this->search_query );
@@ -199,6 +207,54 @@ class GCE_Feed {
 	private function iso_to_ts( $iso ) {
 		sscanf( $iso, "%u-%u-%uT%u:%u:%uZ", $year, $month, $day, $hour, $minute, $second );
 		return mktime( $hour, $minute, $second, $month, $day, $year );
+	}
+	
+	/**
+	 * Return feed start/end
+	 * 
+	 * @since 2.0.0
+	 */
+	private function set_feed_length( $value, $type ) {
+		// All times start at 00:00
+		switch ( $value ) {
+			case 'today':
+				$return = mktime( 0, 0, 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
+				break;
+			case 'start_week':
+				$return = mktime( 0, 0, 0, date( 'm' ), ( date( 'j' ) - date( 'w' ) ), date( 'Y' ) );
+				break;
+			case 'start_month':
+				$return = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
+				break;
+			case 'end_month':
+				$return = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
+				break;
+			case 'custom_date':
+				if( $type == 'start' ) {
+					$date = get_post_meta( $this->id, 'gce_custom_from', true );
+					$fallback = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
+				} else {
+					$date = get_post_meta( $this->id, 'gce_custom_until', true );
+					$fallback = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
+				}
+				
+				if( ! empty( $date ) ) {
+					$date = explode( '/', $date );
+					$return = mktime( 0, 0, 0, $date[0], $date[1], $date[2] );
+				} else {
+					$return = $fallback;
+				}
+				break;
+			default:
+				if( $type == 'start' ) {
+					$return = 0; //any - 1970-01-01 00:00
+				} else {
+					// Set default end time
+					$return = 2145916800;
+				}
+		}
+		
+		return $return;
 	}
 	
 	function get_builder() {

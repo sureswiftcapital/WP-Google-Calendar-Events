@@ -20,6 +20,9 @@
 	
 	// Load up all post meta data
 	$gce_feed_url         = get_post_meta( $post->ID, 'gce_feed_url', true );
+	$gce_retrieve_from    = get_post_meta( $post->ID, 'gce_retrieve_from', true );
+	$gce_retrieve_until   = get_post_meta( $post->ID, 'gce_retrieve_until', true );
+	$gce_retrieve_max     = get_post_meta( $post->ID, 'gce_retrieve_max', true );
 	$gce_date_format      = get_post_meta( $post->ID, 'gce_date_format', true );
 	$gce_time_format      = get_post_meta( $post->ID, 'gce_time_format', true );
 	$gce_cache            = get_post_meta( $post->ID, 'gce_cache', true );
@@ -83,6 +86,46 @@
 			<input type="checkbox" name="gce_expand_recurring" id="gce_expand_recurring" value="1" <?php checked( $gce_expand_recurring, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
 			<p class="description"><?php _e( 'This will show recurring events each time they occur, otherwise it will only show the event the first time it occurs.', 'gce' ); ?></p>
 		</td>
+	</tr>
+
+	<tr>
+		<th scope="row"><label for="gce_retrieve_from"><?php _e( 'Retrieve Events From', 'gce' ); ?></label></th>
+		<td>
+			<select name="gce_retrieve_from" id="gce_retrieve_from">
+				<option value="today" <?php selected( $gce_retrieve_from, 'today', true ); ?>><?php _e( 'Today', 'gce' ); ?></option>
+				<option value="start_week" <?php selected( $gce_retrieve_from, 'start_week', true ); ?>><?php _e( 'Start of current week', 'gce' ); ?></option>
+				<option value="start_month" <?php selected( $gce_retrieve_from, 'start_month', true ); ?>><?php _e( 'Start of current month', 'gce' ); ?></option>
+				<option value="end_month" <?php selected( $gce_retrieve_from, 'end_month', true ); ?>><?php _e( 'End of current month', 'gce' ); ?></option>
+				<option value="start_time" <?php selected( $gce_retrieve_from, 'start_time', true ); ?>><?php _e( 'The beginning of time', 'gce' ); ?></option>
+				<option value="custom_date" <?php selected( $gce_retrieve_from, 'custom_date', true ); ?>><?php _e( 'Specific date', 'gce' ); ?></option>
+			</select>
+			<input type="text" <?php echo ( $gce_retrieve_from != 'custom_date' ? 'class="gce-admin-hidden" ' : ' ' ); ?> name="gce_custom_from" id="gce_custom_from" value="<?php echo $gce_custom_from; ?>" />
+			<p class="description"><?php _e( 'The point in time at which to start retrieving events.', 'gce' ); ?></p>
+		</td>
+	</tr>
+
+	<tr>
+		<th scope="row"><label for="gce_retrieve_until"><?php _e( 'Retrieve Events Until', 'gce' ); ?></label></th>
+		<td>
+			<select name="gce_retrieve_until" id="gce_retrieve_until">
+				<option value="today" <?php selected( $gce_retrieve_until, 'today', true ); ?>><?php _e( 'Today', 'gce' ); ?></option>
+				<option value="start_week" <?php selected( $gce_retrieve_until, 'start_week', true ); ?>><?php _e( 'Start of current week', 'gce' ); ?></option>
+				<option value="start_month" <?php selected( $gce_retrieve_until, 'start_month', true ); ?>><?php _e( 'Start of current month', 'gce' ); ?></option>
+				<option value="end_month" <?php selected( $gce_retrieve_until, 'end_month', true ); ?>><?php _e( 'End of current month', 'gce' ); ?></option>
+				<option value="end_time" <?php selected( $gce_retrieve_until, 'end_time', true ); ?>><?php _e( 'The end of time', 'gce' ); ?></option>
+				<option value="custom_date" <?php selected( $gce_retrieve_until, 'custom_date', true ); ?>><?php _e( 'Specific date', 'gce' ); ?></option>
+			</select>
+			<input type="text" <?php echo ( $gce_retrieve_until != 'custom_date' ? 'class="gce-admin-hidden" ' : ' ' ); ?> name="gce_custom_until" id="gce_custom_until" value="<?php echo $gce_custom_until; ?>" />
+			<p class="description"><?php _e( 'The point in time at which to stop retrieving events.', 'gce' ); ?></p>
+		</td>
+	</tr>
+
+	<tr>
+		<th scope="row"><label for="gce_retrieve_max"><?php _e( 'Max Number of Events', 'gce' ); ?></label></th>
+		<td>
+			<input type="text" class="" name="gce_retrieve_max" id="gce_retrieve_max" value="<?php echo $gce_retrieve_max; ?>" />
+			<p class="description"><?php _e( 'Maximum number of events to show.', 'gce' ); ?></p>
+		<td>
 	</tr>
 
 	<tr>
