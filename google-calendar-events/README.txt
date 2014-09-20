@@ -81,7 +81,8 @@ There are three ways to install this plugin.
 
 = 2.0.3 =
 
-* Fixed a caching bug.
+* Fixed bug where calendar feed caches weren't getting cleared properly.
+* Fixed feed settings metabox content wrapping issue.
 
 = 2.0.2 =
 
