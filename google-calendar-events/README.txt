@@ -79,6 +79,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.3.1 =
+
+* Fixed bug where retrieve from/until dates were accidentally removed.
+
 = 2.0.3 =
 
 * Fixed bug where calendar feed caches weren't getting cleared properly.
