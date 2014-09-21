@@ -66,11 +66,11 @@ class GCE_Display {
 			$event = $this->merged_feeds[$i];
 			
 			//Check that event ends, or starts (or both) within the required date range. This prevents all-day events from before / after date range from showing up.
-			if ( $event->end_time > $event->start_time && $event->start_time < $event->end_time ) {
+			//if ( $event->end_time > $event->start_time && $event->start_time < $event->end_time ) {
 				foreach ( $event->get_days() as $day ) {
 					$event_days[$day][] = $event;
 				}
-			}
+			//}
 		}
 
 		return $event_days;
@@ -200,19 +200,41 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_list( $grouped = false, $start = 0, $end = 1 ) {
-		$time_now = current_time( 'timestamp' );
+	public function get_list( $grouped = false, $start = null, $end = null ) {
+		
+		if( $start == null ) {
+			$time_now = current_time( 'timestamp' );
+		} else { 
+			$time_now = mktime( 0, 0, 0, $start, 1, date( 'Y' ) );
+		}
+		
+		if( $end == null ) {
+			$end = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
+		} else {
+			$end = mktime( 0, 0, 0, $end, 1, date( 'Y' ) );
+		}
+		
+		//echo 'Time Now: ' . $time_now . '<br>';
+		//echo 'End: ' . $end . '<br>';
 		
 		// Get all the event days
 		$event_days = $this->get_event_days();
+		
+		
+		//echo var_dump( $event_days );
+		
+		//die();
+		
+		//echo '<pre>' . print_r( $event_days, true ) . '</pre>';
+		//die();
 
 		//If event_days is empty, there are no events in the feed(s), so return a message indicating this
 		if( empty( $event_days) ) {
 			return '<p>' . __( 'There are currently no events to display.', 'gce' ) . '</p>';
 		}
 		
-		$today     = mktime( 0, 0, 0, date( 'm', $time_now ) + $start, date( 'd', $time_now ), date( 'Y', $time_now ) );
-		$end_month = mktime( 0, 0, 0, date( 'm' ) + $end, 1, date( 'Y' ) );
+		$today     = mktime( 0, 0, 0, date( 'm', $time_now ), 1, date( 'Y' ) );
+		$end_month = mktime( 0, 0, 0, date( 'm', $end ), 1, date( 'Y' ) );
 
 		$i = 1;
 		
@@ -231,8 +253,17 @@ class GCE_Display {
 		$max_count = 1;
 
 		foreach ( $event_days as $key => $event_day ) {
+			//echo 'Key: ' . $key . '<br>';
 			
-			if( $key < $end_month ) {
+			//echo 'Event Day: ' . $event_day . '<bR>';
+			
+			//echo '<pre>' . print_r( $event_day, true ) . '</pre>';
+			
+			//die();
+			
+			if( $event_day[0]->feed->events[1]->end_time > $event_day[0]->feed->events[1]->start_time && $event_day[0]->feed->events[1]->start_time < $event_day[0]->feed->events[1]->end_time ) {
+			//if( $key > $today && $key < $end_month ) {
+				//echo 'TRUE: ' . $key . '<br>';
 			//If this is a grouped list, add the date title and begin the nested list for this day
 				if ( $grouped ) {
 					$markup .=
