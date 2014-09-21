@@ -220,3 +220,22 @@
 	background-color:#DDDDDD;
 	font-weight:bold;
 }
+
+/** List Navigation **/
+.gce-page-list .gce-next {
+	display: inline-block;
+	width: 25%;
+	text-align: right;
+}
+
+.gce-page-list .gce-prev {
+	display: inline-block;
+	width: 25%;
+}
+
+.gce-page-list .gce-month-title {
+	display: inline-block;
+	width: 50%;
+	text-align: center;
+}
+
