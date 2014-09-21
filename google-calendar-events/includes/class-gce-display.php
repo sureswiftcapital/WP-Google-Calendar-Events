@@ -239,6 +239,7 @@ class GCE_Display {
 				date( 'F', $today ) . '</span>' . $n . "</caption>\n";
 		
 		$max_count = 1;
+		$has_events = false;
 
 		foreach ( $event_days as $key => $event_day ) {
 			
@@ -269,9 +270,15 @@ class GCE_Display {
 				if ( $grouped ) {
 					$markup .= '</ul></li>';
 				}
+				
+				$has_events = true;
 			}
 			
 			$max_count++;
+		}
+		
+		if( ! $has_events ) {
+			$markup .= __( 'There are no events to show for this month.', 'gce' );
 		}
 
 		$markup .= '</ul>';
