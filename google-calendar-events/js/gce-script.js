@@ -55,7 +55,7 @@ function gce_tooltips(target_items){
 jQuery(document).ready(function($){
 	gce_tooltips('.gce-has-events');
 	
-	$('.gce-change-month-list').on( 'click', function(e) {
+	$('.gce-page-list').on( 'click', '.gce-change-month-list', function(e) {
 		
 		e.preventDefault();
 		
