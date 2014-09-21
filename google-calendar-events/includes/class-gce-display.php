@@ -235,6 +235,9 @@ class GCE_Display {
 		
 		$today     = mktime( 0, 0, 0, date( 'm', $time_now ), 1, date( 'Y' ) );
 		$end_month = mktime( 0, 0, 0, date( 'm', $end ), 1, date( 'Y' ) );
+		
+		//echo 'Today: ' . $today . '<br>';
+		//echo 'End Month: ' . $end_month . '<br>';
 
 		$i = 1;
 		
@@ -253,6 +256,9 @@ class GCE_Display {
 		$max_count = 1;
 
 		foreach ( $event_days as $key => $event_day ) {
+			
+			//echo $max_count . ' Start: ' . $event_day[0]->feed->events[$max_count]->start_time . ' > ' . $today . '<br>';
+			//echo $max_count . ' End: ' . $event_day[0]->feed->events[$max_count]->end_time . ' < ' . $end_month . '<br>';
 			//echo 'Key: ' . $key . '<br>';
 			
 			//echo 'Event Day: ' . $event_day . '<bR>';
@@ -261,7 +267,12 @@ class GCE_Display {
 			
 			//die();
 			
-			if( $event_day[0]->feed->events[1]->end_time > $event_day[0]->feed->events[1]->start_time && $event_day[0]->feed->events[1]->start_time < $event_day[0]->feed->events[1]->end_time ) {
+			// These are the formats:
+			// $event_day[0]->feed->events[1]->end_time
+			// $event_day[0]->feed->events[1]->start_time
+			
+			if( $event_day[0]->feed->events[$max_count]->start_time > $today && $event_day[0]->feed->events[$max_count]->end_time < $end_month ) {
+				
 			//if( $key > $today && $key < $end_month ) {
 				//echo 'TRUE: ' . $key . '<br>';
 			//If this is a grouped list, add the date title and begin the nested list for this day
@@ -293,6 +304,8 @@ class GCE_Display {
 			
 			$max_count++;
 		}
+		
+		//echo '-------------------------------------------------';
 
 		$markup .= '</ul>';
 
