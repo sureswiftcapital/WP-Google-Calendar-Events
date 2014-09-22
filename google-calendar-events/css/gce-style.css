@@ -12,6 +12,8 @@
 .gce-page-grid .gce-calendar .gce-caption{ /* Caption at top of calendar */
 	color:#333333;
 	text-align:center;
+	padding-bottom:10px;
+	position:relative;
 }
 
 .gce-page-grid .gce-calendar{ /* Main calendar table */
@@ -56,18 +58,20 @@
 .gce-page-grid .gce-calendar .gce-next,
 .gce-page-grid .gce-calendar .gce-prev{ /* Previous and next month links */
 	cursor:pointer;
-	display:inline-block;
-	width:5%;
-	white-space: nowrap;
 }
 
 .gce-page-grid .gce-calendar .gce-prev{
-	float: left;
+	left:0;
+	position:absolute;
+}
+
+.gce-page-grid .gce-calendar .gce-next{
+	right:0;
+	position:absolute;
 }
 
 .gce-page-grid .gce-calendar .gce-month-title{ /* Month title */
-	display:inline-block;
-	width:80%;
+	text-align:center;
 }
 
 .gce-page-grid .gce-calendar th abbr{ /* Day letter abbreviation */
@@ -103,6 +107,8 @@
 
 .gce-widget-grid .gce-calendar .gce-caption{
 	text-align:center;
+	padding:bottom;
+	position:relative;
 }
 
 .gce-widget-grid .gce-calendar{ /* Main calendar table */
@@ -140,18 +146,20 @@
 .gce-widget-grid  .gce-calendar .gce-next,
 .gce-widget-grid  .gce-calendar .gce-prev{ /* Prev and next month links */
 	cursor:pointer;
-	display:inline-block;
-	width:5%;
-	white-space: nowrap;
 }
 
 .gce-widget-grid .gce-calendar .gce-prev{
-	float: left;
+	left:0;
+	position:absolute;
+}
+
+.gce-widget-grid .gce-calendar .gce-next{
+	right:0;
+	position:absolute;
 }
 
 .gce-widget-grid .gce-calendar .gce-month-title{ /* Month title in caption at top of table */
-	display:inline-block;
-	width:80%;
+	text-align:center;
 }
 
 .gce-widget-grid .gce-calendar th abbr{ /* Day name abbreviations */

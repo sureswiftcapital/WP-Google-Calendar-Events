@@ -31,7 +31,7 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 		$day_names[$n]['initial'] = $wp_locale->get_weekday_initial( date_i18n( 'l', $t, true ) );
 	}
 
-	list( $month, $year, $month_name, $weekday ) = explode( ',', date_i18n( 'm, Y, F, w', $first_of_month ) );
+	list( $month, $year, $month_name, $weekday ) = explode( ',', date_i18n( 'm,Y,F,w', $first_of_month ) );
 	$weekday = ( $weekday + 7 - $first_day ) % 7; #adjust for $first_day
 	$title = esc_html( $month_name ) . '&nbsp;' . $year;  #note that some locales don't capitalize month and day names
 
@@ -40,19 +40,11 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	list( $n, $nl ) = each( $pn ); #previous and next links, if applicable
 	
 	if ( $p ) {
-		if( $widget ) {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
-		} else {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . ' Back</a>' ) : $p ) . '</span>&nbsp;';
-		}
+		$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . '</a>' ) : $p ) . '</span>';
 	}
 	
 	if ( $n ) {
-		if( $widget ) {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">' . $n . '</a>' ) : $n ) . '</span>';
-		} else {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">Next ' . $n . '</a>' ) : $n ) . '</span>';
-		}
+		$n = '<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">' . $n . '</a>' ) : $n ) . '</span>';
 	}
 	
 	$calendar = '<table class="gce-calendar">' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . ( ( $month_href ) ? ( '<a href="' . esc_attr( $month_href ) . '">' . $title . '</a>' ) : $title ) . '</span>' . $n . "</caption>\n<tr>";
