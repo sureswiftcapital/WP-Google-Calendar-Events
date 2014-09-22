@@ -39,9 +39,9 @@ class GCE_Feed {
 		// Now create the Feed
 		$this->create_feed();
 		
-		if( $this->cache > 0 ) {
+	/*	if( $this->cache > 0 ) {
 			$this->cache_events();
-		}
+		}*/
 	}
 	
 	/**
@@ -105,6 +105,8 @@ class GCE_Feed {
 		//Append the feed specific parameters to the querystring
 		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) );
 		
+		$query .= '&max-results=10000'; 
+		
 		if ( ! empty( $this->search_query ) ) {
 			$query .= '&q=' . rawurlencode( $this->search_query ); 
 		}
@@ -130,7 +132,7 @@ class GCE_Feed {
 				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
 				'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
 			) );
-		
+	
 		// First check for transient data to use
 		if( false !== get_transient( 'gce_feed_' . $this->id ) ) {
 			$this->events = get_transient( 'gce_feed_' . $this->id );
