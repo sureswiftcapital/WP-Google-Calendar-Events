@@ -100,10 +100,14 @@ class GCE_Feed {
 		//Add the default parameters to the querystring (retrieving JSON, not XML)
 		$query = '?alt=json&sortorder=ascending&orderby=starttime';
 
-		//$gmt_offset = get_option( 'gmt_offset' ) * 3600;
+		$gmt_offset = get_option( 'gmt_offset' ) * 3600;
+		
+		//echo 'GMT Offset: ' . $gmt_offset . '<br>';
+		//echo 'First time: ' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) ) . '<br>';
+		//echo 'Second time: ' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) - $gmt_offset );
 
 		//Append the feed specific parameters to the querystring
-		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) );
+		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) - $gmt_offset );
 		
 		$query .= '&max-results=10000'; 
 		

@@ -72,6 +72,10 @@ class GCE_Display {
 				}
 			//}
 		}
+		
+		//echo '<pre>' . print_r( $event_days, true ) . '</pre>';
+		
+		//die();
 
 		return $event_days;
 	}
@@ -112,7 +116,7 @@ class GCE_Display {
 		//Get events data
 		$event_days = $this->get_event_days();
 
-		$today = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
+		$start = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
 		$i = 1;
 
@@ -149,9 +153,9 @@ class GCE_Display {
 					$css_classes[] = 'gce-multiple';
 
 				//If event day is today, add gce-today CSS class, otherwise add past or future class
-				if ( $key == $today ) {
+				if ( $key == $start ) {
 					$css_classes[] = 'gce-today gce-today-has-events';
-				} elseif ( $key < $today ) {
+				} elseif ( $key < $start ) {
 					$css_classes[] = 'gce-day-past';
 				} else {
 					$css_classes[] = 'gce-day-future';
@@ -171,8 +175,8 @@ class GCE_Display {
 		}
 
 		//Ensures that gce-today CSS class is added even if there are no events for 'today'. A bit messy :(
-		if ( ! isset( $event_days[$today] ) )
-			$event_days[$today] = array( null, 'gce-today gce-today-no-events', null );
+		if ( ! isset( $event_days[$start] ) )
+			$event_days[$start] = array( null, 'gce-today gce-today-no-events', null );
 
 		$pn = array();
 
@@ -222,9 +226,9 @@ class GCE_Display {
 			return '<p>' . __( 'There are currently no events to display.', 'gce' ) . '</p>';
 		}
 		
-		$today     = mktime( 0, 0, 0, date( 'm', $time_now ), 1, date( 'Y' ) );
+		$start    = mktime( 0, 0, 0, date( 'm', $time_now), 1, date( 'Y' ) );
 		$end_month = mktime( 0, 0, 0, date( 'm', $end ), 1, date( 'Y' ) );
-	
+		
 		$i = 1;
 		
 		$feeds = implode( $this->id, '-' );
@@ -232,29 +236,28 @@ class GCE_Display {
 		
 		$markup = '<ul class="gce-list" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
-		$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-month="' . ( date( 'n', $today ) - 1 ) . '">Back</a></span>';
-		$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-month="' . ( date( 'n', $today ) + 1 ) . '">Next</a></span>';
+		$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-month="' . ( date( 'n', $start ) - 1 ) . '">Back</a></span>';
+		$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-month="' . ( date( 'n', $start ) + 1 ) . '">Next</a></span>';
 		
 		$markup .= '' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . 
-				date( 'F', $today ) . '</span>' . $n . "</caption>\n";
+				date( 'F Y', $start ) . '</span>' . $n . "</caption>\n";
 		
 		$max_count = 1;
 		$has_events = false;
 
 		foreach ( $event_days as $key => $event_day ) {
 			
-			// Check the events are within the month timeframe
-			if( $event_day[0]->feed->events[$max_count]->start_time > $today && $event_day[0]->feed->events[$max_count]->end_time < $end_month ) {
 			//If this is a grouped list, add the date title and begin the nested list for this day
 				if ( $grouped ) {
 					$markup .=
-						'<li' . ( ( $key == $today ) ? ' class="gce-today"' : '' ) . '>' .
+						'<li' . ( ( $key == $start ) ? ' class="gce-today"' : '' ) . '>' .
 						'<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>' .
 						'<ul>';
 				}
 
 				foreach ( $event_day as $num_in_day => $event ) {
 					//Create the markup for this event
+					if( $event->start_time >= $start && $event->end_time <= $end_month ) {
 					$markup .=
 						'<li class="gce-feed-' . $event->feed->id . '">' .
 						//If this isn't a grouped list and a date title should be displayed, add the date title
@@ -264,6 +267,7 @@ class GCE_Display {
 						'</li>';
 
 					$i++;
+					}
 				}
 
 				//If this is a grouped list, close the nested list for this day
@@ -272,7 +276,6 @@ class GCE_Display {
 				}
 				
 				$has_events = true;
-			}
 			
 			$max_count++;
 		}
