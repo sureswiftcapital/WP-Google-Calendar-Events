@@ -60,8 +60,6 @@ class GCE_Feed {
 		$time_format = get_post_meta( $this->id, 'gce_time_format', true );
 		
 		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
-		$this->start               = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_from', true ), 'start' );
-		$this->end                 = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_until', true ), 'end' );
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
