@@ -204,7 +204,7 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_list( $grouped = false, $start = null, $end = null ) {
+	public function get_list( $grouped = false, $start = null, $end = null, $year = null ) {
 		
 		if( $start == null ) {
 			$time_now = current_time( 'timestamp' );
@@ -217,6 +217,16 @@ class GCE_Display {
 		} else {
 			$end = mktime( 0, 0, 0, $end, 1, date( 'Y' ) );
 		}
+		
+		if( $year == null ) {
+			$year = current_time( 'timestamp' );
+		} else {
+			$year = mktime( 0, 0, 0, 1, 1, $year );
+		}
+		
+		//echo 'Year: ' . date( 'Y', $year ) . '<bR>';
+		
+		$year = date( 'Y', $year );
 
 		// Get all the event days
 		$event_days = $this->get_event_days();
@@ -226,8 +236,8 @@ class GCE_Display {
 			return '<p>' . __( 'There are currently no events to display.', 'gce' ) . '</p>';
 		}
 		
-		$start    = mktime( 0, 0, 0, date( 'm', $time_now), 1, date( 'Y' ) );
-		$end_month = mktime( 0, 0, 0, date( 'm', $end ), 1, date( 'Y' ) );
+		$start    = mktime( 0, 0, 0, date( 'm', $time_now), 1, $year );
+		$end_month = mktime( 0, 0, 0, date( 'm', $end ), 1, $year );
 		
 		$i = 1;
 		
@@ -236,11 +246,11 @@ class GCE_Display {
 		
 		$markup = '<ul class="gce-list" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
-		$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-month="' . ( date( 'n', $start ) - 1 ) . '">Back</a></span>';
-		$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-month="' . ( date( 'n', $start ) + 1 ) . '">Next</a></span>';
+		$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-month="' . ( date( 'n', $start ) - 1 ) . '" data-gce-year="' . $year . '">Back</a></span>';
+		$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-month="' . ( date( 'n', $start ) + 1 ) . '" data-gce-year="' . $year . '">Next</a></span>';
 		
 		$markup .= '' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . 
-				date( 'F Y', $start ) . '</span>' . $n . "</caption>\n";
+				date( 'F', $start ) . ' ' . $year . '</span>' . $n . "</caption>\n";
 		
 		$max_count = 1;
 		$has_events = false;

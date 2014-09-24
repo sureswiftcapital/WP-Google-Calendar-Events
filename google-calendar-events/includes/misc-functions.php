@@ -93,10 +93,11 @@ function gce_ajax_list() {
 	$ids     = $_GET['gce_feed_ids'];
 	$title_text   = $_GET['gce_title_text'];
 	$sort = $_GET['gce_sort'];
+	$year = $_GET['gce_year'];
 	
 	$d = new GCE_Display( explode( '-', $ids ), $title_text, $sort );
 
-	echo $d->get_list( $grouped, $start, $end );
+	echo $d->get_list( $grouped, $start, $end, $year );
 	   
 	die();
 }

@@ -64,6 +64,19 @@ jQuery(document).ready(function($){
 		var title_text = $(this).parent().parent().data('gce-title');
 		var feed_ids = $(this).parent().parent().data( 'gce-feeds');
 		var sort = $(this).parent().parent().data('gce-sort');
+		var year = $(this).data('gce-year');
+		
+		if( month > 12 ) {
+			month = 1;
+			year = year + 1;
+			console.log( 'Next Year' );
+		} 
+		
+		if( month < 1 ) {
+			month = 12;
+			year = year - 1;
+			console.log( 'Previous Year' );
+		}
 		
 		//Add loading text to table caption
 		$('.gce-month-title').html('Loading...');
@@ -75,9 +88,9 @@ jQuery(document).ready(function($){
 			gce_title_text:title_text,
 			gce_month: month,
 			gce_grouped: grouped,
-			gce_sort: sort
+			gce_sort: sort,
+			gce_year: year
 		}, function(data){
-			console.log( 'Data', data);
 			$('.gce-page-list').html(data);
 		});
 	});
