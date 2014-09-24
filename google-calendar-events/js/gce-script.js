@@ -53,7 +53,7 @@ function gce_tooltips(target_items){
 	});
 }
 
-jQuery(document).ready(function(){
+jQuery(document).ready(function($){
 	gce_tooltips('.gce-has-events');
 
 	$('.gce-page-list').on( 'click', '.gce-change-month-list', function(e) {
