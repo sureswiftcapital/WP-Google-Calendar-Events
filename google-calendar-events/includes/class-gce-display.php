@@ -205,7 +205,7 @@ class GCE_Display {
 	 * @since 2.0.0
 	 */
 	public function get_list( $grouped = false, $start = null, $end = null, $year = null ) {
-		
+			
 		if( $start == null ) {
 			$time_now = current_time( 'timestamp' );
 		} else { 
@@ -214,7 +214,7 @@ class GCE_Display {
 		
 		if( $end == null ) {
 			$end = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
-		} else {
+		} else if( $end <= 12 ) {
 			$end = mktime( 0, 0, 0, $end, 1, date( 'Y' ) );
 		}
 		
@@ -223,8 +223,6 @@ class GCE_Display {
 		} else {
 			$year = mktime( 0, 0, 0, 1, 1, $year );
 		}
-		
-		//echo 'Year: ' . date( 'Y', $year ) . '<bR>';
 		
 		$year = date( 'Y', $year );
 
@@ -238,6 +236,10 @@ class GCE_Display {
 		
 		$start    = mktime( 0, 0, 0, date( 'm', $time_now), 1, $year );
 		$end_month = mktime( 0, 0, 0, date( 'm', $end ), 1, $year );
+		
+		if( $end > 12 ) {
+			$end_month = mktime( 23, 59, 59, 12, 31, $year );
+		}
 		
 		$i = 1;
 		

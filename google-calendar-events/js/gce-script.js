@@ -69,13 +69,11 @@ jQuery(document).ready(function($){
 		if( month > 12 ) {
 			month = 1;
 			year = year + 1;
-			console.log( 'Next Year' );
 		} 
 		
 		if( month < 1 ) {
 			month = 12;
 			year = year - 1;
-			console.log( 'Previous Year' );
 		}
 		
 		//Add loading text to table caption
