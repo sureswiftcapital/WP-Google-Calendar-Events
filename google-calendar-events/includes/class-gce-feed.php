@@ -13,6 +13,9 @@ class GCE_Feed {
 	
 	public $id,
 		   $feed_url,
+		   $start,
+		   $end,
+		   $max,
 		   $date_format,
 		   $time_format,
 		   $cache,
@@ -38,10 +41,7 @@ class GCE_Feed {
 		
 		// Now create the Feed
 		$this->create_feed();
-		
-	/*	if( $this->cache > 0 ) {
-			$this->cache_events();
-		}*/
+
 	}
 	
 	/**
@@ -63,6 +63,9 @@ class GCE_Feed {
 		$time_format = get_post_meta( $this->id, 'gce_time_format', true );
 		
 		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
+		$this->start               = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_from', true ), 'start' );
+		$this->end                 = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_until', true ), 'end' );
+		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
@@ -101,6 +104,7 @@ class GCE_Feed {
 		$query = '?alt=json&sortorder=ascending&orderby=starttime';
 
 		$gmt_offset = get_option( 'gmt_offset' ) * 3600;
+
 		
 		//echo 'GMT Offset: ' . $gmt_offset . '<br>';
 		//echo 'First time: ' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) ) . '<br>';
@@ -112,7 +116,7 @@ class GCE_Feed {
 		$query .= '&max-results=10000'; 
 		
 		if ( ! empty( $this->search_query ) ) {
-			$query .= '&q=' . rawurlencode( $this->search_query ); 
+			$query .= '&q=' . rawurlencode( $this->search_query );
 		}
 		
 		if ( $this->expand_recurring ) {
@@ -131,7 +135,7 @@ class GCE_Feed {
 	 * 
 	 * @since 2.0.0
 	 */
-	private function get_feed_data( $url ) {
+	private function get_feed_data( $url ) {	
 		$raw_data = wp_remote_get( $url, array(
 				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
 				'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
@@ -194,6 +198,10 @@ class GCE_Feed {
 				echo $this->error;
 				return;
 			}
+		} else {
+			if( $this->cache > 0 && false === get_transient( 'gce_feed_' . $this->id ) ) {
+				$this->cache_events();
+			}
 		}
 	}
 	
@@ -205,6 +213,54 @@ class GCE_Feed {
 	private function iso_to_ts( $iso ) {
 		sscanf( $iso, "%u-%u-%uT%u:%u:%uZ", $year, $month, $day, $hour, $minute, $second );
 		return mktime( $hour, $minute, $second, $month, $day, $year );
+	}
+	
+	/**
+	 * Return feed start/end
+	 * 
+	 * @since 2.0.0
+	 */
+	private function set_feed_length( $value, $type ) {
+		// All times start at 00:00
+		switch ( $value ) {
+			case 'today':
+				$return = mktime( 0, 0, 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
+				break;
+			case 'start_week':
+				$return = mktime( 0, 0, 0, date( 'm' ), ( date( 'j' ) - date( 'w' ) ), date( 'Y' ) );
+				break;
+			case 'start_month':
+				$return = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
+				break;
+			case 'end_month':
+				$return = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
+				break;
+			case 'custom_date':
+				if( $type == 'start' ) {
+					$date = get_post_meta( $this->id, 'gce_custom_from', true );
+					$fallback = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
+				} else {
+					$date = get_post_meta( $this->id, 'gce_custom_until', true );
+					$fallback = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
+				}
+				
+				if( ! empty( $date ) ) {
+					$date = explode( '/', $date );
+					$return = mktime( 0, 0, 0, $date[0], $date[1], $date[2] );
+				} else {
+					$return = $fallback;
+				}
+				break;
+			default:
+				if( $type == 'start' ) {
+					$return = 0; //any - 1970-01-01 00:00
+				} else {
+					// Set default end time
+					$return = 2145916800;
+				}
+		}
+		
+		return $return;
 	}
 	
 	function get_builder() {

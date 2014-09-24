@@ -9,7 +9,7 @@
  */
 
 
-function gce_ajaxify(target, feed_ids, title_text, type){
+function gce_ajaxify(target, feed_ids, max_events, title_text, type){
 
 	//Add click event to change month links
 	jQuery('#' + target + ' .gce-change-month').click(function(){
@@ -24,6 +24,7 @@ function gce_ajaxify(target, feed_ids, title_text, type){
 			gce_feed_ids:feed_ids,
 			gce_title_text:title_text,
 			gce_widget_id:target,
+			gce_max_events:max_events,
 			gce_month:month_year[0],
 			gce_year:month_year[1]
 		}, function(data){
@@ -52,9 +53,9 @@ function gce_tooltips(target_items){
 	});
 }
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function(){
 	gce_tooltips('.gce-has-events');
-	
+
 	$('.gce-page-list').on( 'click', '.gce-change-month-list', function(e) {
 		
 		e.preventDefault();

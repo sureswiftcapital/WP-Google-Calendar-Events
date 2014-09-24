@@ -9,6 +9,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	
 	$defaults = array( 
 			'title_text' => '',
+			'max_events' => 25,
 			'sort'       => 'asc',
 			'grouped'    => 0,
 			'month'      => null,
@@ -23,7 +24,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$ids = explode( '-', $feed_ids );
 	
 	//Create new display object, passing array of feed id(s)
-	$d = new GCE_Display( $ids, $title_text, $sort );
+	$d = new GCE_Display( $ids, $title_text, $max_events, $sort );
 	$markup = '';
 	
 	if( $widget ) {
@@ -40,7 +41,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	if( 'grid' == $display ) {
 		
 		$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("' . ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids 
-					. '", "' . $feed_ids . '", "' . $title_text . '", "' . ( $widget == 1 ? 'widget' : 'page' ) . '");});</script>';
+					. '", "' . $feed_ids . '", "' . absint( $max_events ) . '", "' . $title_text . '", "' . ( $widget == 1 ? 'widget' : 'page' ) . '");});</script>';
 		
 		if( $widget == 1 ) {
 			$markup .= '<div class="gce-widget-grid" id="gce-widget-' . $feed_ids . '">';
@@ -77,6 +78,7 @@ function gce_ajax() {
    if ( isset( $_GET['gce_feed_ids'] ) ) {
 	   $ids   = $_GET['gce_feed_ids'];
 	   $title = $_GET['gce_title_text'];
+	   $max   = $_GET['gce_max_events'];
 	   $month = $_GET['gce_month'];
 	   $year  = $_GET['gce_year'];
 
@@ -84,6 +86,7 @@ function gce_ajax() {
 
 	   $args = array(
 		   'title_text' => $title,
+		   'max_events' => $max,
 		   'month'      => $month,
 		   'year'       => $year,
 	   );
@@ -125,6 +128,7 @@ function gce_ajax_list() {
 }
 add_action( 'wp_ajax_nopriv_gce_ajax_list', 'gce_ajax_list' );
 add_action( 'wp_ajax_gce_ajax_list', 'gce_ajax_list' );
+
 
 function gce_feed_content( $content ) {
 	global $post;
