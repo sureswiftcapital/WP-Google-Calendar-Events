@@ -13,9 +13,6 @@ class GCE_Feed {
 	
 	public $id,
 		   $feed_url,
-		   $start,
-		   $end,
-		   $max,
 		   $date_format,
 		   $time_format,
 		   $cache,
@@ -65,7 +62,6 @@ class GCE_Feed {
 		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
 		$this->start               = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_from', true ), 'start' );
 		$this->end                 = $this->set_feed_length( get_post_meta( $this->id, 'gce_retrieve_until', true ), 'end' );
-		$this->max                 = get_post_meta( $this->id, 'gce_retrieve_max', true );
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
 		$this->cache               = get_post_meta( $this->id, 'gce_cache', true );
@@ -104,11 +100,6 @@ class GCE_Feed {
 		$query = '?alt=json&sortorder=ascending&orderby=starttime';
 
 		$gmt_offset = get_option( 'gmt_offset' ) * 3600;
-
-		
-		//echo 'GMT Offset: ' . $gmt_offset . '<br>';
-		//echo 'First time: ' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) ) . '<br>';
-		//echo 'Second time: ' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) - $gmt_offset );
 
 		//Append the feed specific parameters to the querystring
 		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) ) - $gmt_offset );
