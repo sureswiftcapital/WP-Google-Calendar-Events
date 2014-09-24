@@ -213,9 +213,9 @@ class GCE_Display {
 		}
 		
 		if( $end == null ) {
-			$end = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
+			$end_time = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
 		} else if( $end <= 12 ) {
-			$end = mktime( 0, 0, 0, $end, 1, date( 'Y' ) );
+			$end_time = mktime( 0, 0, 0, $end, 1, date( 'Y' ) );
 		}
 		
 		if( $year == null ) {
@@ -235,10 +235,12 @@ class GCE_Display {
 		}
 		
 		$start    = mktime( 0, 0, 0, date( 'm', $time_now), 1, $year );
-		$end_month = mktime( 0, 0, 0, date( 'm', $end ), 1, $year );
+		
 		
 		if( $end > 12 ) {
 			$end_month = mktime( 23, 59, 59, 12, 31, $year );
+		} else {
+			$end_month = mktime( 0, 0, 0, date( 'm', $end_time ), 1, $year );
 		}
 		
 		$i = 1;
