@@ -33,6 +33,8 @@
 	$gce_search_query     = get_post_meta( $post->ID, 'gce_search_query', true );
 	$gce_expand_recurring = get_post_meta( $post->ID, 'gce_expand_recurring', true );
 	$gce_paging           = get_post_meta( $post->ID, 'gce_paging', true );
+	$gce_list_max_num     = get_post_meta( $post->ID, 'gce_list_max_num', true );
+	$gce_list_max_length  = get_post_meta( $post->ID, 'gce_list_max_length', true );
 ?>
 
 <div id="gce-admin-promo">
@@ -183,6 +185,19 @@
 		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
 		<td>
 			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Disable to hide Next/Back links.', 'gce' ); ?>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_list_max_num"><?php _e( 'Number of Events per Page', 'gce' ); ?></label></th>
+		<td>
+			<input type="text" class="" id="gce_list_max_num" name="gce_list_max_num" value="<?php echo $gce_list_max_num; ?>" />
+			<select name="gce_list_max_length" id="gce_list_max_length">
+				<option value="86400" <?php selected( $gce_list_max_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
+				<option value="604800" <?php selected( $gce_list_max_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
+				<option value="2419200" <?php selected( $gce_list_max_length, '2419200', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
+			</select>
+			<p class="description"><?php _e( 'How many events to display per page (List View only).', 'gce' ); ?></p>
 		</td>
 	</tr>
 	
