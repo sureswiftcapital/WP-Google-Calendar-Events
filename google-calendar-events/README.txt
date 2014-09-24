@@ -79,6 +79,11 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.4 =
+
+* Removed retrieve events from/until options now that display limit options will be used.
+* Added option to show/hide paging.
+
 = 2.0.3.1 =
 
 * Fixed bug where retrieve from/until dates were accidentally removed.
