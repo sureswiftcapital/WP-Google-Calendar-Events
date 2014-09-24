@@ -25,6 +25,7 @@ function gce_gcal_shortcode( $attr ) {
 					'order'   => 'asc',
 					'title'   => null,
 					'type'    => null,
+					'paging'  => ''
 				), $attr, 'gce_feed' ) );
 	
 	// If no ID is specified then return
@@ -47,6 +48,10 @@ function gce_gcal_shortcode( $attr ) {
 
 		if( empty( $display ) ) {
 			$display = get_post_meta( $v, 'gce_display_mode', true );
+		}
+		
+		if( ! empty( $paging ) ) {
+			update_post_meta( $v, 'gce_paging', ( $paging == 'true' ? 1 : 0 ) );
 		}
 	}
 

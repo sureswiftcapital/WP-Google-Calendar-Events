@@ -43,6 +43,7 @@ function gce_default_editor_content( $content, $post ) {
 		add_post_meta( $post->ID, 'gce_retrieve_from', 'today' );
 		add_post_meta( $post->ID, 'gce_retrieve_until', 'end_time' );
 		add_post_meta( $post->ID, 'gce_cache', 43200 );
+		add_post_meta( $post->ID, 'gce_paging', 1 );
 		
 		// Default Simple Display Options
 		add_post_meta( $post->ID, 'gce_display_start', 'time' );

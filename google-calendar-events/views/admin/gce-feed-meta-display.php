@@ -29,6 +29,7 @@
 	$gce_custom_until     = get_post_meta( $post->ID, 'gce_custom_until', true );
 	$gce_search_query     = get_post_meta( $post->ID, 'gce_search_query', true );
 	$gce_expand_recurring = get_post_meta( $post->ID, 'gce_expand_recurring', true );
+	$gce_paging           = get_post_meta( $post->ID, 'gce_paging', true );
 ?>
 
 <div id="gce-admin-promo">
@@ -132,6 +133,13 @@
 				<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped', true ); ?>><?php _e( 'Grouped List', 'gce' ); ?></option>
 			</select>
 			<p class="description"><?php _e( 'Choose how you want your calendar to be displayed.', 'gce' ); ?></p>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
+		<td>
+			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Disable to hide Next/Back links.', 'gce' ); ?>
 		</td>
 	</tr>
 	

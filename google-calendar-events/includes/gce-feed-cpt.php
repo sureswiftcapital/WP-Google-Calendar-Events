@@ -151,6 +151,7 @@ function gce_save_meta( $post_id ) {
 		'gce_custom_until',
 		'gce_search_query',
 		'gce_expand_recurring',
+		'gce_paging',
 		// Display options
 		'gce_display_start',
 		'gce_display_start_text',
