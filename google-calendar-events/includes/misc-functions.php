@@ -26,6 +26,17 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$d = new GCE_Display( $ids, $title_text, $sort );
 	$markup = '';
 	
+	if( $widget ) {
+		foreach( $ids as $f ) {
+			$paging = get_post_meta( $f, 'gce_paging_widget', true );
+			$old_paging[] = get_post_meta( $f, 'gce_paging', true );
+			
+			if( $paging ) {
+				update_post_meta( $f, 'gce_paging', true );
+			}
+		}
+	}
+	
 	if( 'grid' == $display ) {
 		
 		$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("' . ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids 
@@ -42,6 +53,16 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
 		$markup = '<div class="gce-page-list">' . $d->get_list( $grouped ) . '</div>';
+	}
+	
+	// Reset post meta
+	if( $widget ) {
+		$i = 0;
+		foreach( $ids as $f ) {
+			update_post_meta( $f, 'gce_paging', $old_paging[$i] );
+
+			$i++;
+		}
 	}
 	
 	return $markup;
@@ -94,10 +115,11 @@ function gce_ajax_list() {
 	$title_text   = $_GET['gce_title_text'];
 	$sort = $_GET['gce_sort'];
 	$year = $_GET['gce_year'];
+	$paging = $_GET['gce_paging'];
 	
 	$d = new GCE_Display( explode( '-', $ids ), $title_text, $sort );
 
-	echo $d->get_list( $grouped, $start, $end, $year );
+	echo $d->get_list( $grouped, $start, $end, $year, $paging );
 	   
 	die();
 }

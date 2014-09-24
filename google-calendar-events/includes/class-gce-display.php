@@ -210,7 +210,7 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_list( $grouped = false, $start = null, $end = null, $year = null ) {
+	public function get_list( $grouped = false, $start = null, $end = null, $year = null, $paging = null ) {
 		
 		//echo 'ID: ' . $id . '<br>';
 			
@@ -237,9 +237,11 @@ class GCE_Display {
 		// Get all the event days
 		$event_days = $this->get_event_days();
 		
-		//echo '<pre>' . print_r( $event_days, true ) . '</pre>';
-		
-		//die();
+		if( $paging == null ) {
+			foreach( $event_days as $key => $event_day ) {
+				$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
+			}
+		}
 		
 		//If event_days is empty, there are no events in the feed(s), so return a message indicating this
 		if( empty( $event_days) ) {
@@ -259,13 +261,7 @@ class GCE_Display {
 		
 		$feeds = implode( $this->id, '-' );
 		
-		
-		foreach( $event_days as $key => $event_day ) {
-			$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
-		}
-		
-		
-		$markup = '<ul class="gce-list" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
+		$markup = '<ul class="gce-list" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
 		if( $paging == true || $paging == 1 || $paging == 'true' ) {
 			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-month="' . ( date( 'n', $start ) - 1 ) . '" data-gce-year="' . $year . '">Back</a></span>';

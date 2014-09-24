@@ -40,6 +40,8 @@ class GCE_Widget extends WP_Widget {
 		//Output before widget stuff
 		echo $before_widget;
 		
+		$paging = $instance['paging'];
+		
 		// Check whether any feeds have been added yet
 		if( wp_count_posts( 'gce_feed' )->publish > 0 ) {
 			//Output title stuff
@@ -67,6 +69,12 @@ class GCE_Widget extends WP_Widget {
 					if ( false !== get_post_meta( $feed_id ) )
 						$no_feeds_exist = false;
 				}
+				
+				/*foreach( $feed_ids as $feed_id ) {
+					if( $paging ) {
+						update_post_meta( $feed_id, 'gce_paging_widget', true );
+					}
+				}*/
 			} else {
 				if ( current_user_can( 'manage_options' ) ) {
 					_e( 'No valid Feed IDs have been entered for this widget. Please check that you have entered the IDs correctly in the widget settings (Appearance > Widgets), and that the Feeds have not been deleted.', 'gce' );
@@ -122,6 +130,7 @@ class GCE_Widget extends WP_Widget {
 		$instance['display_type']       = esc_html( $new_instance['display_type'] );
 		$instance['order']              = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
 		$instance['display_title_text'] = wp_filter_kses( $new_instance['display_title_text'] );
+		$instance['paging']              = ( isset( $new_instance['paging'] ) ? 1 : 0 );
 		
 		return $instance;
 	}
@@ -148,6 +157,7 @@ class GCE_Widget extends WP_Widget {
 		$order         = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 		$display_title = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
 		$title_text    = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
+		$paging        = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
 		
 		?>
 		<p>
@@ -177,6 +187,13 @@ class GCE_Widget extends WP_Widget {
 				<option value="desc" <?php selected( $order, 'desc' ); ?>><?php _e( 'Descending', 'gce' ); ?></option>
 			</select>
 		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links', 'gce' ); ?></label><br>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
+			<?php _e( 'Disable to hide Next/Back links.', 'gce' ); ?>
+		</p>
+		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title on tooltip / list item (e.g. \'Events on 7th March\') Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" />
