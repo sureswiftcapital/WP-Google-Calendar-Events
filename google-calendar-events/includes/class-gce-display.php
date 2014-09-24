@@ -115,6 +115,11 @@ class GCE_Display {
 
 		//Get events data
 		$event_days = $this->get_event_days();
+		
+		//Array of previous and next link stuff for use in gce_generate_calendar (below)
+		foreach( $event_days as $key => $event_day ) {
+			$paging = get_post_meta( $event_day[0]->feed->id, 'gce_paging', true );
+		}
 
 		$start = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
@@ -177,21 +182,22 @@ class GCE_Display {
 		//Ensures that gce-today CSS class is added even if there are no events for 'today'. A bit messy :(
 		if ( ! isset( $event_days[$start] ) )
 			$event_days[$start] = array( null, 'gce-today gce-today-no-events', null );
-
-		$pn = array();
-
-		// Add previous / next functionality
-		//If there are events to display in a previous month, add previous month link
-		$prev_key = ( $nav_prev ) ? '&laquo;' : '&nbsp;';
-		$prev = ( $nav_prev ) ? date( 'm-Y', mktime( 0, 0, 0, $month - 1, 1, $year ) ) : null;
-
-		//If there are events to display in a future month, add next month link
-		$next_key = ( $nav_next ) ? '&raquo;' : '&nbsp;';
-		$next = ( $nav_next ) ? date( 'm-Y', mktime( 0, 0, 0, $month + 1, 1, $year ) ) : null;
-
-		//Array of previous and next link stuff for use in gce_generate_calendar (below)
-		$pn = array( $prev_key => $prev, $next_key => $next );
 		
+		$pn = array();
+		
+		if( $paging ) {
+			// Add previous / next functionality
+			//If there are events to display in a previous month, add previous month link
+			$prev_key = ( $nav_prev ) ? '&laquo;' : '&nbsp;';
+			$prev = ( $nav_prev ) ? date( 'm-Y', mktime( 0, 0, 0, $month - 1, 1, $year ) ) : null;
+
+			//If there are events to display in a future month, add next month link
+			$next_key = ( $nav_next ) ? '&raquo;' : '&nbsp;';
+			$next = ( $nav_next ) ? date( 'm-Y', mktime( 0, 0, 0, $month + 1, 1, $year ) ) : null;
+			
+			//Array of previous and next link stuff for use in gce_generate_calendar (below)
+			$pn = array( $prev_key => $prev, $next_key => $next );
+		}
 		
 		$start_day = get_option( 'start_of_week' );
 		
