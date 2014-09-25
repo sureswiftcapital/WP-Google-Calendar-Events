@@ -64,10 +64,7 @@ class GCE_Event {
 			while ( $on_next_day ) {
 				//If the end time of the event is after 00:00 on the next day (therefore, not doesn't end on this day)
 				if ( $this->end_time > $next_day ) {
-					//If $next_day is within the event retrieval date range (specified by retrieve events from / until settings)
-					if ( $next_day >= $this->feed->start && $next_day < $this->feed->end ) {
-						$days[] = $next_day;
-					}
+					$days[] = $next_day;
 				} else {
 					$on_next_day = false;
 				}
