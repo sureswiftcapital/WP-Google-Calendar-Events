@@ -152,7 +152,7 @@
 			<select name="gce_list_max_length" id="gce_list_max_length">
 				<option value="86400" <?php selected( $gce_list_max_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 				<option value="604800" <?php selected( $gce_list_max_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
-				<option value="2419200" <?php selected( $gce_list_max_length, '2419200', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
+				<option value="2629743" <?php selected( $gce_list_max_length, '2629743', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
 			</select>
 			<p class="description"><?php _e( 'How many events to display per page (List View only).', 'gce' ); ?></p>
 		</td>

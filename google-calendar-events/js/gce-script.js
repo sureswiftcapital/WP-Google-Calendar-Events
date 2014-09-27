@@ -59,15 +59,16 @@ jQuery(document).ready(function($){
 		
 		e.preventDefault();
 		
-		var month = $(this).data('gce-month');
+		var start = $(this).parent().parent().data('gce-start');
 		var grouped = $(this).parent().parent().data('gce-grouped');
 		var title_text = $(this).parent().parent().data('gce-title');
 		var feed_ids = $(this).parent().parent().data( 'gce-feeds');
 		var sort = $(this).parent().parent().data('gce-sort');
-		var year = $(this).data('gce-year');
 		var paging = $(this).parent().parent().data('gce-paging');
+		var paging_interval = $(this).parent().parent().data('gce-paging-interval');
+		var paging_direction = $(this).data('gce-paging-direction');
 		
-		if( month > 12 ) {
+		/*if( month > 12 ) {
 			month = 1;
 			year = year + 1;
 		} 
@@ -75,7 +76,7 @@ jQuery(document).ready(function($){
 		if( month < 1 ) {
 			month = 12;
 			year = year - 1;
-		}
+		}*/
 		
 		//Add loading text to table caption
 		$(this).parent().parent().find('.gce-month-title').html('Loading...');
@@ -85,11 +86,12 @@ jQuery(document).ready(function($){
 			action:'gce_ajax_list',
 			gce_feed_ids:feed_ids,
 			gce_title_text:title_text,
-			gce_month: month,
+			gce_start: start,
 			gce_grouped: grouped,
 			gce_sort: sort,
-			gce_year: year,
-			gce_paging: paging
+			gce_paging: paging,
+			gce_paging_interval: paging_interval,
+			gce_paging_direction: paging_direction
 		}, function(data){
 			$('.gce-page-list').html(data);
 		});

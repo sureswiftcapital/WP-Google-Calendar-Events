@@ -204,29 +204,11 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_list( $grouped = false, $start = null, $end = null, $year = null, $paging = null ) {
+	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null ) {
 		
-		//echo 'ID: ' . $id . '<br>';
-			
 		if( $start == null ) {
-			$time_now = current_time( 'timestamp' );
-		} else { 
-			$time_now = mktime( 0, 0, 0, $start, 1, date( 'Y' ) );
+			$start = mktime( 0, 0, 0, date( 'm', current_time( 'timestamp' ) ), 1, date( 'Y', current_time( 'timestamp' ) ) );
 		}
-		
-		if( $end == null ) {
-			$end_time = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
-		} else if( $end <= 12 ) {
-			$end_time = mktime( 0, 0, 0, $end, 1, date( 'Y' ) );
-		}
-		
-		if( $year == null ) {
-			$year = current_time( 'timestamp' );
-		} else {
-			$year = mktime( 0, 0, 0, 1, 1, $year );
-		}
-		
-		$year = date( 'Y', $year );
 
 		// Get all the event days
 		$event_days = $this->get_event_days();
@@ -237,32 +219,29 @@ class GCE_Display {
 			}
 		}
 		
-		//If event_days is empty, there are no events in the feed(s), so return a message indicating this
-		if( empty( $event_days) ) {
-			return '<p>' . __( 'There are currently no events to display.', 'gce' ) . '</p>';
+		if( $paging_interval == null ) {
+			foreach( $event_days as $key => $event_day ) {
+				$max_num    = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_num', true );
+				$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
+				$paging_interval = $max_num * $max_length;
+				break;
+			}
 		}
 		
-		$start    = mktime( 0, 0, 0, date( 'm', $time_now), 1, $year );
-		
-		
-		if( $end > 12 ) {
-			$end_month = mktime( 23, 59, 59, 12, 31, $year );
-		} else {
-			$end_month = mktime( 0, 0, 0, date( 'm', $end_time ), 1, $year );
-		}
+		$end_time = $start + $paging_interval;
 		
 		$i = 1;
 		
 		$feeds = implode( $this->id, '-' );
 		
-		$markup = '<ul class="gce-list" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
+		$markup = '<ul class="gce-list" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
 		if( $paging == true || $paging == 1 || $paging == 'true' ) {
-			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-month="' . ( date( 'n', $start ) - 1 ) . '" data-gce-year="' . $year . '">Back</a></span>';
-			$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-month="' . ( date( 'n', $start ) + 1 ) . '" data-gce-year="' . $year . '">Next</a></span>';
+			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back">Back</a></span>';
+			$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward">Next</a></span>';
 			
 			$markup .= '' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . 
-					date( 'F', $start ) . ' ' . $year . '</span>' . $n . "</caption>\n";
+					date( 'F', $start ) . ' ' . date( 'Y', $start ) . '</span>' . $n . "</caption>\n";
 		}
 		$max_count = 1;
 		$has_events = false;
@@ -279,7 +258,7 @@ class GCE_Display {
 
 				foreach ( $event_day as $num_in_day => $event ) {
 					//Create the markup for this event
-					if( $event->start_time >= $start && $event->end_time <= $end_month ) {
+					if( $event->start_time >= $start && $event->end_time <= $end_time ) {
 					$markup .=
 						'<li class="gce-feed-' . $event->feed->id . '">' .
 						//If this isn't a grouped list and a date title should be displayed, add the date title
@@ -287,8 +266,10 @@ class GCE_Display {
 						//Add the event markup
 						$event->get_event_markup( 'list', $num_in_day, $i ) .
 						'</li>';
-
-					$i++;
+					
+						$has_events = true;
+						
+						$i++;
 					}
 				}
 
@@ -297,13 +278,11 @@ class GCE_Display {
 					$markup .= '</ul></li>';
 				}
 				
-				$has_events = true;
-			
 			$max_count++;
 		}
 		
 		if( ! $has_events ) {
-			$markup .= __( 'There are no events to show for this month.', 'gce' );
+			$markup .= __( 'No events to display.', 'gce' );
 		}
 
 		$markup .= '</ul>';

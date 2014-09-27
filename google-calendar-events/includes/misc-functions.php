@@ -109,17 +109,23 @@ add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
 function gce_ajax_list() {
   
 	$grouped = $_GET['gce_grouped'];
-	$start   = $_GET['gce_month'];
-	$end     = $start + 1;
+	$start   = $_GET['gce_start'];
+	//$end     = $start + 1;
 	$ids     = $_GET['gce_feed_ids'];
 	$title_text   = $_GET['gce_title_text'];
 	$sort = $_GET['gce_sort'];
-	$year = $_GET['gce_year'];
 	$paging = $_GET['gce_paging'];
+	$paging_interval = $_GET['gce_paging_interval'];
+	$paging_direction = $_GET['gce_paging_direction'];
 	
-	$d = new GCE_Display( explode( '-', $ids ), $title_text, $sort );
+	if( $paging_direction == 'back' ) {
+		$start = $start - ( $paging_interval * 2 );
+		
+	}
+	
+	$d = new GCE_Display( explode( '-', $ids ), $title_text, $sort  );
 
-	echo $d->get_list( $grouped, $start, $end, $year, $paging );
+	echo $d->get_list( $grouped, $start, $paging, $paging_interval );
 	   
 	die();
 }
