@@ -83,6 +83,10 @@ There are three ways to install this plugin.
 
 * Removed retrieve events from/until options now that display limit options will be used.
 * Added option to show/hide paging.
+* Added shortcode attribute 'event_interval'.
+* Added shortcode attribute 'event_interval_count'.
+* Added shortcode attribute 'paging'.
+* Added settings to feed and widget to set the paging interval.
 
 = 2.0.3.1 =
 
