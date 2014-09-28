@@ -45,16 +45,7 @@ function gce_gcal_shortcode( $attr ) {
 		case 'month':
 			$event_interval = 2629743;
 			break;
-		default:
-			$event_interval = 604800;
-			break;
 	}
-	
-	if( empty( $event_interval_count ) ) {
-		$event_interval_count = 1;
-	}
-	
-	$paging_interval = $event_interval * $event_interval_count;
 	
 	$feed_ids = explode( ',', $id );
 
@@ -73,10 +64,20 @@ function gce_gcal_shortcode( $attr ) {
 			$display = get_post_meta( $v, 'gce_display_mode', true );
 		}
 		
+		if( $event_interval == null ) {
+			$event_interval = get_post_meta( $v, 'gce_list_max_length', true );
+		}
+		
+		if( $event_interval_count == null ) {
+			$event_interval_count = get_post_meta( $v, 'gce_list_max_num', true );
+		}
+		
 		if( ! empty( $paging ) ) {
 			update_post_meta( $v, 'gce_paging', ( $paging == 'true' ? 1 : 0 ) );
 		}
 	}
+	
+	$paging_interval = $event_interval * $event_interval_count;
 
 	// Port over old options
 	if( $type != null ) {

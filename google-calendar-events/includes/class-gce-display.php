@@ -204,37 +204,60 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null ) {
+	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null, $start_offset = null ) {
 		
 		if( $start == null ) {
 			$start = mktime( 0, 0, 0, date( 'm', current_time( 'timestamp' ) ), 1, date( 'Y', current_time( 'timestamp' ) ) );
-		}
-
+		} 
+		
 		// Get all the event days
 		$event_days = $this->get_event_days();
 		
-		if( $paging == null ) {
-			foreach( $event_days as $key => $event_day ) {
-				$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
-			}
-		}
-		
-		if( $paging_interval == null ) {
-			foreach( $event_days as $key => $event_day ) {
+		foreach( $event_days as $key => $event_day ) {
+			if( $paging_interval == null ) {
 				$max_num    = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_num', true );
 				$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
 				$paging_interval = $max_num * $max_length;
-				break;
+			}
+
+			if( $paging == null ) {
+				$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
+			}
+			
+			if( $start_offset == null ) {
+				$start_offset_num       = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_num', true );
+				$start_offset_length    = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_length', true );
+				$start_offset_direction = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_direction', true );
 			}
 		}
 		
-		$end_time = $start + $paging_interval;
+		if( $start_offset == null ) {
+			if( $start_offset_direction == 'back' ) {
+				$start_offset_direction = -1;
+			} else {
+				$start_offset_direction = 1;
+			}
+
+			$start_offset = $start_offset_num * $start_offset_length * $start_offset_direction;
+			
+			$start = $start + $start_offset;
+		}
+
+		$start = mktime( 0, 0, 0, date( 'm', $start ), date( 'd', $start ), date( 'Y', $start ) );
+		
+		//echo 'Start: ' . $start . '<br>';
+		//echo 'Start Offset: ' . $start_offset . '<br>';
+		//echo 'Paging Interval: ' . $paging_interval . '<br>';
+		
+		$end_time = $start + $paging_interval + 86400;
+		
+		//echo 'End Time: ' . $end_time . '<br>';
 		
 		$i = 1;
 		
 		$feeds = implode( $this->id, '-' );
 		
-		$markup = '<ul class="gce-list" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
+		$markup = '<ul class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
 		if( $paging == true || $paging == 1 || $paging == 'true' ) {
 			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back">Back</a></span>';

@@ -215,6 +215,15 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p>
+			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Start Date Offset', 'gce' ); ?></label><br>
+			<input type="number" class="" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
+			<select name="<?php echo $this->get_field_name( 'list_start_offset_length' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_length' ); ?>">
+				<option value="back" <?php selected( $list_start_offset_length, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
+				<option value="ahead" <?php selected( $list_start_offset_length, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
+			</select>
+		</p>
+		
+		<p>
 			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title on tooltip / list item (e.g. \'Events on 7th March\') Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" />
 		</p>

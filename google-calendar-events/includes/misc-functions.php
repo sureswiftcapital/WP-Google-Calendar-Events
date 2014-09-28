@@ -115,15 +115,15 @@ add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
 */
 function gce_ajax_list() {
   
-	$grouped = $_GET['gce_grouped'];
-	$start   = $_GET['gce_start'];
-	//$end     = $start + 1;
-	$ids     = $_GET['gce_feed_ids'];
-	$title_text   = $_GET['gce_title_text'];
-	$sort = $_GET['gce_sort'];
-	$paging = $_GET['gce_paging'];
-	$paging_interval = $_GET['gce_paging_interval'];
+	$grouped          = $_GET['gce_grouped'];
+	$start            = $_GET['gce_start'];
+	$ids              = $_GET['gce_feed_ids'];
+	$title_text       = $_GET['gce_title_text'];
+	$sort             = $_GET['gce_sort'];
+	$paging           = $_GET['gce_paging'];
+	$paging_interval  = $_GET['gce_paging_interval'];
 	$paging_direction = $_GET['gce_paging_direction'];
+	$start_offset     = $_GET['gce_start_offset'];
 	
 	if( $paging_direction == 'back' ) {
 		$start = $start - ( $paging_interval * 2 );
@@ -132,7 +132,7 @@ function gce_ajax_list() {
 	
 	$d = new GCE_Display( explode( '-', $ids ), $title_text, $sort  );
 
-	echo $d->get_list( $grouped, $start, $paging, $paging_interval );
+	echo $d->get_list( $grouped, $start, $paging, $paging_interval, $start_offset );
 	   
 	die();
 }

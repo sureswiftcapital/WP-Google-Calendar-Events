@@ -67,6 +67,7 @@ jQuery(document).ready(function($){
 		var paging = $(this).parent().parent().data('gce-paging');
 		var paging_interval = $(this).parent().parent().data('gce-paging-interval');
 		var paging_direction = $(this).data('gce-paging-direction');
+		var start_offset = $(this).parent().parent().data('gce-start-offset');
 		
 		/*if( month > 12 ) {
 			month = 1;
@@ -91,7 +92,8 @@ jQuery(document).ready(function($){
 			gce_sort: sort,
 			gce_paging: paging,
 			gce_paging_interval: paging_interval,
-			gce_paging_direction: paging_direction
+			gce_paging_direction: paging_direction,
+			gce_start_offset: start_offset
 		}, function(data){
 			$('.gce-page-list').html(data);
 		});

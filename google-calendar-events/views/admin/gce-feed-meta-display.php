@@ -19,19 +19,22 @@
 	}
 	
 	// Load up all post meta data
-	$gce_feed_url         = get_post_meta( $post->ID, 'gce_feed_url', true );
-	$gce_date_format      = get_post_meta( $post->ID, 'gce_date_format', true );
-	$gce_time_format      = get_post_meta( $post->ID, 'gce_time_format', true );
-	$gce_cache            = get_post_meta( $post->ID, 'gce_cache', true );
-	$gce_multi_day_events = get_post_meta( $post->ID, 'gce_multi_day_events', true );
-	$gce_display_mode     = get_post_meta( $post->ID, 'gce_display_mode', true );
-	$gce_custom_from      = get_post_meta( $post->ID, 'gce_custom_from', true );
-	$gce_custom_until     = get_post_meta( $post->ID, 'gce_custom_until', true );
-	$gce_search_query     = get_post_meta( $post->ID, 'gce_search_query', true );
-	$gce_expand_recurring = get_post_meta( $post->ID, 'gce_expand_recurring', true );
-	$gce_paging           = get_post_meta( $post->ID, 'gce_paging', true );
-	$gce_list_max_num     = get_post_meta( $post->ID, 'gce_list_max_num', true );
-	$gce_list_max_length  = get_post_meta( $post->ID, 'gce_list_max_length', true );
+	$gce_feed_url                    = get_post_meta( $post->ID, 'gce_feed_url', true );
+	$gce_date_format                 = get_post_meta( $post->ID, 'gce_date_format', true );
+	$gce_time_format                 = get_post_meta( $post->ID, 'gce_time_format', true );
+	$gce_cache                       = get_post_meta( $post->ID, 'gce_cache', true );
+	$gce_multi_day_events            = get_post_meta( $post->ID, 'gce_multi_day_events', true );
+	$gce_display_mode                = get_post_meta( $post->ID, 'gce_display_mode', true );
+	$gce_custom_from                 = get_post_meta( $post->ID, 'gce_custom_from', true );
+	$gce_custom_until                = get_post_meta( $post->ID, 'gce_custom_until', true );
+	$gce_search_query                = get_post_meta( $post->ID, 'gce_search_query', true );
+	$gce_expand_recurring            = get_post_meta( $post->ID, 'gce_expand_recurring', true );
+	$gce_paging                      = get_post_meta( $post->ID, 'gce_paging', true );
+	$gce_list_max_num                = get_post_meta( $post->ID, 'gce_list_max_num', true );
+	$gce_list_max_length             = get_post_meta( $post->ID, 'gce_list_max_length', true );
+	$gce_list_start_offset_num       = get_post_meta( $post->ID, 'gce_list_start_offset_num', true );
+	$gce_list_start_offset_length    = get_post_meta( $post->ID, 'gce_list_start_offset_length', true );
+	$gce_list_start_offset_direction = get_post_meta( $post->ID, 'gce_list_start_offset_direction', true );
 ?>
 
 <div id="gce-admin-promo">
@@ -155,6 +158,22 @@
 				<option value="2629743" <?php selected( $gce_list_max_length, '2629743', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
 			</select>
 			<p class="description"><?php _e( 'How many events to display per page (List View only).', 'gce' ); ?></p>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_list_start_offset_num"><?php _e( 'Start Date Offset', 'gce' ); ?></label></th>
+		<td>
+			<input type="number" class="" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
+			<select name="gce_list_start_offset_length" id="gce_list_start_offset_length">
+				<option value="86400" <?php selected( $gce_list_start_offset_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
+				<option value="604800" <?php selected( $gce_list_start_offset_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
+				<option value="2629743" <?php selected( $gce_list_start_offset_length, '2629743', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
+			</select>
+			<select name="gce_list_start_offset_direction" id="gce_list_start_offset_direction">
+				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
+				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
+			</select>
 		</td>
 	</tr>
 	
