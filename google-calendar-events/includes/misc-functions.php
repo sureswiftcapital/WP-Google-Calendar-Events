@@ -13,7 +13,8 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			'grouped'    => 0,
 			'month'      => null,
 			'year'       => null,
-			'widget'     => 0
+			'widget'     => 0,
+			'paging_interval' => null
 		);
 	
 	$args = array_merge( $defaults, $args );
@@ -27,7 +28,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$markup = '';
 	$start = null;
 	$paging = null;
-	$paging_interval = null;
 	
 	if( $widget ) {
 		foreach( $ids as $f ) {

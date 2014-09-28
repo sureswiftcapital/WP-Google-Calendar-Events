@@ -25,13 +25,33 @@ function gce_gcal_shortcode( $attr ) {
 					'order'   => 'asc',
 					'title'   => null,
 					'type'    => null,
-					'paging'  => ''
+					'paging'  => '',
+					'event_interval' => null,
+					'event_interval_count' => null
 				), $attr, 'gce_feed' ) );
 	
 	// If no ID is specified then return
 	if( empty( $id ) ) {
 		return;
 	}
+	
+	switch( $event_interval ) {
+		case 'week':
+			$event_interval = 604800;
+			break;
+		case 'month':
+			$event_interval = 2629743;
+			break;
+		default: // default if nothing entered or 'day' is entered
+			$event_interval = 86400;
+			break;
+	}
+	
+	if( empty( $event_interval_count ) ) {
+		$event_interval_count = 1;
+	}
+	
+	$paging_interval = $event_interval * $event_interval_count;
 	
 	$feed_ids = explode( ',', $id );
 
@@ -70,7 +90,8 @@ function gce_gcal_shortcode( $attr ) {
 		'grouped'    => ( $display == 'list-grouped' ? 1 : 0 ),
 		'month'      => null,
 		'year'       => null,
-		'widget'     => 0
+		'widget'     => 0,
+		'paging_interval' => $paging_interval
 	);
 	
 	$feed_ids = implode( '-', $feed_ids );
