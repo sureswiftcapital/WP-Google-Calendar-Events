@@ -40,7 +40,11 @@ class GCE_Widget extends WP_Widget {
 		//Output before widget stuff
 		echo $before_widget;
 		
-		$paging = $instance['paging'];
+		$paging     = $instance['paging'];
+		$max_num    = $instance['list_max_num'];
+		$max_length = $instance['list_max_length'];
+		
+		$paging_interval = $max_num * $max_length;
 		
 		// Check whether any feeds have been added yet
 		if( wp_count_posts( 'gce_feed' )->publish > 0 ) {
@@ -70,11 +74,13 @@ class GCE_Widget extends WP_Widget {
 						$no_feeds_exist = false;
 				}
 				
-				/*foreach( $feed_ids as $feed_id ) {
+				foreach( $feed_ids as $feed_id ) {
 					if( $paging ) {
 						update_post_meta( $feed_id, 'gce_paging_widget', true );
 					}
-				}*/
+					
+					update_post_meta( $feed_id, 'gce_widget_paging_interval', $paging_interval );
+				}
 			} else {
 				if ( current_user_can( 'manage_options' ) ) {
 					_e( 'No valid Feed IDs have been entered for this widget. Please check that you have entered the IDs correctly in the widget settings (Appearance > Widgets), and that the Feeds have not been deleted.', 'gce' );
@@ -130,7 +136,9 @@ class GCE_Widget extends WP_Widget {
 		$instance['display_type']       = esc_html( $new_instance['display_type'] );
 		$instance['order']              = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
 		$instance['display_title_text'] = wp_filter_kses( $new_instance['display_title_text'] );
-		$instance['paging']              = ( isset( $new_instance['paging'] ) ? 1 : 0 );
+		$instance['paging']             = ( isset( $new_instance['paging'] ) ? 1 : 0 );
+		$instance['list_max_num']       = $new_instance['list_max_num'];
+		$instance['list_max_length']    = $new_instance['list_max_length'];
 		
 		return $instance;
 	}
@@ -151,13 +159,15 @@ class GCE_Widget extends WP_Widget {
 			return;
 		}
 		
-		$title         = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
-		$ids           = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
-		$display_type  = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
-		$order         = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
-		$display_title = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
-		$title_text    = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
-		$paging        = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
+		$title           = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
+		$ids             = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
+		$display_type    = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
+		$order           = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
+		$display_title   = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
+		$title_text      = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
+		$paging          = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
+		$list_max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 1 );
+		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 86400 );
 		
 		?>
 		<p>
@@ -192,6 +202,16 @@ class GCE_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links', 'gce' ); ?></label><br>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
 			<?php _e( 'Disable to hide Next/Back links.', 'gce' ); ?>
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id( 'list_max_num' ); ?>"><?php _e( 'Number of Events per Page', 'gce' ); ?></label><br>
+			<input type="text" class="" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
+			<select name="<?php echo $this->get_field_name( 'list_max_length' ); ?>" id="<?php echo $this->get_field_id( 'list_max_length' ); ?>">
+				<option value="86400" <?php selected( $list_max_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
+				<option value="604800" <?php selected( $list_max_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
+				<option value="2629743" <?php selected( $list_max_length, '2629743', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
+			</select>
 		</p>
 		
 		<p>

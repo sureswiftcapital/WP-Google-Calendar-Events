@@ -25,6 +25,9 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	//Create new display object, passing array of feed id(s)
 	$d = new GCE_Display( $ids, $title_text, $sort );
 	$markup = '';
+	$start = null;
+	$paging = null;
+	$paging_interval = null;
 	
 	if( $widget ) {
 		foreach( $ids as $f ) {
@@ -34,7 +37,11 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			if( $paging ) {
 				update_post_meta( $f, 'gce_paging', true );
 			}
+			
+			$paging_interval = get_post_meta( $f, 'gce_widget_paging_interval', true );
 		}
+		
+		//$max_num = get_post_meta()
 	}
 	
 	if( 'grid' == $display ) {
@@ -52,7 +59,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		$markup .= '</div>';
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
-		$markup = '<div class="gce-page-list">' . $d->get_list( $grouped ) . '</div>';
+		$markup = '<div class="gce-page-list">' . $d->get_list( $grouped, $start, $paging, $paging_interval ) . '</div>';
 	}
 	
 	// Reset post meta
