@@ -148,7 +148,7 @@
 	<tr>
 		<th scope="row"><label for="gce_list_max_num"><?php _e( 'Number of Events per Page', 'gce' ); ?></label></th>
 		<td>
-			<input type="text" class="" id="gce_list_max_num" name="gce_list_max_num" value="<?php echo $gce_list_max_num; ?>" />
+			<input type="number" class="" id="gce_list_max_num" name="gce_list_max_num" value="<?php echo $gce_list_max_num; ?>" />
 			<select name="gce_list_max_length" id="gce_list_max_length">
 				<option value="86400" <?php selected( $gce_list_max_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 				<option value="604800" <?php selected( $gce_list_max_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>

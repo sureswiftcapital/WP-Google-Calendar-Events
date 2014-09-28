@@ -206,7 +206,7 @@ class GCE_Widget extends WP_Widget {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'list_max_num' ); ?>"><?php _e( 'Number of Events per Page', 'gce' ); ?></label><br>
-			<input type="text" class="" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
+			<input type="number" class="" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
 			<select name="<?php echo $this->get_field_name( 'list_max_length' ); ?>" id="<?php echo $this->get_field_id( 'list_max_length' ); ?>">
 				<option value="86400" <?php selected( $list_max_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 				<option value="604800" <?php selected( $list_max_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
