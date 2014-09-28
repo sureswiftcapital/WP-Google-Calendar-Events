@@ -167,7 +167,7 @@ class GCE_Widget extends WP_Widget {
 		$title_text      = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
 		$paging          = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
 		$list_max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 1 );
-		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 86400 );
+		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 604800 );
 		
 		?>
 		<p>

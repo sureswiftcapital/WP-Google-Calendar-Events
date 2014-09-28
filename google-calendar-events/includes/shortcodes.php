@@ -36,14 +36,17 @@ function gce_gcal_shortcode( $attr ) {
 	}
 	
 	switch( $event_interval ) {
+		case 'day': 
+			$event_interval = 86400;
+			break;
 		case 'week':
 			$event_interval = 604800;
 			break;
 		case 'month':
 			$event_interval = 2629743;
 			break;
-		default: // default if nothing entered or 'day' is entered
-			$event_interval = 86400;
+		default:
+			$event_interval = 604800;
 			break;
 	}
 	
