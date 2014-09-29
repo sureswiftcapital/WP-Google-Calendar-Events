@@ -210,6 +210,11 @@ class GCE_Display {
 			$start = mktime( 0, 0, 0, date( 'm', current_time( 'timestamp' ) ), 1, date( 'Y', current_time( 'timestamp' ) ) );
 		} 
 		
+		//if( $paging_interval == 2629743 ) {
+			//$days_in_month = date( 't', $start );
+			//$paging_interval = 86400 * $days_in_month;
+		//}
+		
 		// Get all the event days
 		$event_days = $this->get_event_days();
 		
@@ -249,8 +254,10 @@ class GCE_Display {
 		//echo 'Start Offset: ' . $start_offset . '<br>';
 		//echo 'Paging Interval: ' . $paging_interval . '<br>';
 		
-		$end_time = $start + $paging_interval + 86400;
+		$end_time = $start + $paging_interval + ( 86400 / 2 );
 		
+		//echo 'Start Time: ' . $start . '<br>';
+		//echo 'Paging Interval: ' . $paging_interval . '<br>';
 		//echo 'End Time: ' . $end_time . '<br>';
 		
 		$i = 1;
@@ -279,20 +286,20 @@ class GCE_Display {
 				}
 
 				foreach ( $event_day as $num_in_day => $event ) {
-					//Create the markup for this event
-					if( $event->start_time >= $start && $event->end_time <= $end_time ) {
-					$markup .=
-						'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
-						//If this isn't a grouped list and a date title should be displayed, add the date title
-						( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
-						//Add the event markup
-						$event->get_event_markup( 'list', $num_in_day, $i ) .
-						'</div>';
-					
-						$has_events = true;
-						
-						$i++;
-					}
+						//Create the markup for this event
+						if( ( $event->start_time >= $start && $event->end_time < $end_time ) || ( $event->day_type == 'MWD' && $event->start_time > $start && $event->start_time < $end_time ) ) {
+						$markup .=
+							'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
+							//If this isn't a grouped list and a date title should be displayed, add the date title
+							( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
+							//Add the event markup
+							$event->get_event_markup( 'list', $num_in_day, $i ) .
+							'</div>';
+
+							$has_events = true;
+
+							$i++;
+						}
 				}
 
 				//If this is a grouped list, close the nested list for this day
