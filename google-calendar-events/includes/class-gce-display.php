@@ -257,7 +257,7 @@ class GCE_Display {
 		
 		$feeds = implode( $this->id, '-' );
 		
-		$markup = '<ul class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
+		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
 		if( $paging == true || $paging == 1 || $paging == 'true' ) {
 			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back">Back</a></span>';
@@ -274,21 +274,20 @@ class GCE_Display {
 			//If this is a grouped list, add the date title and begin the nested list for this day
 				if ( $grouped ) {
 					$markup .=
-						'<li' . ( ( $key == $start ) ? ' class="gce-today"' : '' ) . '>' .
-						'<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>' .
-						'<ul>';
+						'<div class="gce-list-grouped" ' . ( ( $key == $start ) ? ' class="gce-today"' : '' ) . '>' .
+						'<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
 				}
 
 				foreach ( $event_day as $num_in_day => $event ) {
 					//Create the markup for this event
 					if( $event->start_time >= $start && $event->end_time <= $end_time ) {
 					$markup .=
-						'<li class="gce-feed-' . $event->feed->id . '">' .
+						'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
 						//If this isn't a grouped list and a date title should be displayed, add the date title
-						( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . ' ' . date_i18n( $event->feed->date_format, $key ) . '</div>' : '' ) .
+						( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
 						//Add the event markup
 						$event->get_event_markup( 'list', $num_in_day, $i ) .
-						'</li>';
+						'</div>';
 					
 						$has_events = true;
 						
@@ -298,7 +297,7 @@ class GCE_Display {
 
 				//If this is a grouped list, close the nested list for this day
 				if ( $grouped ) {
-					$markup .= '</ul></li>';
+					$markup .= '</div>';
 				}
 				
 			$max_count++;
@@ -308,7 +307,7 @@ class GCE_Display {
 			$markup .= __( 'No events to display.', 'gce' );
 		}
 
-		$markup .= '</ul>';
+		$markup .= '</div>';
 
 		return $markup;
 	}

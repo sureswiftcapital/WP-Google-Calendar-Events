@@ -239,3 +239,7 @@
 	text-align: center;
 }
 
+/* Grouped List */
+.gce-list-grouped .gce-feed { 
+	margin-left: 5%;
+}
