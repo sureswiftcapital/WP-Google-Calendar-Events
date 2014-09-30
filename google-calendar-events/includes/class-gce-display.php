@@ -205,15 +205,16 @@ class GCE_Display {
 	 * @since 2.0.0
 	 */
 	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null, $start_offset = null ) {
+		$paging_type = '';
 		
 		if( $start == null ) {
 			$start = mktime( 0, 0, 0, date( 'm', current_time( 'timestamp' ) ), 1, date( 'Y', current_time( 'timestamp' ) ) );
 		} 
 		
-		//if( $paging_interval == 2629743 ) {
-			//$days_in_month = date( 't', $start );
-			//$paging_interval = 86400 * $days_in_month;
-		//}
+		if( $paging_interval == 2629743 || $paging_interval == null ) {
+			$paging_type = 'month';
+		}
+		
 		
 		// Get all the event days
 		$event_days = $this->get_event_days();
@@ -247,6 +248,14 @@ class GCE_Display {
 			
 			$start = $start + $start_offset;
 		}
+		
+		/*if( $paging_interval == 'month' || $paging_interval == null ) {
+			$days_in_month = date( 't', $start );
+			$paging_interval = 86400 * $days_in_month;
+			$prev_month = mktime( 0, 0, 0, date( 'm', $start ) - 1, 1, date( 'Y', $start ) );
+			$prev_interval_days = date( 't', $prev_month );
+			$prev_interval = $prev_interval_days * 86400;
+		}*/
 
 		$start = mktime( 0, 0, 0, date( 'm', $start ), date( 'd', $start ), date( 'Y', $start ) );
 		
@@ -254,7 +263,7 @@ class GCE_Display {
 		//echo 'Start Offset: ' . $start_offset . '<br>';
 		//echo 'Paging Interval: ' . $paging_interval . '<br>';
 		
-		$end_time = $start + $paging_interval + ( 86400 / 2 );
+		$end_time = $start + $paging_interval;
 		
 		//echo 'Start Time: ' . $start . '<br>';
 		//echo 'Paging Interval: ' . $paging_interval . '<br>';
@@ -267,8 +276,8 @@ class GCE_Display {
 		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
 		if( $paging == true || $paging == 1 || $paging == 'true' ) {
-			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back">Back</a></span>';
-			$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward">Next</a></span>';
+			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">Back</a></span>';
+			$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">Next</a></span>';
 			
 			$markup .= '' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . 
 					date( 'F', $start ) . ' ' . date( 'Y', $start ) . '</span>' . $n . "</caption>\n";

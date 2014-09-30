@@ -124,10 +124,34 @@ function gce_ajax_list() {
 	$paging_interval  = $_GET['gce_paging_interval'];
 	$paging_direction = $_GET['gce_paging_direction'];
 	$start_offset     = $_GET['gce_start_offset'];
+	$paging_type      = $_GET['gce_paging_type'];
+	
+	//printf( 'AJAX Start: ' . $start );
 	
 	if( $paging_direction == 'back' ) {
-		$start = $start - ( $paging_interval * 2 );
+		if( $paging_type == 'month' ) {
+
+			$this_month = mktime( 0, 0, 0, date( 'm', $start ) - 1, 1, date( 'Y', $start ) );
+			$prev_month = mktime( 0, 0, 0, date( 'm', $start ) - 2, 1, date( 'Y', $start ) );
+			$prev_interval_days = date( 't', $prev_month );
+			$month_days = date( 't', $this_month );
+			
+			$int = $month_days + $prev_interval_days;
+			$int = $int * 86400;
 		
+			$start = $start - ( $int );
+
+			$changed_month_days = date( 't', $start );
+			$paging_interval = $changed_month_days * 86400;
+		} else {
+			$start = $start - ( $paging_interval * 2 );
+		}
+		
+	} else {
+		if( $paging_type == 'month' ) {
+			$days_in_month = date( 't', $start );
+			$paging_interval = 86400 * $days_in_month;
+		}
 	}
 	
 	$d = new GCE_Display( explode( '-', $ids ), $title_text, $sort  );
