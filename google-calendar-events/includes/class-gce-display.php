@@ -274,7 +274,7 @@ class GCE_Display {
 		
 		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
-		if( $paging == true || $paging == 1 || $paging == 'true' ) {
+		if( ( $paging == true || $paging == 1 || $paging == 'true' ) && $max_length != 'events' ) {
 			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">Back</a></span>';
 			$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">Next</a></span>';
 			
@@ -283,6 +283,11 @@ class GCE_Display {
 		}
 		$max_count = 1;
 		$has_events = false;
+		
+		if( $max_length == 'events' ) {
+			$time_now = current_time( 'timestamp' );
+			$event_counter = 0;
+		}
 
 		foreach ( $event_days as $key => $event_day ) {
 			
@@ -292,22 +297,43 @@ class GCE_Display {
 						'<div class="gce-list-grouped" ' . ( ( $key == $start ) ? ' class="gce-today"' : '' ) . '>' .
 						'<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
 				}
+				
+				if( $max_length != 'events' ) {
+					foreach ( $event_day as $num_in_day => $event ) {
+							//Create the markup for this event
+							if( ( $event->start_time >= $start && $event->end_time <= $end_time ) || ( $event->day_type == 'MWD' && $event->start_time > $start && $event->start_time < $end_time ) ) {
+							$markup .=
+								'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
+								//If this isn't a grouped list and a date title should be displayed, add the date title
+								( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
+								//Add the event markup
+								$event->get_event_markup( 'list', $num_in_day, $i ) .
+								'</div>';
 
-				foreach ( $event_day as $num_in_day => $event ) {
-						//Create the markup for this event
-						if( ( $event->start_time >= $start && $event->end_time <= $end_time ) || ( $event->day_type == 'MWD' && $event->start_time > $start && $event->start_time < $end_time ) ) {
-						$markup .=
-							'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
-							//If this isn't a grouped list and a date title should be displayed, add the date title
-							( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
-							//Add the event markup
-							$event->get_event_markup( 'list', $num_in_day, $i ) .
-							'</div>';
+								$has_events = true;
 
-							$has_events = true;
+								$i++;
+							}
+					}
+				} else {
+					foreach ( $event_day as $num_in_day => $event ) {
+							//Create the markup for this event
+							if( ( $event->start_time >= $time_now ) && ( $event_counter < $max_num ) ) {
+							$markup .=
+								'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
+								//If this isn't a grouped list and a date title should be displayed, add the date title
+								( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
+								//Add the event markup
+								$event->get_event_markup( 'list', $num_in_day, $i ) .
+								'</div>';
 
-							$i++;
-						}
+								$has_events = true;
+
+								$i++;
+								
+								$event_counter++;
+							}
+					}
 				}
 
 				//If this is a grouped list, close the nested list for this day
