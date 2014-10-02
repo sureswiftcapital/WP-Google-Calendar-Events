@@ -261,6 +261,9 @@ class GCE_Display {
 			
 			$start = $start + $start_offset;
 		}
+		
+		
+
 
 		$start = mktime( 0, 0, 0, date( 'm', $start ), date( 'd', $start ), date( 'Y', $start ) );
 		
