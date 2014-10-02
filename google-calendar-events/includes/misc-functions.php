@@ -14,7 +14,8 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			'month'      => null,
 			'year'       => null,
 			'widget'     => 0,
-			'paging_interval' => null
+			'paging_interval' => null,
+			'max_events' => null
 		);
 	
 	$args = array_merge( $defaults, $args );
@@ -28,6 +29,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$markup = '';
 	$start = null;
 	$paging = null;
+	$start_offset = null;
 	
 	if( $widget ) {
 		foreach( $ids as $f ) {
@@ -59,7 +61,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		$markup .= '</div>';
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
-		$markup = '<div class="gce-page-list">' . $d->get_list( $grouped, $start, $paging, $paging_interval ) . '</div>';
+		$markup = '<div class="gce-page-list">' . $d->get_list( $grouped, $start, $paging, $paging_interval, $start_offset, $max_events ) . '</div>';
 	}
 	
 	// Reset post meta

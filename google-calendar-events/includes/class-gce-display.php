@@ -204,7 +204,7 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null, $start_offset = null ) {
+	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null, $start_offset = null, $max_events = null ) {
 		$paging_type = '';
 		
 		if( $start == null ) {
@@ -214,10 +214,22 @@ class GCE_Display {
 		// Get all the event days
 		$event_days = $this->get_event_days();
 		
+		/*if( $paging_interval == 'events' ) {
+			$max_length = 'events';
+			$paging_interval = null;
+		}*/
+		
+		//echo 'Max Length: ' . $max_length . '<br>';
+		
 		foreach( $event_days as $key => $event_day ) {
 			if( $paging_interval == null ) {
+				//echo 'Hit me!';
 				$max_num    = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_num', true );
-				$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
+				
+				//if( ! isset( $max_length ) ) {
+					$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
+				//	echo 'Hit';
+				//}
 				
 				if( $max_length == 'days' ) {
 					$paging_interval = $max_num * 86400;
@@ -287,6 +299,10 @@ class GCE_Display {
 		if( $max_length == 'events' ) {
 			$time_now = current_time( 'timestamp' );
 			$event_counter = 0;
+			
+			if( $max_events == null ) {
+				$max_events = $max_num;
+			}
 		}
 
 		foreach ( $event_days as $key => $event_day ) {
@@ -318,7 +334,7 @@ class GCE_Display {
 				} else {
 					foreach ( $event_day as $num_in_day => $event ) {
 							//Create the markup for this event
-							if( ( $event->start_time >= $time_now ) && ( $event_counter < $max_num ) ) {
+							if( ( $event->start_time >= $time_now ) && ( $event_counter < $max_events ) ) {
 							$markup .=
 								'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
 								//If this isn't a grouped list and a date title should be displayed, add the date title

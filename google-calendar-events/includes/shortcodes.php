@@ -67,8 +67,10 @@ function gce_gcal_shortcode( $attr ) {
 		}
 	}
 	
-	if( $interval == 'day' ) {
+	if( $interval == 'days' ) {
 		$paging_interval = $interval_count * 86400;
+	} else if( $interval == 'events' ) {
+		$max_events = $interval_count;
 	}
 
 	// Port over old options
@@ -87,7 +89,8 @@ function gce_gcal_shortcode( $attr ) {
 		'month'      => null,
 		'year'       => null,
 		'widget'     => 0,
-		'paging_interval' => $paging_interval
+		'paging_interval' => $paging_interval,
+		'max_events' => $max_events
 	);
 	
 	$feed_ids = implode( '-', $feed_ids );
