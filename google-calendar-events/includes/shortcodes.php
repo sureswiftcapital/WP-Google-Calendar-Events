@@ -26,8 +26,8 @@ function gce_gcal_shortcode( $attr ) {
 					'title'   => null,
 					'type'    => null,
 					'paging'  => '',
-					'event_interval' => null,
-					'event_interval_count' => null
+					'interval' => null,
+					'interval_count' => null
 				), $attr, 'gce_feed' ) );
 	
 	// If no ID is specified then return
@@ -35,17 +35,7 @@ function gce_gcal_shortcode( $attr ) {
 		return;
 	}
 	
-	switch( $event_interval ) {
-		case 'day': 
-			$event_interval = 86400;
-			break;
-		case 'week':
-			$event_interval = 604800;
-			break;
-		case 'month':
-			$event_interval = 2629743;
-			break;
-	}
+	$paging_interval = null;
 	
 	$feed_ids = explode( ',', $id );
 
@@ -64,12 +54,12 @@ function gce_gcal_shortcode( $attr ) {
 			$display = get_post_meta( $v, 'gce_display_mode', true );
 		}
 		
-		if( $event_interval == null ) {
-			$event_interval = get_post_meta( $v, 'gce_list_max_length', true );
+		if( $interval == null ) {
+			$interval = get_post_meta( $v, 'gce_list_max_length', true );
 		}
 		
-		if( $event_interval_count == null ) {
-			$event_interval_count = get_post_meta( $v, 'gce_list_max_num', true );
+		if( $interval_count == null ) {
+			$interval_count = get_post_meta( $v, 'gce_list_max_num', true );
 		}
 		
 		if( ! empty( $paging ) ) {
@@ -77,7 +67,9 @@ function gce_gcal_shortcode( $attr ) {
 		}
 	}
 	
-	$paging_interval = $event_interval * $event_interval_count;
+	if( $interval == 'day' ) {
+		$paging_interval = $interval_count * 86400;
+	}
 
 	// Port over old options
 	if( $type != null ) {
