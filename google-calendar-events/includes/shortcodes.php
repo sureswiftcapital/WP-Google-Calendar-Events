@@ -36,6 +36,7 @@ function gce_gcal_shortcode( $attr ) {
 	}
 	
 	$paging_interval = null;
+	$max_events = null;
 	
 	$feed_ids = explode( ',', $id );
 

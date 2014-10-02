@@ -221,6 +221,8 @@ class GCE_Display {
 		
 		//echo 'Max Length: ' . $max_length . '<br>';
 		
+		$max_length = null;
+		
 		foreach( $event_days as $key => $event_day ) {
 			if( $paging_interval == null ) {
 				//echo 'Hit me!';
@@ -241,14 +243,14 @@ class GCE_Display {
 				$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
 			}
 			
-			/*if( $start_offset == null ) {
+			if( $start_offset == null ) {
 				$start_offset_num       = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_num', true );
 				$start_offset_length    = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_length', true );
 				$start_offset_direction = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_direction', true );
-			}*/
+			}
 		}
 		
-		/*if( $start_offset == null ) {
+		if( $start_offset == null ) {
 			if( $start_offset_direction == 'back' ) {
 				$start_offset_direction = -1;
 			} else {
@@ -258,15 +260,7 @@ class GCE_Display {
 			$start_offset = $start_offset_num * $start_offset_length * $start_offset_direction;
 			
 			$start = $start + $start_offset;
-		}*/
-		
-		/*if( $paging_interval == 'month' || $paging_interval == null ) {
-			$days_in_month = date( 't', $start );
-			$paging_interval = 86400 * $days_in_month;
-			$prev_month = mktime( 0, 0, 0, date( 'm', $start ) - 1, 1, date( 'Y', $start ) );
-			$prev_interval_days = date( 't', $prev_month );
-			$prev_interval = $prev_interval_days * 86400;
-		}*/
+		}
 
 		$start = mktime( 0, 0, 0, date( 'm', $start ), date( 'd', $start ), date( 'Y', $start ) );
 		
