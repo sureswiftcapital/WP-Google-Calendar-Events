@@ -211,11 +211,6 @@ class GCE_Display {
 			$start = mktime( 0, 0, 0, date( 'm', current_time( 'timestamp' ) ), 1, date( 'Y', current_time( 'timestamp' ) ) );
 		} 
 		
-		if( $paging_interval == 2629743 || $paging_interval == null ) {
-			$paging_type = 'month';
-		}
-		
-		
 		// Get all the event days
 		$event_days = $this->get_event_days();
 		
@@ -223,21 +218,25 @@ class GCE_Display {
 			if( $paging_interval == null ) {
 				$max_num    = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_num', true );
 				$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
-				$paging_interval = $max_num * $max_length;
+				
+				if( $max_length == 'days' ) {
+					$paging_interval = $max_num * 86400;
+				}
+				
 			}
 
 			if( $paging == null ) {
 				$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
 			}
 			
-			if( $start_offset == null ) {
+			/*if( $start_offset == null ) {
 				$start_offset_num       = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_num', true );
 				$start_offset_length    = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_length', true );
 				$start_offset_direction = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_direction', true );
-			}
+			}*/
 		}
 		
-		if( $start_offset == null ) {
+		/*if( $start_offset == null ) {
 			if( $start_offset_direction == 'back' ) {
 				$start_offset_direction = -1;
 			} else {
@@ -247,7 +246,7 @@ class GCE_Display {
 			$start_offset = $start_offset_num * $start_offset_length * $start_offset_direction;
 			
 			$start = $start + $start_offset;
-		}
+		}*/
 		
 		/*if( $paging_interval == 'month' || $paging_interval == null ) {
 			$days_in_month = date( 't', $start );
@@ -296,7 +295,7 @@ class GCE_Display {
 
 				foreach ( $event_day as $num_in_day => $event ) {
 						//Create the markup for this event
-						if( ( $event->start_time >= $start && $event->end_time < $end_time ) || ( $event->day_type == 'MWD' && $event->start_time > $start && $event->start_time < $end_time ) ) {
+						if( ( $event->start_time >= $start && $event->end_time <= $end_time ) || ( $event->day_type == 'MWD' && $event->start_time > $start && $event->start_time < $end_time ) ) {
 						$markup .=
 							'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
 							//If this isn't a grouped list and a date title should be displayed, add the date title
