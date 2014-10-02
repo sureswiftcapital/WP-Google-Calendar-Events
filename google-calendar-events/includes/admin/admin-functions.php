@@ -44,8 +44,8 @@ function gce_default_editor_content( $content, $post ) {
 		add_post_meta( $post->ID, 'gce_retrieve_until', 'end_time' );
 		add_post_meta( $post->ID, 'gce_cache', 43200 );
 		add_post_meta( $post->ID, 'gce_paging', 1 );
-		add_post_meta( $post->ID, 'gce_list_max_num', 1 );
-		add_post_meta( $post->ID, 'gce_list_max_length', 604800 );
+		add_post_meta( $post->ID, 'gce_list_max_num', 7 );
+		add_post_meta( $post->ID, 'gce_list_max_length', 'days' );
 		
 		// Default Simple Display Options
 		add_post_meta( $post->ID, 'gce_display_start', 'time' );
