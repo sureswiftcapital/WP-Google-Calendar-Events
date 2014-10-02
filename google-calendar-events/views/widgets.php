@@ -43,11 +43,16 @@ class GCE_Widget extends WP_Widget {
 		$paging     = $instance['paging'];
 		$max_num    = $instance['list_max_num'];
 		$max_length = $instance['list_max_length'];
+		$max_events = null;
 		
 		$paging_interval = null;
 		
 		if( $max_length == 'days' ) {
 			$paging_interval = $max_num * 86400;
+		}
+		
+		if( $max_length == 'events' ) {
+			$max_events = $max_num;
 		}
 		
 		// Check whether any feeds have been added yet
@@ -104,7 +109,8 @@ class GCE_Widget extends WP_Widget {
 					'sort'       => $sort_order,
 					'month'      => null,
 					'year'       => null,
-					'widget'     => 1
+					'widget'     => 1,
+					'max_events' => $max_events
 				);
 				
 				if( 'list-grouped' == $instance['display_type'] ) {
