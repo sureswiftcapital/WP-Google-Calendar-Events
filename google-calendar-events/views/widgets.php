@@ -44,7 +44,11 @@ class GCE_Widget extends WP_Widget {
 		$max_num    = $instance['list_max_num'];
 		$max_length = $instance['list_max_length'];
 		
-		$paging_interval = $max_num * $max_length;
+		$paging_interval = null;
+		
+		if( $max_length == 'days' ) {
+			$paging_interval = $max_num * 86400;
+		}
 		
 		// Check whether any feeds have been added yet
 		if( wp_count_posts( 'gce_feed' )->publish > 0 ) {
@@ -167,7 +171,7 @@ class GCE_Widget extends WP_Widget {
 		$title_text      = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
 		$paging          = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
 		$list_max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 1 );
-		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 604800 );
+		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
 		
 		?>
 		<p>
@@ -208,9 +212,8 @@ class GCE_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'list_max_num' ); ?>"><?php _e( 'Number of Events per Page', 'gce' ); ?></label><br>
 			<input type="number" class="" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
 			<select name="<?php echo $this->get_field_name( 'list_max_length' ); ?>" id="<?php echo $this->get_field_id( 'list_max_length' ); ?>">
-				<option value="86400" <?php selected( $list_max_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
-				<option value="604800" <?php selected( $list_max_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
-				<option value="2629743" <?php selected( $list_max_length, '2629743', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
+				<option value="days" <?php selected( $list_max_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
+				<option value="events" <?php selected( $list_max_length, 'events', true ); ?>><?php _e( 'Events', 'gce' ); ?></option>
 			</select>
 		</p>
 		
