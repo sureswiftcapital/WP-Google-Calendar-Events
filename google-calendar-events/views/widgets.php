@@ -251,7 +251,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Start Date Offset', 'gce' ); ?></label><br>
+			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Start Date Offset (List View Only)', 'gce' ); ?></label><br>
 			<input type="number" class="" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
 			<select name="<?php echo $this->get_field_name( 'list_start_offset_length' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_length' ); ?>">
 				<option value="days" <?php selected( $list_start_offset_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>

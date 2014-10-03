@@ -173,7 +173,8 @@
 				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
 				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
 			</select>
-		</td>
+			<p class="description"><?php _e( 'If you need to show events starting on a day other than today. (List View only).', 'gce' ); ?></p>
+		</td>	
 	</tr>
 	
 	<tr>
