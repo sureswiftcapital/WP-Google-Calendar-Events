@@ -34,6 +34,7 @@ Parses Google Calendar feeds and displays the events as a calendar grid or list 
 This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a web developer based in the UK specialising in WordPress and PHP.
 
 Spanish translation provided by Eduardo Larequi of [educacion.navarra.es/web/pnte/](http://www.educacion.navarra.es/web/pnte/).
+Italian translation provided by Francesco Paccagnella of [pacca.it](http://www.pacca.it/)).
 
 == Installation ==
 
@@ -94,6 +95,7 @@ There are three ways to install this plugin.
 * Changed HTML output for list view to no longer use an unordered list.
 * Removed max number of events to retrieve option.
 * Added options to set the start offset for list view.
+* Added Italian translation (thanks to Francesco Paccagnella of [pacca.it](http://www.pacca.it/)).
 
 = 2.0.3.1 =
 
