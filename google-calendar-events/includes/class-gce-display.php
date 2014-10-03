@@ -222,13 +222,11 @@ class GCE_Display {
 		
 		foreach( $event_days as $key => $event_day ) {
 			if( $paging_interval == null ) {
-				//echo 'Hit me!';
 				$max_num    = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_num', true );
 				
 				if( $paging_type == null ) {
 					$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
 					$paging_type = $max_length;
-					echo 'Hit';
 				}
 				
 				if( $max_length == 'days' ) {

@@ -86,11 +86,14 @@ There are three ways to install this plugin.
 * Added shortcode attribute 'interval'.
 * Added shortcode attribute 'interval_count'.
 * Added shortcode attribute 'paging'.
+* Added shortcode attribute 'offset_interval'.
+* Added shortcode attribute 'offset_interval_count'.
+* Added shortcode attribute 'offset_direction'.
 * Added settings to feed and widget to set the paging interval.
 * No longer shows date for the title in list view.
 * Changed HTML output for list view to no longer use an unordered list.
 * Removed max number of events to retrieve option.
-
+* Added options to set the start offset for list view.
 
 = 2.0.3.1 =
 
