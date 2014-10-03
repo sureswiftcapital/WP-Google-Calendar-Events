@@ -228,11 +228,6 @@ class GCE_Display {
 					$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
 					$paging_type = $max_length;
 				}
-				
-				if( $max_length == 'days' ) {
-					$paging_interval = $max_num * 86400;
-				}
-				
 			}
 
 			if( $paging == null ) {
@@ -244,6 +239,14 @@ class GCE_Display {
 				$start_offset_length    = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_length', true );
 				$start_offset_direction = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_direction', true );
 			}
+		}
+		
+		if( empty( $max_num ) || $max_num == 0 ) {
+			$max_num = 30;
+		}
+		
+		if( $max_length == 'days' ) {
+			$paging_interval = $max_num * 86400;
 		}
 		
 		if( $start_offset == null ) {
