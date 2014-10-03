@@ -124,13 +124,14 @@ class GCE_Widget extends WP_Widget {
 				$sort_order = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 				
 				$args = array(
-					'title_text' => $title_text,
-					'sort'       => $sort_order,
-					'month'      => null,
-					'year'       => null,
-					'widget'     => 1,
-					'max_events' => $max_events,
-					'start_offset' => $start_offset
+					'title_text'   => $title_text,
+					'sort'         => $sort_order,
+					'month'        => null,
+					'year'         => null,
+					'widget'       => 1,
+					'max_events'   => $max_events,
+					'start_offset' => $start_offset,
+					'paging_type'  => $max_length
 				);
 				
 				if( 'list-grouped' == $instance['display_type'] ) {
