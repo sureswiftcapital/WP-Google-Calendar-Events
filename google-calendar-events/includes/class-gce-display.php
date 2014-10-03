@@ -204,8 +204,14 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null, $start_offset = null, $max_events = null ) {
-		$paging_type = '';
+	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null, $start_offset = null, $max_events = null, $paging_type = null ) {
+		$paging_type = $paging_type;
+		
+		$max_length = null;
+		
+		if( $paging_type == 'events' ) {
+			$max_length = 'events';
+		}
 		
 		if( $start == null ) {
 			$start = mktime( 0, 0, 0, date( 'm', current_time( 'timestamp' ) ), 1, date( 'Y', current_time( 'timestamp' ) ) );
@@ -214,24 +220,16 @@ class GCE_Display {
 		// Get all the event days
 		$event_days = $this->get_event_days();
 		
-		/*if( $paging_interval == 'events' ) {
-			$max_length = 'events';
-			$paging_interval = null;
-		}*/
-		
-		//echo 'Max Length: ' . $max_length . '<br>';
-		
-		$max_length = null;
-		
 		foreach( $event_days as $key => $event_day ) {
 			if( $paging_interval == null ) {
 				//echo 'Hit me!';
 				$max_num    = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_num', true );
 				
-				//if( ! isset( $max_length ) ) {
+				if( $paging_type == null ) {
 					$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
-				//	echo 'Hit';
-				//}
+					$paging_type = $max_length;
+					echo 'Hit';
+				}
 				
 				if( $max_length == 'days' ) {
 					$paging_interval = $max_num * 86400;

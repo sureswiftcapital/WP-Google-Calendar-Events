@@ -20,14 +20,17 @@
 function gce_gcal_shortcode( $attr ) {
 
 	extract( shortcode_atts( array(
-					'id'      => null,
-					'display' => '',
-					'order'   => 'asc',
-					'title'   => null,
-					'type'    => null,
-					'paging'  => '',
-					'interval' => null,
-					'interval_count' => null
+					'id'                    => null,
+					'display'               => '',
+					'order'                 => 'asc',
+					'title'                 => null,
+					'type'                  => null,
+					'paging'                => '',
+					'interval'              => null,
+					'interval_count'        => null,
+					'offset_interval'       => null,
+					'offset_interval_count' => null,
+					'offset_direction'      => null
 				), $attr, 'gce_feed' ) );
 	
 	// If no ID is specified then return
@@ -63,9 +66,34 @@ function gce_gcal_shortcode( $attr ) {
 			$interval_count = get_post_meta( $v, 'gce_list_max_num', true );
 		}
 		
+		if( $offset_interval == null ) {
+			$offset_interval = get_post_meta( $v, 'gce_list_start_offset_length', true );
+		}
+		
+		if( $offset_interval_count == null ) {
+			$offset_interval_count = get_post_meta( $v, 'gce_list_start_offset_num', true );
+		}
+		
+		if( $offset_direction == null ) {
+			$offset_direction = get_post_meta( $v, 'gce_list_start_offset_direction', true );
+		}
+		
 		if( ! empty( $paging ) ) {
 			update_post_meta( $v, 'gce_paging', ( $paging == 'true' ? 1 : 0 ) );
 		}
+	}
+	
+	if( $offset_direction == 'back' ) {
+		$offset_direction = -1;
+	} else {
+		$offset_direction = 1;
+	}
+	
+	if( $offset_interval == 'days' ) {
+		$start_offset = $offset_interval_count * 86400 * $offset_direction;
+	} else if( $offset_interval == 'events' ) {
+		$max_events = $offset_interval_count;
+		$paging_type = 'events';
 	}
 	
 	if( $interval == 'days' ) {
@@ -93,6 +121,14 @@ function gce_gcal_shortcode( $attr ) {
 		'paging_interval' => $paging_interval,
 		'max_events' => $max_events
 	);
+	
+	if( ! empty( $start_offset ) ) {
+		$args['start_offset'] = $start_offset;
+	}
+	
+	if( ! empty( $paging_type ) ) {
+		$args['paging_type'] = $paging_type;
+	}
 	
 	$feed_ids = implode( '-', $feed_ids );
 
