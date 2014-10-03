@@ -43,9 +43,11 @@ function gce_v2_upgrade() {
 	$old_options = get_option( 'gce_options' );
 	
 	if( false !== $old_options ) {
-	
-		foreach( $old_options as $key => $value ) {
-			convert_to_cpt_posts( $value );
+		
+		if( ! empty( $old_options ) ) {
+			foreach( $old_options as $key => $value ) {
+				convert_to_cpt_posts( $value );
+			}
 		}
 
 		update_widget_feed_ids();
