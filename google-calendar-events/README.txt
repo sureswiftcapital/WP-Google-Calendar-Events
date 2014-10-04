@@ -99,6 +99,7 @@ There are three ways to install this plugin.
 * Added Italian translation (thanks to Francesco Paccagnella of [pacca.it](http://www.pacca.it/)).
 * Added French translation files provided by Vincent Bray.
 * Fixed PHP error during upgrade.
+* Moved clear cache button and changed style.
 
 = 2.0.3.1 =
 
