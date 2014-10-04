@@ -96,6 +96,7 @@ There are three ways to install this plugin.
 * Removed max number of events to retrieve option.
 * Added options to set the start offset for list view.
 * Added Italian translation (thanks to Francesco Paccagnella of [pacca.it](http://www.pacca.it/)).
+* Added French translation files.
 
 = 2.0.3.1 =
 
