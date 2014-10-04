@@ -35,6 +35,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 
 Spanish translation provided by Eduardo Larequi of [educacion.navarra.es/web/pnte/](http://www.educacion.navarra.es/web/pnte/).
 Italian translation provided by Francesco Paccagnella of [pacca.it](http://www.pacca.it/)).
+French translation provided by Vincent Bray.
 
 == Installation ==
 
@@ -96,7 +97,8 @@ There are three ways to install this plugin.
 * Removed max number of events to retrieve option.
 * Added options to set the start offset for list view.
 * Added Italian translation (thanks to Francesco Paccagnella of [pacca.it](http://www.pacca.it/)).
-* Added French translation files.
+* Added French translation files provided by Vincent Bray.
+* Fixed PHP error during upgrade.
 
 = 2.0.3.1 =
 
