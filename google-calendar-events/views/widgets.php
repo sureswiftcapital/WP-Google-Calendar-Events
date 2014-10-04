@@ -40,15 +40,15 @@ class GCE_Widget extends WP_Widget {
 		//Output before widget stuff
 		echo $before_widget;
 		
-		$paging     = $instance['paging'];
-		$max_num    = $instance['list_max_num'];
-		$max_length = $instance['list_max_length'];
+		$paging     = ( isset( $instance['paging'] ) ? $instance['paging'] : null );
+		$max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : null );
+		$max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : null );
 		$max_events = null;
 		
 		// Start offset
-		$offset_num       = $instance['list_start_offset_num'];
-		$offset_length    = $instance['list_start_offset_length'];
-		$offset_direction = $instance['list_start_offset_direction'];
+		$offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
+		$offset_length    = ( isset( $instance['list_start_offset_length'] ) ? $instance['list_start_offset_length'] : 0 );
+		$offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : null );
 		
 		
 		if( $offset_length == 'days' ) {
