@@ -176,17 +176,4 @@
 			<p class="description"><?php _e( 'If you need to show events starting on a day other than today. (List View only).', 'gce' ); ?></p>
 		</td>	
 	</tr>
-	
-	<tr>
-		<th scope="row"><?php _e( 'Clear Cache', 'gce' ); ?></th>
-		<td>
-			<a href="<?php echo add_query_arg( array( 'clear_cache' => true ) ); ?>" class="button-secondary"><?php _e( 'Clear Cache', 'gce' ); ?></a>
-			<p class="description">
-				<?php 
-				printf( __( 'This will clear your feed cache. This also automatically happens when you save your changes. %s' . 
-						     'If you make changes you %sMUST%s save first or your changes will be lost.' ), '<br>', '<strong>', '</strong>' ); 
-				?>
-			</p>
-		</td>
-	</tr>
 </table>
