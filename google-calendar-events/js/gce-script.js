@@ -9,6 +9,7 @@
  */
 
 
+/*
 function gce_ajaxify(target, feed_ids, title_text, type){
 
 	//Add click event to change month links
@@ -51,9 +52,47 @@ function gce_tooltips(target_items){
 		});
 	});
 }
+*/
 
 jQuery(document).ready(function($){
-	gce_tooltips('.gce-has-events');
+	//gce_tooltips('.gce-has-events');
+	
+	console.log( 'GCE', gce );
+	
+	$('#' + gce.target + ' .gce-change-month').click(function(){
+		//Extract month and year
+		var month_year = $(this).attr('name').split('-', 2);
+		
+		console.log( 'gce_type:', gce.type);
+		console.log( 'gce_feed_ids:', gce.feed_ids);
+		console.log( 'gce_title_text:', gce.title_text);
+		console.log( 'gce_widget_id:', gce.target );
+		console.log( 'gce_month:', month_year[0]);
+		console.log( 'gce_year:', month_year[1]);
+		
+		//Add loading text to table caption
+		$('#' + gce.target + ' caption').html('Loading...');
+		//Send AJAX request
+		$.get(gce.ajaxurl,{
+			action:'gce_ajax',
+			gce_type: gce.type,
+			gce_feed_ids: gce.feed_ids,
+			gce_title_text: gce.title_text,
+			gce_widget_id: gce.target,
+			gce_month: month_year[0],
+			gce_year: month_year[1]
+		}, function(data){
+			console.log( data );
+			//Replace existing data with returned AJAX data
+			if(gce.type == 'widget'){
+				$('#' + gce.target).html(data);
+			}else{
+				console.log( 'Replacing content...' );
+				$('#' + gce.target).replaceWith(data);
+			}
+			//gce_tooltips('#' + gce.target + ' .gce-has-events');
+		});
+	});
 
 	$('.gce-page-list').on( 'click', '.gce-change-month-list', function(e) {
 		
@@ -69,16 +108,6 @@ jQuery(document).ready(function($){
 		var paging_direction = $(this).data('gce-paging-direction');
 		var start_offset = $(this).parent().parent().data('gce-start-offset');
 		var paging_type = $(this).data('gce-paging-type');
-		
-		/*if( month > 12 ) {
-			month = 1;
-			year = year + 1;
-		} 
-		
-		if( month < 1 ) {
-			month = 12;
-			year = year - 1;
-		}*/
 		
 		//Add loading text to table caption
 		$(this).parent().parent().find('.gce-month-title').html('Loading...');
@@ -100,4 +129,18 @@ jQuery(document).ready(function($){
 			$('.gce-page-list').html(data);
 		});
 	});
+	
+	function gce_tooltips(target_items) {
+		alert( 'HIT' );
+		$(target_items).each(function(){
+			//Add qtip to all target items
+			$(this).qtip({
+				content: $(this).children('.gce-event-info'),
+				position: { corner: { target: 'center', tooltip: 'bottomLeft' }, adjust: { screen: true } },
+				hide: { fixed: true, delay: 100, effect: { length: 0 } },
+				show: { solo: true, delay: 0, effect: { length: 0 } },
+				style: { padding: "0", classes: { tooltip: 'gce-qtip', tip: 'gce-qtip-tip', title: 'gce-qtip-title', content: 'gce-qtip-content', active: 'gce-qtip-active' }, border: { width: 0 } }
+			});
+		});
+	}
 });
