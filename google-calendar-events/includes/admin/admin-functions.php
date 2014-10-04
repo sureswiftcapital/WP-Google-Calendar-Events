@@ -68,7 +68,7 @@ add_filter( 'default_content', 'gce_default_editor_content', 10, 2 );
 function gce_add_cache_button() {
 		
 		$html = '<div id="gce-clear-cache">' .
-				'<a href="' . add_query_arg( array( 'clear_cache' => true ) ) . '" class="button-secondary">' . __( 'Clear Cache', 'gce' ) . '</a>' .
+				'<a href="' . add_query_arg( array( 'clear_cache' => true ) ) . '">' . __( 'Clear Cache', 'gce' ) . '</a>' .
 				'</div>';
 		
 		echo $html;
