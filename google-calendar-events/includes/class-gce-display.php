@@ -185,12 +185,12 @@ class GCE_Display {
 		if( $paging ) {
 			// Add previous / next functionality
 			//If there are events to display in a previous month, add previous month link
-			$prev_key = ( $nav_prev ) ? '&laquo;' : '&nbsp;';
-			$prev = ( $nav_prev ) ? date( 'm-Y', mktime( 0, 0, 0, $month - 1, 1, $year ) ) : null;
+			$prev_key = '&laquo;';
+			$prev = date( 'm-Y', mktime( 0, 0, 0, $month - 1, 1, $year ) );
 
 			//If there are events to display in a future month, add next month link
-			$next_key = ( $nav_next ) ? '&raquo;' : '&nbsp;';
-			$next = ( $nav_next ) ? date( 'm-Y', mktime( 0, 0, 0, $month + 1, 1, $year ) ) : null;
+			$next_key = '&raquo;';
+			$next = date( 'm-Y', mktime( 0, 0, 0, $month + 1, 1, $year ) );
 			
 			//Array of previous and next link stuff for use in gce_generate_calendar (below)
 			$pn = array( $prev_key => $prev, $next_key => $next );
