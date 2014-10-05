@@ -56,18 +56,23 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	
 	if( 'grid' == $display ) {
 		
+		global $localize;
 		// localize script instead?
 		
 		//$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("' . ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids 
 		//			. '", "' . $feed_ids . '", "' . $title_text . '", "' . ( $widget == 1 ? 'widget' : 'page' ) . '");});</script>';
 		// function gce_ajaxify(target, feed_ids, title_text, type){
 		
-		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', array( 
-			'target_element'     => ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids,
-			'feed_ids'   => $feed_ids,
-			'title_text' => $title_text,
-			'type'       => ( $widget == 1 ? 'widget' : 'page' )
-		));
+		$target = ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids;
+		
+		$localize[$target] = array( 
+				'target_element' => $target,
+				'feed_ids'   => $feed_ids,
+				'title_text' => $title_text,
+				'type'       => ( $widget == 1 ? 'widget' : 'page' )
+			);
+		
+		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
 		
 		if( $widget == 1 ) {
 			$markup .= '<div class="gce-widget-grid" id="gce-widget-' . $feed_ids . '">';

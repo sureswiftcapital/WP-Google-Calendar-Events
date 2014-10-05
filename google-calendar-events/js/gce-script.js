@@ -13,41 +13,49 @@
 	$(function() {
 
 		gce_tooltips('.gce-has-events');
+		
+		if( typeof gce_grid != 'undefined' ) {
+			
+			$('body').on( 'click', '.gce-change-month', function(e) {
+				
+				var id = $(this).closest('.gce-calendar').parent().attr('id');
+				
+				e.preventDefault();
 
-		$('body').on( 'click', '#' + gce_grid.target_element + ' .gce-change-month', function() {
-			//Extract month and year
-			var month_year = $(this).attr('name').split('-', 2);
-			var paging = jQuery(this).attr('data-gce-grid-paging');
+				//Extract month and year
+				var month_year = $(this).attr('name').split('-', 2);
+				var paging = $(this).attr('data-gce-grid-paging');
 
-			//Add loading text to table caption
-			$('#' + gce_grid.target_element + ' caption').html('Loading...');
-			//Send AJAX request
-			$.get(gce.ajaxurl,{
-				action:'gce_ajax',
-				gce_type: gce_grid.type,
-				gce_feed_ids: gce_grid.feed_ids,
-				gce_title_text: gce_grid.title_text,
-				gce_widget_id: gce_grid.target_element,
-				gce_month: month_year[0],
-				gce_year: month_year[1],
-				gce_paging: paging
-			}, function(data){
-				//Replace existing data with returned AJAX data
-				if(gce_grid.type == 'widget'){
-					$('#' + gce_grid.target_element).html(data);
-				}else{
-					$('#' + gce_grid.target_element).replaceWith(data);
-				}
-				gce_tooltips('#' + gce_grid.target_element + ' .gce-has-events');
+				//Add loading text to table caption
+				$('#' + gce_grid[id].target_element + ' caption').html('Loading...');
+				//Send AJAX request
+				$.get(gce.ajaxurl,{
+					action:'gce_ajax',
+					gce_type: gce_grid[id].type,
+					gce_feed_ids: gce_grid[id].feed_ids,
+					gce_title_text: gce_grid[id].title_text,
+					gce_widget_id: gce_grid[id].target_element,
+					gce_month: month_year[0],
+					gce_year: month_year[1],
+					gce_paging: paging
+				}, function(data){
+					//Replace existing data with returned AJAX data
+					if(gce_grid[id].type == 'widget'){
+						$('#' + gce_grid[id].target_element).html(data);
+					}else{
+						$('#' + gce_grid[id].target_element).replaceWith(data);
+					}
+					gce_tooltips('#' + gce_grid[id].target_element + ' .gce-has-events');
+				});
 			});
-		});
+		}
 
-		$('.gce-page-list').on( 'click', '.gce-change-month-list', function(e) {
+		$('body').on( 'click', '.gce-change-month-list', function(e) {
 
 			e.preventDefault();
 
 			var element = $(this);
-
+				
 			var start = $(this).parent().parent().data('gce-start');
 			var grouped = $(this).parent().parent().data('gce-grouped');
 			var title_text = $(this).parent().parent().data('gce-title');
@@ -76,7 +84,7 @@
 				gce_start_offset: start_offset,
 				gce_paging_type: paging_type
 			}, function(data){
-				element.closest('.gce-page-list').html(data);
+				element.parent().parent().html(data);
 			});
 		});
 
