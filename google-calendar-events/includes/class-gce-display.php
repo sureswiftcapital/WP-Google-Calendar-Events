@@ -306,21 +306,24 @@ class GCE_Display {
 			//If this is a grouped list, add the date title and begin the nested list for this day
 				if ( $grouped ) {
 					$markup .=
-						'<div class="gce-list-grouped" ' . ( ( $key == $start ) ? ' class="gce-today"' : '' ) . '>' .
-						'<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
+						'<div class="gce-list-grouped" ' . ( ( $key == $start ) ? ' class="gce-today"' : '' ) . '>';
 				}
 				
 				if( $max_length != 'events' ) {
 					foreach ( $event_day as $num_in_day => $event ) {
 							//Create the markup for this event
 							if( ( $event->start_time >= $start && $event->end_time <= $end_time ) || ( $event->day_type == 'MWD' && $event->start_time > $start && $event->start_time < $end_time ) ) {
-							$markup .=
-								'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
-								//If this isn't a grouped list and a date title should be displayed, add the date title
-								( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
-								//Add the event markup
-								$event->get_event_markup( 'list', $num_in_day, $i ) .
-								'</div>';
+								if( $grouped ) {
+									$markup .= '<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
+								}
+								
+								$markup .=
+									'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
+									//If this isn't a grouped list and a date title should be displayed, add the date title
+									( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
+									//Add the event markup
+									$event->get_event_markup( 'list', $num_in_day, $i ) .
+									'</div>';
 
 								$has_events = true;
 
@@ -329,20 +332,25 @@ class GCE_Display {
 					}
 				} else {
 					foreach ( $event_day as $num_in_day => $event ) {
-							//Create the markup for this event
+							//Create the markup for this event		
 							if( ( $event->start_time >= $time_now ) && ( $event_counter < $max_events ) ) {
-							$markup .=
-								'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
-								//If this isn't a grouped list and a date title should be displayed, add the date title
-								( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
-								//Add the event markup
-								$event->get_event_markup( 'list', $num_in_day, $i ) .
-								'</div>';
+								
+								if( $grouped ) {
+									$markup .= '<div class="gce-list-title">' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
+								}
+								
+								$markup .=
+									'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
+									//If this isn't a grouped list and a date title should be displayed, add the date title
+									( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .			
+									//Add the event markup
+									$event->get_event_markup( 'list', $num_in_day, $i ) .
+									'</div>';
 
 								$has_events = true;
 
 								$i++;
-								
+
 								$event_counter++;
 							}
 					}
