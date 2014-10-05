@@ -76,6 +76,10 @@
 
 /* PAGE LIST */
 
+.gce-page-list .gce-feed {
+	padding-bottom: 10px;
+}
+
 .gce-page-list .gce-list p{ /* Each piece of information in the list */
 	margin:0;
 }
