@@ -196,7 +196,7 @@ class GCE_Widget extends WP_Widget {
 		$display_title   = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
 		$title_text      = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
 		$paging          = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
-		$list_max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 1 );
+		$list_max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 7 );
 		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
 		$list_start_offset_num    = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );

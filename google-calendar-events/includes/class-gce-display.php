@@ -244,7 +244,7 @@ class GCE_Display {
 		}
 		
 		if( empty( $max_num ) || $max_num == 0 ) {
-			$max_num = 30;
+			$max_num = 7;
 		}
 		
 		if( $max_length == 'days' ) {
