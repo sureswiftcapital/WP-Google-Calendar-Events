@@ -110,6 +110,10 @@ function gce_gcal_shortcode( $attr ) {
 			$display = $type;
 		}
 	}
+	
+	if( $display == 'grouped-list' ) {
+		$display = 'list-grouped';
+	}
 
 	$args = array(
 		'title_text' => $title,
