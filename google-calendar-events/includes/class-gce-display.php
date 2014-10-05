@@ -233,7 +233,7 @@ class GCE_Display {
 				}
 			}
 
-			if( $paging == null ) {
+			if( $paging == null && $paging != 0 ) {
 				$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
 			}
 			
@@ -273,7 +273,7 @@ class GCE_Display {
 		
 		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
 		
-		if( ( $paging == true || $paging == 1 || $paging == 'true' ) && $max_length != 'events' ) {
+		if( ( $paging != 0 ) && $max_length != 'events' ) {
 			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">Back</a></span>';
 			$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">Next</a></span>';
 			
