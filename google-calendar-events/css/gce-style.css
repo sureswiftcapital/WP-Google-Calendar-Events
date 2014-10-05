@@ -24,6 +24,14 @@
 	padding-bottom: 5px;
 }
 
+/* Event titles with shaded background for all views */
+
+.gce-list-event,
+.gce-tooltip-event {
+	background-color: #ddd;
+	padding: 0 5px;
+}
+
 /* PAGE GRID */
 
 .gce-page-grid .gce-calendar .gce-caption{ /* Caption at top of calendar */
@@ -106,11 +114,6 @@
 	color:#999999;
 }
 
-.gce-page-list .gce-list .gce-list-event{ /* The event title */
-	background-color:#DDDDDD;
-	padding: 0 5px;
-}
-
 /* WIDGET GRID */
 
 .gce-widget-grid .gce-calendar .gce-caption{
@@ -181,10 +184,6 @@
 	color:#999999;
 }
 
-.gce-widget-list .gce-list .gce-list-event{ /* The event title */
-	background-color:#DDDDDD;
-}
-
 /* TOOLTIP */
 
 .gce-event-info{ /* Tooltip container */
@@ -216,11 +215,6 @@
 .gce-event-info ul li p span,
 .gce-event-info ul li div span{ /* The text displayed before each piece of info, 'Starts:' for example */
 	color:#999999;
-}
-
-.gce-event-info .gce-tooltip-event{ /* The event title */
-	background-color:#DDDDDD;
-	font-weight:bold;
 }
 
 /** List Navigation **/
