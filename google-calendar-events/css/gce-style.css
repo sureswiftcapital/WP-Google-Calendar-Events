@@ -76,6 +76,10 @@
 
 /* PAGE LIST */
 
+.gce-page-list .gce-feed {
+	padding-bottom: 10px;
+}
+
 .gce-page-list .gce-list p{ /* Each piece of information in the list */
 	margin:0;
 }
@@ -87,6 +91,7 @@
 
 .gce-page-list .gce-list .gce-list-event{ /* The event title */
 	background-color:#DDDDDD;
+	padding: 0 5px;
 }
 
 .gce-page-list .gce-list .gce-list-title{ /* The title (not the same as event title) */

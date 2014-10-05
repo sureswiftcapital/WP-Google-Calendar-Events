@@ -40,27 +40,22 @@ class GCE_Widget extends WP_Widget {
 		//Output before widget stuff
 		echo $before_widget;
 		
-		$paging     = $instance['paging'];
-		$max_num    = $instance['list_max_num'];
-		$max_length = $instance['list_max_length'];
+		$paging     = ( isset( $instance['paging'] ) ? $instance['paging'] : null );
+		$max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : null );
+		$max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : null );
 		$max_events = null;
 		
 		// Start offset
-		$offset_num       = $instance['list_start_offset_num'];
-		$offset_length    = $instance['list_start_offset_length'];
-		$offset_direction = $instance['list_start_offset_direction'];
+		$offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
+		$offset_length    = 86400;
+		$offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : null );
 		
-		
-		if( $offset_length == 'days' ) {
-			$offset_length = 86400;
-		}
 		
 		if( $offset_direction == 'back' ) {
 			$offset_direction = -1;
 		} else { 
 			$offset_direction = 1;
 		}
-		
 		
 		$start_offset = $offset_num * $offset_length * $offset_direction;
 		
@@ -105,6 +100,8 @@ class GCE_Widget extends WP_Widget {
 				foreach( $feed_ids as $feed_id ) {
 					if( $paging ) {
 						update_post_meta( $feed_id, 'gce_paging_widget', true );
+					} else { 
+						delete_post_meta( $feed_id, 'gce_paging_widget' );
 					}
 					
 					update_post_meta( $feed_id, 'gce_widget_paging_interval', $paging_interval );
@@ -166,12 +163,11 @@ class GCE_Widget extends WP_Widget {
 		$instance['id']                          = esc_html( $new_instance['id'] );
 		$instance['display_type']                = esc_html( $new_instance['display_type'] );
 		$instance['order']                       = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
-		$instance['display_title_text']          = wp_filter_kses( $new_instance['display_title_text'] );
+		$instance['display_title_text']          = esc_html( $new_instance['display_title_text'] );
 		$instance['paging']                      = ( isset( $new_instance['paging'] ) ? 1 : 0 );
 		$instance['list_max_num']                = $new_instance['list_max_num'];
 		$instance['list_max_length']             = $new_instance['list_max_length'];
 		$instance['list_start_offset_num']       = $new_instance['list_start_offset_num'];
-		$instance['list_start_offset_length']    = $new_instance['list_start_offset_length'];
 		$instance['list_start_offset_direction'] = $new_instance['list_start_offset_direction'];
 		
 		return $instance;
@@ -203,7 +199,6 @@ class GCE_Widget extends WP_Widget {
 		$list_max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 1 );
 		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
 		$list_start_offset_num    = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
-		$list_start_offset_length = ( isset( $instance['list_start_offset_length'] ) ? $instance['list_start_offset_length'] : 'days' );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
 		
 		?>
@@ -238,12 +233,12 @@ class GCE_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links', 'gce' ); ?></label><br>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
-			<?php _e( 'Disable to hide Next/Back links.', 'gce' ); ?>
+			<?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
 		</p>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'list_max_num' ); ?>"><?php _e( 'Number of Events per Page', 'gce' ); ?></label><br>
-			<input type="number" class="" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
+			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
 			<select name="<?php echo $this->get_field_name( 'list_max_length' ); ?>" id="<?php echo $this->get_field_id( 'list_max_length' ); ?>">
 				<option value="days" <?php selected( $list_max_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 				<option value="events" <?php selected( $list_max_length, 'events', true ); ?>><?php _e( 'Events', 'gce' ); ?></option>
@@ -252,10 +247,8 @@ class GCE_Widget extends WP_Widget {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Start Date Offset (List View Only)', 'gce' ); ?></label><br>
-			<input type="number" class="" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
-			<select name="<?php echo $this->get_field_name( 'list_start_offset_length' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_length' ); ?>">
-				<option value="days" <?php selected( $list_start_offset_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
-			</select>
+			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
+			<?php _e( 'Days', 'gce' ); ?>
 			<select name="<?php echo $this->get_field_name( 'list_start_offset_direction' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_direction' ); ?>">
 				<option value="back" <?php selected( $list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
 				<option value="ahead" <?php selected( $list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>

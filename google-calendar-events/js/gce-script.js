@@ -16,6 +16,8 @@ function gce_ajaxify(target, feed_ids, title_text, type){
 	jQuery('#' + target + ' .gce-change-month').click(function(){
 		//Extract month and year
 		var month_year = jQuery(this).attr('name').split('-', 2);
+		var paging = jQuery(this).attr('data-gce-grid-paging');
+		
 		//Add loading text to table caption
 		jQuery('#' + target + ' caption').html('Loading...');
 		//Send AJAX request
@@ -26,7 +28,8 @@ function gce_ajaxify(target, feed_ids, title_text, type){
 			gce_title_text:title_text,
 			gce_widget_id:target,
 			gce_month:month_year[0],
-			gce_year:month_year[1]
+			gce_year:month_year[1],
+			gce_paging:paging
 		}, function(data){
 			//Replace existing data with returned AJAX data
 			if(type == 'widget'){
@@ -98,6 +101,8 @@ jQuery(document).ready(function($){
 		
 		e.preventDefault();
 		
+		var element = $(this);
+		
 		var start = $(this).parent().parent().data('gce-start');
 		var grouped = $(this).parent().parent().data('gce-grouped');
 		var title_text = $(this).parent().parent().data('gce-title');
@@ -126,7 +131,7 @@ jQuery(document).ready(function($){
 			gce_start_offset: start_offset,
 			gce_paging_type: paging_type
 		}, function(data){
-			$('.gce-page-list').html(data);
+			element.closest('.gce-page-list').html(data);
 		});
 	});
 	

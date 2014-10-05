@@ -19,6 +19,12 @@ Changes made to original PHP Calendar script by me (Ross Hanney):
 
 function gce_generate_calendar( $year, $month, $days = array(), $day_name_length = 3, $month_href = NULL, $first_day = 0, $pn = array(), $widget = false ) {
 	global $wp_locale;
+	
+	$paging = false;
+	
+	if( ! empty( $pn ) ) {
+		$paging = true;
+	}
 
 	$first_of_month = mktime( 0, 0, 0, $month, 1, $year );
 	#remember that mktime will automatically correct if invalid dates are entered
@@ -41,17 +47,17 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	
 	if ( $p ) {
 		if( $widget ) {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
+			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
 		} else {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '">' . $p . ' Back</a>' ) : $p ) . '</span>&nbsp;';
+			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . ' Back</a>' ) : $p ) . '</span>&nbsp;';
 		}
 	}
 	
 	if ( $n ) {
 		if( $widget ) {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">' . $n . '</a>' ) : $n ) . '</span>';
+			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
 		} else {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '">Next ' . $n . '</a>' ) : $n ) . '</span>';
+			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">Next ' . $n . '</a>' ) : $n ) . '</span>';
 		}
 	}
 	

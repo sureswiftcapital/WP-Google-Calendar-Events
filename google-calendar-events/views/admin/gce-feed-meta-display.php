@@ -33,7 +33,6 @@
 	$gce_list_max_num                = get_post_meta( $post->ID, 'gce_list_max_num', true );
 	$gce_list_max_length             = get_post_meta( $post->ID, 'gce_list_max_length', true );
 	$gce_list_start_offset_num       = get_post_meta( $post->ID, 'gce_list_start_offset_num', true );
-	$gce_list_start_offset_length    = get_post_meta( $post->ID, 'gce_list_start_offset_length', true );
 	$gce_list_start_offset_direction = get_post_meta( $post->ID, 'gce_list_start_offset_direction', true );
 ?>
 
@@ -144,14 +143,14 @@
 	<tr>
 		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
 		<td>
-			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Disable to hide Next/Back links.', 'gce' ); ?>
+			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
 		</td>
 	</tr>
 	
 	<tr>
 		<th scope="row"><label for="gce_list_max_num"><?php _e( 'Number of Events per Page', 'gce' ); ?></label></th>
 		<td>
-			<input type="number" class="" id="gce_list_max_num" name="gce_list_max_num" value="<?php echo $gce_list_max_num; ?>" />
+			<input type="number" min="0" step="1" class="small-text" id="gce_list_max_num" name="gce_list_max_num" value="<?php echo $gce_list_max_num; ?>" />
 			<select name="gce_list_max_length" id="gce_list_max_length">
 				<option value="days" <?php selected( $gce_list_max_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 				<option value="events" <?php selected( $gce_list_max_length, 'events', true ); ?>><?php _e( 'Events', 'gce' ); ?></option>
@@ -163,12 +162,8 @@
 	<tr>
 		<th scope="row"><label for="gce_list_start_offset_num"><?php _e( 'Start Date Offset', 'gce' ); ?></label></th>
 		<td>
-			<input type="number" class="" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
-			<select name="gce_list_start_offset_length" id="gce_list_start_offset_length">
-				<option value="86400" <?php selected( $gce_list_start_offset_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
-				<option value="604800" <?php selected( $gce_list_start_offset_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
-				<option value="2629743" <?php selected( $gce_list_start_offset_length, '2629743', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
-			</select>
+			<input type="number" min="0" step="1" class="small-text" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
+			<?php _e( 'Days', 'gce' ); ?>
 			<select name="gce_list_start_offset_direction" id="gce_list_start_offset_direction">
 				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
 				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>

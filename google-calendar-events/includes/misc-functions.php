@@ -8,16 +8,17 @@
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
 	
 	$defaults = array( 
-			'title_text' => '',
-			'sort'       => 'asc',
-			'grouped'    => 0,
-			'month'      => null,
-			'year'       => null,
-			'widget'     => 0,
+			'title_text'      => '',
+			'sort'            => 'asc',
+			'grouped'         => 0,
+			'month'           => null,
+			'year'            => null,
+			'widget'          => 0,
 			'paging_interval' => null,
-			'max_events' => null,
-			'start_offset' => null,
-			'paging_type'  => null
+			'max_events'      => null,
+			'start_offset'    => null,
+			'paging_type'     => null,
+			'paging'          => null
 		);
 	
 	$args = array_merge( $defaults, $args );
@@ -30,7 +31,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$d = new GCE_Display( $ids, $title_text, $sort );
 	$markup = '';
 	$start = current_time( 'timestamp' );
-	$paging = null;
 	
 	if( $widget ) {
 		foreach( $ids as $f ) {
@@ -45,6 +45,13 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		}
 		
 		//$max_num = get_post_meta()
+	}
+	
+	// If paging is not set then we need to set it now
+	foreach( $ids as $id ) {
+		if( $paging == null && $paging != 0 ) {
+			$paging = get_post_meta( $id, 'gce_paging', true );
+		}
 	}
 	
 	if( 'grid' == $display ) {
@@ -68,11 +75,16 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			$markup .= '<div class="gce-page-grid" id="gce-page-grid-' . $feed_ids . '">';
 		}
 		
-		$markup .= $d->get_grid( $year, $month, $widget );
+		$markup .= $d->get_grid( $year, $month, $widget, $paging );
 		$markup .= '</div>';
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
-		$markup = '<div class="gce-page-list">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
+		
+		if( $widget ) {
+			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
+		} else {
+			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
+		}
 	}
 	
 	// Reset post meta
@@ -99,6 +111,7 @@ function gce_ajax() {
 	   $title = $_GET['gce_title_text'];
 	   $month = $_GET['gce_month'];
 	   $year  = $_GET['gce_year'];
+	   $paging = $_GET['gce_paging'];
 
 	   $title = ( 'null' == $title ) ? null : $title;
 
@@ -106,6 +119,7 @@ function gce_ajax() {
 		   'title_text' => $title,
 		   'month'      => $month,
 		   'year'       => $year,
+		   'paging'     => $paging
 	   );
 
 	   if ( 'page' == $_GET['gce_type'] ) {
