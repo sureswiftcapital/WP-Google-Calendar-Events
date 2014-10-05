@@ -49,7 +49,7 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 		if( $widget ) {
 			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
 		} else {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . ' Back</a>' ) : $p ) . '</span>&nbsp;';
+			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
 		}
 	//}
 	
@@ -57,7 +57,7 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 		if( $widget ) {
 			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
 		} else {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">Next ' . $n . '</a>' ) : $n ) . '</span>';
+			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
 		}
 	//}
 	
