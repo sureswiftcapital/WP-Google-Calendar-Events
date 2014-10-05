@@ -243,7 +243,7 @@ class GCE_Widget extends WP_Widget {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'list_max_num' ); ?>"><?php _e( 'Number of Events per Page', 'gce' ); ?></label><br>
-			<input type="number" class="" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
+			<input type="number" class="small-text" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
 			<select name="<?php echo $this->get_field_name( 'list_max_length' ); ?>" id="<?php echo $this->get_field_id( 'list_max_length' ); ?>">
 				<option value="days" <?php selected( $list_max_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 				<option value="events" <?php selected( $list_max_length, 'events', true ); ?>><?php _e( 'Events', 'gce' ); ?></option>
@@ -252,7 +252,7 @@ class GCE_Widget extends WP_Widget {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Start Date Offset (List View Only)', 'gce' ); ?></label><br>
-			<input type="number" class="" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
+			<input type="number" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
 			<select name="<?php echo $this->get_field_name( 'list_start_offset_length' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_length' ); ?>">
 				<option value="days" <?php selected( $list_start_offset_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 			</select>

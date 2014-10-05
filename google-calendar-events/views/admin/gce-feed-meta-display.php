@@ -151,7 +151,7 @@
 	<tr>
 		<th scope="row"><label for="gce_list_max_num"><?php _e( 'Number of Events per Page', 'gce' ); ?></label></th>
 		<td>
-			<input type="number" class="" id="gce_list_max_num" name="gce_list_max_num" value="<?php echo $gce_list_max_num; ?>" />
+			<input type="number" class="small-text" id="gce_list_max_num" name="gce_list_max_num" value="<?php echo $gce_list_max_num; ?>" />
 			<select name="gce_list_max_length" id="gce_list_max_length">
 				<option value="days" <?php selected( $gce_list_max_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 				<option value="events" <?php selected( $gce_list_max_length, 'events', true ); ?>><?php _e( 'Events', 'gce' ); ?></option>
@@ -163,7 +163,7 @@
 	<tr>
 		<th scope="row"><label for="gce_list_start_offset_num"><?php _e( 'Start Date Offset', 'gce' ); ?></label></th>
 		<td>
-			<input type="number" class="" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
+			<input type="number" class="small-text" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
 			<select name="gce_list_start_offset_length" id="gce_list_start_offset_length">
 				<option value="86400" <?php selected( $gce_list_start_offset_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
 				<option value="604800" <?php selected( $gce_list_start_offset_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
