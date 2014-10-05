@@ -15,6 +15,8 @@ function gce_ajaxify(target, feed_ids, title_text, type){
 	jQuery('#' + target + ' .gce-change-month').click(function(){
 		//Extract month and year
 		var month_year = jQuery(this).attr('name').split('-', 2);
+		var paging = jQuery(this).attr('data-gce-grid-paging');
+		
 		//Add loading text to table caption
 		jQuery('#' + target + ' caption').html('Loading...');
 		//Send AJAX request
@@ -25,7 +27,8 @@ function gce_ajaxify(target, feed_ids, title_text, type){
 			gce_title_text:title_text,
 			gce_widget_id:target,
 			gce_month:month_year[0],
-			gce_year:month_year[1]
+			gce_year:month_year[1],
+			gce_paging:paging
 		}, function(data){
 			//Replace existing data with returned AJAX data
 			if(type == 'widget'){

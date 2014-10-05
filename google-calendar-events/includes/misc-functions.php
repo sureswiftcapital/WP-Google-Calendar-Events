@@ -96,6 +96,7 @@ function gce_ajax() {
 	   $title = $_GET['gce_title_text'];
 	   $month = $_GET['gce_month'];
 	   $year  = $_GET['gce_year'];
+	   $paging = $_GET['gce_paging'];
 
 	   $title = ( 'null' == $title ) ? null : $title;
 
@@ -103,6 +104,7 @@ function gce_ajax() {
 		   'title_text' => $title,
 		   'month'      => $month,
 		   'year'       => $year,
+		   'paging'     => $paging
 	   );
 
 	   if ( 'page' == $_GET['gce_type'] ) {
