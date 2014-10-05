@@ -47,20 +47,15 @@ class GCE_Widget extends WP_Widget {
 		
 		// Start offset
 		$offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
-		$offset_length    = ( isset( $instance['list_start_offset_length'] ) ? $instance['list_start_offset_length'] : 0 );
+		$offset_length    = 86400;
 		$offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : null );
 		
-		
-		if( $offset_length == 'days' ) {
-			$offset_length = 86400;
-		}
 		
 		if( $offset_direction == 'back' ) {
 			$offset_direction = -1;
 		} else { 
 			$offset_direction = 1;
 		}
-		
 		
 		$start_offset = $offset_num * $offset_length * $offset_direction;
 		
@@ -171,7 +166,6 @@ class GCE_Widget extends WP_Widget {
 		$instance['list_max_num']                = $new_instance['list_max_num'];
 		$instance['list_max_length']             = $new_instance['list_max_length'];
 		$instance['list_start_offset_num']       = $new_instance['list_start_offset_num'];
-		$instance['list_start_offset_length']    = $new_instance['list_start_offset_length'];
 		$instance['list_start_offset_direction'] = $new_instance['list_start_offset_direction'];
 		
 		return $instance;
@@ -203,7 +197,6 @@ class GCE_Widget extends WP_Widget {
 		$list_max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 1 );
 		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
 		$list_start_offset_num    = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
-		$list_start_offset_length = ( isset( $instance['list_start_offset_length'] ) ? $instance['list_start_offset_length'] : 'days' );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
 		
 		?>
@@ -253,9 +246,7 @@ class GCE_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Start Date Offset (List View Only)', 'gce' ); ?></label><br>
 			<input type="number" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
-			<select name="<?php echo $this->get_field_name( 'list_start_offset_length' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_length' ); ?>">
-				<option value="days" <?php selected( $list_start_offset_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
-			</select>
+			<?php _e( 'Days', 'gce' ); ?>
 			<select name="<?php echo $this->get_field_name( 'list_start_offset_direction' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_direction' ); ?>">
 				<option value="back" <?php selected( $list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
 				<option value="ahead" <?php selected( $list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>

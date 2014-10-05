@@ -236,7 +236,6 @@ class GCE_Display {
 			
 			if( $start_offset == null ) {
 				$start_offset_num       = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_num', true );
-				$start_offset_length    = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_length', true );
 				$start_offset_direction = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_direction', true );
 			}
 		}
@@ -256,7 +255,7 @@ class GCE_Display {
 				$start_offset_direction = 1;
 			}
 
-			$start_offset = $start_offset_num * $start_offset_length * $start_offset_direction;
+			$start_offset = $start_offset_num * 86400 * $start_offset_direction;
 			
 			$start = $start + $start_offset;
 		}

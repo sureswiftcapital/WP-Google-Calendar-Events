@@ -33,7 +33,6 @@
 	$gce_list_max_num                = get_post_meta( $post->ID, 'gce_list_max_num', true );
 	$gce_list_max_length             = get_post_meta( $post->ID, 'gce_list_max_length', true );
 	$gce_list_start_offset_num       = get_post_meta( $post->ID, 'gce_list_start_offset_num', true );
-	$gce_list_start_offset_length    = get_post_meta( $post->ID, 'gce_list_start_offset_length', true );
 	$gce_list_start_offset_direction = get_post_meta( $post->ID, 'gce_list_start_offset_direction', true );
 ?>
 
@@ -164,11 +163,7 @@
 		<th scope="row"><label for="gce_list_start_offset_num"><?php _e( 'Start Date Offset', 'gce' ); ?></label></th>
 		<td>
 			<input type="number" class="small-text" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
-			<select name="gce_list_start_offset_length" id="gce_list_start_offset_length">
-				<option value="86400" <?php selected( $gce_list_start_offset_length, '86400', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
-				<option value="604800" <?php selected( $gce_list_start_offset_length, '604800', true ); ?>><?php _e( 'Weeks', 'gce' ); ?></option>
-				<option value="2629743" <?php selected( $gce_list_start_offset_length, '2629743', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
-			</select>
+			<?php _e( 'Days', 'gce' ); ?>
 			<select name="gce_list_start_offset_direction" id="gce_list_start_offset_direction">
 				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
 				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
