@@ -98,8 +98,10 @@ function gce_gcal_shortcode( $attr ) {
 	
 	if( $interval == 'days' ) {
 		$paging_interval = $interval_count * 86400;
+		$paging_type = 'days';
 	} else if( $interval == 'events' ) {
 		$max_events = $interval_count;
+		$paging_type = 'events';
 	}
 
 	// Port over old options
