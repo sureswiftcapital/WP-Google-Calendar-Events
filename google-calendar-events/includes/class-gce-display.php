@@ -79,7 +79,7 @@ class GCE_Display {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function get_grid ( $year = null, $month = null, $widget = false ) {
+	public function get_grid ( $year = null, $month = null, $widget = false, $paging = null ) {
 		require_once 'php-calendar.php';
 
 		$time_now = current_time( 'timestamp' );
@@ -112,7 +112,10 @@ class GCE_Display {
 		
 		//Array of previous and next link stuff for use in gce_generate_calendar (below)
 		foreach( $event_days as $key => $event_day ) {
-			$paging = get_post_meta( $event_day[0]->feed->id, 'gce_paging', true );
+			
+			if( $paging == null && $paging != 0 ) {
+				$paging = get_post_meta( $event_day[0]->feed->id, 'gce_paging', true );
+			}
 		}
 
 		$start = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );

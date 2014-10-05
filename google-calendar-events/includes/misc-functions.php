@@ -8,16 +8,17 @@
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
 	
 	$defaults = array( 
-			'title_text' => '',
-			'sort'       => 'asc',
-			'grouped'    => 0,
-			'month'      => null,
-			'year'       => null,
-			'widget'     => 0,
+			'title_text'      => '',
+			'sort'            => 'asc',
+			'grouped'         => 0,
+			'month'           => null,
+			'year'            => null,
+			'widget'          => 0,
 			'paging_interval' => null,
-			'max_events' => null,
-			'start_offset' => null,
-			'paging_type'  => null
+			'max_events'      => null,
+			'start_offset'    => null,
+			'paging_type'     => null,
+			'paging'          => null
 		);
 	
 	$args = array_merge( $defaults, $args );
@@ -30,9 +31,8 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$d = new GCE_Display( $ids, $title_text, $sort );
 	$markup = '';
 	$start = current_time( 'timestamp' );
-	$paging = null;
 	
-	if( $widget ) {
+	/*if( $widget ) {
 		foreach( $ids as $f ) {
 			$paging = get_post_meta( $f, 'gce_paging_widget', true );
 			$old_paging[] = get_post_meta( $f, 'gce_paging', true );
@@ -45,6 +45,13 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		}
 		
 		//$max_num = get_post_meta()
+	}*/
+	
+	// If paging is not set then we need to set it now
+	foreach( $ids as $id ) {
+		if( $paging == null && $paging != 0 ) {
+			$paging = get_post_meta( $id, 'gce_paging', true );
+		}
 	}
 	
 	if( 'grid' == $display ) {
@@ -58,7 +65,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			$markup .= '<div class="gce-page-grid" id="gce-page-grid-' . $feed_ids . '">';
 		}
 		
-		$markup .= $d->get_grid( $year, $month, $widget );
+		$markup .= $d->get_grid( $year, $month, $widget, $paging );
 		$markup .= '</div>';
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
@@ -66,14 +73,14 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	}
 	
 	// Reset post meta
-	if( $widget ) {
+	/*if( $widget ) {
 		$i = 0;
 		foreach( $ids as $f ) {
 			update_post_meta( $f, 'gce_paging', $old_paging[$i] );
 
 			$i++;
 		}
-	}
+	}*/
 	
 	return $markup;
 }

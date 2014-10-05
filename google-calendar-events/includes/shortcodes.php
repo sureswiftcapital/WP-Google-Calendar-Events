@@ -25,7 +25,7 @@ function gce_gcal_shortcode( $attr ) {
 					'order'                 => 'asc',
 					'title'                 => null,
 					'type'                  => null,
-					'paging'                => '',
+					'paging'                => null,
 					'interval'              => null,
 					'interval_count'        => null,
 					//'offset_interval'       => null,
@@ -78,10 +78,23 @@ function gce_gcal_shortcode( $attr ) {
 			$offset_direction = get_post_meta( $v, 'gce_list_start_offset_direction', true );
 		}
 		
-		if( ! empty( $paging ) ) {
-			update_post_meta( $v, 'gce_paging', ( $paging == 'true' ? 1 : 0 ) );
+		if( $paging == null ) {
+			//echo 'Hit<br>Feed ID: ' . $v . '<br>';
+			$paging = get_post_meta( $v, 'gce_paging', true );
 		}
+		
+		//$pm = get_post_meta( $v );
+		
+		//echo '<pre>' . print_r( $pm, true ) . '</pre><br>';
+		
 	}
+	
+	if( $paging == 'false' ) { 
+		$paging = 0;
+	} else if( $paging == 'true' ) { 
+		$paging = 1;
+	}
+	
 	
 	if( $offset_direction == 'back' ) {
 		$offset_direction = -1;
@@ -125,7 +138,8 @@ function gce_gcal_shortcode( $attr ) {
 		'year'       => null,
 		'widget'     => 0,
 		'paging_interval' => $paging_interval,
-		'max_events' => $max_events
+		'max_events' => $max_events,
+		'paging'     => $paging
 	);
 	
 	$args['start_offset'] = $start_offset;
