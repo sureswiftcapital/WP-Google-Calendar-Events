@@ -208,7 +208,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'id' ); ?>">
-				<?php _e( 'Feeds to display, as a comma separated list (e.g. 101,102,103)', 'gce' ); ?>
+				<?php _e( 'Feeds to display, as a comma separated list (e.g. 101,102,103):', 'gce' ); ?>
 			</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'id' ); ?>" name="<?php echo $this->get_field_name( 'id' ); ?>" value="<?php echo $ids; ?>" class="widefat" />
 		</p>
@@ -221,9 +221,15 @@ class GCE_Widget extends WP_Widget {
 				<option value="list-grouped"<?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
 			</select>
 		</p>
-		
+
 		<p>
-			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Sort order (only applies to lists):' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show paging links:', 'gce' ); ?></label><br>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
+			<?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Sort order (List View only):' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'order' ); ?>" name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat">
 				<option value="asc" <?php selected( $order, 'asc' ); ?>><?php _e( 'Ascending', 'gce' ); ?></option>
 				<option value="desc" <?php selected( $order, 'desc' ); ?>><?php _e( 'Descending', 'gce' ); ?></option>
@@ -231,13 +237,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links', 'gce' ); ?></label><br>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
-			<?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
-		</p>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id( 'list_max_num' ); ?>"><?php _e( 'Number of Events per Page', 'gce' ); ?></label><br>
+			<label for="<?php echo $this->get_field_id( 'list_max_num' ); ?>"><?php _e( 'Number of events per page (List View only):', 'gce' ); ?></label><br>
 			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
 			<select name="<?php echo $this->get_field_name( 'list_max_length' ); ?>" id="<?php echo $this->get_field_id( 'list_max_length' ); ?>">
 				<option value="days" <?php selected( $list_max_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
@@ -246,7 +246,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Start Date Offset (List View Only)', 'gce' ); ?></label><br>
+			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Start date offset (List View only):', 'gce' ); ?></label><br>
 			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
 			<?php _e( 'Days', 'gce' ); ?>
 			<select name="<?php echo $this->get_field_name( 'list_start_offset_direction' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_direction' ); ?>">
@@ -256,7 +256,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title on tooltip / list item (e.g. \'Events on 7th March\') Grouped lists always have a title displayed.', 'gce' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display title on tooltip/list item (e.g. \'Events on 7th March\'). Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" />
 		</p>
 			
