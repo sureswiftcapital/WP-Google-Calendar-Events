@@ -107,12 +107,6 @@
 	font-weight:bold;
 }
 
-.gce-page-list .gce-list ul{
-	list-style-type:none;
-	margin:0;
-	padding:0;
-}
-
 /* WIDGET GRID */
 
 .gce-widget-grid .gce-calendar .gce-caption{
