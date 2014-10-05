@@ -91,6 +91,7 @@
 
 .gce-page-list .gce-list .gce-list-event{ /* The event title */
 	background-color:#DDDDDD;
+	padding: 0 5px;
 }
 
 .gce-page-list .gce-list .gce-list-title{ /* The title (not the same as event title) */
