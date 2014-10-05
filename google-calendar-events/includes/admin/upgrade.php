@@ -46,9 +46,7 @@ function gce_upgrade() {
  */
 function gce_v204_upgrade() {
 	
-	// TODO: Select all feed post types
-	// TODO: update the post meta for each feed to set the new defaults
-	
+	// Update feeds
 	$q = new WP_Query( 'post_type=gce_feed' );
 	
 	if( $q->have_posts() ) {
@@ -59,12 +57,31 @@ function gce_v204_upgrade() {
 			update_post_meta( get_the_ID(), 'gce_list_max_num', '7' );
 			update_post_meta( get_the_ID(), 'gce_list_max_length', 'days' );
 			update_post_meta( get_the_ID(), 'gce_list_start_offset_num', '0' );
-			update_post_meta( get_the_ID(), 'gce_paging', 'back' );
+			update_post_meta( get_the_ID(), 'gce_list_start_offset_direction', 'back' );
 		}
 	}
 	
-	// TODO: loop trhough each widget for GCE
-	// TODO: Update the widget options for each to set the new defaults
+
+	// Update widgets
+	$widget = get_option( 'widget_gce_widget' );
+	
+	if( is_array( $widget ) && ! empty( $widget ) ) {
+		foreach( $widget as $a => $b ) {
+			if( ! is_array( $b ) ) {
+				continue;
+			} 
+
+			foreach( $b as $k => $v ) {
+				$widget[$a]['paging']                      = '1';
+				$widget[$a]['list_max_num']                = '7';
+				$widget[$a]['list_max_length']             = 'days';
+				$widget[$a]['list_start_offset_num']       = '0';
+				$widget[$a]['list_start_offset_direction'] = 'back';
+			}
+		}
+		
+		update_option( 'widget_gce_widget', $widget );
+	}
 }
 
 /*
