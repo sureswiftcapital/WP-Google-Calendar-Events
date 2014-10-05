@@ -128,12 +128,8 @@ function gce_gcal_shortcode( $attr ) {
 		'max_events' => $max_events
 	);
 	
-	//if( isset( $start_offset ) ) {
-		$args['start_offset'] = $start_offset;
-	//}
+	$args['start_offset'] = $start_offset;
 		
-		echo 'Start Offset: ' . $start_offset . '<br>';
-	
 	if( ! empty( $paging_type ) ) {
 		$args['paging_type'] = $paging_type;
 	}

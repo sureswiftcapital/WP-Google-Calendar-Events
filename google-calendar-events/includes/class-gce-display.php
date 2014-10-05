@@ -235,7 +235,6 @@ class GCE_Display {
 			}
 			
 			if( $start_offset == null && $start_offset != 0 ) {
-				echo 'Hit<bR>';
 				$start_offset_num       = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_num', true );
 				$start_offset_direction = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_direction', true );
 			}
@@ -260,21 +259,10 @@ class GCE_Display {
 			
 			$start = $start + $start_offset;
 		}
-		
-		
-
 
 		$start = mktime( 0, 0, 0, date( 'm', $start ), date( 'd', $start ), date( 'Y', $start ) );
 		
-		//echo 'Start: ' . $start . '<br>';
-		//echo 'Start Offset: ' . $start_offset . '<br>';
-		//echo 'Paging Interval: ' . $paging_interval . '<br>';
-		
 		$end_time = $start + $paging_interval;
-		
-		//echo 'Start Time: ' . $start . '<br>';
-		//echo 'Paging Interval: ' . $paging_interval . '<br>';
-		//echo 'End Time: ' . $end_time . '<br>';
 		
 		$i = 1;
 		
