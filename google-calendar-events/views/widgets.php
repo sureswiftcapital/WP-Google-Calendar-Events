@@ -233,7 +233,7 @@ class GCE_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links', 'gce' ); ?></label><br>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
-			<?php _e( 'Disable to hide Next/Back links.', 'gce' ); ?>
+			<?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
 		</p>
 		
 		<p>

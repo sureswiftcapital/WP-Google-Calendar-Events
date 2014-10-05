@@ -143,7 +143,7 @@
 	<tr>
 		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
 		<td>
-			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Disable to hide Next/Back links.', 'gce' ); ?>
+			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
 		</td>
 	</tr>
 	
