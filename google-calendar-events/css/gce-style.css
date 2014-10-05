@@ -7,6 +7,15 @@
  * @copyright 2014 Phil Derksen
  */
 
+/* Base line height for all views. */
+
+.gce-page-grid,
+.gce-page-list,
+.gce-widget-grid,
+.gce-widget-list {
+	line-height: 1.5;
+}
+
 /* PAGE GRID */
 
 .gce-page-grid .gce-calendar .gce-caption{ /* Caption at top of calendar */
@@ -182,12 +191,6 @@
 	font-weight:bold;
 }
 
-.gce-widget-list .gce-list ul{
-	list-style-type:none;
-	margin:0;
-	padding:0;
-}
-
 /* TOOLTIP */
 
 .gce-event-info{ /* Tooltip container */
@@ -227,6 +230,7 @@
 }
 
 /** List Navigation **/
+
 .gce-page-list .gce-next {
 	display: inline-block;
 	width: 25%;

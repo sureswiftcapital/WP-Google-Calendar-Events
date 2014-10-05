@@ -88,7 +88,6 @@ There are three ways to install this plugin.
 * Added shortcode attribute 'interval'.
 * Added shortcode attribute 'interval_count'.
 * Added shortcode attribute 'paging'.
-* Added shortcode attribute 'offset_interval'.
 * Added shortcode attribute 'offset_interval_count'.
 * Added shortcode attribute 'offset_direction'.
 * Added settings to feed and widget to set the paging interval.

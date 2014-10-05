@@ -9,7 +9,6 @@
  * @copyright 2014 Phil Derksen
  */
 
-
 /**
  * Adds support for the new [gcal] shortcode
  * 
@@ -28,7 +27,6 @@ function gce_gcal_shortcode( $attr ) {
 					'paging'                => null,
 					'interval'              => null,
 					'interval_count'        => null,
-					//'offset_interval'       => null,
 					'offset_interval_count' => null,
 					'offset_direction'      => null
 				), $attr, 'gce_feed' ) );
@@ -66,10 +64,6 @@ function gce_gcal_shortcode( $attr ) {
 			$interval_count = get_post_meta( $v, 'gce_list_max_num', true );
 		}
 		
-		//if( $offset_interval == null ) {
-		//	$offset_interval = get_post_meta( $v, 'gce_list_start_offset_length', true );
-		//}
-		
 		if( $offset_interval_count == null ) {
 			$offset_interval_count = get_post_meta( $v, 'gce_list_start_offset_num', true );
 		}
@@ -101,13 +95,8 @@ function gce_gcal_shortcode( $attr ) {
 	} else {
 		$offset_direction = 1;
 	}
-	
-	//if( $offset_interval == 'days' ) {
-		$start_offset = $offset_interval_count * 86400 * $offset_direction;
-	//} else if( $offset_interval == 'events' ) {
-	//	$max_events = $offset_interval_count;
-	//	$paging_type = 'events';
-	//}
+
+	$start_offset = $offset_interval_count * 86400 * $offset_direction;
 	
 	if( $interval == 'days' ) {
 		$paging_interval = $interval_count * 86400;
