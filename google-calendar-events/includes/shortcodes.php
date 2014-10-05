@@ -73,14 +73,8 @@ function gce_gcal_shortcode( $attr ) {
 		}
 		
 		if( $paging == null ) {
-			//echo 'Hit<br>Feed ID: ' . $v . '<br>';
 			$paging = get_post_meta( $v, 'gce_paging', true );
 		}
-		
-		//$pm = get_post_meta( $v );
-		
-		//echo '<pre>' . print_r( $pm, true ) . '</pre><br>';
-		
 	}
 	
 	if( $paging == 'false' ) { 

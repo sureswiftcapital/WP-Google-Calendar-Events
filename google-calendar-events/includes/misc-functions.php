@@ -43,8 +43,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			
 			$paging_interval = get_post_meta( $f, 'gce_widget_paging_interval', true );
 		}
-		
-		//$max_num = get_post_meta()
 	}
 	
 	// If paging is not set then we need to set it now
@@ -57,11 +55,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	if( 'grid' == $display ) {
 		
 		global $localize;
-		// localize script instead?
-		
-		//$markup = '<script type="text/javascript">jQuery(document).ready(function($){gce_ajaxify("' . ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids 
-		//			. '", "' . $feed_ids . '", "' . $title_text . '", "' . ( $widget == 1 ? 'widget' : 'page' ) . '");});</script>';
-		// function gce_ajaxify(target, feed_ids, title_text, type){
 		
 		$target = ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids;
 		
@@ -157,8 +150,6 @@ function gce_ajax_list() {
 	$paging_direction = $_GET['gce_paging_direction'];
 	$start_offset     = $_GET['gce_start_offset'];
 	$paging_type      = $_GET['gce_paging_type'];
-	
-	//printf( 'AJAX Start: ' . $start );
 	
 	if( $paging_direction == 'back' ) {
 		if( $paging_type == 'month' ) {

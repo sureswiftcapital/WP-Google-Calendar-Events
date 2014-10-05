@@ -45,21 +45,17 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	list( $p, $pl ) = each( $pn );
 	list( $n, $nl ) = each( $pn ); #previous and next links, if applicable
 	
-	//if ( $p ) {
-		if( $widget ) {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
-		} else {
-			$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
-		}
-	//}
+	if( $widget ) {
+		$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
+	} else {
+		$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
+	}
 	
-	//if ( $n ) {
-		if( $widget ) {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
-		} else {
-			$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
-		}
-	//}
+	if( $widget ) {
+		$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
+	} else {
+		$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
+	}
 	
 	$calendar = '<table class="gce-calendar">' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . ( ( $month_href ) ? ( '<a href="' . esc_attr( $month_href ) . '">' . $title . '</a>' ) : $title ) . '</span>' . $n . "</caption>\n<tr>";
 

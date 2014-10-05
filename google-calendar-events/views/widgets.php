@@ -189,16 +189,16 @@ class GCE_Widget extends WP_Widget {
 			return;
 		}
 		
-		$title           = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
-		$ids             = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
-		$display_type    = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
-		$order           = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
-		$display_title   = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
-		$title_text      = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
-		$paging          = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
-		$list_max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 7 );
-		$list_max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
-		$list_start_offset_num    = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
+		$title                       = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
+		$ids                         = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
+		$display_type                = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
+		$order                       = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
+		$display_title               = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
+		$title_text                  = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
+		$paging                      = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
+		$list_max_num                = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 7 );
+		$list_max_length             = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
+		$list_start_offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
 		
 		?>
@@ -216,7 +216,6 @@ class GCE_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'display_type' ); ?>"><?php _e( 'Display events as:', 'gce' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'display_type' ); ?>" name="<?php echo $this->get_field_name( 'display_type' ); ?>" class="widefat">
 				<option value="grid"<?php selected( $display_type, 'grid' ); ?>><?php _e( 'Grid', 'gce' ); ?></option>
-				<!-- <option value="ajax"<?php selected( $display_type, 'ajax' ); ?>><?php _e( 'Calendar Grid - with AJAX', 'gce' ); ?></option> -->
 				<option value="list"<?php selected( $display_type, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
 				<option value="list-grouped"<?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
 			</select>
