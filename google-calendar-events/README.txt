@@ -100,6 +100,7 @@ There are three ways to install this plugin.
 * Fixed PHP error during upgrade.
 * Moved clear cache button and changed style.
 * Updated shortcode display attribute to allow a value of 'grouped-list'.
+* JavaScript restructured to fit more in line with best practices.
 
 = 2.0.3.1 =
 
