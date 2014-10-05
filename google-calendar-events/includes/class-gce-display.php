@@ -234,7 +234,8 @@ class GCE_Display {
 				$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
 			}
 			
-			if( $start_offset == null ) {
+			if( $start_offset == null && $start_offset != 0 ) {
+				echo 'Hit<bR>';
 				$start_offset_num       = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_num', true );
 				$start_offset_direction = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_direction', true );
 			}
@@ -248,7 +249,7 @@ class GCE_Display {
 			$paging_interval = $max_num * 86400;
 		}
 		
-		if( $start_offset == null ) {
+		if( $start_offset == null && $start_offset != 0 ) {
 			if( $start_offset_direction == 'back' ) {
 				$start_offset_direction = -1;
 			} else {
