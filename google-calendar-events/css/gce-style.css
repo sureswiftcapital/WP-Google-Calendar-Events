@@ -182,12 +182,6 @@
 	font-weight:bold;
 }
 
-.gce-widget-list .gce-list ul{
-	list-style-type:none;
-	margin:0;
-	padding:0;
-}
-
 /* TOOLTIP */
 
 .gce-event-info{ /* Tooltip container */
@@ -227,6 +221,7 @@
 }
 
 /** List Navigation **/
+
 .gce-page-list .gce-next {
 	display: inline-block;
 	width: 25%;
