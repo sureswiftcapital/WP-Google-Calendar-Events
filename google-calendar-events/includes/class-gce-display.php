@@ -277,8 +277,7 @@ class GCE_Display {
 			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">Back</a></span>';
 			$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">Next</a></span>';
 			
-			$markup .= '' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . 
-					date( 'F', $start ) . ' ' . date( 'Y', $start ) . '</span>' . $n . "</caption>\n";
+			$markup .= '' . "\n" . '<caption class="gce-caption">' . $p . $n . "</caption>\n";
 		}
 		$max_count = 1;
 		$has_events = false;
