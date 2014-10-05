@@ -100,6 +100,7 @@ There are three ways to install this plugin.
 * Added French translation files provided by Vincent Bray.
 * Fixed PHP error during upgrade.
 * Moved clear cache button and changed style.
+* Updated shortcode display attribute to allow a value of 'grouped-list'.
 
 = 2.0.3.1 =
 
