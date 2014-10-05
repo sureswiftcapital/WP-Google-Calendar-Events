@@ -8,92 +8,34 @@
  * @copyright 2014 Phil Derksen
  */
 
-
-/*
-function gce_ajaxify(target, feed_ids, title_text, type){
-
-	//Add click event to change month links
-	jQuery('#' + target + ' .gce-change-month').click(function(){
+jQuery(document).ready(function($){
+	gce_tooltips('.gce-has-events');
+	
+	$('body').on( 'click', '#' + gce_grid.target_element + ' .gce-change-month', function() {
 		//Extract month and year
-		var month_year = jQuery(this).attr('name').split('-', 2);
+		var month_year = $(this).attr('name').split('-', 2);
 		var paging = jQuery(this).attr('data-gce-grid-paging');
 		
 		//Add loading text to table caption
-		jQuery('#' + target + ' caption').html('Loading...');
-		//Send AJAX request
-		jQuery.get(gce.ajaxurl,{
-			action:'gce_ajax',
-			gce_type:type,
-			gce_feed_ids:feed_ids,
-			gce_title_text:title_text,
-			gce_widget_id:target,
-			gce_month:month_year[0],
-			gce_year:month_year[1],
-			gce_paging:paging
-		}, function(data){
-			//Replace existing data with returned AJAX data
-			if(type == 'widget'){
-				jQuery('#' + target).html(data);
-			}else{
-				//console.log( 'Replacing content...' );
-				jQuery('#' + target).replaceWith(data);
-			}
-			gce_tooltips('#' + target + ' .gce-has-events');
-		});
-	});
-}
-
-function gce_tooltips(target_items){
-	jQuery(target_items).each(function(){
-		//Add qtip to all target items
-		jQuery(this).qtip({
-			content: jQuery(this).children('.gce-event-info'),
-			position: { corner: { target: 'center', tooltip: 'bottomLeft' }, adjust: { screen: true } },
-			hide: { fixed: true, delay: 100, effect: { length: 0 } },
-			show: { solo: true, delay: 0, effect: { length: 0 } },
-			style: { padding: "0", classes: { tooltip: 'gce-qtip', tip: 'gce-qtip-tip', title: 'gce-qtip-title', content: 'gce-qtip-content', active: 'gce-qtip-active' }, border: { width: 0 } }
-		});
-	});
-}
-*/
-
-jQuery(document).ready(function($){
-	//gce_tooltips('.gce-has-events');
-	
-	console.log( 'GCE', gce );
-	
-	$('#' + gce.target + ' .gce-change-month').click(function(){
-		//Extract month and year
-		var month_year = $(this).attr('name').split('-', 2);
-		
-		console.log( 'gce_type:', gce.type);
-		console.log( 'gce_feed_ids:', gce.feed_ids);
-		console.log( 'gce_title_text:', gce.title_text);
-		console.log( 'gce_widget_id:', gce.target );
-		console.log( 'gce_month:', month_year[0]);
-		console.log( 'gce_year:', month_year[1]);
-		
-		//Add loading text to table caption
-		$('#' + gce.target + ' caption').html('Loading...');
+		$('#' + gce_grid.target_element + ' caption').html('Loading...');
 		//Send AJAX request
 		$.get(gce.ajaxurl,{
 			action:'gce_ajax',
-			gce_type: gce.type,
-			gce_feed_ids: gce.feed_ids,
-			gce_title_text: gce.title_text,
-			gce_widget_id: gce.target,
+			gce_type: gce_grid.type,
+			gce_feed_ids: gce_grid.feed_ids,
+			gce_title_text: gce_grid.title_text,
+			gce_widget_id: gce_grid.target_element,
 			gce_month: month_year[0],
-			gce_year: month_year[1]
+			gce_year: month_year[1],
+			gce_paging: paging
 		}, function(data){
-			console.log( data );
 			//Replace existing data with returned AJAX data
-			if(gce.type == 'widget'){
-				$('#' + gce.target).html(data);
+			if(gce_grid.type == 'widget'){
+				$('#' + gce_grid.target_element).html(data);
 			}else{
-				console.log( 'Replacing content...' );
-				$('#' + gce.target).replaceWith(data);
+				$('#' + gce_grid.target_element).replaceWith(data);
 			}
-			//gce_tooltips('#' + gce.target + ' .gce-has-events');
+			gce_tooltips('#' + gce_grid.target_element + ' .gce-has-events');
 		});
 	});
 
@@ -136,7 +78,6 @@ jQuery(document).ready(function($){
 	});
 	
 	function gce_tooltips(target_items) {
-		alert( 'HIT' );
 		$(target_items).each(function(){
 			//Add qtip to all target items
 			$(this).qtip({

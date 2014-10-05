@@ -62,8 +62,8 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		//			. '", "' . $feed_ids . '", "' . $title_text . '", "' . ( $widget == 1 ? 'widget' : 'page' ) . '");});</script>';
 		// function gce_ajaxify(target, feed_ids, title_text, type){
 		
-		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', array( 
-			'target'     => ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids,
+		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', array( 
+			'target_element'     => ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids,
 			'feed_ids'   => $feed_ids,
 			'title_text' => $title_text,
 			'type'       => ( $widget == 1 ? 'widget' : 'page' )
