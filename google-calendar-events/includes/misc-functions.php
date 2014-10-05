@@ -62,7 +62,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		$markup .= '</div>';
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
-		$markup = '<div class="gce-page-list">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
+		$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
 	}
 	
 	// Reset post meta

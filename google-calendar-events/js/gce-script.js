@@ -59,6 +59,8 @@ jQuery(document).ready(function($){
 		
 		e.preventDefault();
 		
+		var element = $(this);
+		
 		var start = $(this).parent().parent().data('gce-start');
 		var grouped = $(this).parent().parent().data('gce-grouped');
 		var title_text = $(this).parent().parent().data('gce-title');
@@ -97,7 +99,7 @@ jQuery(document).ready(function($){
 			gce_start_offset: start_offset,
 			gce_paging_type: paging_type
 		}, function(data){
-			$('.gce-page-list').html(data);
+			element.closest('.gce-page-list').html(data);
 		});
 	});
 });
