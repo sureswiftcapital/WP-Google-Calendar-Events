@@ -166,7 +166,7 @@ class GCE_Widget extends WP_Widget {
 		$instance['id']                          = esc_html( $new_instance['id'] );
 		$instance['display_type']                = esc_html( $new_instance['display_type'] );
 		$instance['order']                       = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
-		$instance['display_title_text']          = wp_filter_kses( $new_instance['display_title_text'] );
+		$instance['display_title_text']          = esc_html( $new_instance['display_title_text'] );
 		$instance['paging']                      = ( isset( $new_instance['paging'] ) ? 1 : 0 );
 		$instance['list_max_num']                = $new_instance['list_max_num'];
 		$instance['list_max_length']             = $new_instance['list_max_length'];
