@@ -100,6 +100,8 @@ class GCE_Widget extends WP_Widget {
 				foreach( $feed_ids as $feed_id ) {
 					if( $paging ) {
 						update_post_meta( $feed_id, 'gce_paging_widget', true );
+					} else { 
+						delete_post_meta( $feed_id, 'gce_paging_widget' );
 					}
 					
 					update_post_meta( $feed_id, 'gce_widget_paging_interval', $paging_interval );
