@@ -7,13 +7,21 @@
  * @copyright 2014 Phil Derksen
  */
 
-/* Base line height for all views. */
+/* Base line-height for all views */
 
 .gce-page-grid,
 .gce-page-list,
 .gce-widget-grid,
 .gce-widget-list {
 	line-height: 1.5;
+}
+
+/* Month & list titles for all views */
+
+.gce-month-title,
+.gce-list-title {
+	font-weight: bold;
+	padding-bottom: 5px;
 }
 
 /* PAGE GRID */
@@ -103,10 +111,6 @@
 	padding: 0 5px;
 }
 
-.gce-page-list .gce-list .gce-list-title{ /* The title (not the same as event title) */
-	font-weight:bold;
-}
-
 /* WIDGET GRID */
 
 .gce-widget-grid .gce-calendar .gce-caption{
@@ -181,10 +185,6 @@
 	background-color:#DDDDDD;
 }
 
-.gce-widget-list .gce-list .gce-list-title{ /* The title (not the same as event title) */
-	font-weight:bold;
-}
-
 /* TOOLTIP */
 
 .gce-event-info{ /* Tooltip container */
@@ -243,6 +243,7 @@
 }
 
 /* Grouped List */
+
 .gce-list-grouped .gce-feed { 
 	margin-left: 5%;
 }
