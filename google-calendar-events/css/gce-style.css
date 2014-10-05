@@ -7,6 +7,15 @@
  * @copyright 2014 Phil Derksen
  */
 
+/* Base line height for all views. */
+
+.gce-page-grid,
+.gce-page-list,
+.gce-widget-grid,
+.gce-widget-list {
+	line-height: 1.5;
+}
+
 /* PAGE GRID */
 
 .gce-page-grid .gce-calendar .gce-caption{ /* Caption at top of calendar */
