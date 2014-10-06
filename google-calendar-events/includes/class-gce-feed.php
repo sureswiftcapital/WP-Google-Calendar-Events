@@ -97,7 +97,8 @@ class GCE_Feed {
 		//Add the default parameters to the querystring (retrieving JSON, not XML)
 		$query = '?alt=json&sortorder=ascending&orderby=starttime';
 		
-		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, 1, 1, date( 'Y' ) - 2 ) );
+		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, 1, 1, date( 'Y' ) - 1 ) );
+		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, 1, 1, date( 'Y' ) + 2 ) );
 
 		$query .= '&max-results=10000'; 
 		
