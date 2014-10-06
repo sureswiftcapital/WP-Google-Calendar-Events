@@ -104,12 +104,12 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 * @since 2.0.0
 */
 function gce_ajax() {
-   if ( isset( $_GET['gce_feed_ids'] ) ) {
-	   $ids   = $_GET['gce_feed_ids'];
-	   $title = $_GET['gce_title_text'];
-	   $month = $_GET['gce_month'];
-	   $year  = $_GET['gce_year'];
-	   $paging = $_GET['gce_paging'];
+   
+	   $ids    = $_POST['gce_feed_ids'];
+	   $title  = $_POST['gce_title_text'];
+	   $month  = $_POST['gce_month'];
+	   $year   = $_POST['gce_year'];
+	   $paging = $_POST['gce_paging'];
 
 	   $title = ( 'null' == $title ) ? null : $title;
 
@@ -126,7 +126,7 @@ function gce_ajax() {
 		   $args['widget'] = 1;
 		   echo gce_print_calendar( $ids, 'grid', $args );
 	   }
-   }
+	   
    die();
 }
 add_action( 'wp_ajax_nopriv_gce_ajax', 'gce_ajax' );
@@ -140,16 +140,16 @@ add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
 */
 function gce_ajax_list() {
   
-	$grouped          = $_GET['gce_grouped'];
-	$start            = $_GET['gce_start'];
-	$ids              = $_GET['gce_feed_ids'];
-	$title_text       = $_GET['gce_title_text'];
-	$sort             = $_GET['gce_sort'];
-	$paging           = $_GET['gce_paging'];
-	$paging_interval  = $_GET['gce_paging_interval'];
-	$paging_direction = $_GET['gce_paging_direction'];
-	$start_offset     = $_GET['gce_start_offset'];
-	$paging_type      = $_GET['gce_paging_type'];
+	$grouped          = $_POST['gce_grouped'];
+	$start            = $_POST['gce_start'];
+	$ids              = $_POST['gce_feed_ids'];
+	$title_text       = $_POST['gce_title_text'];
+	$sort             = $_POST['gce_sort'];
+	$paging           = $_POST['gce_paging'];
+	$paging_interval  = $_POST['gce_paging_interval'];
+	$paging_direction = $_POST['gce_paging_direction'];
+	$start_offset     = $_POST['gce_start_offset'];
+	$paging_type      = $_POST['gce_paging_type'];
 	
 	if( $paging_direction == 'back' ) {
 		if( $paging_type == 'month' ) {

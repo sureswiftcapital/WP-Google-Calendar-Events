@@ -29,7 +29,7 @@
 				//Add loading text to table caption
 				$('#' + gce_grid[id].target_element + ' caption').html('Loading...');
 				//Send AJAX request
-				$.get(gce.ajaxurl,{
+				$.post(gce.ajaxurl,{
 					action:'gce_ajax',
 					gce_type: gce_grid[id].type,
 					gce_feed_ids: gce_grid[id].feed_ids,
@@ -71,7 +71,7 @@
 			$(this).parent().parent().find('.gce-month-title').html('Loading...');
 
 			//Send AJAX request
-			jQuery.get(gce.ajaxurl,{
+			jQuery.post(gce.ajaxurl,{
 				action:'gce_ajax_list',
 				gce_feed_ids:feed_ids,
 				gce_title_text:title_text,
