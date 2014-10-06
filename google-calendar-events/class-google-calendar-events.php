@@ -139,7 +139,8 @@ class Google_Calendar_Events {
 		
 		wp_localize_script( $this->plugin_slug . '-public', 'gce', 
 				array( 
-					'ajaxurl' => admin_url( 'admin-ajax.php' )
+					'ajaxurl'   => admin_url( 'admin-ajax.php' ),
+					'ajaxnonce' => wp_create_nonce( 'gce_ajax_nonce' )
 				) );
 	}
 	

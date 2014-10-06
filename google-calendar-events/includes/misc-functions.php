@@ -104,12 +104,21 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 * @since 2.0.0
 */
 function gce_ajax() {
+	
+	$nonce = $_POST['gce_nonce'];
+ 
+    // check to see if the submitted nonce matches with the
+    // generated nonce we created earlier
+    if ( ! wp_verify_nonce( $nonce, 'gce_ajax_nonce' ) ) {
+        die ( 'Request has failed.');
+	} 
    
 	   $ids    = $_POST['gce_feed_ids'];
 	   $title  = $_POST['gce_title_text'];
 	   $month  = $_POST['gce_month'];
 	   $year   = $_POST['gce_year'];
 	   $paging = $_POST['gce_paging'];
+	   $type   = $_POST['gce_type'];
 
 	   $title = ( 'null' == $title ) ? null : $title;
 
@@ -120,9 +129,9 @@ function gce_ajax() {
 		   'paging'     => $paging
 	   );
 
-	   if ( 'page' == $_GET['gce_type'] ) {
+	   if ( 'page' == $type ) {
 		   echo gce_print_calendar( $ids, 'grid', $args );
-	   } elseif ( 'widget' == $_GET['gce_type'] ) {
+	   } elseif ( 'widget' == $type ) {
 		   $args['widget'] = 1;
 		   echo gce_print_calendar( $ids, 'grid', $args );
 	   }
@@ -139,6 +148,14 @@ add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
 * @since 2.0.0
 */
 function gce_ajax_list() {
+	
+	$nonce = $_POST['gce_nonce'];
+ 
+    // check to see if the submitted nonce matches with the
+    // generated nonce we created earlier
+    if ( ! wp_verify_nonce( $nonce, 'gce_ajax_nonce' ) ) {
+        die ( 'Request has failed.');
+	}
   
 	$grouped          = $_POST['gce_grouped'];
 	$start            = $_POST['gce_start'];

@@ -37,7 +37,8 @@
 					gce_widget_id: gce_grid[id].target_element,
 					gce_month: month_year[0],
 					gce_year: month_year[1],
-					gce_paging: paging
+					gce_paging: paging,
+					gce_nonce: gce.ajaxnonce
 				}, function(data){
 					//Replace existing data with returned AJAX data
 					if(gce_grid[id].type == 'widget'){
@@ -82,7 +83,8 @@
 				gce_paging_interval: paging_interval,
 				gce_paging_direction: paging_direction,
 				gce_start_offset: start_offset,
-				gce_paging_type: paging_type
+				gce_paging_type: paging_type,
+				gce_nonce: gce.ajaxnonce
 			}, function(data){
 				element.parent().parent().html(data);
 			});
