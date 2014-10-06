@@ -113,12 +113,12 @@ function gce_ajax() {
         die ( 'Request has failed.');
 	} 
    
-	   $ids    = $_POST['gce_feed_ids'];
-	   $title  = $_POST['gce_title_text'];
-	   $month  = $_POST['gce_month'];
-	   $year   = $_POST['gce_year'];
-	   $paging = $_POST['gce_paging'];
-	   $type   = $_POST['gce_type'];
+	   $ids    = esc_html( $_POST['gce_feed_ids'] );
+	   $title  = esc_html( $_POST['gce_title_text'] );
+	   $month  = esc_html( $_POST['gce_month'] );
+	   $year   = esc_html( $_POST['gce_year'] );
+	   $paging = esc_html( $_POST['gce_paging'] );
+	   $type   = esc_html( $_POST['gce_type'] );
 
 	   $title = ( 'null' == $title ) ? null : $title;
 
@@ -157,16 +157,16 @@ function gce_ajax_list() {
         die ( 'Request has failed.');
 	}
   
-	$grouped          = $_POST['gce_grouped'];
-	$start            = $_POST['gce_start'];
-	$ids              = $_POST['gce_feed_ids'];
-	$title_text       = $_POST['gce_title_text'];
-	$sort             = $_POST['gce_sort'];
-	$paging           = $_POST['gce_paging'];
-	$paging_interval  = $_POST['gce_paging_interval'];
-	$paging_direction = $_POST['gce_paging_direction'];
-	$start_offset     = $_POST['gce_start_offset'];
-	$paging_type      = $_POST['gce_paging_type'];
+	$grouped          = esc_html( $_POST['gce_grouped'] );
+	$start            = esc_html( $_POST['gce_start'] );
+	$ids              = esc_html( $_POST['gce_feed_ids'] );
+	$title_text       = esc_html( $_POST['gce_title_text'] );
+	$sort             = esc_html( $_POST['gce_sort'] );
+	$paging           = esc_html( $_POST['gce_paging'] );
+	$paging_interval  = esc_html( $_POST['gce_paging_interval'] );
+	$paging_direction = esc_html( $_POST['gce_paging_direction'] );
+	$start_offset     = esc_html( $_POST['gce_start_offset'] );
+	$paging_type      = esc_html( $_POST['gce_paging_type'] );
 	
 	if( $paging_direction == 'back' ) {
 		if( $paging_type == 'month' ) {
