@@ -46,18 +46,26 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	list( $n, $nl ) = each( $pn ); #previous and next links, if applicable
 	
 	if( $widget ) {
-		$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
+		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</div>';
 	} else {
-		$p = '<span class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</span>&nbsp;';
+		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a class="gce-change-month" title="Previous month" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</div>';
 	}
 	
 	if( $widget ) {
-		$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
+		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</div>';
 	} else {
-		$n = '&nbsp;<span class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</span>';
+		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a class="gce-change-month" title="Next month" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</div>';
 	}
 	
-	$calendar = '<table class="gce-calendar">' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title">' . ( ( $month_href ) ? ( '<a href="' . esc_attr( $month_href ) . '">' . $title . '</a>' ) : $title ) . '</span>' . $n . "</caption>\n<tr>";
+	$calendar = '<table class="gce-calendar">' . "\n" .
+				'<caption class="gce-caption">' .
+				'<div class="gce-navbar">' .
+				$p .
+	            $n .
+	            '<div class="gce-month-title">' . ( ( $month_href ) ? ( '<a href="' . esc_attr( $month_href ) . '">' . $title . '</a>' ) : $title ) . '</div>' .
+				'</div>' .
+				'</caption>' . "\n" .
+				'<tr>' . "\n";
 
 	if ( $day_name_length ) { #if the day names should be shown ($day_name_length > 0)
 		#if day_name_length is >3, the full name of the day will be printed

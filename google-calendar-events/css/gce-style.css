@@ -79,23 +79,6 @@
 	background-color:#DDDDDD;
 }
 
-.gce-page-grid .gce-calendar .gce-next,
-.gce-page-grid .gce-calendar .gce-prev{ /* Previous and next month links */
-	cursor:pointer;
-	display:inline-block;
-	width:5%;
-	white-space: nowrap;
-}
-
-.gce-page-grid .gce-calendar .gce-prev{
-	float: left;
-}
-
-.gce-page-grid .gce-calendar .gce-month-title{ /* Month title */
-	display:inline-block;
-	width:80%;
-}
-
 .gce-page-grid .gce-calendar th abbr{ /* Day letter abbreviation */
 	border-bottom:none;
 }
@@ -153,23 +136,6 @@
 	display:none; /* Important! */
 }
 
-.gce-widget-grid  .gce-calendar .gce-next,
-.gce-widget-grid  .gce-calendar .gce-prev{ /* Prev and next month links */
-	cursor:pointer;
-	display:inline-block;
-	width:5%;
-	white-space: nowrap;
-}
-
-.gce-widget-grid .gce-calendar .gce-prev{
-	float: left;
-}
-
-.gce-widget-grid .gce-calendar .gce-month-title{ /* Month title in caption at top of table */
-	display:inline-block;
-	width:80%;
-}
-
 .gce-widget-grid .gce-calendar th abbr{ /* Day name abbreviations */
 	border-bottom:none;
 }
@@ -218,23 +184,32 @@
 	color:#999999;
 }
 
-/** List Navigation **/
+/** Calendar navigation bar, Prev/Next links & month title. **/
 
-.gce-page-list .gce-next {
-	display: inline-block;
-	width: 25%;
-	text-align: right;
-}
-
-.gce-page-list .gce-prev {
-	display: inline-block;
-	width: 25%;
-}
-
-.gce-page-list .gce-month-title {
-	display: inline-block;
-	width: 50%;
+.gce-navbar {
+	width: 100%;
 	text-align: center;
+	clear: both;
+}
+
+.gce-next,
+.gce-prev {
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.gce-prev {
+	float: left;
+}
+
+.gce-next {
+	float: right;
+}
+
+.gce-month-title {
+	display: inline-block;
+	margin: 0 auto;
+	white-space: nowrap;
 }
 
 /* Grouped List */

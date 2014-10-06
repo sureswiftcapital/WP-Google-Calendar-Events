@@ -271,13 +271,19 @@ class GCE_Display {
 		
 		$feeds = implode( $this->id, '-' );
 		
-		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">';
-		
+		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">' . "\n";
+
 		if( ( $paging != 0 ) && $max_length != 'events' ) {
-			$p = '<span class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">Back</a></span>';
-			$n = '<span class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">Next</a></span>';
+			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">Back</a></div>';
+			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">Next</a></div>';
 			
-			$markup .= '' . "\n" . '<caption class="gce-caption">' . $p . '<span class="gce-month-title"></span>' . $n . "</caption>\n";
+			$markup .= '<caption class="gce-caption">' .
+						'<div class="gce-navbar">' .
+						$p .
+						$n .
+						'<div class="gce-month-title"></div>' .
+						'</div>' .
+						'</caption>' . "\n";
 		}
 		$max_count = 1;
 		$has_events = false;
