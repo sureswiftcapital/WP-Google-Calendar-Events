@@ -25,8 +25,6 @@
 	$gce_cache                       = get_post_meta( $post->ID, 'gce_cache', true );
 	$gce_multi_day_events            = get_post_meta( $post->ID, 'gce_multi_day_events', true );
 	$gce_display_mode                = get_post_meta( $post->ID, 'gce_display_mode', true );
-	$gce_custom_from                 = get_post_meta( $post->ID, 'gce_custom_from', true );
-	$gce_custom_until                = get_post_meta( $post->ID, 'gce_custom_until', true );
 	$gce_search_query                = get_post_meta( $post->ID, 'gce_search_query', true );
 	$gce_expand_recurring            = get_post_meta( $post->ID, 'gce_expand_recurring', true );
 	$gce_paging                      = get_post_meta( $post->ID, 'gce_paging', true );
@@ -34,6 +32,10 @@
 	$gce_list_max_length             = get_post_meta( $post->ID, 'gce_list_max_length', true );
 	$gce_list_start_offset_num       = get_post_meta( $post->ID, 'gce_list_start_offset_num', true );
 	$gce_list_start_offset_direction = get_post_meta( $post->ID, 'gce_list_start_offset_direction', true );
+	
+	if( empty( $gce_list_start_offset_num ) ) {
+		$gce_list_start_offset_num = 0;
+	}
 ?>
 
 <div id="gce-admin-promo">
