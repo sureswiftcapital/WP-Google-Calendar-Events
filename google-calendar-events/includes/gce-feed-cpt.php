@@ -153,7 +153,6 @@ function gce_save_meta( $post_id ) {
 		'gce_list_max_num',
 		'gce_list_max_length',
 		'gce_list_start_offset_num',
-		//'gce_list_start_offset_length',
 		'gce_list_start_offset_direction',
 		// Display options
 		'gce_display_start',

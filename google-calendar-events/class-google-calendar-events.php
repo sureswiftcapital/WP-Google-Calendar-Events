@@ -64,8 +64,6 @@ class Google_Calendar_Events {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 		
-		// AJAX
-		
 		
 		// Load plugin text domain
 		$this->plugin_textdomain();
