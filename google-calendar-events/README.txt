@@ -88,16 +88,15 @@ There are three ways to install this plugin.
 * Added option to set the start date offset any number of days back or ahead (list view).
 * Removed retrieve events from/until options now that display limit options will be used.
 * Removed max number of events to retrieve option.
+* Added shortcode attribute 'paging'.
 * Added shortcode attribute 'interval'.
 * Added shortcode attribute 'interval_count'.
-* Added shortcode attribute 'paging'.
 * Added shortcode attribute 'offset_interval_count'.
 * Added shortcode attribute 'offset_direction'.
-* Added settings to feed and widget to set the paging interval.
 * Updated shortcode 'display' attribute to allow a value of 'grouped-list'.
 * Date no longer shows up for the title (list view).
 * HTML restructured to use div tags instead of an unordered list (list view).
-* Nav bar HTML (Next/Prev links and month title) restructured to use div tags instead of span and percentages.
+* Nav bar HTML (Back/Next links and month title) restructured to use div tags instead of span and percentages.
 * Added Italian translation (thanks to Francesco Paccagnella of [pacca.it](http://www.pacca.it/)).
 * Added French translation files provided by Vincent Bray.
 * Fixed PHP error during upgrade.
