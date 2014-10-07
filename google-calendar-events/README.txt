@@ -15,13 +15,13 @@ Parses Google Calendar feeds and displays the events as a calendar grid or list 
 
 = Features =
 
-* Parses Google Calendar feeds to extract events
-* Displays events as a list or within a calendar grid
-* Events from multiple Google Calendar feeds can be shown in a single list / grid
-* Lists and grids can be displayed in posts, pages or within a widget
-* Options to change the number of events retrieved, date / time format, cache duration etc
-* Complete customisation of the event information displayed
-* Calendar grids can have the ability to change the month displayed
+* Parses Google Calendar feeds to extract events.
+* Displays events as a list or within a calendar grid.
+* Events from multiple Google Calendar feeds can be shown in a single list / grid.
+* Lists and grids can be displayed in posts, pages or within a widget.
+* Options to change the number of events retrieved, date / time format, cache duration, etc.
+* Complete customisation of the event information displayed.
+* Calendar grids can have the ability to change the month displayed.
 
 [Plugin Documentation & Getting Started](http://wpdocs.philderksen.com/google-calendar-events/?utm_source=wordpress_org&utm_medium=link&utm_campaign=gce_lite)
 
