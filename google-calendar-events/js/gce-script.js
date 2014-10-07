@@ -57,19 +57,19 @@
 
 			var element = $(this);
 				
-			var start = $(this).parent().parent().data('gce-start');
-			var grouped = $(this).parent().parent().data('gce-grouped');
-			var title_text = $(this).parent().parent().data('gce-title');
-			var feed_ids = $(this).parent().parent().data( 'gce-feeds');
-			var sort = $(this).parent().parent().data('gce-sort');
-			var paging = $(this).parent().parent().data('gce-paging');
-			var paging_interval = $(this).parent().parent().data('gce-paging-interval');
+			var start = $(this).parent().parent().parent().data('gce-start');
+			var grouped = $(this).parent().parent().parent().data('gce-grouped');
+			var title_text = $(this).parent().parent().parent().data('gce-title');
+			var feed_ids = $(this).parent().parent().parent().data( 'gce-feeds');
+			var sort = $(this).parent().parent().parent().data('gce-sort');
+			var paging = $(this).parent().parent().parent().data('gce-paging');
+			var paging_interval = $(this).parent().parent().parent().data('gce-paging-interval');
 			var paging_direction = $(this).data('gce-paging-direction');
-			var start_offset = $(this).parent().parent().data('gce-start-offset');
+			var start_offset = $(this).parent().parent().parent().data('gce-start-offset');
 			var paging_type = $(this).data('gce-paging-type');
 
 			//Add loading text to table caption
-			$(this).parent().parent().find('.gce-month-title').html('Loading...');
+			$(this).parent().parent().parent().find('.gce-month-title').html('Loading...');
 
 			//Send AJAX request
 			jQuery.post(gce.ajaxurl,{
@@ -86,7 +86,7 @@
 				gce_paging_type: paging_type,
 				gce_nonce: gce.ajaxnonce
 			}, function(data){
-				element.parent().parent().html(data);
+				element.parent().parent().parent().html(data);
 			});
 		});
 
