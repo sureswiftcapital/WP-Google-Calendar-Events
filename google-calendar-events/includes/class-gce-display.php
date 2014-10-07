@@ -317,7 +317,7 @@ class GCE_Display {
 								$markup .=
 									'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
 									//If this isn't a grouped list and a date title should be displayed, add the date title
-									( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' : '' ) .
+									( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_attr( $this->title ) . '</div>' : '' ) .
 									//Add the event markup
 									$event->get_event_markup( 'list', $num_in_day, $i ) .
 									'</div>';
