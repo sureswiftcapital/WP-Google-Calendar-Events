@@ -81,7 +81,9 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.0.4.1 = 
+= 2.0.4.1 =
+
+* Fixed display bug with event date and grouped lists.
 
 = 2.0.4 =
 
