@@ -25,7 +25,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	
 	extract( $args );
 	
-	$ids = explode( '-', $feed_ids );
+	$ids = explode( '-', str_replace( ' ', '', $feed_ids ) );
 	
 	//Create new display object, passing array of feed id(s)
 	$d = new GCE_Display( $ids, $title_text, $sort );

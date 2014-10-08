@@ -268,9 +268,9 @@ function update_widget_feed_ids() {
 
 				$id = $v;
 				
-				$multi = str_replace( ' ', '', $v );
+				//$multi = str_replace( ' ', '', $v );
 				
-				$multi = explode( ',', $id );
+				$multi = explode( ',', str_replace( ' ', '', $id ) );
 				
 				if( is_array( $multi ) ) {
 					
