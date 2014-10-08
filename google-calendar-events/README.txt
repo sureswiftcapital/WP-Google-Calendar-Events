@@ -81,6 +81,8 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.4.1 = 
+
 = 2.0.4 =
 
 * Added option to show/hide paging.
