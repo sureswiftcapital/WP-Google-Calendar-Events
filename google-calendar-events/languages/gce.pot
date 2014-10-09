@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2014-10-09 13:09-0700\n"
-"PO-Revision-Date: 2014-10-09 13:09-0700\n"
+"POT-Creation-Date: 2014-10-09 13:21-0700\n"
+"PO-Revision-Date: 2014-10-09 13:21-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -37,6 +37,18 @@ msgstr ""
 #: google-calendar-events/includes/admin/admin-functions.php:74
 #: google-calendar-events/includes/gce-feed-cpt.php:252
 msgid "Clear Cache"
+msgstr ""
+
+#: google-calendar-events/includes/class-gce-display.php:188
+#: google-calendar-events/includes/class-gce-display.php:277
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:170
+#: google-calendar-events/views/widgets.php:252
+msgid "Back"
+msgstr ""
+
+#: google-calendar-events/includes/class-gce-display.php:192
+#: google-calendar-events/includes/class-gce-display.php:278
+msgid "Next"
 msgstr ""
 
 #: google-calendar-events/includes/class-gce-display.php:372
@@ -510,11 +522,6 @@ msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:165
 msgid "Start Date Offset"
-msgstr ""
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:170
-#: google-calendar-events/views/widgets.php:252
-msgid "Back"
 msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:171
