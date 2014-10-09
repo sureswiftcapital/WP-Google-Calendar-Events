@@ -46,15 +46,15 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	list( $n, $nl ) = each( $pn ); #previous and next links, if applicable
 	
 	if( $widget ) {
-		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr_e( 'Previous month', 'gce' ) . '" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</div>';
+		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Previous month', 'gce' ) . '" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</div>';
 	} else {
-		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr_e( 'Previous month', 'gce' ) . '" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</div>';
+		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Previous month', 'gce' ) . '" name="' . $pl . '" data-gce-grid-paging="' . $paging . '">' . $p . '</a>' ) : $p ) . '</div>';
 	}
 	
 	if( $widget ) {
-		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr_e( 'Next month', 'gce' ) . '" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</div>';
+		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Next month', 'gce' ) . '" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</div>';
 	} else {
-		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr_e( 'Next month', 'gce' ) . '" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</div>';
+		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Next month', 'gce' ) . '" name="' . $nl . '" data-gce-grid-paging="' . $paging . '">' . $n . '</a>' ) : $n ) . '</div>';
 	}
 	
 	$calendar = '<table class="gce-calendar">' . "\n" .
