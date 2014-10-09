@@ -88,6 +88,8 @@ There are three ways to install this plugin.
 
 * Fixed display bug with event date and grouped lists.
 * Fixed broken paging links when feed IDs contain spaces between them.
+* Fixed bug with start offset and grouped lists not working properly.
+* Fixed bug where clear cache link was showing on any type of CPT.
 
 = 2.0.4 =
 
