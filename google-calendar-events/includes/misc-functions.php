@@ -47,7 +47,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	
 	// If paging is not set then we need to set it now
 	foreach( $ids as $id ) {
-		if( $paging == null && $paging != 0 ) {
+		if( $paging === null ) {
 			$paging = get_post_meta( $id, 'gce_paging', true );
 		}
 	}

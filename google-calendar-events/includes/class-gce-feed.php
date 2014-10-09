@@ -38,7 +38,6 @@ class GCE_Feed {
 		
 		// Now create the Feed
 		$this->create_feed();
-
 	}
 	
 	/**
@@ -200,55 +199,7 @@ class GCE_Feed {
 		sscanf( $iso, "%u-%u-%uT%u:%u:%uZ", $year, $month, $day, $hour, $minute, $second );
 		return mktime( $hour, $minute, $second, $month, $day, $year );
 	}
-	
-	/**
-	 * Return feed start/end
-	 * 
-	 * @since 2.0.0
-	 */
-	private function set_feed_length( $value, $type ) {
-		// All times start at 00:00
-		switch ( $value ) {
-			case 'today':
-				$return = mktime( 0, 0, 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
-				break;
-			case 'start_week':
-				$return = mktime( 0, 0, 0, date( 'm' ), ( date( 'j' ) - date( 'w' ) ), date( 'Y' ) );
-				break;
-			case 'start_month':
-				$return = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
-				break;
-			case 'end_month':
-				$return = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
-				break;
-			case 'custom_date':
-				if( $type == 'start' ) {
-					$date = get_post_meta( $this->id, 'gce_custom_from', true );
-					$fallback = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
-				} else {
-					$date = get_post_meta( $this->id, 'gce_custom_until', true );
-					$fallback = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
-				}
-				
-				if( ! empty( $date ) ) {
-					$date = explode( '/', $date );
-					$return = mktime( 0, 0, 0, $date[0], $date[1], $date[2] );
-				} else {
-					$return = $fallback;
-				}
-				break;
-			default:
-				if( $type == 'start' ) {
-					$return = 0; //any - 1970-01-01 00:00
-				} else {
-					// Set default end time
-					$return = 2145916800;
-				}
-		}
 		
-		return $return;
-	}
-	
 	function get_builder() {
 		
 		$this->builder = get_post( $this->id )->post_content;

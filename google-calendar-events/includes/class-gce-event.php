@@ -84,10 +84,6 @@ class GCE_Event {
 	 * @since 2.0.0
 	 */
 	function get_event_markup( $display_type, $num_in_day, $num ) {
-		
-		
-		
-		
 		//Set the display type (either tooltip or list)
 		$this->type = $display_type;
 
