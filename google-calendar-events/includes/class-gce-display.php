@@ -289,7 +289,16 @@ class GCE_Display {
 		$has_events = false;
 		
 		if( $max_length == 'events' ) {
-			$time_now = current_time( 'timestamp' );
+			if( $start_offset === null ) {
+				$time_now = current_time( 'timestamp' );
+			} else {
+				
+				$time_now = current_time( 'timestamp' );
+				
+				$time_now = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'j', $time_now ), date( 'Y', $time_now ) ) + $start_offset;
+				
+			}
+			
 			$event_counter = 0;
 			
 			if( $max_events == null ) {
