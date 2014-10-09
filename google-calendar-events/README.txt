@@ -104,10 +104,11 @@ There are three ways to install this plugin.
 * Date no longer shows up for the title (list view).
 * HTML restructured to use div tags instead of an unordered list (list view).
 * Nav bar HTML (Back/Next links and month title) restructured to use div tags instead of span and percentages.
+* Moved clear cache button and changed style.
 * Added Italian translation (thanks to Francesco Paccagnella of [pacca.it](http://www.pacca.it/)).
 * Added French translation files provided by Vincent Bray.
 * Fixed PHP error during upgrade.
-* Moved clear cache button and changed style.
+* Fixed cross-site scripting (XSS) vulnerability.
 * JavaScript restructured to fit more in line with best practices.
 * Remove unused admin script file.
 
