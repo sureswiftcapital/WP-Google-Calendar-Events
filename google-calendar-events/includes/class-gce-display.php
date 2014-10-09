@@ -185,11 +185,11 @@ class GCE_Display {
 		if( $paging ) {
 			// Add previous / next functionality
 			//If there are events to display in a previous month, add previous month link
-			$prev_key = 'Back';
+			$prev_key = __( 'Back', 'gce' );
 			$prev = date( 'm-Y', mktime( 0, 0, 0, $month - 1, 1, $year ) );
 
 			//If there are events to display in a future month, add next month link
-			$next_key = 'Next';
+			$next_key = __( 'Next', 'gce' );
 			$next = date( 'm-Y', mktime( 0, 0, 0, $month + 1, 1, $year ) );
 			
 			//Array of previous and next link stuff for use in gce_generate_calendar (below)
@@ -274,8 +274,8 @@ class GCE_Display {
 		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">' . "\n";
 
 		if( ( $paging != 0 ) && $max_length != 'events' ) {
-			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">Back</a></div>';
-			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">Next</a></div>';
+			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="Previous month" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">'. __( 'Back', 'gce' ) . '</a></div>';
+			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="Next month" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">' . __( 'Next', 'gce' ) . '</a></div>';
 			
 			$markup .= '<caption class="gce-caption">' .
 						'<div class="gce-navbar">' .
