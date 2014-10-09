@@ -84,7 +84,7 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.0.4.1 =
+= 2.0.5 =
 
 * Fixed display bug with event date and grouped lists.
 * Fixed broken paging links when feed IDs contain spaces between them.
