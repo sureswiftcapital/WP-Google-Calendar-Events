@@ -335,7 +335,7 @@ class GCE_Display {
 
 				foreach ( $event_day as $num_in_day => $event ) {
 					//Create the markup for this event		
-					if( ( $event->start_time >= $time_now ) && ( $event_counter < $max_events ) ) {
+					if( ( $event->end_time >= $time_now ) && ( $event_counter < $max_events ) ) {
 						$markup .=
 							'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
 							'<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' .			
