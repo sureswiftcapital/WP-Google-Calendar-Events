@@ -249,7 +249,7 @@ add_action( 'manage_gce_feed_posts_custom_column', 'gce_column_content', 10, 2 )
  */
 function gce_cpt_actions( $actions, $post ) {
 	if( $post->post_type == 'gce_feed' ) {
-		$actions['clear_cache'] = '<a href="' . add_query_arg( array( 'clear_cache' => $post->ID ) ). '">Clear Cache</a>';
+		$actions['clear_cache'] = '<a href="' . add_query_arg( array( 'clear_cache' => $post->ID ) ). '">' . __( 'Clear Cache', 'gce' ) . '</a>';
 	}
 	
 	return $actions;

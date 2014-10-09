@@ -67,12 +67,15 @@ add_filter( 'default_content', 'gce_default_editor_content', 10, 2 );
 
 
 function gce_add_cache_button() {
+		global $post;
 		
-		$html = '<div id="gce-clear-cache">' .
-				'<a href="' . add_query_arg( array( 'clear_cache' => true ) ) . '">' . __( 'Clear Cache', 'gce' ) . '</a>' .
-				'</div>';
-		
-		echo $html;
+		if( $post->post_type == 'gce_feed' ) {
+			$html = '<div id="gce-clear-cache">' .
+					'<a href="' . add_query_arg( array( 'clear_cache' => true ) ) . '">' . __( 'Clear Cache', 'gce' ) . '</a>' .
+					'</div>';
+
+			echo $html;
+		}
 }
 add_action( 'post_submitbox_start', 'gce_add_cache_button' );
 
