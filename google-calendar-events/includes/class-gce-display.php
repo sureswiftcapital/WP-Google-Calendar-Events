@@ -302,6 +302,7 @@ class GCE_Display {
 		
 		foreach ( $event_days as $key => $event_day ) {
 			
+			// If this is a grouped list, generate a per-date group title with date.
 			if( $grouped && $key >= $start && $key < $end_time && $event_counter < $max_events ) {
 				$markup .= '<div class="gce-list-title">' . esc_html( $this->title ) . ' ' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
 			}
@@ -322,9 +323,9 @@ class GCE_Display {
 				  
 					$markup .=
 					    '<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
-					    //If this isn't a grouped list and a date title should be displayed, add the date title
-					    ( ( ( !$grouped || $max_length == 'events' ) && isset( $event->title ) )
-					        ? '<div class="gce-list-title">' . esc_attr( $this->title ) . '</div>'
+					    //If this isn't a grouped list, generate a per-event title with date.
+					    ( ( ( !$grouped || $max_length == 'events' ) && isset( $this->title ) && $this->title !== '' )
+					        ? '<div class="gce-list-title">' . esc_html( $this->title ) . ' ' . date_i18n( $event->feed->date_format, $event->start_time ) . '</div>'
 					        : '' ) .
 					    //Add the event markup
 					    $event->get_event_markup( 'list', $num_in_day, $i ) .
