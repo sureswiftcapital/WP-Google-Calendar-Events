@@ -214,24 +214,24 @@ class GCE_Display {
 		// Get all the event days
 		$event_days = $this->get_event_days();
 		
-		foreach( $event_days as $key => $event_day ) {
-			if( $paging_interval == null ) {
-				$max_num    = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_num', true );
-				
-				if( $paging_type == null ) {
-					$max_length = get_post_meta( $event_day[0]->feed->id, 'gce_list_max_length', true );
-					$paging_type = $max_length;
-				}
-			}
-
-			if( $paging === null ) {
-				$paging = get_post_meta(  $event_day[0]->feed->id, 'gce_paging', true );
-			}
+		$an_event_feed_id = current($event_days)[0]->feed->id;
+		
+		if( $paging_interval == null ) {
+			$max_num	= get_post_meta( $an_event_feed_id, 'gce_list_max_num', true );
 			
-			if( $start_offset === null ) {
-				$start_offset_num       = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_num', true );
-				$start_offset_direction = get_post_meta( $event_day[0]->feed->id, 'gce_list_start_offset_direction', true );
+			if( $paging_type == null ) {
+				$max_length = get_post_meta( $an_event_feed_id, 'gce_list_max_length', true );
+				$paging_type = $max_length;
 			}
+		}
+
+		if( $paging === null ) {
+			$paging = get_post_meta(  $an_event_feed_id, 'gce_paging', true );
+		}
+		
+		if( $start_offset === null ) {
+			$start_offset_num       = get_post_meta( $an_event_feed_id, 'gce_list_start_offset_num', true );
+			$start_offset_direction = get_post_meta( $an_event_feed_id, 'gce_list_start_offset_direction', true );
 		}
 		
 		if( empty( $max_num ) || $max_num == 0 ) {
