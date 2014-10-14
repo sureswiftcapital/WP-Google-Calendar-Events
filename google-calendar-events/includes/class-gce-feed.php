@@ -102,6 +102,12 @@ class GCE_Feed {
 
 		$query .= '&max-results=10000'; 
 		
+		$ctz = get_option( 'timezone_string' );
+		
+		if( ! empty( $ctz ) ) {
+			$query .= '&ctz=' . $ctz;
+		}
+		
 		if ( ! empty( $this->search_query ) ) {
 			$query .= '&q=' . rawurlencode( $this->search_query );
 		}
