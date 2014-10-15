@@ -85,6 +85,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.5.1 =
+
+* Fix timezone issue.
+
 = 2.0.5 =
 
 * Fixed display bug with event date and grouped lists.
