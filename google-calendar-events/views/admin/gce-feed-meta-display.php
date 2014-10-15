@@ -61,7 +61,10 @@
 		<th scope="row"><?php _e( 'Feed Shortcode', 'gce' ); ?></th>
 		<td>
 			<code>[gcal id="<?php echo $post_id; ?>"]</code>
-			<p class="description"><?php _e( 'Copy and paste this shortcode to display this Google Calendar feed in any post or page.', 'gce' ); ?></p>
+			<p class="description">
+				<?php _e( 'Copy and paste this shortcode to display this Google Calendar feed on any post or page.', 'gce' ); ?>
+				<?php _e( 'To avoid display issues, make sure to paste the shortcode in the Text tab of the post editor.', 'gce' ); ?>
+			</p>
 		</td>
 	</tr>
 	<tr>
