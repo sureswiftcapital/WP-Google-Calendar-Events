@@ -32,9 +32,15 @@
 	$gce_list_max_length             = get_post_meta( $post->ID, 'gce_list_max_length', true );
 	$gce_list_start_offset_num       = get_post_meta( $post->ID, 'gce_list_start_offset_num', true );
 	$gce_list_start_offset_direction = get_post_meta( $post->ID, 'gce_list_start_offset_direction', true );
+	$gce_feed_start                  = get_post_meta( $post->ID, 'gce_feed_start', true );
+	$gce_feed_start_interval         = get_post_meta( $post->ID, 'gce_feed_start_interval', true );
 	
 	if( empty( $gce_list_start_offset_num ) ) {
 		$gce_list_start_offset_num = 0;
+	}
+	
+	if( empty( $gce_feed_start ) ) {
+		$gce_feed_start = 0;
 	}
 ?>
 
@@ -174,6 +180,20 @@
 				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
 			</select>
 			<p class="description"><?php _e( 'If you need to show events starting on a day other than today. (List View only).', 'gce' ); ?></p>
+		</td>	
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_feed_start"><?php _e( 'Feed Start', 'gce' ); ?></label></th>
+		<td>
+			<input type="number" min="0" step="1" class="small-text" id="gce_feed_start" name="gce_feed_start" value="<?php echo $gce_feed_start; ?>" />
+			<select name="gce_feed_start_interval" id="gce_feed_start_interval">
+				<option value="days" <?php selected( $gce_feed_start_interval, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
+				<option value="months" <?php selected( $gce_feed_start_interval, 'months', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
+				<option value="years" <?php selected( $gce_feed_start_interval, 'years', true ); ?>><?php _e( 'Years', 'gce' ); ?></option>
+			</select>
+			<?php _e( 'back', 'gce' ); ?>
+			<p class="description"><?php _e( 'Set how far back to start retrieving events.', 'gce' ); ?></p>
 		</td>	
 	</tr>
 </table>
