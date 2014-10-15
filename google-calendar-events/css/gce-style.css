@@ -190,6 +190,7 @@
 	width: 100%;
 	text-align: center;
 	clear: both;
+	overflow: hidden;
 }
 
 .gce-next,
