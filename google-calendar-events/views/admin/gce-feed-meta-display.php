@@ -34,6 +34,8 @@
 	$gce_list_start_offset_direction = get_post_meta( $post->ID, 'gce_list_start_offset_direction', true );
 	$gce_feed_start                  = get_post_meta( $post->ID, 'gce_feed_start', true );
 	$gce_feed_start_interval         = get_post_meta( $post->ID, 'gce_feed_start_interval', true );
+	$gce_feed_end                    = get_post_meta( $post->ID, 'gce_feed_end', true );
+	$gce_feed_end_interval           = get_post_meta( $post->ID, 'gce_feed_end_interval', true );
 	
 	if( empty( $gce_list_start_offset_num ) ) {
 		$gce_list_start_offset_num = 0;
@@ -41,6 +43,10 @@
 	
 	if( empty( $gce_feed_start ) ) {
 		$gce_feed_start = 0;
+	}
+	
+	if( empty( $gce_feed_end ) ) {
+		$gce_feed_end = 0;
 	}
 ?>
 
@@ -194,6 +200,20 @@
 			</select>
 			<?php _e( 'back', 'gce' ); ?>
 			<p class="description"><?php _e( 'Set how far back to start retrieving events.', 'gce' ); ?></p>
+		</td>	
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_feed_end"><?php _e( 'Feed End', 'gce' ); ?></label></th>
+		<td>
+			<input type="number" min="0" step="1" class="small-text" id="gce_feed_end" name="gce_feed_end" value="<?php echo $gce_feed_end; ?>" />
+			<select name="gce_feed_end_interval" id="gce_feed_end_interval">
+				<option value="days" <?php selected( $gce_feed_end_interval, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
+				<option value="months" <?php selected( $gce_feed_end_interval, 'months', true ); ?>><?php _e( 'Months', 'gce' ); ?></option>
+				<option value="years" <?php selected( $gce_feed_end_interval, 'years', true ); ?>><?php _e( 'Years', 'gce' ); ?></option>
+			</select>
+			<?php _e( 'forward', 'gce' ); ?>
+			<p class="description"><?php _e( 'Set how far in the future you want to retrieve events for.', 'gce' ); ?></p>
 		</td>	
 	</tr>
 </table>
