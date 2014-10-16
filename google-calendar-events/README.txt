@@ -85,6 +85,11 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.5.2 =
+
+* Fixed a caching issue to increase performance.
+* Added options to adjust the time period for event retrieval.
+
 = 2.0.5.1 =
 
 * Fix timezone issue.
