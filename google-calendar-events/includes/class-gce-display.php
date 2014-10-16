@@ -271,7 +271,7 @@ class GCE_Display {
 		
 		$feeds = implode( $this->id, '-' );
 		
-		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . $this->title . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">' . "\n";
+		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . stripslashes( $this->title ) . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">' . "\n";
 
 		if( ( $paging != 0 ) && $max_length != 'events' ) {
 			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Previous month', 'gce' ) . '" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">'. __( 'Back', 'gce' ) . '</a></div>';
@@ -316,7 +316,7 @@ class GCE_Display {
 			if( $max_length != 'events' ) {
 					
 				if( $grouped && $key >= $start && $key < $end_time ) {
-					$markup .= '<div class="gce-list-title">' . esc_html( $this->title ) . ' ' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
+					$markup .= '<div class="gce-list-title">' . stripslashes( $this->title ) . ' ' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
 				}
 
 				foreach ( $event_day as $num_in_day => $event ) {
@@ -326,7 +326,7 @@ class GCE_Display {
 							$markup .=
 								'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
 								//If this isn't a grouped list and a date title should be displayed, add the date title
-								( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . esc_attr( $this->title ) . '</div>' : '' ) .
+								( ( ! $grouped && isset( $event->title ) ) ? '<div class="gce-list-title">' . stripslashes( $this->title ) . '</div>' : '' ) .
 								//Add the event markup
 								$event->get_event_markup( 'list', $num_in_day, $i ) .
 								'</div>';
@@ -339,7 +339,7 @@ class GCE_Display {
 			} else {
 					
 				if( $grouped && $key >= $start && $event_counter < $max_events ) {
-					$markup .= '<div class="gce-list-title">' . esc_html( $this->title ) . ' ' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
+					$markup .= '<div class="gce-list-title">' . stripslashes( $this->title ) . ' ' . date_i18n( $event_day[0]->feed->date_format, $key ) . '</div>';
 				}
 
 				foreach ( $event_day as $num_in_day => $event ) {
@@ -347,7 +347,7 @@ class GCE_Display {
 					if( ( $event->start_time >= $time_now ) && ( $event_counter < $max_events ) ) {
 						$markup .=
 							'<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
-							'<div class="gce-list-title">' . esc_html( $this->title ) . '</div>' .			
+							'<div class="gce-list-title">' . stripslashes( $this->title ) . '</div>' .			
 							//Add the event markup
 							$event->get_event_markup( 'list', $num_in_day, $i ) .
 							'</div>';
