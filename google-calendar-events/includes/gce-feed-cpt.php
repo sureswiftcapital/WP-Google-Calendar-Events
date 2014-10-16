@@ -154,6 +154,10 @@ function gce_save_meta( $post_id ) {
 		'gce_list_max_length',
 		'gce_list_start_offset_num',
 		'gce_list_start_offset_direction',
+		'gce_feed_start',
+		'gce_feed_start_interval',
+		'gce_feed_end',
+		'gce_feed_end_interval',
 		// Display options
 		'gce_display_start',
 		'gce_display_start_text',

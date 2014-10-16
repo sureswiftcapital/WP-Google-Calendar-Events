@@ -97,8 +97,16 @@ class GCE_Feed {
 		//Add the default parameters to the querystring (retrieving JSON, not XML)
 		$query = '?alt=json&sortorder=ascending&orderby=starttime';
 		
-		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, 1, 1, date( 'Y' ) - 1 ) );
-		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', mktime( 0, 0, 0, 1, 1, date( 'Y' ) + 5 ) );
+		$start = $this->get_feed_start();
+		
+		$end   = $this->get_feed_end();
+		
+		$gmt_offset = abs( get_option( 'gmt_offset' ) * 3600 );
+		
+		$query .= '&start-min=' . date( 'Y-m-d\TH:i:s', $start - $gmt_offset );
+		
+		$query .= '&start-max=' . date( 'Y-m-d\TH:i:s', $end - $gmt_offset );
+		
 
 		// Max results limit for performance.
 		$query .= '&max-results=1000';
@@ -209,52 +217,40 @@ class GCE_Feed {
 		return mktime( $hour, $minute, $second, $month, $day, $year );
 	}
 	
-	/**
-	 * Return feed start/end
-	 * 
-	 * @since 2.0.0
-	 */
-	private function set_feed_length( $value, $type ) {
-		// All times start at 00:00
-		switch ( $value ) {
-			case 'today':
-				$return = mktime( 0, 0, 0, date( 'm' ), date( 'j' ), date( 'Y' ) );
-				break;
-			case 'start_week':
-				$return = mktime( 0, 0, 0, date( 'm' ), ( date( 'j' ) - date( 'w' ) ), date( 'Y' ) );
-				break;
-			case 'start_month':
-				$return = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
-				break;
-			case 'end_month':
-				$return = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
-				break;
-			case 'custom_date':
-				if( $type == 'start' ) {
-					$date = get_post_meta( $this->id, 'gce_custom_from', true );
-					$fallback = mktime( 0, 0, 0, date( 'm' ), 1, date( 'Y' ) );
-				} else {
-					$date = get_post_meta( $this->id, 'gce_custom_until', true );
-					$fallback = mktime( 0, 0, 0, date( 'm' ) + 1, 1, date( 'Y' ) );
-				}
-				
-				if( ! empty( $date ) ) {
-					$date = explode( '/', $date );
-					$return = mktime( 0, 0, 0, $date[0], $date[1], $date[2] );
-				} else {
-					$return = $fallback;
-				}
-				break;
-			default:
-				if( $type == 'start' ) {
-					$return = 0; //any - 1970-01-01 00:00
-				} else {
-					// Set default end time
-					$return = 2145916800;
-				}
+	private function get_feed_start() {
+		
+		$start    = get_post_meta( $this->id, 'gce_feed_start', true );
+		$interval = get_post_meta( $this->id, 'gce_feed_start_interval', true );
+		
+		switch( $interval ) {
+			case 'days':
+				return time() - ( $start * 86400 );
+			case 'months':
+				return time() - ( $start * 2629743 );
+			case 'years':
+				return time() - ( $start * 31556926 );
 		}
 		
-		return $return;
+		// fall back just in case. Falls back to 1 year ago
+		return time() - 31556926;
+	}
+	
+	private function get_feed_end() {
+		
+		$end    = get_post_meta( $this->id, 'gce_feed_end', true );
+		$interval = get_post_meta( $this->id, 'gce_feed_end_interval', true );
+		
+		switch( $interval ) {
+			case 'days':
+				return time() + ( $end * 86400 );
+			case 'months':
+				return time() + ( $end * 2629743 );
+			case 'years':
+				return time() + ( $end * 31556926 );
+		}
+		
+		// Falls back to 1 year ahead just in case
+		return time() + 31556926;
 	}
 	
 	function get_builder() {
