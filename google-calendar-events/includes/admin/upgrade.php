@@ -31,12 +31,39 @@ function gce_upgrade() {
 		if( version_compare( $version, '2.0.4', '<' ) ) {
 			gce_v204_upgrade();
 		}
+		
+		// Version 2.0.6 upgrade
+		if( version_compare( $version, '2.0.6', '<' ) ) {
+			gce_v206_upgrade();
+		}
 	}
 	
 	$new_version = Google_Calendar_Events::get_instance()->get_plugin_version();
 	update_option( 'gce_version', $new_version );
 	
 	add_option( 'gce_upgrade_has_run', 1 );
+}
+
+/*
+ * Run the upgrade to version 2.0.6
+ * 
+ * @since 2.0.4
+ */
+function gce_v206_upgrade() {
+	
+	// Update feeds
+	$q = new WP_Query( 'post_type=gce_feed' );
+	
+	if( $q->have_posts() ) {
+		while( $q->have_posts() ) {
+			$q->the_post();
+			
+			update_post_meta( get_the_ID(), 'gce_feed_start', '0' );
+			update_post_meta( get_the_ID(), 'gce_feed_start_interval', 'days' );
+			update_post_meta( get_the_ID(), 'gce_feed_end', '2' );
+			update_post_meta( get_the_ID(), 'gce_feed_end_interval', 'years' );
+		}
+	}
 }
 
 /*
