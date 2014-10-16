@@ -138,15 +138,19 @@ class GCE_Feed {
 	 * @since 2.0.0
 	 */
 	private function get_feed_data( $url ) {	
-		$raw_data = wp_remote_get( $url, array(
-				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
-				'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
-			) );
-	
+		
 		// First check for transient data to use
 		if( false !== get_transient( 'gce_feed_' . $this->id ) ) {
 			$this->events = get_transient( 'gce_feed_' . $this->id );
 		} else {
+			
+			// Moved the remote get here to be more efficient
+			// Pointed out to us by John McManigle ( github.com/mcmanigle )
+			$raw_data = wp_remote_get( $url, array(
+				'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
+				'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
+			) );
+			
 			//If $raw_data is a WP_Error, something went wrong
 			if ( ! is_wp_error( $raw_data ) ) {
 				//If response code isn't 200, something went wrong
