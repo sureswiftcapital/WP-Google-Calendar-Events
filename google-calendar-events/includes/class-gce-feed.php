@@ -109,7 +109,7 @@ class GCE_Feed {
 		
 
 		// Max results limit for performance.
-		$query .= '&max-results=1000';
+		$query .= '&max-results=10000';
 		
 		$ctz = get_option( 'timezone_string' );
 		
