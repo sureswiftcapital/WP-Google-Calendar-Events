@@ -87,8 +87,9 @@ There are three ways to install this plugin.
 
 = 2.0.6 =
 
+* Added minimum and maximum feed date options to fix event display issues and boost performance.
 * Fixed a caching issue to increase performance.
-* Added options to adjust the time period for event retrieval.
+* Fixed bug where backslashes kept getting added to event titles that already contained single quotes when navigating through pages in widget.
 
 = 2.0.5.1 =
 
