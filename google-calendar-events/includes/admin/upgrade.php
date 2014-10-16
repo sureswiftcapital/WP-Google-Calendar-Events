@@ -58,8 +58,8 @@ function gce_v206_upgrade() {
 		while( $q->have_posts() ) {
 			$q->the_post();
 			
-			update_post_meta( get_the_ID(), 'gce_feed_start', '0' );
-			update_post_meta( get_the_ID(), 'gce_feed_start_interval', 'days' );
+			update_post_meta( get_the_ID(), 'gce_feed_start', '1' );
+			update_post_meta( get_the_ID(), 'gce_feed_start_interval', 'months' );
 			update_post_meta( get_the_ID(), 'gce_feed_end', '2' );
 			update_post_meta( get_the_ID(), 'gce_feed_end_interval', 'years' );
 		}
