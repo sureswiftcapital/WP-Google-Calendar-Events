@@ -185,12 +185,12 @@
 				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
 				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
 			</select>
-			<p class="description"><?php _e( 'If you need to show events starting on a day other than today. (List View only).', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Change if you need to initially display events on a date other than today (List View only).', 'gce' ); ?></p>
 		</td>	
 	</tr>
 	
 	<tr>
-		<th scope="row"><label for="gce_feed_start"><?php _e( 'Feed Start', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_feed_start"><?php _e( 'Minimum Feed Start Date', 'gce' ); ?></label></th>
 		<td>
 			<input type="number" min="0" step="1" class="small-text" id="gce_feed_start" name="gce_feed_start" value="<?php echo $gce_feed_start; ?>" />
 			<select name="gce_feed_start_interval" id="gce_feed_start_interval">
@@ -199,12 +199,12 @@
 				<option value="years" <?php selected( $gce_feed_start_interval, 'years', true ); ?>><?php _e( 'Years', 'gce' ); ?></option>
 			</select>
 			<?php _e( 'back', 'gce' ); ?>
-			<p class="description"><?php _e( 'Set how far back to start retrieving events.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Set how far back to retrieve events regardless of month or page being displayed.', 'gce' ); ?></p>
 		</td>	
 	</tr>
 	
 	<tr>
-		<th scope="row"><label for="gce_feed_end"><?php _e( 'Feed End', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_feed_end"><?php _e( 'Maximum Feed End Date', 'gce' ); ?></label></th>
 		<td>
 			<input type="number" min="0" step="1" class="small-text" id="gce_feed_end" name="gce_feed_end" value="<?php echo $gce_feed_end; ?>" />
 			<select name="gce_feed_end_interval" id="gce_feed_end_interval">
@@ -213,7 +213,7 @@
 				<option value="years" <?php selected( $gce_feed_end_interval, 'years', true ); ?>><?php _e( 'Years', 'gce' ); ?></option>
 			</select>
 			<?php _e( 'forward', 'gce' ); ?>
-			<p class="description"><?php _e( 'Set how far in the future you want to retrieve events for.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of month or page being displayed.', 'gce' ); ?></p>
 		</td>	
 	</tr>
 </table>
