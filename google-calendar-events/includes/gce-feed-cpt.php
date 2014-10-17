@@ -94,7 +94,7 @@ function gce_cpt_meta() {
 	add_meta_box( 'gce_feed_meta', 'Feed Settings', 'gce_display_meta', 'gce_feed', 'advanced', 'core' );
 
 	// Sidebar meta box below publish section.
-	add_meta_box( 'gce_feed_sidebar_help', 'Helpful Links', 'gce_feed_sidebar_help', 'gce_feed', 'side', 'core' );
+	add_meta_box( 'gce_feed_sidebar_help', __( 'Helpful Links', 'gce' ), 'gce_feed_sidebar_help', 'gce_feed', 'side', 'core' );
 
 	add_meta_box( 'gce_display_options_meta', 'Display Options', 'gce_display_options_meta', 'gce_feed', 'side', 'core' );
 }

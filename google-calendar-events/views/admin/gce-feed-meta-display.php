@@ -113,7 +113,7 @@
 			<input type="text" class="" name="gce_date_format" id="gce_date_format" value="<?php echo $gce_date_format; ?>" />
 			<p class="description">
 				<?php printf( __( 'Use %sPHP date formatting%s.', 'gce' ), '<a href="http://php.net/manual/en/function.date.php" target="_blank">', '</a>' ); ?>
-				<?php echo _x( 'Leave blank to use the default.', 'References the Date Format option', 'gce' ); ?>
+				<?php _e( 'Leave blank to use the default.', 'gce' ); ?>
 			</p>
 		</td>
 	</tr>
@@ -124,7 +124,7 @@
 			<input type="text" class="" name="gce_time_format" id="gce_time_format" value="<?php echo $gce_time_format; ?>" />
 			<p class="description">
 				<?php printf( __( 'Use %sPHP date formatting%s.', 'gce' ), '<a href="http://php.net/manual/en/function.date.php" target="_blank">', '</a>' ); ?>
-				<?php echo _x( 'Leave blank to use the default.', 'References the Time Format option', 'gce' ); ?>
+				<?php _e( 'Leave blank to use the default.', 'gce' ); ?>
 			</p>
 		</td>
 	</tr>
