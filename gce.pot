@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2014-10-16 18:33-0700\n"
-"PO-Revision-Date: 2014-10-16 18:33-0700\n"
+"POT-Creation-Date: 2014-10-17 09:56-0700\n"
+"PO-Revision-Date: 2014-10-17 09:56-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -32,6 +32,34 @@ msgstr ""
 
 #: google-calendar-events/includes/admin/admin-functions.php:20
 msgid "Cache has been cleared for this feed."
+msgstr ""
+
+#: google-calendar-events/includes/admin/admin-functions.php:35
+#: google-calendar-events/includes/admin/admin-functions.php:57
+msgid "Starts:"
+msgstr ""
+
+#: google-calendar-events/includes/admin/admin-functions.php:36
+#: google-calendar-events/includes/admin/admin-functions.php:59
+msgid "Ends:"
+msgstr ""
+
+#: google-calendar-events/includes/admin/admin-functions.php:37
+#: google-calendar-events/includes/admin/admin-functions.php:61
+msgid "Location:"
+msgstr ""
+
+#: google-calendar-events/includes/admin/admin-functions.php:38
+#: google-calendar-events/includes/admin/admin-functions.php:62
+msgid "Description:"
+msgstr ""
+
+#: google-calendar-events/includes/admin/admin-functions.php:39
+msgid "More details..."
+msgstr ""
+
+#: google-calendar-events/includes/admin/admin-functions.php:64
+msgid "More Details"
 msgstr ""
 
 #: google-calendar-events/includes/admin/admin-functions.php:78
@@ -222,6 +250,10 @@ msgstr ""
 #: google-calendar-events/includes/gce-feed-cpt.php:80
 #, php-format
 msgid "%4$s draft updated. %1$sView %2$s%3$s"
+msgstr ""
+
+#: google-calendar-events/includes/gce-feed-cpt.php:97
+msgid "Helpful Links"
 msgstr ""
 
 #: google-calendar-events/includes/gce-feed-cpt.php:209
@@ -459,6 +491,11 @@ msgstr ""
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:126
 #, php-format
 msgid "Use %sPHP date formatting%s."
+msgstr ""
+
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:116
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:127
+msgid "Leave blank to use the default."
 msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:122
