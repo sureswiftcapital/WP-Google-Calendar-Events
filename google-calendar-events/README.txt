@@ -90,6 +90,7 @@ There are three ways to install this plugin.
 * Added Polish translation.
 * Updated Italian translation.
 * Updated French translation.
+* Fixed bug with date() call causing a display error in some cases.
 * Minor bug fixes.
 
 = 2.0.6 =
