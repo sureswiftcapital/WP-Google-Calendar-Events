@@ -50,7 +50,7 @@ class GCE_Event {
 	 * 
 	 * @since 2.0.0
 	 */
-	function get_days() {
+	function get_days() {	
 		//Round start date to nearest day
 		$start_time = mktime( 0, 0, 0, date( 'm', $this->start_time ), date( 'd', $this->start_time ) , date( 'Y', $this->start_time ) );
 

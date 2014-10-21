@@ -308,7 +308,7 @@ class GCE_Display {
 		
 		if ( $grouped ) {
 			$markup .=
-				'<div class="gce-list-grouped" ' . ( ( $key == $start ) ? ' class="gce-today"' : '' ) . '>' ;
+				'<div class="gce-list-grouped">' ;
 		}
 		
 		foreach ( $event_days as $key => $event_day ) {
