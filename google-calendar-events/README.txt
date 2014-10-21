@@ -85,6 +85,13 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.6.1 =
+
+* Added Polish translation.
+* Updated Italian translation.
+* Updated French translation.
+* Minor bug fixes.
+
 = 2.0.6 =
 
 * Added minimum and maximum feed date options to fix event display issues and boost performance.
