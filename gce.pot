@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2014-10-20 14:14-0700\n"
-"PO-Revision-Date: 2014-10-20 14:14-0700\n"
+"POT-Creation-Date: 2014-10-21 13:25-0700\n"
+"PO-Revision-Date: 2014-10-21 13:25-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -378,6 +378,10 @@ msgstr ""
 msgid ""
 "If you have chosen to display both the time and date above, enter the text / "
 "characters to display between the time and date here (including any spaces)."
+msgstr ""
+
+#: google-calendar-events/views/admin/display-options-meta.php:80
+msgid "Location"
 msgstr ""
 
 #: google-calendar-events/views/admin/display-options-meta.php:88
