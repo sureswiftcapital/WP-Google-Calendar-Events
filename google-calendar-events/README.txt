@@ -85,6 +85,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.6.2 = 
+
+* Reverted previous fix that caused more bugs.
+
 = 2.0.6.1 =
 
 * Added Polish translation.
