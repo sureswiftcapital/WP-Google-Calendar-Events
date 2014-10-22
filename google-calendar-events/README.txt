@@ -87,7 +87,7 @@ There are three ways to install this plugin.
 
 = 2.0.6.2 = 
 
-* Reverted previous fix that caused more bugs.
+* Reverted previous bug fix that introduced new bugs.
 
 = 2.0.6.1 =
 
