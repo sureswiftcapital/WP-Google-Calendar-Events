@@ -67,9 +67,9 @@ function gce_feed_messages( $messages ) {
 	global $post, $post_ID;
 
 	$url1 = '<a href="' . get_permalink( $post_ID ) . '">';
-	$url2 = 'feed';
+	$url2 = __( 'feed', 'gce' );
 	$url3 = '</a>';
-	$s1   = 'Feed';
+	$s1   = __( 'Feed', 'gce' );
 
 	$messages['gce_feed'] = array(
 		1  => sprintf( __( '%4$s updated. %1$sView %2$s%3$s', 'gce' ), $url1, $url2, $url3, $s1 ),
