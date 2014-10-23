@@ -87,6 +87,9 @@ There are three ways to install this plugin.
 
 = 2.0.7 = 
 
+* Fixed bug with date() call causing a display error in some cases.
+* Fixed bug with with widget tooltip text display.
+* Added cache clearing on upgrade.
 * Internationalization updates.
 
 = 2.0.6.2 = 
