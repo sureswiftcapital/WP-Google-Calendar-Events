@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2014-10-21 13:25-0700\n"
-"PO-Revision-Date: 2014-10-21 13:25-0700\n"
+"POT-Creation-Date: 2014-10-22 20:41-0700\n"
+"PO-Revision-Date: 2014-10-22 20:41-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -28,6 +28,10 @@ msgstr ""
 
 #: google-calendar-events/class-google-calendar-events-admin.php:134
 msgid "Feeds"
+msgstr ""
+
+#: google-calendar-events/class-google-calendar-events.php:142
+msgid "Loading..."
 msgstr ""
 
 #: google-calendar-events/includes/admin/admin-functions.php:20
@@ -183,6 +187,7 @@ msgstr ""
 
 #: google-calendar-events/includes/gce-feed-cpt.php:22
 #: google-calendar-events/includes/gce-feed-cpt.php:24
+#: google-calendar-events/includes/gce-feed-cpt.php:72
 msgid "Feed"
 msgstr ""
 
@@ -224,6 +229,10 @@ msgstr ""
 
 #: google-calendar-events/includes/gce-feed-cpt.php:33
 msgid "No feeds found in Trash."
+msgstr ""
+
+#: google-calendar-events/includes/gce-feed-cpt.php:70
+msgid "feed"
 msgstr ""
 
 #: google-calendar-events/includes/gce-feed-cpt.php:75
@@ -382,6 +391,14 @@ msgstr ""
 
 #: google-calendar-events/views/admin/display-options-meta.php:80
 msgid "Location"
+msgstr ""
+
+#: google-calendar-events/views/admin/display-options-meta.php:82
+msgid "Show the location of events?"
+msgstr ""
+
+#: google-calendar-events/views/admin/display-options-meta.php:83
+msgid "Text to display before the location."
 msgstr ""
 
 #: google-calendar-events/views/admin/display-options-meta.php:88
