@@ -22,6 +22,10 @@ function gce_upgrade() {
 	$version = get_option( 'gce_version' );
 	
 	if( ! empty( $version ) ) {
+		
+		// Clear out cache when upgrading no matter the version
+		gce_upgrade_clear_cache();
+		
 		// Check if under version 2 and run the v2 upgrade if we are
 		if( version_compare( $version, '2.0.0-beta1', '<' ) && false === get_option( 'gce_upgrade_has_run' ) ) {
 			gce_v2_upgrade();
@@ -336,4 +340,23 @@ function update_widget_feed_ids() {
 		update_option( 'widget_gce_widget', $widget );
 	}
 	
+}
+
+/** 
+ * Update widget IDs
+ * 
+ * @since 2.0.6.3
+ */
+function gce_upgrade_clear_cache() {
+	// Update feeds
+	$q = new WP_Query( 'post_type=gce_feed' );
+	
+	if( $q->have_posts() ) {
+		while( $q->have_posts() ) {
+			
+			$q->the_post();
+			
+			delete_transient( 'gce_feed_' . get_the_ID() );
+		}
+	}
 }
