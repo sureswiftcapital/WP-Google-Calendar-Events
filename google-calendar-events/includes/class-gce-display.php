@@ -278,6 +278,7 @@ class GCE_Display {
 		}
 		$max_count = 1;
 		$has_events = false;
+		$event_counter = 0;
 		
 		if( $max_length == 'events' ) {
 			if( $start_offset === null ) {
@@ -290,7 +291,6 @@ class GCE_Display {
 				
 			}
 			
-			$event_counter = 0;
 			
 			if( $max_events == null ) {
 				$max_events = $max_num;
@@ -343,6 +343,7 @@ class GCE_Display {
 
 					$has_events = true;
 					$i++;
+					$event_counter++;
 				}
 			}
 				
