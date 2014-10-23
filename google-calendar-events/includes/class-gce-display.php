@@ -343,7 +343,6 @@ class GCE_Display {
 
 					$has_events = true;
 					$i++;
-					$event_counter++;
 				}
 			}
 				
