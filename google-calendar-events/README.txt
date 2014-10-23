@@ -40,6 +40,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 * French - Provided by Vincent Bray.
 * German - Provided by Stefanie Drucker of [kreativhuhn.at](http://www.kreativhuhn.at/).
 * Norwegian - Provided by Tore Hjartland of [aliom.no](http://www.aliom.no/).
+* Polish - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
 
 == Installation ==
 
@@ -98,7 +99,7 @@ There are three ways to install this plugin.
 
 = 2.0.6.1 =
 
-* Added Polish translation.
+* Added Polish translation - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
 * Updated Italian translation.
 * Updated French translation.
 * Fixed bug with date() call causing a display error in some cases.
