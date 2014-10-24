@@ -95,6 +95,7 @@ There are three ways to install this plugin.
 * Fixed bug with with widget tooltip text display.
 * Added cache clearing on upgrade.
 * Internationalization updates.
+* Language file updates.
 
 = 2.0.6.2 = 
 
