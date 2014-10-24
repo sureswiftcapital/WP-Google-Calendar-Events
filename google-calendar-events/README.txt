@@ -88,6 +88,8 @@ There are three ways to install this plugin.
 
 = 2.0.7 = 
 
+* Code optimization and cleanup.
+* Events will now display if it hasn't ended yet for list views.
 * Fixed bug with date() call causing a display error in some cases.
 * Fixed bug with with widget tooltip text display.
 * Added cache clearing on upgrade.
