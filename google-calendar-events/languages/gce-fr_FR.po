@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2014-10-17 09:56-0700\n"
-"PO-Revision-Date: 2014-10-21 09:31+0100\n"
+"POT-Creation-Date: 2014-10-21 13:25-0700\n"
+"PO-Revision-Date: 2014-10-24 09:15+0100\n"
 "Last-Translator: Vincent B <vincent@yahoo.fr>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -360,7 +360,7 @@ msgstr "Texte à afficher avant l'heure de début"
 
 #: google-calendar-events/views/admin/display-options-meta.php:58
 msgid "End time/date display"
-msgstr "Affichae de l'Heure/Date de Fin"
+msgstr "Affichage de l'Heure/Date de Fin"
 
 #: google-calendar-events/views/admin/display-options-meta.php:59
 msgid "Select how to display the end date / time."
@@ -398,6 +398,18 @@ msgstr ""
 "Si vous avez choisi d'afficher à la fois l'heure et la date ci-dessus. Merci "
 "d'entrer les caractères à afficher entre la date et l'heure ici (avec les "
 "espaces)"
+
+#: google-calendar-events/views/admin/display-options-meta.php:80
+msgid "Location"
+msgstr "Lieu"
+
+#: google-calendar-events/views/admin/display-options-meta.php:82
+msgid "Show the location of events?"
+msgstr "Afficher le lieu de l'évènement ?"
+
+#: google-calendar-events/views/admin/display-options-meta.php:83
+msgid "Text to display before the location."
+msgstr "Texte à afficher avant le lieu"
 
 #: google-calendar-events/views/admin/display-options-meta.php:88
 msgid "Description"
@@ -747,3 +759,9 @@ msgid ""
 msgstr ""
 "Afficher le Titre dans l'infobulle/Liste de l'item (ex: 'Evènements du 7 "
 "mars). Les listes groupées ont toujours un titre affiché."
+
+#~ msgid "Loading..."
+#~ msgstr "Chargement..."
+
+#~ msgid "feed"
+#~ msgstr "Flux"
