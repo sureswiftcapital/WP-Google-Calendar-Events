@@ -98,6 +98,7 @@ There are three ways to install this plugin.
 * Internationalization updates.
 * Language file updates.
 * Added filters for Previous and Next link text.
+* Simplified text domain function.
 
 = 2.0.6.2 = 
 
