@@ -41,7 +41,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 * German - Provided by Stefanie Drucker of [kreativhuhn.at](http://www.kreativhuhn.at/).
 * Norwegian - Provided by Tore Hjartland of [aliom.no](http://www.aliom.no/).
 * Polish - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
-* Lithuanian
+* Lithuanian - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
 
 == Installation ==
 
@@ -89,7 +89,7 @@ There are three ways to install this plugin.
 
 = 2.0.7 = 
 
-* Added Lithuanian translation.
+* Added Lithuanian translation - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
 * Code optimization and cleanup.
 * Events will now display if it hasn't ended yet for list views.
 * Fixed bug with date() call causing a display error in some cases.
