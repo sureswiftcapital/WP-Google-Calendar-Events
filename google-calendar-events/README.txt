@@ -97,6 +97,7 @@ There are three ways to install this plugin.
 * Added cache clearing on upgrade.
 * Internationalization updates.
 * Language file updates.
+* Added filters for Previous and Next link text.
 
 = 2.0.6.2 = 
 
