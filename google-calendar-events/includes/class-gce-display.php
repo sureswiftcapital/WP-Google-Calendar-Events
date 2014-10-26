@@ -342,7 +342,7 @@ class GCE_Display {
 					$markup .=
 					    '<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
 					    //If this isn't a grouped list, generate a per-event title with date.
-					    ( ( ! $grouped ) ? ( $max_length == 'events' || ( isset( $this->title ) && $this->title !== '' ) )
+					    ( ( ! $grouped ) ? ( ( isset( $this->title ) && $this->title !== '' ) )
 					        ? '<div class="gce-list-title">' . stripslashes( $this->title ) . ' ' . date_i18n( $event->feed->date_format, $event->start_time ) . '</div>'
 					        : '' : '' ) .
 					    //Add the event markup
