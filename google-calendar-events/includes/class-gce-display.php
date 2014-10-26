@@ -266,8 +266,15 @@ class GCE_Display {
 		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . stripslashes( $this->title ) . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">' . "\n";
 
 		if( ( $paging != 0 ) && $max_length != 'events' ) {
-			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Previous month', 'gce' ) . '" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">'. __( 'Back', 'gce' ) . '</a></div>';
-			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Next month', 'gce' ) . '" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">' . __( 'Next', 'gce' ) . '</a></div>';
+			
+			$prev_text = __( 'Back', 'gce' );
+			$next_text = __( 'Next', 'gce' );
+			
+			$prev_text = apply_filters( 'gce_prev_text', $prev_text );
+			$next_text = apply_filters( 'gce_next_text', $next_text );
+			
+			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Previous month', 'gce' ) . '" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">'. $prev_text . '</a></div>';
+			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Next month', 'gce' ) . '" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">' . $next_text . '</a></div>';
 			
 			$markup .= '<caption class="gce-caption">' .
 						'<div class="gce-navbar">' .
