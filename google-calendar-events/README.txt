@@ -41,6 +41,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 * German - Provided by Stefanie Drucker of [kreativhuhn.at](http://www.kreativhuhn.at/).
 * Norwegian - Provided by Tore Hjartland of [aliom.no](http://www.aliom.no/).
 * Polish - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
+* Lithuanian
 
 == Installation ==
 
