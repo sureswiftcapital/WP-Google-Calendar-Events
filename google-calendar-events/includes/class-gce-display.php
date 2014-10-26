@@ -214,7 +214,7 @@ class GCE_Display {
 		// Get all the event days
 		$event_days = $this->get_event_days();
 		
-		$an_event_feed_id = current( $event_days )[0]->feed->id;
+		$an_event_feed_id = current( $event_days[0] )->feed->id;
 		
 		if( $paging_interval == null ) {
 			$max_num	= get_post_meta( $an_event_feed_id, 'gce_list_max_num', true );
