@@ -89,16 +89,14 @@ There are three ways to install this plugin.
 
 = 2.0.7 = 
 
-* Added Lithuanian translation - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
-* Code optimization and cleanup.
 * Events will now display if it hasn't ended yet for list views.
 * Fixed bug with date() call causing a display error in some cases.
 * Fixed bug with with widget tooltip text display.
 * Added cache clearing on upgrade.
-* Internationalization updates.
-* Language file updates.
 * Added filters for Previous and Next link text.
+* Internationalization and language file updates.
 * Simplified text domain function.
+* Added Lithuanian translation - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
 
 = 2.0.6.2 = 
 
