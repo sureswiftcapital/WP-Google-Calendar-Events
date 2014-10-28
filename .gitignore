@@ -44,3 +44,8 @@ Thumbs.db
 # Netbeans IDE *
 ################
 /google-calendar-events/nbproject/*
+
+# i18n Files *
+################
+/*.pot
+/*.mo
