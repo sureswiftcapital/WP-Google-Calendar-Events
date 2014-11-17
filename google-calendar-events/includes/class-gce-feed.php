@@ -93,9 +93,9 @@ class GCE_Feed {
 		
 		$args['orderBy'] = 'startTime';
 		
-		//$args['timeMin'] = $this->get_feed_start();
+		$args['timeMin'] = $this->get_feed_start();
 		
-		//$args['timeMax'] = $this->get_feed_end();
+		$args['timeMax'] = $this->get_feed_end();
 		
 		$args['maxResults'] = 10000;
 		
@@ -188,15 +188,15 @@ class GCE_Feed {
 		
 		switch( $interval ) {
 			case 'days':
-				return time() - ( $start * 86400 );
+				return date( 'c', time() - ( $start * 86400 ) );
 			case 'months':
-				return time() - ( $start * 2629743 );
+				return date( 'c', time() - ( $start * 2629743 ) );
 			case 'years':
-				return time() - ( $start * 31556926 );
+				return date( 'c', time() - ( $start * 31556926 ) );
 		}
 		
 		// fall back just in case. Falls back to 1 year ago
-		return time() - 31556926;
+		return date( 'c', time() - 31556926 );
 	}
 	
 	private function get_feed_end() {
@@ -206,15 +206,15 @@ class GCE_Feed {
 		
 		switch( $interval ) {
 			case 'days':
-				return time() + ( $end * 86400 );
+				return date( 'c', time() + ( $end * 86400 ) );
 			case 'months':
-				return time() + ( $end * 2629743 );
+				return date( 'c', time() + ( $end * 2629743 ) );
 			case 'years':
-				return time() + ( $end * 31556926 );
+				return date( 'c', time() + ( $end * 31556926 ) );
 		}
 		
 		// Falls back to 1 year ahead just in case
-		return time() + 31556926;
+		return date( 'c', time() + 31556926 );
 	}
 	
 	function get_builder() {
