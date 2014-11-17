@@ -182,7 +182,7 @@ function gce_save_meta( $post_id ) {
 		foreach ( $post_meta_fields as $pmf ) {
 			if ( isset( $_POST[$pmf] ) && ! empty( $_POST[$pmf] ) ) {
 				if( $pmf == 'gce_feed_url' ) {
-					update_post_meta( $post_id, $pmf, esc_url( $_POST[$pmf] ) );
+					update_post_meta( $post_id, $pmf, $_POST[$pmf] );
 				} else {
 					update_post_meta( $post_id, $pmf, stripslashes( $_POST[$pmf] ) );
 				}

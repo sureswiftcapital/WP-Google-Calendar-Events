@@ -237,3 +237,56 @@ function gce_ga_campaign_url( $base_url, $source, $medium, $campaign ) {
 
 	return $url;
 }
+
+/*
+ * AJAX for authentication
+ */
+function gce_ajax_auth() {
+	
+	$action = $_POST['auth_action'];
+	
+	
+	switch( $action ) {
+		case 'authorize': {
+			
+			$auth_code = $_POST['auth_code'];
+	
+			GCal::do_auth( $auth_code );
+			$token = GCal::get_token();
+
+			$options = get_option( 'gce_settings_general' );
+
+			$options['auth_token'] = $token;
+
+			update_option( 'gce_settings_general', $options );
+			
+			echo 'success';
+			
+			die();
+			break;
+		}
+		
+		case 'clear_auth': {
+			$options = get_option( 'gce_settings_general' );
+
+			unset( $options['auth_token'] );
+			
+			update_option( 'gce_settings_general', $options );
+			
+			echo 'success';
+			
+			die();
+			break;
+		}
+		
+		default: {
+			echo 'There was an error: ' . $action;
+			
+			die();
+			break;
+		}
+	}
+	
+	die();
+}
+add_action( 'wp_ajax_gce_auth', 'gce_ajax_auth' );

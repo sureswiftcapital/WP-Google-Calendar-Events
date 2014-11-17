@@ -53,8 +53,15 @@ class Google_Calendar_Events_Admin {
 		// Add admin styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		
+		// Add admin scripts
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+		
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ), 2 );
+	}
+	
+	public function enqueue_admin_scripts() {
+		wp_enqueue_script( $this->plugin_slug . '-admin', plugins_url( 'js/admin/admin.js', __FILE__ ), array( 'jquery' ), $this->version, true );
 	}
 	
 	public function add_plugin_admin_menu() {

@@ -58,3 +58,8 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 	require_once( 'class-google-calendar-events-admin.php' );
 	add_action( 'plugins_loaded', array( 'Google_Calendar_Events_Admin', 'get_instance' ) );
 }
+
+require_once( 'libraries/google-api-client/autoload.php' );
+require_once( 'includes/class-gcal.php' );
+	
+add_action( 'plugins_loaded', array( 'GCal', 'get_instance' ) );
