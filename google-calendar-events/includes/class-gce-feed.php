@@ -157,7 +157,7 @@ class GCE_Feed {
 		
 		//$args['timeMax'] = $this->get_feed_end();
 		
-		$args['maxResults'] = 2500;
+		$args['maxResults'] = 10000;
 		
 		if ( ! empty( $this->search_query ) ) {
 			$args['q'] = rawurlencode( $this->search_query );
@@ -189,7 +189,8 @@ class GCE_Feed {
 				$this->service = new Google_Service_Calendar( GCal::get_client() );
 
 				$events = $this->service->events->listEvents( $this->calendar_id, $args );
-
+				
+				while( true ) {
 				//if( ! empty( $events ) ) {
 					//echo '<pre>' . print_r( $events, true ) . '</pre>';
 					foreach ( $events->getItems() as $event ) {
@@ -209,6 +210,16 @@ class GCE_Feed {
 						//Create a GCE_Event using the above data. Add it to the array of events
 						$this->events[] = new GCE_Event( $this, $id, $title, $description, $location, $start_time, $end_time, $link );
 					}
+					
+					$pageToken = $events->getNextPageToken();
+					
+					if( $pageToken ) {
+						$args['pageToken'] = $pageToken;
+						$events = $this->service->events->listEvents( $this->calendar_id, $args );
+					} else {
+						break;
+					}
+				}
 			} catch( Exception $e ) {
 				echo 'An error has occured: <Br>';
 				echo '<pre>' . print_r( $e, true ) . '</pre>';
