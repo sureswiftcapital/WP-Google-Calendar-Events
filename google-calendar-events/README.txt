@@ -87,6 +87,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.1.0 = 
+
+* Updated to use Google API v3
+
 = 2.0.7 = 
 
 * Events will now display if it hasn't ended yet for list views.
