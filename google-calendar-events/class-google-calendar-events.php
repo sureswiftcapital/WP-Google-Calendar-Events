@@ -101,6 +101,13 @@ class Google_Calendar_Events {
 	public static function includes() {
 		global $gce_options;
 		
+		if( ! class_exists( 'Google_Config' ) ) {
+			require_once( 'libraries/google-api-client/autoload.php' );
+		}
+
+		require_once( 'includes/class-gcal.php' );
+		GCal::get_instance();
+		
 		// First include common files between admin and public
 		include_once( 'includes/misc-functions.php' );
 		include_once( 'includes/gce-feed-cpt.php' );
