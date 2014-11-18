@@ -61,6 +61,63 @@ class Google_Calendar_Events_Admin {
 		if( version_compare( $this->version, '2.1.0', '<' ) ) {
 			add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
 		}
+		
+		// Add admin notice after plugin activation. Also check if should be hidden.
+		add_action( 'admin_notices', array( $this, 'admin_api_settings_notice' ) );
+	}
+	
+	/**
+	 * Show notice after plugin install/activate
+	 * Also check if user chooses to hide it.
+	 *
+	 * @since   2.1.0
+	 */
+	public function admin_api_settings_notice() {
+		// Exit all of this is stored value is false/0 or not set.
+		if ( false == get_option( 'gce_show_admin_install_notice' ) ) {
+			return;
+		}
+
+		// Delete stored value if "hide" button click detected (custom querystring value set to 1).
+		if ( ! empty( $_REQUEST['gce-dismiss-install-nag'] ) ) {
+			delete_option( 'gce_show_admin_install_notice' );
+			return;
+		}
+
+		// At this point show install notice. Show it only on the plugin screen.
+		if( get_current_screen()->id == 'plugins' || $this->viewing_this_plugin() ) {
+			include_once( 'views/admin/api-settings-notice.php' );
+		}
+	}
+	
+	/**
+	 * Check if viewing one of this plugin's admin pages.
+	 *
+	 * @since   2.1.0
+	 *
+	 * @return  bool
+	 */
+	private function viewing_this_plugin() {
+		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
+			return false;
+		}
+
+		$screen = get_current_screen();
+
+		if ( in_array( $screen->id, $this->plugin_screen_hook_suffix ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Fired when the plugin is activated.
+	 *
+	 * @since    2.1.0
+	 */
+	public static function activate() {
+		update_option( 'gce_show_admin_install_notice', 1 );
 	}
 	
 	public function add_plugin_admin_menu() {
