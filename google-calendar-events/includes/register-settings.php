@@ -24,18 +24,6 @@ function gce_register_settings() {
 
 		/* General Settings */
 		'general' => array(
-			'auth_empty' => array(
-				'id'   => 'auth_empty',
-				'name' => __( 'Authorization', 'gce' ),
-				'desc' => __( 'Authorize use of the API to read your calendar data.', 'gce' ),
-				'type' => 'auth'
-			),
-			'auth_custom' => array(
-				'id'   => 'auth_custom',
-				'name' => __( 'API Settings', 'gce' ),
-				'desc' => __( 'This section allows you to enter your own Google API Settings. It is not required, but is recommended.', 'gce' ),
-				'type' => 'auth_custom'
-			),
 			'save_settings' => array(
 				'id'   => 'save_settings',
 				'name' => __( 'Save Settings', 'gce' ),
@@ -102,44 +90,6 @@ function gce_get_settings_field_args( $option, $section ) {
 	}
 
 	return $settings_args;
-}
-
-function gce_auth_callback( $args ) {
-		global $gce_options;
-		
-		if( ! isset( $gce_options['auth_token'] ) ) {
-			$request_uri = GCal::request_access();
-
-			$html = 'Auth Code: <input type="text" class="auth_code" /><br><br>';
-			$html .= '<a href="#" id="gce-auth" class="button-secondary">Authenticate</a>';
-			$html .= '<a href="' . $request_uri . '" target="_blank" class="button-secondary">Get Access Code</a>';
-			
-		} else {
-			$html = '<a href="#" id="gce-clear-auth" class="button-secondary">Clear Authentication</a>';
-		}
-		
-		echo $html;
-}
-
-function gce_auth_custom_callback( $args ) {
-	// SHow the description first then the form after
-	echo $args['desc'] . '<br>';
-	
-	$html  = '<table>';
-	$html .= '<tr>';
-	$html .= '<td><label>' . __( 'Client ID', 'gce' ) . '</label></td>';
-	$html .= '<td><input type="text" id="gce_settings_' . $args['section'] . '[' . $args['id'] . '_client]" name="gce_settings_' . $args['section'] . '[' . $args['id'] . '_client]" value="" /></td>';
-	$html .= '</tr>';
-	
-	$html .= '<tr>';
-	$html .= '<td><label>' . __( 'Client Secret' , 'gce' ) . '</label></td>';
-	$html .= '<td><input type="text" id="gce_settings_' . $args['section'] . '[' . $args['id'] . '_secret]" name="gce_settings_' . $args['section'] . '[' . $args['id'] . '_secret]" value="" /></td>';
-	$html .= '</tr>';
-	$html .= '</table>';
-	
-	$html .= '<p class="description">' . __( 'Visit <a href="#">this page</a> to see how to get your API credentials', 'gce' ) . '</p>';
-	
-	echo $html;
 }
 
 /*
