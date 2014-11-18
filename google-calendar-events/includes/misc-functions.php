@@ -6,6 +6,10 @@
  * @since 2.0.0
  */
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
+
+	// Temporarily hide all shortcode output.
+	// TODO Remove this after GCal API v3 update..
+	return '';
 	
 	$defaults = array( 
 			'title_text'      => '',
@@ -94,7 +98,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			$i++;
 		}
 	}
-	
+
 	return $markup;
 }
 
