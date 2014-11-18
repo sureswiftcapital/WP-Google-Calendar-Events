@@ -91,10 +91,16 @@ class GCE_Feed {
 		
 		$args = array();
 		
+		if( ! empty( $gce_options['api_key'] ) ) {
+			$api_key = $gce_options['api_key'];
+		} else {
+			$api_key = 'AIzaSyCb2MC-UWtQ4HC6lsfKkyRpuBbEmDKt4cg';
+		}
+		
 		$query = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar_id . '/events';
 		
 		// Set API key
-		$query .= '?key=AIzaSyCb2MC-UWtQ4HC6lsfKkyRpuBbEmDKt4cg';
+		$query .= '?key=' . $api_key;
 		
 		$args['orderBy'] = 'startTime';
 		
