@@ -25,6 +25,9 @@ class GCE_Feed {
 	
 	public $events = array();
 	
+	// API Key
+	private $api_key = 'AIzaSyCb2MC-UWtQ4HC6lsfKkyRpuBbEmDKt4cg';
+	
 	/**
 	 * Class constructor
 	 * 
@@ -94,7 +97,7 @@ class GCE_Feed {
 		if( ! empty( $gce_options['api_key'] ) ) {
 			$api_key = $gce_options['api_key'];
 		} else {
-			$api_key = 'AIzaSyCb2MC-UWtQ4HC6lsfKkyRpuBbEmDKt4cg';
+			$api_key = $this->api_key;
 		}
 		
 		$query = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar_id . '/events';
