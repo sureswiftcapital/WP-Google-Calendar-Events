@@ -101,10 +101,10 @@ class Google_Calendar_Events_Admin {
 		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
 			return false;
 		}
-
+		
 		$screen = get_current_screen();
 
-		if ( in_array( $screen->id, $this->plugin_screen_hook_suffix ) ) {
+		if ( in_array( $screen->id, $this->plugin_screen_hook_suffix ) || $screen->id == 'edit-gce_feed' || $screen->id == 'gce_feed' ) {
 			return true;
 		} else {
 			return false;
