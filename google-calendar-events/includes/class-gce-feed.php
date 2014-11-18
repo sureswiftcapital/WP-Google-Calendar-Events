@@ -91,11 +91,16 @@ class GCE_Feed {
 		
 		$args = array();
 		
+		$query = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar_id . '/events';
+		
+		// Set API key
+		$query .= '?key=AIzaSyCb2MC-UWtQ4HC6lsfKkyRpuBbEmDKt4cg';
+		
 		$args['orderBy'] = 'startTime';
 		
-		$args['timeMin'] = $this->get_feed_start();
+		$args['timeMin'] = urlencode( $this->get_feed_start() );
 		
-		$args['timeMax'] = $this->get_feed_end();
+		$args['timeMax'] = urlencode( $this->get_feed_end() );
 		
 		$args['maxResults'] = 10000;
 		
@@ -103,9 +108,11 @@ class GCE_Feed {
 			$args['q'] = rawurlencode( $this->search_query );
 		}
 		
-		$args['singleEvents'] = true;
+		$args['singleEvents'] = 'true';
 		
-		$this->get_feed_data( $args );
+		$query = add_query_arg( $args, $query );
+		
+		$this->get_feed_data( $query );
 	}
 	
 	/**
@@ -113,53 +120,53 @@ class GCE_Feed {
 	 * 
 	 * @since 2.0.0
 	 */
-	private function get_feed_data( $args ) {	
+	private function get_feed_data( $url ) {	
 
 		// First check for transient data to use
 		if( false !== get_transient( 'gce_feed_' . $this->id ) ) {
 			$this->events = get_transient( 'gce_feed_' . $this->id );
 		} else {
-			global $gce_options;
-			
-			$token = $gce_options['auth_token'];
-
-			GCal::set_token( $token );
-			
-			try {
-				$this->service = new Google_Service_Calendar( GCal::get_client() );
-
-				$events = $this->service->events->listEvents( $this->calendar_id, $args );
-				
-				while( true ) {
-					foreach ( $events->getItems() as $event ) {
-						$id          = $event->id;
-						$title       = $event->summary;
-						$description = $event->description;
-						$link        = $event->htmlLink;
-						$location    = $event->location;
-						$start_time  = $this->iso_to_ts( $event->start['dateTime'] );
-						$end_time    = $this->iso_to_ts( $event->end['dateTime'] );
-
-						//Create a GCE_Event using the above data. Add it to the array of events
-						$this->events[] = new GCE_Event( $this, $id, $title, $description, $location, $start_time, $end_time, $link );
-					}
+			$raw_data = wp_remote_get( $url, array(
+					'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
+					'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
+				) );
+			//If $raw_data is a WP_Error, something went wrong
+			if ( ! is_wp_error( $raw_data ) ) {
+					//Attempt to convert the returned JSON into an array
+					$raw_data = json_decode( $raw_data['body'], true );
 					
-					$pageToken = $events->getNextPageToken();
-					
-					if( $pageToken ) {
-						$args['pageToken'] = $pageToken;
-						$events = $this->service->events->listEvents( $this->calendar_id, $args );
+					//If decoding was successful
+					if ( ! empty( $raw_data ) ) {
+						//If there are some entries (events) to process
+						//if ( isset( $raw_data['feed']['entry'] ) ) {
+							//Loop through each event, extracting the relevant information
+							foreach ( $raw_data['items'] as $event ) {
+								$id          = ( isset( $event['id'] ) ? esc_html( $event['id'] ) : '' );
+								$title       = ( isset( $event['summary'] ) ? esc_html( $event['summary'] ) : '' );
+								$description = ( isset( $event['description'] ) ? esc_html( $event['description'] ) : '' );
+								$link        = ( isset( $event['htmlLink'] ) ? esc_url( $event['htmlLink'] ) : '' );
+								$location    = ( isset( $event['location'] ) ? esc_html( $event['location'] ) : '' );
+								$start_time  = ( isset( $event['start']['dateTime'] ) ? $this->iso_to_ts( $event['start']['dateTime'] ) : null );
+								$end_time    = ( isset( $event['end']['dateTime'] ) ? $this->iso_to_ts( $event['end']['dateTime'] ) : null );
+								//Create a GCE_Event using the above data. Add it to the array of events
+								$this->events[] = new GCE_Event( $this, $id, $title, $description, $location, $start_time, $end_time, $link );
+							}
 					} else {
-						break;
+						//json_decode failed
+						$this->error = __( 'Some data was retrieved, but could not be parsed successfully. Please ensure your feed settings are correct.', 'gce' );
 					}
-				}
-			} catch( Exception $e ) {
-				
-				if( current_user_can( 'manage_options' ) ) {
-					_e( 'An error has occured. Please make sure your feed settings are properly set.', 'gce' );
-				}
+			} else{
+				//Generate an error message from the returned WP_Error
+				$this->error = $raw_data->get_error_message() . __( ' Please ensure your feed URL is correct.', 'gce' );
 			}
-			
+		}
+		
+		if( ! empty( $this->error ) ) {
+			if( current_user_can( 'manage_options' ) ) {
+				echo $this->error;
+				return;
+			}
+		} else {
 			if( $this->cache > 0 && false === get_transient( 'gce_feed_' . $this->id ) ) {
 				$this->cache_events();
 			}

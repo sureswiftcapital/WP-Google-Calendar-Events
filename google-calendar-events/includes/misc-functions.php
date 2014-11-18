@@ -9,7 +9,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 
 	// Temporarily hide all shortcode output.
 	// TODO Remove this after GCal API v3 update..
-	return '';
+	//return '';
 	
 	$defaults = array( 
 			'title_text'      => '',
