@@ -87,6 +87,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.0.7.1 =
+
+* As of Nov. 17, 2014 the GCal API v2 is deprecated, which breaks all calendar feed displays. This update will temporarily hide the display while we work on a solution that uses GCal API v3.
+
 = 2.0.7 = 
 
 * Events will now display if it hasn't ended yet for list views.
@@ -304,6 +308,7 @@ There are three ways to install this plugin.
 
 == Upgrade Notice ==
 
-= 2.0.0 = 
+= 2.0.7.1 =
 
-This is a major upgrade to a new code base and structure. PLEASE make sure you backup your site before upgrading.
+As of Nov. 17, 2014 the GCal API v2 is deprecated, which breaks all calendar feed displays. v2.0.7.1 will temporarily hide the display while we work on a solution that uses GCal API v3.
+
