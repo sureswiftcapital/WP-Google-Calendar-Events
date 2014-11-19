@@ -80,7 +80,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th scope="row"><label for="gce_feed_url"><?php _e( 'GCal Calendar ID', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_feed_url"><?php _e( 'Google Calendar ID', 'gce' ); ?></label></th>
 		<td>
 			<input type="text" class="regular-text" style="width: 30em;" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
 			<p class="description">
