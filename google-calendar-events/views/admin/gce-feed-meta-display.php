@@ -86,7 +86,7 @@
 			<p class="description">
 				<?php _e( 'The Google Calendar ID.', 'gce' ); ?> <?php _e( 'Example', 'gce' ); ?>:<br/>
 				<code>umsb0ekhivs1a2ubtq6vlqvcjk@group.calendar.google.com</code><br/>
-				<a href="http://wpdocs.philderksen.com/google-calendar-events/getting-started/find-feed-url/" target="_blank"><?php _e( 'How to find your GCal calendar ID', 'gce' ); ?></a>
+				<a href="http://wpdocs.philderksen.com/google-calendar-events/getting-started/find-calendar-id/" target="_blank"><?php _e( 'How to find your GCal calendar ID', 'gce' ); ?></a>
 			</p>
 		</td>
 	</tr>
