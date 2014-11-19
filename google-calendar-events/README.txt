@@ -315,8 +315,3 @@ There are three ways to install this plugin.
 = 2.1.0 =
 
 Updated to use Google API version 3. Version 2 deprecated deprecated on Nov. 17, 2014.
-
-= 2.0.7.1 =
-
-As of Nov. 17, 2014 the GCal API v2 is deprecated, which breaks all calendar feed displays. v2.0.7.1 will temporarily hide the display while we work on a solution that uses GCal API v3.
-
