@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div id="gce-install-notice" class="updated">
 	<p>
-		<strong><?php echo __( 'GCal Events Important Update (Nov. 18, 2014):', 'gce' ); ?></strong><br/>
+		<strong><?php echo __( 'GCal Events Important Update (Nov. 19, 2014):', 'gce' ); ?></strong><br/>
 		<?php echo __( 'GCal Events now uses the Google API version 3, which requires use of a public key.', 'gce' ); ?>
 		<?php echo __( 'By default a shared key is used across all plugin users, which is limited to 500,000 requests per day and 5 requests per second.', 'gce' ); ?>
 		<?php echo __( 'To avoid these limits you can use your own Google API key.', 'gce' ); ?>
