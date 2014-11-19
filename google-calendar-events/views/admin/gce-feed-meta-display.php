@@ -82,7 +82,7 @@
 	<tr>
 		<th scope="row"><label for="gce_feed_url"><?php _e( 'GCal Calendar ID', 'gce' ); ?></label></th>
 		<td>
-			<input type="text" class="large-text" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
+			<input type="text" class="regular-text" style="width: 30em;" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
 			<p class="description">
 				<?php _e( 'The Google Calendar ID.', 'gce' ); ?> <?php _e( 'Example', 'gce' ); ?>:<br/>
 				<code>umsb0ekhivs1a2ubtq6vlqvcjk@group.calendar.google.com</code><br/>
