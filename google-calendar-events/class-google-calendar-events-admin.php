@@ -76,9 +76,11 @@ class Google_Calendar_Events_Admin {
 		if ( false == get_option( 'gce_show_admin_install_notice' ) ) {
 			return;
 		}
+		
+		$screen = get_current_screen();
 
 		// Delete stored value if "hide" button click detected (custom querystring value set to 1).
-		if ( ! empty( $_REQUEST['gce-dismiss-install-nag'] ) ) {
+		if ( ! empty( $_REQUEST['gce-dismiss-install-nag'] ) ||  in_array( $screen->id, $this->plugin_screen_hook_suffix ) ) {
 			delete_option( 'gce_show_admin_install_notice' );
 			return;
 		}
