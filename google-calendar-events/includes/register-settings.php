@@ -26,9 +26,12 @@ function gce_register_settings() {
 		'general' => array(
 			'api_key' => array(
 				'id'   => 'api_key',
-				'name' => __( 'API Key', 'gce' ),
-				// TODO: Possibly change this description, Add actual documentation link
-				'desc' => '<a href="#">' . __( 'Instructions on how to get an API Key', 'gce' ) . '</a>',
+				'name' => __( 'Google API Key', 'gce' ),
+				// TODO: Add actual documentation link
+				'desc' => __( 'If left blank all calendars will use a public Google API key shared across all plugin users.', 'gce' ) . ' ' .
+				          __( 'Currently the shared key is limited to 500,000 requests per day and 5 requests per second.', 'gce' ) . '<br/>' .
+				          __( 'To avoid these limits', 'gce' ) . ' ' .
+				          '<a href="#" target="_blank">' . __( 'click here for instructions on how to generate and use your own Google API key.', 'gce' ) . '</a>',
 				'size' => 'regular-text',
 				'type' => 'text'
 			),
