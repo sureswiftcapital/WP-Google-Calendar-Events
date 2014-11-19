@@ -27,7 +27,7 @@ function gce_register_settings() {
 			'api_key' => array(
 				'id'   => 'api_key',
 				'name' => __( 'API Key', 'gce' ),
-				// TODO: Possibly change this description
+				// TODO: Possibly change this description, Add actual documentation link
 				'desc' => '<a href="#">' . __( 'Instructions on how to get an API Key', 'gce' ) . '</a>',
 				'size' => 'regular-text',
 				'type' => 'text'
