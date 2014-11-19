@@ -56,8 +56,7 @@ class Google_Calendar_Events_Admin {
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ), 2 );
 
-		// Add temporary admin notice for a particular version.
-		// TODO Remove this after GCal API v3 update, but leave commented out for future admin notices.
+		// Add admin notice for users upgrading from before 2.1.0.
 		if( version_compare( $this->version, '2.1.0', '<' ) ) {
 			add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
 		}
