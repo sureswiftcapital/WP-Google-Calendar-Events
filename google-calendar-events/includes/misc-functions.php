@@ -7,11 +7,7 @@
  */
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
 
-	// Temporarily hide all shortcode output.
-	// TODO Remove this after GCal API v3 update..
-	//return '';
-	
-	$defaults = array( 
+	$defaults = array(
 			'title_text'      => '',
 			'sort'            => 'asc',
 			'grouped'         => 0,
