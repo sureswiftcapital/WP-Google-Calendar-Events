@@ -89,7 +89,7 @@ There are three ways to install this plugin.
 
 = 2.1.0 = 
 
-* Updated to use Google API version 3. Version 2 deprecated deprecated on Nov. 17, 2014.
+* Updated to use Google Calendar API version 3. Version 2 deprecated on Nov. 17, 2014.
 
 = 2.0.7.1 =
 
@@ -314,4 +314,4 @@ There are three ways to install this plugin.
 
 = 2.1.0 =
 
-Updated to use Google API version 3. Version 2 deprecated deprecated on Nov. 17, 2014.
+Updated to use Google Calendar API version 3. Version 2 deprecated on Nov. 17, 2014.
