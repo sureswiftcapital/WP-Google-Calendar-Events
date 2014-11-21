@@ -89,6 +89,7 @@ There are three ways to install this plugin.
 
 = 2.1.2 =
 
+* Fixed bug with quick edit clearing out feed settings.
 * Fix bug with pagination creating extra DOM elements.
 * Localization string fixes.
 * Added HTML to group events of the same day semantically.
