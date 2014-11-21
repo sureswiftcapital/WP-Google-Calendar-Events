@@ -89,8 +89,9 @@ There are three ways to install this plugin.
 
 = 2.1.2 =
 
-* Localization string fixes - Pull Request by @Jojaba
-* Added HTML to group events of the same day semantically - Pull Request by @martinburchell
+* Fix bug with pagination creating extra DOM elements.
+* Localization string fixes.
+* Added HTML to group events of the same day semantically.
 * Fixed bug with [cal-id] event builder code.
 * Add in post data resets.
 
