@@ -87,6 +87,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.1.3 =
+
+
+
 = 2.1.2 =
 
 * Fixed bug with quick edit clearing out feed settings.
