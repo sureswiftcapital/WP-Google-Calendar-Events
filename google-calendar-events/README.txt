@@ -91,8 +91,8 @@ There are three ways to install this plugin.
 
 * Fixed bug with quick edit clearing out feed settings.
 * Fix bug with pagination creating extra DOM elements.
-* Localization string fixes.
-* Added HTML to group events of the same day semantically.
+* Localization string fixes - Pull Request by @Jojaba
+* Added HTML to group events of the same day semantically - Pull Request by @martinburchell
 * Fixed bug with [cal-id] event builder code.
 * Add in post data resets.
 
