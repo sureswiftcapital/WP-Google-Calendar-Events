@@ -128,6 +128,12 @@ class GCE_Feed {
 		
 		$query = add_query_arg( $args, $query );
 		
+		$this->display_url = $query;
+		
+		if( isset( $_GET['gce_debug'] ) && $_GET['gce_debug'] == true ) {
+			echo '<pre>' . $this->display_url . '</pre><br>';
+		}
+		
 		$this->get_feed_data( $query );
 	}
 	
