@@ -194,7 +194,7 @@ class GCE_Widget extends WP_Widget {
 		$display_type                = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
 		$order                       = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 		$display_title               = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
-		$title_text                  = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : 'Events on';
+		$title_text                  = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : __( 'Events on', 'gce' );
 		$paging                      = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
 		$list_max_num                = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 7 );
 		$list_max_length             = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
@@ -203,7 +203,7 @@ class GCE_Widget extends WP_Widget {
 		
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>">Title:</label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php e_( 'Title:', 'gce' ); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $title; ?>" class="widefat" />
 		</p>
 		<p>
@@ -228,7 +228,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Sort Order (List View only):' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Sort Order (List View only):', 'gce' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'order' ); ?>" name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat">
 				<option value="asc" <?php selected( $order, 'asc' ); ?>><?php _e( 'Ascending', 'gce' ); ?></option>
 				<option value="desc" <?php selected( $order, 'desc' ); ?>><?php _e( 'Descending', 'gce' ); ?></option>
