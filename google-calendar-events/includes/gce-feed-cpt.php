@@ -133,7 +133,7 @@ function gce_display_options_meta() {
  * @since 2.0.0
  */
 function gce_save_meta( $post_id ) {
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			return $post_id;
 	}
 
