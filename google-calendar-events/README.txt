@@ -87,6 +87,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.1.2 =
+
+* Add in post data resets.
+
 = 2.1.1 =
 
 * Fixed bug with all day events not displaying.
