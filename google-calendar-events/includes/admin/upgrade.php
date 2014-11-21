@@ -74,6 +74,8 @@ function gce_v210_upgrade() {
 			update_post_meta( get_the_ID(), 'gce_feed_url', $url );
 		}
 	}
+	
+	wp_reset_postdata();
 }
 
 /*
@@ -96,6 +98,8 @@ function gce_v206_upgrade() {
 			update_post_meta( get_the_ID(), 'gce_feed_end_interval', 'years' );
 		}
 	}
+	
+	wp_reset_postdata();
 }
 
 /*
@@ -119,6 +123,8 @@ function gce_v204_upgrade() {
 			update_post_meta( get_the_ID(), 'gce_list_start_offset_direction', 'back' );
 		}
 	}
+	
+	wp_reset_postdata();
 	
 
 	// Update widgets
@@ -348,6 +354,8 @@ function update_widget_feed_ids() {
 						}
 					}
 					
+					wp_reset_postdata();
+					
 					$widget[$a][$k] = substr( $new_ids, 0, -1 );
 				} else {
 
@@ -359,6 +367,8 @@ function update_widget_feed_ids() {
 						// Set our ID to the old ID if found
 						$id = get_the_ID();
 					}
+					
+					wp_reset_postdata();
 
 					$widget[$a][$k] = $id;
 				}
@@ -387,4 +397,6 @@ function gce_upgrade_clear_cache() {
 			delete_transient( 'gce_feed_' . get_the_ID() );
 		}
 	}
+	
+	wp_reset_postdata();
 }
