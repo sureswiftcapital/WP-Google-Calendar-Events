@@ -42,6 +42,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 * Norwegian - Provided by Tore Hjartland of [aliom.no](http://www.aliom.no/).
 * Polish - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
 * Lithuanian - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
+* Dutch - Provided by Henri van Werkhoven.
 
 == Installation ==
 
@@ -89,7 +90,7 @@ There are three ways to install this plugin.
 
 = 2.1.3 =
 
-
+* Added Dutch translation - Provided by Henri van Werkhoven.
 
 = 2.1.2 =
 
