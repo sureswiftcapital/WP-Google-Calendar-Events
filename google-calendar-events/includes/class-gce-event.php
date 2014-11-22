@@ -166,14 +166,14 @@ class GCE_Event {
 		}
 
 		//If location should be displayed (and is not empty) add to $markup
-		if ( isset( $display_options['display_location'] ) ) {
+		if ( ! empty( $display_options['display_location'] ) ) {
 			$event_location = $this->location;
 			if ( '' != $event_location )
 				$markup .= '<p class="gce-' . $this->type . '-loc"><span>' . esc_html( $display_options['display_location_text'] ) . '</span> ' . esc_html( $event_location ) . '</p>';
 		}
 
 		//If description should be displayed (and is not empty) add to $markup
-		if ( isset($display_options['display_desc'] ) ) {
+		if ( ! empty( $display_options['display_desc'] ) ) {
 			$event_desc = $this->description;
 
 			if ( '' != $event_desc ) {
@@ -188,7 +188,7 @@ class GCE_Event {
 		}
 
 		//If link should be displayed add to $markup
-		if ( isset($display_options['display_link'] ) ) {
+		if ( ! empty( $display_options['display_link'] ) ) {
 			$target = ( ! empty( $display_options['display_link_target'] ) ? 'target="blank"' : '' );
 			
 			$ctz  = get_option( 'timezone_string' );
