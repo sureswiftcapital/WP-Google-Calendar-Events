@@ -90,6 +90,8 @@ There are three ways to install this plugin.
 
 = 2.1.3 =
 
+* Only load CSS and JS when needed now.
+* Fixed bugs with simple display options.
 * Added Dutch translation - Provided by Henri van Werkhoven.
 
 = 2.1.2 =
