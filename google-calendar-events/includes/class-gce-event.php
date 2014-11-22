@@ -391,8 +391,8 @@ class GCE_Event {
 				return $m[1] . esc_html( $this->id ) . $m[6];
 
 			case 'cal-id':
-				$cal_id = explode( '/', $this->feed->feed_url );
-				return $m[1] . esc_html( $cal_id[5] ) . $m[6];
+				//$cal_id = explode( '/', $this->feed->feed_url );
+				return $m[1] . $this->feed->calendar_id . $m[6];
 
 			case 'if-all-day':
 				if ( 'SWD' == $this->day_type || 'MWD' == $this->day_type )

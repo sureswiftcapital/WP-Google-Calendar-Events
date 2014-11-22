@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2014-11-19 00:09-0700\n"
-"PO-Revision-Date: 2014-11-19 00:10-0700\n"
+"POT-Creation-Date: 2014-11-21 14:10-0700\n"
+"PO-Revision-Date: 2014-11-21 14:10-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: google-calendar-events/includes/class-gce-display.php:366
+#: google-calendar-events/includes/class-gce-display.php:371
 msgid "No events to display."
 msgstr ""
 
@@ -154,13 +154,13 @@ msgid ""
 "Feed settings."
 msgstr ""
 
-#: google-calendar-events/includes/class-gce-feed.php:165
+#: google-calendar-events/includes/class-gce-feed.php:187
 msgid ""
 "Some data was retrieved, but could not be parsed successfully. Please ensure "
 "your feed settings are correct."
 msgstr ""
 
-#: google-calendar-events/includes/class-gce-feed.php:169
+#: google-calendar-events/includes/class-gce-feed.php:191
 msgid " Please ensure your feed URL is correct."
 msgstr ""
 
@@ -244,8 +244,16 @@ msgstr ""
 msgid "%4$s draft updated. %1$sView %2$s%3$s"
 msgstr ""
 
+#: google-calendar-events/includes/gce-feed-cpt.php:94
+msgid "Feed Settings"
+msgstr ""
+
 #: google-calendar-events/includes/gce-feed-cpt.php:97
 msgid "Helpful Links"
+msgstr ""
+
+#: google-calendar-events/includes/gce-feed-cpt.php:99
+msgid "Display Options"
 msgstr ""
 
 #: google-calendar-events/includes/gce-feed-cpt.php:217
@@ -712,6 +720,14 @@ msgstr ""
 
 #: google-calendar-events/views/widgets.php:187
 msgid "Add your first feed!"
+msgstr ""
+
+#: google-calendar-events/views/widgets.php:197
+msgid "Events on"
+msgstr ""
+
+#: google-calendar-events/views/widgets.php:206
+msgid "Title:"
 msgstr ""
 
 #: google-calendar-events/views/widgets.php:211

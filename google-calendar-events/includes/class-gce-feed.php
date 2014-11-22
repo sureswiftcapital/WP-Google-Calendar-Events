@@ -105,7 +105,6 @@ class GCE_Feed {
 		// Set API key
 		$query .= '?key=' . $api_key;
 		
-		$args['orderBy'] = 'startTime';
 		
 		$args['timeMin'] = urlencode( $this->get_feed_start() );
 		
@@ -123,9 +122,17 @@ class GCE_Feed {
 			$args['q'] = rawurlencode( $this->search_query );
 		}
 		
-		$args['singleEvents'] = 'true';
+		if( ! empty( $this->expand_recurring ) ) {
+			$args['singleEvents'] = 'true';
+		}
 		
 		$query = add_query_arg( $args, $query );
+		
+		$this->display_url = $query;
+		
+		if( isset( $_GET['gce_debug'] ) && $_GET['gce_debug'] == true ) {
+			echo '<pre>' . $this->display_url . '</pre><br>';
+		}
 		
 		$this->get_feed_data( $query );
 	}
@@ -136,7 +143,7 @@ class GCE_Feed {
 	 * @since 2.0.0
 	 */
 	private function get_feed_data( $url ) {	
-
+		
 		// First check for transient data to use
 		if( false !== get_transient( 'gce_feed_' . $this->id ) ) {
 			$this->events = get_transient( 'gce_feed_' . $this->id );

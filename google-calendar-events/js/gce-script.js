@@ -86,7 +86,7 @@
 				gce_paging_type: paging_type,
 				gce_nonce: gce.ajaxnonce
 			}, function(data){
-				element.parent().parent().parent().html(data);
+				element.parents('.gce-list').replaceWith(data);
 			});
 		});
 

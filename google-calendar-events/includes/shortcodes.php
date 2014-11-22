@@ -51,6 +51,8 @@ function gce_gcal_shortcode( $attr ) {
 			$feed_ids[$k] = get_the_ID();
 			$v = get_the_ID();
 		}
+		
+		wp_reset_postdata();
 
 		if( empty( $display ) ) {
 			$display = get_post_meta( $v, 'gce_display_mode', true );
