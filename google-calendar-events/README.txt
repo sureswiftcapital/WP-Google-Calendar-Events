@@ -1,7 +1,7 @@
 === Google Calendar Events ===
 Contributors: pderksen, nickyoung87, rosshanney
 Tags: google calendar, google, calendar, events, gcal
-Requires at least: 3.7.4
+Requires at least: 3.8.5
 Tested up to: 4.1
 Stable tag: trunk
 License: GPLv2 or later
