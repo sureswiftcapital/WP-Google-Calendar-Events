@@ -6,7 +6,21 @@
  * @since 2.0.0
  */
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
-
+	
+	// Load style
+	wp_enqueue_style( GCE_PLUGIN_SLUG . '-public' );
+	
+	// Load scripts
+	wp_enqueue_script( GCE_PLUGIN_SLUG . '-qtip' );
+	wp_enqueue_script( GCE_PLUGIN_SLUG . '-public' );
+	
+	wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
+				array( 
+					'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+					'ajaxnonce'   => wp_create_nonce( 'gce_ajax_nonce' ),
+					'loadingText' => __( 'Loading...', 'gce' )
+				) );
+	
 	$defaults = array(
 			'title_text'      => '',
 			'sort'            => 'asc',
@@ -104,14 +118,12 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 * @since 2.0.0
 */
 function gce_ajax() {
-	
-	$nonce = $_POST['gce_nonce'];
- 
+
     // check to see if the submitted nonce matches with the
     // generated nonce we created earlier
-    if ( ! wp_verify_nonce( $nonce, 'gce_ajax_nonce' ) ) {
-        die ( 'Request has failed.');
-	} 
+	if( ! check_ajax_referer( 'gce_ajax_nonce', 'gce_nonce' ) ) {
+		die( 'Request has failed.' );
+	}
    
 	   $ids    = esc_html( $_POST['gce_feed_ids'] );
 	   $title  = esc_html( $_POST['gce_title_text'] );
@@ -149,12 +161,10 @@ add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
 */
 function gce_ajax_list() {
 	
-	$nonce = $_POST['gce_nonce'];
- 
     // check to see if the submitted nonce matches with the
     // generated nonce we created earlier
-    if ( ! wp_verify_nonce( $nonce, 'gce_ajax_nonce' ) ) {
-        die ( 'Request has failed.');
+    if( ! check_ajax_referer( 'gce_ajax_nonce', 'gce_nonce' ) ) {
+		die( 'Request has failed.' );
 	}
   
 	$grouped          = esc_html( $_POST['gce_grouped'] );

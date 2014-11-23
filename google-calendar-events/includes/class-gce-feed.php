@@ -157,44 +157,49 @@ class GCE_Feed {
 					//Attempt to convert the returned JSON into an array
 					$raw_data = json_decode( $raw_data['body'], true );
 					
-					//If decoding was successful
-					if ( ! empty( $raw_data ) ) {
-						//If there are some entries (events) to process
-						//if ( isset( $raw_data['feed']['entry'] ) ) {
-							//Loop through each event, extracting the relevant information
-							foreach ( $raw_data['items'] as $event ) {
-								$id          = ( isset( $event['id'] ) ? esc_html( $event['id'] ) : '' );
-								$title       = ( isset( $event['summary'] ) ? esc_html( $event['summary'] ) : '' );
-								$description = ( isset( $event['description'] ) ? esc_html( $event['description'] ) : '' );
-								$link        = ( isset( $event['htmlLink'] ) ? esc_url( $event['htmlLink'] ) : '' );
-								$location    = ( isset( $event['location'] ) ? esc_html( $event['location'] ) : '' );
-								
-								if( isset( $event['start']['dateTime'] ) ) {
-									$start_time  = $this->iso_to_ts( $event['start']['dateTime'] );
-								} else if( isset( $event['start']['date'] ) ) {
-									$start_time  = $this->iso_to_ts( $event['start']['date'] );
-								} else {
-									$start_time = null;
+					if( ! isset( $raw_data['error'] ) ) {
+						//If decoding was successful
+						if ( ! empty( $raw_data ) ) {
+							//If there are some entries (events) to process
+							//if ( isset( $raw_data['feed']['entry'] ) ) {
+								//Loop through each event, extracting the relevant information
+								foreach ( $raw_data['items'] as $event ) {
+									$id          = ( isset( $event['id'] ) ? esc_html( $event['id'] ) : '' );
+									$title       = ( isset( $event['summary'] ) ? esc_html( $event['summary'] ) : '' );
+									$description = ( isset( $event['description'] ) ? esc_html( $event['description'] ) : '' );
+									$link        = ( isset( $event['htmlLink'] ) ? esc_url( $event['htmlLink'] ) : '' );
+									$location    = ( isset( $event['location'] ) ? esc_html( $event['location'] ) : '' );
+
+									if( isset( $event['start']['dateTime'] ) ) {
+										$start_time  = $this->iso_to_ts( $event['start']['dateTime'] );
+									} else if( isset( $event['start']['date'] ) ) {
+										$start_time  = $this->iso_to_ts( $event['start']['date'] );
+									} else {
+										$start_time = null;
+									}
+
+									if( isset( $event['end']['dateTime'] ) ) {
+										$end_time  = $this->iso_to_ts( $event['end']['dateTime'] );
+									} else if( isset( $event['end']['date'] ) ) {
+										$end_time  = $this->iso_to_ts( $event['end']['date'] );
+									} else {
+										$end_time = null;
+									}
+
+									//Create a GCE_Event using the above data. Add it to the array of events
+									$this->events[] = new GCE_Event( $this, $id, $title, $description, $location, $start_time, $end_time, $link );
 								}
-								
-								if( isset( $event['end']['dateTime'] ) ) {
-									$end_time  = $this->iso_to_ts( $event['end']['dateTime'] );
-								} else if( isset( $event['end']['date'] ) ) {
-									$end_time  = $this->iso_to_ts( $event['end']['date'] );
-								} else {
-									$end_time = null;
-								}
-								
-								//Create a GCE_Event using the above data. Add it to the array of events
-								$this->events[] = new GCE_Event( $this, $id, $title, $description, $location, $start_time, $end_time, $link );
-							}
+						} else {
+							//json_decode failed
+							$this->error = __( 'Some data was retrieved, but could not be parsed successfully. Please ensure your feed settings are correct.', 'gce' );
+						}
 					} else {
-						//json_decode failed
-						$this->error = __( 'Some data was retrieved, but could not be parsed successfully. Please ensure your feed settings are correct.', 'gce' );
+						$this->error = __( 'An error has occured.', 'gce' );
+						$this->error .= '<pre>' . $raw_data['error']['message'] . '</pre>';
 					}
 			} else{
 				//Generate an error message from the returned WP_Error
-				$this->error = $raw_data->get_error_message() . __( ' Please ensure your feed URL is correct.', 'gce' );
+				$this->error = $raw_data->get_error_message() . __( ' Please ensure your calendar ID is correct.', 'gce' );
 			}
 		}
 		

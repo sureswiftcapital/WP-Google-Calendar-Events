@@ -105,7 +105,7 @@ class Google_Calendar_Events_Admin {
 		
 		$screen = get_current_screen();
 
-		if ( $screen->id == 'edit-gce_feed' || $screen->id == 'gce_feed' ) {
+		if ( $screen->id == 'edit-gce_feed' || $screen->id == 'gce_feed' || in_array( $screen->id, $this->plugin_screen_hook_suffix ) ) {
 			return true;
 		} else {
 			return false;
@@ -144,9 +144,11 @@ class Google_Calendar_Events_Admin {
 	 */
 	public function enqueue_admin_styles() {
 		
-		wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ), array(), $this->version );
+		//wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ), array(), $this->version );
 		
-		wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ), array(), $this->version, 'all' );
+		if( $this->viewing_this_plugin() ) {
+			wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ), array(), $this->version, 'all' );
+		}
 	}
 	
 	/**
