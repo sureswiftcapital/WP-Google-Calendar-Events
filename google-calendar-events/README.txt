@@ -90,6 +90,7 @@ There are three ways to install this plugin.
 
 = 2.1.4 =
 
+* Updated French translation - Pull Request by @Jojaba
 * Tested with WordPress 4.1.
 
 = 2.1.3 =
