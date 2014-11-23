@@ -90,6 +90,7 @@ There are three ways to install this plugin.
 
 = 2.1.4 =
 
+* Fixed bug with calendar ID field not trimming extra spaces.
 * Updated French translation - Pull Request by @Jojaba
 * Tested with WordPress 4.1.
 
