@@ -90,8 +90,9 @@ There are three ways to install this plugin.
 
 = 2.1.3 =
 
-* Only load CSS and JS when needed now.
+* Only load plugin scripts and stylesheets when the viewable page is rendering output from this plugin.
 * Fixed bugs with simple display options.
+* Added better error checking and output options to help in debugging GCal feeds.
 * Added Dutch translation - Provided by Henri van Werkhoven.
 
 = 2.1.2 =
