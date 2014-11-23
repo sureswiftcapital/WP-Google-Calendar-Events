@@ -88,6 +88,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.1.4 =
+
+* Tested with WordPress 4.1.
+
 = 2.1.3 =
 
 * Only load plugin scripts and stylesheets when the viewable page is rendering output from this plugin.
