@@ -91,6 +91,7 @@ There are three ways to install this plugin.
 
 = 2.1.4 =
 
+* Reverted CSS enqueue change.
 * Added Catalan translation.
 * Updated AJAX security code.
 * Fixed bug with calendar ID field not trimming extra spaces.
