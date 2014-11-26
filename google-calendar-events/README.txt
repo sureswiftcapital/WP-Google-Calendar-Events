@@ -43,6 +43,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 * Polish - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
 * Lithuanian - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
 * Dutch - Provided by Henri van Werkhoven.
+* Catalan
 
 == Installation ==
 
@@ -90,6 +91,7 @@ There are three ways to install this plugin.
 
 = 2.1.4 =
 
+* Added Catalan translation.
 * Updated AJAX security code.
 * Fixed bug with calendar ID field not trimming extra spaces.
 * Updated French translation - Pull Request by @Jojaba
