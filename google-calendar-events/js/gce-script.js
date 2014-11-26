@@ -12,7 +12,7 @@
 
 	$(function() {
 
-		gce_tooltips('.gce-has-events');
+		gce_tooltips($('.gce-has-events'));
 		
 		if( typeof gce_grid != 'undefined' ) {
 			
@@ -46,7 +46,7 @@
 					}else{
 						$('#' + gce_grid[id].target_element).replaceWith(data);
 					}
-					gce_tooltips('#' + gce_grid[id].target_element + ' .gce-has-events');
+					gce_tooltips($('#' + gce_grid[id].target_element + ' .gce-has-events'));
 				});
 			});
 		}
@@ -91,7 +91,8 @@
 		});
 
 		function gce_tooltips(target_items) {
-			$(target_items).each(function(){
+
+			target_items.each(function(){
 				//Add qtip to all target items
 				$(this).qtip({
 					content: $(this).children('.gce-event-info'),
