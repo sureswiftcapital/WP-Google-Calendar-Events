@@ -96,7 +96,7 @@ There are three ways to install this plugin.
 * Updated AJAX security code.
 * Fixed bug with calendar ID field not trimming extra spaces.
 * Updated French translation - Pull Request by @Jojaba
-* Tested with WordPress 4.1.
+* Tested up to WordPress 4.1.
 
 = 2.1.3 =
 
