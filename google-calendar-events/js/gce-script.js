@@ -15,16 +15,18 @@
 		gce_tooltips($('.gce-has-events'));
 		
 		if( typeof gce_grid != 'undefined' ) {
-			
+
 			$('body').on( 'click', '.gce-change-month', function(e) {
-				
-				var id = $(this).closest('.gce-calendar').parent().attr('id');
-				
+
 				e.preventDefault();
 
+				var navLink = $(this);
+
+				var id = navLink.closest('.gce-calendar').parent().attr('id');
+
 				//Extract month and year
-				var month_year = $(this).attr('name').split('-', 2);
-				var paging = $(this).attr('data-gce-grid-paging');
+				var month_year = navLink.attr('name').split('-', 2);
+				var paging = navLink.attr('data-gce-grid-paging');
 
 				//Add loading text to table caption
 				$('#' + gce_grid[id].target_element + ' caption').html(gce.loadingText);
@@ -48,6 +50,8 @@
 					}
 					gce_tooltips($('#' + gce_grid[id].target_element + ' .gce-has-events'));
 				});
+
+				e.stopPropagation();
 			});
 		}
 
@@ -55,24 +59,24 @@
 
 			e.preventDefault();
 
-			var element = $(this);
-				
-			var start = $(this).parent().parent().parent().data('gce-start');
-			var grouped = $(this).parent().parent().parent().data('gce-grouped');
-			var title_text = $(this).parent().parent().parent().data('gce-title');
-			var feed_ids = $(this).parent().parent().parent().data( 'gce-feeds');
-			var sort = $(this).parent().parent().parent().data('gce-sort');
-			var paging = $(this).parent().parent().parent().data('gce-paging');
-			var paging_interval = $(this).parent().parent().parent().data('gce-paging-interval');
-			var paging_direction = $(this).data('gce-paging-direction');
-			var start_offset = $(this).parent().parent().parent().data('gce-start-offset');
-			var paging_type = $(this).data('gce-paging-type');
+			var navLink = $(this);
+
+			var start = navLink.parent().parent().parent().data('gce-start');
+			var grouped = navLink.parent().parent().parent().data('gce-grouped');
+			var title_text = navLink.parent().parent().parent().data('gce-title');
+			var feed_ids = navLink.parent().parent().parent().data( 'gce-feeds');
+			var sort = navLink.parent().parent().parent().data('gce-sort');
+			var paging = navLink.parent().parent().parent().data('gce-paging');
+			var paging_interval = navLink.parent().parent().parent().data('gce-paging-interval');
+			var paging_direction = navLink.data('gce-paging-direction');
+			var start_offset = navLink.parent().parent().parent().data('gce-start-offset');
+			var paging_type = navLink.data('gce-paging-type');
 
 			//Add loading text to table caption
-			$(this).parent().parent().parent().find('.gce-month-title').html(gce.loadingText);
+			navLink.parent().parent().parent().find('.gce-month-title').html(gce.loadingText);
 
 			//Send AJAX request
-			jQuery.post(gce.ajaxurl,{
+			$.post(gce.ajaxurl,{
 				action:'gce_ajax_list',
 				gce_feed_ids:feed_ids,
 				gce_title_text:title_text,
@@ -86,8 +90,10 @@
 				gce_paging_type: paging_type,
 				gce_nonce: gce.ajaxnonce
 			}, function(data){
-				element.parents('.gce-list').replaceWith(data);
+				navLink.parents('.gce-list').replaceWith(data);
 			});
+
+			e.stopPropagation();
 		});
 
 		function gce_tooltips(target_items) {
