@@ -144,7 +144,7 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public function enqueue_public_styles() {
-		wp_register_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array(), $this->version );
+		wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array(), $this->version );
 	}
 
 	/**
