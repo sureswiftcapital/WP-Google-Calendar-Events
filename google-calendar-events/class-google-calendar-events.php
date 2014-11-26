@@ -132,10 +132,8 @@ class Google_Calendar_Events {
 	 */
 	public function enqueue_public_scripts() {
 		
-		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery-qtip.js', __FILE__ ), array( 'jquery' ), $this->version, true );
+		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip.min.js', __FILE__ ), array( 'jquery' ), $this->version, true );
 		wp_register_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), $this->version, true );
-		
-		
 	}
 	
 	/*
@@ -144,7 +142,8 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public function enqueue_public_styles() {
-		wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array(), $this->version );
+		wp_enqueue_style( $this->plugin_slug . '-qtip', plugins_url( 'css/jquery.qtip.min.css', __FILE__ ), array(), $this->version );
+		wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array( $this->plugin_slug . '-qtip' ), $this->version );
 	}
 
 	/**
