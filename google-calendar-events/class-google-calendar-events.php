@@ -18,7 +18,7 @@ class Google_Calendar_Events {
 	 *
 	 * @var     string
 	 */
-	protected $version = '2.1.4';
+	protected $version = '2.1.5';
 
 	/**
 	 * Unique identifier for the plugin.
