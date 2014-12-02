@@ -89,6 +89,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.1.5 =
+
+* Updated jQuery tooltip library to [qTip2](http://qtip2.com/). Previously using unmaintained original qTip library.
+
 = 2.1.4 =
 
 * Reverted CSS enqueue change.

@@ -102,12 +102,25 @@
 				//Add qtip to all target items
 				$(this).qtip({
 					content: $(this).children('.gce-event-info'),
-					position: { corner: { target: 'center', tooltip: 'bottomLeft' }, adjust: { screen: true } },
-					hide: { fixed: true, delay: 100, effect: { length: 0 } },
-					show: { solo: true, delay: 0, effect: { length: 0 } },
-					style: { padding: "0", classes: { tooltip: 'gce-qtip', tip: 'gce-qtip-tip', title: 'gce-qtip-title', content: 'gce-qtip-content', active: 'gce-qtip-active' }, border: { width: 0 } }
+					position: {
+						my: 'left bottom',
+						at: 'center'
+					},
+					show: {
+						solo: true
+					},
+					hide: {
+						fixed: true
+					}
+
+					/* Old qTip 1 settings */
+					
+					//position: { corner: { target: 'center', tooltip: 'bottomLeft' }, adjust: { screen: true } },
+					//show: { solo: true, delay: 0, effect: { length: 0 } },
+					//hide: { fixed: true, delay: 100, effect: { length: 0 } },
+					//style: { padding: "0", classes: { tooltip: 'gce-qtip', tip: 'gce-qtip-tip', title: 'gce-qtip-title', content: 'gce-qtip-content', active: 'gce-qtip-active' }, border: { width: 0 } }
 				});
 			});
 		}
 	});
-}(jQuery))
+}(jQuery));
