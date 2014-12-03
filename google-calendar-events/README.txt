@@ -43,6 +43,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 * Polish - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
 * Lithuanian - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
 * Dutch - Provided by Henri van Werkhoven.
+* Catalan - Provided by Toni Ginard & Monica Grau of [agora.xtec.cat](http://agora.xtec.cat/).
 
 == Installation ==
 
@@ -88,11 +89,18 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.1.5 =
+
+* Updated jQuery tooltip library to [qTip2](http://qtip2.com/). Previously using unmaintained original qTip library.
+
 = 2.1.4 =
 
+* Reverted CSS enqueue change.
+* Added Catalan translation - Provided by Toni Ginard & Monica Grau of [agora.xtec.cat](http://agora.xtec.cat/).
+* Updated AJAX security code.
 * Fixed bug with calendar ID field not trimming extra spaces.
 * Updated French translation - Pull Request by @Jojaba
-* Tested with WordPress 4.1.
+* Tested up to WordPress 4.1.
 
 = 2.1.3 =
 
