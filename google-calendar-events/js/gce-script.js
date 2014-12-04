@@ -103,14 +103,17 @@
 				$(this).qtip({
 					content: $(this).children('.gce-event-info'),
 					position: {
-						my: 'left bottom',
-						at: 'center'
+						my: 'bottom left',
+						at: 'top right'
 					},
 					show: {
 						solo: true
 					},
 					hide: {
 						fixed: true
+					},
+					style: {
+						classes: 'qtip-light qtip-shadow qtip-rounded'
 					}
 
 					/* Old qTip 1 settings */
