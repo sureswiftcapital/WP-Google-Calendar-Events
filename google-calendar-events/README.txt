@@ -89,6 +89,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.1.6 =
+
+* Tooltip (qTip2) style improvements.
+
 = 2.1.5 =
 
 * Updated jQuery tooltip library to [qTip2](http://qtip2.com/). Previously using unmaintained original qTip library.
