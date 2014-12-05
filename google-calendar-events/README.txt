@@ -92,6 +92,8 @@ There are three ways to install this plugin.
 = 2.1.6 =
 
 * Tooltip (qTip2) style improvements.
+* Updated French translation.
+
 
 = 2.1.5 =
 
