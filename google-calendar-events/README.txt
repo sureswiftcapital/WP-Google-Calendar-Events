@@ -91,7 +91,9 @@ There are three ways to install this plugin.
 
 = 2.1.6 =
 
-* Tooltip (qTip2) style improvements.
+* Fixed bug with tooltip (qTip2) in some cases by now including it's imagesLoaded script.
+* Tooltip style improvements.
+* Tooltip minified JS map file now included.
 * Updated French translation.
 * Updated Lithuanian translation.
 * Fix bug with grouped-list multi-day event title.
