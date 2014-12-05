@@ -131,7 +131,9 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public function enqueue_public_scripts() {
-		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip.min.js', __FILE__ ), array( 'jquery' ), $this->version, true );
+		// ImagesLoaded JS library recommended by qTip2.
+		wp_register_script( $this->plugin_slug . '-images-loaded', plugins_url( 'js/imagesloaded.pkg.min.js', __FILE__ ), null, $this->version, true );
+		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip.min.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-images-loaded' ), $this->version, true );
 		wp_register_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), $this->version, true );
 	}
 	
