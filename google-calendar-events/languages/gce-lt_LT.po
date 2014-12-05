@@ -1,767 +1,945 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Calendar Events\n"
+"Project-Id-Version: Google Calendar Events v2.1.4\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-22 20:41-0700\n"
-"PO-Revision-Date: 2014-10-23 12:22+0200\n"
+"PO-Revision-Date: 2014-11-26 10:07:04+0000\n"
 "Last-Translator: Andrius Mazeika <andrius@mazeika.info>\n"
 "Language-Team: \n"
-"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Bookmarks: \n"
 "X-Poedit-SearchPath-0: google-calendar-events\n"
+"X-Textdomain-Support: yes"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:64
-#: google-calendar-events/class-google-calendar-events-admin.php:65
-#: google-calendar-events/includes/register-settings.php:44
+#: class-google-calendar-events-admin.php:128
+#: class-google-calendar-events-admin.php:129
+#: class-google-calendar-events-admin.php:200
+#: includes/register-settings.php:54
+#@ gce
 msgid "General Settings"
 msgstr "Bendrieji nustatymai"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:122
-#: google-calendar-events/views/widgets.php:27
+#. translators: plugin header field 'Name'
+#: class-google-calendar-events-admin.php:188
+#: google-calendar-events.php:0
+#: views/widgets.php:27
+#@ gce
 msgid "Google Calendar Events"
 msgstr "Google kalendoriaus įvykiai"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:134
+#: class-google-calendar-events-admin.php:201
+#@ gce
 msgid "Feeds"
 msgstr "Srautai"
 
-#: google-calendar-events/class-google-calendar-events.php:142
+#: includes/misc-functions.php:18
+#@ gce
 msgid "Loading..."
 msgstr "Kraunama..."
 
-#: google-calendar-events/includes/admin/admin-functions.php:20
+#: includes/admin/admin-functions.php:20
+#@ gce
 msgid "Cache has been cleared for this feed."
 msgstr "Srauto laikinoji talpyklė išvalyta."
 
-#: google-calendar-events/includes/admin/admin-functions.php:35
-#: google-calendar-events/includes/admin/admin-functions.php:57
+#: includes/admin/admin-functions.php:35
+#: includes/admin/admin-functions.php:57
+#@ gce
 msgid "Starts:"
 msgstr "Prasideda:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:36
-#: google-calendar-events/includes/admin/admin-functions.php:59
+#: includes/admin/admin-functions.php:36
+#: includes/admin/admin-functions.php:59
+#@ gce
 msgid "Ends:"
 msgstr "Baigiasi:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:37
-#: google-calendar-events/includes/admin/admin-functions.php:61
+#: includes/admin/admin-functions.php:37
+#: includes/admin/admin-functions.php:61
+#@ gce
 msgid "Location:"
 msgstr "Vieta:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:38
-#: google-calendar-events/includes/admin/admin-functions.php:62
+#: includes/admin/admin-functions.php:38
+#: includes/admin/admin-functions.php:62
+#@ gce
 msgid "Description:"
 msgstr "Aprašymas:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:39
+#: includes/admin/admin-functions.php:39
+#@ gce
 msgid "More details..."
 msgstr "Plačiau..."
 
-#: google-calendar-events/includes/admin/admin-functions.php:64
+#: includes/admin/admin-functions.php:64
+#@ gce
 msgid "More Details"
 msgstr "Plačiau..."
 
-#: google-calendar-events/includes/admin/admin-functions.php:78
-#: google-calendar-events/includes/gce-feed-cpt.php:256
+#: includes/admin/admin-functions.php:78
+#: includes/gce-feed-cpt.php:264
+#@ gce
 msgid "Clear Cache"
 msgstr "Išvalyti laikinąją talpyklę."
 
-#: google-calendar-events/includes/class-gce-display.php:188
-#: google-calendar-events/includes/class-gce-display.php:277
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:185
-#: google-calendar-events/views/widgets.php:252
+#: includes/class-gce-display.php:179
+#: includes/class-gce-display.php:270
+#: views/admin/gce-feed-meta-display.php:185
+#: views/widgets.php:252
+#@ gce
 msgid "Back"
 msgstr "Atgal"
 
-#: google-calendar-events/includes/class-gce-display.php:192
-#: google-calendar-events/includes/class-gce-display.php:278
+#: includes/class-gce-display.php:183
+#: includes/class-gce-display.php:271
+#@ gce
 msgid "Next"
 msgstr "Pirmyn"
 
-#: google-calendar-events/includes/class-gce-display.php:372
+#: includes/class-gce-display.php:371
+#@ gce
 msgid "No events to display."
 msgstr "Įvykių nėra."
 
-#: google-calendar-events/includes/class-gce-event.php:503
+#: includes/class-gce-event.php:504
 #, php-format
+#@ gce
 msgid "%s year"
 msgstr "%s metai"
 
-#: google-calendar-events/includes/class-gce-event.php:503
+#: includes/class-gce-event.php:504
 #, php-format
+#@ gce
 msgid "%s years"
 msgstr "%s metai"
 
-#: google-calendar-events/includes/class-gce-event.php:504
+#: includes/class-gce-event.php:505
 #, php-format
+#@ gce
 msgid "%s month"
 msgstr "%s mėnuo"
 
-#: google-calendar-events/includes/class-gce-event.php:504
+#: includes/class-gce-event.php:505
 #, php-format
+#@ gce
 msgid "%s months"
 msgstr "%s mėnesiai"
 
-#: google-calendar-events/includes/class-gce-event.php:505
+#: includes/class-gce-event.php:506
 #, php-format
+#@ gce
 msgid "%s week"
 msgstr "%s savaitė"
 
-#: google-calendar-events/includes/class-gce-event.php:505
+#: includes/class-gce-event.php:506
 #, php-format
+#@ gce
 msgid "%s weeks"
 msgstr "%s savaitės"
 
-#: google-calendar-events/includes/class-gce-event.php:506
+#: includes/class-gce-event.php:507
 #, php-format
+#@ gce
 msgid "%s day"
 msgstr "%s diena"
 
-#: google-calendar-events/includes/class-gce-event.php:506
+#: includes/class-gce-event.php:507
 #, php-format
+#@ gce
 msgid "%s days"
 msgstr "%s dienos"
 
-#: google-calendar-events/includes/class-gce-event.php:507
+#: includes/class-gce-event.php:508
 #, php-format
+#@ gce
 msgid "%s hour"
 msgstr "%s valanda"
 
-#: google-calendar-events/includes/class-gce-event.php:507
+#: includes/class-gce-event.php:508
 #, php-format
+#@ gce
 msgid "%s hours"
 msgstr "%s valandos"
 
-#: google-calendar-events/includes/class-gce-event.php:508
+#: includes/class-gce-event.php:509
 #, php-format
+#@ gce
 msgid "%s min"
 msgstr "%s minutė"
 
-#: google-calendar-events/includes/class-gce-event.php:508
+#: includes/class-gce-event.php:509
 #, php-format
+#@ gce
 msgid "%s mins"
 msgstr "%s minutės"
 
-#: google-calendar-events/includes/class-gce-feed.php:82
-msgid ""
-"The feed URL has not been set. Please make sure to set it correctly in the "
-"Feed settings."
-msgstr ""
-"Srauto adresas (URL) nenurodytas. Įrašykite tikslų srauto adresą į 'Srauto "
-"nustatymus'."
+#: includes/class-gce-feed.php:89
+#@ gce
+msgid "The feed URL has not been set. Please make sure to set it correctly in the Feed settings."
+msgstr "Srauto adresas (URL) nenurodytas. Įrašykite tikslų srauto adresą į 'Srauto nustatymus'."
 
-#: google-calendar-events/includes/class-gce-feed.php:181
-msgid ""
-"Some data was retrieved, but could not be parsed successfully. Please ensure "
-"your feed URL is correct."
-msgstr ""
-"Dalis duomenų gauta, bet nepavyko jų apdoroti. Patikrinkite, ar įvestas "
-"srauto adresas (URL) yra teisingas."
-
-#: google-calendar-events/includes/class-gce-feed.php:187
-msgid ""
-"The feed could not be found (404). Please ensure your feed URL is correct."
-msgstr ""
-"Nepavyko rasti nurodyto srauto (404). Patikrinkite, ar įvestas srauto "
-"adresas (URL) yra teisingas."
-
-#: google-calendar-events/includes/class-gce-feed.php:190
-msgid ""
-"Access to this feed was denied (403). Please ensure you have public sharing "
-"enabled for your calendar."
-msgstr ""
-"Prieiga prie šio srauto uždrausta (403). Patikrinkite, ar jūsų kalendoriuje "
-"yra įjungtas viešasis dalinimasis. "
-
-#: google-calendar-events/includes/class-gce-feed.php:193
-#, php-format
-msgid ""
-"The feed data could not be retrieved. Error code: %s. Please ensure your "
-"feed URL is correct."
-msgstr ""
-"Nepavyko gauti srauto duomenų. Klaidos kodas %s. Patikrinkite, ar įvestas "
-"srauto adresas (URL) yra teisingas."
-
-#: google-calendar-events/includes/class-gce-feed.php:198
-msgid " Please ensure your feed URL is correct."
-msgstr "Patikrinkite, ar įvestas srauto adresas (URL) yra teisingas."
-
-#: google-calendar-events/includes/gce-feed-cpt.php:21
+#: includes/gce-feed-cpt.php:21
+#@ gce
 msgid "Google Calendar Feeds"
 msgstr "Google kalendoriaus srautai"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:22
-#: google-calendar-events/includes/gce-feed-cpt.php:24
-#: google-calendar-events/includes/gce-feed-cpt.php:72
+#: includes/gce-feed-cpt.php:22
+#: includes/gce-feed-cpt.php:24
+#: includes/gce-feed-cpt.php:72
+#@ gce
 msgid "Feed"
 msgstr "Srautas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:23
+#: includes/gce-feed-cpt.php:23
+#@ gce
 msgid "GCal Events"
 msgstr "GCal įvykiai"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:25
+#: includes/gce-feed-cpt.php:25
+#@ gce
 msgid "Add New"
 msgstr "Įtraukti naują"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:26
+#: includes/gce-feed-cpt.php:26
+#@ gce
 msgid "Add New Feed"
 msgstr "Įtraukti naują srautą"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:27
+#: includes/gce-feed-cpt.php:27
+#@ gce
 msgid "New Feed"
 msgstr "Naujas srautas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:28
+#: includes/gce-feed-cpt.php:28
+#@ gce
 msgid "Edit Feed"
 msgstr "Redaguoti srautą"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:29
+#: includes/gce-feed-cpt.php:29
+#@ gce
 msgid "View Feed"
 msgstr "Peržiūrėti srautą"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:30
+#: includes/gce-feed-cpt.php:30
+#@ gce
 msgid "All GCal Feeds"
 msgstr "Visi GCal srautai"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:31
+#: includes/gce-feed-cpt.php:31
+#@ gce
 msgid "Search GCal Feeds"
 msgstr "Paieška GCal srautuose"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:32
+#: includes/gce-feed-cpt.php:32
+#@ gce
 msgid "No feeds found."
 msgstr "Srautų nerasta."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:33
+#: includes/gce-feed-cpt.php:33
+#@ gce
 msgid "No feeds found in Trash."
 msgstr "Šiukšlinėje srautų nerasta."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:70
+#: includes/gce-feed-cpt.php:70
+#@ gce
 msgid "feed"
 msgstr "srautas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:75
-#: google-calendar-events/includes/gce-feed-cpt.php:76
+#: includes/gce-feed-cpt.php:75
+#: includes/gce-feed-cpt.php:76
 #, php-format
+#@ gce
 msgid "%4$s updated. %1$sView %2$s%3$s"
 msgstr "%4$s atnaujinta. %1$sPeržiūrėti %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:77
+#: includes/gce-feed-cpt.php:77
 #, php-format
+#@ gce
 msgid "%4$s published. %1$sView %2$s%3$s"
 msgstr "%4$s publikuota. %1$sPeržiūrėti %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:78
+#: includes/gce-feed-cpt.php:78
 #, php-format
+#@ gce
 msgid "%4$s saved. %1$sView %2$s%3$s"
 msgstr "%4$s įrašyta. %1$sPeržiūrėti %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:79
+#: includes/gce-feed-cpt.php:79
 #, php-format
+#@ gce
 msgid "%4$s submitted. %1$sView %2$s%3$s"
 msgstr "%4$s pateikta. %1$sPeržiūrėti %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:80
+#: includes/gce-feed-cpt.php:80
 #, php-format
+#@ gce
 msgid "%4$s draft updated. %1$sView %2$s%3$s"
 msgstr "%4$s juodraštis atnaujintas. %1$sPeržiūrėti %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:97
+#: includes/gce-feed-cpt.php:97
+#@ gce
 msgid "Helpful Links"
 msgstr "Naudingos nuorodos"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:209
+#: includes/gce-feed-cpt.php:217
+#@ gce
 msgid "Feed ID"
 msgstr "Srauto ID"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:210
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:73
+#: includes/gce-feed-cpt.php:218
+#: views/admin/gce-feed-meta-display.php:73
+#@ gce
 msgid "Feed Shortcode"
 msgstr "Srauto trumpasis kodas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:211
+#: includes/gce-feed-cpt.php:219
+#@ gce
 msgid "Display Type"
 msgstr "Rodymo būdas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:238
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:152
-#: google-calendar-events/views/widgets.php:218
+#: includes/gce-feed-cpt.php:246
+#: views/admin/gce-feed-meta-display.php:152
+#: views/widgets.php:218
+#@ gce
 msgid "Grid"
 msgstr "Tinklelis"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:240
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:153
-#: google-calendar-events/views/widgets.php:219
+#: includes/gce-feed-cpt.php:248
+#: views/admin/gce-feed-meta-display.php:153
+#: views/widgets.php:219
+#@ gce
 msgid "List"
 msgstr "Sąrašas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:242
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:154
-#: google-calendar-events/views/widgets.php:220
+#: includes/gce-feed-cpt.php:250
+#: views/admin/gce-feed-meta-display.php:154
+#: views/widgets.php:220
+#@ gce
 msgid "Grouped List"
 msgstr "Sugrupuotas sąrašas"
 
-#: google-calendar-events/includes/register-settings.php:29
+#: includes/register-settings.php:39
+#@ gce
 msgid "Save Settings"
 msgstr "Įšsaugoti nustatymus"
 
-#: google-calendar-events/includes/register-settings.php:30
-msgid ""
-"Save your settings when uninstalling this plugin. Useful when upgrading or "
-"re-installing."
-msgstr ""
-"Išsaugokite nustatymus prieš pašalindami šį įskiepį. Naudinga atliekant "
-"atnaujinimą ar diegiant iš naujo."
+#: includes/register-settings.php:40
+#@ gce
+msgid "Save your settings when uninstalling this plugin. Useful when upgrading or re-installing."
+msgstr "Išsaugokite nustatymus prieš pašalindami šį įskiepį. Naudinga atliekant atnaujinimą ar diegiant iš naujo."
 
-#: google-calendar-events/includes/register-settings.php:132
+#: includes/register-settings.php:169
 #, php-format
-msgid ""
-"The callback function used for the <strong>%s</strong> setting is missing."
-msgstr ""
-"Nerasta atsakymo (callback) funkcija, naudojama <strong>%s</strong> "
-"nustatyme."
+#@ gce
+msgid "The callback function used for the <strong>%s</strong> setting is missing."
+msgstr "Nerasta atsakymo (callback) funkcija, naudojama <strong>%s</strong> nustatyme."
 
-#: google-calendar-events/views/admin/display-options-meta.php:39
-msgid ""
-"Check this box to use the simple display options below instead of the Event "
-"Builder code on the left."
-msgstr ""
-"Pažymėkite, jeigu norite naudoti paprastąsias atvaizdavimo parinktis vietoje "
-"'Event Builder' kodo rodomo kairėje."
+#: views/admin/display-options-meta.php:39
+#@ gce
+msgid "Check this box to use the simple display options below instead of the Event Builder code on the left."
+msgstr "Pažymėkite, jeigu norite naudoti paprastąsias atvaizdavimo parinktis vietoje 'Event Builder' kodo rodomo kairėje."
 
-#: google-calendar-events/views/admin/display-options-meta.php:44
+#: views/admin/display-options-meta.php:44
+#@ gce
 msgid "Start date / time display"
 msgstr "Pradžios datos / laiko rodymas"
 
-#: google-calendar-events/views/admin/display-options-meta.php:45
+#: views/admin/display-options-meta.php:45
+#@ gce
 msgid "Select how to display the start date / time."
 msgstr "Pasirinkite, kaip rodyti pradžios datą / laiką"
 
-#: google-calendar-events/views/admin/display-options-meta.php:47
-#: google-calendar-events/views/admin/display-options-meta.php:61
+#: views/admin/display-options-meta.php:47
+#: views/admin/display-options-meta.php:61
+#@ gce
 msgid "None"
 msgstr "Nieko"
 
-#: google-calendar-events/views/admin/display-options-meta.php:48
+#: views/admin/display-options-meta.php:48
+#@ gce
 msgid "Start time"
 msgstr "Pradžios laikas"
 
-#: google-calendar-events/views/admin/display-options-meta.php:49
+#: views/admin/display-options-meta.php:49
+#@ gce
 msgid "Start date"
 msgstr "Pradžios data"
 
-#: google-calendar-events/views/admin/display-options-meta.php:50
+#: views/admin/display-options-meta.php:50
+#@ gce
 msgid "Start time and date"
 msgstr "Pradžios laikas ir data"
 
-#: google-calendar-events/views/admin/display-options-meta.php:51
+#: views/admin/display-options-meta.php:51
+#@ gce
 msgid "Start date and time"
 msgstr "Pradžios data ir laikas"
 
-#: google-calendar-events/views/admin/display-options-meta.php:53
+#: views/admin/display-options-meta.php:53
+#@ gce
 msgid "Text to display before the start time."
 msgstr "Rodyti šį tekstą prieš pradžios laiką"
 
-#: google-calendar-events/views/admin/display-options-meta.php:58
+#: views/admin/display-options-meta.php:58
+#@ gce
 msgid "End time/date display"
 msgstr "Pabaigos laiko / datos rodymas"
 
-#: google-calendar-events/views/admin/display-options-meta.php:59
+#: views/admin/display-options-meta.php:59
+#@ gce
 msgid "Select how to display the end date / time."
 msgstr "Pasirinkite, kaip rodyti pabaigos datą / laiką."
 
-#: google-calendar-events/views/admin/display-options-meta.php:62
+#: views/admin/display-options-meta.php:62
+#@ gce
 msgid "End time"
 msgstr "Pabaigos laikas"
 
-#: google-calendar-events/views/admin/display-options-meta.php:63
+#: views/admin/display-options-meta.php:63
+#@ gce
 msgid "End date"
 msgstr "Pabaigos data"
 
-#: google-calendar-events/views/admin/display-options-meta.php:64
+#: views/admin/display-options-meta.php:64
+#@ gce
 msgid "End time and date"
 msgstr "Pabaigos laikas ir data"
 
-#: google-calendar-events/views/admin/display-options-meta.php:65
+#: views/admin/display-options-meta.php:65
+#@ gce
 msgid "End date and time"
 msgstr "Pabaigos data ir laikas"
 
-#: google-calendar-events/views/admin/display-options-meta.php:67
+#: views/admin/display-options-meta.php:67
+#@ gce
 msgid "Text to display before the end time."
 msgstr "Rodyti šį tekstą prieš pabaigos laiką."
 
-#: google-calendar-events/views/admin/display-options-meta.php:72
+#: views/admin/display-options-meta.php:72
+#@ gce
 msgid "Separator"
 msgstr "Skirtukas"
 
-#: google-calendar-events/views/admin/display-options-meta.php:74
-msgid ""
-"If you have chosen to display both the time and date above, enter the text / "
-"characters to display between the time and date here (including any spaces)."
-msgstr ""
-"Jeigu pasirinkote rodyti ir laiką ir datą, įveskite tekstą / simbolius, "
-"kuriais norite atskirti datą nuo laiko (įskaitant ir tarpus)."
+#: views/admin/display-options-meta.php:74
+#@ gce
+msgid "If you have chosen to display both the time and date above, enter the text / characters to display between the time and date here (including any spaces)."
+msgstr "Jeigu pasirinkote rodyti ir laiką ir datą, įveskite tekstą / simbolius, kuriais norite atskirti datą nuo laiko (įskaitant ir tarpus)."
 
-#: google-calendar-events/views/admin/display-options-meta.php:80
+#: views/admin/display-options-meta.php:80
+#@ gce
 msgid "Location"
 msgstr "Vieta"
 
-#: google-calendar-events/views/admin/display-options-meta.php:82
+#: views/admin/display-options-meta.php:82
+#@ gce
 msgid "Show the location of events?"
-msgstr "Ar rodyti įvykių vietą?"
+msgstr "Rodyti įvykių vietą"
 
-#: google-calendar-events/views/admin/display-options-meta.php:83
+#: views/admin/display-options-meta.php:83
+#@ gce
 msgid "Text to display before the location."
 msgstr "Rodyti šį tekstą prieš įvykio vietą"
 
-#: google-calendar-events/views/admin/display-options-meta.php:88
+#: views/admin/display-options-meta.php:88
+#@ gce
 msgid "Description"
 msgstr "Aprašymas"
 
-#: google-calendar-events/views/admin/display-options-meta.php:91
-msgid ""
-"Show the description of events? (URLs in the description will be made into "
-"links)."
-msgstr ""
-"Ar rodyti įvykių aprašymus? (URL adresai aprašymuose bus konvertuoti į "
-"nuorodas)."
+#: views/admin/display-options-meta.php:91
+#@ gce
+msgid "Show the description of events? (URLs in the description will be made into links)."
+msgstr "Rodyti įvykių aprašymus (URL adresai aprašymuose bus konvertuoti į nuorodas)."
 
-#: google-calendar-events/views/admin/display-options-meta.php:93
+#: views/admin/display-options-meta.php:93
+#@ gce
 msgid "Text to display before the description."
 msgstr "Rodyti šį tekstą prieš įvykio aprašymą."
 
-#: google-calendar-events/views/admin/display-options-meta.php:95
-msgid ""
-"Maximum number of words to show from description. Leave blank for no limit."
-msgstr ""
-"Maksimalus žodžių skaičius, kurį norite rodyti įvykio aprašyme. Palikite "
-"tuščią, jeigu apriboti nenorite."
+#: views/admin/display-options-meta.php:95
+#@ gce
+msgid "Maximum number of words to show from description. Leave blank for no limit."
+msgstr "Maksimalus žodžių skaičius, kurį norite rodyti įvykio aprašyme. Palikite tuščią, jeigu apriboti nenorite."
 
-#: google-calendar-events/views/admin/display-options-meta.php:100
+#: views/admin/display-options-meta.php:100
+#@ gce
 msgid "Event Link"
 msgstr "Įvykio nuoroda"
 
-#: google-calendar-events/views/admin/display-options-meta.php:103
+#: views/admin/display-options-meta.php:103
+#@ gce
 msgid "Show a link to the Google Calendar page for an event?"
-msgstr "Ar rodyti nuorodą į įvykio puslapį Google kalendoriuje?"
+msgstr "Rodyti nuorodą į įvykio puslapį Google kalendoriuje"
 
-#: google-calendar-events/views/admin/display-options-meta.php:107
+#: views/admin/display-options-meta.php:107
+#@ gce
 msgid "Links open in a new window / tab?"
-msgstr "Ar atversti nuorodas naujame lange / kortelėje?"
+msgstr "Atversti nuorodas naujame lange / kortelėje"
 
-#: google-calendar-events/views/admin/display-options-meta.php:109
+#: views/admin/display-options-meta.php:109
+#@ gce
 msgid "The link text to be displayed."
 msgstr "Nuorodos tekstas."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:54
-msgid ""
-"We're <strong>smack dab</strong> in the middle of building additional "
-"features for this plugin. Have ideas?"
-msgstr ""
-"Mes dar tik <strong>pusiaukelėje</strong> šio įskiepio kūrime. Turite idėjų?"
+#: views/admin/gce-feed-meta-display.php:54
+#@ gce
+msgid "We're <strong>smack dab</strong> in the middle of building additional features for this plugin. Have ideas?"
+msgstr "Mes dar tik <strong>pusiaukelėje</strong> šio įskiepio kūrime. Turite idėjų?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:57
+#: views/admin/gce-feed-meta-display.php:57
+#@ gce
 msgid "Visit our roadmap and tell us what you're looking for"
 msgstr "Peržvelkite tolimesnius mūsų planus ir parašykite mums savo poreikius"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:63
+#: views/admin/gce-feed-meta-display.php:63
+#@ gce
 msgid "Want to be in the know?"
 msgstr "Norite sekti įskiepio naujienas?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:66
+#: views/admin/gce-feed-meta-display.php:66
+#@ gce
 msgid "Get notified when new features are released"
 msgstr "Gaukite pranešimus apie naujas įskiepio galimybes"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:77
-msgid ""
-"Copy and paste this shortcode to display this Google Calendar feed on any "
-"post or page."
-msgstr ""
-"Nukopijuokite ir įklijuokite šį trumpąjį kodą norėdami atvaizduoti šį Google "
-"kalendoriaus srautą bet kuriame įraše ar puslapyje."
+#: views/admin/gce-feed-meta-display.php:77
+#@ gce
+msgid "Copy and paste this shortcode to display this Google Calendar feed on any post or page."
+msgstr "Nukopijuokite ir įklijuokite šį trumpąjį kodą norėdami atvaizduoti šį Google kalendoriaus srautą bet kuriame įraše ar puslapyje."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:78
-msgid ""
-"To avoid display issues, make sure to paste the shortcode in the Text tab of "
-"the post editor."
-msgstr ""
-"Tam, kad išvengtumėte nesklandumų, įklijuokite šį trumpąjį kodą naudodami "
-"tekstinį įrašo redaktorių."
+#: views/admin/gce-feed-meta-display.php:78
+#@ gce
+msgid "To avoid display issues, make sure to paste the shortcode in the Text tab of the post editor."
+msgstr "Tam, kad išvengtumėte nesklandumų, įklijuokite šį trumpąjį kodą naudodami tekstinį įrašo redaktorių."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:83
-msgid "GCal Feed URL"
-msgstr "GCal srauto adresas (URL)"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:87
-msgid "The Google Calendar feed URL."
-msgstr "Google kalendoriaus srauto adresas (URL)."
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:87
+#: views/admin/gce-feed-meta-display.php:87
+#@ gce
 msgid "Example"
 msgstr "Pavyzdys"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:89
-msgid "How to find your GCal feed URL"
-msgstr "Kaip rasti GCal srauto adresą (URL)?"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:95
+#: views/admin/gce-feed-meta-display.php:95
+#@ gce
 msgid "Search Query"
 msgstr "Paieškos užklausa"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:98
+#: views/admin/gce-feed-meta-display.php:98
+#@ gce
 msgid "Find and show events based on a search query."
 msgstr "Surasti ir rodyti įvykius pagal įvestą paieškos užklausą."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:103
+#: views/admin/gce-feed-meta-display.php:103
+#@ gce
 msgid "Expand Recurring Events?"
-msgstr "Ar išskleisti pasikartojančius įvykius?"
+msgstr "Išskleisti pasikartojančius įvykius"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:105
+#: views/admin/gce-feed-meta-display.php:105
+#@ gce
 msgid "Yes"
 msgstr "Taip"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:106
-msgid ""
-"This will show recurring events each time they occur, otherwise it will only "
-"show the event the first time it occurs."
-msgstr ""
-"Pažymėkite, jeigu norite rodyti pasikartojančius įvykius kiekvieną kartą. "
-"Nepasirinkus šio nustatymo bus rodomas tik pirmasis įvykis."
+#: views/admin/gce-feed-meta-display.php:106
+#@ gce
+msgid "This will show recurring events each time they occur, otherwise it will only show the event the first time it occurs."
+msgstr "Pažymėkite, jeigu norite rodyti pasikartojančius įvykius kiekvieną kartą. Nepasirinkus šio nustatymo bus rodomas tik pirmasis įvykis."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:111
+#: views/admin/gce-feed-meta-display.php:111
+#@ gce
 msgid "Date Format"
 msgstr "Datos formatas"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:115
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:126
+#: views/admin/gce-feed-meta-display.php:115
+#: views/admin/gce-feed-meta-display.php:126
 #, php-format
+#@ gce
 msgid "Use %sPHP date formatting%s."
 msgstr "Naudoti %sPHP datos formatą%s."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:116
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:127
+#: views/admin/gce-feed-meta-display.php:116
+#: views/admin/gce-feed-meta-display.php:127
+#@ gce
 msgid "Leave blank to use the default."
 msgstr "Palikite tuščią, jei norite naudoti numatytąją reikšmę."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:122
+#: views/admin/gce-feed-meta-display.php:122
+#@ gce
 msgid "Time Format"
 msgstr "Laiko formatas"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:133
+#: views/admin/gce-feed-meta-display.php:133
+#@ gce
 msgid "Cache Duration"
 msgstr "Laikinosios atminties saugojimo trukmė"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:136
-msgid ""
-"The length of time, in seconds, to cache the feed (43200 = 12 hours). If "
-"this feed changes regularly, you may want to reduce the cache duration."
-msgstr ""
-"Kiek laiko (sekundėmis) laikyti srauto duomenis laikinojoje atmintyje (43200 "
-"= 12 valandų). Jei šio srauto duomenys keičiasi dažnai, sumažinkite "
-"laikinosios atminties trukmę."
+#: views/admin/gce-feed-meta-display.php:136
+#@ gce
+msgid "The length of time, in seconds, to cache the feed (43200 = 12 hours). If this feed changes regularly, you may want to reduce the cache duration."
+msgstr "Kiek laiko (sekundėmis) laikyti srauto duomenis laikinojoje atmintyje (43200 = 12 valandų). Jei šio srauto duomenys keičiasi dažnai, sumažinkite laikinosios atminties trukmę."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:141
+#: views/admin/gce-feed-meta-display.php:141
+#@ gce
 msgid "Multiple Day Events"
 msgstr "Kelias dienas trunkantys įvykiai"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:143
+#: views/admin/gce-feed-meta-display.php:143
+#@ gce
 msgid "Show on each day"
 msgstr "Rodyti kiekvieną dieną"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:144
-msgid ""
-"Show events that span multiple days on each day that they span, rather than "
-"just the first day."
-msgstr ""
-"Rodyti kelių dienų trukmės įvykius kiekvieną įvykio dieną, o ne tik pirmąją."
+#: views/admin/gce-feed-meta-display.php:144
+#@ gce
+msgid "Show events that span multiple days on each day that they span, rather than just the first day."
+msgstr "Rodyti kelių dienų trukmės įvykius kiekvieną įvykio dieną, o ne tik pirmąją."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:149
+#: views/admin/gce-feed-meta-display.php:149
+#@ gce
 msgid "Display Mode"
 msgstr "Rodymo būdas"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:156
+#: views/admin/gce-feed-meta-display.php:156
+#@ gce
 msgid "Choose how you want your calendar to be displayed."
 msgstr "Pasirinkite kalendoriaus atvaizdavimo būdą."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:161
+#: views/admin/gce-feed-meta-display.php:161
+#@ gce
 msgid "Show Paging Links"
 msgstr "Rodyti puslapių numeracijos nuorodas"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:163
-#: google-calendar-events/views/widgets.php:227
+#: views/admin/gce-feed-meta-display.php:163
+#: views/widgets.php:227
+#@ gce
 msgid "Check this option to display Next and Back navigation links."
-msgstr ""
-"Pažymėkite, jeigu norite rodyti 'Pirmyn' ir 'Atgal' navigacijos nuorodas."
+msgstr "Pažymėkite, jeigu norite rodyti 'Pirmyn' ir 'Atgal' navigacijos nuorodas."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:168
+#: views/admin/gce-feed-meta-display.php:168
+#@ gce
 msgid "Number of Events per Page"
 msgstr "Viename puslapyje rodomų įvykių skaičius"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:172
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:183
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:197
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:211
-#: google-calendar-events/views/widgets.php:242
-#: google-calendar-events/views/widgets.php:250
+#: views/admin/gce-feed-meta-display.php:172
+#: views/admin/gce-feed-meta-display.php:183
+#: views/admin/gce-feed-meta-display.php:197
+#: views/admin/gce-feed-meta-display.php:211
+#: views/widgets.php:242
+#: views/widgets.php:250
+#@ gce
 msgid "Days"
 msgstr "Dienos"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:173
-#: google-calendar-events/views/widgets.php:243
+#: views/admin/gce-feed-meta-display.php:173
+#: views/widgets.php:243
+#@ gce
 msgid "Events"
 msgstr "Įvykiai"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:175
+#: views/admin/gce-feed-meta-display.php:175
+#@ gce
 msgid "How many events to display per page (List View only)."
 msgstr "Kiek įvykių rodyti viename puslapyje (galioja tik sąrašo rodiniui)?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:180
+#: views/admin/gce-feed-meta-display.php:180
+#@ gce
 msgid "Display Start Date Offset"
 msgstr "Rodyti pradžios datos poslinkį [offset]"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:186
-#: google-calendar-events/views/widgets.php:253
+#: views/admin/gce-feed-meta-display.php:186
+#: views/widgets.php:253
+#@ gce
 msgid "Ahead"
 msgstr "Priekyje"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:188
-msgid ""
-"Change if you need to initially display events on a date other than today "
-"(List View only)."
-msgstr ""
-"Pakeiskite, jeigu reikia rodyti ne šiandienos įvykius (galioja tik sąrašo "
-"rodiniui)."
+#: views/admin/gce-feed-meta-display.php:188
+#@ gce
+msgid "Change if you need to initially display events on a date other than today (List View only)."
+msgstr "Pakeiskite, jeigu reikia rodyti ne šiandienos įvykius (galioja tik sąrašo rodiniui)."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:193
+#: views/admin/gce-feed-meta-display.php:193
+#@ gce
 msgid "Minimum Feed Start Date"
 msgstr "Minimali srauto pradžios data"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:198
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:212
+#: views/admin/gce-feed-meta-display.php:198
+#: views/admin/gce-feed-meta-display.php:212
+#@ gce
 msgid "Months"
 msgstr "Mėnesiai"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:199
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:213
+#: views/admin/gce-feed-meta-display.php:199
+#: views/admin/gce-feed-meta-display.php:213
+#@ gce
 msgid "Years"
 msgstr "Metai"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:201
+#: views/admin/gce-feed-meta-display.php:201
+#@ gce
 msgid "back"
 msgstr "atgal"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:202
-msgid ""
-"Set how far back to retrieve events regardless of month or page being "
-"displayed."
-msgstr ""
-"Pasirinkite, kiek istorinių įvykių rodyti nepaisant rodomo mėnesio ar "
-"puslapio."
+#: views/admin/gce-feed-meta-display.php:202
+#@ gce
+msgid "Set how far back to retrieve events regardless of month or page being displayed."
+msgstr "Pasirinkite, kiek istorinių įvykių rodyti nepaisant rodomo mėnesio ar puslapio."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:207
+#: views/admin/gce-feed-meta-display.php:207
+#@ gce
 msgid "Maximum Feed End Date"
 msgstr "Maksimali srauto pabaigos data"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:215
+#: views/admin/gce-feed-meta-display.php:215
+#@ gce
 msgid "forward"
 msgstr "pirmyn"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:216
-msgid ""
-"Set how far in the future to retrieve events regardless of month or page "
-"being displayed."
-msgstr ""
-"Pasirinkite, kiek ateities įvykių rodyti nepaisant rodomo mėnesio ar "
-"puslapio."
+#: views/admin/gce-feed-meta-display.php:216
+#@ gce
+msgid "Set how far in the future to retrieve events regardless of month or page being displayed."
+msgstr "Pasirinkite, kiek ateities įvykių rodyti nepaisant rodomo mėnesio ar puslapio."
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:6
+#: views/admin/gce-feed-sidebar-help.php:6
+#@ gce
 msgid "Documentation & getting started"
 msgstr "Dokumentacija ir pradžios pagalba"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:12
+#: views/admin/gce-feed-sidebar-help.php:12
+#@ gce
 msgid "Community support forums"
 msgstr "Bendruomenės palaikymo forumai"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:18
+#: views/admin/gce-feed-sidebar-help.php:18
+#@ gce
 msgid "Get notified of new features"
 msgstr "Gaukite pranešimus apie naujas įskiepio galimybes"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:24
+#: views/admin/gce-feed-sidebar-help.php:24
+#@ gce
 msgid "Rate this plugin"
 msgstr "Įvertinkite šį įskiepį"
 
-#: google-calendar-events/views/widgets.php:28
-msgid ""
-"Display a list or calendar grid of events from one or more Google Calendar "
-"feeds you have added"
-msgstr ""
-"Rodyti įvykių sąrašą arba kalendoriaus tinklelį iš vieno ar daugiau Google "
-"kalendoriaus srautų."
+#: views/widgets.php:28
+#@ gce
+msgid "Display a list or calendar grid of events from one or more Google Calendar feeds you have added"
+msgstr "Rodyti įvykių sąrašą arba kalendoriaus tinklelį iš vieno ar daugiau Google kalendoriaus srautų."
 
-#: google-calendar-events/views/widgets.php:111
-msgid ""
-"No valid Feed IDs have been entered for this widget. Please check that you "
-"have entered the IDs correctly in the widget settings (Appearance > "
-"Widgets), and that the Feeds have not been deleted."
-msgstr ""
-"Neįvestas nei vienas veikiantis srauto ID. Patikrinkite, ar teisingai "
-"įvedėte srauto ID numerius į valdiklio nustatymus (Išvaizda > Valdikliai) ir "
-"ar srautai nebuvo ištrinti."
+#: views/widgets.php:111
+#@ gce
+msgid "No valid Feed IDs have been entered for this widget. Please check that you have entered the IDs correctly in the widget settings (Appearance > Widgets), and that the Feeds have not been deleted."
+msgstr "Neįvestas nei vienas veikiantis srauto ID. Patikrinkite, ar teisingai įvedėte srauto ID numerius į valdiklio nustatymus (Išvaizda > Valdikliai) ir ar srautai nebuvo ištrinti."
 
-#: google-calendar-events/views/widgets.php:144
+#: views/widgets.php:144
+#@ gce
 msgid "You have not added any feeds yet."
 msgstr "Kol kas neįtraukėte nei vieno srauto."
 
-#: google-calendar-events/views/widgets.php:186
+#: views/widgets.php:186
+#@ gce
 msgid "There are no feeds created yet."
 msgstr "Kol kas nėra jokių srautų."
 
-#: google-calendar-events/views/widgets.php:187
+#: views/widgets.php:187
+#@ gce
 msgid "Add your first feed!"
 msgstr "Įtraukite pirmąjį srautą."
 
-#: google-calendar-events/views/widgets.php:211
+#: views/widgets.php:211
+#@ gce
 msgid "Feeds to Display (comma separated list - i.e. 101,102,103):"
 msgstr "Rodyti šiuos srautus (atskirti kableliais - pav. 101,102,103):"
 
-#: google-calendar-events/views/widgets.php:216
+#: views/widgets.php:216
+#@ gce
 msgid "Display Events as:"
 msgstr "Rodyti įvykius kaip:"
 
-#: google-calendar-events/views/widgets.php:225
+#: views/widgets.php:225
+#@ gce
 msgid "Show Paging Links:"
 msgstr "Rodyti puslapių keitimo nuorodas:"
 
-#: google-calendar-events/views/widgets.php:231
+#: views/widgets.php:231
+#@ gce
 msgid "Sort Order (List View only):"
 msgstr "Rikiavimas (galioja tik sąrašo rodiniui)"
 
-#: google-calendar-events/views/widgets.php:233
+#: views/widgets.php:233
+#@ gce
 msgid "Ascending"
 msgstr "Didėjimo tvarka"
 
-#: google-calendar-events/views/widgets.php:234
+#: views/widgets.php:234
+#@ gce
 msgid "Descending"
 msgstr "Mažėjimo tvarka"
 
-#: google-calendar-events/views/widgets.php:239
+#: views/widgets.php:239
+#@ gce
 msgid "Number of Events per Page (List View only):"
 msgstr "Įvykių skaičius viename puslapyje (galioja tik sąrašo rodiniui):"
 
-#: google-calendar-events/views/widgets.php:248
+#: views/widgets.php:248
+#@ gce
 msgid "Display Start Date Offset (List View only):"
 msgstr "Rodyti pradžios datos poslinkį [offset] (galioja tik sąrašo rodiniui):"
 
-#: google-calendar-events/views/widgets.php:258
-msgid ""
-"Display Title on Tooltip/List Item (e.g. 'Events on 7th March'). Grouped "
-"lists always have a title displayed."
+#: views/widgets.php:258
+#@ gce
+msgid "Display Title on Tooltip/List Item (e.g. 'Events on 7th March'). Grouped lists always have a title displayed."
+msgstr "Rodyti įvykio pavadinimą ant mygtuko etiketės [tooltip] (pav. 'Įvykiai kovo 7-ąją'). Įvykio pavadinimas visuomet rodomas sugrupuoto sąrašo rodinyje."
+
+#. translators: plugin header field 'PluginURI'
+#: google-calendar-events.php:0
+#@ gce
+msgid "https://github.com/pderksen/WP-Google-Calendar-Events"
 msgstr ""
-"Rodyti įvykio pavadinimą ant mygtuko etiketės [tooltip] (pav. 'Įvykiai kovo "
-"7-ąją'). Įvykio pavadinimas visuomet rodomas sugrupuoto sąrašo rodinyje."
+
+#. translators: plugin header field 'Description'
+#: google-calendar-events.php:0
+#@ gce
+msgid "Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget."
+msgstr "Surenka Google kalendoriaus srautus ir atvaizduoja įvykius tinklelio arba sąrašo formatu puslapyje, įraše arba valdiklyje."
+
+#. translators: plugin header field 'Author'
+#: google-calendar-events.php:0
+#@ gce
+msgid "Phil Derksen"
+msgstr ""
+
+#. translators: plugin header field 'AuthorURI'
+#: google-calendar-events.php:0
+#@ gce
+msgid "http://philderksen.com"
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: google-calendar-events.php:0
+#@ gce
+msgid "2.1.4"
+msgstr ""
+
+#: includes/class-gce-display.php:276
+#: includes/php-calendar.php:55
+#: includes/php-calendar.php:57
+#@ gce
+msgid "Previous month"
+msgstr "Ansktesnis mėnuo"
+
+#: includes/class-gce-display.php:277
+#: includes/php-calendar.php:61
+#: includes/php-calendar.php:63
+#@ gce
+msgid "Next month"
+msgstr "Sekantis mėnuo"
+
+#: includes/class-gce-event.php:537
+#@ default
+msgctxt "human_time_diff"
+msgid ", "
+msgstr ""
+
+#: includes/class-gce-feed.php:194
+#@ gce
+msgid "Some data was retrieved, but could not be parsed successfully. Please ensure your feed settings are correct."
+msgstr "Dalis duomenų gauta, bet nepavyko jų teisingai apdoroti. Patikrinkite srauto nustatymus."
+
+#: includes/class-gce-feed.php:197
+#@ gce
+msgid "An error has occured."
+msgstr "Įvyko klaida."
+
+#: includes/class-gce-feed.php:202
+#@ gce
+msgid " Please ensure your calendar ID is correct."
+msgstr "Patikrinkite, ar teisingai įvestas kalendoriaus ID."
+
+#: includes/gce-feed-cpt.php:94
+#@ gce
+msgid "Feed Settings"
+msgstr "Srauto nustatymai"
+
+#: includes/gce-feed-cpt.php:99
+#@ gce
+msgid "Display Options"
+msgstr "Atvaizdavimo parinktys"
+
+#: includes/register-settings.php:29
+#@ gce
+msgid "Google API Key"
+msgstr "Google API raktas"
+
+#: includes/register-settings.php:30
+#@ gce
+msgid "If left blank all displayed Google calendars will use a public Google API key shared across all plugin users."
+msgstr "Palikite tuščią jeigu norite naudoti viešąjį Google API raktą, kuriuo dalinasi visi šio įskiepio vartotojai."
+
+#: includes/register-settings.php:31
+#@ gce
+msgid "Currently the shared key is limited to 500,000 requests per day and 5 requests per second."
+msgstr "Šiuo metu viešasis Google API raktas apribotas iki 500.000 užklausų per dieną ir iki 5 užklausų per sekundę."
+
+#: includes/register-settings.php:32
+#, php-format
+#@ gce
+msgid "To avoid these limits <a href=\"%s\" target=\"_blank\">click here for instructions on how to generate and use your own Google API key.</a>"
+msgstr "Jeigu norite išvengti šių apribojimų skaitykite, <a href=\"%s\" target=\"_blank\">kaip susigeneruoti nuosavą Google API raktą.</a>"
+
+#: views/admin/api-settings-notice.php:27
+#@ gce
+msgid "GCal Events Important Update (Nov. 19, 2014):"
+msgstr "Svarbus pranešimas (Lapkričio 19, 2014)"
+
+#: views/admin/api-settings-notice.php:28
+#@ gce
+msgid "GCal Events now uses the Google API version 3, which requires use of a public key."
+msgstr "'GCal Įvykiai' nuo šiol naudoja trečiąją Google API versiją, kuriai būtinas viešojo rakto naudojimas."
+
+#: views/admin/api-settings-notice.php:29
+#@ gce
+msgid "By default a shared key is used across all plugin users, which is limited to 500,000 requests per day and 5 requests per second."
+msgstr "Pagal nutylėjimą visi įskiepio naudotojai naudojasi bendru API raktu, kuris apribotas iki 500.000 užklausų per dieną ir 5 užklausų per sekundę."
+
+#: views/admin/api-settings-notice.php:30
+#@ gce
+msgid "To avoid these limits you can use your own Google API key."
+msgstr "Jeigu norite išvengti šių apribojimų, naudokite nuosavą Google API raktą."
+
+#: views/admin/api-settings-notice.php:33
+#@ gce
+msgid "Update your API settings now"
+msgstr "Atnaujinkite API nustatymus"
+
+#: views/admin/api-settings-notice.php:34
+#@ gce
+msgid "Hide this"
+msgstr "Paslėpti"
+
+#: views/admin/gce-feed-meta-display.php:83
+#@ gce
+msgid "Google Calendar ID"
+msgstr "Google kalendoriaus ID"
+
+#: views/admin/gce-feed-meta-display.php:87
+#@ gce
+msgid "The Google Calendar ID."
+msgstr "Google kalendoriaus ID"
+
+#: views/admin/gce-feed-meta-display.php:89
+#@ gce
+msgid "How to find your GCal calendar ID"
+msgstr "Kaip sužinoti Google kalendoriaus ID"
+
+#: views/widgets.php:197
+#@ gce
+msgid "Events on"
+msgstr "Įvykiai"
+
+#: views/widgets.php:206
+#@ gce
+msgid "Title:"
+msgstr "Pavadinimas:"
+
