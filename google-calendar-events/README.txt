@@ -95,6 +95,7 @@ There are three ways to install this plugin.
 * Updated French translation.
 * Updated Lithuanian translation.
 * Fix bug with grouped-list multi-day event title.
+* Fix bug when saving a bulk edit.
 
 = 2.1.5 =
 

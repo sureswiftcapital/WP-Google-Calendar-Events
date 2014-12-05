@@ -136,6 +136,10 @@ function gce_save_meta( $post_id ) {
 	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			return $post_id;
 	}
+	
+	if( isset( $_REQUEST['bulk_edit'] ) ) {
+		return $post_id;
+	}
 
 	// An array to hold all of our post meta ids so we can run them through a loop
 	$post_meta_fields = array(
