@@ -94,6 +94,7 @@ There are three ways to install this plugin.
 * Tooltip (qTip2) style improvements.
 * Updated French translation.
 * Updated Lithuanian translation.
+* Fix bug with grouped-list multi-day event title.
 
 = 2.1.5 =
 
