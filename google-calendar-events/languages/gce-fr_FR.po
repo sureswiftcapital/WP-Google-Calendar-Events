@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2014-11-22 16:20+0100\n"
-"PO-Revision-Date: 2014-11-22 16:20+0100\n"
+"POT-Creation-Date: 2014-12-03 07:50+0100\n"
+"PO-Revision-Date: 2014-12-03 07:50+0100\n"
 "Last-Translator: Vincent B <vincent@yahoo.fr>\n"
 "Language-Team: Jojaba <jojaba@gmail.com>\n"
 "Language: fr\n"
@@ -18,22 +18,18 @@ msgstr ""
 
 #: ../class-google-calendar-events-admin.php:128
 #: ../class-google-calendar-events-admin.php:129
-#: ../class-google-calendar-events-admin.php:198
+#: ../class-google-calendar-events-admin.php:200
 #: ../includes/register-settings.php:54
 msgid "General Settings"
 msgstr "Paramètres généraux"
 
-#: ../class-google-calendar-events-admin.php:186 ../views/widgets.php:27
+#: ../class-google-calendar-events-admin.php:188 ../views/widgets.php:27
 msgid "Google Calendar Events"
 msgstr "Google Calendar Events"
 
-#: ../class-google-calendar-events-admin.php:199
+#: ../class-google-calendar-events-admin.php:201
 msgid "Feeds"
 msgstr "Flux"
-
-#: ../class-google-calendar-events.php:142
-msgid "Loading..."
-msgstr "Chargement..."
 
 #: ../includes/class-gce-display.php:179 ../includes/class-gce-display.php:270
 #: ../views/widgets.php:252 ../views/admin/gce-feed-meta-display.php:185
@@ -116,7 +112,7 @@ msgstr ""
 "L'ID de l'agenda n'a pas été indiqué. Veuillez vérifier qu'il est défini "
 "correctement dans la configuration."
 
-#: ../includes/class-gce-feed.php:187
+#: ../includes/class-gce-feed.php:194
 msgid ""
 "Some data was retrieved, but could not be parsed successfully. Please ensure "
 "your feed settings are correct."
@@ -124,8 +120,12 @@ msgstr ""
 "Des données ont été retrouvées mais n'ont pu être analysées. Assurez-vous "
 "que les paramètres de votre agenda sont corrects."
 
-#: ../includes/class-gce-feed.php:191
-msgid " Please ensure your feed URL is correct."
+#: ../includes/class-gce-feed.php:197
+msgid "An error has occured."
+msgstr "Une erreur est survenue."
+
+#: ../includes/class-gce-feed.php:202
+msgid " Please ensure your calendar ID is correct."
 msgstr "Assurez-vous que l'ID de votre agenda est correcte."
 
 #: ../includes/gce-feed-cpt.php:21
@@ -249,6 +249,10 @@ msgstr "Liste groupée"
 #: ../includes/gce-feed-cpt.php:264 ../includes/admin/admin-functions.php:78
 msgid "Clear Cache"
 msgstr "Vider le cache"
+
+#: ../includes/misc-functions.php:18
+msgid "Loading..."
+msgstr "Chargement..."
 
 #: ../includes/register-settings.php:29
 msgid "Google API Key"
