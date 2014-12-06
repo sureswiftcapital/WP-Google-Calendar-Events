@@ -91,6 +91,10 @@ There are three ways to install this plugin.
 
 = 2.1.7 =
 
+= 2.1.6.1 =
+
+* More tooltip (qTip2) effects & styling.
+
 = 2.1.6 =
 
 * Fixed bug with tooltip (qTip2) in some cases by now including it's imagesLoaded script.
