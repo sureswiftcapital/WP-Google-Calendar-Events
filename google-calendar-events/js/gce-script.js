@@ -104,10 +104,17 @@
 					content: $(this).children('.gce-event-info'),
 					position: {
 						my: 'bottom left',
-						at: 'top right'
+						at: 'center',
+						viewport: true,
+						adjust: {
+							method: 'shift'
+						}
 					},
 					show: {
-						solo: true
+						solo: true,
+						effect: function(offset) {
+							$(this).fadeIn(50);
+						}
 					},
 					hide: {
 						fixed: true

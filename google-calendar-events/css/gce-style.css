@@ -155,8 +155,6 @@
 
 .gce-event-info{ /* Tooltip container */
 	background-color:#FFFFFF;
-	border:1px solid #333333;
-	max-width:300px;
 }
 
 .gce-event-info .gce-tooltip-title{ /* 'Events on...' text */
