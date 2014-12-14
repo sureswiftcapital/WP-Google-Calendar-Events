@@ -205,7 +205,7 @@ function gce_ajax_list() {
 	$d = new GCE_Display( explode( '-', $ids ), $title_text, $sort  );
 
 	echo $d->get_list( $grouped, $start, $paging, $paging_interval, $start_offset );
-	   
+	
 	die();
 }
 add_action( 'wp_ajax_nopriv_gce_ajax_list', 'gce_ajax_list' );

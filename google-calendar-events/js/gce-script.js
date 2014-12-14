@@ -22,7 +22,7 @@
 
 				var navLink = $(this);
 
-				var id = navLink.closest('.gce-calendar').parent().attr('id');
+				var id = navLink.closest('.gce-page-grid').attr('id');
 
 				//Extract month and year
 				var month_year = navLink.attr('name').split('-', 2);
@@ -60,18 +60,22 @@
 			e.preventDefault();
 
 			var navLink = $(this);
+			
+			var id = navLink.closest('.gce-page-list').attr('id');
+			
+			var list = navLink.closest('.gce-list');
 
-			var start = navLink.parent().parent().parent().data('gce-start');
-			var grouped = navLink.parent().parent().parent().data('gce-grouped');
-			var title_text = navLink.parent().parent().parent().data('gce-title');
-			var feed_ids = navLink.parent().parent().parent().data( 'gce-feeds');
-			var sort = navLink.parent().parent().parent().data('gce-sort');
-			var paging = navLink.parent().parent().parent().data('gce-paging');
-			var paging_interval = navLink.parent().parent().parent().data('gce-paging-interval');
+			var start = list.data('gce-start');
+			var grouped = list.data('gce-grouped');
+			var title_text = list.data('gce-title');
+			var feed_ids = list.data( 'gce-feeds');
+			var sort = list.data('gce-sort');
+			var paging = list.data('gce-paging');
+			var paging_interval = list.data('gce-paging-interval');
 			var paging_direction = navLink.data('gce-paging-direction');
-			var start_offset = navLink.parent().parent().parent().data('gce-start-offset');
+			var start_offset = list.data('gce-start-offset');
 			var paging_type = navLink.data('gce-paging-type');
-
+			
 			//Add loading text to table caption
 			navLink.parent().parent().parent().find('.gce-month-title').html(gce.loadingText);
 
