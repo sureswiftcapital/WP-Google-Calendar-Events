@@ -92,6 +92,7 @@ There are three ways to install this plugin.
 = 2.1.7 =
 
 * Update JavaScript used for pagination.
+* Updated Italian translation files.
 
 = 2.1.6.1 =
 
