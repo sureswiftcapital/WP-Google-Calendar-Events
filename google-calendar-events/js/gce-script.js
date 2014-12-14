@@ -1,3 +1,4 @@
+/* global jQuery, gce, gce_grid */
 
 /**
  * Public JS functions
@@ -23,8 +24,6 @@
 				var navLink = $(this);
 
 				var id = navLink.closest('.gce-page-grid').attr('id');
-				
-				console.log( 'id', id );
 				
 				if( typeof id == 'undefined' ) {
 					id = navLink.closest('.gce-widget-grid').attr('id');
