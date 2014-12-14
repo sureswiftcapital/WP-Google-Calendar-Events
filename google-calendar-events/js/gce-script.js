@@ -23,6 +23,12 @@
 				var navLink = $(this);
 
 				var id = navLink.closest('.gce-page-grid').attr('id');
+				
+				console.log( 'id', id );
+				
+				if( typeof id == 'undefined' ) {
+					id = navLink.closest('.gce-widget-grid').attr('id');
+				}
 
 				//Extract month and year
 				var month_year = navLink.attr('name').split('-', 2);
@@ -60,8 +66,6 @@
 			e.preventDefault();
 
 			var navLink = $(this);
-			
-			var id = navLink.closest('.gce-page-list').attr('id');
 			
 			var list = navLink.closest('.gce-list');
 
