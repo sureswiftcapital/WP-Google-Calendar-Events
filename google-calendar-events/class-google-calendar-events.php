@@ -56,17 +56,41 @@ class Google_Calendar_Events {
 		
 		if( false === get_option( 'gce_upgrade_has_run' ) ) {
 			$this->upgrade();
+			add_action( 'init', array( $this, 'upgrade' ), 0 );
 		}
-		
 		
 		$this->setup_constants();
 		
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
+		add_action( 'init', array( $this, 'enqueue_public_scripts' ) );
+		add_action( 'init', array( $this, 'enqueue_public_styles' ) );
 		
+		
+		// Load scripts when posts load so we know if we need to include them or not
+		add_filter( 'the_posts', array( $this, 'load_scripts' ) );
 		
 		// Load plugin text domain
 		$this->plugin_textdomain();
+	}
+	
+	public function load_scripts( $posts ) {
+		
+		if ( empty( $posts ) ) {
+			return $posts;
+		}
+
+		foreach ( $posts as $post ){
+			if ( ( strpos( $post->post_content, '[gcal' ) !== false ) || ( $post->post_type == 'gce_feed' ) ) {
+				// Load CSS
+				wp_enqueue_style( $this->plugin_slug . '-public' );
+				
+				// Load JS
+				wp_enqueue_script( $this->plugin_slug . '-public' );
+				
+				break;
+			}
+		}
+
+		return $posts;
 	}
 	
 	/**
@@ -74,7 +98,7 @@ class Google_Calendar_Events {
 	 * 
 	 * @since 2.0.0
 	 */
-	private function upgrade() {
+	public function upgrade() {
 		include_once( 'includes/admin/upgrade.php' );
 	}
 	
@@ -143,8 +167,8 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public function enqueue_public_styles() {
-		wp_enqueue_style( $this->plugin_slug . '-qtip', plugins_url( 'css/jquery.qtip.min.css', __FILE__ ), array(), $this->version );
-		wp_enqueue_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array( $this->plugin_slug . '-qtip' ), $this->version );
+		wp_register_style( $this->plugin_slug . '-qtip', plugins_url( 'css/jquery.qtip.min.css', __FILE__ ), array(), $this->version );
+		wp_register_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array( $this->plugin_slug . '-qtip' ), $this->version );
 	}
 
 	/**
