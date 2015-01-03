@@ -30,7 +30,7 @@ class GCE_Widget extends WP_Widget {
 		
 		if ( is_active_widget( false, false, $this->id_base ) ) {
 			// Call action to load CSS for widget
-            add_action( 'wp_head', array( $this, 'gce_widget_add_styles' ) );
+            add_action( 'wp_enqueue_scripts', array( $this, 'gce_widget_add_styles' ) );
 
 			// Load JS
 			wp_enqueue_script( 'google-calendar-events-public' );
