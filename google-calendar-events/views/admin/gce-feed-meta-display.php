@@ -28,14 +28,19 @@
 	$gce_search_query                = get_post_meta( $post->ID, 'gce_search_query', true );
 	$gce_expand_recurring            = get_post_meta( $post->ID, 'gce_expand_recurring', true );
 	$gce_paging                      = get_post_meta( $post->ID, 'gce_paging', true );
-	$gce_list_max_num                = get_post_meta( $post->ID, 'gce_list_max_num', true );
-	$gce_list_max_length             = get_post_meta( $post->ID, 'gce_list_max_length', true );
+	$gce_events_per_page             = get_post_meta( $post->ID, 'gce_events_per_page', true );
+	$gce_per_page_num                = get_post_meta( $post->ID, 'gce_per_page_num', true );
+	$gce_per_page_from               = get_post_meta( $post->ID, 'gce_per_page_from', true );
+	$gce_per_page_to                 = get_post_meta( $post->ID, 'gce_per_page_to', true );
 	$gce_list_start_offset_num       = get_post_meta( $post->ID, 'gce_list_start_offset_num', true );
 	$gce_list_start_offset_direction = get_post_meta( $post->ID, 'gce_list_start_offset_direction', true );
 	$gce_feed_start                  = get_post_meta( $post->ID, 'gce_feed_start', true );
-	$gce_feed_start_interval         = get_post_meta( $post->ID, 'gce_feed_start_interval', true );
+	$gce_feed_start_num              = get_post_meta( $post->ID, 'gce_feed_start_num', true );
+	$gce_feed_start_custom           = get_post_meta( $post->ID, 'gce_feed_start_custom', true );
 	$gce_feed_end                    = get_post_meta( $post->ID, 'gce_feed_end', true );
-	$gce_feed_end_interval           = get_post_meta( $post->ID, 'gce_feed_end_interval', true );
+	$gce_feed_end_num                = get_post_meta( $post->ID, 'gce_feed_end_num', true );
+	$gce_feed_end_custom             = get_post_meta( $post->ID, 'gce_feed_end_custom', true );
+	
 	
 	if( empty( $gce_list_start_offset_num ) ) {
 		$gce_list_start_offset_num = 0;
@@ -168,19 +173,19 @@
 		<th scope="row"><label for="gce_events_per_page"><?php _e( 'Events per Page', 'gce' ); ?></label></th>
 		<td>
 			<select id="gce_events_per_page" name="gce_events_per_page">
-				<option><?php _e( 'Number of Days', 'gce' ); ?></option>
-				<option><?php _e( 'Number of Events', 'gce' ); ?></option>
-				<option><?php _e( 'This Week', 'gce' ); ?></option>
-				<option><?php _e( 'This Month', 'gce' ); ?></option>
-				<option><?php _e( 'Custom Date Range', 'gce' ); ?></option>
+				<option value="days" <?php selected( $gce_events_per_page, 'days', true ); ?>><?php _e( 'Number of Days', 'gce' ); ?></option>
+				<option value="events" <?php selected( $gce_events_per_page, 'events', true ); ?>><?php _e( 'Number of Events', 'gce' ); ?></option>
+				<option value="week" <?php selected( $gce_events_per_page, 'week', true ); ?>><?php _e( 'This Week', 'gce' ); ?></option>
+				<option value="month" <?php selected( $gce_events_per_page, 'month', true ); ?>><?php _e( 'This Month', 'gce' ); ?></option>
+				<option value="custom" <?php selected( $gce_events_per_page, 'custom', true ); ?>><?php _e( 'Custom Date Range', 'gce' ); ?></option>
 			</select>
 			<span>
-				<input type="text" name="gce_per_page_num" id="gce_per_page_num" />
+				<input type="text" name="gce_per_page_num" id="gce_per_page_num" value="<?php echo $gce_per_page_num; ?>" />
 			</span>
 			<span>
-				<input type="text" name="gce_per_page_from" id="gce_per_page_from" /> 
+				<input type="text" name="gce_per_page_from" id="gce_per_page_from" value="<?php echo $gce_per_page_from; ?>" /> 
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?> 
-				<input type="text" name="gce_per_page_to" id="gce_per_page_to" />
+				<input type="text" name="gce_per_page_to" id="gce_per_page_to" value="<?php echo $gce_per_page_to; ?>" />
 			</span>
 		</td>
 	</tr>
@@ -202,16 +207,16 @@
 		<th scope="row"><label for="gce_feed_start"><?php _e( 'Earliest Available Event Date', 'gce' ); ?></label></th>
 		<td>
 			<select id="gce_feed_start" name="gce_feed_start">
-				<option><?php _e( 'Number of Days Back', 'gce' ); ?></option>
-				<option><?php _e( 'Number of Months Back', 'gce' ); ?></option>
-				<option><?php _e( 'Number of Years Back', 'gce' ); ?></option>
-				<option><?php _e( 'Custom Date', 'gce' ); ?></option>
+				<option value="days" <?php selected( $gce_feed_start, 'days', true ); ?>><?php _e( 'Number of Days Back', 'gce' ); ?></option>
+				<option value="months" <?php selected( $gce_feed_start, 'months', true ); ?>><?php _e( 'Number of Months Back', 'gce' ); ?></option>
+				<option value="years" <?php selected( $gce_feed_start, 'years', true ); ?>><?php _e( 'Number of Years Back', 'gce' ); ?></option>
+				<option value="custom" <?php selected( $gce_feed_start, 'custom', true ); ?>><?php _e( 'Custom Date', 'gce' ); ?></option>
 			</select>
 			<span>
-				<input type="text" id="gce_feed_start_num" name="gce_feed_start_num" />
+				<input type="text" id="gce_feed_start_num" name="gce_feed_start_num" value="<?php echo $gce_feed_start_num; ?>" />
 			</span>
 			<span>
-				<input type="text" id="gce_feed_start_custom" name="gce_feed_start_custom" />
+				<input type="text" id="gce_feed_start_custom" name="gce_feed_start_custom" value="<?php echo $gce_feed_start_custom; ?>" />
 			</span>
 		</td>	
 	</tr>
@@ -220,16 +225,16 @@
 		<th scope="row"><label for="gce_feed_end"><?php _e( 'Latest Available Event Date', 'gce' ); ?></label></th>
 		<td>
 			<select id="gce_feed_end" name="gce_feed_end">
-				<option><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
-				<option><?php _e( 'Number of Months Forward', 'gce' ); ?></option>
-				<option><?php _e( 'Number of Years Forward', 'gce' ); ?></option>
-				<option><?php _e( 'Custom Date', 'gce' ); ?></option>
+				<option value="days" <?php selected( $gce_feed_end, 'days', true ); ?>><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
+				<option value="months" <?php selected( $gce_feed_end, 'months', true ); ?>><?php _e( 'Number of Months Forward', 'gce' ); ?></option>
+				<option value="years" <?php selected( $gce_feed_end, 'years', true ); ?>><?php _e( 'Number of Years Forward', 'gce' ); ?></option>
+				<option value="custom" <?php selected( $gce_feed_end, 'custom', true ); ?>><?php _e( 'Custom Date', 'gce' ); ?></option>
 			</select>
 			<span>
-				<input type="text" id="gce_feed_end_num" name="gce_feed_end_num" />
+				<input type="text" id="gce_feed_end_num" name="gce_feed_end_num" value="<?php echo $gce_feed_end_num; ?>" />
 			</span>
 			<span>
-				<input type="text" id="gce_feed_end_custom" name="gce_feed_end_custom" />
+				<input type="text" id="gce_feed_end_custom" name="gce_feed_end_custom" value="<?php echo $gce_feed_end_custom; ?>" />
 			</span>
 		</td>
 	</tr>
