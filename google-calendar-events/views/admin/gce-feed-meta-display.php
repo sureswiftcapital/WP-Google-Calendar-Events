@@ -165,9 +165,9 @@
 	</tr>
 	
 	<tr>
-		<th scope="row"><label for="gce_list_max_num"><?php _e( 'Events per Page', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_events_per_page"><?php _e( 'Events per Page', 'gce' ); ?></label></th>
 		<td>
-			<select>
+			<select id="gce_events_per_page" name="gce_events_per_page">
 				<option><?php _e( 'Number of Days', 'gce' ); ?></option>
 				<option><?php _e( 'Number of Events', 'gce' ); ?></option>
 				<option><?php _e( 'This Week', 'gce' ); ?></option>
@@ -175,10 +175,12 @@
 				<option><?php _e( 'Custom Date Range', 'gce' ); ?></option>
 			</select>
 			<span>
-				<input type="text" placeholder="choices 1 and 2" />
+				<input type="text" name="gce_per_page_num" id="gce_per_page_num" />
 			</span>
 			<span>
-				<input type="text" /> <?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?> <input type="text" />
+				<input type="text" name="gce_per_page_from" id="gce_per_page_from" /> 
+				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?> 
+				<input type="text" name="gce_per_page_to" id="gce_per_page_to" />
 			</span>
 		</td>
 	</tr>
@@ -199,17 +201,17 @@
 	<tr>
 		<th scope="row"><label for="gce_feed_start"><?php _e( 'Earliest Available Event Date', 'gce' ); ?></label></th>
 		<td>
-			<select>
+			<select id="gce_feed_start" name="gce_feed_start">
 				<option><?php _e( 'Number of Days Back', 'gce' ); ?></option>
 				<option><?php _e( 'Number of Months Back', 'gce' ); ?></option>
 				<option><?php _e( 'Number of Years Back', 'gce' ); ?></option>
 				<option><?php _e( 'Custom Date', 'gce' ); ?></option>
 			</select>
 			<span>
-				<input type="text" placeholder="All but custom" />
+				<input type="text" id="gce_feed_start_num" name="gce_feed_start_num" />
 			</span>
 			<span>
-				<input type="text" placeholder="Custom" />
+				<input type="text" id="gce_feed_start_custom" name="gce_feed_start_custom" />
 			</span>
 		</td>	
 	</tr>
@@ -217,17 +219,17 @@
 	<tr>
 		<th scope="row"><label for="gce_feed_end"><?php _e( 'Latest Available Event Date', 'gce' ); ?></label></th>
 		<td>
-			<select>
+			<select id="gce_feed_end" name="gce_feed_end">
 				<option><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
 				<option><?php _e( 'Number of Months Forward', 'gce' ); ?></option>
 				<option><?php _e( 'Number of Years Forward', 'gce' ); ?></option>
 				<option><?php _e( 'Custom Date', 'gce' ); ?></option>
 			</select>
 			<span>
-				<input type="text" placeholder="All but custom" />
+				<input type="text" id="gce_feed_end_num" name="gce_feed_end_num" />
 			</span>
 			<span>
-				<input type="text" placeholder="Custom" />
+				<input type="text" id="gce_feed_end_custom" name="gce_feed_end_custom" />
 			</span>
 		</td>
 	</tr>
