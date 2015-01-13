@@ -191,7 +191,7 @@
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?> 
 				<input type="text" name="gce_per_page_to" id="gce_per_page_to" value="<?php echo $gce_per_page_to; ?>" />
 			</span>
-			<p class="description"><?php _e( 'How many events to display per page.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'How many events to display per page (List View only).', 'gce' ); ?></p>
 		</td>
 	</tr>
 	
@@ -204,7 +204,7 @@
 				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
 				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
 			</select>
-			<p class="description"><?php _e( 'Change if you need to initially display events on a date other than today (List View only).', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></p>
 		</td>	
 	</tr>
 	
@@ -223,7 +223,7 @@
 			<span class="gce_feed_start_custom_wrap <?php echo ( $gce_feed_start != 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="text" id="gce_feed_start_custom" name="gce_feed_start_custom" value="<?php echo $gce_feed_start_custom; ?>" />
 			</span>
-			<p class="description"><?php _e( 'Set how far back to retrieve events regardless of month or page being displayed.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Set how far back to retrieve events regardless of initial display.', 'gce' ); ?></p>
 		</td>	
 	</tr>
 	
@@ -242,7 +242,7 @@
 			<span class="gce_feed_end_custom_wrap <?php echo ( $gce_feed_end != 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="text" id="gce_feed_end_custom" name="gce_feed_end_custom" value="<?php echo $gce_feed_end_custom; ?>" />
 			</span>
-			<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of month or page being displayed.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
 		</td>
 	</tr>
 </table>
