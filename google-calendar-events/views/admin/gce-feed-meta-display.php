@@ -179,10 +179,10 @@
 				<option value="month" <?php selected( $gce_events_per_page, 'month', true ); ?>><?php _e( 'This Month', 'gce' ); ?></option>
 				<option value="custom" <?php selected( $gce_events_per_page, 'custom', true ); ?>><?php _e( 'Custom Date Range', 'gce' ); ?></option>
 			</select>
-			<span>
+			<span class="gce_per_page_num_wrap <?php echo ( $gce_events_per_page != 'days' && $gce_events_per_page != 'events' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="text" name="gce_per_page_num" id="gce_per_page_num" value="<?php echo $gce_per_page_num; ?>" />
 			</span>
-			<span>
+			<span class="gce_per_page_custom_wrap <?php echo ( $gce_events_per_page != 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="text" name="gce_per_page_from" id="gce_per_page_from" value="<?php echo $gce_per_page_from; ?>" /> 
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?> 
 				<input type="text" name="gce_per_page_to" id="gce_per_page_to" value="<?php echo $gce_per_page_to; ?>" />
@@ -212,10 +212,10 @@
 				<option value="years" <?php selected( $gce_feed_start, 'years', true ); ?>><?php _e( 'Number of Years Back', 'gce' ); ?></option>
 				<option value="custom" <?php selected( $gce_feed_start, 'custom', true ); ?>><?php _e( 'Custom Date', 'gce' ); ?></option>
 			</select>
-			<span>
+			<span class="gce_feed_start_num_wrap <?php echo ( $gce_feed_start == 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="text" id="gce_feed_start_num" name="gce_feed_start_num" value="<?php echo $gce_feed_start_num; ?>" />
 			</span>
-			<span>
+			<span class="gce_feed_start_custom_wrap <?php echo ( $gce_feed_start != 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="text" id="gce_feed_start_custom" name="gce_feed_start_custom" value="<?php echo $gce_feed_start_custom; ?>" />
 			</span>
 		</td>	
@@ -230,10 +230,10 @@
 				<option value="years" <?php selected( $gce_feed_end, 'years', true ); ?>><?php _e( 'Number of Years Forward', 'gce' ); ?></option>
 				<option value="custom" <?php selected( $gce_feed_end, 'custom', true ); ?>><?php _e( 'Custom Date', 'gce' ); ?></option>
 			</select>
-			<span>
+			<span class="gce_feed_end_num_wrap <?php echo ( $gce_feed_end == 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="text" id="gce_feed_end_num" name="gce_feed_end_num" value="<?php echo $gce_feed_end_num; ?>" />
 			</span>
-			<span>
+			<span class="gce_feed_end_custom_wrap <?php echo ( $gce_feed_end != 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="text" id="gce_feed_end_custom" name="gce_feed_end_custom" value="<?php echo $gce_feed_end_custom; ?>" />
 			</span>
 		</td>
