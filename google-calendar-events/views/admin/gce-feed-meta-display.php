@@ -42,6 +42,10 @@
 	$gce_feed_end_custom             = get_post_meta( $post->ID, 'gce_feed_end_custom', true );
 	
 	
+	if( empty( $gce_events_per_page ) ) {
+		$gce_events_per_page = 'days';
+	}
+	
 	if( empty( $gce_list_start_offset_num ) ) {
 		$gce_list_start_offset_num = 0;
 	}
