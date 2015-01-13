@@ -53,6 +53,9 @@ class Google_Calendar_Events_Admin {
 		// Add admin styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		
+		// Add admin scripts
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+		
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ), 2 );
 
@@ -135,6 +138,20 @@ class Google_Calendar_Events_Admin {
 	
 	public function display_admin_page() {
 		include_once( 'views/admin/admin.php' );
+	}
+	
+	/**
+	 * Enqueue JS for the admin area
+	 * 
+	 * @since 2.0.0
+	 */
+	public function enqueue_admin_scripts() {
+		
+		//wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ), array(), $this->version );
+		
+		if( $this->viewing_this_plugin() ) {
+			wp_enqueue_script( $this->plugin_slug . '-admin', plugins_url( 'js/admin.js', __FILE__ ), array(), $this->version, true );
+		}
 	}
 	
 	/**

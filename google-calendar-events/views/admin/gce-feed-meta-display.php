@@ -216,4 +216,11 @@
 			<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of month or page being displayed.', 'gce' ); ?></p>
 		</td>	
 	</tr>
+	
+	
+	<tr>
+		<td colspan="2">
+			<input type="button" class="button button-primary button-large gce_update" value="Update" />
+		</td>	
+	</tr>
 </table>
