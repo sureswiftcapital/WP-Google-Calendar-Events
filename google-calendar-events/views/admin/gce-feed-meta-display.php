@@ -225,11 +225,9 @@
 			<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of month or page being displayed.', 'gce' ); ?></p>
 		</td>	
 	</tr>
-	
-	
 	<tr>
 		<td colspan="2">
-			<input type="button" class="button button-primary button-large gce_update" value="Update" />
-		</td>	
+			<?php submit_button( null, 'primary', null, false ); // Add standard "save changes" submit button, but don't wrap it in a <p> tag. ?>
+		</td>
 	</tr>
 </table>
