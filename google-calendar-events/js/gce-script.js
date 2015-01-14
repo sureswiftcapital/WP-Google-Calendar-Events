@@ -12,11 +12,19 @@
 	'use strict';
 
 	$(function() {
-
-		gce_tooltips($('.gce-has-events'));
+		
+		var showTooltips = true;
+		
+		if( typeof gce_hide_tooltips != 'undefined' && gce_hide_tooltips.show != '' ) {
+			showTooltips = false;
+		}
+		
+		if( showTooltips ) {
+			gce_tooltips($('.gce-has-events'));
+		}
 		
 		if( typeof gce_grid != 'undefined' ) {
-
+			
 			$('body').on( 'click', '.gce-change-month', function(e) {
 
 				e.preventDefault();
@@ -53,7 +61,10 @@
 					}else{
 						$('#' + gce_grid[id].target_element).replaceWith(data);
 					}
-					gce_tooltips($('#' + gce_grid[id].target_element + ' .gce-has-events'));
+					
+					if( showTooltips ) {
+						gce_tooltips($('#' + gce_grid[id].target_element + ' .gce-has-events'));
+					}
 				});
 
 				e.stopPropagation();
