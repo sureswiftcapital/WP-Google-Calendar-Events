@@ -11,11 +11,7 @@
 	"use strict";
 	$(function () {
 		
-		$('.gce_update').click(function(e) {
-			e.preventDefault();
-			$('#publish').click();
-		});
-	
+
 	});
 }(jQuery));
 
