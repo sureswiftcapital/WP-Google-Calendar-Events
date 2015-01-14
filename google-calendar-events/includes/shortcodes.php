@@ -28,7 +28,8 @@ function gce_gcal_shortcode( $attr ) {
 					'interval'              => null,
 					'interval_count'        => null,
 					'offset_interval_count' => null,
-					'offset_direction'      => null
+					'offset_direction'      => null,
+					'hide_tooltips'         => 'false'
 				), $attr, 'gce_feed' ) );
 	
 	// If no ID is specified then return
@@ -124,7 +125,8 @@ function gce_gcal_shortcode( $attr ) {
 		'widget'     => 0,
 		'paging_interval' => $paging_interval,
 		'max_events' => $max_events,
-		'paging'     => $paging
+		'paging'     => $paging,
+		'hide_tooltips'   => $hide_tooltips
 	);
 	
 	$args['start_offset'] = $start_offset;

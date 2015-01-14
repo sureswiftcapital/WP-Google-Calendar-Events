@@ -63,6 +63,8 @@ class GCE_Widget extends WP_Widget {
 		$offset_length    = 86400;
 		$offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : null );
 		
+		$hide_tooltips = ( isset( $instance['hide_tooltips'] ) ? $instance['hide_tooltips'] : 'false' );
+		
 		
 		if( $offset_direction == 'back' ) {
 			$offset_direction = -1;
@@ -141,7 +143,8 @@ class GCE_Widget extends WP_Widget {
 					'widget'       => 1,
 					'max_events'   => $max_events,
 					'start_offset' => $start_offset,
-					'paging_type'  => $max_length
+					'paging_type'  => $max_length,
+					'hide_tooltips' => $hide_tooltips
 				);
 				
 				if( 'list-grouped' == $instance['display_type'] ) {
@@ -182,6 +185,7 @@ class GCE_Widget extends WP_Widget {
 		$instance['list_max_length']             = $new_instance['list_max_length'];
 		$instance['list_start_offset_num']       = $new_instance['list_start_offset_num'];
 		$instance['list_start_offset_direction'] = $new_instance['list_start_offset_direction'];
+		$instance['hide_tooltips']               = $new_instance['hide_tooltips'];
 		
 		return $instance;
 	}
@@ -213,6 +217,7 @@ class GCE_Widget extends WP_Widget {
 		$list_max_length             = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
 		$list_start_offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
+		$hide_tooltips               = ( isset( $instance['hide_tooltips'] ) ? $instance['hide_tooltips'] : '' );
 		
 		?>
 		<p>
@@ -270,6 +275,12 @@ class GCE_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display Title on Tooltip/List Item (e.g. \'Events on 7th March\'). Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" />
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id( 'hide_tooltips' ); ?>"><?php _e( 'Hide Tooltips?', 'gce' ); ?></label><br>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'hide_tooltips' ); ?>" name="<?php echo $this->get_field_name( 'hide_tooltips' ); ?>" class="widefat"  value="1" <?php checked( $hide_tooltips, 1 ); ?>>
+			<?php _e( 'Checking this option will hide the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?>
 		</p>
 			
 	<?php 
