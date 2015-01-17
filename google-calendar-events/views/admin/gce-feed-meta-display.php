@@ -179,9 +179,8 @@
 			<select id="gce_events_per_page" name="gce_events_per_page">
 				<option value="days" <?php selected( $gce_events_per_page, 'days', true ); ?>><?php _e( 'Number of Days', 'gce' ); ?></option>
 				<option value="events" <?php selected( $gce_events_per_page, 'events', true ); ?>><?php _e( 'Number of Events', 'gce' ); ?></option>
-				<option value="week" <?php selected( $gce_events_per_page, 'week', true ); ?>><?php _e( 'This Week', 'gce' ); ?></option>
-				<option value="month" <?php selected( $gce_events_per_page, 'month', true ); ?>><?php _e( 'This Month', 'gce' ); ?></option>
-				<option value="custom" <?php selected( $gce_events_per_page, 'custom', true ); ?>><?php _e( 'Custom Date Range', 'gce' ); ?></option>
+				<option value="week" <?php selected( $gce_events_per_page, 'week', true ); ?>><?php _e( 'One Week', 'gce' ); ?></option>
+				<option value="month" <?php selected( $gce_events_per_page, 'month', true ); ?>><?php _e( 'One Month', 'gce' ); ?></option>
 			</select>
 			<span class="gce_per_page_num_wrap <?php echo ( $gce_events_per_page != 'days' && $gce_events_per_page != 'events' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="number" min="0" step="1" class="small-text" name="gce_per_page_num" id="gce_per_page_num" value="<?php echo $gce_per_page_num; ?>" />
@@ -198,24 +197,22 @@
 	<tr>
 		<th scope="row"><label for="gce_list_start_offset_num"><?php _e( 'Display Start Date Offset', 'gce' ); ?></label></th>
 		<td>
-			<input type="number" min="0" step="1" class="small-text" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
-			<?php _e( 'Days', 'gce' ); ?>
 			<select name="gce_list_start_offset_direction" id="gce_list_start_offset_direction">
-				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
-				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
+				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Number of Days Back', 'gce' ); ?></option>
+				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
 			</select>
+			<input type="number" min="0" step="1" class="small-text" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
 			<p class="description"><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></p>
-		</td>	
+		</td>
 	</tr>
 	
 	<tr>
-		<th scope="row"><label for="gce_feed_start"><?php _e( 'Earliest Available Event Date', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_feed_start"><?php _e( 'Earliest Feed Event Date', 'gce' ); ?></label></th>
 		<td>
 			<select id="gce_feed_start" name="gce_feed_start">
 				<option value="days" <?php selected( $gce_feed_start, 'days', true ); ?>><?php _e( 'Number of Days Back', 'gce' ); ?></option>
 				<option value="months" <?php selected( $gce_feed_start, 'months', true ); ?>><?php _e( 'Number of Months Back', 'gce' ); ?></option>
 				<option value="years" <?php selected( $gce_feed_start, 'years', true ); ?>><?php _e( 'Number of Years Back', 'gce' ); ?></option>
-				<option value="custom" <?php selected( $gce_feed_start, 'custom', true ); ?>><?php _e( 'Custom Date', 'gce' ); ?></option>
 			</select>
 			<span class="gce_feed_start_num_wrap <?php echo ( $gce_feed_start == 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="number" min="0" step="1" class="small-text" id="gce_feed_start_num" name="gce_feed_start_num" value="<?php echo $gce_feed_start_num; ?>" />
@@ -228,13 +225,12 @@
 	</tr>
 	
 	<tr>
-		<th scope="row"><label for="gce_feed_end"><?php _e( 'Latest Available Event Date', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_feed_end"><?php _e( 'Latest Feed Event Date', 'gce' ); ?></label></th>
 		<td>
 			<select id="gce_feed_end" name="gce_feed_end">
 				<option value="days" <?php selected( $gce_feed_end, 'days', true ); ?>><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
 				<option value="months" <?php selected( $gce_feed_end, 'months', true ); ?>><?php _e( 'Number of Months Forward', 'gce' ); ?></option>
 				<option value="years" <?php selected( $gce_feed_end, 'years', true ); ?>><?php _e( 'Number of Years Forward', 'gce' ); ?></option>
-				<option value="custom" <?php selected( $gce_feed_end, 'custom', true ); ?>><?php _e( 'Custom Date', 'gce' ); ?></option>
 			</select>
 			<span class="gce_feed_end_num_wrap <?php echo ( $gce_feed_end == 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="number" min="0" step="1" class="small-text" id="gce_feed_end_num" name="gce_feed_end_num" value="<?php echo $gce_feed_end_num; ?>" />
@@ -243,6 +239,19 @@
 				<input type="text" id="gce_feed_end_custom" name="gce_feed_end_custom" value="<?php echo $gce_feed_end_custom; ?>" />
 			</span>
 			<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_feed_use_range"><?php _e( 'Use Custom Date Range', 'gce' ); ?></label></th>
+		<td>
+			<input type="checkbox" id="gce_feed_use_range" name="gce_feed_use_range" /> <?php _e( 'Display events within a specified date range.', 'gce' ); ?>
+			<span class="gce-custom-range">
+				<input type="text" class="gce_feed_range_start" id="gce_feed_range_end" />
+				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
+				<input type="text" id="gce_feed_range_end" class="gce_feed_range_end" />
+				<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
+			</span>
 		</td>
 	</tr>
 </table>
