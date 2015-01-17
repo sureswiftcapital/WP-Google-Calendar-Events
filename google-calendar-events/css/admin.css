@@ -7,12 +7,6 @@
  * @copyright 2014 Phil Derksen
  */
  
- /* This needs to stay at the top so it doesn't override gce-admin-hidden */
- .gce-custom-range {
-	display: block;
-	margin-top: 15px;
-}
- 
 .gce-meta-control {
 	margin-bottom: 15px;
 }
