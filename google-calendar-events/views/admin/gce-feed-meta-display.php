@@ -40,12 +40,11 @@
 	$gce_feed_end                    = get_post_meta( $post->ID, 'gce_feed_end', true );
 	$gce_feed_end_num                = get_post_meta( $post->ID, 'gce_feed_end_num', true );
 	$gce_feed_end_custom             = get_post_meta( $post->ID, 'gce_feed_end_custom', true );
-	$gce_feed_use_range              = get_post_meta( $post->ID, 'gce_feed_use_range', true );
 	$gce_feed_range_start            = get_post_meta( $post->ID, 'gce_feed_range_start', true );
 	$gce_feed_range_end              = get_post_meta( $post->ID, 'gce_feed_range_end', true );
 	
 	
-	$use_range = ( checked( $gce_feed_use_range, '1', false ) ? true : false );
+	$use_range = ( selected( $gce_display_mode, 'date-range', false ) ? true : false );
 	
 	if( empty( $gce_events_per_page ) ) {
 		$gce_events_per_page = 'days';
@@ -159,13 +158,14 @@
 		</td>
 	</tr>
 
-	<tr class="<?php echo ( $use_range == true ? 'gce-admin-hidden' : 'gce-display-option' ); ?>">
+	<tr class="<?php //echo ( $use_range == true ? 'gce-admin-hidden' : 'gce-display-option' ); ?>">
 		<th scope="row"><label for="gce_display_mode"><?php _e( 'Display Mode', 'gce' ); ?></label></th>
 		<td>
 			<select name="gce_display_mode" id="gce_display_mode">
 				<option value="grid" <?php selected( $gce_display_mode, 'grid', true ); ?>><?php _e( 'Grid', 'gce' ); ?></option>
 				<option value="list" <?php selected( $gce_display_mode, 'list', true ); ?>><?php _e( 'List', 'gce' ); ?></option>
 				<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped', true ); ?>><?php _e( 'Grouped List', 'gce' ); ?></option>
+				<option value="date-range" <?php selected( $gce_display_mode, 'date-range', true ); ?>><?php _e( 'Custom Date Range (List view style)', 'gce' ); ?></option>
 			</select>
 			<p class="description"><?php _e( 'Choose how you want your calendar to be displayed.', 'gce' ); ?></p>
 		</td>
@@ -250,9 +250,7 @@
 	<tr>
 		<th scope="row"><label for="gce_feed_use_range"><?php _e( 'Use Custom Date Range', 'gce' ); ?></label></th>
 		<td>
-			<input type="checkbox" id="gce_feed_use_range" name="gce_feed_use_range" value="1" <?php echo ( $use_range == true ? 'checked' : '' ); ?> /> <?php _e( 'Display events within a specified date range.', 'gce' ); ?>
 			<span class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
-				<br>
 				<input type="text" name="gce_feed_range_start" id="gce_feed_range_start" value="<?php echo $gce_feed_range_start; ?>" />
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
 				<input type="text" id="gce_feed_range_end" name="gce_feed_range_end" value="<?php echo $gce_feed_range_end; ?>" />
