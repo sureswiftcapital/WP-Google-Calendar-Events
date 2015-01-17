@@ -253,9 +253,9 @@
 			<input type="checkbox" id="gce_feed_use_range" name="gce_feed_use_range" value="1" <?php echo ( $use_range == true ? 'checked' : '' ); ?> /> <?php _e( 'Display events within a specified date range.', 'gce' ); ?>
 			<span class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
 				<br>
-				<input type="text" class="gce_feed_range_start" id="gce_feed_range_end" value="<?php echo $gce_feed_range_start; ?>" />
+				<input type="text" name="gce_feed_range_start" id="gce_feed_range_start" value="<?php echo $gce_feed_range_start; ?>" />
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
-				<input type="text" id="gce_feed_range_end" class="gce_feed_range_end" value="<?php echo $gce_feed_range_end; ?>" />
+				<input type="text" id="gce_feed_range_end" name="gce_feed_range_end" value="<?php echo $gce_feed_range_end; ?>" />
 				<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
 			</span>
 		</td>
