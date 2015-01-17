@@ -40,7 +40,12 @@
 	$gce_feed_end                    = get_post_meta( $post->ID, 'gce_feed_end', true );
 	$gce_feed_end_num                = get_post_meta( $post->ID, 'gce_feed_end_num', true );
 	$gce_feed_end_custom             = get_post_meta( $post->ID, 'gce_feed_end_custom', true );
+	$gce_feed_use_range              = get_post_meta( $post->ID, 'gce_feed_use_range', true );
+	$gce_feed_range_start            = get_post_meta( $post->ID, 'gce_feed_range_start', true );
+	$gce_feed_range_end              = get_post_meta( $post->ID, 'gce_feed_range_end', true );
 	
+	
+	$use_range = ( checked( $gce_feed_use_range, '1', false ) ? true : false );
 	
 	if( empty( $gce_events_per_page ) ) {
 		$gce_events_per_page = 'days';
@@ -245,11 +250,11 @@
 	<tr>
 		<th scope="row"><label for="gce_feed_use_range"><?php _e( 'Use Custom Date Range', 'gce' ); ?></label></th>
 		<td>
-			<input type="checkbox" id="gce_feed_use_range" name="gce_feed_use_range" /> <?php _e( 'Display events within a specified date range.', 'gce' ); ?>
-			<span class="gce-custom-range">
-				<input type="text" class="gce_feed_range_start" id="gce_feed_range_end" />
+			<input type="checkbox" id="gce_feed_use_range" name="gce_feed_use_range" value="1" <?php echo ( $use_range == true ? 'checked' : '' ); ?> /> <?php _e( 'Display events within a specified date range.', 'gce' ); ?>
+			<span class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
+				<input type="text" class="gce_feed_range_start" id="gce_feed_range_end" value="<?php echo $gce_feed_range_start; ?>" />
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
-				<input type="text" id="gce_feed_range_end" class="gce_feed_range_end" />
+				<input type="text" id="gce_feed_range_end" class="gce_feed_range_end" value="<?php echo $gce_feed_range_end; ?>" />
 				<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
 			</span>
 		</td>

@@ -166,6 +166,9 @@ function gce_save_meta( $post_id ) {
 		'gce_feed_end',
 		'gce_feed_end_num',
 		'gce_feed_end_custom',
+		'gce_feed_use_range',
+		'gce_feed_range_start',
+		'gce_feed_range_end',
 		// Display options
 		'gce_display_start',
 		'gce_display_start_text',
