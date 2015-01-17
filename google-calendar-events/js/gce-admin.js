@@ -22,11 +22,15 @@
 			}
 		});
 		
-		$('#gce_feed_use_range').on('change', function() {
+		$('#gce_display_mode').on('change', function() {
 
-			// Hide everything before showing what we want
-			$('.gce-display-option').toggle();
-			$('.gce-custom-range').toggle();
+			if( $(this).val() == 'date-range' ) {
+				$('.gce-display-option').hide();
+				$('.gce-custom-range').show();
+			} else {
+				$('.gce-display-option').show();
+				$('.gce-custom-range').hide();
+			}
 		});
 		
 		

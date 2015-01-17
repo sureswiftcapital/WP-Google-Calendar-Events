@@ -171,14 +171,14 @@
 		</td>
 	</tr>
 	
-	<tr class="<?php echo ( $use_range == true ? 'gce-admin-hidden' : 'gce-display-option' ); ?>">
+	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
 		<td>
 			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
 		</td>
 	</tr>
 	
-	<tr class="<?php echo ( $use_range == true ? 'gce-admin-hidden' : 'gce-display-option' ); ?>">
+	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_events_per_page"><?php _e( 'Events per Page', 'gce' ); ?></label></th>
 		<td>
 			<select id="gce_events_per_page" name="gce_events_per_page">
@@ -199,7 +199,7 @@
 		</td>
 	</tr>
 	
-	<tr class="<?php echo ( $use_range == true ? 'gce-admin-hidden' : 'gce-display-option' ); ?>">
+	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_list_start_offset_num"><?php _e( 'Display Start Date Offset', 'gce' ); ?></label></th>
 		<td>
 			<select name="gce_list_start_offset_direction" id="gce_list_start_offset_direction">
@@ -211,7 +211,7 @@
 		</td>
 	</tr>
 	
-	<tr class="<?php echo ( $use_range == true ? 'gce-admin-hidden' : 'gce-display-option' ); ?>">
+	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_feed_start"><?php _e( 'Earliest Feed Event Date', 'gce' ); ?></label></th>
 		<td>
 			<select id="gce_feed_start" name="gce_feed_start">
@@ -229,7 +229,7 @@
 		</td>	
 	</tr>
 	
-	<tr class="<?php echo ( $use_range == true ? 'gce-admin-hidden' : 'gce-display-option' ); ?>">
+	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_feed_end"><?php _e( 'Latest Feed Event Date', 'gce' ); ?></label></th>
 		<td>
 			<select id="gce_feed_end" name="gce_feed_end">
@@ -247,10 +247,10 @@
 		</td>
 	</tr>
 	
-	<tr>
+	<tr class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
 		<th scope="row"><label for="gce_feed_use_range"><?php _e( 'Use Custom Date Range', 'gce' ); ?></label></th>
 		<td>
-			<span class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
+			<span>
 				<input type="text" name="gce_feed_range_start" id="gce_feed_range_start" value="<?php echo $gce_feed_range_start; ?>" />
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
 				<input type="text" id="gce_feed_range_end" name="gce_feed_range_end" value="<?php echo $gce_feed_range_end; ?>" />
