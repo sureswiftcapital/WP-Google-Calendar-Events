@@ -218,10 +218,10 @@ class GCE_Display {
 		$an_event_feed_id = $an_event_feed_id[0]->feed->id;
 
 		if( $paging_interval == null ) {
-			$max_num	= get_post_meta( $an_event_feed_id, 'gce_list_max_num', true );
+			$max_num	= get_post_meta( $an_event_feed_id, 'gce_per_page_num', true );
 
 			if( $paging_type == null ) {
-				$max_length = get_post_meta( $an_event_feed_id, 'gce_list_max_length', true );
+				$max_length = get_post_meta( $an_event_feed_id, 'gce_events_per_page', true );
 				$paging_type = $max_length;
 			}
 		}
