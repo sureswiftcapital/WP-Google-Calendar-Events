@@ -162,10 +162,10 @@
 		<th scope="row"><label for="gce_display_mode"><?php _e( 'Display Mode', 'gce' ); ?></label></th>
 		<td>
 			<select name="gce_display_mode" id="gce_display_mode">
-				<option value="grid" <?php selected( $gce_display_mode, 'grid', true ); ?>><?php _e( 'Grid', 'gce' ); ?></option>
+				<option value="grid" <?php selected( $gce_display_mode, 'grid', true ); ?>><?php _e( 'Grid (Month view)', 'gce' ); ?></option>
 				<option value="list" <?php selected( $gce_display_mode, 'list', true ); ?>><?php _e( 'List', 'gce' ); ?></option>
 				<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped', true ); ?>><?php _e( 'Grouped List', 'gce' ); ?></option>
-				<option value="date-range" <?php selected( $gce_display_mode, 'date-range', true ); ?>><?php _e( 'Custom Date Range (List view style)', 'gce' ); ?></option>
+				<option value="date-range" <?php selected( $gce_display_mode, 'date-range', true ); ?>><?php _e( 'Custom Date Range (List view)', 'gce' ); ?></option>
 			</select>
 			<p class="description"><?php _e( 'Choose how you want your calendar to be displayed.', 'gce' ); ?></p>
 		</td>
