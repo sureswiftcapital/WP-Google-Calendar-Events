@@ -216,7 +216,7 @@ class GCE_Display {
 
 		$an_event_feed_id = current( $event_days );
 		$an_event_feed_id = $an_event_feed_id[0]->feed->id;
-
+		
 		if( $paging_interval == null ) {
 			$max_num	= get_post_meta( $an_event_feed_id, 'gce_per_page_num', true );
 
@@ -244,9 +244,23 @@ class GCE_Display {
 		if( empty( $max_num ) || $max_num == 0 ) {
 			$max_num = 7;
 		}
+		
+		$max_length = get_post_meta( $an_event_feed_id, 'gce_events_per_page', true );
 
 		if( $max_length == 'days' ) {
+			echo 'MAX NUM: ' . $max_num . '<br>';
 			$paging_interval = $max_num * 86400;
+		} else if( $max_length == 'week' ) {
+			$paging_interval = 604800;
+			
+			// Set week start here too
+			$start_of_week = get_option( 'start_of_week' );
+			$start = mktime( 0, 0, 0, date( 'm' ), ( date( 'j' ) - date( 'w' ) + $start_of_week ), date( 'Y' ) );
+		} else if( $max_length == 'month' ) {
+			$paging_interval = 2629743;
+			
+			// Set month start here too
+			$start = mktime( 0, 0, 0, date( 'm', current_time( 'timestamp' ) ), 1, date( 'Y', current_time( 'timestamp' ) ) );
 		}
 
 		if( $start_offset === null ) {
