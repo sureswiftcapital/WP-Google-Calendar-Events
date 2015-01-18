@@ -114,6 +114,9 @@ class GCE_Feed {
 		
 		$args['timeMax'] = urlencode( date( 'c', $this->feed_end ) );
 		
+		//echo 'timeMin: ' . $args['timeMin'] . '<br>';
+		//echo 'timeMax: ' . $args['timeMax'] . '<br>';
+		
 		$args['maxResults'] = 10000;
 		
 		$ctz = get_option( 'timezone_string' );
@@ -247,12 +250,9 @@ class GCE_Feed {
 			$interval = 'date-range';
 			
 		} else {
-			$start    = get_post_meta( $this->id, 'gce_feed_start', true );
-			$interval = get_post_meta( $this->id, 'gce_feed_start_interval', true );
+			$start    = get_post_meta( $this->id, 'gce_feed_start_num', true );
+			$interval = get_post_meta( $this->id, 'gce_feed_start', true );
 		}
-		
-		//echo date( 'c', $start );
-		//die();
 		
 		switch( $interval ) {
 			case 'days':
@@ -287,8 +287,8 @@ class GCE_Feed {
 			$interval = 'date-range';
 			
 		} else {
-			$end    = get_post_meta( $this->id, 'gce_feed_end', true );
-			$interval = get_post_meta( $this->id, 'gce_feed_end_interval', true );
+			$end    = get_post_meta( $this->id, 'gce_feed_end_num', true );
+			$interval = get_post_meta( $this->id, 'gce_feed_end', true );
 		}
 		
 		switch( $interval ) {
