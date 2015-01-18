@@ -11,7 +11,7 @@
 
 class GCE_Display {
 
-	private $feeds, $merged_feeds;
+	public $feeds, $merged_feeds;
 
 	public function __construct( $ids, $title_text = null, $sort_order = 'asc' ) {
 
@@ -225,6 +225,12 @@ class GCE_Display {
 				$paging_type = $max_length;
 			}
 		}
+		
+		$use_range = ( get_post_meta( $an_event_feed_id, 'gce_display_mode', true ) == 'date-range' ? true : false );
+		
+		if( $use_range ) {
+			$max_length = 'date-range';
+		}
 
 		if( $paging === null ) {
 			$paging = get_post_meta(  $an_event_feed_id, 'gce_paging', true );
@@ -334,9 +340,9 @@ class GCE_Display {
 				    ) ||
 				    ( $max_length == 'events' && ( $event->end_time >= $time_now &&       // Condition for limited by events
 				                                   $event_counter < $max_events     )
-				    )
+				    ) ||
+					( $max_length == 'date-range' )
 				  ) {
-					
 					if( $show_title && $grouped ) {
 						$day_markup .= '<div class="gce-list-title">' . stripslashes( $this->title ) . ' ' . date_i18n( $event->feed->date_format, $key ) . '</div>';
 						$show_title = false;
@@ -355,7 +361,7 @@ class GCE_Display {
 					$has_events = true;
 					$i++;
 					$event_counter++;
-				}
+				} 
 			}
 
 			if ( $day_markup != '' ) {

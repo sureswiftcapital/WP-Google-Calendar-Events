@@ -21,7 +21,9 @@ class GCE_Feed {
 		   $display_url,
 		   $search_query,
 		   $expand_recurring,
-		   $title;
+		   $title,
+		   $feed_start,
+		   $feed_end;
 	
 	public $events = array();
 	
@@ -72,6 +74,8 @@ class GCE_Feed {
 		$this->search_query        = get_post_meta( $this->id, 'gce_search_query', true );
 		$this->expand_recurring    = get_post_meta( $this->id, 'gce_expand_recurring', true );
 		$this->title               = get_the_title( $this->id );
+		$this->feed_start          = $this->get_feed_start();
+		$this->feed_end            = $this->get_feed_end();
 	}
 	
 	/**
@@ -106,9 +110,9 @@ class GCE_Feed {
 		$query .= '?key=' . $api_key;
 		
 		
-		$args['timeMin'] = urlencode( $this->get_feed_start() );
+		$args['timeMin'] = urlencode( date( 'c', $this->feed_start ) );
 		
-		$args['timeMax'] = urlencode( $this->get_feed_end() );
+		$args['timeMax'] = urlencode( date( 'c', $this->feed_end ) );
 		
 		$args['maxResults'] = 10000;
 		
@@ -227,38 +231,79 @@ class GCE_Feed {
 	
 	private function get_feed_start() {
 		
-		$start    = get_post_meta( $this->id, 'gce_feed_start', true );
-		$interval = get_post_meta( $this->id, 'gce_feed_start_interval', true );
+		$use_range = ( get_post_meta( $this->id, 'gce_display_mode', true ) == 'date-range' ? true : false );
+		
+		if( $use_range ) {
+			$start = get_post_meta( $this->id, 'gce_feed_range_start', true );
+			
+			$start = explode( '/', $start );
+			
+			$month = $start[0];
+			$day   = $start[1];
+			$year  = $start[2];
+			
+			$start = mktime( 0, 0, 0, $month, $day, $year );
+			
+			$interval = 'date-range';
+			
+		} else {
+			$start    = get_post_meta( $this->id, 'gce_feed_start', true );
+			$interval = get_post_meta( $this->id, 'gce_feed_start_interval', true );
+		}
+		
+		//echo date( 'c', $start );
+		//die();
 		
 		switch( $interval ) {
 			case 'days':
-				return date( 'c', time() - ( $start * 86400 ) );
+				return time() - ( $start * 86400 );
 			case 'months':
-				return date( 'c', time() - ( $start * 2629743 ) );
+				return time() - ( $start * 2629743 );
 			case 'years':
-				return date( 'c', time() - ( $start * 31556926 ) );
+				return time() - ( $start * 31556926 );
+			case 'date-range':
+				return $start;
 		}
 		
 		// fall back just in case. Falls back to 1 year ago
-		return date( 'c', time() - 31556926 );
+		return time() - 31556926;
 	}
 	
 	private function get_feed_end() {
 		
-		$end    = get_post_meta( $this->id, 'gce_feed_end', true );
-		$interval = get_post_meta( $this->id, 'gce_feed_end_interval', true );
+		$use_range = ( get_post_meta( $this->id, 'gce_display_mode', true ) == 'date-range' ? true : false );
+		
+		if( $use_range ) {
+			$end = get_post_meta( $this->id, 'gce_feed_range_end', true );
+			
+			$end = explode( '/', $end );
+			
+			$month = $end[0];
+			$day   = $end[1];
+			$year  = $end[2];
+			
+			$end = mktime( 0, 0, 0, $month, $day, $year );
+			
+			$interval = 'date-range';
+			
+		} else {
+			$end    = get_post_meta( $this->id, 'gce_feed_end', true );
+			$interval = get_post_meta( $this->id, 'gce_feed_end_interval', true );
+		}
 		
 		switch( $interval ) {
 			case 'days':
-				return date( 'c', time() + ( $end * 86400 ) );
+				return time() + ( $end * 86400 );
 			case 'months':
-				return date( 'c', time() + ( $end * 2629743 ) );
+				return time() + ( $end * 2629743 );
 			case 'years':
-				return date( 'c', time() + ( $end * 31556926 ) );
+				return time() + ( $end * 31556926 );
+			case 'date-range':
+				return $end;
 		}
 		
 		// Falls back to 1 year ahead just in case
-		return date( 'c', time() + 31556926 );
+		return time() + 31556926;
 	}
 	
 	function get_builder() {

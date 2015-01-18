@@ -95,6 +95,15 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		} else {
 			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
 		}
+	} else if( 'date-range' == $display ) {
+		//echo 'Feed Start: ' . $d->feeds[$feed_ids]->feed_start;
+		//die();
+		
+		if( $widget ) {
+			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, $d->feeds[$feed_ids]->feed_start, false, $paging_interval, $start_offset, INF, $paging_type ) . '</div>';
+		} else {
+			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, $d->feeds[$feed_ids]->feed_start, false, $paging_interval, $start_offset, INF, $paging_type ) . '</div>';
+		}
 	}
 	
 	// Reset post meta

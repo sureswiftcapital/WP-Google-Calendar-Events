@@ -59,11 +59,11 @@ function gce_gcal_shortcode( $attr ) {
 		}
 		
 		if( $interval == null ) {
-			$interval = get_post_meta( $v, 'gce_list_max_length', true );
+			$interval = get_post_meta( $v, 'gce_events_per_page', true );
 		}
 		
 		if( $interval_count == null ) {
-			$interval_count = get_post_meta( $v, 'gce_list_max_num', true );
+			$interval_count = get_post_meta( $v, 'gce_per_page_num', true );
 		}
 		
 		if( $offset_interval_count == null ) {
@@ -100,6 +100,10 @@ function gce_gcal_shortcode( $attr ) {
 	} else if( $interval == 'events' ) {
 		$max_events = $interval_count;
 		$paging_type = 'events';
+	} else if( $interval == 'week' ) {
+		$paging_interval = 604800;
+	} else if( $interval == 'month' ) {
+		$paging_interval = 2629743;
 	}
 
 	// Port over old options
