@@ -52,6 +52,45 @@ function gce_upgrade() {
 	add_option( 'gce_upgrade_has_run', 1 );
 }
 
+function gce_v218_upgrade() {
+	// Update feeds
+	$q = new WP_Query( 'post_type=gce_feed' );
+	
+	if( $q->have_posts() ) {
+		while( $q->have_posts() ) {
+			// TODO: Update feed options for new UI
+		}
+	}
+	
+	wp_reset_postdata();
+	
+
+	// TODO: Update widgets for new UI
+	
+	// Below is just an example of how we can update the widgets
+	// Adjust it accordingly
+	/**
+	$widget = get_option( 'widget_gce_widget' );
+	
+	if( is_array( $widget ) && ! empty( $widget ) ) {
+		foreach( $widget as $a => $b ) {
+			if( ! is_array( $b ) ) {
+				continue;
+			} 
+
+			foreach( $b as $k => $v ) {
+				$widget[$a]['paging']                      = '1';
+				$widget[$a]['list_max_num']                = '7';
+				$widget[$a]['list_max_length']             = 'days';
+				$widget[$a]['list_start_offset_num']       = '0';
+				$widget[$a]['list_start_offset_direction'] = 'back';
+			}
+		}
+		
+		update_option( 'widget_gce_widget', $widget );
+	}**/
+}
+
 /*
  * Run the upgrade to version 2.1.0
  */
