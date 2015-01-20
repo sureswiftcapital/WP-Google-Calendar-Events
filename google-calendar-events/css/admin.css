@@ -54,3 +54,7 @@
 #gce_feed_meta .inside code {
 	word-break: break-all;
 }
+
+.gce-custom-range .hasDatepicker {
+	width: 120px;
+}
