@@ -12,7 +12,7 @@
 	$(function () {
 		
 		// Show the hidden text box if custom date is selected  (Events per Page)
-		$('#gce_events_per_page').on('change', function() {
+		$('body').on('change', '#gce_events_per_page', function() {
 
 			// Hide everything before showing what we want
 			$('.gce_per_page_num_wrap').hide();
@@ -22,7 +22,7 @@
 			}
 		});
 		
-		$('#gce_display_mode').on('change', function() {
+		$('body').on('change', 'select[id*=gce_display_mode]', function() {
 
 			if( $(this).val() == 'date-range' ) {
 				$('.gce-display-option').hide();
@@ -35,8 +35,8 @@
 		
 		
 		// Add jQuery date picker to our custom date fields
-		$('#gce_feed_range_start').datepicker();
-		$('#gce_feed_range_end').datepicker();
+		$('input[id*=gce_feed_range_start]').datepicker();
+		$('input[id*=gce_feed_range_end]').datepicker();
 	
 	});
 }(jQuery));

@@ -54,8 +54,8 @@ class GCE_Widget extends WP_Widget {
 		echo $before_widget;
 		
 		$paging     = ( isset( $instance['paging'] ) ? $instance['paging'] : null );
-		$max_num    = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : null );
-		$max_length = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : null );
+		$max_num    = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : null );
+		$max_length = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : null );
 		$max_events = null;
 		
 		// Start offset
@@ -174,7 +174,7 @@ class GCE_Widget extends WP_Widget {
 		$instance                                = $old_instance;
 		$instance['title']                       = esc_html( $new_instance['title'] );
 		$instance['id']                          = esc_html( $new_instance['id'] );
-		$instance['display_type']                = esc_html( $new_instance['display_type'] );
+		$instance['gce_display_mode']            = esc_html( $new_instance['gce_display_mode'] );
 		$instance['order']                       = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
 		$instance['display_title_text']          = esc_html( $new_instance['display_title_text'] );
 		$instance['paging']                      = ( isset( $new_instance['paging'] ) ? 1 : 0 );
@@ -182,6 +182,11 @@ class GCE_Widget extends WP_Widget {
 		$instance['list_max_length']             = $new_instance['list_max_length'];
 		$instance['list_start_offset_num']       = $new_instance['list_start_offset_num'];
 		$instance['list_start_offset_direction'] = $new_instance['list_start_offset_direction'];
+		$instance['gce_per_page_num']            = $new_instance['gce_per_page_num'];
+		$instance['gce_events_per_page']         = $new_instance['gce_events_per_page'];
+		$instance['gce_feed_range_start']        = $new_instance['gce_feed_range_start'];
+		$instance['gce_feed_range_end']          = $new_instance['gce_feed_range_end'];
+		
 		
 		return $instance;
 	}
@@ -204,15 +209,24 @@ class GCE_Widget extends WP_Widget {
 		
 		$title                       = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
 		$ids                         = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
-		$display_type                = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
+		$gce_display_mode            = ( isset( $instance['gce_display_mode'] ) ) ? $instance['gce_display_mode'] : 'grid';
 		$order                       = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 		$display_title               = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
 		$title_text                  = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : __( 'Events on', 'gce' );
 		$paging                      = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
-		$list_max_num                = ( isset( $instance['list_max_num'] ) ? $instance['list_max_num'] : 7 );
-		$list_max_length             = ( isset( $instance['list_max_length'] ) ? $instance['list_max_length'] : 'days' );
+		
+		// TODO
+		$gce_per_page_num            = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : 7 );
+		$gce_events_per_page         = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : 'days' );
+		$gce_feed_range_start        = ( isset( $instance['gce_feed_range_start'] ) ? $instance['gce_feed_range_start'] : '' );
+		$gce_feed_range_end          = ( isset( $instance['gce_feed_range_end'] ) ? $instance['gce_feed_range_end'] : '' );
+		
 		$list_start_offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
+		
+		$use_range = ( selected( $gce_display_mode, 'date-range', false ) ? true : false );
+		
+		echo 'Display Mode: ' . $gce_display_mode . '<br>';
 		
 		?>
 		<p>
@@ -225,22 +239,24 @@ class GCE_Widget extends WP_Widget {
 			</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'id' ); ?>" name="<?php echo $this->get_field_name( 'id' ); ?>" value="<?php echo $ids; ?>" class="widefat" />
 		</p>
+		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'display_type' ); ?>"><?php _e( 'Display Events as:', 'gce' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'display_type' ); ?>" name="<?php echo $this->get_field_name( 'display_type' ); ?>" class="widefat">
-				<option value="grid"<?php selected( $display_type, 'grid' ); ?>><?php _e( 'Grid', 'gce' ); ?></option>
-				<option value="list"<?php selected( $display_type, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
-				<option value="list-grouped"<?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
+			<label for="<?php echo $this->get_field_id( 'gce_display_mode' ); ?>"><?php _e( 'Display Events as:', 'gce' ); ?></label>
+			<select id="<?php echo $this->get_field_id( 'gce_display_mode' ); ?>" name="<?php echo $this->get_field_name( 'gce_display_mode' ); ?>" class="widefat">
+				<option value="grid" <?php selected( $gce_display_mode, 'grid' ); ?>><?php _e( 'Grid (Month view)', 'gce' ); ?></option>
+				<option value="list" <?php selected( $gce_display_mode, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
+				<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
+				<option value="date-range" <?php selected( $gce_display_mode, 'date-range' );?>><?php _e( 'Custom Date Range (List view)', 'gce' ); ?></option>
 			</select>
 		</p>
-
-		<p>
+		
+		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links:', 'gce' ); ?></label><br>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
 			<?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
 		</p>
 
-		<p>
+		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Sort Order (List View only):', 'gce' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'order' ); ?>" name="<?php echo $this->get_field_name( 'order' ); ?>" class="widefat">
 				<option value="asc" <?php selected( $order, 'asc' ); ?>><?php _e( 'Ascending', 'gce' ); ?></option>
@@ -248,16 +264,29 @@ class GCE_Widget extends WP_Widget {
 			</select>
 		</p>
 		
-		<p>
-			<label for="<?php echo $this->get_field_id( 'list_max_num' ); ?>"><?php _e( 'Number of Events per Page (List View only):', 'gce' ); ?></label><br>
-			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_max_num' ); ?>" name="<?php echo $this->get_field_name( 'list_max_num' ); ?>" value="<?php echo $list_max_num; ?>" />
-			<select name="<?php echo $this->get_field_name( 'list_max_length' ); ?>" id="<?php echo $this->get_field_id( 'list_max_length' ); ?>">
-				<option value="days" <?php selected( $list_max_length, 'days', true ); ?>><?php _e( 'Days', 'gce' ); ?></option>
-				<option value="events" <?php selected( $list_max_length, 'events', true ); ?>><?php _e( 'Events', 'gce' ); ?></option>
+		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
+			<select id="<?php echo $this->get_field_id( 'gce_events_per_page' ); ?>" name="<?php echo $this->get_field_name( 'gce_events_per_page' ); ?>">
+				<option value="days" <?php selected( $gce_events_per_page, 'days', true ); ?>><?php _e( 'Number of Days', 'gce' ); ?></option>
+				<option value="events" <?php selected( $gce_events_per_page, 'events', true ); ?>><?php _e( 'Number of Events', 'gce' ); ?></option>
+				<option value="week" <?php selected( $gce_events_per_page, 'week', true ); ?>><?php _e( 'One Week', 'gce' ); ?></option>
+				<option value="month" <?php selected( $gce_events_per_page, 'month', true ); ?>><?php _e( 'One Month', 'gce' ); ?></option>
 			</select>
+			<span class="gce_per_page_num_wrap <?php echo ( $gce_events_per_page != 'days' && $gce_events_per_page != 'events' ? 'gce-admin-hidden' : '' ); ?>">
+				<input type="number" min="0" step="1" class="small-text" name="<?php echo $this->get_field_name( 'gce_per_page_num' ); ?>" id="<?php echo $this->get_field_id( 'gce_per_page_num' ); ?>" value="<?php echo $gce_per_page_num; ?>" />
+			</span>
+			<br>
 		</p>
 		
-		<p>
+		<p class="gce-custom-range <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
+			<span>
+				<input type="text" name="<?php echo $this->get_field_name( 'gce_feed_range_start' ); ?>" id="<?php echo $this->get_field_id( 'gce_feed_range_start' ); ?>" value="<?php echo $gce_feed_range_start; ?>" />
+				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
+				<input type="text" id="<?php echo $this->get_field_id( 'gce_feed_range_end' ); ?>" name="<?php echo $this->get_field_name( 'gce_feed_range_end' ); ?>" value="<?php echo $gce_feed_range_end; ?>" />
+				<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
+			</span>
+		</p>
+		
+		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Display Start Date Offset (List View only):', 'gce' ); ?></label><br>
 			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
 			<?php _e( 'Days', 'gce' ); ?>
@@ -267,7 +296,7 @@ class GCE_Widget extends WP_Widget {
 			</select>
 		</p>
 		
-		<p>
+		<p class="gce-display-control <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display Title on Tooltip/List Item (e.g. \'Events on 7th March\'). Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" />
 		</p>
