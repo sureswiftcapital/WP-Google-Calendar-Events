@@ -12,7 +12,7 @@
 	$(function () {
 		
 		// Show the hidden text box if custom date is selected  (Events per Page)
-		$('body').on('change', '#gce_events_per_page', function() {
+		$('body').on('change', 'select[id*=gce_events_per_page]', function() {
 
 			// Hide everything before showing what we want
 			$('.gce_per_page_num_wrap').hide();

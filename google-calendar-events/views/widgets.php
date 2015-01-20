@@ -226,8 +226,6 @@ class GCE_Widget extends WP_Widget {
 		
 		$use_range = ( selected( $gce_display_mode, 'date-range', false ) ? true : false );
 		
-		echo 'Display Mode: ' . $gce_display_mode . '<br>';
-		
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'gce' ); ?></label>
@@ -274,15 +272,15 @@ class GCE_Widget extends WP_Widget {
 			<span class="gce_per_page_num_wrap <?php echo ( $gce_events_per_page != 'days' && $gce_events_per_page != 'events' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="number" min="0" step="1" class="small-text" name="<?php echo $this->get_field_name( 'gce_per_page_num' ); ?>" id="<?php echo $this->get_field_id( 'gce_per_page_num' ); ?>" value="<?php echo $gce_per_page_num; ?>" />
 			</span>
-			<br>
 		</p>
 		
-		<p class="gce-custom-range <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
+		<p class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
 			<span>
 				<input type="text" name="<?php echo $this->get_field_name( 'gce_feed_range_start' ); ?>" id="<?php echo $this->get_field_id( 'gce_feed_range_start' ); ?>" value="<?php echo $gce_feed_range_start; ?>" />
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
 				<input type="text" id="<?php echo $this->get_field_id( 'gce_feed_range_end' ); ?>" name="<?php echo $this->get_field_name( 'gce_feed_range_end' ); ?>" value="<?php echo $gce_feed_range_end; ?>" />
-				<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
+				<br>
+				<span class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></span>
 			</span>
 		</p>
 		
@@ -296,7 +294,7 @@ class GCE_Widget extends WP_Widget {
 			</select>
 		</p>
 		
-		<p class="gce-display-control <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
+		<p class="gce-display-option gce-display-control <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display Title on Tooltip/List Item (e.g. \'Events on 7th March\'). Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo $title_text; ?>" />
 		</p>
