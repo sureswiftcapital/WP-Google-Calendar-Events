@@ -55,6 +55,6 @@
 	word-break: break-all;
 }
 
-.gce-custom-range .hasDatepicker {
+.gce-custom-range input {
 	width: 120px;
 }

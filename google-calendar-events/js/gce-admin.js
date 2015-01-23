@@ -35,8 +35,15 @@
 		
 		
 		// Add jQuery date picker to our custom date fields
-		$('input[id*=gce_feed_range_start]').datepicker();
-		$('input[id*=gce_feed_range_end]').datepicker();
+		// We have to do it this way because the widget will break after clicking "Save" and this method fixes this problem
+		// REF: http://stackoverflow.com/a/10433307/3578774
+		$('body').on('focus', 'input[id*=gce_feed_range_start]', function(){
+			$(this).datepicker();
+		});
+		
+		$('body').on('focus', 'input[id*=gce_feed_range_end]', function(){
+			$(this).datepicker();
+		});
 	
 	});
 }(jQuery));
