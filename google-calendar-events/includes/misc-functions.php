@@ -30,7 +30,8 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			'max_events'      => null,
 			'start_offset'    => null,
 			'paging_type'     => null,
-			'paging'          => null
+			'paging'          => null,
+			'max_num'         => null
 		);
 	
 	$args = array_merge( $defaults, $args );
@@ -91,7 +92,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
 		
 		if( $widget ) {
-			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
+			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type, $max_num ) . '</div>';
 		} else {
 			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
 		}
@@ -100,7 +101,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		//die();
 		
 		if( $widget ) {
-			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, $d->feeds[$feed_ids]->feed_start, false, $paging_interval, $start_offset, INF, $paging_type ) . '</div>';
+			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, $d->feeds[$feed_ids]->feed_start, false, $paging_interval, $start_offset, INF, $paging_type, $max_num ) . '</div>';
 		} else {
 			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, $d->feeds[$feed_ids]->feed_start, false, $paging_interval, $start_offset, INF, $paging_type ) . '</div>';
 		}

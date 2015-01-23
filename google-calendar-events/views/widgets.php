@@ -76,10 +76,12 @@ class GCE_Widget extends WP_Widget {
 		
 		if( $max_length == 'days' ) {
 			$paging_interval = $max_num * 86400;
-		}
-		
-		if( $max_length == 'events' ) {
+		} else if( $max_length == 'events' ) {
 			$max_events = $max_num;
+		} else if( $max_length == 'week' ) {
+			$paging_interval = 604800;
+		} else if( $max_length == 'month' ) {
+			$paging_interval = 2629743;
 		}
 		
 		// Check whether any feeds have been added yet
@@ -141,14 +143,15 @@ class GCE_Widget extends WP_Widget {
 					'widget'       => 1,
 					'max_events'   => $max_events,
 					'start_offset' => $start_offset,
-					'paging_type'  => $max_length
+					'paging_type'  => $max_length,
+					'max_num'      => $max_num
 				);
 				
-				if( 'list-grouped' == $instance['display_type'] ) {
+				if( 'list-grouped' == $instance['gce_display_mode'] ) {
 					$args['grouped'] = 1;
 				}
 				
-				$markup = gce_print_calendar( $feed_ids, $instance['display_type'], $args, true );
+				$markup = gce_print_calendar( $feed_ids, $instance['gce_display_mode'], $args, true );
 				
 				echo $markup;
 			}

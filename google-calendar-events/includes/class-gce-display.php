@@ -198,7 +198,7 @@ class GCE_Display {
 	 *
 	 * @since 2.0.0
 	 */
-	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null, $start_offset = null, $max_events = null, $paging_type = null ) {
+	public function get_list( $grouped = false, $start = null, $paging = null, $paging_interval = null, $start_offset = null, $max_events = null, $paging_type = null, $max_num = null ) {
 		$paging_type = $paging_type;
 
 		$max_length = null;
