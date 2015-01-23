@@ -57,12 +57,26 @@ class GCE_Widget extends WP_Widget {
 		$max_num    = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : null );
 		$max_length = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : null );
 		$max_events = null;
+		$display_mode = $instance['gce_display_mode'];
 		
 		// Start offset
 		$offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$offset_length    = 86400;
 		$offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : null );
 		
+		// Get custom date range if set
+		if( 'date-range' == $display_mode ) {
+			$range_start = ( isset( $instance['gce_feed_range_start'] ) ? $instance['gce_feed_range_start'] : null );
+			$range_end   = ( isset( $instance['gce_feed_range_end'] ) ? $instance['gce_feed_range_end'] : null );
+			
+			if( $range_start !== null && ! empty( $range_start ) ) {
+				$range_start = gce_date_unix( $range_start );
+			}
+			
+			if( $range_end !== null && ! empty( $range_end ) ) {
+				$range_end = gce_date_unix( $range_end );
+			}
+		}
 		
 		if( $offset_direction == 'back' ) {
 			$offset_direction = -1;
@@ -73,6 +87,10 @@ class GCE_Widget extends WP_Widget {
 		$start_offset = $offset_num * $offset_length * $offset_direction;
 		
 		$paging_interval = null;
+		
+		if( $display_mode == 'date-range' ) {
+			$max_length = 'date-range';
+		} 
 		
 		if( $max_length == 'days' ) {
 			$paging_interval = $max_num * 86400;
@@ -147,11 +165,17 @@ class GCE_Widget extends WP_Widget {
 					'max_num'      => $max_num
 				);
 				
-				if( 'list-grouped' == $instance['gce_display_mode'] ) {
+				if( 'list-grouped' == $display_mode ) {
 					$args['grouped'] = 1;
 				}
 				
-				$markup = gce_print_calendar( $feed_ids, $instance['gce_display_mode'], $args, true );
+				if( 'date-range' == $display_mode ) {
+					$args['range_start'] = $range_start;
+					$args['max_events'] = abs( ( $range_end - $range_start ) / 86400 ) + 1;
+					$args['max_num'] = abs( ( $range_end - $range_start ) / 86400 ) + 1;
+				}
+				
+				$markup = gce_print_calendar( $feed_ids, $display_mode, $args, true );
 				
 				echo $markup;
 			}

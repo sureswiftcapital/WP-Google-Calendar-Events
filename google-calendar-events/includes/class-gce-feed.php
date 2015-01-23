@@ -239,13 +239,7 @@ class GCE_Feed {
 		if( $use_range ) {
 			$start = get_post_meta( $this->id, 'gce_feed_range_start', true );
 			
-			$start = explode( '/', $start );
-			
-			$month = $start[0];
-			$day   = $start[1];
-			$year  = $start[2];
-			
-			$start = mktime( 0, 0, 0, $month, $day, $year );
+			$start = gce_date_unix( $start );
 			
 			$interval = 'date-range';
 			
@@ -276,13 +270,7 @@ class GCE_Feed {
 		if( $use_range ) {
 			$end = get_post_meta( $this->id, 'gce_feed_range_end', true );
 			
-			$end = explode( '/', $end );
-			
-			$month = $end[0];
-			$day   = $end[1];
-			$year  = $end[2];
-			
-			$end = mktime( 0, 0, 0, $month, $day, $year );
+			$end = gce_date_unix( $end );
 			
 			$interval = 'date-range';
 			

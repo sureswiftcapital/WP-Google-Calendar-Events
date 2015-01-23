@@ -31,7 +31,8 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			'start_offset'    => null,
 			'paging_type'     => null,
 			'paging'          => null,
-			'max_num'         => null
+			'max_num'         => null,
+			'range_start'     => null
 		);
 	
 	$args = array_merge( $defaults, $args );
@@ -44,6 +45,10 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$d = new GCE_Display( $ids, $title_text, $sort );
 	$markup = '';
 	$start = current_time( 'timestamp' );
+	
+	if( $range_start === null ) {
+		$range_start = $d->feeds[$feed_ids]->feed_start;
+	}
 	
 	if( $widget ) {
 		foreach( $ids as $f ) {
@@ -96,14 +101,14 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		} else {
 			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
 		}
-	} else if( 'date-range' == $display ) {
-		//echo 'Feed Start: ' . $d->feeds[$feed_ids]->feed_start;
-		//die();
+	} else if( 'date-range' == $display ) {	
+		
+		$paging_interval = 'date-range';
 		
 		if( $widget ) {
-			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, $d->feeds[$feed_ids]->feed_start, false, $paging_interval, $start_offset, INF, $paging_type, $max_num ) . '</div>';
+			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, $max_num ) . '</div>';
 		} else {
-			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, $d->feeds[$feed_ids]->feed_start, false, $paging_interval, $start_offset, INF, $paging_type ) . '</div>';
+			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type ) . '</div>';
 		}
 	}
 	
@@ -256,3 +261,17 @@ function gce_ga_campaign_url( $base_url, $source, $medium, $campaign ) {
 	return $url;
 }
 
+/**
+ * Function to convert date format mm/dd/YYYY to unix timestamp
+ */
+function gce_date_unix( $date ) {
+	$date = explode( '/', $date );
+			
+	$month = $date[0];
+	$day   = $date[1];
+	$year  = $date[2];
+
+	$timestamp = mktime( 0, 0, 0, $month, $day, $year );
+	
+	return $timestamp;
+}
