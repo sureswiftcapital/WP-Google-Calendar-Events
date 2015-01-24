@@ -108,7 +108,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		if( $widget ) {
 			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . $feed_ids . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, $max_num ) . '</div>';
 		} else {
-			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type ) . '</div>';
+			$markup = '<div class="gce-page-list" id="gce-page-list-' . $feed_ids . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, INF ) . '</div>';
 		}
 	}
 	
