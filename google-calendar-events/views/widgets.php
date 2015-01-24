@@ -313,12 +313,12 @@ class GCE_Widget extends WP_Widget {
 		
 		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Display Start Date Offset (List View only):', 'gce' ); ?></label><br>
-			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
-			<?php _e( 'Days', 'gce' ); ?>
 			<select name="<?php echo $this->get_field_name( 'list_start_offset_direction' ); ?>" id="<?php echo $this->get_field_id( 'list_start_offset_direction' ); ?>">
-				<option value="back" <?php selected( $list_start_offset_direction, 'back', true ); ?>><?php _e( 'Back', 'gce' ); ?></option>
-				<option value="ahead" <?php selected( $list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Ahead', 'gce' ); ?></option>
+				<option value="back" <?php selected( $list_start_offset_direction, 'back', true ); ?>><?php _e( 'Number of Days Back', 'gce' ); ?></option>
+				<option value="ahead" <?php selected( $list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
 			</select>
+			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
+			<p class="description"><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></p>
 		</p>
 		
 		<p class="gce-display-option gce-display-control <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
