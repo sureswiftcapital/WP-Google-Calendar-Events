@@ -44,6 +44,11 @@ function gce_upgrade() {
 		if( version_compare( $version, '2.1.0', '<' ) ) {
 			gce_v210_upgrade();
 		}
+		
+		// TODO
+		/*if( version_compare( $version, '2.1.8', '<' ) ) {
+			gce_v218_upgrade();
+		}*/
 	}
 	
 	$new_version = Google_Calendar_Events::get_instance()->get_plugin_version();
@@ -54,15 +59,37 @@ function gce_upgrade() {
 
 function gce_v218_upgrade() {
 	// Update feeds
-	$q = new WP_Query( 'post_type=gce_feed' );
+	/*$q = new WP_Query( 'post_type=gce_feed' );
 	
 	if( $q->have_posts() ) {
 		while( $q->have_posts() ) {
 			// TODO: Update feed options for new UI
+			// What we need to update
+			// gce_list_max_num        -> gce_per_page_num
+			// gce_list_max_length     -> gce_events_per_page
+			// gce_feed_start_interval -> gce_feed_start
+			// gce_feed_start          -> gce_feed_start_num
+			// gce_feed_end_interval   -> gce_feed_end
+			// gce_feed_end            -> gce_feed_end_num
+			
+			$gce_list_max_num        = get_post_meta( get_the_ID(), 'gce_list_max_num', true );
+			$gce_list_max_length     = get_post_meta( get_the_ID(), 'gce_list_max_length', true );
+			$gce_feed_start_interval = get_post_meta( get_the_ID(), 'gce_feed_start_interval', true );
+			$gce_feed_start          = get_post_meta( get_the_ID(), 'gce_feed_start', true );
+			$gce_feed_end_interval   = get_post_meta( get_the_ID(), 'gce_feed_end_interval', true );
+			$gce_feed_end            = get_post_meta( get_the_ID(), 'gce_feed_end', true );
+			
+			update_post_meta( get_the_ID(), 'gce_per_page_num', $gce_list_max_num );
+			update_post_meta( get_the_ID(), 'gce_events_per_page', $gce_list_max_length );
+			update_post_meta( get_the_ID(), 'gce_feed_start', $gce_feed_start_interval );
+			update_post_meta( get_the_ID(), 'gce_feed_start_num', $gce_feed_start );
+			update_post_meta( get_the_ID(), 'gce_feed_end', $gce_feed_end_interval );
+			update_post_meta( get_the_ID(), 'gce_feed_end_num', $gce_feed_end );
+			
 		}
 	}
 	
-	wp_reset_postdata();
+	wp_reset_postdata();*/
 	
 
 	// TODO: Update widgets for new UI

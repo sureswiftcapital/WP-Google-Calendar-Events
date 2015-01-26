@@ -89,6 +89,9 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.1.8 =
+
+
 = 2.1.7 =
 
 * Restructured pagination JavaScript.
