@@ -170,9 +170,8 @@ class GCE_Widget extends WP_Widget {
 				}
 				
 				if( 'date-range' == $display_mode ) {
-					$args['range_start'] = $range_start;
-					$args['max_events'] = abs( ( $range_end - $range_start ) / 86400 ) + 1;
-					$args['max_num'] = abs( ( $range_end - $range_start ) / 86400 ) + 1;
+					$args['max_events'] = INF;
+					$args['max_num'] = INF;
 				}
 				
 				$markup = gce_print_calendar( $feed_ids, $display_mode, $args, true );
@@ -211,8 +210,6 @@ class GCE_Widget extends WP_Widget {
 		$instance['list_start_offset_direction'] = $new_instance['list_start_offset_direction'];
 		$instance['gce_per_page_num']            = $new_instance['gce_per_page_num'];
 		$instance['gce_events_per_page']         = $new_instance['gce_events_per_page'];
-		$instance['gce_feed_range_start']        = $new_instance['gce_feed_range_start'];
-		$instance['gce_feed_range_end']          = $new_instance['gce_feed_range_end'];
 		
 		
 		return $instance;
@@ -245,8 +242,6 @@ class GCE_Widget extends WP_Widget {
 		// TODO
 		$gce_per_page_num            = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : 7 );
 		$gce_events_per_page         = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : 'days' );
-		$gce_feed_range_start        = ( isset( $instance['gce_feed_range_start'] ) ? $instance['gce_feed_range_start'] : '' );
-		$gce_feed_range_end          = ( isset( $instance['gce_feed_range_end'] ) ? $instance['gce_feed_range_end'] : '' );
 		
 		$list_start_offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
@@ -302,12 +297,8 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
-			<span>
-				<input type="text" name="<?php echo $this->get_field_name( 'gce_feed_range_start' ); ?>" id="<?php echo $this->get_field_id( 'gce_feed_range_start' ); ?>" value="<?php echo $gce_feed_range_start; ?>" />
-				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
-				<input type="text" id="<?php echo $this->get_field_id( 'gce_feed_range_end' ); ?>" name="<?php echo $this->get_field_name( 'gce_feed_range_end' ); ?>" value="<?php echo $gce_feed_range_end; ?>" />
-				<br>
-				<span class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></span>
+			<span class="description">
+				<?php _e( 'This setting will pull from the custom date range set in the main feed settings and cannot be changed here.', 'gce' ); ?>
 			</span>
 		</p>
 		
@@ -318,7 +309,7 @@ class GCE_Widget extends WP_Widget {
 				<option value="ahead" <?php selected( $list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
 			</select>
 			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
-			<p class="description"><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></p>
+			<span class="description"><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></span>
 		</p>
 		
 		<p class="gce-display-option gce-display-control <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
