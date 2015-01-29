@@ -295,12 +295,10 @@ class GCE_Widget extends WP_Widget {
 				<input type="number" min="0" step="1" class="small-text" name="<?php echo $this->get_field_name( 'gce_per_page_num' ); ?>" id="<?php echo $this->get_field_id( 'gce_per_page_num' ); ?>" value="<?php echo $gce_per_page_num; ?>" />
 			</span>
 		</p>
-		
-		<p class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
-			<span class="description">
-				<?php _e( 'This setting will pull from the custom date range set in the main feed settings and cannot be changed here.', 'gce' ); ?>
-			</span>
-		</p>
+
+		<span class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
+			<small><?php _e( 'This setting will pull from the custom date range set in the main feed settings and cannot be changed here.', 'gce' ); ?></small>
+		</span>
 		
 		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>"><?php _e( 'Display Start Date Offset (List View only):', 'gce' ); ?></label><br>
@@ -309,7 +307,8 @@ class GCE_Widget extends WP_Widget {
 				<option value="ahead" <?php selected( $list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
 			</select>
 			<input type="number" min="0" step="1" class="small-text" id="<?php echo $this->get_field_id( 'list_start_offset_num' ); ?>" name="<?php echo $this->get_field_name( 'list_start_offset_num' ); ?>" value="<?php echo $list_start_offset_num; ?>" />
-			<span class="description"><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></span>
+			<br>
+			<small><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></small>
 		</p>
 		
 		<p class="gce-display-option gce-display-control <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
