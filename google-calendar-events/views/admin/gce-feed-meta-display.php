@@ -49,6 +49,10 @@
 	if( empty( $gce_events_per_page ) ) {
 		$gce_events_per_page = 'days';
 	}
+
+	$gce_feed_end_interval           = get_post_meta( $post->ID, 'gce_feed_end_interval', true );
+	$gce_hide_tooltips               = get_post_meta( $post->ID, 'gce_hide_tooltips', true );
+
 	
 	if( empty( $gce_list_start_offset_num ) ) {
 		$gce_list_start_offset_num = 0;
@@ -117,6 +121,14 @@
 		<td>
 			<input type="checkbox" name="gce_expand_recurring" id="gce_expand_recurring" value="1" <?php checked( $gce_expand_recurring, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
 			<p class="description"><?php _e( 'This will show recurring events each time they occur, otherwise it will only show the event the first time it occurs.', 'gce' ); ?></p>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_hide_tooltips"><?php _e( 'Hide Tooltips?', 'gce' ); ?></label></th>
+		<td>
+			<input type="checkbox" name="gce_hide_tooltips" id="gce_hide_tooltips" value="1" <?php checked( $gce_hide_tooltips, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
+			<p class="description"><?php _e( 'Checking this option will hide the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?></p>
 		</td>
 	</tr>
 
@@ -245,6 +257,11 @@
 				<input type="text" id="gce_feed_range_end" name="gce_feed_range_end" value="<?php echo $gce_feed_range_end; ?>" />
 				<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
 			</span>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<?php submit_button( null, 'primary', null, false ); // Add standard "save changes" submit button, but don't wrap it in a <p> tag. ?>
 		</td>
 	</tr>
 </table>
