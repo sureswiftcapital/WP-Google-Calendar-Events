@@ -66,7 +66,7 @@ add_action( 'init', 'gce_setup_cpt' );
 function gce_feed_messages( $messages ) {
 	global $post, $post_ID;
 
-	$url1 = '<a href="' . get_permalink( $post_ID ) . '">';
+	$url1 = '<a href="' . esc_url( get_permalink( $post_ID ) ) . '">';
 	$url2 = __( 'feed', 'gce' );
 	$url3 = '</a>';
 	$s1   = __( 'Feed', 'gce' );
@@ -249,7 +249,7 @@ function gce_column_content( $column_name, $post_ID ) {
 			echo $post_ID;
 			break;
 		case 'feed-sc':
-			echo '<code>[gcal id="' . $post_ID . '"]</code>';
+			echo '<code>[gcal id="' . esc_attr( $post_ID ) . '"]</code>';
 			break;
 		case 'display-type':
 			$display = get_post_meta( $post_ID, 'gce_display_mode', true );
