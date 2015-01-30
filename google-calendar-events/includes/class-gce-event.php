@@ -128,7 +128,7 @@ class GCE_Event {
 		$display_options['display_separator']     = get_post_meta( $this->feed->id, 'gce_display_separator', true );
 		$display_options['display_link_target']   = get_post_meta( $this->feed->id, 'gce_display_link_tab', true );
 		
-		$markup = '<p class="gce-' . $this->type . '-event">' . esc_html( $this->title )  . '</p>';
+		$markup = '<p class="gce-' . esc_attr( $this->type ) . '-event">' . esc_html( $this->title )  . '</p>';
 
 		$start_end = array();
 
@@ -152,7 +152,7 @@ class GCE_Event {
 
 		//Add the correct start / end, date / time information to $markup
 		foreach ( $start_end as $start_or_end => $info ) {
-			$markup .= '<p class="gce-' . $this->type . '-' . $start_or_end . '"><span>' . esc_html( $display_options['display_' . $start_or_end . '_text'] ) . '</span> ';
+			$markup .= '<p class="gce-' . esc_attr( $this->type ) . '-' . $start_or_end . '"><span>' . esc_html( $display_options['display_' . $start_or_end . '_text'] ) . '</span> ';
 			
 			if( ! empty( $display_options['display_' . $start_or_end] ) ) {
 				switch ( $display_options['display_' . $start_or_end] ) {
@@ -173,7 +173,7 @@ class GCE_Event {
 		if ( ! empty( $display_options['display_location'] ) ) {
 			$event_location = $this->location;
 			if ( '' != $event_location )
-				$markup .= '<p class="gce-' . $this->type . '-loc"><span>' . esc_html( $display_options['display_location_text'] ) . '</span> ' . esc_html( $event_location ) . '</p>';
+				$markup .= '<p class="gce-' . esc_attr( $this->type ) . '-loc"><span>' . esc_html( $display_options['display_location_text'] ) . '</span> ' . esc_html( $event_location ) . '</p>';
 		}
 
 		//If description should be displayed (and is not empty) add to $markup
@@ -187,7 +187,7 @@ class GCE_Event {
 					$event_desc = trim( $event_desc[0] );
 				}
 
-				$markup .= '<p class="gce-' . $this->type . '-desc"><span>' . $display_options['display_desc_text'] . '</span> ' . make_clickable( nl2br( esc_html( $event_desc ) ) ) . '</p>';
+				$markup .= '<p class="gce-' . esc_attr( $this->type ) . '-desc"><span>' . esc_html( $display_options['display_desc_text'] ) . '</span> ' . make_clickable( nl2br( esc_html( $event_desc ) ) ) . '</p>';
 			}
 		}
 
@@ -199,7 +199,7 @@ class GCE_Event {
 			
 			$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
 			
-			$markup .= '<p class="gce-' . $this->type . '-link"><a href="' . esc_url( $link ) . '" ' . $target . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
+			$markup .= '<p class="gce-' . esc_attr( $this->type ) . '-link"><a href="' . esc_url( $link ) . '" ' . esc_attr( $target ) . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
 		}
 
 		return $markup;
@@ -370,7 +370,7 @@ class GCE_Event {
 				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
 				$ctz  = get_option( 'timezone_string' );
 				$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
-				return $m[1] . '<a href="' . esc_url( $link ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
+				return $m[1] . '<a href="' . esc_url( $link ) . '"' . esc_attr( $new_window ) . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
 
 			case 'url':
 				return $m[1] . esc_url( $this->link ) . $m[6];
@@ -383,7 +383,7 @@ class GCE_Event {
 
 			case 'maps-link':
 				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
-				return $m[1] . '<a href="' . esc_url( '//maps.google.com?q=' . urlencode( $this->location ) ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
+				return $m[1] . '<a href="' . esc_url( '//maps.google.com?q=' . urlencode( $this->location ) ) . '"' . esc_attr( $new_window ) . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
 
 			case 'length':
 				return $m[1] . $this->gce_human_time_diff( $this->start_time, $this->end_time, $precision ) . $m[6];
