@@ -131,7 +131,7 @@ class GCE_Display {
 
 				foreach ( $event_day as $num_in_day => $event ) {
 					$feed_id = absint( $event->feed->id );
-					$markup .= '<li class="gce-tooltip-feed-' . $feed_id . '">' . $event->get_event_markup( 'tooltip', $num_in_day, $i ) . '</li>';
+					$markup .= '<li class="gce-tooltip-feed-' . esc_attr( $feed_id ) . '">' . $event->get_event_markup( 'tooltip', $num_in_day, $i ) . '</li>';
 
 					//Add CSS class for the feed from which this event comes. If there are multiple events from the same feed on the same day, the CSS class will only be added once.
 					$css_classes['feed-' . $feed_id] = 'gce-feed-' . $feed_id;
@@ -282,7 +282,7 @@ class GCE_Display {
 
 		$feeds = implode( $this->id, '-' );
 
-		$markup = '<div class="gce-list" data-gce-start-offset="' . $start_offset . '" data-gce-start="' . ( $start + $paging_interval ) . '" data-gce-paging-interval="' . $paging_interval . '" data-gce-paging="' . $paging . '" data-gce-feeds="' . $feeds . '" data-gce-title="' . stripslashes( $this->title ) . '" data-gce-grouped="' . $grouped . '" data-gce-sort="' . $this->sort . '">' . "\n";
+		$markup = '<div class="gce-list" data-gce-start-offset="' . esc_attr( $start_offset ) . '" data-gce-start="' . esc_attr( ( $start + $paging_interval ) ) . '" data-gce-paging-interval="' . esc_attr( $paging_interval ) . '" data-gce-paging="' . esc_attr( $paging ) . '" data-gce-feeds="' . esc_attr( $feeds ) . '" data-gce-title="' . esc_attr( stripslashes( $this->title ) ) . '" data-gce-grouped="' . esc_attr( $grouped ) . '" data-gce-sort="' . esc_attr( $this->sort ) . '">' . "\n";
 
 		if( ( $paging != 0 ) && $max_length != 'events' ) {
 
@@ -292,8 +292,8 @@ class GCE_Display {
 			$prev_text = apply_filters( 'gce_prev_text', $prev_text );
 			$next_text = apply_filters( 'gce_next_text', $next_text );
 
-			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Previous month', 'gce' ) . '" data-gce-paging-direction="back" data-gce-paging-type="' . $paging_type . '">'. $prev_text . '</a></div>';
-			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Next month', 'gce' ) . '" data-gce-paging-direction="forward" data-gce-paging-type="' . $paging_type . '">' . $next_text . '</a></div>';
+			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Previous month', 'gce' ) . '" data-gce-paging-direction="back" data-gce-paging-type="' . esc_attr( $paging_type ) . '">'. esc_html( $prev_text ) . '</a></div>';
+			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Next month', 'gce' ) . '" data-gce-paging-direction="forward" data-gce-paging-type="' . esc_attr( $paging_type ) . '">' . esc_html( $next_text ) . '</a></div>';
 
 			$markup .= '<caption class="gce-caption">' .
 						'<div class="gce-navbar">' .
@@ -357,15 +357,15 @@ class GCE_Display {
 					( $max_length == 'date-range' )
 				  ) {
 					if( $show_title && $grouped ) {
-						$day_markup .= '<div class="gce-list-title">' . stripslashes( $this->title ) . ' ' . date_i18n( $event->feed->date_format, $key ) . '</div>';
+						$day_markup .= '<div class="gce-list-title">' . esc_html( stripslashes( $this->title ) ) . ' ' . date_i18n( $event->feed->date_format, $key ) . '</div>';
 						$show_title = false;
 					}
 
 					$day_markup .=
-					    '<div class="gce-feed gce-feed-' . $event->feed->id . '">' .
+					    '<div class="gce-feed gce-feed-' . esc_attr( $event->feed->id ) . '">' .
 					    //If this isn't a grouped list, generate a per-event title with date.
 					    ( ( ! $grouped ) ? ( ( isset( $this->title ) && $this->title !== '' ) )
-					        ? '<div class="gce-list-title">' . stripslashes( $this->title ) . ' ' . date_i18n( $event->feed->date_format, $event->start_time ) . '</div>'
+					        ? '<div class="gce-list-title">' . esc_html( stripslashes( $this->title ) ) . ' ' . date_i18n( $event->feed->date_format, $event->start_time ) . '</div>'
 					        : '' : '' ) .
 					    //Add the event markup
 					    $event->get_event_markup( 'list', $num_in_day, $i ) .
