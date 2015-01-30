@@ -41,7 +41,11 @@ class GCE_Event {
 				}
 			}
 		} else {
-			$this->day_type = 'SPD';
+			if( date( 'D', $start_time ) == date( 'D', $end_time ) ) {
+				$this->day_type = 'SPD';
+			} else {
+				$this->day_type = 'MPD';
+			}
 		}
 	}
 	
