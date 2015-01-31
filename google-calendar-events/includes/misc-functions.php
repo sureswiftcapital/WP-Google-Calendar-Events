@@ -133,10 +133,11 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			'show' => $hide_tooltips
 		);
 
-		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
 		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_hide_tooltips', $tooltips );
 	}
-
+	
+	wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
+	
 	return $markup;
 }
 
