@@ -273,7 +273,7 @@ function gce_ga_campaign_url( $base_url, $source, $medium, $campaign ) {
 		'utm_campaign' => $campaign
 	), $base_url );
 
-	return $url;
+	return esc_url( $url );
 }
 
 /**
