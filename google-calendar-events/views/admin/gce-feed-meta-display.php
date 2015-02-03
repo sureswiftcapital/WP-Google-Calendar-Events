@@ -30,16 +30,12 @@
 	$gce_paging                      = get_post_meta( $post->ID, 'gce_paging', true );
 	$gce_events_per_page             = get_post_meta( $post->ID, 'gce_events_per_page', true );
 	$gce_per_page_num                = get_post_meta( $post->ID, 'gce_per_page_num', true );
-	$gce_per_page_from               = get_post_meta( $post->ID, 'gce_per_page_from', true );
-	$gce_per_page_to                 = get_post_meta( $post->ID, 'gce_per_page_to', true );
 	$gce_list_start_offset_num       = get_post_meta( $post->ID, 'gce_list_start_offset_num', true );
 	$gce_list_start_offset_direction = get_post_meta( $post->ID, 'gce_list_start_offset_direction', true );
 	$gce_feed_start                  = get_post_meta( $post->ID, 'gce_feed_start', true );
 	$gce_feed_start_num              = get_post_meta( $post->ID, 'gce_feed_start_num', true );
-	$gce_feed_start_custom           = get_post_meta( $post->ID, 'gce_feed_start_custom', true );
 	$gce_feed_end                    = get_post_meta( $post->ID, 'gce_feed_end', true );
 	$gce_feed_end_num                = get_post_meta( $post->ID, 'gce_feed_end_num', true );
-	$gce_feed_end_custom             = get_post_meta( $post->ID, 'gce_feed_end_custom', true );
 	$gce_feed_range_start            = get_post_meta( $post->ID, 'gce_feed_range_start', true );
 	$gce_feed_range_end              = get_post_meta( $post->ID, 'gce_feed_range_end', true );
 	
@@ -59,11 +55,11 @@
 	}
 	
 	if( empty( $gce_feed_start ) ) {
-		$gce_feed_start = 0;
+		$gce_feed_start = 'years';
 	}
 	
 	if( empty( $gce_feed_end ) ) {
-		$gce_feed_end = 0;
+		$gce_feed_end = 'years';
 	}
 ?>
 
