@@ -53,11 +53,11 @@ class GCE_Widget extends WP_Widget {
 		//Output before widget stuff
 		echo $before_widget;
 		
-		$paging     = ( isset( $instance['paging'] ) ? $instance['paging'] : null );
-		$max_num    = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : null );
-		$max_length = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : null );
-		$max_events = null;
-		$display_mode = $instance['gce_display_mode'];
+		$paging       = ( isset( $instance['paging'] ) ? $instance['paging'] : null );
+		$max_num      = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : null );
+		$max_length   = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : null );
+		$max_events   = null;
+		$display_mode = ( isset( $instance['gce_display_mode'] ) ? $instance['gce_display_mode'] : null );
 		
 		// Start offset
 		$offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
