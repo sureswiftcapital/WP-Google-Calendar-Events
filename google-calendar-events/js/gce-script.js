@@ -19,8 +19,6 @@
 
 			$('.gce-page-grid, .gce-widget-grid').each( function() {
 				var id = $(this).attr('id');
-				
-				console.log( id, gce_grid[id].hide_tooltips );
 
 				if( gce_grid[id].hide_tooltips == 'false' || gce_grid[id].hide_tooltips == false ) {
 					tooltip_elements += '#' + gce_grid[id].target_element + ' .gce-has-events,';
