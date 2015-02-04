@@ -112,11 +112,11 @@ function gce_checkbox_callback( $args ) {
 	global $gce_options;
 
 	$checked = isset( $gce_options[$args['id']] ) ? checked( 1, $gce_options[$args['id']], false ) : '';
-	$html = "\n" . '<input type="checkbox" id="gce_settings_' . $args['section'] . '[' . $args['id'] . ']" name="gce_settings_' . $args['section'] . '[' . $args['id'] . ']" value="1" ' . $checked . '/>' . "\n";
+	$html = "\n" . '<input type="checkbox" id="gce_settings_' . esc_attr( $args['section'] ) . '[' . esc_attr( $args['id'] ) . ']" name="gce_settings_' . esc_attr( $args['section'] ) . '[' . esc_attr( $args['id'] ) . ']" value="1" ' . $checked . '/>' . "\n";
 
 	// Render description text directly to the right in a label if it exists.
 	if ( ! empty( $args['desc'] ) )
-		$html .= '<label for="gce_settings_' . $args['section'] . '[' . $args['id'] . ']"> '  . $args['desc'] . '</label>' . "\n";
+		$html .= '<label for="gce_settings_' . esc_attr( $args['section'] ) . '[' . esc_attr( $args['id'] ) . ']"> '  . $args['desc'] . '</label>' . "\n";
 
 	echo $html;
 }
@@ -138,7 +138,7 @@ function gce_text_callback( $args ) {
 		$value = isset( $args['std'] ) ? $args['std'] : '';
 
 	$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : '';
-	$html = "\n" . '<input type="text" class="' . $size . '" id="gce_settings_' . $args['section'] . '[' . $args['id'] . ']" name="gce_settings_' . $args['section'] . '[' . $args['id'] . ']" value="' . esc_attr( $value ) . '"/>' . "\n";
+	$html = "\n" . '<input type="text" class="' . esc_attr( $size ) . '" id="gce_settings_' . esc_attr( $args['section'] ) . '[' . esc_attr( $args['id'] ) . ']" name="gce_settings_' . esc_attr( $args['section'] ) . '[' . esc_attr( $args['id'] ) . ']" value="' . esc_attr( $value ) . '"/>' . "\n";
 
 	// Render and style description text underneath if it exists.
 	if ( ! empty( $args['desc'] ) ) {

@@ -51,7 +51,7 @@
 			<option value="date-time" <?php selected( $gce_display_start, 'date-time', true ); ?>><?php _e( 'Start date and time', 'gce' ); ?></option>
 		</select>
 		<label class="description" for="gce_display_start_text"><?php _e( 'Text to display before the start time.', 'gce' ); ?></label>
-		<input type="text" name="gce_display_start_text" id="gce_display_start_text" value="<?php echo $gce_display_start_text; ?>" />
+		<input type="text" name="gce_display_start_text" id="gce_display_start_text" value="<?php echo esc_attr( $gce_display_start_text ); ?>" />
 	</div>
 
 	<div class="gce-meta-control">
@@ -65,7 +65,7 @@
 			<option value="date-time" <?php selected( $gce_display_end, 'date-time', true ); ?>><?php _e( 'End date and time', 'gce' ); ?></option>
 		</select>
 		<label class="description" for="gce_display_end_text"><?php _e( 'Text to display before the end time.', 'gce' ); ?></label>
-		<input type="text" name="gce_display_end_text" id="gce_display_end_text" value="<?php echo $gce_display_end_text; ?>" />
+		<input type="text" name="gce_display_end_text" id="gce_display_end_text" value="<?php echo esc_attr( $gce_display_end_text ); ?>" />
 	</div>
 
 	<div class="gce-meta-control">
@@ -73,7 +73,7 @@
 		<label class="description" for="gce_display_separator">
 			<?php _e( 'If you have chosen to display both the time and date above, enter the text / characters to display between the time and date here (including any spaces).' , 'gce' ); ?>
 		</label>
-		<input type="text" name="gce_display_separator" id="gce_display_separator" value="<?php echo $gce_display_separator; ?>" />
+		<input type="text" name="gce_display_separator" id="gce_display_separator" value="<?php echo esc_attr( $gce_display_separator ); ?>" />
 	</div>
 
 	<div class="gce-meta-control">
@@ -81,7 +81,7 @@
 		<p><input type="checkbox" name="gce_display_location" id="gce_display_location" value="1" <?php checked( $gce_display_location, '1' ); ?> />
 			<label for="gce_display_location"><?php _e( 'Show the location of events?', 'gce' ); ?></label></p>
 		<label class="description" for="gce_display_location_text"><?php _e( 'Text to display before the location.', 'gce' ); ?></label>
-		<input type="text" name="gce_display_location_text" id="gce_display_location_text" value="<?php echo $gce_display_location_text; ?>" />
+		<input type="text" name="gce_display_location_text" id="gce_display_location_text" value="<?php echo esc_attr( $gce_display_location_text ); ?>" />
 	</div>
 
 	<div class="gce-meta-control">
@@ -91,9 +91,9 @@
 			<label for="gce_display_description"><?php _e( 'Show the description of events? (URLs in the description will be made into links).', 'gce' ); ?></label>
 		</p>
 		<label class="description" for="gce_display_description_text"><?php _e( 'Text to display before the description.', 'gce' ); ?></label>
-		<input type="text" name="gce_display_description_text" id="gce_display_description_text" value="<?php echo $gce_display_description_text; ?>" />
+		<input type="text" name="gce_display_description_text" id="gce_display_description_text" value="<?php echo esc_attr( $gce_display_description_text ); ?>" />
 		<label class="description" for="gce_display_description_max"><?php _e( 'Maximum number of words to show from description. Leave blank for no limit.', 'gce' ); ?></label>
-		<input type="text" name="gce_display_description_max" id="gce_display_description_max" value="<?php echo $gce_display_description_max; ?>" />
+		<input type="text" name="gce_display_description_max" id="gce_display_description_max" value="<?php echo esc_attr( $gce_display_description_max ); ?>" />
 	</div>
 
 	<div class="gce-meta-control">
@@ -107,6 +107,6 @@
 			<label for="gce_display_link_tab"><?php _e( 'Links open in a new window / tab?', 'gce' ); ?></label>
 		</p>
 		<label class="description" for="gce_display_link_text"><?php _e( 'The link text to be displayed.', 'gce' ); ?></label>
-		<input type="text" name="gce_display_link_text" id="gce_display_link_text" value="<?php echo $gce_display_link_text; ?>" />
+		<input type="text" name="gce_display_link_text" id="gce_display_link_text" value="<?php echo esc_attr( $gce_display_link_text ); ?>" />
 	</div>
 </div>

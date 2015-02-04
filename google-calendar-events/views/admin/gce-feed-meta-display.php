@@ -95,7 +95,7 @@
 	<tr>
 		<th scope="row"><label for="gce_feed_url"><?php _e( 'Google Calendar ID', 'gce' ); ?></label></th>
 		<td>
-			<input type="text" class="regular-text" style="width: 30em;" name="gce_feed_url" id="gce_feed_url" value="<?php echo $gce_feed_url; ?>" />
+			<input type="text" class="regular-text" style="width: 30em;" name="gce_feed_url" id="gce_feed_url" value="<?php echo esc_attr( $gce_feed_url ); ?>" />
 			<p class="description">
 				<?php _e( 'The Google Calendar ID.', 'gce' ); ?> <?php _e( 'Example', 'gce' ); ?>:<br/>
 				<code>umsb0ekhivs1a2ubtq6vlqvcjk@group.calendar.google.com</code><br/>
@@ -107,7 +107,7 @@
 	<tr>
 		<th scope="row"><label for="gce_search_query"><?php _e( 'Search Query', 'gce' ); ?></label></th>
 		<td>
-			<input type="text" class="" name="gce_search_query" id="gce_search_query" value="<?php echo $gce_search_query; ?>" />
+			<input type="text" class="" name="gce_search_query" id="gce_search_query" value="<?php echo esc_attr( $gce_search_query ); ?>" />
 			<p class="description"><?php _e( 'Find and show events based on a search query.', 'gce' ); ?></p>
 		</td>
 	</tr>
@@ -131,7 +131,7 @@
 	<tr>
 		<th scope="row"><label for="gce_date_format"><?php _e( 'Date Format', 'gce' ); ?></label></th>
 		<td>
-			<input type="text" class="" name="gce_date_format" id="gce_date_format" value="<?php echo $gce_date_format; ?>" />
+			<input type="text" class="" name="gce_date_format" id="gce_date_format" value="<?php echo esc_attr( $gce_date_format ); ?>" />
 			<p class="description">
 				<?php printf( __( 'Use %sPHP date formatting%s.', 'gce' ), '<a href="http://php.net/manual/en/function.date.php" target="_blank">', '</a>' ); ?>
 				<?php _e( 'Leave blank to use the default.', 'gce' ); ?>
@@ -142,7 +142,7 @@
 	<tr>
 		<th scope="row"><label for="gce_time_format"><?php _e( 'Time Format', 'gce' ); ?></label></th>
 		<td>
-			<input type="text" class="" name="gce_time_format" id="gce_time_format" value="<?php echo $gce_time_format; ?>" />
+			<input type="text" class="" name="gce_time_format" id="gce_time_format" value="<?php echo esc_attr( $gce_time_format ); ?>" />
 			<p class="description">
 				<?php printf( __( 'Use %sPHP date formatting%s.', 'gce' ), '<a href="http://php.net/manual/en/function.date.php" target="_blank">', '</a>' ); ?>
 				<?php _e( 'Leave blank to use the default.', 'gce' ); ?>
@@ -153,7 +153,7 @@
 	<tr>
 		<th scope="row"><label for="gce_cache"><?php _e( 'Cache Duration', 'gce' ); ?></label></th>
 		<td>
-			<input type="text" class="" name="gce_cache" id="gce_cache" value="<?php echo $gce_cache; ?>" />
+			<input type="text" class="" name="gce_cache" id="gce_cache" value="<?php echo esc_attr( $gce_cache ); ?>" />
 			<p class="description"><?php _e( 'The length of time, in seconds, to cache the feed (43200 = 12 hours). If this feed changes regularly, you may want to reduce the cache duration.', 'gce' ); ?></p>
 		<td>
 	</tr>
@@ -166,7 +166,7 @@
 		</td>
 	</tr>
 
-	<tr class="<?php //echo ( $use_range == true ? 'gce-admin-hidden' : 'gce-display-option' ); ?>">
+	<tr>
 		<th scope="row"><label for="gce_display_mode"><?php _e( 'Display Mode', 'gce' ); ?></label></th>
 		<td>
 			<select name="gce_display_mode" id="gce_display_mode">
@@ -196,7 +196,7 @@
 				<option value="month" <?php selected( $gce_events_per_page, 'month', true ); ?>><?php _e( 'One Month', 'gce' ); ?></option>
 			</select>
 			<span class="gce_per_page_num_wrap <?php echo ( $gce_events_per_page != 'days' && $gce_events_per_page != 'events' ? 'gce-admin-hidden' : '' ); ?>">
-				<input type="number" min="0" step="1" class="small-text" name="gce_per_page_num" id="gce_per_page_num" value="<?php echo $gce_per_page_num; ?>" />
+				<input type="number" min="0" step="1" class="small-text" name="gce_per_page_num" id="gce_per_page_num" value="<?php echo esc_attr( $gce_per_page_num ); ?>" />
 			</span>
 			<p class="description"><?php _e( 'How many events to display per page (List View only).', 'gce' ); ?></p>
 		</td>
@@ -209,7 +209,7 @@
 				<option value="back" <?php selected( $gce_list_start_offset_direction, 'back', true ); ?>><?php _e( 'Number of Days Back', 'gce' ); ?></option>
 				<option value="ahead" <?php selected( $gce_list_start_offset_direction, 'ahead', true ); ?>><?php _e( 'Number of Days Forward', 'gce' ); ?></option>
 			</select>
-			<input type="number" min="0" step="1" class="small-text" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo $gce_list_start_offset_num; ?>" />
+			<input type="number" min="0" step="1" class="small-text" id="gce_list_start_offset_num" name="gce_list_start_offset_num" value="<?php echo esc_attr( $gce_list_start_offset_num ); ?>" />
 			<p class="description"><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></p>
 		</td>
 	</tr>
@@ -223,7 +223,7 @@
 				<option value="years" <?php selected( $gce_feed_start, 'years', true ); ?>><?php _e( 'Number of Years Back', 'gce' ); ?></option>
 			</select>
 			<span class="gce_feed_start_num_wrap <?php echo ( $gce_feed_start == 'custom' ? 'gce-admin-hidden' : '' ); ?>">
-				<input type="number" min="0" step="1" class="small-text" id="gce_feed_start_num" name="gce_feed_start_num" value="<?php echo $gce_feed_start_num; ?>" />
+				<input type="number" min="0" step="1" class="small-text" id="gce_feed_start_num" name="gce_feed_start_num" value="<?php echo esc_attr( $gce_feed_start_num ); ?>" />
 			</span>
 			<p class="description"><?php _e( 'Set how far back to retrieve events regardless of initial display.', 'gce' ); ?></p>
 		</td>	
@@ -238,7 +238,7 @@
 				<option value="years" <?php selected( $gce_feed_end, 'years', true ); ?>><?php _e( 'Number of Years Forward', 'gce' ); ?></option>
 			</select>
 			<span class="gce_feed_end_num_wrap <?php echo ( $gce_feed_end == 'custom' ? 'gce-admin-hidden' : '' ); ?>">
-				<input type="number" min="0" step="1" class="small-text" id="gce_feed_end_num" name="gce_feed_end_num" value="<?php echo $gce_feed_end_num; ?>" />
+				<input type="number" min="0" step="1" class="small-text" id="gce_feed_end_num" name="gce_feed_end_num" value="<?php echo esc_attr( $gce_feed_end_num ); ?>" />
 			</span>
 			<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
 		</td>
@@ -248,9 +248,9 @@
 		<th scope="row"><label for="gce_feed_use_range"><?php _e( 'Use Custom Date Range', 'gce' ); ?></label></th>
 		<td>
 			<span>
-				<input type="text" name="gce_feed_range_start" id="gce_feed_range_start" value="<?php echo $gce_feed_range_start; ?>" />
+				<input type="text" name="gce_feed_range_start" id="gce_feed_range_start" value="<?php echo esc_attr( $gce_feed_range_start ); ?>" />
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
-				<input type="text" id="gce_feed_range_end" name="gce_feed_range_end" value="<?php echo $gce_feed_range_end; ?>" />
+				<input type="text" id="gce_feed_range_end" name="gce_feed_range_end" value="<?php echo esc_attr( $gce_feed_range_end ); ?>" />
 				<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
 			</span>
 		</td>
