@@ -89,6 +89,9 @@ function gce_v218_upgrade() {
 			update_post_meta( get_the_ID(), 'gce_feed_end', $gce_feed_end_interval );
 			update_post_meta( get_the_ID(), 'gce_feed_end_num', $gce_feed_end );
 			
+			// Add new show tooltips option checked as default
+			update_post_meta( get_the_ID(), 'gce_show_tooltips', 1 );
+			
 		}
 	}
 	
