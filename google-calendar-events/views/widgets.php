@@ -64,6 +64,8 @@ class GCE_Widget extends WP_Widget {
 		$offset_length    = 86400;
 		$offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : null );
 		
+		$invalid_id = false;
+		
 
 		// Get custom date range if set
 		if( 'date-range' == $display_mode ) {
@@ -129,12 +131,7 @@ class GCE_Widget extends WP_Widget {
 					}
 					
 					if( ! ( 'publish' == get_post_status( $feed_id ) ) ) {
-						
-						if( current_user_can( 'manage_options' ) ) {
-							echo '<p>' . __( 'There was a problem with one or more of your feed IDs. Please check your widget settings and make sure they are correct.', 'gce' ) . '</p>';
-						}
-						
-						return;
+						$invalid_id = true;
 					}
 				}
 
@@ -191,13 +188,20 @@ class GCE_Widget extends WP_Widget {
 				
 				$markup = gce_print_calendar( $feed_ids, $display_mode, $args, true );
 				
-				echo $markup;
+				if( ! $invalid_id ) {
+					echo $markup;
+				} else {
+					if( current_user_can( 'manage_options' ) ) {
+						echo '<p>' . __( 'There was a problem with one or more of your feed IDs. Please check your widget settings and make sure they are correct.', 'gce' ) . '</p>';
+					}
+				}
+				
 			}
 		} else {
 			if( current_user_can( 'manage_options' ) ) {
 				_e( 'You have not added any feeds yet.', 'gce' );
 			} else {
-				return;
+				echo '';
 			}
 		}
 
