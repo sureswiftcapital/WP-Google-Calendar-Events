@@ -24,11 +24,11 @@
 					tooltip_elements += '#' + gce_grid[id].target_element + ' .gce-has-events,';
 				}
 			});
+			
+			tooltip_elements = tooltip_elements.substring( 0, tooltip_elements.length - 1 );
+		
+			gce_tooltips(tooltip_elements);
 		}
-		
-		tooltip_elements = tooltip_elements.substring( 0, tooltip_elements.length - 1 );
-		
-		gce_tooltips(tooltip_elements);
 		
 		if( typeof gce_grid != 'undefined' ) {
 			
