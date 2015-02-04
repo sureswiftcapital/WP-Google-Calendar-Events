@@ -55,6 +55,35 @@ if ( empty( $general['save_settings'] ) ) {
 	delete_post_meta_by_key( 'gce_list_max_length' );
 	delete_post_meta_by_key( 'gce_list_start_offset_num' );
 	delete_post_meta_by_key( 'gce_list_start_offset_direction' );
+	
+	//TODO: Missing these post meta on uninstall
+	// Found these leftover after uninstall. Need to double check which ones are old options and which are newer so I can keep them separated here
+	delete_post_meta_by_key( 'old_gce_id' );
+	delete_post_meta_by_key( 'gce_display_link' );
+	delete_post_meta_by_key( 'gce_display_link_text' );
+	delete_post_meta_by_key( 'gce_display_end' );
+	delete_post_meta_by_key( 'gce_display_end_text' );
+	delete_post_meta_by_key( 'gce_display_separator' );
+	delete_post_meta_by_key( 'gce_display_location_text' );
+	delete_post_meta_by_key( 'gce_display_description_text' );
+	delete_post_meta_by_key( 'gce_expand_recurring' );
+	delete_post_meta_by_key( 'gce_feed_end' );
+	delete_post_meta_by_key( 'gce_feed_end_interval' );
+	delete_post_meta_by_key( 'gce_display_start' );
+	delete_post_meta_by_key( 'gce_display_start_text' );
+	delete_post_meta_by_key( 'gce_paging_widget' );
+	delete_post_meta_by_key( 'gce_widget_paging_interval' );
+	delete_post_meta_by_key( 'gce_feed_end_custom' );
+	delete_post_meta_by_key( 'gce_feed_end_num' );
+	delete_post_meta_by_key( 'gce_feed_start_custom' );
+	delete_post_meta_by_key( 'gce_feed_start_num' );
+	delete_post_meta_by_key( 'gce_per_page_to' );
+	delete_post_meta_by_key( 'gce_per_page_from' );
+	delete_post_meta_by_key( 'gce_per_page_num' );
+	delete_post_meta_by_key( 'gce_events_per_page' );
+	delete_post_meta_by_key( 'gce_end_date' );
+	delete_post_meta_by_key( 'gce_date_range' );
+	delete_post_meta_by_key( 'gce_start_date' );
 
 	// Remove options
 	delete_option( 'gce_upgrade_has_run' );

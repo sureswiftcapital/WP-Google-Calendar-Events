@@ -53,16 +53,18 @@ class GCE_Widget extends WP_Widget {
 		//Output before widget stuff
 		echo $before_widget;
 		
-		$paging     = ( isset( $instance['paging'] ) ? $instance['paging'] : null );
-		$max_num    = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : null );
-		$max_length = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : null );
-		$max_events = null;
-		$display_mode = $instance['gce_display_mode'];
+		$paging       = ( isset( $instance['paging'] ) ? $instance['paging'] : null );
+		$max_num      = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : null );
+		$max_length   = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : null );
+		$max_events   = null;
+		$display_mode = ( isset( $instance['gce_display_mode'] ) ? $instance['gce_display_mode'] : null );
 		
 		// Start offset
 		$offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$offset_length    = 86400;
 		$offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : null );
+		
+		$invalid_id = false;
 		
 
 		// Get custom date range if set
@@ -124,8 +126,13 @@ class GCE_Widget extends WP_Widget {
 
 				//Check each id is an integer, if not, remove it from the array
 				foreach ( $feed_ids as $key => $feed_id ) {
-					if ( 0 == absint( $feed_id ) )
+					if ( 0 == absint( $feed_id ) ) {
 						unset( $feed_ids[$key] );
+					}
+					
+					if( ! ( 'publish' == get_post_status( $feed_id ) ) ) {
+						$invalid_id = true;
+					}
 				}
 
 				//If at least one of the feed ids entered exists, set no_feeds_exist to false
@@ -181,13 +188,20 @@ class GCE_Widget extends WP_Widget {
 				
 				$markup = gce_print_calendar( $feed_ids, $display_mode, $args, true );
 				
-				echo $markup;
+				if( ! $invalid_id ) {
+					echo $markup;
+				} else {
+					if( current_user_can( 'manage_options' ) ) {
+						echo '<p>' . __( 'There was a problem with one or more of your feed IDs. Please check your widget settings and make sure they are correct.', 'gce' ) . '</p>';
+					}
+				}
+				
 			}
 		} else {
 			if( current_user_can( 'manage_options' ) ) {
 				_e( 'You have not added any feeds yet.', 'gce' );
 			} else {
-				return;
+				echo '';
 			}
 		}
 

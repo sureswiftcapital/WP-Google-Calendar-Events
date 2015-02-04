@@ -13,15 +13,24 @@
 
 	$(function() {
 		
-		var showTooltips = true;
-		
-		if( typeof gce_hide_tooltips != 'undefined' && gce_hide_tooltips.show != '' ) {
-			showTooltips = false;
+		if( typeof gce_grid != 'undefined' ) {
+			
+			var tooltip_elements = '';
+
+			$('.gce-page-grid, .gce-widget-grid').each( function() {
+				var id = $(this).attr('id');
+				
+				console.log( id, gce_grid[id].hide_tooltips );
+
+				if( gce_grid[id].hide_tooltips == 'false' || gce_grid[id].hide_tooltips == false ) {
+					tooltip_elements += '#' + gce_grid[id].target_element + ' .gce-has-events,';
+				}
+			});
 		}
 		
-		if( showTooltips ) {
-			gce_tooltips($('.gce-has-events'));
-		}
+		tooltip_elements = tooltip_elements.substring( 0, tooltip_elements.length - 1 );
+		
+		gce_tooltips(tooltip_elements);
 		
 		if( typeof gce_grid != 'undefined' ) {
 			
@@ -36,7 +45,7 @@
 				if( typeof id == 'undefined' ) {
 					id = navLink.closest('.gce-widget-grid').attr('id');
 				}
-
+				
 				//Extract month and year
 				var month_year = navLink.attr('name').split('-', 2);
 				var paging = navLink.attr('data-gce-grid-paging');
@@ -62,9 +71,7 @@
 						$('#' + gce_grid[id].target_element).replaceWith(data);
 					}
 					
-					if( showTooltips ) {
-						gce_tooltips($('#' + gce_grid[id].target_element + ' .gce-has-events'));
-					}
+					gce_tooltips(tooltip_elements);
 				});
 
 				e.stopPropagation();
@@ -116,7 +123,7 @@
 
 		function gce_tooltips(target_items) {
 
-			target_items.each(function(){
+			$(target_items).each(function(){
 				//Add qtip to all target items
 				$(this).qtip({
 					content: $(this).children('.gce-event-info'),

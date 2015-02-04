@@ -46,9 +46,9 @@ function gce_upgrade() {
 		}
 		
 		// TODO
-		/*if( version_compare( $version, '2.1.8', '<' ) ) {
+		if( version_compare( $version, '2.1.8', '<' ) ) {
 			gce_v218_upgrade();
-		}*/
+		}
 	}
 	
 	$new_version = Google_Calendar_Events::get_instance()->get_plugin_version();
@@ -59,10 +59,13 @@ function gce_upgrade() {
 
 function gce_v218_upgrade() {
 	// Update feeds
-	/*$q = new WP_Query( 'post_type=gce_feed' );
+	$q = new WP_Query( 'post_type=gce_feed' );
 	
 	if( $q->have_posts() ) {
 		while( $q->have_posts() ) {
+			
+			$q->the_post();
+			
 			// TODO: Update feed options for new UI
 			// What we need to update
 			// gce_list_max_num        -> gce_per_page_num
@@ -89,7 +92,7 @@ function gce_v218_upgrade() {
 		}
 	}
 	
-	wp_reset_postdata();*/
+	wp_reset_postdata();
 	
 
 	// TODO: Update widgets for new UI
