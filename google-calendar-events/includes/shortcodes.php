@@ -29,7 +29,7 @@ function gce_gcal_shortcode( $attr ) {
 					'interval_count'        => null,
 					'offset_interval_count' => null,
 					'offset_direction'      => null,
-					'hide_tooltips'         => null
+					'show_tooltips'         => null
 				), $attr, 'gce_feed' ) );
 	
 	// If no ID is specified then return
@@ -121,16 +121,16 @@ function gce_gcal_shortcode( $attr ) {
 	}
 
 	$args = array(
-		'title_text' => $title,
-		'sort'       => $order,
-		'grouped'    => ( $display == 'list-grouped' ? 1 : 0 ),
-		'month'      => null,
-		'year'       => null,
-		'widget'     => 0,
+		'title_text'      => $title,
+		'sort'            => $order,
+		'grouped'         => ( $display == 'list-grouped' ? 1 : 0 ),
+		'month'           => null,
+		'year'            => null,
+		'widget'          => 0,
 		'paging_interval' => $paging_interval,
-		'max_events' => $max_events,
-		'paging'     => $paging,
-		'hide_tooltips'   => $hide_tooltips
+		'max_events'      => $max_events,
+		'paging'          => $paging,
+		'show_tooltips'   => $show_tooltips
 	);
 	
 	$args['start_offset'] = $start_offset;

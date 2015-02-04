@@ -20,7 +20,7 @@
 			$('.gce-page-grid, .gce-widget-grid').each( function() {
 				var id = $(this).attr('id');
 
-				if( gce_grid[id].hide_tooltips == 'false' || gce_grid[id].hide_tooltips == false ) {
+				if( gce_grid[id].show_tooltips == 'true' || gce_grid[id].show_tooltips == true ) {
 					tooltip_elements += '#' + gce_grid[id].target_element + ' .gce-has-events,';
 				}
 			});

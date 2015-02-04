@@ -48,6 +48,7 @@ function gce_default_editor_content( $content, $post ) {
 		add_post_meta( $post->ID, 'gce_feed_end_num', 2 );
 		add_post_meta( $post->ID, 'gce_feed_start_num', 1 );
 		add_post_meta( $post->ID, 'gce_feed_end_interval', 'years' );
+		add_post_meta( $post->ID, 'gce_show_tooltips', 1 );
 		
 		// Default Simple Display Options
 		add_post_meta( $post->ID, 'gce_display_start', 'time' );

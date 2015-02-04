@@ -47,7 +47,7 @@
 	}
 
 	$gce_feed_end_interval           = get_post_meta( $post->ID, 'gce_feed_end_interval', true );
-	$gce_hide_tooltips               = get_post_meta( $post->ID, 'gce_hide_tooltips', true );
+	$gce_show_tooltips               = get_post_meta( $post->ID, 'gce_show_tooltips', true );
 
 	
 	if( empty( $gce_list_start_offset_num ) ) {
@@ -121,10 +121,10 @@
 	</tr>
 	
 	<tr>
-		<th scope="row"><label for="gce_hide_tooltips"><?php _e( 'Hide Tooltips?', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips?', 'gce' ); ?></label></th>
 		<td>
-			<input type="checkbox" name="gce_hide_tooltips" id="gce_hide_tooltips" value="1" <?php checked( $gce_hide_tooltips, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
-			<p class="description"><?php _e( 'Checking this option will hide the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?></p>
+			<input type="checkbox" name="gce_show_tooltips" id="gce_show_tooltips" value="1" <?php checked( $gce_show_tooltips, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
+			<p class="description"><?php _e( 'Checking this option will show the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?></p>
 		</td>
 	</tr>
 

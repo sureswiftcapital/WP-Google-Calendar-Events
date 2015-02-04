@@ -81,7 +81,7 @@ class GCE_Widget extends WP_Widget {
 			}
 		}
 
-		$hide_tooltips = ( isset( $instance['hide_tooltips'] ) ? $instance['hide_tooltips'] : 'false' );
+		$show_tooltips = ( isset( $instance['show_tooltips'] ) ? $instance['show_tooltips'] : 'false' );
 		
 		
 		if( $offset_direction == 'back' ) {
@@ -165,16 +165,16 @@ class GCE_Widget extends WP_Widget {
 				$sort_order = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 				
 				$args = array(
-					'title_text'   => $title_text,
-					'sort'         => $sort_order,
-					'month'        => null,
-					'year'         => null,
-					'widget'       => 1,
-					'max_events'   => $max_events,
-					'start_offset' => $start_offset,
-					'paging_type'  => $max_length,
-					'max_num'      => $max_num,
-					'hide_tooltips' => $hide_tooltips
+					'title_text'    => $title_text,
+					'sort'          => $sort_order,
+					'month'         => null,
+					'year'          => null,
+					'widget'        => 1,
+					'max_events'    => $max_events,
+					'start_offset'  => $start_offset,
+					'paging_type'   => $max_length,
+					'max_num'       => $max_num,
+					'show_tooltips' => $show_tooltips
 				);
 				
 				if( 'list-grouped' == $display_mode ) {
@@ -229,7 +229,7 @@ class GCE_Widget extends WP_Widget {
 		$instance['list_start_offset_direction'] = $new_instance['list_start_offset_direction'];
 		$instance['gce_per_page_num']            = $new_instance['gce_per_page_num'];
 		$instance['gce_events_per_page']         = $new_instance['gce_events_per_page'];
-		$instance['hide_tooltips']               = $new_instance['hide_tooltips'];
+		$instance['show_tooltips']               = ( isset( $new_instance['show_tooltips'] ) ? 1 : 0 );
 		
 		return $instance;
 	}
@@ -264,7 +264,7 @@ class GCE_Widget extends WP_Widget {
 		
 		$list_start_offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
-		$hide_tooltips               = ( isset( $instance['hide_tooltips'] ) ? $instance['hide_tooltips'] : '' );
+		$show_tooltips               = ( isset( $instance['show_tooltips'] ) ? $instance['show_tooltips'] : 1 );
 		
 		$use_range = ( selected( $gce_display_mode, 'date-range', false ) ? true : false );
 		
@@ -337,9 +337,9 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'hide_tooltips' ); ?>"><?php _e( 'Hide Tooltips?', 'gce' ); ?></label><br>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'hide_tooltips' ); ?>" name="<?php echo $this->get_field_name( 'hide_tooltips' ); ?>" class="widefat"  value="1" <?php checked( $hide_tooltips, 1 ); ?>>
-			<?php _e( 'Checking this option will hide the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?>
+			<label for="<?php echo $this->get_field_id( 'show_tooltips' ); ?>"><?php _e( 'Show Tooltips?', 'gce' ); ?></label><br>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'show_tooltips' ); ?>" name="<?php echo $this->get_field_name( 'show_tooltips' ); ?>" class="widefat"  value="1" <?php checked( $show_tooltips, 1 ); ?>>
+			<?php _e( 'Checking this option will show the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?>
 		</p>
 			
 	<?php 
