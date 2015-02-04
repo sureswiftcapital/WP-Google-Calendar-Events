@@ -124,8 +124,18 @@ class GCE_Widget extends WP_Widget {
 
 				//Check each id is an integer, if not, remove it from the array
 				foreach ( $feed_ids as $key => $feed_id ) {
-					if ( 0 == absint( $feed_id ) )
+					if ( 0 == absint( $feed_id ) ) {
 						unset( $feed_ids[$key] );
+					}
+					
+					if( ! ( 'publish' == get_post_status( $feed_id ) ) ) {
+						
+						if( current_user_can( 'manage_options' ) ) {
+							echo '<p>' . __( 'There was a problem with one or more of your feed IDs. Please check your widget settings and make sure they are correct.', 'gce' ) . '</p>';
+						}
+						
+						return;
+					}
 				}
 
 				//If at least one of the feed ids entered exists, set no_feeds_exist to false
