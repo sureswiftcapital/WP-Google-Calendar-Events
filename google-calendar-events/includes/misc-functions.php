@@ -33,7 +33,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			'paging'          => null,
 			'max_num'         => null,
 			'range_start'     => null,
-			'hide_tooltips'   => false
+			'hide_tooltips'   => null
 		);
 	
 	$args = array_merge( $defaults, $args );
@@ -70,10 +70,16 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			$paging = get_post_meta( $id, 'gce_paging', true );
 		}
 		
-		$tooltips = get_post_meta( $id, 'gce_hide_tooltips', true );
+		if( empty( $hide_tooltips ) ) {
+			$tooltips = get_post_meta( $id, 'gce_hide_tooltips', true );
+		} else {
+			$tooltips = $hide_tooltips;
+		}
 		
-		if( ! empty( $tooltips ) ) {
+		if( $tooltips === true || $tooltips == 'true' || $tooltips == '1' || $tooltips == 1 ) {
 			$hide_tooltips = 'true';
+		} else {
+			$hide_tooltips = 'false';
 		}
 	}
 	
@@ -85,9 +91,10 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		
 		$localize[$target] = array( 
 				'target_element' => $target,
-				'feed_ids'   => $feed_ids,
-				'title_text' => $title_text,
-				'type'       => ( $widget == 1 ? 'widget' : 'page' )
+				'feed_ids'       => $feed_ids,
+				'title_text'     => $title_text,
+				'type'           => ( $widget == 1 ? 'widget' : 'page' ),
+				'hide_tooltips'  => ( $hide_tooltips == 'true' || $hide_tooltips == '1' ? 'true' : 'false' )
 			);
 		
 		if( $widget == 1 ) {
@@ -98,15 +105,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		
 		$markup .= $d->get_grid( $year, $month, $widget, $paging );
 		$markup .= '</div>';
-		
-		if( $hide_tooltips != 'false' ) {
-		
-			$tooltips = array( 
-				'show' => $hide_tooltips
-			);
-
-			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_hide_tooltips', $tooltips );
-		}
 
 		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
 		

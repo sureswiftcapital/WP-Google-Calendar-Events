@@ -29,7 +29,7 @@ function gce_gcal_shortcode( $attr ) {
 					'interval_count'        => null,
 					'offset_interval_count' => null,
 					'offset_direction'      => null,
-					'hide_tooltips'         => 'false'
+					'hide_tooltips'         => null
 				), $attr, 'gce_feed' ) );
 	
 	// If no ID is specified then return
