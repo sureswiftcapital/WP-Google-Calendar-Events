@@ -287,7 +287,7 @@ class GCE_Feed {
 			case 'years':
 				return time() + ( $end * 31556926 );
 			case 'date-range':
-				return $end;
+				return mktime( 23, 59, 59, date( 'n', $end ), date( 'j', $end ), date( 'Y', $end ) );
 		}
 		
 		// Falls back to 1 year ahead just in case
