@@ -99,10 +99,6 @@ function gce_v218_upgrade() {
 	
 
 	// TODO: Update widgets for new UI
-	
-	// Below is just an example of how we can update the widgets
-	// Adjust it accordingly
-	/**
 	$widget = get_option( 'widget_gce_widget' );
 	
 	if( is_array( $widget ) && ! empty( $widget ) ) {
@@ -112,16 +108,13 @@ function gce_v218_upgrade() {
 			} 
 
 			foreach( $b as $k => $v ) {
-				$widget[$a]['paging']                      = '1';
-				$widget[$a]['list_max_num']                = '7';
-				$widget[$a]['list_max_length']             = 'days';
-				$widget[$a]['list_start_offset_num']       = '0';
-				$widget[$a]['list_start_offset_direction'] = 'back';
+				$widget[$a]['gce_per_page_num']    = $widget[$a]['list_max_num'];
+				$widget[$a]['gce_events_per_page'] = $widget[$a]['list_max_length'];
 			}
 		}
 		
 		update_option( 'widget_gce_widget', $widget );
-	}**/
+	}
 }
 
 /*
