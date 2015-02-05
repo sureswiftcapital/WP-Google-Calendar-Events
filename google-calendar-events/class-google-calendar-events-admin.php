@@ -59,10 +59,12 @@ class Google_Calendar_Events_Admin {
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ), 2 );
 
-		// Add admin notice for users upgrading from before 2.1.0.
+		// Add admin notice for users upgrading.
+		/*
 		if( version_compare( $this->version, '2.1.0', '<' ) ) {
 			add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
 		}
+		*/
 		
 		// Add admin notice after plugin activation. Also check if should be hidden.
 		add_action( 'admin_notices', array( $this, 'admin_api_settings_notice' ) );
