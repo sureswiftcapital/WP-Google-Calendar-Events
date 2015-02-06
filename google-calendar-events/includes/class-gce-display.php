@@ -347,8 +347,8 @@ class GCE_Display {
 				if( ( $max_length != 'events' && (( $event->start_time >= $start &&       // Condition for limited by days
 				                                    $event->end_time   <= $end_time ) ||
 				                                  ( $event->day_type == 'MWD' &&
-				                                    $event->start_time > $start &&
-				                                    $event->start_time < $end_time  )
+				                                    $event->start_time >= $start &&
+				                                    $event->start_time <= $end_time  )
 				                                 )
 				    ) ||
 				    ( $max_length == 'events' && ( $event->end_time >= $time_now &&       // Condition for limited by events
