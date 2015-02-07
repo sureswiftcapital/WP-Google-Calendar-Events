@@ -91,6 +91,18 @@ There are three ways to install this plugin.
 
 = 2.1.8 =
 
+* Added custom date range options.
+* Added option to hide tooltips on grid display.
+* Added additional save button at the bottom of the feed settings.
+* Performance updates to script enqueues.
+* Updated Catalan translation files.
+* Fixed bug with multi-day events sometimes not showing up in list view.
+* Widget UI enhancements.
+* Feed settings UI enhancements.
+* Fix bug with ID field not getting encoded.
+* Security enhancements.
+* Updates to list output logic.
+
 
 = 2.1.7 =
 
