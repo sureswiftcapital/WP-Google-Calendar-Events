@@ -102,6 +102,7 @@ There are three ways to install this plugin.
 * Fix bug with ID field not getting encoded.
 * Security enhancements.
 * Updates to list output logic.
+* Fixed bug with tooltips scrolling on mobile.
 
 
 = 2.1.7 =
