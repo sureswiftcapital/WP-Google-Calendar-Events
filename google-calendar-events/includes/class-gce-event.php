@@ -197,7 +197,12 @@ class GCE_Event {
 			
 			$ctz  = get_option( 'timezone_string' );
 			
-			$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
+			// Check if it is a hangouts link first
+			if( strpos( $this->link, 'plus.google.com/events/' ) !== false ) {
+				$link = $this->link;
+			} else {
+				$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
+			}
 			
 			$markup .= '<p class="gce-' . esc_attr( $this->type ) . '-link"><a href="' . esc_url( $link ) . '" ' . esc_attr( $target ) . '>' . esc_html( $display_options['display_link_text'] ) . '</a></p>';
 		}
@@ -369,7 +374,14 @@ class GCE_Event {
 			case 'link':
 				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
 				$ctz  = get_option( 'timezone_string' );
-				$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
+				
+				// Check if it is a hangouts link first
+				if( strpos( $this->link, 'plus.google.com/events/' ) !== false ) {
+					$link = $this->link;
+				} else {
+					$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
+				}
+			
 				return $m[1] . '<a href="' . esc_url( $link ) . '"' . esc_attr( $new_window ) . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
 
 			case 'url':
