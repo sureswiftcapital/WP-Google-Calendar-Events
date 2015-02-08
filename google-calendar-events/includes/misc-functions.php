@@ -70,13 +70,13 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			$paging = get_post_meta( $id, 'gce_paging', true );
 		}
 		
-		if( empty( $show_tooltips ) ) {
+		if( empty( $show_tooltips ) && $show_tooltips != 0 ) {
 			$tooltips = get_post_meta( $id, 'gce_show_tooltips', true );
 		} else {
 			$tooltips = $show_tooltips;
 		}
 		
-		if( $tooltips === true || $tooltips == 'true' || $tooltips == '1' || $tooltips == 1 ) {
+		if( ! empty( $tooltips ) && ( $tooltips === true || $tooltips == 'true' || $tooltips == '1' || $tooltips == 1 ) ) {
 			$show_tooltips = 'true';
 		} else {
 			$show_tooltips = 'false';
