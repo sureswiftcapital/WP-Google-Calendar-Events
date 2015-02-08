@@ -70,6 +70,8 @@
 					}
 					
 					gce_tooltips(tooltip_elements);
+				}).fail(function(data) {
+					console.log( data );
 				});
 
 				e.stopPropagation();
@@ -114,6 +116,8 @@
 				gce_nonce: gce.ajaxnonce
 			}, function(data){
 				navLink.parents('.gce-list').replaceWith(data);
+			}).fail(function(data) {
+				console.log( data );
 			});
 
 			e.stopPropagation();
