@@ -130,7 +130,8 @@
 						at: 'center',
 						viewport: true,
 						adjust: {
-							method: 'shift'
+							method: 'shift',
+							scroll: false
 						}
 					},
 					show: {
