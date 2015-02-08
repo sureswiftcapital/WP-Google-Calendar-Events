@@ -103,6 +103,7 @@ There are three ways to install this plugin.
 * Security enhancements.
 * Updates to list output logic.
 * Fixed bug with tooltips scrolling on mobile.
+* Fixed bug with Google Hangout event links.
 
 
 = 2.1.7 =
