@@ -78,6 +78,10 @@ function gce_gcal_shortcode( $attr ) {
 		if( $paging == null ) {
 			$paging = get_post_meta( $v, 'gce_paging', true );
 		}
+		
+		if( $show_tooltips == null ) {
+			$show_tooltips = get_post_meta( $v, 'gce_show_tooltips', true );
+		}
 	}
 	
 	if( $paging == 'false' ) { 
