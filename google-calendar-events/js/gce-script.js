@@ -28,9 +28,6 @@
 			tooltip_elements = tooltip_elements.substring( 0, tooltip_elements.length - 1 );
 		
 			gce_tooltips(tooltip_elements);
-		}
-		
-		if( typeof gce_grid != 'undefined' ) {
 			
 			$('body').on( 'click', '.gce-change-month', function(e) {
 
