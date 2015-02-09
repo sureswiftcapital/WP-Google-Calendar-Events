@@ -28,7 +28,8 @@
 			tooltip_elements = tooltip_elements.substring( 0, tooltip_elements.length - 1 );
 		
 			gce_tooltips(tooltip_elements);
-			
+
+			// Month nav link click for Grid view.
 			$('body').on( 'click', '.gce-change-month', function(e) {
 
 				e.preventDefault();
@@ -47,6 +48,7 @@
 
 				//Add loading text to table caption
 				$('#' + gce_grid[id].target_element + ' caption').html(gce.loadingText);
+
 				//Send AJAX request
 				$.post(gce.ajaxurl,{
 					action:'gce_ajax',
@@ -67,6 +69,7 @@
 					}
 					
 					gce_tooltips(tooltip_elements);
+
 				}).fail(function(data) {
 					console.log( data );
 				});
@@ -75,6 +78,7 @@
 			});
 		}
 
+		// Month nav link click for List view.
 		$('body').on( 'click', '.gce-change-month-list', function(e) {
 
 			e.preventDefault();
@@ -120,9 +124,11 @@
 			e.stopPropagation();
 		});
 
+		// Tooltip config using qTip2 jQuery plugin.
 		function gce_tooltips(target_items) {
 
-			$(target_items).each(function(){
+			$(target_items).each(function() {
+				
 				//Add qtip to all target items
 				$(this).qtip({
 					content: $(this).children('.gce-event-info'),
