@@ -13,7 +13,8 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-public' );
 	
 	wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
-				array( 
+				array(
+					'script_debug'  => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
 					'ajaxurl'     => admin_url( 'admin-ajax.php' ),
 					'ajaxnonce'   => wp_create_nonce( 'gce_ajax_nonce' ),
 					'loadingText' => __( 'Loading...', 'gce' )
