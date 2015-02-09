@@ -11,9 +11,16 @@
 (function($) {
 	'use strict';
 
+	// Set debug flag.
+	var script_debug = ( (typeof gce != 'undefined') && gce.script_debug == true);
+
 	$(function() {
-		
+
 		if( typeof gce_grid != 'undefined' ) {
+
+			if (script_debug) {
+				console.log('gce_grid', gce_grid);
+			}
 			
 			var tooltip_elements = '';
 
@@ -128,7 +135,7 @@
 		function gce_tooltips(target_items) {
 
 			$(target_items).each(function() {
-				
+
 				//Add qtip to all target items
 				$(this).qtip({
 					content: $(this).children('.gce-event-info'),
