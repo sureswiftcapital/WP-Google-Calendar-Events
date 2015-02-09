@@ -295,13 +295,11 @@ class GCE_Display {
 			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Previous month', 'gce' ) . '" data-gce-paging-direction="back" data-gce-paging-type="' . esc_attr( $paging_type ) . '">'. esc_html( $prev_text ) . '</a></div>';
 			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Next month', 'gce' ) . '" data-gce-paging-direction="forward" data-gce-paging-type="' . esc_attr( $paging_type ) . '">' . esc_html( $next_text ) . '</a></div>';
 
-			$markup .= '<caption class="gce-caption">' .
-						'<div class="gce-navbar">' .
+			$markup .= '<div class="gce-navbar">' .
 						$p .
 						$n .
 						'<div class="gce-month-title"></div>' .
-						'</div>' .
-						'</caption>' . "\n";
+						'</div>' . "\n";
 		}
 		$max_count = 1;
 		$has_events = false;
