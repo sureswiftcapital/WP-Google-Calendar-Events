@@ -46,10 +46,8 @@
 		$gce_events_per_page = 'days';
 	}
 
-	$gce_feed_end_interval           = get_post_meta( $post->ID, 'gce_feed_end_interval', true );
 	$gce_show_tooltips               = get_post_meta( $post->ID, 'gce_show_tooltips', true );
 
-	
 	if( empty( $gce_list_start_offset_num ) ) {
 		$gce_list_start_offset_num = 0;
 	}
@@ -60,6 +58,18 @@
 	
 	if( empty( $gce_feed_end ) ) {
 		$gce_feed_end = 'years';
+	}
+	
+	if( empty( $gce_feed_start_num ) ) {
+		$gce_feed_start_num = 1;
+	}
+	
+	if( empty( $gce_feed_end_num ) ) {
+		$gce_feed_end_num = 1;
+	}
+	
+	if( empty( $gce_per_page_num ) ) {
+		$gce_per_page_num = 7;
 	}
 ?>
 
