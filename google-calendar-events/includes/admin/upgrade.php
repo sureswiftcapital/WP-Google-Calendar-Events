@@ -46,8 +46,8 @@ function gce_upgrade() {
 		}
 		
 		// TODO
-		if( version_compare( $version, '2.1.8', '<' ) ) {
-			gce_v218_upgrade();
+		if( version_compare( $version, '2.2.0', '<' ) ) {
+			gce_v220_upgrade();
 		}
 	}
 	
@@ -57,7 +57,7 @@ function gce_upgrade() {
 	add_option( 'gce_upgrade_has_run', 1 );
 }
 
-function gce_v218_upgrade() {
+function gce_v220_upgrade() {
 	// Update feeds
 	$q = new WP_Query( 'post_type=gce_feed' );
 	
