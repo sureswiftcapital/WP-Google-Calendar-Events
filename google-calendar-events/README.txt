@@ -104,6 +104,8 @@ There are three ways to install this plugin.
 * Updates to list output logic.
 * Fixed bug with tooltips scrolling on mobile.
 * Fixed bug with Google Hangout event links.
+* Fixed a bug with widget settings not being unique.
+* Error messaging updates.
 
 
 = 2.1.7 =
