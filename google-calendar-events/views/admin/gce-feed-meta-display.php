@@ -257,7 +257,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<?php submit_button( null, 'primary', null, false ); // Add standard "save changes" submit button, but don't wrap it in a <p> tag. ?>
+			<input type="button" class="button button-primary button-large gce-feed-update-button" value="Save Changes">
 		</td>
 	</tr>
 </table>

@@ -1,3 +1,5 @@
+/* global jQuery */
+
 /**
  * Admin JavaScript functions
  *
@@ -9,6 +11,7 @@
 
 (function ($) {
 	"use strict";
+
 	$(function () {
 		
 		// Show the hidden text box if custom date is selected  (Events per Page)
@@ -33,7 +36,6 @@
 			}
 		});
 		
-		
 		// Add jQuery date picker to our custom date fields
 		// We have to do it this way because the widget will break after clicking "Save" and this method fixes this problem
 		// REF: http://stackoverflow.com/a/10433307/3578774
@@ -44,8 +46,15 @@
 		$('body').on('focus', 'input[id*=gce_feed_range_end]', function(){
 			$(this).datepicker();
 		});
+
+		// Trigger CPT Publish/Update click from another button.
+		// Form post trigger still pops up JS warning on new CPT.
+		$('.gce-feed-update-button').click(function(e) {
+			e.preventDefault();
+
+			$('#publish').click();
+			//$('#post').submit();
+		});
 	
 	});
 }(jQuery));
-
-
