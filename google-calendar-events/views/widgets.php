@@ -259,10 +259,10 @@ class GCE_Widget extends WP_Widget {
 		$paging                      = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
 		
 		// TODO
-		$gce_per_page_num            = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : 7 );
+		$gce_per_page_num            = ( isset( $instance['gce_per_page_num'] ) && ! empty( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : 7 );
 		$gce_events_per_page         = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : 'days' );
 		
-		$list_start_offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
+		$list_start_offset_num       = ( isset( $instance['list_start_offset_num'] ) && ! empty( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
 		$show_tooltips               = ( isset( $instance['show_tooltips'] ) ? $instance['show_tooltips'] : 1 );
 		
