@@ -7,6 +7,10 @@
  */
 function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
 	
+	// Set static unique ID for setting id attributes
+	STATIC $uid = 1;
+	
+	
 	// Load scripts
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-images-loaded' );
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-qtip' );
@@ -85,10 +89,10 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	}
 	
 	if( 'grid' == $display ) {
-		
+	
 		global $localize;
 		
-		$target = ( $widget == 1 ? 'gce-widget-' : 'gce-page-grid-' ) . $feed_ids;
+		$target = 'gce-' . $uid;
 		
 		$localize[$target] = array( 
 				'target_element' => $target,
@@ -99,9 +103,9 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			);
 		
 		if( $widget == 1 ) {
-			$markup .= '<div class="gce-widget-grid" id="gce-widget-' . esc_attr( $feed_ids ) . '">';
+			$markup .= '<div class="gce-widget-grid gce-widget-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">';
 		} else {
-			$markup .= '<div class="gce-page-grid" id="gce-page-grid-' . esc_attr( $feed_ids ) . '">';
+			$markup .= '<div class="gce-page-grid gce-page-grid-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">';
 		}
 		
 		$markup .= $d->get_grid( $year, $month, $widget, $paging );
@@ -112,18 +116,18 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
 		
 		if( $widget ) {
-			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . esc_attr( $feed_ids ) . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type, $max_num ) . '</div>';
+			$markup = '<div class="gce-widget-list gce-widget-list-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type, $max_num ) . '</div>';
 		} else {
-			$markup = '<div class="gce-page-list" id="gce-page-list-' . esc_attr( $feed_ids ) . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
+			$markup = '<div class="gce-page-list gce-page-list-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
 		}
 	} else if( 'date-range' == $display ) {	
 		
 		$paging_interval = 'date-range';
 		
 		if( $widget ) {
-			$markup = '<div class="gce-widget-list" id="gce-widget-list-' . esc_attr( $feed_ids ) . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, $max_num ) . '</div>';
+			$markup = '<div class="gce-widget-list gce-widget-list-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, $max_num ) . '</div>';
 		} else {
-			$markup = '<div class="gce-page-list" id="gce-page-list-' . esc_attr( $feed_ids ) . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, INF ) . '</div>';
+			$markup = '<div class="gce-page-list gce-page-list-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, INF ) . '</div>';
 		}
 	}
 	
@@ -136,6 +140,8 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			$i++;
 		}
 	}
+	
+	$uid++;
 	
 	return $markup;
 }
