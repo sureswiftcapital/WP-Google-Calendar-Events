@@ -59,6 +59,7 @@
 				//Send AJAX request
 				$.post(gce.ajaxurl,{
 					action:'gce_ajax',
+					gce_uid: id,
 					gce_type: gce_grid[id].type,
 					gce_feed_ids: gce_grid[id].feed_ids,
 					gce_title_text: gce_grid[id].title_text,

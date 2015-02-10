@@ -37,6 +37,8 @@ class Google_Calendar_Events {
 	 * @var      object
 	 */
 	protected static $instance = null;
+	
+	protected $show_scripts = false;
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
@@ -70,6 +72,25 @@ class Google_Calendar_Events {
 		
 		// Load plugin text domain
 		$this->plugin_textdomain();
+		
+		add_action( 'wp_footer', array( $this, 'localize_main_script' ) );
+	}
+	
+	public function localize_main_script() {
+		
+		if( $this->show_scripts ) {
+			global $localize;
+
+			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
+
+			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
+					array(
+						'script_debug'  => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
+						'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+						'ajaxnonce'   => wp_create_nonce( 'gce_ajax_nonce' ),
+						'loadingText' => __( 'Loading...', 'gce' )
+					) );
+		}
 	}
 	
 	public function load_scripts( $posts ) {
@@ -85,6 +106,8 @@ class Google_Calendar_Events {
 				
 				// Load JS
 				wp_enqueue_script( $this->plugin_slug . '-public' );
+				
+				$this->show_scripts = true;
 				
 				break;
 			}

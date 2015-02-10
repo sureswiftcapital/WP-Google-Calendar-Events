@@ -5,24 +5,18 @@
  * 
  * @since 2.0.0
  */
-function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false ) {
+function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $widget = false, $uid = null ) {
 	
 	// Set static unique ID for setting id attributes
-	STATIC $uid = 1;
+	if( $uid == null ) {
+		STATIC $uid = 1;
+	}
 	
 	
 	// Load scripts
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-images-loaded' );
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-qtip' );
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-public' );
-	
-	wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
-				array(
-					'script_debug'  => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
-					'ajaxurl'     => admin_url( 'admin-ajax.php' ),
-					'ajaxnonce'   => wp_create_nonce( 'gce_ajax_nonce' ),
-					'loadingText' => __( 'Loading...', 'gce' )
-				) );
 	
 	$defaults = array(
 			'title_text'      => '',
@@ -111,7 +105,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		$markup .= $d->get_grid( $year, $month, $widget, $paging );
 		$markup .= '</div>';
 
-		wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
 		
 	} else if( 'list' == $display || 'list-grouped' == $display ) {
 		
@@ -159,16 +152,20 @@ function gce_ajax() {
 		die( 'Request has failed.' );
 	}
    
-	   $ids    = esc_html( $_POST['gce_feed_ids'] );
-	   $title  = esc_html( $_POST['gce_title_text'] );
-	   $month  = esc_html( $_POST['gce_month'] );
-	   $year   = esc_html( $_POST['gce_year'] );
-	   $paging = esc_html( $_POST['gce_paging'] );
-	   $type   = esc_html( $_POST['gce_type'] );
+	$uid    = esc_html( $_POST['gce_uid'] );
+	$ids    = esc_html( $_POST['gce_feed_ids'] );
+	$title  = esc_html( $_POST['gce_title_text'] );
+	$month  = esc_html( $_POST['gce_month'] );
+	$year   = esc_html( $_POST['gce_year'] );
+	$paging = esc_html( $_POST['gce_paging'] );
+	$type   = esc_html( $_POST['gce_type'] );
+	   
+	 // Split ID and pass as UID to function
+	$uid = explode( '-', $uid );
 
-	   $title = ( 'null' == $title ) ? null : $title;
+	$title = ( 'null' == $title ) ? null : $title;
 
-	   $args = array(
+	$args = array(
 		   'title_text' => $title,
 		   'month'      => $month,
 		   'year'       => $year,
@@ -176,10 +173,10 @@ function gce_ajax() {
 	   );
 
 	   if ( 'page' == $type ) {
-		   echo gce_print_calendar( $ids, 'grid', $args );
+		   echo gce_print_calendar( $ids, 'grid', $args, 0, $uid[1] );
 	   } elseif ( 'widget' == $type ) {
 		   $args['widget'] = 1;
-		   echo gce_print_calendar( $ids, 'grid', $args );
+		   echo gce_print_calendar( $ids, 'grid', $args, 1, $uid[1] );
 	   }
 	   
    die();
@@ -200,7 +197,7 @@ function gce_ajax_list() {
     if( ! check_ajax_referer( 'gce_ajax_nonce', 'gce_nonce' ) ) {
 		die( 'Request has failed.' );
 	}
-  
+	
 	$grouped          = esc_html( $_POST['gce_grouped'] );
 	$start            = esc_html( $_POST['gce_start'] );
 	$ids              = esc_html( $_POST['gce_feed_ids'] );
