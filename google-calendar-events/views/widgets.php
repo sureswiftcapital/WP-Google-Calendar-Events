@@ -195,7 +195,6 @@ class GCE_Widget extends WP_Widget {
 						echo '<p>' . __( 'There was a problem with one or more of your feed IDs. Please check your widget settings and make sure they are correct.', 'gce' ) . '</p>';
 					}
 				}
-				
 			}
 		} else {
 			if( current_user_can( 'manage_options' ) ) {
@@ -223,8 +222,6 @@ class GCE_Widget extends WP_Widget {
 		$instance['order']                       = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
 		$instance['display_title_text']          = esc_html( $new_instance['display_title_text'] );
 		$instance['paging']                      = ( isset( $new_instance['paging'] ) ? 1 : 0 );
-		$instance['list_max_num']                = $new_instance['list_max_num'];
-		$instance['list_max_length']             = $new_instance['list_max_length'];
 		$instance['list_start_offset_num']       = $new_instance['list_start_offset_num'];
 		$instance['list_start_offset_direction'] = $new_instance['list_start_offset_direction'];
 		$instance['gce_per_page_num']            = $new_instance['gce_per_page_num'];
@@ -258,7 +255,6 @@ class GCE_Widget extends WP_Widget {
 		$title_text                  = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : __( 'Events on', 'gce' );
 		$paging                      = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
 		
-		// TODO
 		$gce_per_page_num            = ( isset( $instance['gce_per_page_num'] ) && ! empty( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : 7 );
 		$gce_events_per_page         = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : 'days' );
 		

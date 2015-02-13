@@ -161,13 +161,6 @@
 					style: {
 						classes: 'qtip-light qtip-shadow qtip-rounded'
 					}
-
-					/* Old qTip 1 settings */
-					
-					//position: { corner: { target: 'center', tooltip: 'bottomLeft' }, adjust: { screen: true } },
-					//show: { solo: true, delay: 0, effect: { length: 0 } },
-					//hide: { fixed: true, delay: 100, effect: { length: 0 } },
-					//style: { padding: "0", classes: { tooltip: 'gce-qtip', tip: 'gce-qtip-tip', title: 'gce-qtip-title', content: 'gce-qtip-content', active: 'gce-qtip-active' }, border: { width: 0 } }
 				});
 			});
 		}

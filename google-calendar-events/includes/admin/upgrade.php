@@ -45,7 +45,6 @@ function gce_upgrade() {
 			gce_v210_upgrade();
 		}
 		
-		// TODO
 		if( version_compare( $version, '2.2.0', '<' ) ) {
 			gce_v220_upgrade();
 		}
@@ -65,15 +64,6 @@ function gce_v220_upgrade() {
 		while( $q->have_posts() ) {
 			
 			$q->the_post();
-			
-			// TODO: Update feed options for new UI
-			// What we need to update
-			// gce_list_max_num        -> gce_per_page_num
-			// gce_list_max_length     -> gce_events_per_page
-			// gce_feed_start_interval -> gce_feed_start
-			// gce_feed_start          -> gce_feed_start_num
-			// gce_feed_end_interval   -> gce_feed_end
-			// gce_feed_end            -> gce_feed_end_num
 			
 			$gce_list_max_num        = get_post_meta( get_the_ID(), 'gce_list_max_num', true );
 			$gce_list_max_length     = get_post_meta( get_the_ID(), 'gce_list_max_length', true );

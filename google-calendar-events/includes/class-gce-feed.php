@@ -114,9 +114,6 @@ class GCE_Feed {
 		
 		$args['timeMax'] = urlencode( date( 'c', $this->feed_end ) );
 		
-		//echo 'timeMin: ' . $args['timeMin'] . '<br>';
-		//echo 'timeMax: ' . $args['timeMax'] . '<br>';
-		
 		$args['maxResults'] = 10000;
 		
 		$ctz = get_option( 'timezone_string' );
@@ -168,7 +165,6 @@ class GCE_Feed {
 						//If decoding was successful
 						if ( ! empty( $raw_data ) ) {
 							//If there are some entries (events) to process
-							//if ( isset( $raw_data['feed']['entry'] ) ) {
 								//Loop through each event, extracting the relevant information
 								foreach ( $raw_data['items'] as $event ) {
 									$id          = ( isset( $event['id'] ) ? esc_html( $event['id'] ) : '' );

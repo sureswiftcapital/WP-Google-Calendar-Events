@@ -55,9 +55,6 @@ if ( empty( $general['save_settings'] ) ) {
 	delete_post_meta_by_key( 'gce_list_max_length' );
 	delete_post_meta_by_key( 'gce_list_start_offset_num' );
 	delete_post_meta_by_key( 'gce_list_start_offset_direction' );
-	
-	//TODO: Missing these post meta on uninstall
-	// Found these leftover after uninstall. Need to double check which ones are old options and which are newer so I can keep them separated here
 	delete_post_meta_by_key( 'old_gce_id' );
 	delete_post_meta_by_key( 'gce_display_link' );
 	delete_post_meta_by_key( 'gce_display_link_text' );
