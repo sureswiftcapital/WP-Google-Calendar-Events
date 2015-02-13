@@ -57,7 +57,7 @@ class GCE_Widget extends WP_Widget {
 		$max_num      = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : null );
 		$max_length   = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : null );
 		$max_events   = null;
-		$display_mode = ( isset( $instance['gce_display_mode'] ) ? $instance['gce_display_mode'] : null );
+		$display_type = ( isset( $instance['display_type'] ) ? $instance['display_type'] : null );
 		
 		// Start offset
 		$offset_num       = ( isset( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
@@ -68,7 +68,7 @@ class GCE_Widget extends WP_Widget {
 		
 
 		// Get custom date range if set
-		if( 'date-range' == $display_mode ) {
+		if( 'date-range' == $display_type ) {
 			$range_start = ( isset( $instance['gce_feed_range_start'] ) ? $instance['gce_feed_range_start'] : null );
 			$range_end   = ( isset( $instance['gce_feed_range_end'] ) ? $instance['gce_feed_range_end'] : null );
 			
@@ -80,8 +80,12 @@ class GCE_Widget extends WP_Widget {
 				$range_end = gce_date_unix( $range_end );
 			}
 		}
-
-		$show_tooltips = ( isset( $instance['show_tooltips'] ) ? $instance['show_tooltips'] : 'false' );
+		
+		if( ! isset( $instance['show_tooltips'] ) ) {
+			$show_tooltips = 1;
+		} else {
+			$show_tooltips = ( isset( $instance['show_tooltips'] ) ? $instance['show_tooltips'] : 'false' );
+		}
 		
 		
 		if( $offset_direction == 'back' ) {
@@ -94,7 +98,7 @@ class GCE_Widget extends WP_Widget {
 		
 		$paging_interval = null;
 		
-		if( $display_mode == 'date-range' ) {
+		if( $display_type == 'date-range' ) {
 			$max_length = 'date-range';
 		} 
 		
@@ -177,16 +181,16 @@ class GCE_Widget extends WP_Widget {
 					'show_tooltips' => $show_tooltips
 				);
 				
-				if( 'list-grouped' == $display_mode ) {
+				if( 'list-grouped' == $display_type ) {
 					$args['grouped'] = 1;
 				}
 				
-				if( 'date-range' == $display_mode ) {
+				if( 'date-range' == $display_type ) {
 					$args['max_events'] = INF;
 					$args['max_num'] = INF;
 				}
 				
-				$markup = gce_print_calendar( $feed_ids, $display_mode, $args, true );
+				$markup = gce_print_calendar( $feed_ids, $display_type, $args, true );
 				
 				if( ! $invalid_id ) {
 					echo $markup;
@@ -218,7 +222,7 @@ class GCE_Widget extends WP_Widget {
 		$instance                                = $old_instance;
 		$instance['title']                       = esc_html( $new_instance['title'] );
 		$instance['id']                          = esc_html( $new_instance['id'] );
-		$instance['gce_display_mode']            = esc_html( $new_instance['gce_display_mode'] );
+		$instance['display_type']            = esc_html( $new_instance['display_type'] );
 		$instance['order']                       = ( 'asc' == $new_instance['order'] ) ? 'asc' : 'desc';
 		$instance['display_title_text']          = esc_html( $new_instance['display_title_text'] );
 		$instance['paging']                      = ( isset( $new_instance['paging'] ) ? 1 : 0 );
@@ -249,7 +253,7 @@ class GCE_Widget extends WP_Widget {
 		
 		$title                       = ( isset( $instance['title'] ) ) ? $instance['title'] : '';
 		$ids                         = ( isset( $instance['id'] ) ) ? $instance['id'] : '';
-		$gce_display_mode            = ( isset( $instance['gce_display_mode'] ) ) ? $instance['gce_display_mode'] : 'grid';
+		$display_type            = ( isset( $instance['display_type'] ) ) ? $instance['display_type'] : 'grid';
 		$order                       = ( isset( $instance['order'] ) ) ? $instance['order'] : 'asc';
 		$display_title               = ( isset( $instance['display_title'] ) ) ? $instance['display_title'] : true;
 		$title_text                  = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : __( 'Events on', 'gce' );
@@ -262,7 +266,7 @@ class GCE_Widget extends WP_Widget {
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
 		$show_tooltips               = ( isset( $instance['show_tooltips'] ) ? $instance['show_tooltips'] : 1 );
 		
-		$use_range = ( selected( $gce_display_mode, 'date-range', false ) ? true : false );
+		$use_range = ( selected( $display_type, 'date-range', false ) ? true : false );
 		
 		?>
 		<p>
@@ -277,12 +281,12 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'gce_display_mode' ); ?>"><?php _e( 'Display Events as:', 'gce' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'gce_display_mode' ); ?>" name="<?php echo $this->get_field_name( 'gce_display_mode' ); ?>" class="widefat">
-				<option value="grid" <?php selected( $gce_display_mode, 'grid' ); ?>><?php _e( 'Grid (Month view)', 'gce' ); ?></option>
-				<option value="list" <?php selected( $gce_display_mode, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
-				<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
-				<option value="date-range" <?php selected( $gce_display_mode, 'date-range' );?>><?php _e( 'Custom Date Range (List view)', 'gce' ); ?></option>
+			<label for="<?php echo $this->get_field_id( 'display_type' ); ?>"><?php _e( 'Display Events as:', 'gce' ); ?></label>
+			<select id="<?php echo $this->get_field_id( 'display_type' ); ?>" name="<?php echo $this->get_field_name( 'display_type' ); ?>" class="widefat">
+				<option value="grid" <?php selected( $display_type, 'grid' ); ?>><?php _e( 'Grid (Month view)', 'gce' ); ?></option>
+				<option value="list" <?php selected( $display_type, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
+				<option value="list-grouped" <?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
+				<option value="date-range" <?php selected( $display_type, 'date-range' );?>><?php _e( 'Custom Date Range (List view)', 'gce' ); ?></option>
 			</select>
 		</p>
 		
