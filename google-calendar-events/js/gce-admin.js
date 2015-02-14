@@ -53,7 +53,6 @@
 			e.preventDefault();
 
 			$('#publish').click();
-			//$('#post').submit();
 		});
 	
 	});

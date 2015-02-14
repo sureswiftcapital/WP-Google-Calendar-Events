@@ -88,7 +88,7 @@ function gce_v220_upgrade() {
 	wp_reset_postdata();
 	
 
-	// TODO: Update widgets for new UI
+	// Update widgets for new UI
 	$widget = get_option( 'widget_gce_widget' );
 	
 	if( is_array( $widget ) && ! empty( $widget ) ) {

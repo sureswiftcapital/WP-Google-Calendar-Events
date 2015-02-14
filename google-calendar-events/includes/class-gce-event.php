@@ -111,9 +111,7 @@ class GCE_Event {
 			return $this->use_builder();
 		}
 
-		// Setup the markup to return
-		//$display_options = get_option( 'gce_settings_general' );
-		
+		// Setup the markup to return		
 		$display_options['display_start']         = get_post_meta( $this->feed->id, 'gce_display_start', true );
 		$display_options['display_start_text']    = get_post_meta( $this->feed->id, 'gce_display_start_text', true );
 		$display_options['display_end']           = get_post_meta( $this->feed->id, 'gce_display_end', true );
