@@ -36,6 +36,17 @@
 			}
 		});
 		
+		// For main settings page
+		$('body').on('change', 'select[id*=gce_display_mode]', function() {
+			if( $(this).val() == 'date-range' ) {
+				$('.gce-display-option').hide();
+				$('.gce-custom-range').show();
+			} else {
+				$('.gce-display-option').show();
+				$('.gce-custom-range').hide();
+			}
+		});
+		
 		// Add jQuery date picker to our custom date fields
 		// We have to do it this way because the widget will break after clicking "Save" and this method fixes this problem
 		// REF: http://stackoverflow.com/a/10433307/3578774
