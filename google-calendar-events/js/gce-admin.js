@@ -18,21 +18,21 @@
 		$('body').on('change', 'select[id*=events_per_page]', function() {
 
 			// Hide everything before showing what we want
-			$('.gce_per_page_num_wrap').hide();
+			$(this).parent().children('.gce_per_page_num_wrap').hide();
 			
 			if( $(this).val() == 'days' || $(this).val() == 'events' ) {
-				$('.gce_per_page_num_wrap').show();
+				$(this).parent().children('.gce_per_page_num_wrap').show();
 			}
 		});
 		
 		$('body').on('change', 'select[id*=display_type]', function() {
 
 			if( $(this).val() == 'date-range' ) {
-				$('.gce-display-option').hide();
-				$('.gce-custom-range').show();
+				$(this).parent().parent().children('.gce-display-option').hide();
+				$(this).parent().parent().children('.gce-custom-range').show();
 			} else {
-				$('.gce-display-option').show();
-				$('.gce-custom-range').hide();
+				$(this).parent().parent().children('.gce-display-option').show();
+				$(this).parent().parent().children('.gce-custom-range').hide();
 			}
 		});
 		
