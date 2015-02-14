@@ -261,7 +261,7 @@
 				<input type="text" name="gce_feed_range_start" id="gce_feed_range_start" value="<?php echo esc_attr( $gce_feed_range_start ); ?>" />
 				<?php _ex( 'to', 'separator between custom date range fields', 'gce' ); ?>
 				<input type="text" id="gce_feed_range_end" name="gce_feed_range_end" value="<?php echo esc_attr( $gce_feed_range_end ); ?>" />
-				<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
+				<p class="description"><?php _e( 'Set a specific range of events to retrieve.', 'gce' ); ?></p>
 			</span>
 		</td>
 	</tr>
