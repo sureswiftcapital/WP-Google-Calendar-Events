@@ -82,6 +82,16 @@ function gce_gcal_shortcode( $attr ) {
 		if( $show_tooltips == null ) {
 			$show_tooltips = get_post_meta( $v, 'gce_show_tooltips', true );
 		}
+		
+		if( ! ( 'publish' == get_post_status( $v ) ) ) {
+			$invalid_id = true;
+		}
+	}
+	
+	if( $invalid_id ) {
+		if( current_user_can( 'manage_options' ) ) {
+			return '<p>' . __( 'There was a problem with one or more of your feed IDs. Please check your shortcode settings and make sure they are correct.', 'gce' ) . '</p>';
+		}
 	}
 	
 	if( $paging == 'false' ) { 
