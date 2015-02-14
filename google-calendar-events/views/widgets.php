@@ -54,8 +54,8 @@ class GCE_Widget extends WP_Widget {
 		echo $before_widget;
 		
 		$paging       = ( isset( $instance['paging'] ) ? $instance['paging'] : null );
-		$max_num      = ( isset( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : null );
-		$max_length   = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : null );
+		$max_num      = ( isset( $instance['per_page_num'] ) ? $instance['per_page_num'] : null );
+		$max_length   = ( isset( $instance['events_per_page'] ) ? $instance['events_per_page'] : null );
 		$max_events   = null;
 		$display_type = ( isset( $instance['display_type'] ) ? $instance['display_type'] : null );
 		
@@ -69,8 +69,8 @@ class GCE_Widget extends WP_Widget {
 
 		// Get custom date range if set
 		if( 'date-range' == $display_type ) {
-			$range_start = ( isset( $instance['gce_feed_range_start'] ) ? $instance['gce_feed_range_start'] : null );
-			$range_end   = ( isset( $instance['gce_feed_range_end'] ) ? $instance['gce_feed_range_end'] : null );
+			$range_start = ( isset( $instance['feed_range_start'] ) ? $instance['feed_range_start'] : null );
+			$range_end   = ( isset( $instance['feed_range_end'] ) ? $instance['feed_range_end'] : null );
 			
 			if( $range_start !== null && ! empty( $range_start ) ) {
 				$range_start = gce_date_unix( $range_start );
@@ -228,8 +228,8 @@ class GCE_Widget extends WP_Widget {
 		$instance['paging']                      = ( isset( $new_instance['paging'] ) ? 1 : 0 );
 		$instance['list_start_offset_num']       = $new_instance['list_start_offset_num'];
 		$instance['list_start_offset_direction'] = $new_instance['list_start_offset_direction'];
-		$instance['gce_per_page_num']            = $new_instance['gce_per_page_num'];
-		$instance['gce_events_per_page']         = $new_instance['gce_events_per_page'];
+		$instance['per_page_num']            = $new_instance['per_page_num'];
+		$instance['events_per_page']         = $new_instance['events_per_page'];
 		$instance['show_tooltips']               = ( isset( $new_instance['show_tooltips'] ) ? 1 : 0 );
 		
 		return $instance;
@@ -259,8 +259,8 @@ class GCE_Widget extends WP_Widget {
 		$title_text                  = ( isset( $instance['display_title_text'] ) ) ? $instance['display_title_text'] : __( 'Events on', 'gce' );
 		$paging                      = ( isset( $instance['paging'] ) ? $instance['paging'] : 1 );
 		
-		$gce_per_page_num            = ( isset( $instance['gce_per_page_num'] ) && ! empty( $instance['gce_per_page_num'] ) ? $instance['gce_per_page_num'] : 7 );
-		$gce_events_per_page         = ( isset( $instance['gce_events_per_page'] ) ? $instance['gce_events_per_page'] : 'days' );
+		$per_page_num            = ( isset( $instance['per_page_num'] ) && ! empty( $instance['per_page_num'] ) ? $instance['per_page_num'] : 7 );
+		$events_per_page         = ( isset( $instance['events_per_page'] ) ? $instance['events_per_page'] : 'days' );
 		
 		$list_start_offset_num       = ( isset( $instance['list_start_offset_num'] ) && ! empty( $instance['list_start_offset_num'] ) ? $instance['list_start_offset_num'] : 0 );
 		$list_start_offset_direction = ( isset( $instance['list_start_offset_direction'] ) ? $instance['list_start_offset_direction'] : 'back' );
@@ -305,14 +305,14 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
-			<select id="<?php echo $this->get_field_id( 'gce_events_per_page' ); ?>" name="<?php echo $this->get_field_name( 'gce_events_per_page' ); ?>">
-				<option value="days" <?php selected( $gce_events_per_page, 'days', true ); ?>><?php _e( 'Number of Days', 'gce' ); ?></option>
-				<option value="events" <?php selected( $gce_events_per_page, 'events', true ); ?>><?php _e( 'Number of Events', 'gce' ); ?></option>
-				<option value="week" <?php selected( $gce_events_per_page, 'week', true ); ?>><?php _e( 'One Week', 'gce' ); ?></option>
-				<option value="month" <?php selected( $gce_events_per_page, 'month', true ); ?>><?php _e( 'One Month', 'gce' ); ?></option>
+			<select id="<?php echo $this->get_field_id( 'events_per_page' ); ?>" name="<?php echo $this->get_field_name( 'events_per_page' ); ?>">
+				<option value="days" <?php selected( $events_per_page, 'days', true ); ?>><?php _e( 'Number of Days', 'gce' ); ?></option>
+				<option value="events" <?php selected( $events_per_page, 'events', true ); ?>><?php _e( 'Number of Events', 'gce' ); ?></option>
+				<option value="week" <?php selected( $events_per_page, 'week', true ); ?>><?php _e( 'One Week', 'gce' ); ?></option>
+				<option value="month" <?php selected( $events_per_page, 'month', true ); ?>><?php _e( 'One Month', 'gce' ); ?></option>
 			</select>
-			<span class="gce_per_page_num_wrap <?php echo ( $gce_events_per_page != 'days' && $gce_events_per_page != 'events' ? 'gce-admin-hidden' : '' ); ?>">
-				<input type="number" min="0" step="1" class="small-text" name="<?php echo $this->get_field_name( 'gce_per_page_num' ); ?>" id="<?php echo $this->get_field_id( 'gce_per_page_num' ); ?>" value="<?php echo esc_attr( $gce_per_page_num ); ?>" />
+			<span class="gce_per_page_num_wrap <?php echo ( $events_per_page != 'days' && $events_per_page != 'events' ? 'gce-admin-hidden' : '' ); ?>">
+				<input type="number" min="0" step="1" class="small-text" name="<?php echo $this->get_field_name( 'per_page_num' ); ?>" id="<?php echo $this->get_field_id( 'per_page_num' ); ?>" value="<?php echo esc_attr( $per_page_num ); ?>" />
 			</span>
 		</p>
 

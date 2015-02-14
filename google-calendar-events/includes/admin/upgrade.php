@@ -98,8 +98,8 @@ function gce_v220_upgrade() {
 			} 
 
 			foreach( $b as $k => $v ) {
-				$widget[$a]['gce_per_page_num']    = $widget[$a]['list_max_num'];
-				$widget[$a]['gce_events_per_page'] = $widget[$a]['list_max_length'];
+				$widget[$a]['per_page_num']    = $widget[$a]['list_max_num'];
+				$widget[$a]['events_per_page'] = $widget[$a]['list_max_length'];
 			}
 		}
 		
