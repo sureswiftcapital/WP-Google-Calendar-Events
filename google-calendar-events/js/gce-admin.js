@@ -15,7 +15,7 @@
 	$(function () {
 		
 		// Show the hidden text box if custom date is selected  (Events per Page)
-		$('body').on('change', 'select[id*=gce_events_per_page]', function() {
+		$('body').on('change', 'select[id*=events_per_page]', function() {
 
 			// Hide everything before showing what we want
 			$('.gce_per_page_num_wrap').hide();
@@ -25,7 +25,7 @@
 			}
 		});
 		
-		$('body').on('change', 'select[id*=gce_display_mode]', function() {
+		$('body').on('change', 'select[id*=display_type]', function() {
 
 			if( $(this).val() == 'date-range' ) {
 				$('.gce-display-option').hide();
@@ -39,11 +39,11 @@
 		// Add jQuery date picker to our custom date fields
 		// We have to do it this way because the widget will break after clicking "Save" and this method fixes this problem
 		// REF: http://stackoverflow.com/a/10433307/3578774
-		$('body').on('focus', 'input[id*=gce_feed_range_start]', function(){
+		$('body').on('focus', 'input[id*=feed_range_start]', function(){
 			$(this).datepicker();
 		});
 		
-		$('body').on('focus', 'input[id*=gce_feed_range_end]', function(){
+		$('body').on('focus', 'input[id*=feed_range_end]', function(){
 			$(this).datepicker();
 		});
 
