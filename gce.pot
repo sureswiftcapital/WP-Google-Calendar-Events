@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2015-02-14 10:51-0700\n"
-"PO-Revision-Date: 2015-02-14 10:51-0700\n"
+"POT-Creation-Date: 2015-02-14 14:20-0700\n"
+"PO-Revision-Date: 2015-02-14 14:20-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -326,7 +326,7 @@ msgid ""
 "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
 
-#: google-calendar-events/includes/shortcodes.php:93
+#: google-calendar-events/includes/shortcodes.php:95
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "shortcode settings and make sure they are correct."
@@ -716,13 +716,16 @@ msgid "Number of Years Forward"
 msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:253
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:264
 msgid ""
 "Set how far in the future to retrieve events regardless of initial display."
 msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:258
 msgid "Use Custom Date Range"
+msgstr ""
+
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:264
+msgid "Set a specific range of events to retrieve."
 msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-sidebar-help.php:6
