@@ -37,6 +37,8 @@ function gce_gcal_shortcode( $attr ) {
 		return;
 	}
 	
+	$invalid_id = false;
+	
 	$paging_interval = null;
 	$max_events = null;
 	
