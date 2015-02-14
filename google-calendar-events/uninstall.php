@@ -26,7 +26,13 @@ if ( empty( $general['save_settings'] ) ) {
 		'post_status' => array( 
 			'any',
 			'trash',
-			'auto-draft'
+			'auto-draft',
+			'trash',
+			'draft',
+			'pending',
+			'future',
+			'private',
+			'inherit'
 		)
 	));
 
