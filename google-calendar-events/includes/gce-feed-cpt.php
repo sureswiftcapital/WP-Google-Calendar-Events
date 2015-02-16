@@ -202,6 +202,9 @@ function gce_save_meta( $post_id ) {
 					$id = str_replace( '/public/basic', '', $id );
 					$id = str_replace( '%40', '@', $id );
 					
+					// decode first before re-encoding it
+					$id = urldecode( $id );
+					
 					update_post_meta( $post_id, $pmf, urlencode( trim( $id ) ) );
 				} else {
 					update_post_meta( $post_id, $pmf, stripslashes( $_POST[$pmf] ) );
