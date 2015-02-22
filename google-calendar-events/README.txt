@@ -107,7 +107,6 @@ There are three ways to install this plugin.
 * Fixed a bug with widget settings not being unique.
 * Error messaging updates.
 
-
 = 2.1.7 =
 
 * Restructured pagination JavaScript.
