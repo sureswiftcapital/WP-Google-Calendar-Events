@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</p>
 	<p>
 		<a href="<?php echo admin_url( 'edit.php?post_type=gce_feed&page=google-calendar-events_general_settings' ); ?>" class="button-primary"><?php _e( 'Enter your GCal API key', 'gce' ); ?></a>
+		<a href="<?php echo admin_url( 'edit.php?post_type=gce_feed' ); ?>" class="button-secondary"><?php _e( 'Configure GCal feeds', 'gce' ); ?></a>
 		<a href="<?php echo add_query_arg( 'gce-dismiss-install-nag', 1 ); ?>" class="button-secondary"><?php _e( 'Hide this', 'gce' ); ?></a>
 	</p>
 </div>
