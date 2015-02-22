@@ -74,15 +74,6 @@
 ?>
 
 <div id="gce-admin-promo">
-	<?php echo __( 'We\'re <strong>smack dab</strong> in the middle of building additional features for this plugin. Have ideas?', 'gce' ); ?>
-	<strong>
-		<a href="https://trello.com/b/ZQSzsarY" target="_blank">
-			<?php echo __( 'Visit our roadmap and tell us what you\'re looking for', 'gce' ); ?>
-		</a>
-	</strong>
-	<br/>
-	<br/>
-
 	<?php echo __( 'Want to be in the know?', 'gce' ); ?>
 	<strong>
 		<a href="http://eepurl.com/0_VsT" target="_blank">
