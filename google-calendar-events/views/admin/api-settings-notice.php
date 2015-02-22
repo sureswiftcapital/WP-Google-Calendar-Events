@@ -23,7 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div id="gce-install-notice" class="updated">
 	<p>
-		<strong><?php _e( 'GCal API Key Notice', 'gce' ); ?></strong><br/>
+		<h3><?php _e( 'GCal API Key Notice', 'gce' ); ?></h3>
+	
 		<?php _e( 'GCal Events uses the Google Calendar API version 3. By default this plugin uses a public shared key across all plugin users.', 'gce' ); ?>
 		<br/><br/>
 		<?php _e( 'This key is limited to 500,000 requests per day and 5 requests per second. To avoid running into any potential limits you can use your own Google API key.', 'gce' ); ?>
