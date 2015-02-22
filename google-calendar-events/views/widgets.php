@@ -305,6 +305,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
+			<label for="<?php echo $this->get_field_id( 'events_per_page' ); ?>"><?php _e( 'Events per Page (List View only):', 'gce' ); ?></label><br/>
 			<select id="<?php echo $this->get_field_id( 'events_per_page' ); ?>" name="<?php echo $this->get_field_name( 'events_per_page' ); ?>">
 				<option value="days" <?php selected( $events_per_page, 'days', true ); ?>><?php _e( 'Number of Days', 'gce' ); ?></option>
 				<option value="events" <?php selected( $events_per_page, 'events', true ); ?>><?php _e( 'Number of Events', 'gce' ); ?></option>
