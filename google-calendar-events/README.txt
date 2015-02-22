@@ -99,7 +99,7 @@ There are three ways to install this plugin.
 * Fixed bug with multi-day events sometimes not showing up in list view.
 * Widget UI enhancements.
 * Feed settings UI enhancements.
-* Fix bug with ID field not getting encoded.
+* Fix bug with calendar ID field not getting encoded.
 * Security enhancements.
 * Updates to list output logic.
 * Fixed bug with tooltips scrolling on mobile.
