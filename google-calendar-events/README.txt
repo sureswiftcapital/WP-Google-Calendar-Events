@@ -84,7 +84,6 @@ There are three ways to install this plugin.
 1. List display in widget
 1. Simple display options
 1. Calendar feed settings
-1. More calendar feed settings
 1. Calendar widget settings
 1. Event display builder editor
 
