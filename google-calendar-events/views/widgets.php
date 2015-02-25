@@ -286,7 +286,7 @@ class GCE_Widget extends WP_Widget {
 				<option value="grid" <?php selected( $display_type, 'grid' ); ?>><?php _e( 'Grid (Month view)', 'gce' ); ?></option>
 				<option value="list" <?php selected( $display_type, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
 				<option value="list-grouped" <?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
-				<option value="date-range" <?php selected( $display_type, 'date-range' );?>><?php _e( 'Custom Date Range (List view)', 'gce' ); ?></option>
+				<option value="date-range" <?php selected( $display_type, 'date-range' );?>><?php _e( 'Custom Date Range (List)', 'gce' ); ?></option>
 			</select>
 		</p>
 		
