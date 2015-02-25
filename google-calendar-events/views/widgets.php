@@ -289,12 +289,6 @@ class GCE_Widget extends WP_Widget {
 				<option value="date-range" <?php selected( $display_type, 'date-range' );?>><?php _e( 'Custom Date Range (List)', 'gce' ); ?></option>
 			</select>
 		</p>
-		
-		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
-			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links:', 'gce' ); ?></label><br>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
-			<?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
-		</p>
 
 		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Sort Order (List View only):', 'gce' ); ?></label>
@@ -335,6 +329,12 @@ class GCE_Widget extends WP_Widget {
 		<p class="gce-display-option gce-display-control <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'display_title' ); ?>"><?php _e( 'Display Title on Tooltip/List Item (e.g. \'Events on 7th March\'). Grouped lists always have a title displayed.', 'gce' ); ?></label>
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo esc_attr( $title_text ); ?>" />
+		</p>
+		
+		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
+			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links:', 'gce' ); ?></label><br>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
+			<?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
 		</p>
 		
 		<p>
