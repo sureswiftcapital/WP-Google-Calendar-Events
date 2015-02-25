@@ -220,7 +220,7 @@
 	</tr>
 	
 	<tr>
-		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips?', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips', 'gce' ); ?></label></th>
 		<td>
 			<input type="checkbox" name="gce_show_tooltips" id="gce_show_tooltips" value="1" <?php checked( $gce_show_tooltips, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
 			<p class="description"><?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?></p>

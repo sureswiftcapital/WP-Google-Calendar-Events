@@ -338,7 +338,7 @@ class GCE_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'show_tooltips' ); ?>"><?php _e( 'Show Tooltips?', 'gce' ); ?></label><br>
+			<label for="<?php echo $this->get_field_id( 'show_tooltips' ); ?>"><?php _e( 'Show Tooltips', 'gce' ); ?></label><br>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'show_tooltips' ); ?>" name="<?php echo $this->get_field_name( 'show_tooltips' ); ?>" class="widefat"  value="1" <?php checked( $show_tooltips, 1 ); ?>>
 			<?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?>
 		</p>
