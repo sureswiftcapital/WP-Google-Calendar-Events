@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2015-02-25 15:32-0700\n"
-"PO-Revision-Date: 2015-02-25 15:32-0700\n"
+"POT-Creation-Date: 2015-02-25 15:34-0700\n"
+"PO-Revision-Date: 2015-02-25 15:34-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -534,7 +534,6 @@ msgid "Expand Recurring Events?"
 msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:119
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:225
 msgid "Yes"
 msgstr ""
 
@@ -669,48 +668,47 @@ msgid "Set a specific range of events to retrieve."
 msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:216
+#: google-calendar-events/views/widgets.php:336
 msgid "Show Paging Links"
 msgstr ""
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:218
-#: google-calendar-events/views/widgets.php:337
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:219
 msgid "Display Next and Back navigation links."
 msgstr ""
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:223
-#: google-calendar-events/views/widgets.php:341
-msgid "Show Tooltips?"
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:224
+#: google-calendar-events/views/widgets.php:339
+msgid "Show Tooltips"
 msgstr ""
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:226
-#: google-calendar-events/views/widgets.php:343
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:227
 msgid "Display tooltips when hovering over events (Grid View only)."
 msgstr ""
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:231
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:232
 msgid "Date Format"
-msgstr ""
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:235
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:246
-#, php-format
-msgid "Use %sPHP date formatting%s."
 msgstr ""
 
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:236
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:247
+#, php-format
+msgid "Use %sPHP date formatting%s."
+msgstr ""
+
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:237
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:248
 msgid "Leave blank to use the default."
 msgstr ""
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:242
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:243
 msgid "Time Format"
 msgstr ""
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:253
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:254
 msgid "Cache Duration"
 msgstr ""
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:256
+#: google-calendar-events/views/admin/gce-feed-meta-display.php:257
 msgid ""
 "The length of time, in seconds, to cache the feed (43200 = 12 hours). If "
 "this feed changes regularly, you may want to reduce the cache duration."
@@ -813,8 +811,4 @@ msgstr ""
 msgid ""
 "Display Title on Tooltip/List Item (e.g. 'Events on 7th March'). Grouped "
 "lists always have a title displayed."
-msgstr ""
-
-#: google-calendar-events/views/widgets.php:335
-msgid "Show Paging Links:"
 msgstr ""
