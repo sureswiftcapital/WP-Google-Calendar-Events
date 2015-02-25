@@ -215,15 +215,16 @@
 	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
 		<td>
-			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
+			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> />
+			<?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
 		</td>
 	</tr>
 	
 	<tr>
-		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips?', 'gce' ); ?></label></th>
+		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips', 'gce' ); ?></label></th>
 		<td>
-			<input type="checkbox" name="gce_show_tooltips" id="gce_show_tooltips" value="1" <?php checked( $gce_show_tooltips, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
-			<p class="description"><?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?></p>
+			<input type="checkbox" name="gce_show_tooltips" id="gce_show_tooltips" value="1" <?php checked( $gce_show_tooltips, '1' ); ?> />
+			<?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?>
 		</td>
 	</tr>
 	
