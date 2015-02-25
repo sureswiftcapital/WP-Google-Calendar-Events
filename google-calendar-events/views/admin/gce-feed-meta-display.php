@@ -120,44 +120,6 @@
 			<p class="description"><?php _e( 'Display recurring events each time they occur. If disabled, events will be displayed only the first time they occur.', 'gce' ); ?></p>
 		</td>
 	</tr>
-	
-	<tr>
-		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips?', 'gce' ); ?></label></th>
-		<td>
-			<input type="checkbox" name="gce_show_tooltips" id="gce_show_tooltips" value="1" <?php checked( $gce_show_tooltips, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
-			<p class="description"><?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?></p>
-		</td>
-	</tr>
-
-	<tr>
-		<th scope="row"><label for="gce_date_format"><?php _e( 'Date Format', 'gce' ); ?></label></th>
-		<td>
-			<input type="text" class="" name="gce_date_format" id="gce_date_format" value="<?php echo esc_attr( $gce_date_format ); ?>" />
-			<p class="description">
-				<?php printf( __( 'Use %sPHP date formatting%s.', 'gce' ), '<a href="http://php.net/manual/en/function.date.php" target="_blank">', '</a>' ); ?>
-				<?php _e( 'Leave blank to use the default.', 'gce' ); ?>
-			</p>
-		</td>
-	</tr>
-
-	<tr>
-		<th scope="row"><label for="gce_time_format"><?php _e( 'Time Format', 'gce' ); ?></label></th>
-		<td>
-			<input type="text" class="" name="gce_time_format" id="gce_time_format" value="<?php echo esc_attr( $gce_time_format ); ?>" />
-			<p class="description">
-				<?php printf( __( 'Use %sPHP date formatting%s.', 'gce' ), '<a href="http://php.net/manual/en/function.date.php" target="_blank">', '</a>' ); ?>
-				<?php _e( 'Leave blank to use the default.', 'gce' ); ?>
-			</p>
-		</td>
-	</tr>
-
-	<tr>
-		<th scope="row"><label for="gce_cache"><?php _e( 'Cache Duration', 'gce' ); ?></label></th>
-		<td>
-			<input type="text" class="" name="gce_cache" id="gce_cache" value="<?php echo esc_attr( $gce_cache ); ?>" />
-			<p class="description"><?php _e( 'The length of time, in seconds, to cache the feed (43200 = 12 hours). If this feed changes regularly, you may want to reduce the cache duration.', 'gce' ); ?></p>
-		<td>
-	</tr>
 
 	<tr>
 		<th scope="row"><label for="gce_multi_day_events"><?php _e( 'Multiple Day Events', 'gce' ); ?></label></th>
@@ -177,13 +139,6 @@
 				<option value="date-range" <?php selected( $gce_display_mode, 'date-range', true ); ?>><?php _e( 'Custom Date Range (List)', 'gce' ); ?></option>
 			</select>
 			<p class="description"><?php _e( 'Select how to display this feed.', 'gce' ); ?></p>
-		</td>
-	</tr>
-	
-	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
-		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
-		<td>
-			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
 		</td>
 	</tr>
 	
@@ -256,6 +211,52 @@
 			</span>
 		</td>
 	</tr>
+	
+	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
+		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
+		<td>
+			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips?', 'gce' ); ?></label></th>
+		<td>
+			<input type="checkbox" name="gce_show_tooltips" id="gce_show_tooltips" value="1" <?php checked( $gce_show_tooltips, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
+			<p class="description"><?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?></p>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_date_format"><?php _e( 'Date Format', 'gce' ); ?></label></th>
+		<td>
+			<input type="text" class="" name="gce_date_format" id="gce_date_format" value="<?php echo esc_attr( $gce_date_format ); ?>" />
+			<p class="description">
+				<?php printf( __( 'Use %sPHP date formatting%s.', 'gce' ), '<a href="http://php.net/manual/en/function.date.php" target="_blank">', '</a>' ); ?>
+				<?php _e( 'Leave blank to use the default.', 'gce' ); ?>
+			</p>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_time_format"><?php _e( 'Time Format', 'gce' ); ?></label></th>
+		<td>
+			<input type="text" class="" name="gce_time_format" id="gce_time_format" value="<?php echo esc_attr( $gce_time_format ); ?>" />
+			<p class="description">
+				<?php printf( __( 'Use %sPHP date formatting%s.', 'gce' ), '<a href="http://php.net/manual/en/function.date.php" target="_blank">', '</a>' ); ?>
+				<?php _e( 'Leave blank to use the default.', 'gce' ); ?>
+			</p>
+		</td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><label for="gce_cache"><?php _e( 'Cache Duration', 'gce' ); ?></label></th>
+		<td>
+			<input type="text" class="" name="gce_cache" id="gce_cache" value="<?php echo esc_attr( $gce_cache ); ?>" />
+			<p class="description"><?php _e( 'The length of time, in seconds, to cache the feed (43200 = 12 hours). If this feed changes regularly, you may want to reduce the cache duration.', 'gce' ); ?></p>
+		<td>
+	</tr>
+	
 	<tr>
 		<td colspan="2">
 			<input type="button" class="button button-primary button-large gce-feed-update-button" value="Save Changes">
