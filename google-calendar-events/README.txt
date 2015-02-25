@@ -89,7 +89,7 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.0 =
+= 2.2.0 - February 25, 2015 =
 
 * Added custom date range options.
 * Added option to hide tooltips on grid display.
