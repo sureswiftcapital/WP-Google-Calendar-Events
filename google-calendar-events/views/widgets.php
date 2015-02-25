@@ -293,7 +293,7 @@ class GCE_Widget extends WP_Widget {
 		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links:', 'gce' ); ?></label><br>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
-			<?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
+			<?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
 		</p>
 
 		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
@@ -340,7 +340,7 @@ class GCE_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'show_tooltips' ); ?>"><?php _e( 'Show Tooltips?', 'gce' ); ?></label><br>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'show_tooltips' ); ?>" name="<?php echo $this->get_field_name( 'show_tooltips' ); ?>" class="widefat"  value="1" <?php checked( $show_tooltips, 1 ); ?>>
-			<?php _e( 'Checking this option will show the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?>
+			<?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?>
 		</p>
 			
 	<?php 

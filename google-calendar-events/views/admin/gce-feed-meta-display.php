@@ -100,7 +100,7 @@
 			<p class="description">
 				<?php _e( 'The Google Calendar ID.', 'gce' ); ?> <?php _e( 'Example', 'gce' ); ?>:<br/>
 				<code>umsb0ekhivs1a2ubtq6vlqvcjk@group.calendar.google.com</code><br/>
-				<a href="<?php echo gce_ga_campaign_url( 'http://wpdocs.philderksen.com/google-calendar-events/getting-started/find-calendar-id/', 'gce_lite', 'settings_link', 'docs' ); ?>" target="_blank"><?php _e( 'How to find your GCal calendar ID', 'gce' ); ?></a>
+				<a href="<?php echo gce_ga_campaign_url( 'http://wpdocs.philderksen.com/google-calendar-events/getting-started/find-calendar-id/', 'gce_lite', 'settings_link', 'docs' ); ?>" target="_blank"><?php _e( 'How to find your Google Calendar ID', 'gce' ); ?></a>
 			</p>
 		</td>
 	</tr>
@@ -117,7 +117,7 @@
 		<th scope="row"><label for="gce_expand_recurring"><?php _e( 'Expand Recurring Events?', 'gce' ); ?></label></th>
 		<td>
 			<input type="checkbox" name="gce_expand_recurring" id="gce_expand_recurring" value="1" <?php checked( $gce_expand_recurring, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
-			<p class="description"><?php _e( 'This will show recurring events each time they occur, otherwise it will only show the event the first time it occurs.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Display recurring events each time they occur. If disabled, events will be displayed only the first time they occur.', 'gce' ); ?></p>
 		</td>
 	</tr>
 	
@@ -125,7 +125,7 @@
 		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips?', 'gce' ); ?></label></th>
 		<td>
 			<input type="checkbox" name="gce_show_tooltips" id="gce_show_tooltips" value="1" <?php checked( $gce_show_tooltips, '1' ); ?> /> <?php _e( 'Yes', 'gce' ); ?>
-			<p class="description"><?php _e( 'Checking this option will show the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?></p>
 		</td>
 	</tr>
 
@@ -163,7 +163,7 @@
 		<th scope="row"><label for="gce_multi_day_events"><?php _e( 'Multiple Day Events', 'gce' ); ?></label></th>
 		<td>
 			<input type="checkbox" name="gce_multi_day_events" id="gce_multi_day_events" value="1" <?php checked( $gce_multi_day_events, '1' ); ?> /> <?php _e( 'Show on each day', 'gce' ); ?>
-			<p class="description"><?php _e( 'Show events that span multiple days on each day that they span, rather than just the first day.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Display multiple day events on each day that they span. If disabled, multiple day events will be displayed only on the first day they occur.', 'gce' ); ?></p>
 		</td>
 	</tr>
 
@@ -176,14 +176,14 @@
 				<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped', true ); ?>><?php _e( 'Grouped List', 'gce' ); ?></option>
 				<option value="date-range" <?php selected( $gce_display_mode, 'date-range', true ); ?>><?php _e( 'Custom Date Range (List)', 'gce' ); ?></option>
 			</select>
-			<p class="description"><?php _e( 'Choose how you want your calendar to be displayed.', 'gce' ); ?></p>
+			<p class="description"><?php _e( 'Select how to display this feed.', 'gce' ); ?></p>
 		</td>
 	</tr>
 	
 	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
 		<td>
-			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
+			<input type="checkbox" name="gce_paging" id="gce_paging" value="1" <?php checked( $gce_paging, '1' ); ?> /> <?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
 		</td>
 	</tr>
 	
