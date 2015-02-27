@@ -94,10 +94,6 @@ class Google_Calendar_Events {
 	
 	public function load_scripts( $posts ) {
 		
-		if ( empty( $posts ) ) {
-			return $posts;
-		}
-		
 		global $gce_options;
 		
 		if( isset( $gce_options['always_enqueue'] ) ) {
@@ -110,6 +106,10 @@ class Google_Calendar_Events {
 				$this->show_scripts = true;
 				
 				return $posts;
+		}
+		
+		if ( empty( $posts ) ) {
+			return $posts;
 		}
 
 		foreach ( $posts as $post ){
