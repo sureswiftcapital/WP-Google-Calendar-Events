@@ -111,19 +111,18 @@ class Google_Calendar_Events {
 		if ( empty( $posts ) ) {
 			return $posts;
 		}
+		
+		global $post;
+		
+		if ( ( strpos( $post->post_content, '[gcal' ) !== false ) || ( $post->post_type == 'gce_feed' ) ) {
+			// Load CSS
+			echo 'HIT #3<br>';
+			wp_enqueue_style( $this->plugin_slug . '-public' );
 
-		foreach ( $posts as $post ){
-			if ( ( strpos( $post->post_content, '[gcal' ) !== false ) || ( $post->post_type == 'gce_feed' ) ) {
-				// Load CSS
-				wp_enqueue_style( $this->plugin_slug . '-public' );
-				
-				// Load JS
-				wp_enqueue_script( $this->plugin_slug . '-public' );
-				
-				$this->show_scripts = true;
-				
-				break;
-			}
+			// Load JS
+			wp_enqueue_script( $this->plugin_slug . '-public' );
+
+			$this->show_scripts = true;
 		}
 
 		return $posts;

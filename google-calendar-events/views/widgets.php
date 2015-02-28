@@ -28,7 +28,7 @@ class GCE_Widget extends WP_Widget {
 			array( 'description' => __( 'Display a list or calendar grid of events from one or more Google Calendar feeds you have added', 'gce' ) )
 		);
 		
-		if ( is_active_widget( false, false, $this->id_base, false ) ) {
+		if ( is_active_widget( false, false, $this->id_base, true ) ) {
 			
 			Google_Calendar_Events::get_instance()->show_scripts = true;
 			
