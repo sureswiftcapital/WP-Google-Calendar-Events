@@ -89,9 +89,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.1 =
+= 2.2.1 - TODO =
 
-* Fix bug with script enqueues.
+* Enqueue scripts & styles on all posts & pages temporarily until better detection can be put in place.
+* Fixed GCal ID encoding in feed settings.
 
 = 2.2.0 - February 25, 2015 =
 
