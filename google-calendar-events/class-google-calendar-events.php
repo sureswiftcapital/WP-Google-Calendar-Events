@@ -77,7 +77,7 @@ class Google_Calendar_Events {
 	
 	public function localize_main_script() {
 		
-		if( $this->show_scripts ) {
+		//if( $this->show_scripts ) {
 			global $localize;
 
 			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
@@ -89,26 +89,26 @@ class Google_Calendar_Events {
 						'ajaxnonce'   => wp_create_nonce( 'gce_ajax_nonce' ),
 						'loadingText' => __( 'Loading...', 'gce' )
 					) );
-		}
+		//}
 	}
 	
 	public function load_scripts( $posts ) {
 		
-		global $gce_options;
+		//global $gce_options;
 		
-		if( isset( $gce_options['always_enqueue'] ) ) {
+		//if( isset( $gce_options['always_enqueue'] ) ) {
 				// Load CSS
 				wp_enqueue_style( $this->plugin_slug . '-public' );
 				
 				// Load JS
 				wp_enqueue_script( $this->plugin_slug . '-public' );
 				
-				$this->show_scripts = true;
+				//$this->show_scripts = true;
 				
-				return $posts;
-		}
+				//return $posts;
+		//}
 		
-		if ( empty( $posts ) ) {
+		/*if ( empty( $posts ) ) {
 			return $posts;
 		}
 		
@@ -122,7 +122,7 @@ class Google_Calendar_Events {
 			wp_enqueue_script( $this->plugin_slug . '-public' );
 
 			$this->show_scripts = true;
-		}
+		}*/
 
 		return $posts;
 	}
