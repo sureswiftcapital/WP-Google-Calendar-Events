@@ -89,6 +89,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.2.1 =
+
+* Fix bug with script enqueues.
+
 = 2.2.0 - February 25, 2015 =
 
 * Added custom date range options.
