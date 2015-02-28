@@ -205,13 +205,13 @@ function gce_save_meta( $post_id ) {
 					}
 					
 					// decode first before re-encoding it
-					//$id = urldecode( $id );
+					$id = urldecode( $id );
 					$id = trim( $id );
 					
 					$at = strpos( $id, '@' );
 					
 					if ( $at !== false ) {
-						$id = substr_replace( $id, urlencode( substr( urldecode( $id ), 0, $at ) ), 0, $at );
+						$id = substr_replace( $id, urlencode( substr( $id, 0, $at ) ), 0, $at );
 					}
 					
 					update_post_meta( $post_id, $pmf, $id );
