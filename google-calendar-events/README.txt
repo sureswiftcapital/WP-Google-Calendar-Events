@@ -93,6 +93,8 @@ There are three ways to install this plugin.
 
 * Enqueue scripts & styles on all posts & pages temporarily until better detection can be put in place.
 * Fixed GCal ID encoding in feed settings.
+* Updated Italian translation.
+* Updated French translation.
 
 = 2.2.0 - February 25, 2015 =
 
