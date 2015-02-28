@@ -38,7 +38,7 @@ class Google_Calendar_Events {
 	 */
 	protected static $instance = null;
 	
-	protected $show_scripts = false;
+	public $show_scripts = false;
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts

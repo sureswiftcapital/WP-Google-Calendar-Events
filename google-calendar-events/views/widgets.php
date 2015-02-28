@@ -29,6 +29,9 @@ class GCE_Widget extends WP_Widget {
 		);
 		
 		if ( is_active_widget( false, false, $this->id_base ) ) {
+			
+			Google_Calendar_Events::get_instance()->show_scripts = true;
+			
 			// Call action to load CSS for widget
             add_action( 'wp_enqueue_scripts', array( $this, 'gce_widget_add_styles' ) );
 
