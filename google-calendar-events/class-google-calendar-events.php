@@ -116,7 +116,6 @@ class Google_Calendar_Events {
 		
 		if ( ( strpos( $post->post_content, '[gcal' ) !== false ) || ( $post->post_type == 'gce_feed' ) ) {
 			// Load CSS
-			echo 'HIT #3<br>';
 			wp_enqueue_style( $this->plugin_slug . '-public' );
 
 			// Load JS
