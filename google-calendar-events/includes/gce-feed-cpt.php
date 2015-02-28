@@ -195,21 +195,23 @@ function gce_save_meta( $post_id ) {
 			if ( isset( $_POST[$pmf] ) && ! empty( $_POST[$pmf] ) ) {
 				if( $pmf == 'gce_feed_url' ) {
 					
-					$str = $_POST[$pmf];
+					$id = $_POST[$pmf];
 					
 					// convert from URL if user enters a URL link (like the old versions required)
-					$id = str_replace( 'https://www.google.com/calendar/feeds/', '', $str );
-					$id = str_replace( '/public/basic', '', $id );
-					$id = str_replace( '%40', '@', $id );
+					if ( strpos( $id, 'https://www.google.com/calendar/feeds/' ) !== false ) {
+						$id = str_replace( 'https://www.google.com/calendar/feeds/', '', $id );
+						$id = str_replace( '/public/basic', '', $id );
+						$id = str_replace( '%40', '@', $id );
+					}
 					
 					// decode first before re-encoding it
-					$id = urldecode( $id );
+					//$id = urldecode( $id );
 					$id = trim( $id );
 					
 					$at = strpos( $id, '@' );
 					
-					if( $at !== false ) {
-						$id = substr_replace( $id, urlencode( substr( $id, 0, $at ) ), 0, $at );
+					if ( $at !== false ) {
+						$id = substr_replace( $id, urlencode( substr( urldecode( $id ), 0, $at ) ), 0, $at );
 					}
 					
 					update_post_meta( $post_id, $pmf, $id );
