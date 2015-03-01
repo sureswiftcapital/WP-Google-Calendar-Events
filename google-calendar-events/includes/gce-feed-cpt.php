@@ -266,13 +266,16 @@ function gce_column_content( $column_name, $post_ID ) {
 		case 'display-type':
 			$display = get_post_meta( $post_ID, 'gce_display_mode', true );
 			
-			if( $display == 'grid' ) {
+			if ( $display == 'grid' ) {
 				echo __( 'Grid', 'gce' );
-			} else if( $display == 'list' ) {
+			} elseif ( $display == 'list' ) {
 				echo __( 'List', 'gce' );
-			} else { 
+			} elseif ( $display == 'list-grouped' ) { 
 				echo __( 'Grouped List', 'gce' );
+			} elseif ( $display == 'date-range' ) {
+				echo __( 'Custom Date Range', 'gce' );
 			}
+			
 			break;
 	}
 }
