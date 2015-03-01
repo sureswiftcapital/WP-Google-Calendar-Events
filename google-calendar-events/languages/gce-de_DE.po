@@ -54,7 +54,7 @@ msgstr "Cache leeren"
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:170
 #: google-calendar-events/views/widgets.php:252
 msgid "Back"
-msgstr "zurück"
+msgstr "Zurück"
 
 #: google-calendar-events/includes/class-gce-display.php:192
 #: google-calendar-events/includes/class-gce-display.php:278
