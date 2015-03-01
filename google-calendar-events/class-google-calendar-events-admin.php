@@ -58,16 +58,9 @@ class Google_Calendar_Events_Admin {
 		
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ), 2 );
-
-		// Add admin notice for users upgrading.
-		/*
-		if( version_compare( $this->version, '2.1.0', '<' ) ) {
-			add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
-		}
-		*/
 		
 		// Add admin notice after plugin activation. Also check if should be hidden.
-		add_action( 'admin_notices', array( $this, 'admin_api_settings_notice' ) );
+		add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
 	}
 	
 	/**
@@ -76,7 +69,7 @@ class Google_Calendar_Events_Admin {
 	 *
 	 * @since   2.1.0
 	 */
-	public function admin_api_settings_notice() {
+	public function show_admin_notice() {
 		// Exit all of this is stored value is false/0 or not set.
 		if ( false == get_option( 'gce_show_admin_install_notice' ) ) {
 			return;
@@ -85,14 +78,14 @@ class Google_Calendar_Events_Admin {
 		$screen = get_current_screen();
 
 		// Delete stored value if "hide" button click detected (custom querystring value set to 1).
-		if ( ! empty( $_REQUEST['gce-dismiss-install-nag'] ) ||  in_array( $screen->id, $this->plugin_screen_hook_suffix ) ) {
+		if ( ! empty( $_REQUEST['gce-dismiss-install-nag'] ) ||  in_array( $screen->id, $this->plugin_screen_hook_suffix ) || $this->viewing_this_plugin() ) {
 			delete_option( 'gce_show_admin_install_notice' );
 			return;
 		}
 
 		// At this point show install notice. Show it only on the plugin screen.
-		if( get_current_screen()->id == 'plugins' || $this->viewing_this_plugin() ) {
-			include_once( 'views/admin/api-settings-notice.php' );
+		if( get_current_screen()->id == 'plugins' ) {
+			include_once( 'includes/admin/admin-notice.php' );
 		}
 	}
 	
@@ -100,7 +93,7 @@ class Google_Calendar_Events_Admin {
 	 * Check if viewing one of this plugin's admin pages.
 	 *
 	 * @since   2.1.0
-	 *
+	 *$this->viewing_this_plugin()
 	 * @return  bool
 	 */
 	private function viewing_this_plugin() {
@@ -227,22 +220,5 @@ class Google_Calendar_Events_Admin {
 			),
 			$links
 		);
-	}
-
-	/**
-	 * Use to show an important admin notice.
-	 *
-	 * @since    2.0.7.1
-	 */
-
-	/**
-	 * Example use in constructor:
-
-		if( version_compare( $this->version, '2.1.0', '<' ) ) {
-			add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
-		}
-	 */
-	function show_admin_notice() {
-		include_once( 'includes/admin/admin-notice.php' );
 	}
 }

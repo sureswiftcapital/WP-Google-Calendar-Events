@@ -18,7 +18,7 @@ class Google_Calendar_Events {
 	 *
 	 * @var     string
 	 */
-	protected $version = '2.2.0';
+	protected $version = '2.2.2';
 
 	/**
 	 * Unique identifier for the plugin.
@@ -38,7 +38,7 @@ class Google_Calendar_Events {
 	 */
 	protected static $instance = null;
 	
-	protected $show_scripts = false;
+	public $show_scripts = false;
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
@@ -77,7 +77,7 @@ class Google_Calendar_Events {
 	
 	public function localize_main_script() {
 		
-		if( $this->show_scripts ) {
+		//if( $this->show_scripts ) {
 			global $localize;
 
 			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
@@ -89,28 +89,40 @@ class Google_Calendar_Events {
 						'ajaxnonce'   => wp_create_nonce( 'gce_ajax_nonce' ),
 						'loadingText' => __( 'Loading...', 'gce' )
 					) );
-		}
+		//}
 	}
 	
 	public function load_scripts( $posts ) {
 		
-		if ( empty( $posts ) ) {
-			return $posts;
-		}
-
-		foreach ( $posts as $post ){
-			if ( ( strpos( $post->post_content, '[gcal' ) !== false ) || ( $post->post_type == 'gce_feed' ) ) {
+		//global $gce_options;
+		
+		//if( isset( $gce_options['always_enqueue'] ) ) {
 				// Load CSS
 				wp_enqueue_style( $this->plugin_slug . '-public' );
 				
 				// Load JS
 				wp_enqueue_script( $this->plugin_slug . '-public' );
 				
-				$this->show_scripts = true;
+				//$this->show_scripts = true;
 				
-				break;
-			}
+				//return $posts;
+		//}
+		
+		/*if ( empty( $posts ) ) {
+			return $posts;
 		}
+		
+		global $post;
+		
+		if ( ( strpos( $post->post_content, '[gcal' ) !== false ) || ( $post->post_type == 'gce_feed' ) ) {
+			// Load CSS
+			wp_enqueue_style( $this->plugin_slug . '-public' );
+
+			// Load JS
+			wp_enqueue_script( $this->plugin_slug . '-public' );
+
+			$this->show_scripts = true;
+		}*/
 
 		return $posts;
 	}

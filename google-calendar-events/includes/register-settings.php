@@ -34,6 +34,12 @@ function gce_register_settings() {
 				'size' => 'regular-text',
 				'type' => 'text'
 			),
+			/*'always_enqueue' => array(
+				'id'   => 'always_enqueue',
+				'name' => __( 'Always Enqueue Scripts & Styles', 'sc' ),
+				'desc' => __( sprintf( 'Enqueue this plugin\'s scripts and styles on every post and page. Useful if using shortcodes in widgets or other non-standard locations.' ), 'gce' ),
+				'type' => 'checkbox'
+			),*/
 			'save_settings' => array(
 				'id'   => 'save_settings',
 				'name' => __( 'Save Settings', 'gce' ),

@@ -28,7 +28,10 @@ class GCE_Widget extends WP_Widget {
 			array( 'description' => __( 'Display a list or calendar grid of events from one or more Google Calendar feeds you have added', 'gce' ) )
 		);
 		
-		if ( is_active_widget( false, false, $this->id_base ) ) {
+		if ( is_active_widget( false, false, $this->id_base, true ) ) {
+			
+			Google_Calendar_Events::get_instance()->show_scripts = true;
+			
 			// Call action to load CSS for widget
             add_action( 'wp_enqueue_scripts', array( $this, 'gce_widget_add_styles' ) );
 
@@ -286,14 +289,8 @@ class GCE_Widget extends WP_Widget {
 				<option value="grid" <?php selected( $display_type, 'grid' ); ?>><?php _e( 'Grid (Month view)', 'gce' ); ?></option>
 				<option value="list" <?php selected( $display_type, 'list' ); ?>><?php _e( 'List', 'gce' ); ?></option>
 				<option value="list-grouped" <?php selected( $display_type, 'list-grouped' );?>><?php _e( 'Grouped List', 'gce' ); ?></option>
-				<option value="date-range" <?php selected( $display_type, 'date-range' );?>><?php _e( 'Custom Date Range (List view)', 'gce' ); ?></option>
+				<option value="date-range" <?php selected( $display_type, 'date-range' );?>><?php _e( 'Custom Date Range (List)', 'gce' ); ?></option>
 			</select>
-		</p>
-		
-		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
-			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links:', 'gce' ); ?></label><br>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
-			<?php _e( 'Check this option to display Next and Back navigation links.', 'gce' ); ?>
 		</p>
 
 		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
@@ -337,10 +334,12 @@ class GCE_Widget extends WP_Widget {
 			<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'display_title_text' ); ?>" name="<?php echo $this->get_field_name( 'display_title_text' ); ?>" value="<?php echo esc_attr( $title_text ); ?>" />
 		</p>
 		
-		<p>
-			<label for="<?php echo $this->get_field_id( 'show_tooltips' ); ?>"><?php _e( 'Show Tooltips?', 'gce' ); ?></label><br>
+		<p class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'paging' ); ?>" name="<?php echo $this->get_field_name( 'paging' ); ?>" class="widefat"  value="1" <?php checked( $paging, 1 ); ?>>
+			<label for="<?php echo $this->get_field_id( 'paging' ); ?>"><?php _e( 'Show Paging Links', 'gce' ); ?></label>
+			<br>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'show_tooltips' ); ?>" name="<?php echo $this->get_field_name( 'show_tooltips' ); ?>" class="widefat"  value="1" <?php checked( $show_tooltips, 1 ); ?>>
-			<?php _e( 'Checking this option will show the tooltips that show up when hovering over an event on grid view.', 'gce' ); ?>
+			<label for="<?php echo $this->get_field_id( 'show_tooltips' ); ?>"><?php _e( 'Show Tooltips', 'gce' ); ?></label>
 		</p>
 			
 	<?php 
