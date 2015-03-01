@@ -89,6 +89,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.2.2 =
+
+* Admin UI updates.
+
 = 2.2.1 - February 28, 2015 =
 
 * Enqueue scripts & styles on all posts & pages temporarily until better detection can be put in place.
