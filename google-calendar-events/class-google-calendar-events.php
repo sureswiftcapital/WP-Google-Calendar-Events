@@ -95,6 +95,15 @@ class Google_Calendar_Events {
 	public function load_scripts( $posts ) {
 		
 		global $gce_options;
+
+		// TODO Debugging
+		/*
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			echo 'isset( $gce_options[\'always_enqueue\'] ): <pre>' . print_r( isset( $gce_options['always_enqueue'] ), true ) . '</pre><br>';
+			echo '$gce_options: <pre>' . print_r( $gce_options, true ) . '</pre><br>';
+			echo '$gce_options[\'always_enqueue\']: <pre>' . print_r( $gce_options['always_enqueue'], true ) . '</pre><br>';
+		}
+		*/
 		
 		if( isset( $gce_options['always_enqueue'] ) ) {
 				// Load CSS
