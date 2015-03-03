@@ -135,6 +135,14 @@ class Google_Calendar_Events {
 			$this->show_scripts = true;
 		}
 
+		// TODO Debugging
+		/*
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			echo '$do_enqueue: <pre>' . print_r( $do_enqueue, true ) . '</pre><br>';
+		}
+		*/
+
+		return $posts;
 	}
 	
 	/**
