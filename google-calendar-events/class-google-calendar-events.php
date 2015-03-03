@@ -124,7 +124,7 @@ class Google_Calendar_Events {
 			}
 		}
 
-		if ( true === $do_enqueue ) {
+		if ( true == $do_enqueue ) {
 
 			// Load CSS
 			wp_enqueue_style( $this->plugin_slug . '-public' );
