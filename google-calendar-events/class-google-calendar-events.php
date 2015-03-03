@@ -104,35 +104,37 @@ class Google_Calendar_Events {
 			echo '$gce_options[\'always_enqueue\']: <pre>' . print_r( $gce_options['always_enqueue'], true ) . '</pre><br>';
 		}
 		*/
+
+		// Init enqueue flag.
+		$do_enqueue = false;
 		
-		if( isset( $gce_options['always_enqueue'] ) ) {
-				// Load CSS
-				wp_enqueue_style( $this->plugin_slug . '-public' );
-				
-				// Load JS
-				wp_enqueue_script( $this->plugin_slug . '-public' );
-				
-				$this->show_scripts = true;
-				
-				return $posts;
-		}
-		
-		if ( ! empty( $posts ) ) {
-			
+		if ( isset( $gce_options['always_enqueue'] ) ) {
+
+			$do_enqueue = true;
+
+		} elseif ( ! empty( $posts ) ) {
+
 			foreach ( $posts as $post ) {
+
 				if ( ( strpos( $post->post_content, '[gcal' ) !== false ) || ( $post->post_type == 'gce_feed' ) ) {
-					// Load CSS
-					wp_enqueue_style( $this->plugin_slug . '-public' );
 
-					// Load JS
-					wp_enqueue_script( $this->plugin_slug . '-public' );
-
-					$this->show_scripts = true;
+					$do_enqueue = true;
+					break;
 				}
 			}
 		}
 
-		return $posts;
+		if ( true === $do_enqueue ) {
+
+			// Load CSS
+			wp_enqueue_style( $this->plugin_slug . '-public' );
+
+			// Load JS
+			wp_enqueue_script( $this->plugin_slug . '-public' );
+
+			$this->show_scripts = true;
+		}
+
 	}
 	
 	/**
