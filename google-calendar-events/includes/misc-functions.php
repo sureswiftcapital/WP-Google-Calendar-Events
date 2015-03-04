@@ -31,7 +31,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			'paging_type'     => null,
 			'paging'          => null,
 			'max_num'         => null,
-			'range_start'     => null,
 			'show_tooltips'   => null
 		);
 	
@@ -45,10 +44,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$d = new GCE_Display( $ids, $title_text, $sort );
 	$markup = '';
 	$start = current_time( 'timestamp' );
-	
-	if( $range_start === null ) {
-		$range_start = $d->feeds[$feed_ids]->feed_start;
-	}
 	
 	if( $widget ) {
 		foreach( $ids as $f ) {
