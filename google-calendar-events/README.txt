@@ -92,6 +92,7 @@ There are three ways to install this plugin.
 = 2.2.2 =
 
 * Admin UI updates.
+* Fixed bug in shortcode.
 
 = 2.2.1 - February 28, 2015 =
 
