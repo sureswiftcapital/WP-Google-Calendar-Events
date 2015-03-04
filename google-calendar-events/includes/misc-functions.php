@@ -31,6 +31,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			'paging_type'     => null,
 			'paging'          => null,
 			'max_num'         => null,
+			'range_start'     => null,
 			'show_tooltips'   => null
 		);
 	
