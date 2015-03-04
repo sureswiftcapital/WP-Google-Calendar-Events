@@ -202,7 +202,7 @@ class GCE_Display {
 		$paging_type = $paging_type;
 
 		$max_length = null;
-
+		
 		if( $paging_type == 'events' ) {
 			$max_length = 'events';
 		}
@@ -244,18 +244,18 @@ class GCE_Display {
 		if( empty( $max_num ) || $max_num == 0 ) {
 			$max_num = 7;
 		}
-		
-		$max_length = get_post_meta( $an_event_feed_id, 'gce_events_per_page', true );
 
-		if( $max_length == 'days' ) {
-			$paging_interval = $max_num * 86400;
-		} else if( $max_length == 'week' ) {
+		if( $paging_type == 'days' ) {
+			if( $paging_interval == null ) {
+				$paging_interval = $max_num * 86400;
+			}
+		} else if( $paging_type == 'week' ) {
 			$paging_interval = 604800;
 			
 			// Set week start here too
 			$start_of_week = get_option( 'start_of_week' );
 			$start = mktime( 0, 0, 0, date( 'm' ), ( date( 'j' ) - date( 'w' ) + $start_of_week ), date( 'Y' ) );
-		} else if( $max_length == 'month' ) {
+		} else if( $paging_type == 'month' ) {
 			$paging_interval = 2629743;
 			
 			// Set month start here too
