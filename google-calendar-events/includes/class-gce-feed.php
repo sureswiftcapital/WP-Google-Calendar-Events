@@ -230,7 +230,8 @@ class GCE_Feed {
 	
 	private function get_feed_start() {
 		
-		$use_range = ( get_post_meta( $this->id, 'gce_display_mode', true ) == 'date-range' ? true : false );
+		$range = get_post_meta( $this->id, 'gce_display_mode', true );
+		$use_range = ( ( $range == 'date-range-list' || $range == 'date-range-grid' ) ? true : false );
 		
 		if( $use_range ) {
 			$start = get_post_meta( $this->id, 'gce_feed_range_start', true );
@@ -265,7 +266,8 @@ class GCE_Feed {
 	
 	private function get_feed_end() {
 		
-		$use_range = ( get_post_meta( $this->id, 'gce_display_mode', true ) == 'date-range' ? true : false );
+		$range = get_post_meta( $this->id, 'gce_display_mode', true );
+		$use_range = ( ( $range == 'date-range-list' || $range == 'date-range-grid' ) ? true : false );
 		
 		if( $use_range ) {
 			$end = get_post_meta( $this->id, 'gce_feed_range_end', true );

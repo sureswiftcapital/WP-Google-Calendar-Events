@@ -27,7 +27,7 @@
 		
 		$('body').on('change', 'select[id*=display_type]', function() {
 
-			if( $(this).val() == 'date-range' ) {
+			if( $(this).val() == 'date-range-list' || $(this).val() == 'date-range-grid' ) {
 				$(this).parent().parent().children('.gce-display-option').hide();
 				$(this).parent().parent().children('.gce-custom-range').show();
 			} else {
@@ -38,7 +38,7 @@
 		
 		// For main settings page
 		$('body').on('change', 'select[id*=gce_display_mode]', function() {
-			if( $(this).val() == 'date-range' ) {
+			if( $(this).val() == 'date-range-list' || $(this).val() == 'date-range-grid' ) {
 				$('.gce-display-option').hide();
 				$('.gce-custom-range').show();
 			} else {

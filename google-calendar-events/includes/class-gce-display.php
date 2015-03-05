@@ -226,7 +226,7 @@ class GCE_Display {
 			}
 		}
 		
-		$use_range = ( get_post_meta( $an_event_feed_id, 'gce_display_mode', true ) == 'date-range' ? true : false );
+		$use_range = ( $paging_type == 'date-range' ? true : false );
 		
 		if( $use_range ) {
 			$max_length = 'date-range';
