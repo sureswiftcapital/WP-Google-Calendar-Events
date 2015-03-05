@@ -46,10 +46,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	$markup = '';
 	$start = current_time( 'timestamp' );
 	
-	if( $range_start === null ) {
-		$range_start = $d->feeds[$feed_ids]->feed_start;
-	}
-	
 	if( $widget ) {
 		foreach( $ids as $f ) {
 			$paging = get_post_meta( $f, 'gce_paging_widget', true );
@@ -113,7 +109,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		} else {
 			$markup = '<div class="gce-page-list gce-page-list-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_list( $grouped, ( $start + $start_offset ), $paging, $paging_interval, $start_offset, $max_events, $paging_type ) . '</div>';
 		}
-	} else if( 'date-range' == $display ) {	
+	} else if( 'date-range-list' == $display ) {	
 		
 		$paging_interval = 'date-range';
 		
@@ -121,6 +117,25 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			$markup = '<div class="gce-widget-list gce-widget-list-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, $max_num ) . '</div>';
 		} else {
 			$markup = '<div class="gce-page-list gce-page-list-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_list( $grouped, $range_start, false, $paging_interval, $start_offset, INF, $paging_type, INF ) . '</div>';
+		}
+	} elseif ( 'date-range-grid' == $display ) {
+		
+		global $localize;
+		
+		$target = 'gce-' . $uid;
+		
+		$localize[$target] = array( 
+				'target_element' => $target,
+				'feed_ids'       => $feed_ids,
+				'title_text'     => $title_text,
+				'type'           => ( $widget == 1 ? 'widget' : 'page' ),
+				'show_tooltips'  => ( $show_tooltips == 'true' || $show_tooltips == '1' ? 'true' : 'false' )
+			);
+		
+		if( $widget ) {
+			$markup = '<div class="gce-widget-grid gce-widget-grid-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $markup .= $d->get_grid( $year, $month, $widget, $paging ) . '</div>';
+		} else {
+			$markup = '<div class="gce-page-grid gce-page-grid-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $markup .= $d->get_grid( $year, $month, $widget, $paging ) . '</div>';
 		}
 	}
 	

@@ -112,7 +112,7 @@ function gce_gcal_shortcode( $attr ) {
 	$start_offset = $offset_interval_count * 86400 * $offset_direction;
 	
 	if( $interval == 'days' ) {
-		$paging_interval = null;
+		$paging_interval = $interval_count * 86400;
 		$paging_type = 'days';
 	} else if( $interval == 'events' ) {
 		$max_events = $interval_count;

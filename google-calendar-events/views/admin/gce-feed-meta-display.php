@@ -39,8 +39,8 @@
 	$gce_feed_range_start            = get_post_meta( $post->ID, 'gce_feed_range_start', true );
 	$gce_feed_range_end              = get_post_meta( $post->ID, 'gce_feed_range_end', true );
 	
-	
-	$use_range = ( selected( $gce_display_mode, 'date-range', false ) ? true : false );
+	$range = selected( $gce_display_mode, 'date-range-list', false ) || selected( $gce_display_mode, 'date-range-grid', false );
+	$use_range = ( $range ? true : false );
 	
 	if( empty( $gce_events_per_page ) ) {
 		$gce_events_per_page = 'days';
@@ -136,7 +136,8 @@
 				<option value="grid" <?php selected( $gce_display_mode, 'grid', true ); ?>><?php _e( 'Grid (Month view)', 'gce' ); ?></option>
 				<option value="list" <?php selected( $gce_display_mode, 'list', true ); ?>><?php _e( 'List', 'gce' ); ?></option>
 				<option value="list-grouped" <?php selected( $gce_display_mode, 'list-grouped', true ); ?>><?php _e( 'Grouped List', 'gce' ); ?></option>
-				<option value="date-range" <?php selected( $gce_display_mode, 'date-range', true ); ?>><?php _e( 'Custom Date Range (List)', 'gce' ); ?></option>
+				<option value="date-range-list" <?php selected( $gce_display_mode, 'date-range-list', true ); ?>><?php _e( 'Custom Date Range (List)', 'gce' ); ?></option>
+				<option value="date-range-grid" <?php selected( $gce_display_mode, 'date-range-grid', true ); ?>><?php _e( 'Custom Date Range (Grid)', 'gce' ); ?></option>
 			</select>
 			<p class="description"><?php _e( 'Select how to display this feed.', 'gce' ); ?></p>
 		</td>
