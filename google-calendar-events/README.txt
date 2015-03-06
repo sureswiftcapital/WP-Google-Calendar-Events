@@ -93,6 +93,7 @@ There are three ways to install this plugin.
 
 * Admin UI updates.
 * Add option to always enqueue scripts and styles.
+* Added custom date range grid option to display modes.
 
 = 2.2.1 - February 28, 2015 =
 
