@@ -92,6 +92,7 @@ There are three ways to install this plugin.
 = 2.2.2 =
 
 * Admin UI updates.
+* Add option to always enqueue scripts and styles.
 
 = 2.2.1 - February 28, 2015 =
 
