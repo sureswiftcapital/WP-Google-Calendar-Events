@@ -190,6 +190,7 @@ function gce_get_settings() {
 		$general = get_option( 'gce_settings_general' );
 		
 		$general['save_settings']      = 1;
+		$general['always_enqueue']     = 1;
 		
 		update_option( 'gce_settings_general', $general );
 	}
