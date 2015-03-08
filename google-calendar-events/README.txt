@@ -89,10 +89,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.2 =
+= 2.2.2 - TODO =
 
 * Admin UI updates.
-* Add option to always enqueue scripts and styles.
+* Added option to always enqueue scripts and styles on every post and page.
 * Added custom date range grid option to display modes.
 
 = 2.2.1 - February 28, 2015 =
