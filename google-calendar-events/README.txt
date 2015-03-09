@@ -95,6 +95,7 @@ There are three ways to install this plugin.
 * Added option to always enqueue scripts and styles on every post and page.
 * Added custom date range grid option to display modes.
 * Fixed bug with list intervals.
+* Added option to disable the plugin CSS file.
 
 = 2.2.1 - February 28, 2015 =
 
