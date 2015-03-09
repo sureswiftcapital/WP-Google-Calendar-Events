@@ -41,8 +41,13 @@ class GCE_Widget extends WP_Widget {
 	}
 	
 	function gce_widget_add_styles() {
+		
+		global $gce_options;
+		
 		// Load CSS
-		wp_enqueue_style( 'google-calendar-events-public' );
+		if(  ! isset( $gce_options['disable_css'] ) ) {
+			wp_enqueue_style( 'google-calendar-events-public' );
+		}
 	}
 
 	/**

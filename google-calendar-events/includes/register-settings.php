@@ -40,6 +40,12 @@ function gce_register_settings() {
 				'desc' => __( sprintf( 'Enqueue this plugin\'s scripts and styles on every post and page. Useful if using shortcodes in widgets or other non-standard locations.' ), 'gce' ),
 				'type' => 'checkbox'
 			),
+			'disable_css' => array(
+				'id'   => 'disable_css',
+				'name' => __( 'Disable Plugin CSS', 'sc' ),
+				'desc' => __( "If this option is checked, this plugin's CSS file will not be referenced.", 'gce' ),
+				'type' => 'checkbox'
+			),
 			'save_settings' => array(
 				'id'   => 'save_settings',
 				'name' => __( 'Save Settings', 'gce' ),

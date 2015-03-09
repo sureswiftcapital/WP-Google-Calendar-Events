@@ -126,8 +126,10 @@ class Google_Calendar_Events {
 
 		if ( true == $do_enqueue ) {
 
-			// Load CSS
-			wp_enqueue_style( $this->plugin_slug . '-public' );
+			// Load CSS after checking to see if it is supposed to be disabled or not (based on settings)
+			if( ! isset( $gce_options['disable_css'] ) ) {
+				wp_enqueue_style( $this->plugin_slug . '-public' );
+			}
 
 			// Load JS
 			wp_enqueue_script( $this->plugin_slug . '-public' );
