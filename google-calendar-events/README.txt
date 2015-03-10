@@ -91,7 +91,6 @@ There are three ways to install this plugin.
 
 = 2.2.2 - TODO =
 
-* Admin UI updates.
 * Added option to always enqueue scripts and styles on every post and page.
 * Added custom date range grid option to display modes.
 * Fixed bug with list intervals.
