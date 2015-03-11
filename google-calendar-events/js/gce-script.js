@@ -1,5 +1,3 @@
-/* global jQuery, gce, gce_grid */
-
 /**
  * Public JS functions
  *
@@ -8,6 +6,9 @@
  * @license   GPL-2.0+
  * @copyright 2014 Phil Derksen
  */
+
+/* global jQuery, gce, gce_grid */
+
 (function($) {
 	'use strict';
 
