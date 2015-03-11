@@ -16,6 +16,10 @@
 
 	$(function() {
 
+		var $body = $( 'body' );
+		
+		// TODO Unbind other attached clicks?
+
 		if( typeof gce_grid != 'undefined' ) {
 
 			if (script_debug) {
@@ -24,7 +28,7 @@
 			
 			var tooltip_elements = '';
 
-			$('.gce-page-grid, .gce-widget-grid').each( function() {
+			$body.find('.gce-page-grid, .gce-widget-grid').each( function() {
 				var id = $(this).attr('id');
 
 				if( gce_grid[id].show_tooltips == 'true' || gce_grid[id].show_tooltips == true ) {
@@ -37,9 +41,10 @@
 			gce_tooltips(tooltip_elements);
 
 			// Month nav link click for Grid view.
-			$('body').on( 'click', '.gce-change-month', function(e) {
+			// TODO Unbind other attached clicks here?
+			$body.on( 'click.gceNavLink', '.gce-change-month', function( event ) {
 
-				e.preventDefault();
+				event.preventDefault();
 
 				var navLink = $(this);
 
@@ -54,7 +59,7 @@
 				var paging = navLink.attr('data-gce-grid-paging');
 
 				//Add loading text to table caption
-				$('#' + gce_grid[id].target_element + ' caption').html(gce.loadingText);
+				$body.find('#' + gce_grid[id].target_element + ' caption').html(gce.loadingText);
 
 				//Send AJAX request
 				$.post(gce.ajaxurl,{
@@ -68,12 +73,16 @@
 					gce_year: month_year[1],
 					gce_paging: paging,
 					gce_nonce: gce.ajaxnonce
-				}, function(data){
-					//Replace existing data with returned AJAX data
-					if(gce_grid[id].type == 'widget'){
-						$('#' + gce_grid[id].target_element).html(data);
-					}else{
-						$('#' + gce_grid[id].target_element).replaceWith(data);
+
+				}, function(data) {
+
+					//Replace existing data with returned AJAX data.
+					var targetEle = $body.find('#' + gce_grid[id].target_element);
+
+					if (gce_grid[id].type == 'widget') {
+						targetEle.html(data);
+					} else {
+						targetEle.replaceWith(data);
 					}
 					
 					gce_tooltips(tooltip_elements);
@@ -81,15 +90,14 @@
 				}).fail(function(data) {
 					console.log( data );
 				});
-
-				e.stopPropagation();
 			});
 		}
 
 		// Month nav link click for List view.
-		$('body').on( 'click', '.gce-change-month-list', function(e) {
+		// TODO Unbind other attached clicks here?
+		$body.on( 'click.gceNavLink', '.gce-change-month-list', function( event ) {
 
-			e.preventDefault();
+			event.preventDefault();
 
 			var navLink = $(this);
 			
@@ -123,13 +131,13 @@
 				gce_start_offset: start_offset,
 				gce_paging_type: paging_type,
 				gce_nonce: gce.ajaxnonce
+
 			}, function(data){
 				navLink.parents('.gce-list').replaceWith(data);
+
 			}).fail(function(data) {
 				console.log( data );
 			});
-
-			e.stopPropagation();
 		});
 
 		// Tooltip config using qTip2 jQuery plugin.
