@@ -304,9 +304,9 @@ class GCE_Display {
 		$max_count = 1;
 		$has_events = false;
 		$event_counter = 0;
-
+		
 		if( $max_length == 'events' ) {
-			if( $start_offset === null ) {
+			if( $start_offset === null || $start_offset == 0 ) {
 				$time_now = current_time( 'timestamp' );
 			} else {
 

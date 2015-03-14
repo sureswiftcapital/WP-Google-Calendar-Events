@@ -35,7 +35,11 @@ class GCE_Event {
 				$this->day_type = 'SWD';
 			} else {
 				if ( ( '12:00 am' == date( 'g:i a', $start_time ) ) && ( '12:00 am' == date( 'g:i a', $end_time ) ) ) {
-					$this->day_type = 'MWD';
+					if( $end_time - $start_time > 86400 ) {
+						$this->day_type = 'MWD';
+					} else {
+						$this->day_type = 'SWD';
+					}
 				} else {
 					$this->day_type = 'MPD';
 				}
