@@ -95,6 +95,7 @@ There are three ways to install this plugin.
 * Added custom date range grid option to display modes.
 * Fixed bug with list intervals.
 * Added option to disable the plugin CSS file.
+* Fixed bug with event list showing past events.
 
 = 2.2.1 - February 28, 2015 =
 
