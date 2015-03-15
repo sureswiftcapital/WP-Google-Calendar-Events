@@ -19,8 +19,6 @@
 
 		var $body = $( 'body' );
 		
-		// TODO Unbind other attached clicks?
-
 		if( typeof gce_grid != 'undefined' ) {
 
 			if (script_debug) {
