@@ -89,13 +89,14 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.2 - TODO =
+= 2.2.2 - March 15, 2015 =
 
 * Added option to always enqueue scripts and styles on every post and page.
 * Added custom date range grid option to display modes.
-* Fixed bug with list intervals.
 * Added option to disable the plugin CSS file.
+* Fixed bug with list intervals.
 * Fixed bug with event list showing past events.
+* Minor public JavaScript performance updates.
 
 = 2.2.1 - February 28, 2015 =
 
