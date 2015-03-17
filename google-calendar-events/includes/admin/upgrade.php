@@ -61,6 +61,7 @@ function gce_upgrade() {
 }
 
 function gce_v222_upgrade() {
+	// Need to set the new option for always enqueuing scripts as default enabled for upgrading users
 	$options = get_option( 'gce_settings_general' );
 	
 	if( false !== $options ) {
