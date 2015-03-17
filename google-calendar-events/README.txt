@@ -89,9 +89,9 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.2.1 =
+= 2.2.2.1 - March 17, 2015 =
 
-* Fixed upgrade issue to 2.2.2
+* The option to always enqueue scripts & styles should now be enabled by default for new installs and upgrades.
 
 = 2.2.2 - March 15, 2015 =
 
