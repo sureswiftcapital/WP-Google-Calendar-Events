@@ -89,6 +89,10 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.2.2.1 =
+
+* Fixed upgrade issue to 2.2.2
+
 = 2.2.2 - March 15, 2015 =
 
 * Added option to always enqueue scripts and styles on every post and page.
