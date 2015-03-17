@@ -48,12 +48,25 @@ function gce_upgrade() {
 		if( version_compare( $version, '2.2.0', '<' ) ) {
 			gce_v220_upgrade();
 		}
+		
+		if( version_compare( $version, '2.2.2', '<' ) ) {
+			gce_v222_upgrade();
+		}
 	}
 	
 	$new_version = Google_Calendar_Events::get_instance()->get_plugin_version();
 	update_option( 'gce_version', $new_version );
 	
 	add_option( 'gce_upgrade_has_run', 1 );
+}
+
+function gce_v222_upgrade() {
+	$options = get_option( 'gce_settings_general' );
+	
+	if( false !== $options ) {
+		$options['always_enqueue'] = 1;
+		update_option( 'gce_settings_general', $options );
+	}
 }
 
 function gce_v220_upgrade() {
