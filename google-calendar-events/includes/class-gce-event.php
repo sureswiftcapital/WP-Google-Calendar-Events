@@ -384,7 +384,7 @@ class GCE_Event {
 					$link = $this->link . ( ! empty( $ctz ) ? '&ctz=' . $ctz : '' );
 				}
 			
-				return $m[1] . '<a href="' . esc_url( $link ) . '"' . esc_attr( $new_window ) . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
+				return $m[1] . '<a href="' . esc_url( $link ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
 
 			case 'url':
 				return $m[1] . esc_url( $this->link ) . $m[6];
