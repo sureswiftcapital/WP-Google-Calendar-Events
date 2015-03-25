@@ -114,7 +114,7 @@ class GCE_Feed {
 		
 		$args['timeMax'] = urlencode( date( 'c', $this->feed_end ) );
 		
-		$args['maxResults'] = 10000;
+		$args['maxResults'] = 2500;
 		
 		$ctz = get_option( 'timezone_string' );
 		

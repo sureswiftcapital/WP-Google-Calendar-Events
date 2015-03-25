@@ -182,7 +182,11 @@
 			<span class="gce_feed_start_num_wrap <?php echo ( $gce_feed_start == 'custom' ? 'gce-admin-hidden' : '' ); ?>">
 				<input type="number" min="0" step="1" class="small-text" id="gce_feed_start_num" name="gce_feed_start_num" value="<?php echo esc_attr( $gce_feed_start_num ); ?>" />
 			</span>
-			<p class="description"><?php _e( 'Set how far back to retrieve events regardless of initial display.', 'gce' ); ?></p>
+			<p class="description">
+				<?php _e( 'Set how far back to retrieve events regardless of initial display.', 'gce' ); ?>
+				<br>
+				<?php _e( "<strong>Note:</strong> Total events are currently limited to 2,500 by Google's API.", 'gce' ); ?>
+			</p>
 		</td>	
 	</tr>
 	
