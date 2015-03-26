@@ -146,7 +146,7 @@
 
 				//Add qtip to all target items
 				$(this).qtip({
-					content: $(this).children('.gce-event-info'),
+					content: $(this).find('.gce-event-info'),
 					position: {
 						my: 'bottom left',
 						at: 'center',
