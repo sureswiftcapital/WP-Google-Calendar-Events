@@ -160,8 +160,9 @@ class Google_Calendar_Events_Admin {
 
 			// get the jquery ui object
 			$queryui = $wp_scripts->query( 'jquery-ui-datepicker' );
- 			
-			wp_enqueue_style( 'jquery-ui-smoothness', '//ajax.googleapis.com/ajax/libs/jqueryui/' . $queryui->ver . '/themes/smoothness/jquery-ui.css', array(), $this->version );
+
+			// Use minified CSS from CDN referenced at https://code.jquery.com/ui/
+			wp_enqueue_style( 'jquery-ui-smoothness', '//code.jquery.com/ui/' . $queryui->ver . '/themes/smoothness/jquery-ui.min.css', array(), $this->version );
  			
  			wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ), array(), $this->version, 'all' );
  		}
