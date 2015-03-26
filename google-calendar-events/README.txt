@@ -94,6 +94,7 @@ There are three ways to install this plugin.
 * Tested up to WordPress 4.2.
 * Fixed bug with the "More details..." link encoding.
 * Added Brazilian Portuguese translation files.
+* Updated jQuery UI datepicker CSS CDN reference for feed settings pages.
 
 = 2.2.2.1 - March 17, 2015 =
 
