@@ -192,7 +192,7 @@ function gce_save_meta( $post_id ) {
 	if ( current_user_can( 'edit_post', $post_id ) ) {
 		// Loop through our array and make sure it is posted and not empty in order to update it, otherwise we delete it
 		foreach ( $post_meta_fields as $pmf ) {
-			if ( isset( $_POST[$pmf] ) && ! empty( $_POST[$pmf] ) ) {
+			if ( isset( $_POST[$pmf] ) && ( ! empty( $_POST[$pmf] ) || $_POST[$pmf] == 0 ) ) {
 				if( $pmf == 'gce_feed_url' ) {
 					
 					$id = $_POST[$pmf];

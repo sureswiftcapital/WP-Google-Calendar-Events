@@ -244,7 +244,7 @@ class GCE_Feed {
 			$start    = get_post_meta( $this->id, 'gce_feed_start_num', true );
 			$interval = get_post_meta( $this->id, 'gce_feed_start', true );
 			
-			if( empty( $start ) ) {
+			if( empty( $start ) && $start != 0 ) {
 				$start = 1;
 			}
 		}
@@ -280,7 +280,7 @@ class GCE_Feed {
 			$end    = get_post_meta( $this->id, 'gce_feed_end_num', true );
 			$interval = get_post_meta( $this->id, 'gce_feed_end', true );
 			
-			if( empty( $end ) ) {
+			if( empty( $end ) && $end != 0 ) {
 				$end = 1;
 			}
 		}

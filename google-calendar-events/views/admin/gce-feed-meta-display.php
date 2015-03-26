@@ -60,14 +60,6 @@
 		$gce_feed_end = 'years';
 	}
 	
-	if( empty( $gce_feed_start_num ) ) {
-		$gce_feed_start_num = 1;
-	}
-	
-	if( empty( $gce_feed_end_num ) ) {
-		$gce_feed_end_num = 1;
-	}
-	
 	if( empty( $gce_per_page_num ) ) {
 		$gce_per_page_num = 7;
 	}
