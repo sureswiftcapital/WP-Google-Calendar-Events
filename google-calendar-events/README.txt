@@ -92,7 +92,7 @@ There are three ways to install this plugin.
 = 2.2.2 - TODO =
 
 * Tested up to WordPress 4.2.
-* Fixed bug with more details link encoding.
+* Fixed bug with the "More details..." link encoding.
 
 = 2.2.2.1 - March 17, 2015 =
 

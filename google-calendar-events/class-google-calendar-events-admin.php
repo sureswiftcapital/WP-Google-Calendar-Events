@@ -155,8 +155,6 @@ class Google_Calendar_Events_Admin {
 	 */
 	public function enqueue_admin_styles() {
 		
-		//wp_enqueue_style( 'jquery-ui-datepicker-css', plugins_url( 'css/jquery-ui-1.10.4.custom.min.css', __FILE__ ), array(), $this->version );
-		
 		if( $this->viewing_this_plugin() ) {
 			global $wp_scripts;
 
