@@ -89,10 +89,14 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.2 - TODO =
+= 2.2.3 - March 26, 2015 =
 
 * Tested up to WordPress 4.2.
 * Fixed bug with the "More details..." link encoding.
+* Added note about total event limit of 2,500 now enforced by the Google Calendar API.
+* Updated earliest feed event date default to 1 (one) month back.
+* 0 (zero) value now allowed for earliest and latest feed event dates (sets them to the current date).
+* Minor public script improvements.
 * Added Brazilian Portuguese translation files.
 * Updated jQuery UI datepicker CSS CDN reference for feed settings pages.
 
