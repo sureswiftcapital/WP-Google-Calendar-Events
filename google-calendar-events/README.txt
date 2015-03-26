@@ -93,7 +93,7 @@ There are three ways to install this plugin.
 
 * Tested up to WordPress 4.2.
 * Fixed bug with the "More details..." link encoding.
-* Added Brazilian translation files.
+* Added Brazilian Portuguese translation files.
 
 = 2.2.2.1 - March 17, 2015 =
 
