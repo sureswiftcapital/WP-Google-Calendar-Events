@@ -177,7 +177,7 @@
 			<p class="description">
 				<?php _e( 'Set how far back to retrieve events regardless of initial display.', 'gce' ); ?>
 				<br>
-				<?php _e( "<strong>Note:</strong> Total events are currently limited to 2,500 by Google's API.", 'gce' ); ?>
+				<?php _e( '<strong>Note:</strong> Total events are currently limited to 2,500 by the Google Calendar API.', 'gce' ); ?>
 			</p>
 		</td>	
 	</tr>
