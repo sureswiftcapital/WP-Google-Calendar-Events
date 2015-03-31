@@ -89,6 +89,11 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.2.4 - TODO =
+
+* Updated French translation files.
+* Fixed Catalan translation files.
+
 = 2.2.3 - March 26, 2015 =
 
 * Tested up to WordPress 4.2.
