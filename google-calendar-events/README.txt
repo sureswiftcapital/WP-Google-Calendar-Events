@@ -93,6 +93,7 @@ There are three ways to install this plugin.
 
 * Updated French translation files.
 * Fixed Catalan translation files.
+* Fixed encoding bug with [maps-link] new window attribute.
 
 = 2.2.3 - March 26, 2015 =
 
