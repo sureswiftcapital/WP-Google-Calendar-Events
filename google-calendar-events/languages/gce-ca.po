@@ -73,12 +73,12 @@ msgstr "Buida la memòria cau"
 #: google-calendar-events/views/admin/gce-feed-meta-display.php:185
 #: google-calendar-events/views/widgets.php:252
 msgid "Back"
-msgstr "<div class='dashicons dashicons-arrow-left-alt2'></div>"
+msgstr "Back"
 
 #: google-calendar-events/includes/class-gce-display.php:183
 #: google-calendar-events/includes/class-gce-display.php:271
 msgid "Next"
-msgstr "<div class='dashicons dashicons-arrow-right-alt2'></div>"
+msgstr "Next"
 
 #: google-calendar-events/includes/class-gce-display.php:371
 msgid "No events to display."
