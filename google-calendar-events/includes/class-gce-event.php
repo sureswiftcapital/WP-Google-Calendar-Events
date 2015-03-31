@@ -397,7 +397,7 @@ class GCE_Event {
 
 			case 'maps-link':
 				$new_window = ( $newwindow ) ? ' target="_blank"' : '';
-				return $m[1] . '<a href="' . esc_url( '//maps.google.com?q=' . urlencode( $this->location ) ) . '"' . esc_attr( $new_window ) . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
+				return $m[1] . '<a href="' . esc_url( '//maps.google.com?q=' . urlencode( $this->location ) ) . '"' . $new_window . '>' . $this->look_for_shortcodes( $m[5] ) . '</a>' . $m[6];
 
 			case 'length':
 				return $m[1] . $this->gce_human_time_diff( $this->start_time, $this->end_time, $precision ) . $m[6];
