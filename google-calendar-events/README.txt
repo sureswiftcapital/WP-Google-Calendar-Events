@@ -89,7 +89,7 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.4 - TODO =
+= 2.2.4 - April 6, 2015 =
 
 * Updated French translation files.
 * Fixed Catalan translation files.
