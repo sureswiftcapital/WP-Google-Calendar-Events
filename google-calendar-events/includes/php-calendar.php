@@ -52,15 +52,15 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 	$n = apply_filters( 'gce_next_text', $n );
 	
 	if( $widget ) {
-		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Previous month', 'gce' ) . '" name="' . esc_attr( $pl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $p . '</a>' ) : $p ) . '</div>';
+		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Previous', 'gce' ) . '" name="' . esc_attr( $pl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $p . '</a>' ) : $p ) . '</div>';
 	} else {
-		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Previous month', 'gce' ) . '" name="' . esc_attr( $pl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $p . '</a>' ) : $p ) . '</div>';
+		$p = '<div class="gce-prev">' . ( ( $pl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Previous', 'gce' ) . '" name="' . esc_attr( $pl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $p . '</a>' ) : $p ) . '</div>';
 	}
 	
 	if( $widget ) {
-		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Next month', 'gce' ) . '" name="' . esc_attr( $nl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $n . '</a>' ) : $n ) . '</div>';
+		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Next', 'gce' ) . '" name="' . esc_attr( $nl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $n . '</a>' ) : $n ) . '</div>';
 	} else {
-		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Next month', 'gce' ) . '" name="' . esc_attr( $nl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $n . '</a>' ) : $n ) . '</div>';
+		$n = '<div class="gce-next">' . ( ( $nl ) ? ( '<a href="#" class="gce-change-month" title="' . esc_attr__( 'Next', 'gce' ) . '" name="' . esc_attr( $nl ) . '" data-gce-grid-paging="' . esc_attr( $paging ) . '">' . $n . '</a>' ) : $n ) . '</div>';
 	}
 	
 	$calendar = '<table class="gce-calendar">' . "\n" .

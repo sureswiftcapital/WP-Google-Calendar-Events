@@ -292,8 +292,8 @@ class GCE_Display {
 			$prev_text = apply_filters( 'gce_prev_text', $prev_text );
 			$next_text = apply_filters( 'gce_next_text', $next_text );
 
-			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Previous month', 'gce' ) . '" data-gce-paging-direction="back" data-gce-paging-type="' . esc_attr( $paging_type ) . '">'. esc_html( $prev_text ) . '</a></div>';
-			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Next month', 'gce' ) . '" data-gce-paging-direction="forward" data-gce-paging-type="' . esc_attr( $paging_type ) . '">' . esc_html( $next_text ) . '</a></div>';
+			$p = '<div class="gce-prev"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Previous', 'gce' ) . '" data-gce-paging-direction="back" data-gce-paging-type="' . esc_attr( $paging_type ) . '">'. esc_html( $prev_text ) . '</a></div>';
+			$n = '<div class="gce-next"><a href="#" class="gce-change-month-list" title="' . esc_attr__( 'Next', 'gce' ) . '" data-gce-paging-direction="forward" data-gce-paging-type="' . esc_attr( $paging_type ) . '">' . esc_html( $next_text ) . '</a></div>';
 
 			$markup .= '<div class="gce-navbar">' .
 						$p .
