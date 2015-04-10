@@ -91,6 +91,7 @@ There are three ways to install this plugin.
 
 = 2.2.5 - TODO =
 
+* Fixed bug with navigation links sometimes returning -1.
 
 = 2.2.4 - April 6, 2015 =
 
