@@ -91,6 +91,7 @@ There are three ways to install this plugin.
 
 = 2.2.5 - TODO =
 
+* Fixed bug with paging links title attributes.
 
 = 2.2.4 - April 6, 2015 =
 
