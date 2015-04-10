@@ -160,13 +160,7 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 * @since 2.0.0
 */
 function gce_ajax() {
-
-    // check to see if the submitted nonce matches with the
-    // generated nonce we created earlier
-	if( ! check_ajax_referer( 'gce_ajax_nonce', 'gce_nonce' ) ) {
-		die( 'Request has failed.' );
-	}
-   
+	
 	$uid    = esc_html( $_POST['gce_uid'] );
 	$ids    = esc_html( $_POST['gce_feed_ids'] );
 	$title  = esc_html( $_POST['gce_title_text'] );
@@ -206,12 +200,6 @@ add_action( 'wp_ajax_gce_ajax', 'gce_ajax' );
 * @since 2.0.0
 */
 function gce_ajax_list() {
-	
-    // check to see if the submitted nonce matches with the
-    // generated nonce we created earlier
-    if( ! check_ajax_referer( 'gce_ajax_nonce', 'gce_nonce' ) ) {
-		die( 'Request has failed.' );
-	}
 	
 	$grouped          = esc_html( $_POST['gce_grouped'] );
 	$start            = esc_html( $_POST['gce_start'] );

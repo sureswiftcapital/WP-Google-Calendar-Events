@@ -86,8 +86,7 @@ class Google_Calendar_Events {
 					array(
 						'script_debug'  => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
 						'ajaxurl'     => admin_url( 'admin-ajax.php' ),
-						'ajaxnonce'   => wp_create_nonce( 'gce_ajax_nonce' ),
-						'loadingText' => __( 'Loading...', 'gce' )
+						'loadingText' => __( 'Loading...', 'gce' ),
 					) );
 		}
 	}

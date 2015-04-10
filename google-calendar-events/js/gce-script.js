@@ -70,8 +70,7 @@
 					gce_widget_id: gce_grid[id].target_element,
 					gce_month: month_year[0],
 					gce_year: month_year[1],
-					gce_paging: paging,
-					gce_nonce: gce.ajaxnonce
+					gce_paging: paging
 
 				}, function(data) {
 
@@ -128,8 +127,7 @@
 				gce_paging_interval: paging_interval,
 				gce_paging_direction: paging_direction,
 				gce_start_offset: start_offset,
-				gce_paging_type: paging_type,
-				gce_nonce: gce.ajaxnonce
+				gce_paging_type: paging_type
 
 			}, function(data){
 				navLink.parents('.gce-list').replaceWith(data);
