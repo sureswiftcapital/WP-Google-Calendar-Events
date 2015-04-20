@@ -91,8 +91,10 @@ There are three ways to install this plugin.
 
 = 2.2.5 - TODO =
 
-* Fixed bug with paging links title attributes.
+* TODO Updating calls to add_query_arg to prevent any possible XSS attacks.
+* Fixed bug with fatal error in rare cases by rearragning order of plugin file includes.
 * Fixed bug with navigation links sometimes returning -1.
+* Corrected typo with paging links title attributes.
 
 = 2.2.4 - April 6, 2015 =
 
