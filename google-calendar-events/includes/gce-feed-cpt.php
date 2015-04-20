@@ -86,16 +86,15 @@ add_filter( 'post_updated_messages', 'gce_feed_messages' );
 
 
 /**
- * Add post meta to tie in with the Google Calendar Events custom post type
+ * Add post meta to tie in with the Google Calendar Events custom post type.
+ * Also render sidebar meta boxes.
  * 
  * @since 2.0.0
  */
 function gce_cpt_meta() {
 	add_meta_box( 'gce_feed_meta', __( 'Feed Settings', 'gce' ), 'gce_display_meta', 'gce_feed', 'advanced', 'core' );
 
-	// Sidebar meta box below publish section.
-	add_meta_box( 'gce_feed_sidebar_help', __( 'Helpful Links', 'gce' ), 'gce_feed_sidebar_help', 'gce_feed', 'side', 'core' );
-
+	add_meta_box( 'gce_feed_sidebar_help', __( 'Resources', 'gce' ), 'gce_feed_sidebar_help', 'gce_feed', 'side', 'core' );
 	add_meta_box( 'gce_display_options_meta', __( 'Display Options', 'gce' ), 'gce_display_options_meta', 'gce_feed', 'side', 'core' );
 }
 add_action( 'add_meta_boxes', 'gce_cpt_meta' );
