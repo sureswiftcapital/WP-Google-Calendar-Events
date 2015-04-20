@@ -101,7 +101,7 @@ function gce_cpt_meta() {
 add_action( 'add_meta_boxes', 'gce_cpt_meta' );
 
 /**
- * Function called to display post meta
+ * Include view to display post meta.
  * 
  * @since 2.0.0
  */
@@ -110,7 +110,7 @@ function gce_display_meta() {
 }
 
 /**
- * Function called to display help in sidebar.
+ * Include view to display help in sidebar.
  *
  * @since 2.0.0
  */
@@ -119,7 +119,7 @@ function gce_feed_sidebar_help() {
 }
 
 /**
- * Function called to display post meta
+ * Include view to display options in sidebar.
  * 
  * @since 2.0.0
  */
