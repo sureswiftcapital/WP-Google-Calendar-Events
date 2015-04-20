@@ -36,8 +36,9 @@ function gce_register_settings() {
 			),
 			'always_enqueue' => array(
 				'id'   => 'always_enqueue',
-				'name' => __( 'Always Enqueue Scripts & Styles', 'sc' ),
-				'desc' => __( sprintf( 'Enqueue this plugin\'s scripts and styles on every post and page. Useful if using shortcodes in widgets or other non-standard locations.' ), 'gce' ),
+				'name' => __( 'Always Enqueue Scripts & Styles', 'gce' ),
+				'desc' => __( 'Enqueue this plugin\'s scripts and styles on every post and page.', 'gce' ) . '<br/>' .
+				          '<p class="description">' . __( 'Useful if using shortcodes in widgets or other non-standard locations.', 'gce' ) . '</p>',
 				'type' => 'checkbox'
 			),
 			'disable_css' => array(
@@ -49,7 +50,8 @@ function gce_register_settings() {
 			'save_settings' => array(
 				'id'   => 'save_settings',
 				'name' => __( 'Save Settings', 'gce' ),
-				'desc' => __( 'Save your settings when uninstalling this plugin. Useful when upgrading or re-installing.', 'gce' ),
+				'desc' => __( 'Save your settings when uninstalling this plugin.', 'gce' ) . '<br/>' .
+				          '<p class="description">' . __( 'Useful when upgrading or re-installing.', 'gce' ) . '</p>',
 				'type' => 'checkbox'
 			)
 		)
