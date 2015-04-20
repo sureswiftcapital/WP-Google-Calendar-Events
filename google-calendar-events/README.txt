@@ -104,7 +104,6 @@ There are three ways to install this plugin.
 
 = 2.2.3 - March 26, 2015 =
 
-* Tested up to WordPress 4.2.
 * Fixed bug with the "More details..." link encoding.
 * Added note about total event limit of 2,500 now enforced by the Google Calendar API.
 * Updated earliest feed event date default to 1 (one) month back.
@@ -112,10 +111,11 @@ There are three ways to install this plugin.
 * Minor public script improvements.
 * Added Brazilian Portuguese translation files.
 * Updated jQuery UI datepicker CSS CDN reference for feed settings pages.
+* Tested up to WordPress 4.2.
 
 = 2.2.2.1 - March 17, 2015 =
 
-* The option to always enqueue scripts & styles should now be enabled by default for new installs and upgrades.
+* Option to always enqueue scripts & styles now enabled by default.
 
 = 2.2.2 - March 15, 2015 =
 
