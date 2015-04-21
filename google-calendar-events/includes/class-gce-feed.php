@@ -130,7 +130,7 @@ class GCE_Feed {
 			$args['singleEvents'] = 'true';
 		}
 		
-		$query = add_query_arg( $args, $query );
+		$query = esc_url_raw( add_query_arg( $args, $query ) );
 		
 		$this->display_url = $query;
 		
