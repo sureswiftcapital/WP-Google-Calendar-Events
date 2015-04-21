@@ -273,11 +273,11 @@ add_filter( 'the_content', 'gce_feed_content' );
 function gce_ga_campaign_url( $base_url, $source, $medium, $campaign ) {
 	// $medium examples: 'sidebar_link', 'banner_image'
 
-	$url = add_query_arg( array(
+	$url = esc_url( add_query_arg( array(
 		'utm_source'   => $source,
 		'utm_medium'   => $medium,
 		'utm_campaign' => $campaign
-	), $base_url );
+	), $base_url ) );
 
 	return esc_url( $url );
 }

@@ -74,7 +74,7 @@ function gce_add_cache_button() {
 		
 		if( $post->post_type == 'gce_feed' ) {
 			$html = '<div id="gce-clear-cache">' .
-					'<a href="' . add_query_arg( array( 'clear_cache' => true ) ) . '">' . __( 'Clear Cache', 'gce' ) . '</a>' .
+					'<a href="' . esc_url( add_query_arg( array( 'clear_cache' => true ) ) ) . '">' . __( 'Clear Cache', 'gce' ) . '</a>' .
 					'</div>';
 
 			echo $html;
