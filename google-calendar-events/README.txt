@@ -88,9 +88,9 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.5 - TODO =
+= 2.2.5 - April 22, 2015 =
 
-* TODO Updating calls to add_query_arg to prevent any possible XSS attacks.
+* Updated calls to add_query_arg to prevent any possible XSS attacks.
 * Fixed bug with fatal error in rare cases by rearragning order of plugin file includes.
 * Fixed bug with navigation links sometimes returning -1.
 * Corrected typo with paging links title attributes.
