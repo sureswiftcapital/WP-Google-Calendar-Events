@@ -25,9 +25,8 @@ Parses Google Calendar feeds and displays the events as a calendar grid or list 
 
 [Plugin Documentation & Getting Started](http://wpdocs.philderksen.com/google-calendar-events/?utm_source=wordpress_org&utm_medium=link&utm_campaign=gce_lite)
 
-###Feature Requests and Updates###
+###Updates###
 
-* [Public roadmap/feature requests](https://trello.com/b/ZQSzsarY)
 * [Get notified when new features are released](http://eepurl.com/0_VsT)
 * [Follow this project on Github](https://github.com/pderksen/WP-Google-Calendar-Events)
 
