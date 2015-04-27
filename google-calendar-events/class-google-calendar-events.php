@@ -64,8 +64,7 @@ class Google_Calendar_Events {
 		
 		add_action( 'init', array( $this, 'enqueue_public_scripts' ) );
 		add_action( 'init', array( $this, 'enqueue_public_styles' ) );
-		
-		
+
 		// Load scripts when posts load so we know if we need to include them or not
 		add_filter( 'the_posts', array( $this, 'load_scripts' ) );
 		
@@ -191,9 +190,14 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public function enqueue_public_scripts() {
-		// ImagesLoaded JS library recommended by qTip2.
-		wp_register_script( $this->plugin_slug . '-images-loaded', plugins_url( 'js/imagesloaded.pkg.min.js', __FILE__ ), null, $this->version, true );
-		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip.min.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-images-loaded' ), $this->version, true );
+
+		// DON'T include ImagesLoaded JS library recommended by qTip2 yet since we don't use "complex content that contains images" (yet).
+		// http://qtip2.com/guides#gettingstarted.imagesloaded
+		// We WERE doing this between 2.1.6 & 2.2.5 (taken out as of 2.2.6).
+		// AND this was probably causing issues with themes including the Isotope jQuery library.
+		// http://qtip2.com/guides#integration.isotope
+
+		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip.min.js', __FILE__ ), array( 'jquery' ), $this->version, true );
 		wp_register_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), $this->version, true );
 	}
 	
