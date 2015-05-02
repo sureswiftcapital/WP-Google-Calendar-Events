@@ -286,13 +286,22 @@ function gce_ga_campaign_url( $base_url, $source, $medium, $campaign ) {
  * Function to convert date format mm/dd/YYYY to unix timestamp
  */
 function gce_date_unix( $date ) {
-	$date = explode( '/', $date );
-			
-	$month = $date[0];
-	$day   = $date[1];
-	$year  = $date[2];
+	
+	if ( empty( $date ) ) {
+		
+		$current_time = current_time( 'timestamp' );
+		
+		$timestamp = mktime( 0, 0, 0, date( 'm', $current_time ), date( 'd', $current_time ), date( 'Y', $current_time ) );
+	} else {
+	
+		$date = explode( '/', $date );
 
-	$timestamp = mktime( 0, 0, 0, $month, $day, $year );
+		$month = $date[0];
+		$day   = $date[1];
+		$year  = $date[2];
+
+		$timestamp = mktime( 0, 0, 0, $month, $day, $year );
+	}
 	
 	return $timestamp;
 }
