@@ -1,9 +1,9 @@
 === Google Calendar Events ===
 Contributors: pderksen, nickyoung87, rosshanney
 Tags: google calendar, google, calendar, events, gcal
-Requires at least: 3.9.3
+Requires at least: 3.9
 Tested up to: 4.2
-Stable tag: 2.2.5
+Stable tag: 2.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,10 @@ There are three ways to install this plugin.
 1. Event display builder editor
 
 == Changelog ==
+
+= 2.2.6 - TODO =
+
+* Removed unnecessary imagesLoaded JS library (optional dependency of the qTip2 library).
 
 = 2.2.5 - April 22, 2015 =
 
