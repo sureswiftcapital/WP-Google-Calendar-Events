@@ -91,6 +91,7 @@ There are three ways to install this plugin.
 = 2.2.6 - TODO =
 
 * Removed unnecessary imagesLoaded JS library (optional dependency of the qTip2 library).
+* Fixed bugs when custom date range values were left blank.
 
 = 2.2.5 - April 22, 2015 =
 
