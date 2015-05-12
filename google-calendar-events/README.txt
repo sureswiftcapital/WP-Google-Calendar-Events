@@ -92,6 +92,7 @@ There are three ways to install this plugin.
 
 * Removed unnecessary imagesLoaded JS library (optional dependency of the qTip2 library).
 * Fixed bugs when custom date range values were left blank.
+* Added Russian translation.
 
 = 2.2.5 - April 22, 2015 =
 
