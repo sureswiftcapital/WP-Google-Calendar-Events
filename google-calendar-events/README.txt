@@ -44,6 +44,7 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 * Dutch - Provided by Henri van Werkhoven.
 * Catalan - Provided by Toni Ginard & Monica Grau of [agora.xtec.cat](http://agora.xtec.cat/).
 * Russian - Provided by Vadim Reutskiy.
+* Swedish - Provided by Familjedaghemmet Chicos of [chicos.nu](http://www.chicos.nu/).
 
 == Installation ==
 
@@ -94,6 +95,7 @@ There are three ways to install this plugin.
 * Removed unnecessary imagesLoaded JS library (optional dependency of the qTip2 library).
 * Fixed bugs when custom date range values were left blank.
 * Added Russian translation provided by Vadim Reutskiy.
+* Added Swedish translation provided by Familjedaghemmet Chicos.
 
 = 2.2.5 - April 22, 2015 =
 
