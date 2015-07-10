@@ -2,7 +2,7 @@
 Contributors: pderksen, nickyoung87, rosshanney
 Tags: google calendar, google, calendar, events, gcal
 Requires at least: 3.9
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: 2.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -96,6 +96,7 @@ There are three ways to install this plugin.
 * Fixed bugs when custom date range values were left blank.
 * Added Russian translation provided by Vadim Reutskiy.
 * Added Swedish translation provided by Familjedaghemmet Chicos.
+* Tested up to WordPress 4.3.
 
 = 2.2.5 - April 22, 2015 =
 
