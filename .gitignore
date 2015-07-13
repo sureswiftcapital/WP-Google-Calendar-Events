@@ -20,3 +20,11 @@ nbproject
 
 # POT files
 *.pot
+
+# temp
+assets
+build
+images
+node_modules
+vendor
+composer.lock
