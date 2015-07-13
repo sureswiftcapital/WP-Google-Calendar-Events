@@ -61,9 +61,9 @@ class Google_Calendar_Events {
 		}
 		
 		$this->setup_constants();
-		
-		add_action( 'init', array( $this, 'enqueue_public_scripts' ) );
-		add_action( 'init', array( $this, 'enqueue_public_styles' ) );
+
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 
 		// Load scripts when posts load so we know if we need to include them or not
 		add_filter( 'the_posts', array( $this, 'load_scripts' ) );
