@@ -107,4 +107,3 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 
 	return $calendar . "</tr>\n</table>\n";
 }
-?>
