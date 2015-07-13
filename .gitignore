@@ -22,7 +22,7 @@ nbproject
 *.pot
 
 # temp
-assets
+/assets
 build
 images
 node_modules

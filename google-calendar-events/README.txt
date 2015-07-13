@@ -1,5 +1,5 @@
 === Google Calendar Events ===
-Contributors: pderksen, nickyoung87, rosshanney
+Contributors: pderksen, nickyoung87, nekojira, rosshanney
 Tags: google calendar, google, calendar, events, gcal
 Requires at least: 3.9
 Tested up to: 4.3
