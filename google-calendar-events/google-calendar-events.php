@@ -26,6 +26,31 @@ if ( ! defined( 'WPINC' ) ) {
 	die();
 }
 
+/**
+ * Check for minimum PHP and WordPress versions.
+ * - PHP: 5.3.2
+ * - WordPress: 3.9.0
+ */
+require_once 'class-wp-requirements.php';
+$requirements = new WP_Requirements( array( 'wp' => '3.9.0', 'php' => '5.3.2' ) );
+if ( $requirements->pass() === false ) {
+
+	// Should use `create_function` instead of anonymous function for PHP 5.2.4 really
+	// but `create_function` is such an evil and can't even get to work.
+	add_action( 'admin_notices', function() {
+		if ( isset( $_GET['activate'] ) ) { unset( $_GET['activate'] ); }
+		global $wp_version;
+		echo '<div class="error"><p>' . sprintf( __( 'Google Events Calendar requires at leas PHP 5.3.2 and WordPress 3.9 to function properly. Detected PHP version: %1$s. Detected WordPress version: %2$s. Please upgrade. The plugin has been auto-deactivated.', 'gce' ), '<code>' . PHP_VERSION . '</code>', '<code>' . $wp_version . '</code>' ) . '</p></div>';
+	} );
+
+    add_action( 'admin_init', 'gce_deactivate_self' );
+    function gce_deactivate_self() {
+	    deactivate_plugins( plugin_basename( __FILE__ ) );
+    }
+
+    return;
+}
+
 /*
  * Include the main plugin file
  *
