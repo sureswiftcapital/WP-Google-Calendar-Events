@@ -11,7 +11,9 @@
 
 class GCE_Display {
 
-	public $feeds, $merged_feeds;
+	public $feeds = array();
+
+	public $merged_feeds = array();
 
 	public function __construct( $ids, $title_text = null, $sort_order = 'asc' ) {
 
@@ -57,9 +59,11 @@ class GCE_Display {
 	private function get_event_days() {
 		$event_days = array();
 
-		foreach ( $this->merged_feeds as $event ) {
-			foreach ( $event->get_days() as $day ) {
-				$event_days[$day][] = $event;
+		if ( $this->merged_feeds ) {
+			foreach ( $this->merged_feeds as $event ) {
+				foreach ( $event->get_days() as $day ) {
+					$event_days[ $day ][] = $event;
+				}
 			}
 		}
 
