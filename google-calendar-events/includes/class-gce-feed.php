@@ -167,11 +167,12 @@ class GCE_Feed {
 							//If there are some entries (events) to process
 								//Loop through each event, extracting the relevant information
 								foreach ( $raw_data['items'] as $event ) {
-									$id          = ( isset( $event['id'] ) ? esc_html( $event['id'] ) : '' );
-									$title       = ( isset( $event['summary'] ) ? esc_html( $event['summary'] ) : '' );
-									$description = ( isset( $event['description'] ) ? esc_html( $event['description'] ) : '' );
-									$link        = ( isset( $event['htmlLink'] ) ? esc_url( $event['htmlLink'] ) : '' );
-									$location    = ( isset( $event['location'] ) ? esc_html( $event['location'] ) : '' );
+									$id          	 = ( isset( $event['id'] ) ? esc_html( $event['id'] ) : '' );
+									$title       	 = ( isset( $event['summary'] ) ? esc_html( $event['summary'] ) : '' );
+									$description 	 = ( isset( $event['description'] ) ? esc_html( $event['description'] ) : '' );
+									$link        	 = ( isset( $event['htmlLink'] ) ? esc_url( $event['htmlLink'] ) : '' );
+									$location    	 = ( isset( $event['location'] ) ? esc_html( $event['location'] ) : '' );
+									$transparency    = ( isset( $event['transparency'] ) ? esc_html( $event['transparency'] ) : '' );
 
 									if( isset( $event['start']['dateTime'] ) ) {
 										$start_time  = $this->iso_to_ts( $event['start']['dateTime'] );
@@ -190,7 +191,7 @@ class GCE_Feed {
 									}
 
 									//Create a GCE_Event using the above data. Add it to the array of events
-									$this->events[] = new GCE_Event( $this, $id, $title, $description, $location, $start_time, $end_time, $link );
+									$this->events[] = new GCE_Event( $this, $id, $title, $description, $location, $start_time, $end_time, $link, $transparency );
 								}
 						} else {
 							//json_decode failed
