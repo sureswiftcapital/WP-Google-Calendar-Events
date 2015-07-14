@@ -25,8 +25,6 @@ class GCE_Display {
 			$this->feeds[$id] = new GCE_Feed( $id );
 		}
 
-		$this->merged_feeds = array();
-
 		//Merge the feeds together into one array of events
 		foreach ( $this->feeds as $feed_id => $feed ) {
 			$this->merged_feeds = array_merge( $this->merged_feeds, $feed->events );
