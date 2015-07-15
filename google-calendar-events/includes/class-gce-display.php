@@ -11,6 +11,12 @@
 
 class GCE_Display {
 
+	public $id = '';
+
+	public $title = '';
+
+	public $sort = '';
+
 	public $feeds = array();
 
 	public $merged_feeds = array();
