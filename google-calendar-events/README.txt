@@ -92,7 +92,11 @@ There are three ways to install this plugin.
 
 = 2.2.6 - TODO =
 
+* Plugin performs a requirements check to ensure users are running a recent version of Wordpress
+* Added '.gce-has-<n>-events' class to count events in days in grid
 * Removed unnecessary imagesLoaded JS library (optional dependency of the qTip2 library).
+* Fixed a bug with backslashes in date ant time custom format inputs
+* Fixed scripts and styles loading issues
 * Fixed bugs when custom date range values were left blank.
 * Added Russian translation provided by Vadim Reutskiy.
 * Added Swedish translation provided by Familjedaghemmet Chicos.
