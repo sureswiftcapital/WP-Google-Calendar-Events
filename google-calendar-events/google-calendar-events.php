@@ -35,19 +35,24 @@ require_once 'class-wp-requirements.php';
 $requirements = new WP_Requirements( array( 'wp' => '3.9.0', 'php' => '5.3.2' ) );
 if ( $requirements->pass() === false ) {
 
-	// Should use `create_function` instead of anonymous function for PHP 5.2.4 really
-	// but `create_function` is such an evil and can't even get to work.
-	add_action( 'admin_notices', function() {
-		if ( isset( $_GET['activate'] ) ) { unset( $_GET['activate'] ); }
+	// Display an admin notice why the plugin can't work.
+	function gce_plugin_requirements() {
 		global $wp_version;
-		echo '<div class="error"><p>' . sprintf( __( 'Google Events Calendar requires at leas PHP 5.3.2 and WordPress 3.9 to function properly. Detected PHP version: %1$s. Detected WordPress version: %2$s. Please upgrade. The plugin has been auto-deactivated.', 'gce' ), '<code>' . PHP_VERSION . '</code>', '<code>' . $wp_version . '</code>' ) . '</p></div>';
-	} );
+		echo '<div class="error"><p>' . sprintf( __( 'Google Events Calendar requires PHP 5.3.2 and WordPress 3.9.0 to function properly. PHP version found: %1$s. WordPress installed version: %2$s. Please upgrade to meet the minimum requirements. The plugin has been auto-deactivated.', 'gce' ), PHP_VERSION, $wp_version ) . '</p></div>';
+		// Removes the activation notice if set.
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
+	}
+	add_action( 'admin_notices', 'gce_plugin_requirements' );
 
-    add_action( 'admin_init', 'gce_deactivate_self' );
+	// Deactivates the plugin.
     function gce_deactivate_self() {
 	    deactivate_plugins( plugin_basename( __FILE__ ) );
     }
+	add_action( 'admin_init', 'gce_deactivate_self' );
 
+	// Halt the rest of the plugin execution.
     return;
 }
 
