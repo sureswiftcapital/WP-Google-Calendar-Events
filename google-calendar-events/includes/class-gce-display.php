@@ -120,12 +120,14 @@ class GCE_Display {
 		$start = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
 		$i = 1;
-
+		$css_classes = array();
 		foreach ( $event_days as $key => $event_day ) {
+
 			//If event day is in the month and year specified (by $month and $year)
 			if ( $key >= $display_month_start && $key < $display_month_end ) {
-				//Create array of CSS classes. Add gce-has-events
-				$css_classes = array( 'gce-has-events' );
+
+				// Add gce-has-events
+				$css_classes[] = 'gce-has-events';
 
 				//Create markup for display
 				$markup = '<div class="gce-event-info">';
@@ -138,6 +140,7 @@ class GCE_Display {
 				$markup .= '<ul>';
 
 				foreach ( $event_day as $num_in_day => $event ) {
+
 					$feed_id = absint( $event->feed->id );
 					$markup .= '<li class="gce-tooltip-feed-' . esc_attr( $feed_id ) . '">' . $event->get_event_markup( 'tooltip', $num_in_day, $i ) . '</li>';
 
@@ -152,6 +155,10 @@ class GCE_Display {
 				//If number of CSS classes is greater than 2 ('gce-has-events' plus one specific feed class) then there must be events from multiple feeds on this day, so add gce-multiple CSS class
 				if ( count( $css_classes ) > 2 )
 					$css_classes[] = 'gce-multiple';
+
+				$count_events = count( $event_day );
+				// Marks the count for the number of events happening this day.
+				$css_classes[] = 'gce-has-' . strval( $count_events ) . '-events';
 
 				//If event day is today, add gce-today CSS class, otherwise add past or future class
 				if ( $key == $start ) {
