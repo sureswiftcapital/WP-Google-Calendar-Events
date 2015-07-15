@@ -120,14 +120,13 @@ class GCE_Display {
 		$start = mktime( 0, 0, 0, date( 'm', $time_now ), date( 'd', $time_now ), date( 'Y', $time_now ) );
 
 		$i = 1;
-		$css_classes = array();
 		foreach ( $event_days as $key => $event_day ) {
 
 			//If event day is in the month and year specified (by $month and $year)
 			if ( $key >= $display_month_start && $key < $display_month_end ) {
 
 				// Add gce-has-events
-				$css_classes[] = 'gce-has-events';
+				$css_classes = array( 'gce-has-events' );
 
 				//Create markup for display
 				$markup = '<div class="gce-event-info">';
