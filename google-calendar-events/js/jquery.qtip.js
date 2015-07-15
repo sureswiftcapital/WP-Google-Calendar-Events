@@ -1961,7 +1961,7 @@ QTIP.defaults = {
 	},
 	show: {
 		target: FALSE,
-		event: 'mouseenter',
+		event:  BROWSER.iOS ? 'click' : 'mouseenter', // was just : 'mouseenter'
 		effect: TRUE,
 		delay: 90,
 		solo: FALSE,
@@ -1970,7 +1970,7 @@ QTIP.defaults = {
 	},
 	hide: {
 		target: FALSE,
-		event: 'mouseleave',
+		event:  BROWSER.iOS ? 'click' : 'mouseleave', // was just : 'mouseleave'
 		effect: TRUE,
 		delay: 0,
 		fixed: FALSE,

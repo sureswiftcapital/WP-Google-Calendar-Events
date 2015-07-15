@@ -197,7 +197,9 @@ class Google_Calendar_Events {
 		// AND this was probably causing issues with themes including the Isotope jQuery library.
 		// http://qtip2.com/guides#integration.isotope
 
-		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip.min.js', __FILE__ ), array( 'jquery' ), $this->version, true );
+		$min = defined( 'SCRIPT_DEBUG' ) ? '' : '.min';
+
+		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip' . $min . '.js', __FILE__ ), array( 'jquery' ), $this->version, true );
 		wp_register_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), $this->version, true );
 	}
 	
