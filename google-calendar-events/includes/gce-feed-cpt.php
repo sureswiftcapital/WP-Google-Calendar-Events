@@ -214,8 +214,10 @@ function gce_save_meta( $post_id ) {
 					}
 					
 					update_post_meta( $post_id, $pmf, $id );
+				} elseif( $pmf == 'gce_time_format' || $pmf == 'gce_date_format' ) {
+					update_post_meta( $post_id, $pmf, sanitize_text_field( $_POST[ $pmf ] ) );
 				} else {
-					update_post_meta( $post_id, $pmf, stripslashes( $_POST[$pmf] ) );
+					update_post_meta( $post_id, $pmf, stripslashes( $_POST[ $pmf ] ) );
 				}
 			} else {
 				delete_post_meta( $post_id, $pmf );
