@@ -26,34 +26,31 @@ if ( ! defined( 'WPINC' ) ) {
 	die();
 }
 
-/**
- * Check for minimum PHP and WordPress versions.
- * - PHP: 5.3.2
- * - WordPress: 3.9.0
- */
-require_once 'class-wp-requirements.php';
-$requirements = new WP_Requirements( array( 'wp' => '3.9.0', 'php' => '5.3.2' ) );
-if ( $requirements->pass() === false ) {
+// Set the plugin PHP and WP requirements.
+$gce_requires = array( 'wp' => '3.9.0', 'php' => '5.2.4' );
+// Constants before PHP 5.6 can't store arrays.
+define( 'GCE_REQUIREMENTS', serialize( $gce_requires ) );
+// Checks if the requirements are met.
+require_once dirname( __FILE__ ) . '/gce-requirements.php';
+$gce_requirements = new GCE_Requirements( $gce_requires );
+if ( $gce_requirements->pass() === false ) {
 
-	// Display an admin notice why the plugin can't work.
+	// Display an admin notice explaining why the plugin can't work.
 	function gce_plugin_requirements() {
-		global $wp_version;
-		echo '<div class="error"><p>' . sprintf( __( 'Google Events Calendar requires PHP 5.3.2 and WordPress 3.9.0 to function properly. PHP version found: %1$s. WordPress installed version: %2$s. Please upgrade to meet the minimum requirements. The plugin has been auto-deactivated.', 'gce' ), PHP_VERSION, $wp_version ) . '</p></div>';
-		// Removes the activation notice if set.
-		if ( isset( $_GET['activate'] ) ) {
-			unset( $_GET['activate'] );
+		$required = unserialize( GCE_REQUIREMENTS );
+		if ( isset( $required['wp'] ) && isset( $required['php'] ) ) {
+			global $wp_version;
+			echo '<div class="error"><p>' . sprintf( __( 'Google Events Calendar requires PHP %1$s and WordPress %2$s to function properly. PHP version found: %3$s. WordPress installed version: %4$s. Please upgrade to meet the minimum requirements.', 'gce' ), $required['php'], $required['wp'], PHP_VERSION, $wp_version ) . '</p></div>';
 		}
 	}
 	add_action( 'admin_notices', 'gce_plugin_requirements' );
 
-	// Deactivates the plugin.
-    function gce_deactivate_self() {
-	    deactivate_plugins( plugin_basename( __FILE__ ) );
-    }
-	add_action( 'admin_init', 'gce_deactivate_self' );
+	$gce_fails = $gce_requirements->failures();
+	if ( isset( $gce_fails['php'] ) ) {
+		// Halt the rest of the plugin execution if PHP check fails.
+		return;
+	}
 
-	// Halt the rest of the plugin execution.
-    return;
 }
 
 /*

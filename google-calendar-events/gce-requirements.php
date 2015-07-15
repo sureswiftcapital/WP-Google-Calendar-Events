@@ -11,9 +11,9 @@
  * @license GPL2+
  */
 
-if ( ! class_exists( 'WP_Requirements' ) ) {
+if ( ! class_exists( 'GCE_Requirements' ) ) {
 
-	class WP_Requirements {
+	class GCE_Requirements {
 
 		/**
 		 * WordPress.
