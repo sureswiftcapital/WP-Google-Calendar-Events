@@ -92,6 +92,7 @@ There are three ways to install this plugin.
 
 = 2.2.6 - TODO =
 
+* Fixed a bug with the start month of the custom date range grid view.
 * Plugin performs a requirements check to ensure users are running a recent version of WordPress
 * Added '.gce-has-<n>-events' class to count events in days in grid
 * Removed unnecessary imagesLoaded JS library (optional dependency of the qTip2 library).
