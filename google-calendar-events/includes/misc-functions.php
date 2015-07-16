@@ -76,6 +76,15 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 		} else {
 			$show_tooltips = 'false';
 		}
+		
+		if ( 'date-range-grid' === $display ) {
+			$start = get_post_meta( $id, 'gce_feed_range_start', true );
+			
+			$start = gce_date_unix( $start );
+			
+			$year  = date( 'Y', $start );
+			$month = date( 'n', $start );
+		}
 	}
 	
 	if( 'grid' == $display ) {
@@ -133,9 +142,9 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 			);
 		
 		if( $widget ) {
-			$markup = '<div class="gce-widget-grid gce-widget-grid-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $markup .= $d->get_grid( $year, $month, $widget, $paging ) . '</div>';
+			$markup = '<div class="gce-widget-grid gce-widget-grid-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_grid( $year, $month, $widget, $paging ) . '</div>';
 		} else {
-			$markup = '<div class="gce-page-grid gce-page-grid-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $markup .= $d->get_grid( $year, $month, $widget, $paging ) . '</div>';
+			$markup = '<div class="gce-page-grid gce-page-grid-' . esc_attr( $feed_ids ) . '" id="gce-' . $uid . '">' . $d->get_grid( $year, $month, $widget, $paging ) . '</div>';
 		}
 	}
 	
