@@ -90,14 +90,14 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.6 - TODO =
+= 2.2.6 - July 16, 2015 =
 
-* Fixed a bug with the start month of the custom date range grid view.
-* Plugin performs a requirements check to ensure users are running a recent version of WordPress
-* Added '.gce-has-<n>-events' class to count events in days in grid
+* Plugin performs a requirements check to ensure users are running a recent version of WordPress.
+* Added '.gce-has-<n>-events' class to count events in each day in grid display.
 * Removed unnecessary imagesLoaded JS library (optional dependency of the qTip2 library).
-* Fixed a bug with backslashes in date ant time custom format inputs
-* Fixed scripts and styles loading issues
+* Fixed a bug with the start month of the custom date range grid view.
+* Fixed a bug with backslashes in date ant time custom format inputs.
+* Fixed scripts and styles loading issues.
 * Fixed bugs when custom date range values were left blank.
 * Added Russian translation provided by Vadim Reutskiy.
 * Added Swedish translation provided by Familjedaghemmet Chicos.
