@@ -48,8 +48,7 @@ module.exports = function( grunt ) {
 			deploy: {
 				options: {
 					plugin_slug: 'google-calendar-events',
-					build_dir: 'build/google-calendar-events',
-					assets_dir: 'google-calendar-events/assets'
+					build_dir: 'build/google-calendar-events'
 				}
 			}
 		}
