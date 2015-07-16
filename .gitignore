@@ -22,6 +22,7 @@ nbproject
 *.pot
 
 # temp
+/svn
 /assets
 build
 images
