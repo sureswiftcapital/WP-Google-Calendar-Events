@@ -7,8 +7,7 @@ module.exports = function( grunt ) {
 		semver = version.substring( 1, version.length ),
 		// Files to include in a release
 		distFiles =  [
-			'google-calendar-events/**',
-			'!google-calendar-events/assets/**'
+			'google-calendar-events/**'
 		];
 
 	// Print current version number converted to semantic versioning
