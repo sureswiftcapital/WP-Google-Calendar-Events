@@ -21,12 +21,13 @@ nbproject
 # POT files
 *.pot
 
-# temp
+# temporary (refactor branch)
 /svn
 /assets
-build
-images
-node_modules
-vendor
+/includes
+/libraries
+/build
+/release
+/node_modules
+/vendor
 composer.lock
-release
