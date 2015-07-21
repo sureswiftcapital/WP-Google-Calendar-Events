@@ -58,3 +58,10 @@
 .gce-custom-range input {
 	width: 120px;
 }
+
+input.gce-shortcode {
+	border: none;
+	color: rgba(0,0,0,.58);
+	font-family: monospace;
+	font-weight: bold;
+}

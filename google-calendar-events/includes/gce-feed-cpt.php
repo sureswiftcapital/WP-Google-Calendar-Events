@@ -262,7 +262,16 @@ function gce_column_content( $column_name, $post_ID ) {
 			echo $post_ID;
 			break;
 		case 'feed-sc':
-			echo '<code>[gcal id="' . esc_attr( $post_ID ) . '"]</code>';
+			?>
+			<input
+				name="gce_shortcode"
+				class="gce-shortcode"
+			    readonly="readonly"
+			    value='[gcal id="<?php echo $post_ID; ?>"]'
+			    placeholder='[gcal id="<?php echo $post_ID; ?>"]'
+				onclick="this.select();"
+				/>
+			<?php
 			break;
 		case 'display-type':
 			$display = get_post_meta( $post_ID, 'gce_display_mode', true );

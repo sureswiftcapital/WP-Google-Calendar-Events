@@ -13,7 +13,7 @@
 	"use strict";
 
 	$(function () {
-		
+
 		// Show the hidden text box if custom date is selected  (Events per Page)
 		$('body').on('change', 'select[id*=events_per_page]', function() {
 
@@ -65,6 +65,11 @@
 
 			$('#publish').click();
 		});
+
+		// Automatically change the width of shortcode pseudo-inputs.
+		$( 'input.gce-shortcode' ).each( function() {
+			$( this ).attr( 'size', $( this ).val().length );
+		} );
 	
 	});
 }(jQuery));

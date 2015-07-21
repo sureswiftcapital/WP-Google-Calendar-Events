@@ -78,7 +78,15 @@
 	<tr>
 		<th scope="row"><?php _e( 'Feed Shortcode', 'gce' ); ?></th>
 		<td>
-			<code>[gcal id="<?php echo $post_id; ?>"]</code>
+			<input
+				name="gce_shortcode"
+				class="gce-shortcode"
+			    readonly="readonly"
+			    value='[gcal id="<?php echo $post_id; ?>"]'
+			    placeholder='[gcal id="<?php echo $post_id; ?>"]'
+				onclick="this.select();"
+				/>
+			<span class="gce-shortcode-copied"></span>
 			<p class="description">
 				<?php _e( 'Copy and paste this shortcode to display this Google Calendar feed on any post or page.', 'gce' ); ?>
 				<?php _e( 'To avoid display issues, make sure to paste the shortcode in the Text tab of the post editor.', 'gce' ); ?>
