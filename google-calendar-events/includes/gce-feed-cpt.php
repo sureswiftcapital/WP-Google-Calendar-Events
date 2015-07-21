@@ -268,7 +268,6 @@ function gce_column_content( $column_name, $post_ID ) {
 				class="gce-shortcode"
 			    readonly="readonly"
 			    value='[gcal id="<?php echo $post_ID; ?>"]'
-			    placeholder='[gcal id="<?php echo $post_ID; ?>"]'
 				onclick="this.select();"
 				/>
 			<?php

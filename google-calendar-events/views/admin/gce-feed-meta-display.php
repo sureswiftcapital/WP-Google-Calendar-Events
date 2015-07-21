@@ -83,7 +83,6 @@
 				class="gce-shortcode"
 			    readonly="readonly"
 			    value='[gcal id="<?php echo $post_id; ?>"]'
-			    placeholder='[gcal id="<?php echo $post_id; ?>"]'
 				onclick="this.select();"
 				/>
 			<span class="gce-shortcode-copied"></span>
