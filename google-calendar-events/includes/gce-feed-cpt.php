@@ -292,7 +292,6 @@ function gce_cpt_actions( $actions, $post ) {
 	if( $post->post_type == 'gce_feed' ) {
 		$actions['clear_cache'] = '<a href="' . esc_url( add_query_arg( array( 'clear_cache' => $post->ID ) ) ) . '">' . __( 'Clear Cache', 'gce' ) . '</a>';
 	}
-	
 	return $actions;
 }
 add_filter( 'post_row_actions', 'gce_cpt_actions', 10, 2 );
@@ -362,68 +361,62 @@ function gce_clear_cache_bulk_action() {
 
 	if ( 'gce_feed' == $post_type ) {
 
-		// Get the bulk action.
-		$wp_list_table = _get_list_table('WP_Posts_List_Table');
-		$action = $wp_list_table->current_action();
-		if ( ! $action == 'clear_cache' ) {
-			return;
-		}
-
-		// Security check (the referer is right).
-		check_admin_referer( 'bulk-posts' );
-
-		// Proceed if there are post ids selected.
-		$post_ids = isset( $_REQUEST['post'] ) ? array_map( 'intval', $_REQUEST['post'] ) : '';
-		if ( ! $post_ids ) {
-			return;
-		}
-
-		// This is based on wp-admin/edit.php
-		$send_back = remove_query_arg(
-			array( 'cleared', 'untrashed', 'deleted', 'ids' ),
-			wp_get_referer()
-		);
+		$send_back = remove_query_arg( array( 'cleared' ), wp_get_referer() );
 		if ( ! $send_back ) {
-			$send_back = admin_url( "edit.php?post_type=$post_type" );
+			$send_back = admin_url( 'edit.php?post_type=' . $post_type );
 		}
 
-		// Add page num to query arg
-		$page_num = $wp_list_table->get_pagenum();
-		$send_back = add_query_arg( 'paged', $page_num, $send_back );
+		// Get the bulk action.
+		$wp_list_table = _get_list_table( 'WP_Posts_List_Table' );
+		$action = $wp_list_table->current_action();
+		if ( $action == 'clear_cache' ) {
 
-		switch ( $action ) :
+			// Security check (the referer is right).
+			check_admin_referer( 'bulk-posts' );
 
-			case 'clear_cache' :
+			// This is based on wp-admin/edit.php.
+			$send_back = remove_query_arg(
+				array( 'cleared', 'untrashed', 'deleted', 'ids' ),
+				$send_back
+			);
 
-				$cleared = 0;
-				foreach ( $post_ids as $post_id ) {
-					gce_clear_cache( $post_id );
-					$cleared++;
+			// Proceed if there are post ids selected.
+			$post_ids = isset( $_REQUEST['post'] ) ? array_map( 'intval', $_REQUEST['post'] ) : '';
+			if ( $post_ids ) {
+
+				// Add page num to query arg.
+				$page_num  = $wp_list_table->get_pagenum();
+				$send_back = add_query_arg( 'paged', $page_num, $send_back );
+
+				switch ( $action ) {
+					case 'clear_cache' :
+						$cleared = 0;
+						foreach ( $post_ids as $post_id ) {
+							gce_clear_cache( $post_id );
+							$cleared ++;
+						}
+						$send_back = add_query_arg( array(
+							'cleared' => $cleared,
+							'ids'     => join( ',', $post_ids )
+						),
+							$send_back
+						);
+						break;
+					default:
+						return;
+						break;
 				}
 
-				$send_back = add_query_arg( array(
-					'cleared' => $cleared,
-					'ids' => join( ',', $post_ids ) ),
+				$send_back = remove_query_arg(
+					array( 'action', 'tags_input', 'post_author', 'comment_status', 'ping_status', '_status', 'post', 'bulk_edit', 'post_view' ),
 					$send_back
 				);
-				break;
 
-			default:
-				return;
-				break;
-
-		endswitch;
-
-		$send_back = remove_query_arg(
-			array( 'action', 'action', 'tags_input', 'post_author', 'comment_status', 'ping_status', '_status',  'post', 'bulk_edit', 'post_view' ),
-			$send_back
-		);
-
-		wp_redirect( $send_back );
-		exit();
-
+				wp_redirect( $send_back );
+				exit();
+			}
+		}
 	}
-
 }
 add_action( 'load-edit.php', 'gce_clear_cache_bulk_action' );
 
@@ -431,15 +424,10 @@ add_action( 'load-edit.php', 'gce_clear_cache_bulk_action' );
  * Display an admin notice when the cache is cleared.
  */
 function gce_clear_cache_bulk_action_notice() {
-
 	global $post_type, $pagenow;
-
-	if ( $pagenow == 'edit.php' && $post_type == 'gce_feed' && isset( $_REQUEST['cleared'] ) && (int) $_REQUEST['cleared']) {
-
-		$message = sprintf( _n( 'Feed cache cleared.', 'Cleared cache for %s feeds.', $_REQUEST['cleared'] ), number_format_i18n( $_REQUEST['cleared'] ) );
-		echo "<div class=\"updated\"><p>{$message}</p></div>";
-
+	if ( $pagenow == 'edit.php' && $post_type == 'gce_feed' && isset( $_REQUEST['cleared'] ) && (int) $_REQUEST['cleared'] ) {
+		$message = sprintf( _n( 'Feed cache cleared.', 'Cleared cache for %s feeds.', $_REQUEST['cleared'], 'gce' ), number_format_i18n( $_REQUEST['cleared'] ) );
+		echo '<div class="updated notice is-dismissible"><p>' . $message . '</p></div>';
 	}
-
 }
 add_action( 'admin_notices', 'gce_clear_cache_bulk_action_notice' );
