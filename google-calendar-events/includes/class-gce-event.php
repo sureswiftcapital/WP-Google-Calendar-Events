@@ -247,6 +247,7 @@ class GCE_Event {
 			'if-title',       //The event has a title
 			'if-description', //The event has a description
 			'if-location',    //The event has a location
+			'if-not-location',//The event does not have a location
 			'if-tooltip',     //The current display type is 'tooltip'
 			'if-list',        //The current display type is 'list'
 			'if-now',         //The event is taking place now (after the start time, but before the end time)
@@ -438,6 +439,12 @@ class GCE_Event {
 
 			case 'if-location':
 				if ( '' != $this->location )
+					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
+
+				return '';
+
+			case 'if-not-location':
+				if ( '' == $this->location )
 					return $m[1] . $this->look_for_shortcodes( $m[5] ) . $m[6];
 
 				return '';
