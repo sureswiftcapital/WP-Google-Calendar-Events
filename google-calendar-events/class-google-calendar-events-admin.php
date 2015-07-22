@@ -116,7 +116,15 @@ class Google_Calendar_Events_Admin {
 	 * @since    2.1.0
 	 */
 	public static function activate() {
+		flush_rewrite_rules();
 		update_option( 'gce_show_admin_install_notice', 1 );
+	}
+
+	/**
+	 * Fired when the plugin is deactivated.
+	 */
+	public static function deactivate() {
+		flush_rewrite_rules();
 	}
 	
 	public function add_plugin_admin_menu() {

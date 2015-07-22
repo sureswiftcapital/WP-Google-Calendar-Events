@@ -90,6 +90,9 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
+= 2.y.z - TODO =
+* Fix: flush permalinks on plugin activation and deactivation.
+
 = 2.2.6 - July 16, 2015 =
 
 * Plugin performs a requirements check to ensure users are running a recent version of WordPress.
