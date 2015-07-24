@@ -130,8 +130,18 @@ function gce_display_options_meta() {
  * Function to save post meta for the feed CPT
  * 
  * @since 2.0.0
+ *
+ * @param  int     $post_id
+ * @param  WP_Post $post
+ *
+ * @return int
  */
-function gce_save_meta( $post_id ) {
+function gce_save_meta( $post_id, $post ) {
+
+	if ( 'gce_feed' != $post->post_type ) {
+		return $post_id;
+	}
+
 	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			return $post_id;
 	}
@@ -223,11 +233,28 @@ function gce_save_meta( $post_id ) {
 				delete_post_meta( $post_id, $pmf );
 			}
 		}
+
 	}
 	
 	return $post_id;
 }
-add_action( 'save_post', 'gce_save_meta' );
+add_action( 'save_post', 'gce_save_meta', 10, 2 );
+
+
+/**
+ * Delete feed ids transient if a feed post type is deleted.
+ *
+ * @param int $id The id of the deleted post.
+ */
+function gce_delete_post( $id ) {
+	$feeds = get_transient( 'gce_feed_ids' );
+	if ( $feeds && is_array( $feeds ) ) {
+		if ( in_array( $id, array_keys( $feeds ) ) ) {
+			delete_transient( 'gce_feed_ids' );
+		}
+	}
+}
+add_action( 'delete_post', 'gce_delete_post', 10, 1 );
 
 
 /**
@@ -315,6 +342,9 @@ add_action( 'admin_init', 'gce_clear_cache_link' );
 
 
 function gce_clear_cache_on_save( $post_id ) {
+	// Transient with calendar feed data.
 	delete_transient( 'gce_feed_' . $post_id );
+	// Transient with an associative array list of feed ids and their titles.
+	delete_transient( 'gce_feed_ids' );
 }
 add_action( 'save_post_gce_feed', 'gce_clear_cache_on_save' );
