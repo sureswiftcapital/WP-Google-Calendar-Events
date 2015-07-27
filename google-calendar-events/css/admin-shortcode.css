@@ -1,4 +1,8 @@
 
+body.post-type-gce_feed #gce-insert-shortcode-button {
+	display: none;
+}
+
 /* Add shortcode media button and panel */
 .wp-media-buttons a.add_calendar span.wp-media-buttons-icon {
 	background: none;

@@ -269,7 +269,8 @@ class Google_Calendar_Events_Admin {
 			$query = get_posts( array(
 				'post_type' => 'gce_feed',
 				'orderby'   => 'title',
-				'order'     => 'ASC'
+				'order'     => 'ASC',
+				'nopaging'  => true
 			) );
 
 			$results = array();
