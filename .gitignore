@@ -30,4 +30,5 @@ nbproject
 /release
 /node_modules
 /vendor
+/bower_components
 composer.lock
