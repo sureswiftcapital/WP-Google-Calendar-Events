@@ -93,6 +93,7 @@ There are three ways to install this plugin.
 = 2.y.z - TODO =
 * Fix: flush permalinks on plugin activation and deactivation.
 * Enhancement: added an 'Add Calendar' button to quickly add a shortcode.
+* Added [if-not-location] event builder shortcode.
 
 = 2.2.6 - July 16, 2015 =
 
