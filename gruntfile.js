@@ -19,6 +19,27 @@ module.exports = function( grunt ) {
 		pkg: pkg,
 		semver : semver,
 
+		makepot: {
+			target: {
+				options: {
+					cwd: 'google-calendar-events',
+					domainPath: '/languages',
+					exclude: [],
+					include: [],
+					mainFile: 'google-calendar-events.php',
+					potComments: '',
+					potFilename: 'gce.pot',
+					potHeaders: {
+						poedit: true,
+						'x-poedit-keywordslist': true
+					},
+					type: 'wp-plugin',
+					updateTimestamp: true,
+					updatePoFiles: false
+				}
+			}
+		},
+
 		clean: {
 			main: [ 'build' ]
 		},
@@ -59,7 +80,7 @@ module.exports = function( grunt ) {
 
 	// Register tasks
 
-	grunt.registerTask( 'release', ['clean', 'copy', 'compress'] );
+	grunt.registerTask( 'release', ['makepot', 'clean', 'copy', 'compress'] );
 
 	grunt.registerTask( 'deploy', ['release', 'wp_deploy'] );
 
