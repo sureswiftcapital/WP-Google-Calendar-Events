@@ -92,6 +92,7 @@ There are three ways to install this plugin.
 
 = 2.y.z - TODO =
 * Fix: flush permalinks on plugin activation and deactivation.
+* Enhancement: added a 'gce_no_events_message_text' filter when no events are found.
 * Enhancement: added an 'Add Calendar' button to quickly add a shortcode.
 
 = 2.2.6 - July 16, 2015 =
