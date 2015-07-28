@@ -93,8 +93,9 @@ There are three ways to install this plugin.
 = 2.y.z - TODO =
 * Fix: flush permalinks on plugin activation and deactivation.
 * Enhancement: added a 'gce_no_events_message_text' filter when no events are found.
-* Enhancement: added an 'Add Calendar' button to quickly add a shortcode.
-* Added [if-not-location] event builder shortcode.
+* Enhancement: added an 'Add Calendar' button to quickly add a shortcode in posts.
+* Enhancement: added a clear cache bulk action for clearing caches of multiple feeds.
+* Enhancement: added `[if-not-location]` event builder conditional shortcode.
 
 = 2.2.6 - July 16, 2015 =
 
