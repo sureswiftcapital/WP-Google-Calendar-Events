@@ -24,6 +24,7 @@ nbproject
 # temporary (refactor branch)
 /svn
 /assets
+/bower_components
 /includes
 /libraries
 /build

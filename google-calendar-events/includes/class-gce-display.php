@@ -403,7 +403,7 @@ class GCE_Display {
 		}
 
 		if( ! $has_events ) {
-			$markup .= __( 'No events to display.', 'gce' );
+			$markup .= apply_filters( 'gce_no_events_message_text', __( 'No events to display.', 'gce' ) );
 		}
 
 		$markup .= '</div>';
