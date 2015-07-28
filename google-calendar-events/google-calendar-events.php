@@ -86,6 +86,7 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 	
 	// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
 	register_activation_hook( __FILE__, array( 'Google_Calendar_Events_Admin', 'activate' ) );
+	register_deactivation_hook( __FILE__, array( 'Google_Calendar_Events_Admin', 'deactivate' ) );
 	
 	// Get plugin admin class instance
 	add_action( 'plugins_loaded', array( 'Google_Calendar_Events_Admin', 'get_instance' ) );
