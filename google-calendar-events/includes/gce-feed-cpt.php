@@ -358,6 +358,7 @@ function gce_clear_cache_on_save( $post_id ) {
 	// Transient with an associative array list of feed ids and their titles.
 	delete_transient( 'gce_feed_ids' );
 }
+add_action( 'save_post_gce_feed', 'gce_clear_cache_on_save' );
 
 /**
  * Adds a 'clear cache' option to bulk actions.
