@@ -291,7 +291,7 @@ class Google_Calendar_Events_Admin {
 				<?php if ( ! empty( $feeds ) ) : ?>
 					<label for="gce-choose-gce-feed">
 						<select id="gce-choose-gce-feed" name="">
-							<?php foreach( $feeds as $id => $title ) : ?>
+							<?php foreach ( $feeds as $id => $title ) : ?>
 								<option value="<?php echo $id ?>"><?php echo $title ?></option>
 							<?php endforeach; ?>
 						</select>

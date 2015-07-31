@@ -377,6 +377,7 @@ function clear_old_transients( $id ) {
 	
 	delete_transient( 'gce_feed_' . $id );
 	delete_transient( 'gce_feed_' . $id . '_url' );
+	delete_transient( 'gce_feed_ids' );
 }
 
 /** 
