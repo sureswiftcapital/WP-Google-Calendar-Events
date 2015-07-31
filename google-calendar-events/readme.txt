@@ -90,6 +90,7 @@ There are three ways to install this plugin.
 == Changelog ==
 
 = 2.2.7 - July 31, 2015 =
+
 * Feature: added an 'Add Calendar' button to quickly add a shortcode in posts.
 * Fix: reverted register scripts hook to init.
 * Translations: updated French translations
