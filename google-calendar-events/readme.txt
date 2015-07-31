@@ -3,7 +3,7 @@ Contributors: pderksen, nickyoung87, nekojira, rosshanney
 Tags: google calendar, google, calendar, events, gcal
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 2.2.6
+Stable tag: 2.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,7 +90,8 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.y.z - TODO =
+= 2.2.7 - July 31, 2015 =
+* Fix: reverted register scripts hook to init.
 * Fix: flush permalinks on plugin activation and deactivation.
 * Enhancement: added a 'gce_no_events_message_text' filter when no events are found.
 * Enhancement: added an 'Add Calendar' button to quickly add a shortcode in posts.

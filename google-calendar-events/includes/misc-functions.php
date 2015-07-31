@@ -14,7 +14,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	
 	
 	// Load scripts
-	wp_enqueue_script( GCE_PLUGIN_SLUG . '-images-loaded' );
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-qtip' );
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-public' );
 	
