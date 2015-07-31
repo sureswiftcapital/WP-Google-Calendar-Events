@@ -5,7 +5,6 @@ Requires at least: 3.9
 Tested up to: 4.3
 Stable tag: 2.2.7
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
 
