@@ -91,12 +91,13 @@ There are three ways to install this plugin.
 == Changelog ==
 
 = 2.2.7 - July 31, 2015 =
+* Feature: added an 'Add Calendar' button to quickly add a shortcode in posts.
 * Fix: reverted register scripts hook to init.
-* Fix: flush permalinks on plugin activation and deactivation.
-* Enhancement: added a 'gce_no_events_message_text' filter when no events are found.
-* Enhancement: added an 'Add Calendar' button to quickly add a shortcode in posts.
-* Enhancement: added a clear cache bulk action for clearing caches of multiple feeds.
-* Enhancement: added `[if-not-location]` event builder conditional shortcode.
+* Translations: updated French translations
+* Tweak: flush permalinks on plugin activation and deactivation.
+* Tweak: added `[if-not-location]` event builder conditional shortcode.
+* Tweak: added a 'gce_no_events_message_text' filter when no events are found.
+* Tweak: added a clear cache bulk action for clearing caches of multiple feeds.
 
 = 2.2.6 - July 16, 2015 =
 
