@@ -39,7 +39,7 @@ module.exports = function( grunt ) {
 				},
 				expand: true,
 				src: distFiles,
-				dest: '/google-calendar-events'
+				dest: ''
 			}
 		},
 
