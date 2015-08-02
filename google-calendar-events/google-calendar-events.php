@@ -1,24 +1,15 @@
 <?php
 /**
- * Google Calendar Events
+ * Plugin Name: Google Calendar Events
+ * Plugin URI: https://wordpress.org/plugins/google-calendar-events/
+ * Description: Show off your Google calendar in grid (month) or list view, in a post, page or widget, and in a style that matches your site.
+ * Author: Moonstone Media
+ * Author URI: http://moonstonemediagroup.com
+ * Version: 2.2.7
+ * Text Domain: gce
+ * Domain Path: /languages/
  *
- * @package         GCE
- * @author          Phil Derksen <pderksen@gmail.com>, Nick Young <mycorpweb@gmail.com>
- * @license         GPL-2.0+
- * @link            http://philderksen.com
- * @copyright       2014-2015 Phil Derksen
- *
- * @wordpress-plugin
- * Plugin Name:     Google Calendar Events
- * Plugin URI:      https://wordpress.org/plugins/google-calendar-events/
- * Description:     Show off your Google calendar in grid (month) or list view, in a post, page or widget, and in a style that matches your site.
- * Version:         2.2.6
- * Author:          Phil Derksen
- * Author URI:      http://philderksen.com
- * License:         GPL-2.0+
- * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:     gce
- * Domain Path:     /languages
+ * Copyright 2014 Moonstone Media/Phil Derksen. All rights reserved.
  */
 
 // If this file is called directly, abort.
@@ -86,6 +77,7 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 	
 	// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
 	register_activation_hook( __FILE__, array( 'Google_Calendar_Events_Admin', 'activate' ) );
+	register_deactivation_hook( __FILE__, array( 'Google_Calendar_Events_Admin', 'deactivate' ) );
 	
 	// Get plugin admin class instance
 	add_action( 'plugins_loaded', array( 'Google_Calendar_Events_Admin', 'get_instance' ) );

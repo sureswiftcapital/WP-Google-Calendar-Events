@@ -130,8 +130,18 @@ function gce_display_options_meta() {
  * Function to save post meta for the feed CPT
  * 
  * @since 2.0.0
+ *
+ * @param  int     $post_id
+ * @param  WP_Post $post
+ *
+ * @return int
  */
-function gce_save_meta( $post_id ) {
+function gce_save_meta( $post_id, $post ) {
+
+	if ( 'gce_feed' != $post->post_type ) {
+		return $post_id;
+	}
+
 	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			return $post_id;
 	}
@@ -223,11 +233,28 @@ function gce_save_meta( $post_id ) {
 				delete_post_meta( $post_id, $pmf );
 			}
 		}
+
 	}
 	
 	return $post_id;
 }
-add_action( 'save_post', 'gce_save_meta' );
+add_action( 'save_post', 'gce_save_meta', 10, 2 );
+
+
+/**
+ * Delete feed ids transient if a feed post type is deleted.
+ *
+ * @param int $id The id of the deleted post.
+ */
+function gce_delete_post( $id ) {
+	$feeds = get_transient( 'gce_feed_ids' );
+	if ( $feeds && is_array( $feeds ) ) {
+		if ( in_array( $id, array_keys( $feeds ) ) ) {
+			delete_transient( 'gce_feed_ids' );
+		}
+	}
+}
+add_action( 'delete_post', 'gce_delete_post', 10, 1 );
 
 
 /**
@@ -262,7 +289,15 @@ function gce_column_content( $column_name, $post_ID ) {
 			echo $post_ID;
 			break;
 		case 'feed-sc':
-			echo '<code>[gcal id="' . esc_attr( $post_ID ) . '"]</code>';
+			?>
+			<input
+				name="gce_shortcode"
+				class="gce-shortcode"
+			    readonly="readonly"
+			    value='[gcal id="<?php echo $post_ID; ?>"]'
+				onclick="this.select();"
+				/>
+			<?php
 			break;
 		case 'display-type':
 			$display = get_post_meta( $post_ID, 'gce_display_mode', true );
@@ -282,6 +317,7 @@ function gce_column_content( $column_name, $post_ID ) {
 }
 add_action( 'manage_gce_feed_posts_custom_column', 'gce_column_content', 10, 2 );
 
+
 /**
  * Add the "Clear Cache" action to the CPT action links
  * 
@@ -291,14 +327,12 @@ function gce_cpt_actions( $actions, $post ) {
 	if( $post->post_type == 'gce_feed' ) {
 		$actions['clear_cache'] = '<a href="' . esc_url( add_query_arg( array( 'clear_cache' => $post->ID ) ) ) . '">' . __( 'Clear Cache', 'gce' ) . '</a>';
 	}
-	
 	return $actions;
 }
 add_filter( 'post_row_actions', 'gce_cpt_actions', 10, 2 );
 
-
 /**
- * Function to clear cache if on the post listing page
+ * Function to clear cache if on the post listing page.
  * 
  * @since 2.0.0
  */
@@ -313,8 +347,127 @@ function gce_clear_cache_link() {
 }
 add_action( 'admin_init', 'gce_clear_cache_link' );
 
-
+/**
+ * Clear cache on post save.
+ *
+ * @param int $post_id
+ */
 function gce_clear_cache_on_save( $post_id ) {
+	// Transient with calendar feed data.
 	delete_transient( 'gce_feed_' . $post_id );
+	// Transient with an associative array list of feed ids and their titles.
+	delete_transient( 'gce_feed_ids' );
 }
 add_action( 'save_post_gce_feed', 'gce_clear_cache_on_save' );
+
+/**
+ * Adds a 'clear cache' option to bulk actions.
+ *
+ * It's done through jQuery since one can't write into bulk actions yet.
+ * @link https://core.trac.wordpress.org/ticket/16031
+ * @link https://www.skyverge.com/blog/add-custom-bulk-action/
+ */
+function gce_clear_cache_bulk_action_option() {
+
+	global $post_type;
+
+	if ( $post_type == 'gce_feed' ) {
+
+		?>
+		<script type="text/javascript">
+			jQuery(document).ready(function () {
+				jQuery('<option>')
+					.val('clear_cache')
+					.text('<?php _e( 'Clear Cache', 'gce' ); ?>')
+					.appendTo("select[name='action']");
+			});
+		</script>
+		<?php
+
+	}
+
+}
+add_action( 'admin_footer-edit.php', 'gce_clear_cache_bulk_action_option' );
+
+/**
+ * Clear cache bulk action.
+ *
+ * @see gce_clear_cache_bulk_action_option()
+ */
+function gce_clear_cache_bulk_action() {
+
+	global $typenow;
+	$post_type = $typenow;
+
+	if ( 'gce_feed' == $post_type ) {
+
+		$send_back = remove_query_arg( array( 'cleared' ), wp_get_referer() );
+		if ( ! $send_back ) {
+			$send_back = admin_url( 'edit.php?post_type=' . $post_type );
+		}
+
+		// Get the bulk action.
+		$wp_list_table = _get_list_table( 'WP_Posts_List_Table' );
+		$action = $wp_list_table->current_action();
+		if ( $action == 'clear_cache' ) {
+
+			// Security check (the referer is right).
+			check_admin_referer( 'bulk-posts' );
+
+			// This is based on wp-admin/edit.php.
+			$send_back = remove_query_arg(
+				array( 'cleared', 'untrashed', 'deleted', 'ids' ),
+				$send_back
+			);
+
+			// Proceed if there are post ids selected.
+			$post_ids = isset( $_REQUEST['post'] ) ? array_map( 'intval', $_REQUEST['post'] ) : '';
+			if ( $post_ids ) {
+
+				// Add page num to query arg.
+				$page_num  = $wp_list_table->get_pagenum();
+				$send_back = add_query_arg( 'paged', $page_num, $send_back );
+
+				switch ( $action ) {
+					case 'clear_cache' :
+						$cleared = 0;
+						foreach ( $post_ids as $post_id ) {
+							gce_clear_cache( $post_id );
+							$cleared ++;
+						}
+						$send_back = add_query_arg( array(
+							'cleared' => $cleared,
+							'ids'     => join( ',', $post_ids )
+						),
+							$send_back
+						);
+						break;
+					default:
+						return;
+						break;
+				}
+
+				$send_back = remove_query_arg(
+					array( 'action', 'tags_input', 'post_author', 'comment_status', 'ping_status', '_status', 'post', 'bulk_edit', 'post_view' ),
+					$send_back
+				);
+
+				wp_redirect( $send_back );
+				exit();
+			}
+		}
+	}
+}
+add_action( 'load-edit.php', 'gce_clear_cache_bulk_action' );
+
+/**
+ * Display an admin notice when the cache is cleared.
+ */
+function gce_clear_cache_bulk_action_notice() {
+	global $post_type, $pagenow;
+	if ( $pagenow == 'edit.php' && $post_type == 'gce_feed' && isset( $_REQUEST['cleared'] ) && (int) $_REQUEST['cleared'] ) {
+		$message = sprintf( _n( 'Feed cache cleared.', 'Cleared cache for %s feeds.', $_REQUEST['cleared'], 'gce' ), number_format_i18n( $_REQUEST['cleared'] ) );
+		echo '<div class="updated notice is-dismissible"><p>' . $message . '</p></div>';
+	}
+}
+add_action( 'admin_notices', 'gce_clear_cache_bulk_action_notice' );
