@@ -18,7 +18,7 @@ class Google_Calendar_Events {
 	 *
 	 * @var     string
 	 */
-	protected $version = '2.2.6';
+	protected $version = '2.2.7';
 
 	/**
 	 * Unique identifier for the plugin.
@@ -62,8 +62,8 @@ class Google_Calendar_Events {
 		
 		$this->setup_constants();
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
+		add_action( 'init', array( $this, 'register_public_scripts' ) );
+		add_action( 'init', array( $this, 'register_public_styles' ) );
 
 		// Load scripts when posts load so we know if we need to include them or not
 		add_filter( 'the_posts', array( $this, 'load_scripts' ) );
@@ -83,9 +83,9 @@ class Google_Calendar_Events {
 
 			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
 					array(
-						'script_debug'  => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
-						'ajaxurl'     => admin_url( 'admin-ajax.php' ),
-						'loadingText' => __( 'Loading...', 'gce' ),
+						'script_debug' => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
+						'ajaxurl'      => admin_url( 'admin-ajax.php' ),
+						'loadingText'  => __( 'Loading...', 'gce' ),
 					) );
 		}
 	}
@@ -189,7 +189,7 @@ class Google_Calendar_Events {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function enqueue_public_scripts() {
+	public function register_public_scripts() {
 
 		// DON'T include ImagesLoaded JS library recommended by qTip2 yet since we don't use "complex content that contains images" (yet).
 		// http://qtip2.com/guides#gettingstarted.imagesloaded
@@ -209,7 +209,7 @@ class Google_Calendar_Events {
 	 * 
 	 * @since 2.0.0
 	 */
-	public function enqueue_public_styles() {
+	public function register_public_styles() {
 		wp_register_style( $this->plugin_slug . '-qtip', plugins_url( 'css/jquery.qtip.min.css', __FILE__ ), array(), $this->version );
 		wp_register_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array( $this->plugin_slug . '-qtip' ), $this->version );
 	}
@@ -219,7 +219,7 @@ class Google_Calendar_Events {
 	 *
 	 * @since    2.0.0
 	 *
-	 * @return    Plugin version variable.
+	 * @return string Plugin version variable.
 	 */
 	public function get_plugin_slug() {
 		return $this->plugin_slug;
@@ -230,7 +230,7 @@ class Google_Calendar_Events {
 	 *
 	 * @since    1.0.0
 	 *
-	 * @return    Plugin slug variable.
+	 * @return string Plugin slug variable.
 	 */
 	public function get_plugin_version() {
 		return $this->version;
