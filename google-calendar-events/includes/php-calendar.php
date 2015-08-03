@@ -97,9 +97,10 @@ function gce_generate_calendar( $year, $month, $days = array(), $day_name_length
 		if ( isset( $days[$timestamp] ) && is_array( $days[$timestamp] ) ) {
 			list( $link, $classes, $content ) = $days[$timestamp];
 			$calendar .= '<td' . ( ( $classes ) ? ( ' class="' . esc_attr( $classes ) . '">' ) : '>' ) . ( ( $link ) ? ( '<a href="' . esc_url( $link ) . '"><span class="gce-day-number">' . esc_html( $day ) . '</span></a>' . $content ) : '<span class="gce-day-number">' . esc_html( $day ) . '</span>' . $content ) . '</td>';
-		}else{
-			$css_class = ( $timestamp < $time_now ) ? 'gce-day-past' : 'gce-day-future';
-			$calendar .= '<td class="' . esc_attr( $css_class ) . '"><span class="gce-day-number">' . esc_html( $day ) . '</span></td>';
+		} else {
+			$css_class  = $timestamp < $time_now ? ' gce-day-past ' : ' gce-day-future ';
+			$css_class .= ' gce-week-day-' . strval( $weekday ) . ' ';
+			$calendar  .= '<td class="' . esc_attr( $css_class ) . '"><span class="gce-day-number">' . esc_html( $day ) . '</span></td>';
 		}
 	}
 
