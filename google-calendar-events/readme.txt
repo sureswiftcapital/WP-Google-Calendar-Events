@@ -53,7 +53,7 @@ There are three ways to install this plugin.
 1. In your Admin, go to menu Plugins > Add.
 1. Search for `Google Calendar`.
 1. Find the plugin that's labeled `Google Calendar Events`.
-1. Look for the author name `Phil Derksen` on the plugin.
+1. Look for the author name `Moonstone Media` on the plugin.
 1. Click to install.
 1. Activate the plugin.
 1. A new menu item `GCal Events` will appear in the main menu.
