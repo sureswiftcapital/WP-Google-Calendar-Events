@@ -22,6 +22,7 @@ nbproject
 *.pot
 
 # temporary (refactor branch)
+/apidocs
 /svn
 /assets
 /bower_components

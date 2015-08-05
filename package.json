@@ -6,7 +6,7 @@
   "homepage": "https://wordpress.org/plugins/google-calendar-events/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pderksen/WP-Google-Calendar-Events"
+    "url": "https://github.com/moonstonemedia/WP-Google-Calendar-Events"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -14,7 +14,7 @@
     "grunt-contrib-compress": "^0.13.0",
     "grunt-contrib-copy": "^0.8.0",
     "grunt-phpunit": "^0.3.6",
-    "grunt-wp-deploy": "git://github.com/stephenharris/grunt-wp-deploy.git#b547b90aab",
+    "grunt-wp-deploy": "^1.1.0",
     "load-grunt-tasks": "^3.2.0"
   }
 }
