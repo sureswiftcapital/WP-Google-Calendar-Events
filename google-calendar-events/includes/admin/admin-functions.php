@@ -10,13 +10,13 @@
 
 /**
  * Function to clear the cache out
- * 
+ *
  * @since 2.0.0
  */
 function gce_clear_cache( $id ) {
-	
+
 	delete_transient( 'gce_feed_' . $id );
-	
+
 	add_settings_error( 'gce-notices', 'gce-cache-updated', __( 'Cache has been cleared for this feed.', 'gce' ), 'updated' );
 }
 
@@ -24,12 +24,12 @@ function gce_clear_cache( $id ) {
  * Function that runs when a new Feed CPT is made
  * Adds the default editor content for the event builder
  * Adds default post meta options
- * 
+ *
  * @since 2.0.0
  */
 
 function gce_default_editor_content( $content, $post ) {
-	
+
 	if( $post->post_type == 'gce_feed' ) {
 		$content  = '<div class="gce-list-event gce-tooltip-event">[event-title]</div>' . "\n";
 		$content .= '<div><span>' . __( 'Starts:', 'gce' ) . '</span> [start-time]</div>' . "\n";
@@ -37,7 +37,7 @@ function gce_default_editor_content( $content, $post ) {
 		$content .= '[if-location]<div><span>' . __( 'Location:', 'gce' ) . '</span> [location]</div>[/if-location]' . "\n";
 		$content .= '[if-description]<div><span>' . __( 'Description:', 'gce' ) . '</span> [description]</div>[/if-description]' . "\n";
 		$content .= '<div>[link newwindow="true"]' . __( 'More details...', 'gce' ) . '[/link]</div>' . "\n";
-		
+
 		// Default Post Meta Options
 		add_post_meta( $post->ID, 'gce_expand_recurring', 1 );
 		add_post_meta( $post->ID, 'gce_retrieve_from', 'today' );
@@ -50,7 +50,7 @@ function gce_default_editor_content( $content, $post ) {
 		add_post_meta( $post->ID, 'gce_feed_end', 'years' );
 		add_post_meta( $post->ID, 'gce_feed_start', 'months' );
 		add_post_meta( $post->ID, 'gce_show_tooltips', 1 );
-		
+
 		// Default Simple Display Options
 		add_post_meta( $post->ID, 'gce_display_start', 'time' );
 		add_post_meta( $post->ID, 'gce_display_start_text', __( 'Starts:', 'gce' ) );
@@ -61,9 +61,9 @@ function gce_default_editor_content( $content, $post ) {
 		add_post_meta( $post->ID, 'gce_display_description_text', __( 'Description:', 'gce' ) );
 		add_post_meta( $post->ID, 'gce_display_link', 1 );
 		add_post_meta( $post->ID, 'gce_display_link_text', __( 'More Details', 'gce' ) );
-		
+
 	}
-	
+
 	return $content;
 }
 add_filter( 'default_content', 'gce_default_editor_content', 10, 2 );
@@ -71,7 +71,7 @@ add_filter( 'default_content', 'gce_default_editor_content', 10, 2 );
 
 function gce_add_cache_button() {
 		global $post;
-		
+
 		if( $post->post_type == 'gce_feed' ) {
 			$html = '<div id="gce-clear-cache">' .
 					'<a href="' . esc_url( add_query_arg( array( 'clear_cache' => true ) ) ) . '">' . __( 'Clear Cache', 'gce' ) . '</a>' .
@@ -81,5 +81,3 @@ function gce_add_cache_button() {
 		}
 }
 add_action( 'post_submitbox_start', 'gce_add_cache_button' );
-
-
