@@ -110,8 +110,11 @@ class GCE_Feed {
 		// Set API key
 		$query .= '?key=' . $api_key;
 
-		// Uncomment this if you want to override the calendar timezone.
-		// $args['timeZone'] = gce_get_wp_timezone();
+		// Timezone.
+		$timezone = esc_attr( get_post_meta( $this->id, '_feed_timezone_setting', true ) );
+		if ( 'use_site' == $timezone ) {
+			$args['timeZone'] = gce_get_wp_timezone();
+		}
 		$args['timeMin'] = urlencode( date( 'c', $this->feed_start ) );
 		$args['timeMax'] = urlencode( date( 'c', $this->feed_end ) );
 

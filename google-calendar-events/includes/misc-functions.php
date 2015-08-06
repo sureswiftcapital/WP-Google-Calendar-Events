@@ -355,7 +355,7 @@ function gce_get_timezone_from_gmt_offset( $offset ) {
 			$offset = floatval( $offset ) * 3600;
 		}
 
-		$timezone  = timezone_name_from_abbr( null, $offset, true );
+		$timezone = timezone_name_from_abbr( null, $offset, true );
 		// This is buggy and might return false:
 		// @see http://php.net/manual/en/function.timezone-name-from-abbr.php#86928
 		// Therefore:

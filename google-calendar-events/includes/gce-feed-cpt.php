@@ -12,7 +12,7 @@
 
 /**
  * Register Google Calendar Events custom post type
- * 
+ *
  * @since 2.0.0
  */
 function gce_setup_cpt() {
@@ -46,15 +46,15 @@ function gce_setup_cpt() {
 		'menu_icon'          => plugins_url( '/assets/gcal-icon-16x16.png', GCE_MAIN_FILE ),
 		'supports'           => array( 'title', 'editor' )
 	);
-	
+
 	register_post_type( 'gce_feed', $args );
-	
+
 	// MUST ONLY RUN ONCE!
 	if( false === get_option( 'gce_cpt_setup' ) ) {
 		flush_rewrite_rules();
 		update_option( 'gce_cpt_setup', 1 );
 	}
-	
+
 }
 add_action( 'init', 'gce_setup_cpt' );
 
@@ -88,7 +88,7 @@ add_filter( 'post_updated_messages', 'gce_feed_messages' );
 /**
  * Add post meta to tie in with the Google Calendar Events custom post type.
  * Also render sidebar meta boxes.
- * 
+ *
  * @since 2.0.0
  */
 function gce_cpt_meta() {
@@ -101,7 +101,7 @@ add_action( 'add_meta_boxes', 'gce_cpt_meta' );
 
 /**
  * Include view to display post meta.
- * 
+ *
  * @since 2.0.0
  */
 function gce_display_meta() {
@@ -119,7 +119,7 @@ function gce_feed_sidebar_help() {
 
 /**
  * Include view to display options in sidebar.
- * 
+ *
  * @since 2.0.0
  */
 function gce_display_options_meta() {
@@ -128,7 +128,7 @@ function gce_display_options_meta() {
 
 /**
  * Function to save post meta for the feed CPT
- * 
+ *
  * @since 2.0.0
  *
  * @param  int     $post_id
@@ -145,7 +145,7 @@ function gce_save_meta( $post_id, $post ) {
 	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			return $post_id;
 	}
-	
+
 	if( isset( $_REQUEST['bulk_edit'] ) ) {
 		return $post_id;
 	}
@@ -179,6 +179,7 @@ function gce_save_meta( $post_id, $post ) {
 		'gce_feed_use_range',
 		'gce_feed_range_start',
 		'gce_feed_range_end',
+		'_feed_timezone_setting',
 		// Display options
 		'gce_display_start',
 		'gce_display_start_text',
@@ -203,28 +204,28 @@ function gce_save_meta( $post_id, $post ) {
 		foreach ( $post_meta_fields as $pmf ) {
 			if ( isset( $_POST[$pmf] ) && ( ! empty( $_POST[$pmf] ) || $_POST[$pmf] == 0 ) ) {
 				if( $pmf == 'gce_feed_url' ) {
-					
+
 					$id = $_POST[$pmf];
-					
+
 					// convert from URL if user enters a URL link (like the old versions required)
 					if ( strpos( $id, 'https://www.google.com/calendar/feeds/' ) !== false ) {
 						$id = str_replace( 'https://www.google.com/calendar/feeds/', '', $id );
 						$id = str_replace( '/public/basic', '', $id );
 						$id = str_replace( '%40', '@', $id );
 					}
-					
+
 					// decode first before re-encoding it
 					$id = urldecode( $id );
 					$id = trim( $id );
-					
+
 					$at = strpos( $id, '@' );
-					
+
 					if ( $at !== false ) {
 						$id = substr_replace( $id, urlencode( substr( $id, 0, $at ) ), 0, $at );
 					}
-					
+
 					update_post_meta( $post_id, $pmf, $id );
-				} elseif( $pmf == 'gce_time_format' || $pmf == 'gce_date_format' ) {
+				} elseif( $pmf == 'gce_time_format' || $pmf == 'gce_date_format' || '_feed_timezone_setting' ) {
 					update_post_meta( $post_id, $pmf, sanitize_text_field( $_POST[ $pmf ] ) );
 				} else {
 					update_post_meta( $post_id, $pmf, stripslashes( $_POST[ $pmf ] ) );
@@ -233,9 +234,8 @@ function gce_save_meta( $post_id, $post ) {
 				delete_post_meta( $post_id, $pmf );
 			}
 		}
-
 	}
-	
+
 	return $post_id;
 }
 add_action( 'save_post', 'gce_save_meta', 10, 2 );
@@ -259,12 +259,12 @@ add_action( 'delete_post', 'gce_delete_post', 10, 1 );
 
 /**
  * Add column headers to our "All Feeds" CPT page
- * 
+ *
  * @since 2.0.0
  */
 function gce_add_column_headers( $defaults ) {
-		
-	$new_columns = array( 
+
+	$new_columns = array(
 		'cb'           => $defaults['cb'],
 		'feed-id'      => __( 'Feed ID', 'gce' ),
 		'feed-sc'      => __( 'Feed Shortcode', 'gce' ),
@@ -273,19 +273,19 @@ function gce_add_column_headers( $defaults ) {
 
 	return array_merge( $defaults, $new_columns );
 }
-add_filter( 'manage_gce_feed_posts_columns', 'gce_add_column_headers' );  
+add_filter( 'manage_gce_feed_posts_columns', 'gce_add_column_headers' );
 
 
 /**
  * Fill out the columns
- * 
+ *
  * @since 2.0.0
  */
 function gce_column_content( $column_name, $post_ID ) {
-	
+
 	switch ( $column_name ) {
 
-		case 'feed-id': 
+		case 'feed-id':
 			echo $post_ID;
 			break;
 		case 'feed-sc':
@@ -301,17 +301,17 @@ function gce_column_content( $column_name, $post_ID ) {
 			break;
 		case 'display-type':
 			$display = get_post_meta( $post_ID, 'gce_display_mode', true );
-			
+
 			if ( $display == 'grid' ) {
 				echo __( 'Grid', 'gce' );
 			} elseif ( $display == 'list' ) {
 				echo __( 'List', 'gce' );
-			} elseif ( $display == 'list-grouped' ) { 
+			} elseif ( $display == 'list-grouped' ) {
 				echo __( 'Grouped List', 'gce' );
 			} elseif ( $display == 'date-range' ) {
 				echo __( 'Custom Date Range', 'gce' );
 			}
-			
+
 			break;
 	}
 }
@@ -320,7 +320,7 @@ add_action( 'manage_gce_feed_posts_custom_column', 'gce_column_content', 10, 2 )
 
 /**
  * Add the "Clear Cache" action to the CPT action links
- * 
+ *
  * @since 2.0.0
  */
 function gce_cpt_actions( $actions, $post ) {
@@ -333,7 +333,7 @@ add_filter( 'post_row_actions', 'gce_cpt_actions', 10, 2 );
 
 /**
  * Function to clear cache if on the post listing page.
- * 
+ *
  * @since 2.0.0
  */
 function gce_clear_cache_link() {
@@ -341,7 +341,7 @@ function gce_clear_cache_link() {
 		$post_id = absint( $_REQUEST['clear_cache'] );
 
 		gce_clear_cache( $post_id );
-		
+
 		settings_errors( 'gce-notices' );
 	}
 }

@@ -10,14 +10,14 @@
  */
 
 	global $post;
-	
+
 	$post_id = $post->ID;
-	
+
 	// Clear the cache if the button was clicked to do so
 	if( isset( $_GET['clear_cache'] ) && $_GET['clear_cache'] == 1 ) {
 		gce_clear_cache( $post_id );
 	}
-	
+
 	// Load up all post meta data
 	$gce_feed_url                    = get_post_meta( $post->ID, 'gce_feed_url', true );
 	$gce_date_format                 = get_post_meta( $post->ID, 'gce_date_format', true );
@@ -38,10 +38,10 @@
 	$gce_feed_end_num                = get_post_meta( $post->ID, 'gce_feed_end_num', true );
 	$gce_feed_range_start            = get_post_meta( $post->ID, 'gce_feed_range_start', true );
 	$gce_feed_range_end              = get_post_meta( $post->ID, 'gce_feed_range_end', true );
-	
+
 	$range = selected( $gce_display_mode, 'date-range-list', false ) || selected( $gce_display_mode, 'date-range-grid', false );
 	$use_range = ( $range ? true : false );
-	
+
 	if( empty( $gce_events_per_page ) ) {
 		$gce_events_per_page = 'days';
 	}
@@ -51,15 +51,15 @@
 	if( empty( $gce_list_start_offset_num ) ) {
 		$gce_list_start_offset_num = 0;
 	}
-	
+
 	if( empty( $gce_feed_start ) ) {
 		$gce_feed_start = 'years';
 	}
-	
+
 	if( empty( $gce_feed_end ) ) {
 		$gce_feed_end = 'years';
 	}
-	
+
 	if( empty( $gce_per_page_num ) ) {
 		$gce_per_page_num = 7;
 	}
@@ -104,6 +104,25 @@
 		</td>
 	</tr>
 
+	<?php
+
+	$timezone_wordpress = gce_get_wp_timezone();
+	$timezone_default = $timezone_wordpress ? $timezone_wordpress : 'UTC';
+	$timezone_setting = esc_attr( get_post_meta( $post->ID, '_feed_timezone_setting', true ) );
+
+	?>
+	<tr>
+		<th scope="row"><label for="gce_feed_url"><?php _e( 'Timezone', 'gce' ); ?></label></th>
+		<td>
+			<select name="_feed_timezone_setting" id="_feed_timezone_setting">
+				<option value="use_calendar" <?php selected( 'use_calendar', $timezone_setting, true ); ?>><?php _ex( 'Calendar default', 'Use the calendar default setting', 'gce' ); ?></option>
+				<option value="use_site" <?php selected( 'use_site', $timezone_setting, true ); ?>><?php printf( _x( 'Site default', 'Use this site default setting', 'gce' ) . ' (%s)', $timezone_default ); ?></option>
+			</select>
+			<p class="description">
+				<?php _e( 'It is recommended to use the calendar default timezone.', 'gce' ); ?>
+			</p>
+		</td>
+	</tr>
 	<tr>
 		<th scope="row"><label for="gce_search_query"><?php _e( 'Search Query', 'gce' ); ?></label></th>
 		<td>
@@ -141,7 +160,7 @@
 			<p class="description"><?php _e( 'Select how to display this feed.', 'gce' ); ?></p>
 		</td>
 	</tr>
-	
+
 	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_events_per_page"><?php _e( 'Events per Page', 'gce' ); ?></label></th>
 		<td>
@@ -157,7 +176,7 @@
 			<p class="description"><?php _e( 'How many events to display per page (List View only).', 'gce' ); ?></p>
 		</td>
 	</tr>
-	
+
 	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_list_start_offset_num"><?php _e( 'Display Start Date Offset', 'gce' ); ?></label></th>
 		<td>
@@ -169,7 +188,7 @@
 			<p class="description"><?php _e( 'Change to initially display events on a date other than today (List View only).', 'gce' ); ?></p>
 		</td>
 	</tr>
-	
+
 	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_feed_start"><?php _e( 'Earliest Feed Event Date', 'gce' ); ?></label></th>
 		<td>
@@ -186,9 +205,9 @@
 				<br>
 				<?php _e( '<strong>Note:</strong> Total events are currently limited to 2,500 by the Google Calendar API.', 'gce' ); ?>
 			</p>
-		</td>	
+		</td>
 	</tr>
-	
+
 	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_feed_end"><?php _e( 'Latest Feed Event Date', 'gce' ); ?></label></th>
 		<td>
@@ -203,7 +222,7 @@
 			<p class="description"><?php _e( 'Set how far in the future to retrieve events regardless of initial display.', 'gce' ); ?></p>
 		</td>
 	</tr>
-	
+
 	<tr class="gce-custom-range <?php echo ( $use_range == true ? '' : 'gce-admin-hidden' ); ?>">
 		<th scope="row"><label for="gce_feed_use_range"><?php _e( 'Use Custom Date Range', 'gce' ); ?></label></th>
 		<td>
@@ -215,7 +234,7 @@
 			</span>
 		</td>
 	</tr>
-	
+
 	<tr class="gce-display-option <?php echo ( $use_range == true ? 'gce-admin-hidden' : '' ); ?>">
 		<th scope="row"><label for="gce_paging"><?php _e( 'Show Paging Links', 'gce' ); ?></label></th>
 		<td>
@@ -223,7 +242,7 @@
 			<?php _e( 'Display Next and Back navigation links.', 'gce' ); ?>
 		</td>
 	</tr>
-	
+
 	<tr>
 		<th scope="row"><label for="gce_show_tooltips"><?php _e( 'Show Tooltips', 'gce' ); ?></label></th>
 		<td>
@@ -231,7 +250,7 @@
 			<?php _e( 'Display tooltips when hovering over events (Grid View only).', 'gce' ); ?>
 		</td>
 	</tr>
-	
+
 	<tr>
 		<th scope="row"><label for="gce_date_format"><?php _e( 'Date Format', 'gce' ); ?></label></th>
 		<td>
@@ -242,7 +261,7 @@
 			</p>
 		</td>
 	</tr>
-	
+
 	<tr>
 		<th scope="row"><label for="gce_time_format"><?php _e( 'Time Format', 'gce' ); ?></label></th>
 		<td>
@@ -253,7 +272,7 @@
 			</p>
 		</td>
 	</tr>
-	
+
 	<tr>
 		<th scope="row"><label for="gce_cache"><?php _e( 'Cache Duration', 'gce' ); ?></label></th>
 		<td>
@@ -261,7 +280,7 @@
 			<p class="description"><?php _e( 'The length of time, in seconds, to cache the feed (43200 = 12 hours). If this feed changes regularly, you may want to reduce the cache duration.', 'gce' ); ?></p>
 		<td>
 	</tr>
-	
+
 	<tr>
 		<td colspan="2">
 			<input type="button" class="button button-primary button-large gce-feed-update-button" value="Save Changes">
