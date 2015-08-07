@@ -98,7 +98,8 @@ module.exports = function( grunt ) {
 			deploy: {
 				options: {
 					plugin_slug: 'google-calendar-events',
-					build_dir: 'build/google-calendar-events'
+					build_dir: 'build/google-calendar-events',
+					max_buffer: 400 * 1024
 				}
 			}
 		}
