@@ -19,7 +19,7 @@ nbproject
 *.zip
 
 # POT files
-*.pot
+/*.pot
 
 # temporary (refactor branch)
 /apidocs
