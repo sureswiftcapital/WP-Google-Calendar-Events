@@ -3,8 +3,6 @@ module.exports = function( grunt ) {
 	var pkg = grunt.file.readJSON( 'package.json' ),
 		// version = 'vX.Y.Z'
 		version = pkg.version,
-		// semver = 'X.Y.Z'
-		semver = version.substring( 1, version.length ),
 		// Files to include in a release
 		distFiles =  [
 			'google-calendar-events/**'
@@ -15,7 +13,7 @@ module.exports = function( grunt ) {
 	grunt.initConfig( {
 
 		pkg: pkg,
-		semver : semver,
+		version : version,
 
 		checktextdomain: {
 			options:{
@@ -91,7 +89,7 @@ module.exports = function( grunt ) {
 			main: {
 				options: {
 					mode: 'zip',
-					archive: './build/google-calendar-events-<%= semver %>.zip'
+					archive: './build/google-calendar-events-<%= version %>.zip'
 				},
 				expand: true,
 				src: distFiles,
