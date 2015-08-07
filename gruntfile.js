@@ -1,7 +1,7 @@
 module.exports = function( grunt ) {
 
 	var pkg = grunt.file.readJSON( 'package.json' ),
-		// version = 'vX.Y.Z'
+		// version = 'X.Y.Z'
 		version = pkg.version,
 		// Files to include in a release
 		distFiles =  [
