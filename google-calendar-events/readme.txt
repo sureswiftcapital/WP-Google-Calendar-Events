@@ -89,7 +89,7 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.8 - TODO =
+= 2.2.8 - August 7, 2015 =
 
 * Fix: Improved security when saving plugin settings.
 * Fix: Added URL encoding to fix some issues with API keys containing special characters.

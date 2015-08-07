@@ -18,7 +18,7 @@ class Google_Calendar_Events {
 	 *
 	 * @var     string
 	 */
-	protected $version = '2.2.7';
+	protected $version = '2.2.8';
 
 	/**
 	 * Unique identifier for the plugin.
@@ -37,7 +37,7 @@ class Google_Calendar_Events {
 	 * @var      object
 	 */
 	protected static $instance = null;
-	
+
 	public $show_scripts = false;
 
 	/**
@@ -47,19 +47,19 @@ class Google_Calendar_Events {
 	 * @since     2.0.0
 	 */
 	private function __construct() {
-		
+
 		$this->includes();
-		
+
 		$old = get_option( 'gce_version' );
-		
+
 		if( version_compare( $old, $this->version, '<' ) ) {
 			delete_option( 'gce_upgrade_has_run' );
 		}
-		
+
 		if( false === get_option( 'gce_upgrade_has_run' ) ) {
 			$this->upgrade();
 		}
-		
+
 		$this->setup_constants();
 
 		add_action( 'init', array( $this, 'register_public_scripts' ) );
@@ -67,21 +67,21 @@ class Google_Calendar_Events {
 
 		// Load scripts when posts load so we know if we need to include them or not
 		add_filter( 'the_posts', array( $this, 'load_scripts' ) );
-		
+
 		// Load plugin text domain
 		$this->plugin_textdomain();
-		
+
 		add_action( 'wp_footer', array( $this, 'localize_main_script' ) );
 	}
-	
+
 	public function localize_main_script() {
-		
+
 		if( $this->show_scripts ) {
 			global $localize;
 
 			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
 
-			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce', 
+			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce',
 					array(
 						'script_debug' => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
 						'ajaxurl'      => admin_url( 'admin-ajax.php' ),
@@ -89,14 +89,14 @@ class Google_Calendar_Events {
 					) );
 		}
 	}
-	
+
 	public function load_scripts( $posts ) {
-		
+
 		global $gce_options;
 
 		// Init enqueue flag.
 		$do_enqueue = false;
-		
+
 		if ( isset( $gce_options['always_enqueue'] ) ) {
 
 			$do_enqueue = true;
@@ -128,39 +128,39 @@ class Google_Calendar_Events {
 
 		return $posts;
 	}
-	
+
 	/**
 	 * Load the upgrade file
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function upgrade() {
 		include_once( 'includes/admin/upgrade.php' );
 	}
-	
+
 	/**
-	 * Setup public constants 
-	 * 
+	 * Setup public constants
+	 *
 	 * @since 2.0.0
 	 */
 	public function setup_constants() {
 		if( ! defined( 'GCE_DIR' ) ) {
 			define( 'GCE_DIR', dirname( __FILE__ ) );
 		}
-		
+
 		if( ! defined( 'GCE_PLUGIN_SLUG' ) ) {
 			define( 'GCE_PLUGIN_SLUG', $this->plugin_slug );
 		}
 	}
-	
+
 	/**
 	 * Include all necessary files
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public static function includes() {
 		global $gce_options;
-		
+
 		// First include common files between admin and public
 		include_once( 'includes/misc-functions.php' );
 		include_once( 'includes/gce-feed-cpt.php' );
@@ -169,7 +169,7 @@ class Google_Calendar_Events {
 		include_once( 'includes/class-gce-feed.php' );
 		include_once( 'includes/shortcodes.php' );
 		include_once( 'views/widgets.php' );
-		
+
 		// Now include files specifically for public or admin
 		if( is_admin() ) {
 			// Admin includes
@@ -177,16 +177,16 @@ class Google_Calendar_Events {
 		} else {
 			// Public includes
 		}
-		
+
 		// Setup our main settings options
 		include_once( 'includes/register-settings.php' );
-		
+
 		$gce_options = gce_get_settings();
 	}
-	
+
 	/**
 	 * Load public facing scripts
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function register_public_scripts() {
@@ -203,10 +203,10 @@ class Google_Calendar_Events {
 		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip' . $min . '.js', __FILE__ ), array( 'jquery' ), $this->version, true );
 		wp_register_script( $this->plugin_slug . '-public', plugins_url( 'js/gce-script.js', __FILE__ ), array( 'jquery', $this->plugin_slug . '-qtip' ), $this->version, true );
 	}
-	
+
 	/*
 	 * Load public facing styles
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function register_public_styles() {
@@ -224,7 +224,7 @@ class Google_Calendar_Events {
 	public function get_plugin_slug() {
 		return $this->plugin_slug;
 	}
-	
+
 	/**
 	 * Return the plugin version.
 	 *
