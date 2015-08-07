@@ -81,3 +81,48 @@ function gce_add_cache_button() {
 		}
 }
 add_action( 'post_submitbox_start', 'gce_add_cache_button' );
+
+/**
+ * Sanitize a variable of unknown type.
+ *
+ * Helper function to sanitize a variable from input,
+ * which could also be a multidimensional array of variable depth.
+ *
+ * @param  mixed $var   Variable to sanitize.
+ * @param  string $func Function to use for sanitizing text strings (default 'sanitize_text_field')
+ *
+ * @return array|string Sanitized variable
+ */
+function gce_sanitize_input( $var, $func = 'sanitize_text_field'  ) {
+
+	if ( empty( $var ) || is_null( $var ) ) {
+		return '';
+	}
+
+	if ( is_bool( $var ) ) {
+		if ( $var === true ) {
+			return 'yes';
+		} else {
+			return 'no';
+		}
+	}
+
+	if ( is_string( $var ) || is_numeric( $var ) ) {
+		$func = is_string( $func ) && function_exists( $func ) ? $func : 'sanitize_text_field';
+		return call_user_func( $func, trim( strval( $var ) ) );
+	}
+
+	if ( is_object( $var ) ) {
+		$var = (array) $var;
+	}
+
+	if ( is_array( $var ) ) {
+		$array = array();
+		foreach( $var as $k => $v ) {
+			$array[$k] = gce_sanitize_input( $v );
+		}
+		return $array;
+	}
+
+	return '';
+}

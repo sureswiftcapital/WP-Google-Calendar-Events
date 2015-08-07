@@ -22,6 +22,7 @@ nbproject
 /*.pot
 
 # temporary (refactor branch)
+/apigen
 /apidocs
 /svn
 /assets
@@ -33,5 +34,4 @@ nbproject
 /release
 /node_modules
 /vendor
-/bower_components
 composer.lock

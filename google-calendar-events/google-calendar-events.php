@@ -5,7 +5,7 @@
  * Description: Show off your Google calendar in grid (month) or list view, in a post, page or widget, and in a style that matches your site.
  * Author: Moonstone Media
  * Author URI: http://moonstonemediagroup.com
- * Version: 2.2.7
+ * Version: 2.2.8
  * Text Domain: gce
  * Domain Path: /languages/
  *
@@ -53,7 +53,7 @@ require_once( 'class-google-calendar-events.php' );
 
 /**
  * Define constant pointing to this file
- * 
+ *
  * @since 2.0.0
  */
 if( ! defined( 'GCE_MAIN_FILE' ) ) {
@@ -62,23 +62,23 @@ if( ! defined( 'GCE_MAIN_FILE' ) ) {
 
 /*
  * Get instance of our plugin
- * 
+ *
  * @since 2.0.0
  */
 add_action( 'plugins_loaded', array( 'Google_Calendar_Events', 'get_instance' ) );
 
 /*
  * If we are in admin then load the Admin class
- * 
+ *
  * @since 2.0.0
  */
 if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 	require_once( 'class-google-calendar-events-admin.php' );
-	
+
 	// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
 	register_activation_hook( __FILE__, array( 'Google_Calendar_Events_Admin', 'activate' ) );
 	register_deactivation_hook( __FILE__, array( 'Google_Calendar_Events_Admin', 'deactivate' ) );
-	
+
 	// Get plugin admin class instance
 	add_action( 'plugins_loaded', array( 'Google_Calendar_Events_Admin', 'get_instance' ) );
 }

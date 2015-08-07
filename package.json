@@ -2,7 +2,7 @@
   "name": "google-calendar-events",
   "title": "Google Calendar Events",
   "description": "Show off your Google calendar in grid (month) or list view, in a post, page or widget, and in a style that matches your site.",
-  "version": "v2.2.7",
+  "version": "v2.2.8",
   "homepage": "https://wordpress.org/plugins/google-calendar-events/",
   "repository": {
     "type": "git",
