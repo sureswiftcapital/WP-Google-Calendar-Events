@@ -100,7 +100,7 @@ class GCE_Feed {
 		$args = array();
 
 		if( ! empty( $gce_options['api_key'] ) ) {
-			$api_key = $gce_options['api_key'];
+			$api_key = urlencode( $gce_options['api_key'] );
 		} else {
 			$api_key = $this->api_key;
 		}

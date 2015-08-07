@@ -92,6 +92,7 @@ There are three ways to install this plugin.
 = 2.2.8 - TODO =
 
 * Fix: Improved security when saving plugin settings.
+* Fix: Added URL encoding to fix some issues with API keys containing special characters.
 * Tweak: Use calendar feed timezone or website timezone (default calendar).
 
 = 2.2.7 - July 31, 2015 =
