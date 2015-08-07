@@ -10,7 +10,7 @@
  */
 
 class GCE_Feed {
-	
+
 	public $id,
 		   $calendar_id,
 		   $feed_url,
@@ -23,49 +23,50 @@ class GCE_Feed {
 		   $expand_recurring,
 		   $title,
 		   $feed_start,
-		   $feed_end;
-	
+		   $feed_end,
+		   $builder;
+
 	public $events = array();
-	
+
 	// Google API Key
 	private $api_key = 'AIzaSyAssdKVved1mPVY0UJCrx96OUOF9u17AuY';
-	
+
 	/**
 	 * Class constructor
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function __construct( $id ) {
 		// Set the ID
 		$this->id = $id;
-		
+
 		$this->calendar_id = get_post_meta( $this->id, 'gce_feed_url', true );
-		
+
 		// Set up all other data based on the ID
 		$this->setup_attributes();
-		
+
 		// Now create the Feed
 		$this->create_feed();
 	}
-	
+
 	/**
 	 * Set the transient to cache the events
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	private function cache_events() {
 		set_transient( 'gce_feed_' . $this->id, $this->events, $this->cache );
 	}
-	
+
 	/**
 	 * Set all of the feed attributes from the post meta options
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
-	private function setup_attributes() {	
+	private function setup_attributes() {
 		$date_format = get_post_meta( $this->id, 'gce_date_format', true );
 		$time_format = get_post_meta( $this->id, 'gce_time_format', true );
-		
+
 		$this->feed_url            = get_post_meta( $this->id, 'gce_feed_url', true );
 		$this->date_format         = ( ! empty( $date_format ) ? $date_format : get_option( 'date_format' ) );
 		$this->time_format         = ( ! empty( $time_format ) ? $time_format : get_option( 'time_format' ) );
@@ -77,90 +78,84 @@ class GCE_Feed {
 		$this->feed_start          = $this->get_feed_start();
 		$this->feed_end            = $this->get_feed_end();
 	}
-	
+
 	/**
-	 * Create the feed URL 
-	 * 
+	 * Create the feed URL
+	 *
 	 * @since 2.0.0
 	 */
 	private function create_feed() {
 		//Break the feed URL up into its parts (scheme, host, path, query)
-		
+
 		global $gce_options;
-		
+
 		if( empty( $this->feed_url ) ) {
 			if( current_user_can( 'manage_options' ) ) {
 				echo '<p>' . __( 'The Google Calendar ID has not been set. Please make sure to set it correctly in the Feed settings.', 'gce' ) . '</p>';
 			}
-			
+
 			return;
 		}
-		
+
 		$args = array();
-		
+
 		if( ! empty( $gce_options['api_key'] ) ) {
 			$api_key = $gce_options['api_key'];
 		} else {
 			$api_key = $this->api_key;
 		}
-		
+
 		$query = 'https://www.googleapis.com/calendar/v3/calendars/' . $this->calendar_id . '/events';
-		
+
 		// Set API key
 		$query .= '?key=' . $api_key;
-		
-		
-		$args['timeMin'] = urlencode( date( 'c', $this->feed_start ) );
-		
-		$args['timeMax'] = urlencode( date( 'c', $this->feed_end ) );
-		
-		$args['maxResults'] = 2500;
-		
-		$ctz = get_option( 'timezone_string' );
-		
-		if( ! empty( $ctz ) ) {
-			$args['timeZone'] = $ctz;
+
+		// Timezone.
+		$timezone = esc_attr( get_post_meta( $this->id, '_feed_timezone_setting', true ) );
+		if ( 'use_site' == $timezone ) {
+			$args['timeZone'] = gce_get_wp_timezone();
 		}
-		
+		$args['timeMin'] = urlencode( date( 'c', $this->feed_start ) );
+		$args['timeMax'] = urlencode( date( 'c', $this->feed_end ) );
+
+		$args['maxResults'] = 2500;
+
 		if ( ! empty( $this->search_query ) ) {
 			$args['q'] = rawurlencode( $this->search_query );
 		}
-		
+
 		if( ! empty( $this->expand_recurring ) ) {
 			$args['singleEvents'] = 'true';
 		}
-		
+
 		$query = esc_url_raw( add_query_arg( $args, $query ) );
-		
+
 		$this->display_url = $query;
-		
+
 		if( isset( $_GET['gce_debug'] ) && $_GET['gce_debug'] == true ) {
 			echo '<pre>' . $this->display_url . '</pre><br>';
 		}
-		
+
 		$this->get_feed_data( $query );
 	}
-	
+
 	/**
 	 * Make remote call to get the feed data
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
-	private function get_feed_data( $url ) {	
-		
+	private function get_feed_data( $url ) {
+
 		// First check for transient data to use
 		if( false !== get_transient( 'gce_feed_' . $this->id ) ) {
 			$this->events = get_transient( 'gce_feed_' . $this->id );
 		} else {
-			$raw_data = wp_remote_get( $url, array(
-					'sslverify' => false, //sslverify is set to false to ensure https URLs work reliably. Data source is Google's servers, so is trustworthy
-					'timeout'   => 10     //Increase timeout from the default 5 seconds to ensure even large feeds are retrieved successfully
-				) );
+			$raw_data = wp_remote_get( $url, array( 'timeout' => 10 ) );
 			//If $raw_data is a WP_Error, something went wrong
 			if ( ! is_wp_error( $raw_data ) ) {
 					//Attempt to convert the returned JSON into an array
 					$raw_data = json_decode( $raw_data['body'], true );
-					
+
 					if( ! isset( $raw_data['error'] ) ) {
 						//If decoding was successful
 						if ( ! empty( $raw_data ) ) {
@@ -205,7 +200,7 @@ class GCE_Feed {
 				$this->error = $raw_data->get_error_message() . __( ' Please ensure your calendar ID is correct.', 'gce' );
 			}
 		}
-		
+
 		if( ! empty( $this->error ) ) {
 			if( current_user_can( 'manage_options' ) ) {
 				echo $this->error;
@@ -217,38 +212,41 @@ class GCE_Feed {
 			}
 		}
 	}
-	
+
 	/**
 	 * Convert an ISO date/time to a UNIX timestamp
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	private function iso_to_ts( $iso ) {
 		sscanf( $iso, "%u-%u-%uT%u:%u:%uZ", $year, $month, $day, $hour, $minute, $second );
 		return mktime( $hour, $minute, $second, $month, $day, $year );
 	}
-	
+
+	/**
+	 * @return int
+	 */
 	private function get_feed_start() {
-		
+
 		$range = get_post_meta( $this->id, 'gce_display_mode', true );
 		$use_range = ( ( $range == 'date-range-list' || $range == 'date-range-grid' ) ? true : false );
-		
+
 		if( $use_range ) {
 			$start = get_post_meta( $this->id, 'gce_feed_range_start', true );
-			
+
 			$start = gce_date_unix( $start );
-			
+
 			$interval = 'date-range';
-			
+
 		} else {
 			$start    = get_post_meta( $this->id, 'gce_feed_start_num', true );
 			$interval = get_post_meta( $this->id, 'gce_feed_start', true );
-			
+
 			if( empty( $start ) && $start !== '0' ) {
 				$start = 1;
 			}
 		}
-		
+
 		switch( $interval ) {
 			case 'days':
 				return time() - ( $start * 86400 );
@@ -259,32 +257,35 @@ class GCE_Feed {
 			case 'date-range':
 				return $start;
 		}
-		
+
 		// fall back just in case. Falls back to 1 year ago
 		return time() - 31556926;
 	}
-	
+
+	/**
+	 * @return int
+	 */
 	private function get_feed_end() {
-		
+
 		$range = get_post_meta( $this->id, 'gce_display_mode', true );
 		$use_range = ( ( $range == 'date-range-list' || $range == 'date-range-grid' ) ? true : false );
-		
+
 		if( $use_range ) {
 			$end = get_post_meta( $this->id, 'gce_feed_range_end', true );
-			
+
 			$end = gce_date_unix( $end );
-			
+
 			$interval = 'date-range';
-			
+
 		} else {
 			$end    = get_post_meta( $this->id, 'gce_feed_end_num', true );
 			$interval = get_post_meta( $this->id, 'gce_feed_end', true );
-			
+
 			if( empty( $end ) && $end !== '0' ) {
 				$end = 1;
 			}
 		}
-		
+
 		switch( $interval ) {
 			case 'days':
 				return time() + ( $end * 86400 );
@@ -295,15 +296,15 @@ class GCE_Feed {
 			case 'date-range':
 				return mktime( 23, 59, 59, date( 'n', $end ), date( 'j', $end ), date( 'Y', $end ) );
 		}
-		
+
 		// Falls back to 1 year ahead just in case
 		return time() + 31556926;
 	}
-	
+
 	function get_builder() {
-		
+
 		$this->builder = get_post( $this->id )->post_content;
-		
+
 		return $this->builder;
 	}
 }

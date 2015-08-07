@@ -19,12 +19,13 @@ nbproject
 *.zip
 
 # POT files
-*.pot
+/*.pot
 
 # temporary (refactor branch)
 /apidocs
 /svn
 /assets
+/docs
 /bower_components
 /docs
 /includes
