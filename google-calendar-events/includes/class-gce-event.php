@@ -556,10 +556,10 @@ class GCE_Event {
 			$items++; 
 
 			if ( $numthisunits > 0 )
-				$output[] = sprintf( _n( $unitnames[0], $unitnames[1], $numthisunits ), $numthisunits ); 
+				$output[] = sprintf( _n( $unitnames[0], $unitnames[1], $numthisunits, 'gce' ), $numthisunits );
 		} 
 
-		$seperator = _x( ', ', 'human_time_diff' ); 
+		$seperator = _x( ', ', 'human_time_diff', 'gce' );
 
 		if ( ! empty( $output ) ) {
 			return implode( $seperator, $output ); 
