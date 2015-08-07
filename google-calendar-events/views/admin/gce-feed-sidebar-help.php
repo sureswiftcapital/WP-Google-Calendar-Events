@@ -18,7 +18,7 @@
 	</ul>
 
 	<p>
-		<?php _e( 'Your review helps more folks find our plugin. Thanks so much!', 'gced' ); ?>
+		<?php _e( 'Your review helps more folks find our plugin. Thanks so much!', 'gce' ); ?>
 	</p>
 	<div class="centered">
 		<a href="https://wordpress.org/support/view/plugin-reviews/google-calendar-events#postform" class="button-primary" target="_blank">

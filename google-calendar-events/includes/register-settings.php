@@ -43,7 +43,7 @@ function gce_register_settings() {
 			),
 			'disable_css' => array(
 				'id'   => 'disable_css',
-				'name' => __( 'Disable Plugin CSS', 'sc' ),
+				'name' => __( 'Disable Plugin CSS', 'gce' ),
 				'desc' => __( "If this option is checked, this plugin's CSS file will not be referenced.", 'gce' ),
 				'type' => 'checkbox'
 			),
