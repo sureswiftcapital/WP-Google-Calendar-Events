@@ -1,8 +1,6 @@
 module.exports = function( grunt ) {
 
 	var pkg = grunt.file.readJSON( 'package.json' ),
-		// version = 'X.Y.Z'
-		version = pkg.version,
 		// Files to include in a release
 		distFiles =  [
 			'google-calendar-events/**'
@@ -13,7 +11,6 @@ module.exports = function( grunt ) {
 	grunt.initConfig( {
 
 		pkg: pkg,
-		version : version,
 
 		checktextdomain: {
 			options:{
@@ -89,7 +86,7 @@ module.exports = function( grunt ) {
 			main: {
 				options: {
 					mode: 'zip',
-					archive: './build/google-calendar-events-<%= version %>.zip'
+					archive: './build/google-calendar-events-<%= pkg.version %>.zip'
 				},
 				expand: true,
 				src: distFiles,
@@ -112,6 +109,7 @@ module.exports = function( grunt ) {
 
 	grunt.registerTask( 'localize', ['checktextdomain', 'makepot', 'po2mo'] );
 	grunt.registerTask( 'build',    ['clean', 'copy', 'compress'] );
+	grunt.registerTask( 'release',  ['build'] );
 	grunt.registerTask( 'deploy',   ['release', 'wp_deploy'] );
 
 	grunt.util.linefeed = '\n';

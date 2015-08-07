@@ -1,7 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2015-07-16 12:53-0700\n"
+"Report-Msgid-Bugs-To: https://github.com/pderksen/WP-Google-Calendar-Events/"
+"issues\n"
+"POT-Creation-Date: 2015-08-07 18:22:35+00:00\n"
 "PO-Revision-Date: 2015-07-27 16:44+0100\n"
 "Last-Translator: Vincent B <vincent@yahoo.fr>\n"
 "Language-Team: Jojaba <jojaba@gmail.com>\n"
@@ -16,28 +18,50 @@ msgstr ""
 "X-Poedit-SearchPath-0: google-calendar-events\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:126
-#: google-calendar-events/class-google-calendar-events-admin.php:127
-#: google-calendar-events/class-google-calendar-events-admin.php:217
-#: google-calendar-events/includes/register-settings.php:68
+#: class-google-calendar-events-admin.php:138
+#: class-google-calendar-events-admin.php:139
+#: class-google-calendar-events-admin.php:235
+#: includes/register-settings.php:68
 msgid "General Settings"
 msgstr "Paramètres généraux"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:205
-#: google-calendar-events/views/widgets.php:27
+#. Plugin Name of the plugin/theme
 msgid "Google Calendar Events"
 msgstr "Google Calendar Events"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:218
+#: class-google-calendar-events-admin.php:236
 msgid "Feeds"
 msgstr "Flux"
 
-#: google-calendar-events/class-google-calendar-events.php:88
+#: class-google-calendar-events-admin.php:254
+#: class-google-calendar-events-admin.php:289
+#, fuzzy
+msgid "Add Calendar"
+msgstr "ID de l'agenda Google"
+
+#: class-google-calendar-events-admin.php:290
+msgid "Add a calendar feed to your post."
+msgstr ""
+
+#: class-google-calendar-events-admin.php:300
+#, fuzzy
+msgid "Insert Calendar"
+msgstr "ID de l'agenda Google"
+
+#: class-google-calendar-events-admin.php:302
+msgid "Could not find any calendars to add to this post."
+msgstr ""
+
+#: class-google-calendar-events-admin.php:303
+#, fuzzy
+msgid "Please add a new calendar feed first."
+msgstr "Assurez-vous que l'ID de votre agenda est correcte."
+
+#: class-google-calendar-events.php:88
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: google-calendar-events/google-calendar-events.php:43
-#, php-format
+#: google-calendar-events.php:34
 msgid ""
 "Google Events Calendar requires PHP %1$s and WordPress %2$s to function "
 "properly. PHP version found: %3$s. WordPress installed version: %4$s. Please "
@@ -48,48 +72,44 @@ msgstr ""
 "installée : %4$s. Merci de procéder aux mises à jour pour un fonctionnement "
 "correct."
 
-#: google-calendar-events/includes/admin/admin-functions.php:20
+#: includes/admin/admin-functions.php:20
 msgid "Cache has been cleared for this feed."
 msgstr "Le cache a été vidé pour cet agenda."
 
-#: google-calendar-events/includes/admin/admin-functions.php:35
-#: google-calendar-events/includes/admin/admin-functions.php:56
+#: includes/admin/admin-functions.php:35 includes/admin/admin-functions.php:56
 msgid "Starts:"
 msgstr "Début :"
 
-#: google-calendar-events/includes/admin/admin-functions.php:36
-#: google-calendar-events/includes/admin/admin-functions.php:58
+#: includes/admin/admin-functions.php:36 includes/admin/admin-functions.php:58
 msgid "Ends:"
 msgstr "Fin :"
 
-#: google-calendar-events/includes/admin/admin-functions.php:37
-#: google-calendar-events/includes/admin/admin-functions.php:60
+#: includes/admin/admin-functions.php:37 includes/admin/admin-functions.php:60
 msgid "Location:"
 msgstr "Lieu :"
 
-#: google-calendar-events/includes/admin/admin-functions.php:38
-#: google-calendar-events/includes/admin/admin-functions.php:61
+#: includes/admin/admin-functions.php:38 includes/admin/admin-functions.php:61
 msgid "Description:"
 msgstr "Description :"
 
-#: google-calendar-events/includes/admin/admin-functions.php:39
+#: includes/admin/admin-functions.php:39
 msgid "More details..."
 msgstr "Plus de détails..."
 
-#: google-calendar-events/includes/admin/admin-functions.php:63
+#: includes/admin/admin-functions.php:63
 msgid "More Details"
 msgstr "Plus de détails"
 
-#: google-calendar-events/includes/admin/admin-functions.php:77
-#: google-calendar-events/includes/gce-feed-cpt.php:292
+#: includes/admin/admin-functions.php:77 includes/gce-feed-cpt.php:328
+#: includes/gce-feed-cpt.php:381
 msgid "Clear Cache"
 msgstr "Vider le cache"
 
-#: google-calendar-events/includes/admin/admin-notice.php:26
+#: includes/admin/admin-notice.php:26
 msgid "GCal API Key Notice"
 msgstr "Clé d'API Google"
 
-#: google-calendar-events/includes/admin/admin-notice.php:28
+#: includes/admin/admin-notice.php:28
 msgid ""
 "GCal Events uses the Google Calendar API version 3. By default this plugin "
 "uses a public shared key across all plugin users."
@@ -97,7 +117,7 @@ msgstr ""
 "GCal Events utilise à présent la version 3 de l'API Google, qui nécessite "
 "l'utilisation d'une clé publique."
 
-#: google-calendar-events/includes/admin/admin-notice.php:30
+#: includes/admin/admin-notice.php:30
 msgid ""
 "This key is limited to 500,000 requests per day and 5 requests per second. "
 "To avoid running into any potential limits you can use your own Google API "
@@ -107,93 +127,86 @@ msgstr ""
 "éviter de rencontrer des limitations, vous pouvez utiliser votre clé API "
 "Google personnelle."
 
-#: google-calendar-events/includes/admin/admin-notice.php:33
+#: includes/admin/admin-notice.php:33
 msgid "Enter your GCal API key"
 msgstr "Entrez votre clé API GCal"
 
-#: google-calendar-events/includes/admin/admin-notice.php:34
+#: includes/admin/admin-notice.php:34
 msgid "Configure GCal feeds"
 msgstr "Configurez vos flux GCal"
 
-#: google-calendar-events/includes/admin/admin-notice.php:35
+#: includes/admin/admin-notice.php:35
 msgid "Hide this"
 msgstr "Masquer"
 
-#: google-calendar-events/includes/class-gce-display.php:193
-#: google-calendar-events/includes/class-gce-display.php:303
+#: includes/class-gce-display.php:193 includes/class-gce-display.php:303
 msgid "Back"
 msgstr "Préc."
 
-#: google-calendar-events/includes/class-gce-display.php:197
-#: google-calendar-events/includes/class-gce-display.php:304
+#: includes/class-gce-display.php:197 includes/class-gce-display.php:304
+#: includes/class-gce-display.php:310 includes/php-calendar.php:61
+#: includes/php-calendar.php:63
 msgid "Next"
 msgstr "Suiv."
 
-#: google-calendar-events/includes/class-gce-display.php:406
+#: includes/class-gce-display.php:309 includes/php-calendar.php:55
+#: includes/php-calendar.php:57
+msgid "Previous"
+msgstr ""
+
+#: includes/class-gce-display.php:406
 msgid "No events to display."
 msgstr "Aucun évènement à afficher."
 
-#: google-calendar-events/includes/class-gce-event.php:522
-#, php-format
+#: includes/class-gce-event.php:529
 msgid "%s year"
 msgstr "%s année"
 
-#: google-calendar-events/includes/class-gce-event.php:522
-#, php-format
+#: includes/class-gce-event.php:529
 msgid "%s years"
 msgstr "%s années"
 
-#: google-calendar-events/includes/class-gce-event.php:523
-#, php-format
+#: includes/class-gce-event.php:530
 msgid "%s month"
 msgstr "%s mois"
 
-#: google-calendar-events/includes/class-gce-event.php:523
-#, php-format
+#: includes/class-gce-event.php:530
 msgid "%s months"
 msgstr "%s mois"
 
-#: google-calendar-events/includes/class-gce-event.php:524
-#, php-format
+#: includes/class-gce-event.php:531
 msgid "%s week"
 msgstr "%s semaine"
 
-#: google-calendar-events/includes/class-gce-event.php:524
-#, php-format
+#: includes/class-gce-event.php:531
 msgid "%s weeks"
 msgstr "%s semaines"
 
-#: google-calendar-events/includes/class-gce-event.php:525
-#, php-format
+#: includes/class-gce-event.php:532
 msgid "%s day"
 msgstr "%s jour"
 
-#: google-calendar-events/includes/class-gce-event.php:525
-#, php-format
+#: includes/class-gce-event.php:532
 msgid "%s days"
 msgstr "%s jours"
 
-#: google-calendar-events/includes/class-gce-event.php:526
-#, php-format
+#: includes/class-gce-event.php:533
 msgid "%s hour"
 msgstr "%s heure"
 
-#: google-calendar-events/includes/class-gce-event.php:526
-#, php-format
+#: includes/class-gce-event.php:533
 msgid "%s hours"
 msgstr "%s heures"
 
-#: google-calendar-events/includes/class-gce-event.php:527
-#, php-format
+#: includes/class-gce-event.php:534
 msgid "%s min"
 msgstr "%s minute"
 
-#: google-calendar-events/includes/class-gce-event.php:527
-#, php-format
+#: includes/class-gce-event.php:534
 msgid "%s mins"
 msgstr "%s minutes"
 
-#: google-calendar-events/includes/class-gce-feed.php:93
+#: includes/class-gce-feed.php:94
 msgid ""
 "The Google Calendar ID has not been set. Please make sure to set it "
 "correctly in the Feed settings."
@@ -201,7 +214,7 @@ msgstr ""
 "L'ID de l'agenda n'a pas été indiqué. Veuillez vérifier qu'il est défini "
 "correctement dans la configuration."
 
-#: google-calendar-events/includes/class-gce-feed.php:197
+#: includes/class-gce-feed.php:192
 msgid ""
 "Some data was retrieved, but could not be parsed successfully. Please ensure "
 "your feed settings are correct."
@@ -209,144 +222,140 @@ msgstr ""
 "Des données ont été retrouvées mais n'ont pu être analysées. Assurez-vous "
 "que les paramètres de votre agenda sont corrects."
 
-#: google-calendar-events/includes/class-gce-feed.php:200
+#: includes/class-gce-feed.php:195
 msgid "An error has occured."
 msgstr "Une erreur est survenue."
 
-#: google-calendar-events/includes/class-gce-feed.php:205
+#: includes/class-gce-feed.php:200
 msgid " Please ensure your calendar ID is correct."
 msgstr "Assurez-vous que l'ID de votre agenda est correcte."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:21
+#: includes/gce-feed-cpt.php:21
 msgid "Google Calendar Feeds"
 msgstr "Flux des agendas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:22
-#: google-calendar-events/includes/gce-feed-cpt.php:24
-#: google-calendar-events/includes/gce-feed-cpt.php:72
+#: includes/gce-feed-cpt.php:22 includes/gce-feed-cpt.php:24
+#: includes/gce-feed-cpt.php:72
 msgid "Feed"
 msgstr "Flux"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:23
+#: includes/gce-feed-cpt.php:23
 msgid "GCal Events"
 msgstr "Évènements GCal"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:25
+#: includes/gce-feed-cpt.php:25
 msgid "Add New"
 msgstr "Ajouter"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:26
+#: includes/gce-feed-cpt.php:26
 msgid "Add New Feed"
 msgstr "Ajouter un nouvel agenda"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:27
+#: includes/gce-feed-cpt.php:27
 msgid "New Feed"
 msgstr "Nouvel agenda"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:28
+#: includes/gce-feed-cpt.php:28
 msgid "Edit Feed"
 msgstr "Éditer l'agenda"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:29
+#: includes/gce-feed-cpt.php:29
 msgid "View Feed"
 msgstr "Afficher l'agenda"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:30
+#: includes/gce-feed-cpt.php:30
 msgid "All GCal Feeds"
 msgstr "Tous les agendas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:31
+#: includes/gce-feed-cpt.php:31
 msgid "Search GCal Feeds"
 msgstr "Chercher  dans les agendas"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:32
+#: includes/gce-feed-cpt.php:32
 msgid "No feeds found."
 msgstr "Aucun agenda trouvé."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:33
+#: includes/gce-feed-cpt.php:33
 msgid "No feeds found in Trash."
 msgstr "Aucun agenda trouvé dans la corbeille."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:70
+#: includes/gce-feed-cpt.php:70
 msgid "feed"
 msgstr "agenda"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:75
-#: google-calendar-events/includes/gce-feed-cpt.php:76
-#, php-format
+#: includes/gce-feed-cpt.php:75 includes/gce-feed-cpt.php:76
 msgid "%4$s updated. %1$sView %2$s%3$s"
 msgstr "%4$s mis à jour. %1$sVoir %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:77
-#, php-format
+#: includes/gce-feed-cpt.php:77
 msgid "%4$s published. %1$sView %2$s%3$s"
 msgstr "%4$s publié. %1$sVoir %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:78
-#, php-format
+#: includes/gce-feed-cpt.php:78
 msgid "%4$s saved. %1$sView %2$s%3$s"
 msgstr "%4$s enregistré. %1$sVoir %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:79
-#, php-format
+#: includes/gce-feed-cpt.php:79
 msgid "%4$s submitted. %1$sView %2$s%3$s"
 msgstr "%4$s soumis. %1$sVoir %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:80
-#, php-format
+#: includes/gce-feed-cpt.php:80
 msgid "%4$s draft updated. %1$sView %2$s%3$s"
 msgstr "%4$s brouillon mis à jour. %1$sVoir %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:95
+#: includes/gce-feed-cpt.php:95
 msgid "Feed Settings"
 msgstr "Paramètres du flux"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:97
+#: includes/gce-feed-cpt.php:97
 msgid "Resources"
 msgstr "Ressources"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:98
+#: includes/gce-feed-cpt.php:98
 msgid "Display Options"
 msgstr "Options d'affichage"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:242
+#: includes/gce-feed-cpt.php:269
 msgid "Feed ID"
 msgstr "ID de l'agenda"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:243
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:79
+#: includes/gce-feed-cpt.php:270 views/admin/gce-feed-meta-display.php:79
 msgid "Feed Shortcode"
 msgstr "Shortcode de l'agenda"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:244
+#: includes/gce-feed-cpt.php:271
 msgid "Display Type"
 msgstr "Type d'affichage"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:271
+#: includes/gce-feed-cpt.php:306
 msgid "Grid"
 msgstr "Tableau"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:273
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:129
-#: google-calendar-events/views/widgets.php:295
+#: includes/gce-feed-cpt.php:308 views/admin/gce-feed-meta-display.php:155
+#: views/widgets.php:295
 msgid "List"
 msgstr "Liste"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:275
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:130
-#: google-calendar-events/views/widgets.php:296
+#: includes/gce-feed-cpt.php:310 views/admin/gce-feed-meta-display.php:156
+#: views/widgets.php:296
 msgid "Grouped List"
 msgstr "Liste groupée"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:277
+#: includes/gce-feed-cpt.php:312
 msgid "Custom Date Range"
 msgstr "Utilisez une plage de dates spécifique"
 
-#: google-calendar-events/includes/register-settings.php:29
+#: includes/gce-feed-cpt.php:469
+msgid "Feed cache cleared."
+msgid_plural "Cleared cache for %s feeds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/register-settings.php:29
 msgid "Google API Key"
 msgstr "Clé d'API Google"
 
-#: google-calendar-events/includes/register-settings.php:30
+#: includes/register-settings.php:30
 msgid ""
 "If left blank all displayed Google calendars will use a public Google API "
 "key shared across all plugin users."
@@ -354,7 +363,7 @@ msgstr ""
 "Si aucune clé n'est indiquée tous les agendas Google utiliseront une seule "
 "et même clé d'API pour tous les utilisateurs de ce plugin."
 
-#: google-calendar-events/includes/register-settings.php:31
+#: includes/register-settings.php:31
 msgid ""
 "Currently the shared key is limited to 500,000 requests per day and 5 "
 "requests per second."
@@ -362,8 +371,7 @@ msgstr ""
 "Actuellement, la clé partagée vous limite à 500&nbsp;000 requêtes par jour "
 "et 5 requêtes par seconde."
 
-#: google-calendar-events/includes/register-settings.php:32
-#, php-format
+#: includes/register-settings.php:32
 msgid ""
 "To avoid these limits <a href=\"%s\" target=\"_blank\">click here for "
 "instructions on how to generate and use your own Google API key.</a>"
@@ -372,57 +380,56 @@ msgstr ""
 "obtenir des instructions afin de générer et utiliser votre propre clé d'API "
 "Google.</a>"
 
-#: google-calendar-events/includes/register-settings.php:39
+#: includes/register-settings.php:39
 msgid "Always Enqueue Scripts & Styles"
 msgstr "Toujours placer Scripts & Styles en file d'attente"
 
-#: google-calendar-events/includes/register-settings.php:40
+#: includes/register-settings.php:40
 msgid "Enqueue this plugin's scripts and styles on every post and page."
 msgstr ""
 "Metttre les script du plugin et les feuilles de style sur le tampont de "
 "chaque article et page."
 
-#: google-calendar-events/includes/register-settings.php:41
+#: includes/register-settings.php:41
 msgid "Useful if using shortcodes in widgets or other non-standard locations."
 msgstr ""
 "Utile si vous utilisez les raccourcis dans les widgets ou d'autres "
 "applicatifs non-standards"
 
-#: google-calendar-events/includes/register-settings.php:46
+#: includes/register-settings.php:46
 msgid "Disable Plugin CSS"
 msgstr "Désactiver le CSS du Plugin"
 
-#: google-calendar-events/includes/register-settings.php:47
+#: includes/register-settings.php:47
 msgid ""
 "If this option is checked, this plugin's CSS file will not be referenced."
 msgstr ""
 "Si cette option est cochée, le fichier CSS du Plugin ne sera pas référencé"
 
-#: google-calendar-events/includes/register-settings.php:52
+#: includes/register-settings.php:52
 msgid "Save Settings"
 msgstr "Enregistrer les paramètres"
 
-#: google-calendar-events/includes/register-settings.php:53
+#: includes/register-settings.php:53
 msgid "Save your settings when uninstalling this plugin."
 msgstr ""
 "Enregistre vos modifications avant de désinstaller le plugin. Utile pour les "
 "mises à jour ou réinstallations"
 
-#: google-calendar-events/includes/register-settings.php:54
+#: includes/register-settings.php:54
 msgid "Useful when upgrading or re-installing."
 msgstr ""
 "Enregistre vos modifications avant de désinstaller le plugin. Utile pour les "
 "mises à jour ou réinstallations."
 
-#: google-calendar-events/includes/register-settings.php:183
-#, php-format
+#: includes/register-settings.php:182
 msgid ""
 "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
 "La fonction de rappel utilisée pour la configuration de <strong>%s</strong> "
 "est introuvable."
 
-#: google-calendar-events/includes/shortcodes.php:95
+#: includes/shortcodes.php:95
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "shortcode settings and make sure they are correct."
@@ -431,7 +438,7 @@ msgstr ""
 "Merci de vérifier la configuration de vos code et assurez-vous qu'ils soient "
 "corrects."
 
-#: google-calendar-events/views/admin/display-options-meta.php:39
+#: views/admin/display-options-meta.php:39
 msgid ""
 "Check this box to use the simple display options below instead of the Event "
 "Builder code on the left."
@@ -439,72 +446,72 @@ msgstr ""
 "Cocher cette case pour utiliser les options d'affichage ci-dessous au lieu "
 "du code du constructeur d'évènements à gauche."
 
-#: google-calendar-events/views/admin/display-options-meta.php:44
+#: views/admin/display-options-meta.php:44
 msgid "Start date / time display"
 msgstr "Affichage date / heure de début"
 
-#: google-calendar-events/views/admin/display-options-meta.php:45
+#: views/admin/display-options-meta.php:45
 msgid "Select how to display the start date / time."
 msgstr "Définit comment afficher la date / heure de début."
 
-#: google-calendar-events/views/admin/display-options-meta.php:47
-#: google-calendar-events/views/admin/display-options-meta.php:61
+#: views/admin/display-options-meta.php:47
+#: views/admin/display-options-meta.php:61
 msgid "None"
 msgstr "Aucun"
 
-#: google-calendar-events/views/admin/display-options-meta.php:48
+#: views/admin/display-options-meta.php:48
 msgid "Start time"
 msgstr "Heure de début"
 
-#: google-calendar-events/views/admin/display-options-meta.php:49
+#: views/admin/display-options-meta.php:49
 msgid "Start date"
 msgstr "Date de début"
 
-#: google-calendar-events/views/admin/display-options-meta.php:50
+#: views/admin/display-options-meta.php:50
 msgid "Start time and date"
 msgstr "Heure et date de début"
 
-#: google-calendar-events/views/admin/display-options-meta.php:51
+#: views/admin/display-options-meta.php:51
 msgid "Start date and time"
 msgstr "Date et Heure de début"
 
-#: google-calendar-events/views/admin/display-options-meta.php:53
+#: views/admin/display-options-meta.php:53
 msgid "Text to display before the start time."
 msgstr "Texte à afficher avant l'heure de début."
 
-#: google-calendar-events/views/admin/display-options-meta.php:58
+#: views/admin/display-options-meta.php:58
 msgid "End time/date display"
 msgstr "Affichage de l'heure / date de fin"
 
-#: google-calendar-events/views/admin/display-options-meta.php:59
+#: views/admin/display-options-meta.php:59
 msgid "Select how to display the end date / time."
 msgstr "Définit comment afficher la date / heure de fin."
 
-#: google-calendar-events/views/admin/display-options-meta.php:62
+#: views/admin/display-options-meta.php:62
 msgid "End time"
 msgstr "Heure de fin"
 
-#: google-calendar-events/views/admin/display-options-meta.php:63
+#: views/admin/display-options-meta.php:63
 msgid "End date"
 msgstr "Date de fin"
 
-#: google-calendar-events/views/admin/display-options-meta.php:64
+#: views/admin/display-options-meta.php:64
 msgid "End time and date"
 msgstr "Heure et date de fin"
 
-#: google-calendar-events/views/admin/display-options-meta.php:65
+#: views/admin/display-options-meta.php:65
 msgid "End date and time"
 msgstr "Date et heure de fin"
 
-#: google-calendar-events/views/admin/display-options-meta.php:67
+#: views/admin/display-options-meta.php:67
 msgid "Text to display before the end time."
 msgstr "Texte à afficher avant l'heure de fin."
 
-#: google-calendar-events/views/admin/display-options-meta.php:72
+#: views/admin/display-options-meta.php:72
 msgid "Separator"
 msgstr "Séparateur"
 
-#: google-calendar-events/views/admin/display-options-meta.php:74
+#: views/admin/display-options-meta.php:74
 msgid ""
 "If you have chosen to display both the time and date above, enter the text / "
 "characters to display between the time and date here (including any spaces)."
@@ -513,23 +520,23 @@ msgstr ""
 "indiquez le texte / les caractères à afficher entre la date et l'heure ici "
 "(avec les espaces)."
 
-#: google-calendar-events/views/admin/display-options-meta.php:80
+#: views/admin/display-options-meta.php:80
 msgid "Location"
 msgstr "Lieu"
 
-#: google-calendar-events/views/admin/display-options-meta.php:82
+#: views/admin/display-options-meta.php:82
 msgid "Show the location of events?"
 msgstr "Afficher le lieu des évènements ?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:83
+#: views/admin/display-options-meta.php:83
 msgid "Text to display before the location."
 msgstr "Texte à afficher avant le lieu."
 
-#: google-calendar-events/views/admin/display-options-meta.php:88
+#: views/admin/display-options-meta.php:88
 msgid "Description"
 msgstr "Description"
 
-#: google-calendar-events/views/admin/display-options-meta.php:91
+#: views/admin/display-options-meta.php:91
 msgid ""
 "Show the description of events? (URLs in the description will be made into "
 "links)."
@@ -537,43 +544,43 @@ msgstr ""
 "Afficher la description des évènements ? (les URL dans la description sont "
 "converties en liens)."
 
-#: google-calendar-events/views/admin/display-options-meta.php:93
+#: views/admin/display-options-meta.php:93
 msgid "Text to display before the description."
 msgstr "Texte à afficher avant la description."
 
-#: google-calendar-events/views/admin/display-options-meta.php:95
+#: views/admin/display-options-meta.php:95
 msgid ""
 "Maximum number of words to show from description. Leave blank for no limit."
 msgstr ""
 "Nombre maximum de mots de la description à afficher . Laisser ce champ vide "
 "si vous ne souhaitez aucune limite."
 
-#: google-calendar-events/views/admin/display-options-meta.php:100
+#: views/admin/display-options-meta.php:100
 msgid "Event Link"
 msgstr "Lien de l'évènement"
 
-#: google-calendar-events/views/admin/display-options-meta.php:103
+#: views/admin/display-options-meta.php:103
 msgid "Show a link to the Google Calendar page for an event?"
 msgstr "Afficher le lien vers la page de l'agenda Google pour un évènement ?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:107
+#: views/admin/display-options-meta.php:107
 msgid "Links open in a new window / tab?"
 msgstr "Ouvrir les liens dans une nouvelle fenêtre / un nouvel onglet ?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:109
+#: views/admin/display-options-meta.php:109
 msgid "The link text to be displayed."
 msgstr "Le texte du lien à afficher."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:69
+#: views/admin/gce-feed-meta-display.php:69
 msgid "Want to be in the know?"
 msgstr "Vous souhaitez être tenu informé ?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:72
+#: views/admin/gce-feed-meta-display.php:72
 msgid "Get notified when new features are released"
 msgstr ""
 "Soyez informé lors de la mise à disposition de nouvelles fonctionnalités."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:83
+#: views/admin/gce-feed-meta-display.php:90
 msgid ""
 "Copy and paste this shortcode to display this Google Calendar feed on any "
 "post or page."
@@ -581,7 +588,7 @@ msgstr ""
 "Copier / coller ce shortcode afin d'afficher l'agenda Google dans n'importe "
 "quel article ou page."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:84
+#: views/admin/gce-feed-meta-display.php:91
 msgid ""
 "To avoid display issues, make sure to paste the shortcode in the Text tab of "
 "the post editor."
@@ -589,41 +596,49 @@ msgstr ""
 "Pour éviter des problèmes d'affichage, copier ce shortcode dans l'onglet "
 "«&nbsp;Texte&nbsp;» de l'éditeur d'article."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:89
+#: views/admin/gce-feed-meta-display.php:96
 msgid "Google Calendar ID"
 msgstr "ID de l'agenda Google"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:93
+#: views/admin/gce-feed-meta-display.php:100
 msgid "The Google Calendar ID."
 msgstr "l'ID de l'agenda Google."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:93
+#: views/admin/gce-feed-meta-display.php:100
 msgid "Example"
 msgstr "Exemple"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:95
+#: views/admin/gce-feed-meta-display.php:102
 msgid "How to find your Google Calendar ID"
 msgstr "Comment trouver l'ID de votre agenda GCal?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:101
+#: views/admin/gce-feed-meta-display.php:115
+msgid "Timezone"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:122
+msgid "It is recommended to use the calendar default timezone."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:127
 msgid "Search Query"
 msgstr "Requête de recherche"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:104
+#: views/admin/gce-feed-meta-display.php:130
 msgid "Find and show events based on a search query."
 msgstr ""
 "Trouver et afficher les évènements à partir de la requête indiquée dans ce "
 "champ."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:109
+#: views/admin/gce-feed-meta-display.php:135
 msgid "Expand Recurring Events?"
 msgstr "Évènements réccurents étendus ?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:111
+#: views/admin/gce-feed-meta-display.php:137
 msgid "Yes"
 msgstr "Oui"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:112
+#: views/admin/gce-feed-meta-display.php:138
 msgid ""
 "Display recurring events each time they occur. If disabled, events will be "
 "displayed only the first time they occur."
@@ -632,15 +647,15 @@ msgstr ""
 "produisent. Sinon ils ne sont affichés que pour la 1<sup>ère</sup> "
 "occurrence."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:117
+#: views/admin/gce-feed-meta-display.php:143
 msgid "Multiple Day Events"
 msgstr "Évènements sur plusieurs jours"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:119
+#: views/admin/gce-feed-meta-display.php:145
 msgid "Show on each day"
 msgstr "Afficher chaque jour"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:120
+#: views/admin/gce-feed-meta-display.php:146
 msgid ""
 "Display multiple day events on each day that they span. If disabled, "
 "multiple day events will be displayed only on the first day they occur."
@@ -649,75 +664,65 @@ msgstr ""
 "couvrent. Si désactivé, les événements sur plusieurs jour seront affichés "
 "uniquement sur le premier jour qu'ils se produisent"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:125
+#: views/admin/gce-feed-meta-display.php:151
 msgid "Display Mode"
 msgstr "Mode d'affichage"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:128
-#: google-calendar-events/views/widgets.php:294
+#: views/admin/gce-feed-meta-display.php:154 views/widgets.php:294
 msgid "Grid (Month view)"
 msgstr "Grille (vue mensuelle)"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:131
-#: google-calendar-events/views/widgets.php:297
+#: views/admin/gce-feed-meta-display.php:157 views/widgets.php:297
 msgid "Custom Date Range (List)"
 msgstr "Plage de dates spécifique (Liste)"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:132
-#: google-calendar-events/views/widgets.php:298
+#: views/admin/gce-feed-meta-display.php:158 views/widgets.php:298
 msgid "Custom Date Range (Grid)"
 msgstr "Plage de dates spécifique (Grille)"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:134
+#: views/admin/gce-feed-meta-display.php:160
 msgid "Select how to display this feed."
 msgstr "Définit comment afficher la date / heure de début."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:139
+#: views/admin/gce-feed-meta-display.php:165
 msgid "Events per Page"
 msgstr "Nombre d'évènements par page"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:142
-#: google-calendar-events/views/widgets.php:313
+#: views/admin/gce-feed-meta-display.php:168 views/widgets.php:313
 msgid "Number of Days"
 msgstr "Nombre de jours"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:143
-#: google-calendar-events/views/widgets.php:314
+#: views/admin/gce-feed-meta-display.php:169 views/widgets.php:314
 msgid "Number of Events"
 msgstr "Nombre d'évènements par page"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:144
-#: google-calendar-events/views/widgets.php:315
+#: views/admin/gce-feed-meta-display.php:170 views/widgets.php:315
 msgid "One Week"
 msgstr "Une semaine"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:145
-#: google-calendar-events/views/widgets.php:316
+#: views/admin/gce-feed-meta-display.php:171 views/widgets.php:316
 msgid "One Month"
 msgstr "Un Mois"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:150
+#: views/admin/gce-feed-meta-display.php:176
 msgid "How many events to display per page (List View only)."
 msgstr "Nombre d'évènements par page à afficher (uniquement pour les listes)"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:155
+#: views/admin/gce-feed-meta-display.php:181
 msgid "Display Start Date Offset"
 msgstr "Date de début d'affichage"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:158
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:170
-#: google-calendar-events/views/widgets.php:330
+#: views/admin/gce-feed-meta-display.php:184
+#: views/admin/gce-feed-meta-display.php:196 views/widgets.php:330
 msgid "Number of Days Back"
 msgstr "Nombre de jours en arrière"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:159
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:189
-#: google-calendar-events/views/widgets.php:331
+#: views/admin/gce-feed-meta-display.php:185
+#: views/admin/gce-feed-meta-display.php:215 views/widgets.php:331
 msgid "Number of Days Forward"
 msgstr "Nombre de jours en avant"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:162
-#: google-calendar-events/views/widgets.php:335
+#: views/admin/gce-feed-meta-display.php:188 views/widgets.php:335
 msgid ""
 "Change to initially display events on a date other than today (List View "
 "only)."
@@ -725,25 +730,25 @@ msgstr ""
 "A modifier si vous souhaitez afficher la date de début d'affichage à une "
 "autre date qu'aujourd'hui. (uniquement pour les listes)"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:167
+#: views/admin/gce-feed-meta-display.php:193
 msgid "Earliest Feed Event Date"
 msgstr "Date de début de l'agenda"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:171
+#: views/admin/gce-feed-meta-display.php:197
 msgid "Number of Months Back"
 msgstr "Nombre de mois en arrière"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:172
+#: views/admin/gce-feed-meta-display.php:198
 msgid "Number of Years Back"
 msgstr "Nombre d'années en arrière"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:178
+#: views/admin/gce-feed-meta-display.php:204
 msgid "Set how far back to retrieve events regardless of initial display."
 msgstr ""
 "Définir de combien de temps revenir en arrière pour retrouver les évènements "
 "passés quel que soit l'affichage (mois ou page)."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:180
+#: views/admin/gce-feed-meta-display.php:206
 msgid ""
 "<strong>Note:</strong> Total events are currently limited to 2,500 by the "
 "Google Calendar API."
@@ -751,30 +756,30 @@ msgstr ""
 "<strong>Note:</strong> Le total des événements est actuellement limité à "
 "2500 par l'API Google Calendrier."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:186
+#: views/admin/gce-feed-meta-display.php:212
 msgid "Latest Feed Event Date"
 msgstr "Date de fin de l'agenda"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:190
+#: views/admin/gce-feed-meta-display.php:216
 msgid "Number of Months Forward"
 msgstr "Nombre de mois en avant"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:191
+#: views/admin/gce-feed-meta-display.php:217
 msgid "Number of Years Forward"
 msgstr "Nombre d'années en avant"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:196
+#: views/admin/gce-feed-meta-display.php:222
 msgid ""
 "Set how far in the future to retrieve events regardless of initial display."
 msgstr ""
 "Définir de combien de temps aller en avant pour retrouver les évènements "
 "quel que soit l'affichage (mois ou page)."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:201
+#: views/admin/gce-feed-meta-display.php:227
 msgid "Use Custom Date Range"
 msgstr "Utilisez une plage de dates spécifique"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:207
+#: views/admin/gce-feed-meta-display.php:233
 msgid ""
 "Set a specific range of events to retrieve. Leaving either field blank will "
 "set the date to the current day."
@@ -782,52 +787,49 @@ msgstr ""
 "Définir une plage d'événements spécifiques pour récupérer. Laissez le champ "
 "vide donnera la date du jour en cours."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:213
-#: google-calendar-events/views/widgets.php:345
+#: views/admin/gce-feed-meta-display.php:239 views/widgets.php:345
 msgid "Show Paging Links"
 msgstr "Afficher les liens de pagination"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:216
+#: views/admin/gce-feed-meta-display.php:242
 msgid "Display Next and Back navigation links."
 msgstr ""
 "Afficher les boutons «&nbsp;suiv.&nbsp;» et «&nbsp;préc.&nbsp;» afin de "
 "naviguer de mois en mois."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:221
-#: google-calendar-events/views/widgets.php:348
+#: views/admin/gce-feed-meta-display.php:247 views/widgets.php:348
 msgid "Show Tooltips"
 msgstr "Montrer les infobulles"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:224
+#: views/admin/gce-feed-meta-display.php:250
 msgid "Display tooltips when hovering over events (Grid View only)."
 msgstr ""
 "Afficher les infobulles quand on passe la souris sur l'évènement (Vue Grille "
 "uniquement)"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:229
+#: views/admin/gce-feed-meta-display.php:255
 msgid "Date Format"
 msgstr "Format de date"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:233
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:244
-#, php-format
+#: views/admin/gce-feed-meta-display.php:259
+#: views/admin/gce-feed-meta-display.php:270
 msgid "Use %sPHP date formatting%s."
 msgstr "Utiliser le %sformat de date PHP%s."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:234
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:245
+#: views/admin/gce-feed-meta-display.php:260
+#: views/admin/gce-feed-meta-display.php:271
 msgid "Leave blank to use the default."
 msgstr "Laisser vide pour utiliser le paramètre par défaut."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:240
+#: views/admin/gce-feed-meta-display.php:266
 msgid "Time Format"
 msgstr "Format d'heure"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:251
+#: views/admin/gce-feed-meta-display.php:277
 msgid "Cache Duration"
 msgstr "Durée du cache"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:254
+#: views/admin/gce-feed-meta-display.php:280
 msgid ""
 "The length of time, in seconds, to cache the feed (43200 = 12 hours). If "
 "this feed changes regularly, you may want to reduce the cache duration."
@@ -835,28 +837,28 @@ msgstr ""
 "La durée en secondes de conservation du flux en cache (43200 = 12 heures). "
 "Si ce flux change fréquemment, réduisez cette durée."
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:6
+#: views/admin/gce-feed-sidebar-help.php:6
 msgid "Documentation"
 msgstr "Documentation"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:11
+#: views/admin/gce-feed-sidebar-help.php:11
 msgid "Community support forums"
 msgstr "Forum d'aide communautaire"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:16
+#: views/admin/gce-feed-sidebar-help.php:16
 msgid "Get notified of new features"
 msgstr "Être averti des nouvelles fonctionnalités"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:21
+#: views/admin/gce-feed-sidebar-help.php:21
 msgid "Your review helps more folks find our plugin. Thanks so much!"
 msgstr ""
 "Votre revue aide plus de personnes à trouver notre plugin. Merci beaucoup !"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:25
+#: views/admin/gce-feed-sidebar-help.php:25
 msgid "Review this Plugin Now"
 msgstr "Noter ce plugin."
 
-#: google-calendar-events/views/widgets.php:28
+#: views/widgets.php:28
 msgid ""
 "Display a list or calendar grid of events from one or more Google Calendar "
 "feeds you have added"
@@ -864,7 +866,7 @@ msgstr ""
 "Affiche une liste ou un tableau d'évènements à partir d'un ou plusieurs "
 "agendas Google ajoutés par vos soins."
 
-#: google-calendar-events/views/widgets.php:167
+#: views/widgets.php:167
 msgid ""
 "No valid Feed IDs have been entered for this widget. Please check that you "
 "have entered the IDs correctly in the widget settings (Appearance > "
@@ -874,7 +876,7 @@ msgstr ""
 "que l'ID est correctement définie dans la configuration (Apparence > "
 "Widgets) et que les agendas n'ont pas été supprimés."
 
-#: google-calendar-events/views/widgets.php:207
+#: views/widgets.php:207
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "widget settings and make sure they are correct."
@@ -883,52 +885,52 @@ msgstr ""
 "Merci de vérifier la configuration de vos code et assurez-vous qu'ils soient "
 "corrects."
 
-#: google-calendar-events/views/widgets.php:213
+#: views/widgets.php:213
 msgid "You have not added any feeds yet."
 msgstr "Vous n'avez pas encore ajouté d'agenda."
 
-#: google-calendar-events/views/widgets.php:256
+#: views/widgets.php:256
 msgid "There are no feeds created yet."
 msgstr "Aucun agenda n'a encore été créé."
 
-#: google-calendar-events/views/widgets.php:257
+#: views/widgets.php:257
 msgid "Add your first feed!"
 msgstr "Ajoutez votre premier agenda !"
 
-#: google-calendar-events/views/widgets.php:267
+#: views/widgets.php:267
 msgid "Events on"
 msgstr "Évènements le"
 
-#: google-calendar-events/views/widgets.php:281
+#: views/widgets.php:281
 msgid "Title:"
 msgstr "Titre :"
 
-#: google-calendar-events/views/widgets.php:286
+#: views/widgets.php:286
 msgid "Feeds to Display (comma separated list - i.e. 101,102,103):"
 msgstr ""
 "Agendas à afficher (liste séparée par une virgule - ex.&nbsp;: 101,102,103) :"
 
-#: google-calendar-events/views/widgets.php:292
+#: views/widgets.php:292
 msgid "Display Events as:"
 msgstr "Afficher les évènements comme&nbsp;:"
 
-#: google-calendar-events/views/widgets.php:303
+#: views/widgets.php:303
 msgid "Sort Order (List View only):"
 msgstr "Ordre de tri (uniquement pour les listes)&nbsp;:"
 
-#: google-calendar-events/views/widgets.php:305
+#: views/widgets.php:305
 msgid "Ascending"
 msgstr "Croissant"
 
-#: google-calendar-events/views/widgets.php:306
+#: views/widgets.php:306
 msgid "Descending"
 msgstr "Décroissant"
 
-#: google-calendar-events/views/widgets.php:311
+#: views/widgets.php:311
 msgid "Events per Page (List View only):"
 msgstr "Nombre d'évènements par page (uniquement pour les listes)&nbsp;:"
 
-#: google-calendar-events/views/widgets.php:324
+#: views/widgets.php:324
 msgid ""
 "This setting will pull from the custom date range set in the main feed "
 "settings and cannot be changed here."
@@ -936,17 +938,55 @@ msgstr ""
 "Ce paramètre est issu de la plage de dates spécifique défini dans les "
 "paramètres principaux du flux et ne peut-être modifié ici."
 
-#: google-calendar-events/views/widgets.php:328
+#: views/widgets.php:328
 msgid "Display Start Date Offset (List View only):"
 msgstr "Date de début d'affichage (uniquement pour les listes)&nbsp;:"
 
-#: google-calendar-events/views/widgets.php:339
+#: views/widgets.php:339
 msgid ""
 "Display Title on Tooltip/List Item (e.g. 'Events on 7th March'). Grouped "
 "lists always have a title displayed."
 msgstr ""
 "Afficher le titre dans l'infobulle / l'élément de liste (ex.&nbsp;: "
 "'Évènements du 7 mars'). Les listes groupées affichent toujours un titre."
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/google-calendar-events/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Show off your Google calendar in grid (month) or list view, in a post, page "
+"or widget, and in a style that matches your site."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Moonstone Media"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://moonstonemediagroup.com"
+msgstr ""
+
+#: includes/class-gce-event.php:562
+msgctxt "human_time_diff"
+msgid ", "
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:118
+msgctxt "Use the calendar default setting"
+msgid "Calendar default"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:119
+msgctxt "Use this site default setting"
+msgid "Site default"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:231
+msgctxt "separator between custom date range fields"
+msgid "to"
+msgstr ""
 
 #~ msgid "Helpful Links"
 #~ msgstr "Liens utiles"

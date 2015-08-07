@@ -3,8 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"Report-Msgid-Bugs-To: http://support.codelayer.org\n"
-"POT-Creation-Date: 2015-03-24 01:49-0300\n"
+"Report-Msgid-Bugs-To: https://github.com/pderksen/WP-Google-Calendar-Events/"
+"issues\n"
+"POT-Creation-Date: 2015-08-07 18:22:35+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Vadim Rc <0xrcva@gmail.com>\n"
 "Language-Team: rcva <0xrcva@gmail.com>\n"
@@ -23,42 +24,73 @@ msgstr ""
 "X-Generator: Poedit 1.7.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: class-google-calendar-events-admin.php:126
-#: class-google-calendar-events-admin.php:127
-#: class-google-calendar-events-admin.php:218
-#: includes/register-settings.php:66
+#: class-google-calendar-events-admin.php:138
+#: class-google-calendar-events-admin.php:139
+#: class-google-calendar-events-admin.php:235
+#: includes/register-settings.php:68
 msgid "General Settings"
 msgstr "Основные настройки"
 
-#: class-google-calendar-events-admin.php:206 views/widgets.php:27
+#. Plugin Name of the plugin/theme
 msgid "Google Calendar Events"
 msgstr "Google Calendar Events"
 
-#: class-google-calendar-events-admin.php:219
+#: class-google-calendar-events-admin.php:236
 msgid "Feeds"
 msgstr "Каналы"
 
-#: class-google-calendar-events.php:90
+#: class-google-calendar-events-admin.php:254
+#: class-google-calendar-events-admin.php:289
+#, fuzzy
+msgid "Add Calendar"
+msgstr "Идентификатор (ID) Google Calendar"
+
+#: class-google-calendar-events-admin.php:290
+msgid "Add a calendar feed to your post."
+msgstr ""
+
+#: class-google-calendar-events-admin.php:300
+#, fuzzy
+msgid "Insert Calendar"
+msgstr "Идентификатор (ID) Google Calendar"
+
+#: class-google-calendar-events-admin.php:302
+msgid "Could not find any calendars to add to this post."
+msgstr ""
+
+#: class-google-calendar-events-admin.php:303
+#, fuzzy
+msgid "Please add a new calendar feed first."
+msgstr "Пожалуйста, убедитесь что идентификатор (ID) календаря корректен"
+
+#: class-google-calendar-events.php:88
 msgid "Loading..."
 msgstr "Загрузка..."
+
+#: google-calendar-events.php:34
+msgid ""
+"Google Events Calendar requires PHP %1$s and WordPress %2$s to function "
+"properly. PHP version found: %3$s. WordPress installed version: %4$s. Please "
+"upgrade to meet the minimum requirements."
+msgstr ""
 
 #: includes/admin/admin-functions.php:20
 msgid "Cache has been cleared for this feed."
 msgstr "Кэш этого потока очищен."
 
-#: includes/admin/admin-functions.php:35 includes/admin/admin-functions.php:55
+#: includes/admin/admin-functions.php:35 includes/admin/admin-functions.php:56
 msgid "Starts:"
 msgstr "Начало:"
 
-#: includes/admin/admin-functions.php:36 includes/admin/admin-functions.php:57
+#: includes/admin/admin-functions.php:36 includes/admin/admin-functions.php:58
 msgid "Ends:"
 msgstr "Конец:"
 
-#: includes/admin/admin-functions.php:37 includes/admin/admin-functions.php:59
+#: includes/admin/admin-functions.php:37 includes/admin/admin-functions.php:60
 msgid "Location:"
 msgstr "Место:"
 
-#: includes/admin/admin-functions.php:38 includes/admin/admin-functions.php:60
+#: includes/admin/admin-functions.php:38 includes/admin/admin-functions.php:61
 msgid "Description:"
 msgstr "Описание:"
 
@@ -66,11 +98,12 @@ msgstr "Описание:"
 msgid "More details..."
 msgstr "Подробнее..."
 
-#: includes/admin/admin-functions.php:62
+#: includes/admin/admin-functions.php:63
 msgid "More Details"
 msgstr "Подробнее"
 
-#: includes/admin/admin-functions.php:76 includes/gce-feed-cpt.php:291
+#: includes/admin/admin-functions.php:77 includes/gce-feed-cpt.php:328
+#: includes/gce-feed-cpt.php:381
 msgid "Clear Cache"
 msgstr "Очистить кеш"
 
@@ -108,84 +141,74 @@ msgstr "Настроить каналы GCal"
 msgid "Hide this"
 msgstr "Скрыть"
 
-#: includes/class-gce-display.php:179 includes/class-gce-display.php:289
+#: includes/class-gce-display.php:193 includes/class-gce-display.php:303
 msgid "Back"
 msgstr "Назад"
 
-#: includes/class-gce-display.php:183 includes/class-gce-display.php:290
+#: includes/class-gce-display.php:197 includes/class-gce-display.php:304
+#: includes/class-gce-display.php:310 includes/php-calendar.php:61
+#: includes/php-calendar.php:63
 msgid "Next"
 msgstr "Вперед"
 
-#: includes/class-gce-display.php:392
+#: includes/class-gce-display.php:309 includes/php-calendar.php:55
+#: includes/php-calendar.php:57
+msgid "Previous"
+msgstr ""
+
+#: includes/class-gce-display.php:406
 msgid "No events to display."
 msgstr "События отсутствуют"
 
-#: includes/class-gce-event.php:522
-#, php-format
+#: includes/class-gce-event.php:529
 msgid "%s year"
 msgstr "%s год"
 
-#: includes/class-gce-event.php:522
-#, php-format
+#: includes/class-gce-event.php:529
 msgid "%s years"
 msgstr "%s лет"
 
-#: includes/class-gce-event.php:523
-#, php-format
+#: includes/class-gce-event.php:530
 msgid "%s month"
 msgstr "%s месяц"
 
-#: includes/class-gce-event.php:523
-#, php-format
+#: includes/class-gce-event.php:530
 msgid "%s months"
 msgstr "%s месяцев"
 
-#: includes/class-gce-event.php:524
-#, php-format
+#: includes/class-gce-event.php:531
 msgid "%s week"
 msgstr "%s неделя"
 
-#: includes/class-gce-event.php:524
-#, php-format
+#: includes/class-gce-event.php:531
 msgid "%s weeks"
 msgstr "%s недель"
 
-#: includes/class-gce-event.php:525
-#, php-format
+#: includes/class-gce-event.php:532
 msgid "%s day"
 msgstr "%s день"
 
-#: includes/class-gce-event.php:525
-#, php-format
+#: includes/class-gce-event.php:532
 msgid "%s days"
 msgstr "%s дней"
 
-#: includes/class-gce-event.php:526
-#, php-format
+#: includes/class-gce-event.php:533
 msgid "%s hour"
 msgstr "%s час"
 
-#: includes/class-gce-event.php:526
-#, php-format
+#: includes/class-gce-event.php:533
 msgid "%s hours"
 msgstr "%s часов"
 
-#: includes/class-gce-event.php:527
-#, php-format
+#: includes/class-gce-event.php:534
 msgid "%s min"
 msgstr "%s минута"
 
-#: includes/class-gce-event.php:527
-#, php-format
+#: includes/class-gce-event.php:534
 msgid "%s mins"
 msgstr "%s минут"
 
-#: includes/class-gce-event.php:555
-msgctxt "human_time_diff"
-msgid ", "
-msgstr ", "
-
-#: includes/class-gce-feed.php:93
+#: includes/class-gce-feed.php:94
 msgid ""
 "The Google Calendar ID has not been set. Please make sure to set it "
 "correctly in the Feed settings."
@@ -193,7 +216,7 @@ msgstr ""
 "Не указан идентификатор (ID) от Google Calendar. Пожалуйста, убедитесь, что "
 "вы указали его в пункте \"Каналы\"."
 
-#: includes/class-gce-feed.php:197
+#: includes/class-gce-feed.php:192
 msgid ""
 "Some data was retrieved, but could not be parsed successfully. Please ensure "
 "your feed settings are correct."
@@ -201,11 +224,11 @@ msgstr ""
 "Часть данных была загружен, но не была успешно распознана. Пожалуйста, "
 "убедитесь что настройки верны."
 
-#: includes/class-gce-feed.php:200
+#: includes/class-gce-feed.php:195
 msgid "An error has occured."
 msgstr "Произошла ошибка."
 
-#: includes/class-gce-feed.php:205
+#: includes/class-gce-feed.php:200
 msgid " Please ensure your calendar ID is correct."
 msgstr "Пожалуйста, убедитесь что идентификатор (ID) календаря корректен"
 
@@ -263,71 +286,73 @@ msgid "feed"
 msgstr "канал"
 
 #: includes/gce-feed-cpt.php:75 includes/gce-feed-cpt.php:76
-#, php-format
 msgid "%4$s updated. %1$sView %2$s%3$s"
 msgstr "%4$s обновлено. %1$sПросмотреть %2$s%3$s"
 
 #: includes/gce-feed-cpt.php:77
-#, php-format
 msgid "%4$s published. %1$sView %2$s%3$s"
 msgstr "%4$s опубликовано. %1$sПросмотреть %2$s%3$s"
 
 #: includes/gce-feed-cpt.php:78
-#, php-format
 msgid "%4$s saved. %1$sView %2$s%3$s"
 msgstr "%4$s сохранено. %1$sПросмотреть %2$s%3$s"
 
 #: includes/gce-feed-cpt.php:79
-#, php-format
 msgid "%4$s submitted. %1$sView %2$s%3$s"
 msgstr "%4$s отправлено. %1$sПросмотреть %2$s%3$s"
 
 #: includes/gce-feed-cpt.php:80
-#, php-format
 msgid "%4$s draft updated. %1$sView %2$s%3$s"
 msgstr "%4$s черновиков обновлено. %1$sView %2$s%3$s"
 
-#: includes/gce-feed-cpt.php:94
+#: includes/gce-feed-cpt.php:95
 msgid "Feed Settings"
 msgstr "Настройки канала"
 
 #: includes/gce-feed-cpt.php:97
-msgid "Helpful Links"
-msgstr "Полезные ссылки"
+msgid "Resources"
+msgstr ""
 
-#: includes/gce-feed-cpt.php:99
+#: includes/gce-feed-cpt.php:98
 msgid "Display Options"
 msgstr "Настройки отображения"
 
-#: includes/gce-feed-cpt.php:241
+#: includes/gce-feed-cpt.php:269
 msgid "Feed ID"
 msgstr "Идентификатор (ID) канала"
 
-#: includes/gce-feed-cpt.php:242 views/admin/gce-feed-meta-display.php:87
+#: includes/gce-feed-cpt.php:270 views/admin/gce-feed-meta-display.php:79
 msgid "Feed Shortcode"
 msgstr "Шорткод канала"
 
-#: includes/gce-feed-cpt.php:243
+#: includes/gce-feed-cpt.php:271
 msgid "Display Type"
 msgstr "Тип отображения"
 
-#: includes/gce-feed-cpt.php:270
+#: includes/gce-feed-cpt.php:306
 msgid "Grid"
 msgstr "Сетка"
 
-#: includes/gce-feed-cpt.php:272 views/admin/gce-feed-meta-display.php:137
+#: includes/gce-feed-cpt.php:308 views/admin/gce-feed-meta-display.php:155
 #: views/widgets.php:295
 msgid "List"
 msgstr "Список"
 
-#: includes/gce-feed-cpt.php:274 views/admin/gce-feed-meta-display.php:138
+#: includes/gce-feed-cpt.php:310 views/admin/gce-feed-meta-display.php:156
 #: views/widgets.php:296
 msgid "Grouped List"
 msgstr "Группированный список"
 
-#: includes/gce-feed-cpt.php:276
+#: includes/gce-feed-cpt.php:312
 msgid "Custom Date Range"
 msgstr "Установленный промежуток времени"
+
+#: includes/gce-feed-cpt.php:469
+msgid "Feed cache cleared."
+msgid_plural "Cleared cache for %s feeds."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: includes/register-settings.php:29
 msgid "Google API Key"
@@ -349,7 +374,6 @@ msgstr ""
 "Сейчас общий ключ ограничен 500,000 запросов в сутки и 5 запросами в секунду."
 
 #: includes/register-settings.php:32
-#, php-format
 msgid ""
 "To avoid these limits <a href=\"%s\" target=\"_blank\">click here for "
 "instructions on how to generate and use your own Google API key.</a>"
@@ -361,29 +385,43 @@ msgstr ""
 msgid "Always Enqueue Scripts & Styles"
 msgstr "Всегда подключать стили и скрипты"
 
-#: includes/register-settings.php:45
+#: includes/register-settings.php:40
+msgid "Enqueue this plugin's scripts and styles on every post and page."
+msgstr ""
+
+#: includes/register-settings.php:41
+msgid "Useful if using shortcodes in widgets or other non-standard locations."
+msgstr ""
+
+#: includes/register-settings.php:46
 msgid "Disable Plugin CSS"
 msgstr "Отключить CSS плагина"
 
-#: includes/register-settings.php:46
+#: includes/register-settings.php:47
 msgid ""
 "If this option is checked, this plugin's CSS file will not be referenced."
 msgstr "Если эта опция активна, CSS-файлы плагина будут проигнорированы."
 
-#: includes/register-settings.php:51
+#: includes/register-settings.php:52
 msgid "Save Settings"
 msgstr "Сохранить настройки"
 
-#: includes/register-settings.php:52
-msgid ""
-"Save your settings when uninstalling this plugin. Useful when upgrading or "
-"re-installing."
+#: includes/register-settings.php:53
+#, fuzzy
+msgid "Save your settings when uninstalling this plugin."
 msgstr ""
 "Сохранить настройки при удалении плагина. Полезно при обновлении и при "
 "переустановке."
 
-#: includes/register-settings.php:181
-#, fuzzy, php-format
+#: includes/register-settings.php:54
+#, fuzzy
+msgid "Useful when upgrading or re-installing."
+msgstr ""
+"Сохранить настройки при удалении плагина. Полезно при обновлении и при "
+"переустановке."
+
+#: includes/register-settings.php:182
+#, fuzzy
 msgid ""
 "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
@@ -529,15 +567,15 @@ msgstr "Открывать ссылку в новом окне / вкладке?
 msgid "The link text to be displayed."
 msgstr "Ссылка, которая будут показана."
 
-#: views/admin/gce-feed-meta-display.php:77
+#: views/admin/gce-feed-meta-display.php:69
 msgid "Want to be in the know?"
 msgstr "Хотите быть в курсе?"
 
-#: views/admin/gce-feed-meta-display.php:80
+#: views/admin/gce-feed-meta-display.php:72
 msgid "Get notified when new features are released"
 msgstr "Получать уведомление о новых функциях"
 
-#: views/admin/gce-feed-meta-display.php:91
+#: views/admin/gce-feed-meta-display.php:90
 msgid ""
 "Copy and paste this shortcode to display this Google Calendar feed on any "
 "post or page."
@@ -545,7 +583,7 @@ msgstr ""
 "Скопируйте этот шорткод чтобы добавлять этот Google Calendar на любую "
 "страницу или в запись."
 
-#: views/admin/gce-feed-meta-display.php:92
+#: views/admin/gce-feed-meta-display.php:91
 msgid ""
 "To avoid display issues, make sure to paste the shortcode in the Text tab of "
 "the post editor."
@@ -553,39 +591,47 @@ msgstr ""
 "Чтобы избежать проблем с отображением, убедитесь что вы вставили шорткод в "
 "текстовое представление редактора"
 
-#: views/admin/gce-feed-meta-display.php:97
+#: views/admin/gce-feed-meta-display.php:96
 msgid "Google Calendar ID"
 msgstr "Идентификатор (ID) Google Calendar"
 
-#: views/admin/gce-feed-meta-display.php:101
+#: views/admin/gce-feed-meta-display.php:100
 msgid "The Google Calendar ID."
 msgstr "Идентификатор (ID) Google Calendar"
 
-#: views/admin/gce-feed-meta-display.php:101
+#: views/admin/gce-feed-meta-display.php:100
 msgid "Example"
 msgstr "Пример"
 
-#: views/admin/gce-feed-meta-display.php:103
+#: views/admin/gce-feed-meta-display.php:102
 msgid "How to find your Google Calendar ID"
 msgstr "Как найти идентификатор вашего Google Calendar"
 
-#: views/admin/gce-feed-meta-display.php:109
+#: views/admin/gce-feed-meta-display.php:115
+msgid "Timezone"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:122
+msgid "It is recommended to use the calendar default timezone."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:127
 msgid "Search Query"
 msgstr "Строка поиска"
 
-#: views/admin/gce-feed-meta-display.php:112
+#: views/admin/gce-feed-meta-display.php:130
 msgid "Find and show events based on a search query."
 msgstr "Найти и показать события, опираясь на поисковую строку."
 
-#: views/admin/gce-feed-meta-display.php:117
+#: views/admin/gce-feed-meta-display.php:135
 msgid "Expand Recurring Events?"
 msgstr "Отображать цикличные события?"
 
-#: views/admin/gce-feed-meta-display.php:119
+#: views/admin/gce-feed-meta-display.php:137
 msgid "Yes"
 msgstr "Да"
 
-#: views/admin/gce-feed-meta-display.php:120
+#: views/admin/gce-feed-meta-display.php:138
 msgid ""
 "Display recurring events each time they occur. If disabled, events will be "
 "displayed only the first time they occur."
@@ -593,15 +639,15 @@ msgstr ""
 "Отображать каждое повторение цикличного события. Если выключено, будет "
 "показано только первое повторение."
 
-#: views/admin/gce-feed-meta-display.php:125
+#: views/admin/gce-feed-meta-display.php:143
 msgid "Multiple Day Events"
 msgstr "Многодневные события"
 
-#: views/admin/gce-feed-meta-display.php:127
+#: views/admin/gce-feed-meta-display.php:145
 msgid "Show on each day"
 msgstr "Показывать все дни"
 
-#: views/admin/gce-feed-meta-display.php:128
+#: views/admin/gce-feed-meta-display.php:146
 msgid ""
 "Display multiple day events on each day that they span. If disabled, "
 "multiple day events will be displayed only on the first day they occur."
@@ -610,65 +656,65 @@ msgstr ""
 "происходят. Если отключено, многодневные события будут показаны только в "
 "день своего начала."
 
-#: views/admin/gce-feed-meta-display.php:133
+#: views/admin/gce-feed-meta-display.php:151
 msgid "Display Mode"
 msgstr "Режим отображения"
 
-#: views/admin/gce-feed-meta-display.php:136 views/widgets.php:294
+#: views/admin/gce-feed-meta-display.php:154 views/widgets.php:294
 msgid "Grid (Month view)"
 msgstr "Сетка (по месяцам)"
 
-#: views/admin/gce-feed-meta-display.php:139 views/widgets.php:297
+#: views/admin/gce-feed-meta-display.php:157 views/widgets.php:297
 msgid "Custom Date Range (List)"
 msgstr "В рамках определенного промежутка (список)"
 
-#: views/admin/gce-feed-meta-display.php:140 views/widgets.php:298
+#: views/admin/gce-feed-meta-display.php:158 views/widgets.php:298
 msgid "Custom Date Range (Grid)"
 msgstr "В рамках определенного промежутка (сетка)"
 
-#: views/admin/gce-feed-meta-display.php:142
+#: views/admin/gce-feed-meta-display.php:160
 msgid "Select how to display this feed."
 msgstr "Выберите, в каком режиме показывать этот канал."
 
-#: views/admin/gce-feed-meta-display.php:147
+#: views/admin/gce-feed-meta-display.php:165
 msgid "Events per Page"
 msgstr "Событий в день"
 
-#: views/admin/gce-feed-meta-display.php:150 views/widgets.php:313
+#: views/admin/gce-feed-meta-display.php:168 views/widgets.php:313
 msgid "Number of Days"
 msgstr "Количество дней"
 
-#: views/admin/gce-feed-meta-display.php:151 views/widgets.php:314
+#: views/admin/gce-feed-meta-display.php:169 views/widgets.php:314
 msgid "Number of Events"
 msgstr "Количество событий"
 
-#: views/admin/gce-feed-meta-display.php:152 views/widgets.php:315
+#: views/admin/gce-feed-meta-display.php:170 views/widgets.php:315
 msgid "One Week"
 msgstr "Одна неделя"
 
-#: views/admin/gce-feed-meta-display.php:153 views/widgets.php:316
+#: views/admin/gce-feed-meta-display.php:171 views/widgets.php:316
 msgid "One Month"
 msgstr "Один месяц"
 
-#: views/admin/gce-feed-meta-display.php:158
+#: views/admin/gce-feed-meta-display.php:176
 msgid "How many events to display per page (List View only)."
 msgstr "Как много событий отображать на каждой странице (только для списка)."
 
-#: views/admin/gce-feed-meta-display.php:163
+#: views/admin/gce-feed-meta-display.php:181
 msgid "Display Start Date Offset"
 msgstr "Показывать смещение даты начала"
 
-#: views/admin/gce-feed-meta-display.php:166
-#: views/admin/gce-feed-meta-display.php:178 views/widgets.php:330
+#: views/admin/gce-feed-meta-display.php:184
+#: views/admin/gce-feed-meta-display.php:196 views/widgets.php:330
 msgid "Number of Days Back"
 msgstr "Количество дней до"
 
-#: views/admin/gce-feed-meta-display.php:167
-#: views/admin/gce-feed-meta-display.php:193 views/widgets.php:331
+#: views/admin/gce-feed-meta-display.php:185
+#: views/admin/gce-feed-meta-display.php:215 views/widgets.php:331
 msgid "Number of Days Forward"
 msgstr "Количество дней после"
 
-#: views/admin/gce-feed-meta-display.php:170 views/widgets.php:335
+#: views/admin/gce-feed-meta-display.php:188 views/widgets.php:335
 msgid ""
 "Change to initially display events on a date other than today (List View "
 "only)."
@@ -676,98 +722,100 @@ msgstr ""
 "Измените чтобы изнчально показывать события на дни, отличные от текущего "
 "(только для списка)."
 
-#: views/admin/gce-feed-meta-display.php:175
+#: views/admin/gce-feed-meta-display.php:193
 msgid "Earliest Feed Event Date"
 msgstr "Дата самого раннего события"
 
-#: views/admin/gce-feed-meta-display.php:179
+#: views/admin/gce-feed-meta-display.php:197
 #, fuzzy
 msgid "Number of Months Back"
 msgstr "Количество прошедших месяцев"
 
-#: views/admin/gce-feed-meta-display.php:180
+#: views/admin/gce-feed-meta-display.php:198
 #, fuzzy
 msgid "Number of Years Back"
 msgstr "Количество прошедших лет"
 
-#: views/admin/gce-feed-meta-display.php:185
+#: views/admin/gce-feed-meta-display.php:204
 #, fuzzy
 msgid "Set how far back to retrieve events regardless of initial display."
 msgstr "Укажите, насколько давние события загружать."
 
-#: views/admin/gce-feed-meta-display.php:190
+#: views/admin/gce-feed-meta-display.php:206
+msgid ""
+"<strong>Note:</strong> Total events are currently limited to 2,500 by the "
+"Google Calendar API."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:212
 msgid "Latest Feed Event Date"
 msgstr "Дата самого позднего события"
 
-#: views/admin/gce-feed-meta-display.php:194
+#: views/admin/gce-feed-meta-display.php:216
 #, fuzzy
 msgid "Number of Months Forward"
 msgstr "Количество грядущих месяцев"
 
-#: views/admin/gce-feed-meta-display.php:195
+#: views/admin/gce-feed-meta-display.php:217
 #, fuzzy
 msgid "Number of Years Forward"
 msgstr "Количество грядущих лет"
 
-#: views/admin/gce-feed-meta-display.php:200
+#: views/admin/gce-feed-meta-display.php:222
 #, fuzzy
 msgid ""
 "Set how far in the future to retrieve events regardless of initial display."
 msgstr "Укажите, насколько будущие события загружать."
 
-#: views/admin/gce-feed-meta-display.php:205
+#: views/admin/gce-feed-meta-display.php:227
 msgid "Use Custom Date Range"
 msgstr "Использовать определенный промежуток"
 
-#: views/admin/gce-feed-meta-display.php:209
-msgctxt "separator between custom date range fields"
-msgid "to"
-msgstr "по"
+#: views/admin/gce-feed-meta-display.php:233
+msgid ""
+"Set a specific range of events to retrieve. Leaving either field blank will "
+"set the date to the current day."
+msgstr ""
 
-#: views/admin/gce-feed-meta-display.php:211
-msgid "Set a specific range of events to retrieve."
-msgstr "Укажите промежуток для отбора событий."
-
-#: views/admin/gce-feed-meta-display.php:217 views/widgets.php:345
+#: views/admin/gce-feed-meta-display.php:239 views/widgets.php:345
 msgid "Show Paging Links"
 msgstr "Показать ссылки перехода со страницы на страницу"
 
-#: views/admin/gce-feed-meta-display.php:220
+#: views/admin/gce-feed-meta-display.php:242
 msgid "Display Next and Back navigation links."
 msgstr "Показывать навигационные ссылки \"Назад\" и \"Вперед\"."
 
-#: views/admin/gce-feed-meta-display.php:225 views/widgets.php:348
+#: views/admin/gce-feed-meta-display.php:247 views/widgets.php:348
 msgid "Show Tooltips"
 msgstr "Показывать подсказки"
 
-#: views/admin/gce-feed-meta-display.php:228
+#: views/admin/gce-feed-meta-display.php:250
 msgid "Display tooltips when hovering over events (Grid View only)."
 msgstr "Показывать всплывающие подсказки над событиями (только для сетки)."
 
-#: views/admin/gce-feed-meta-display.php:233
+#: views/admin/gce-feed-meta-display.php:255
 msgid "Date Format"
 msgstr "Формат даты"
 
-#: views/admin/gce-feed-meta-display.php:237
-#: views/admin/gce-feed-meta-display.php:248
-#, php-format
+#: views/admin/gce-feed-meta-display.php:259
+#: views/admin/gce-feed-meta-display.php:270
 msgid "Use %sPHP date formatting%s."
 msgstr "Используете правила %sформатирования даты в PHP%s."
 
-#: views/admin/gce-feed-meta-display.php:238
-#: views/admin/gce-feed-meta-display.php:249
+#: views/admin/gce-feed-meta-display.php:260
+#: views/admin/gce-feed-meta-display.php:271
 msgid "Leave blank to use the default."
 msgstr "Оставьте незаполненным чтобы использовать значение по умолчанию."
 
-#: views/admin/gce-feed-meta-display.php:244
+#: views/admin/gce-feed-meta-display.php:266
 msgid "Time Format"
 msgstr "Формат времени"
 
-#: views/admin/gce-feed-meta-display.php:255
+#: views/admin/gce-feed-meta-display.php:277
 msgid "Cache Duration"
 msgstr "Время жизни кеша"
 
-#: views/admin/gce-feed-meta-display.php:258
+#: views/admin/gce-feed-meta-display.php:280
 msgid ""
 "The length of time, in seconds, to cache the feed (43200 = 12 hours). If "
 "this feed changes regularly, you may want to reduce the cache duration."
@@ -776,24 +824,26 @@ msgstr ""
 "изменяется регулярно, возможно вы захотите уменьшить время жизни кеша."
 
 #: views/admin/gce-feed-sidebar-help.php:6
-msgid "Documentation & getting started"
-msgstr "Документация и краткая инструкция"
+#, fuzzy
+msgid "Documentation"
+msgstr "Место"
 
 #: views/admin/gce-feed-sidebar-help.php:11
 msgid "Community support forums"
 msgstr "Форумы поддержки сообщества"
 
 #: views/admin/gce-feed-sidebar-help.php:16
-msgid "Rate this plugin"
-msgstr "Оцените этот плагин"
-
-#: views/admin/gce-feed-sidebar-help.php:21
-msgid "View our roadmap & vote"
-msgstr "Посмотрите наши планы развития и проголосуйте"
-
-#: views/admin/gce-feed-sidebar-help.php:26
 msgid "Get notified of new features"
 msgstr "Получать уведомления о новых функциях"
+
+#: views/admin/gce-feed-sidebar-help.php:21
+msgid "Your review helps more folks find our plugin. Thanks so much!"
+msgstr ""
+
+#: views/admin/gce-feed-sidebar-help.php:25
+#, fuzzy
+msgid "Review this Plugin Now"
+msgstr "Оцените этот плагин"
 
 #: views/widgets.php:28
 msgid ""
@@ -886,3 +936,53 @@ msgid ""
 msgstr ""
 "Показывать название на всплывающей подсказке / элементе списка (например, "
 "'События на 7ое марта'). В группированном списке названия выводятся всегда."
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/google-calendar-events/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Show off your Google calendar in grid (month) or list view, in a post, page "
+"or widget, and in a style that matches your site."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Moonstone Media"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://moonstonemediagroup.com"
+msgstr ""
+
+#: includes/class-gce-event.php:562
+msgctxt "human_time_diff"
+msgid ", "
+msgstr ", "
+
+#: views/admin/gce-feed-meta-display.php:118
+msgctxt "Use the calendar default setting"
+msgid "Calendar default"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:119
+msgctxt "Use this site default setting"
+msgid "Site default"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:231
+msgctxt "separator between custom date range fields"
+msgid "to"
+msgstr "по"
+
+#~ msgid "Helpful Links"
+#~ msgstr "Полезные ссылки"
+
+#~ msgid "Set a specific range of events to retrieve."
+#~ msgstr "Укажите промежуток для отбора событий."
+
+#~ msgid "Documentation & getting started"
+#~ msgstr "Документация и краткая инструкция"
+
+#~ msgid "View our roadmap & vote"
+#~ msgstr "Посмотрите наши планы развития и проголосуйте"

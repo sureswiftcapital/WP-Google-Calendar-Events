@@ -1,10 +1,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events ver 2.2.5\n"
-"POT-Creation-Date: 2015-02-25 15:34-0700\n"
+"Report-Msgid-Bugs-To: https://github.com/pderksen/WP-Google-Calendar-Events/"
+"issues\n"
+"POT-Creation-Date: 2015-08-07 18:22:35+00:00\n"
 "PO-Revision-Date: 2015-05-17 23:25+0100\n"
 "Last-Translator: Tommy Wikström <tommy.wikstrom@gmail.com>\n"
 "Language-Team: \n"
+"Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,71 +15,96 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"Language: sv_SE\n"
 "X-Poedit-SearchPath-0: google-calendar-events\n"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:126
-#: google-calendar-events/class-google-calendar-events-admin.php:127
-#: google-calendar-events/class-google-calendar-events-admin.php:218
-#: google-calendar-events/includes/register-settings.php:54
+#: class-google-calendar-events-admin.php:138
+#: class-google-calendar-events-admin.php:139
+#: class-google-calendar-events-admin.php:235
+#: includes/register-settings.php:68
 msgid "General Settings"
 msgstr "Allmänna inställningar"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:206
-#: google-calendar-events/views/widgets.php:27
+#. Plugin Name of the plugin/theme
 msgid "Google Calendar Events"
 msgstr "Google Calendar Events"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:219
+#: class-google-calendar-events-admin.php:236
 msgid "Feeds"
 msgstr "Överföringar"
 
-#: google-calendar-events/class-google-calendar-events.php:90
+#: class-google-calendar-events-admin.php:254
+#: class-google-calendar-events-admin.php:289
+#, fuzzy
+msgid "Add Calendar"
+msgstr "Google Kalender-ID"
+
+#: class-google-calendar-events-admin.php:290
+msgid "Add a calendar feed to your post."
+msgstr ""
+
+#: class-google-calendar-events-admin.php:300
+#, fuzzy
+msgid "Insert Calendar"
+msgstr "Google Kalender-ID"
+
+#: class-google-calendar-events-admin.php:302
+msgid "Could not find any calendars to add to this post."
+msgstr ""
+
+#: class-google-calendar-events-admin.php:303
+#, fuzzy
+msgid "Please add a new calendar feed first."
+msgstr "Kontrollera att din kalender-ID är korrekt."
+
+#: class-google-calendar-events.php:88
 msgid "Loading..."
 msgstr "Laddar …"
 
-#: google-calendar-events/includes/admin/admin-functions.php:20
+#: google-calendar-events.php:34
+msgid ""
+"Google Events Calendar requires PHP %1$s and WordPress %2$s to function "
+"properly. PHP version found: %3$s. WordPress installed version: %4$s. Please "
+"upgrade to meet the minimum requirements."
+msgstr ""
+
+#: includes/admin/admin-functions.php:20
 msgid "Cache has been cleared for this feed."
 msgstr "Cache har rensats för denna överföring."
 
-#: google-calendar-events/includes/admin/admin-functions.php:35
-#: google-calendar-events/includes/admin/admin-functions.php:55
+#: includes/admin/admin-functions.php:35 includes/admin/admin-functions.php:56
 msgid "Starts:"
 msgstr "Börjar:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:36
-#: google-calendar-events/includes/admin/admin-functions.php:57
+#: includes/admin/admin-functions.php:36 includes/admin/admin-functions.php:58
 msgid "Ends:"
 msgstr "Slutar:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:37
-#: google-calendar-events/includes/admin/admin-functions.php:59
+#: includes/admin/admin-functions.php:37 includes/admin/admin-functions.php:60
 msgid "Location:"
 msgstr "Plats:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:38
-#: google-calendar-events/includes/admin/admin-functions.php:60
+#: includes/admin/admin-functions.php:38 includes/admin/admin-functions.php:61
 msgid "Description:"
 msgstr "Beskrivning:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:39
+#: includes/admin/admin-functions.php:39
 msgid "More details..."
 msgstr "Fler detaljer..."
 
-#: google-calendar-events/includes/admin/admin-functions.php:62
+#: includes/admin/admin-functions.php:63
 msgid "More Details"
 msgstr "Fler Detaljer"
 
-#: google-calendar-events/includes/admin/admin-functions.php:76
-#: google-calendar-events/includes/gce-feed-cpt.php:279
+#: includes/admin/admin-functions.php:77 includes/gce-feed-cpt.php:328
+#: includes/gce-feed-cpt.php:381
 msgid "Clear Cache"
 msgstr "Rensa Cache"
 
-#: google-calendar-events/includes/admin/admin-notice.php:26
+#: includes/admin/admin-notice.php:26
 msgid "GCal API Key Notice"
 msgstr "GCal API-nyckel meddelande"
 
-#: google-calendar-events/includes/admin/admin-notice.php:28
+#: includes/admin/admin-notice.php:28
 msgid ""
 "GCal Events uses the Google Calendar API version 3. By default this plugin "
 "uses a public shared key across all plugin users."
@@ -84,7 +112,7 @@ msgstr ""
 "GCal Events använder Google Kalender API version 3. Som standard använder "
 "denna plugin en offentlig delad nyckel för alla plugin-användare."
 
-#: google-calendar-events/includes/admin/admin-notice.php:30
+#: includes/admin/admin-notice.php:30
 msgid ""
 "This key is limited to 500,000 requests per day and 5 requests per second. "
 "To avoid running into any potential limits you can use your own Google API "
@@ -94,93 +122,86 @@ msgstr ""
 "sekund. För att undvika att överskrida eventuella begränsningar kan du "
 "använda din egen Google API-nyckel."
 
-#: google-calendar-events/includes/admin/admin-notice.php:33
+#: includes/admin/admin-notice.php:33
 msgid "Enter your GCal API key"
 msgstr "Ange din GCal API-nyckel"
 
-#: google-calendar-events/includes/admin/admin-notice.php:34
+#: includes/admin/admin-notice.php:34
 msgid "Configure GCal feeds"
 msgstr "Konfigurera GCal överföringar"
 
-#: google-calendar-events/includes/admin/admin-notice.php:35
+#: includes/admin/admin-notice.php:35
 msgid "Hide this"
 msgstr "﻿Dölj detta"
 
-#: google-calendar-events/includes/class-gce-display.php:179
-#: google-calendar-events/includes/class-gce-display.php:289
+#: includes/class-gce-display.php:193 includes/class-gce-display.php:303
 msgid "Back"
 msgstr "Föregående"
 
-#: google-calendar-events/includes/class-gce-display.php:183
-#: google-calendar-events/includes/class-gce-display.php:290
+#: includes/class-gce-display.php:197 includes/class-gce-display.php:304
+#: includes/class-gce-display.php:310 includes/php-calendar.php:61
+#: includes/php-calendar.php:63
 msgid "Next"
 msgstr "Nästa"
 
-#: google-calendar-events/includes/class-gce-display.php:392
+#: includes/class-gce-display.php:309 includes/php-calendar.php:55
+#: includes/php-calendar.php:57
+msgid "Previous"
+msgstr ""
+
+#: includes/class-gce-display.php:406
 msgid "No events to display."
 msgstr "Inga händelser att visa."
 
-#: google-calendar-events/includes/class-gce-event.php:518
-#, php-format
+#: includes/class-gce-event.php:529
 msgid "%s year"
 msgstr "%s år"
 
-#: google-calendar-events/includes/class-gce-event.php:518
-#, php-format
+#: includes/class-gce-event.php:529
 msgid "%s years"
 msgstr "%s år"
 
-#: google-calendar-events/includes/class-gce-event.php:519
-#, php-format
+#: includes/class-gce-event.php:530
 msgid "%s month"
 msgstr "%s månad"
 
-#: google-calendar-events/includes/class-gce-event.php:519
-#, php-format
+#: includes/class-gce-event.php:530
 msgid "%s months"
 msgstr "%s månader"
 
-#: google-calendar-events/includes/class-gce-event.php:520
-#, php-format
+#: includes/class-gce-event.php:531
 msgid "%s week"
 msgstr "%s vecka"
 
-#: google-calendar-events/includes/class-gce-event.php:520
-#, php-format
+#: includes/class-gce-event.php:531
 msgid "%s weeks"
 msgstr "%s veckor"
 
-#: google-calendar-events/includes/class-gce-event.php:521
-#, php-format
+#: includes/class-gce-event.php:532
 msgid "%s day"
 msgstr "%s dag"
 
-#: google-calendar-events/includes/class-gce-event.php:521
-#, php-format
+#: includes/class-gce-event.php:532
 msgid "%s days"
 msgstr "%s dagar"
 
-#: google-calendar-events/includes/class-gce-event.php:522
-#, php-format
+#: includes/class-gce-event.php:533
 msgid "%s hour"
 msgstr "%s timme"
 
-#: google-calendar-events/includes/class-gce-event.php:522
-#, php-format
+#: includes/class-gce-event.php:533
 msgid "%s hours"
 msgstr "%s timmar"
 
-#: google-calendar-events/includes/class-gce-event.php:523
-#, php-format
+#: includes/class-gce-event.php:534
 msgid "%s min"
 msgstr "%s minut"
 
-#: google-calendar-events/includes/class-gce-event.php:523
-#, php-format
+#: includes/class-gce-event.php:534
 msgid "%s mins"
 msgstr "%s minuter"
 
-#: google-calendar-events/includes/class-gce-feed.php:93
+#: includes/class-gce-feed.php:94
 msgid ""
 "The Google Calendar ID has not been set. Please make sure to set it "
 "correctly in the Feed settings."
@@ -188,7 +209,7 @@ msgstr ""
 "Google Kalender-ID har inte angetts. Se till att ställa in det korrekt i "
 "överförings-inställningarna."
 
-#: google-calendar-events/includes/class-gce-feed.php:197
+#: includes/class-gce-feed.php:192
 msgid ""
 "Some data was retrieved, but could not be parsed successfully. Please ensure "
 "your feed settings are correct."
@@ -196,140 +217,141 @@ msgstr ""
 "Vissa data hämtades, men gick inte att tolka framgångsrikt. Kontrollera att "
 "dina överförings-inställningar är korrekta."
 
-#: google-calendar-events/includes/class-gce-feed.php:200
+#: includes/class-gce-feed.php:195
 msgid "An error has occured."
 msgstr "Ett fel har uppstått."
 
-#: google-calendar-events/includes/class-gce-feed.php:205
+#: includes/class-gce-feed.php:200
 msgid " Please ensure your calendar ID is correct."
 msgstr "Kontrollera att din kalender-ID är korrekt."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:21
+#: includes/gce-feed-cpt.php:21
 msgid "Google Calendar Feeds"
 msgstr "Google Calendar Överföringar"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:22
-#: google-calendar-events/includes/gce-feed-cpt.php:24
-#: google-calendar-events/includes/gce-feed-cpt.php:72
+#: includes/gce-feed-cpt.php:22 includes/gce-feed-cpt.php:24
+#: includes/gce-feed-cpt.php:72
 msgid "Feed"
 msgstr "Överföring"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:23
+#: includes/gce-feed-cpt.php:23
 msgid "GCal Events"
 msgstr "GCal Events"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:25
+#: includes/gce-feed-cpt.php:25
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:26
+#: includes/gce-feed-cpt.php:26
 msgid "Add New Feed"
 msgstr "Lägga till ny överföring"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:27
+#: includes/gce-feed-cpt.php:27
 msgid "New Feed"
 msgstr "Ny överföring"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:28
+#: includes/gce-feed-cpt.php:28
 msgid "Edit Feed"
 msgstr "Redigera överföring"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:29
+#: includes/gce-feed-cpt.php:29
 msgid "View Feed"
 msgstr "Visa Överföring"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:30
+#: includes/gce-feed-cpt.php:30
 msgid "All GCal Feeds"
 msgstr "Alla GCal Överföringar"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:31
+#: includes/gce-feed-cpt.php:31
 msgid "Search GCal Feeds"
 msgstr "Sök GCal Överföringar"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:32
+#: includes/gce-feed-cpt.php:32
 msgid "No feeds found."
 msgstr "Inga överföringar hittades."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:33
+#: includes/gce-feed-cpt.php:33
 msgid "No feeds found in Trash."
 msgstr "Inga överföringar hittades i papperskorgen."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:70
+#: includes/gce-feed-cpt.php:70
 msgid "feed"
 msgstr "överföring"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:75
-#: google-calendar-events/includes/gce-feed-cpt.php:76
-#, php-format
+#: includes/gce-feed-cpt.php:75 includes/gce-feed-cpt.php:76
 msgid "%4$s updated. %1$sView %2$s%3$s"
 msgstr "%4$s uppdaterad. %1$sView %2$s %3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:77
-#, php-format
+#: includes/gce-feed-cpt.php:77
 msgid "%4$s published. %1$sView %2$s%3$s"
 msgstr "%4$s publicerad. %1$sView %2$s %3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:78
-#, php-format
+#: includes/gce-feed-cpt.php:78
 msgid "%4$s saved. %1$sView %2$s%3$s"
 msgstr "%4$s sparad. %1$sView %2$s %3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:79
-#, php-format
+#: includes/gce-feed-cpt.php:79
 msgid "%4$s submitted. %1$sView %2$s%3$s"
 msgstr "%4$s skickad. %1$sView %2$s %3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:80
-#, php-format
+#: includes/gce-feed-cpt.php:80
 msgid "%4$s draft updated. %1$sView %2$s%3$s"
 msgstr "%4$s utkastet uppdaterat. %1$sView %2$s %3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:94
+#: includes/gce-feed-cpt.php:95
 msgid "Feed Settings"
 msgstr "Överföringsinsällningar"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:97
-msgid "Helpful Links"
-msgstr "Användbara länkar"
+#: includes/gce-feed-cpt.php:97
+msgid "Resources"
+msgstr ""
 
-#: google-calendar-events/includes/gce-feed-cpt.php:99
+#: includes/gce-feed-cpt.php:98
 msgid "Display Options"
 msgstr "Visningsalternativ"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:232
+#: includes/gce-feed-cpt.php:269
 msgid "Feed ID"
 msgstr "Överförings ID"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:233
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:87
+#: includes/gce-feed-cpt.php:270 views/admin/gce-feed-meta-display.php:79
 msgid "Feed Shortcode"
 msgstr "Överföringens Shortcode"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:234
+#: includes/gce-feed-cpt.php:271
 msgid "Display Type"
 msgstr "Displaytyp"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:261
+#: includes/gce-feed-cpt.php:306
 msgid "Grid"
 msgstr "Tabell"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:263
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:137
-#: google-calendar-events/views/widgets.php:287
+#: includes/gce-feed-cpt.php:308 views/admin/gce-feed-meta-display.php:155
+#: views/widgets.php:295
 msgid "List"
 msgstr "Lista"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:265
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:138
-#: google-calendar-events/views/widgets.php:288
+#: includes/gce-feed-cpt.php:310 views/admin/gce-feed-meta-display.php:156
+#: views/widgets.php:296
 msgid "Grouped List"
 msgstr "Grupperad Lista"
 
-#: google-calendar-events/includes/register-settings.php:29
+#: includes/gce-feed-cpt.php:312
+#, fuzzy
+msgid "Custom Date Range"
+msgstr "Använd Anpassat Datumintervall"
+
+#: includes/gce-feed-cpt.php:469
+msgid "Feed cache cleared."
+msgid_plural "Cleared cache for %s feeds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/register-settings.php:29
 msgid "Google API Key"
 msgstr "Google API Nyckel"
 
-#: google-calendar-events/includes/register-settings.php:30
+#: includes/register-settings.php:30
 msgid ""
 "If left blank all displayed Google calendars will use a public Google API "
 "key shared across all plugin users."
@@ -337,7 +359,7 @@ msgstr ""
 "Om detta lämnas tomt, kommer alla visade Google-kalendrar att använda en "
 "offentlig Google API nyckel som delas av alla plugin-användare."
 
-#: google-calendar-events/includes/register-settings.php:31
+#: includes/register-settings.php:31
 msgid ""
 "Currently the shared key is limited to 500,000 requests per day and 5 "
 "requests per second."
@@ -345,8 +367,7 @@ msgstr ""
 "För närvarande är den delade nyckeln begränsad till 500.000 anrop per dag "
 "och 5 anrop per sekund."
 
-#: google-calendar-events/includes/register-settings.php:32
-#, php-format
+#: includes/register-settings.php:32
 msgid ""
 "To avoid these limits <a href=\"%s\" target=\"_blank\">click here for "
 "instructions on how to generate and use your own Google API key.</a>"
@@ -355,26 +376,52 @@ msgstr ""
 "här för instruktioner om hur du skapar och använda din egen Google API-"
 "nyckel.</a>"
 
-#: google-calendar-events/includes/register-settings.php:39
+#: includes/register-settings.php:39
+msgid "Always Enqueue Scripts & Styles"
+msgstr ""
+
+#: includes/register-settings.php:40
+msgid "Enqueue this plugin's scripts and styles on every post and page."
+msgstr ""
+
+#: includes/register-settings.php:41
+msgid "Useful if using shortcodes in widgets or other non-standard locations."
+msgstr ""
+
+#: includes/register-settings.php:46
+msgid "Disable Plugin CSS"
+msgstr ""
+
+#: includes/register-settings.php:47
+msgid ""
+"If this option is checked, this plugin's CSS file will not be referenced."
+msgstr ""
+
+#: includes/register-settings.php:52
 msgid "Save Settings"
 msgstr "Spara Inställningar"
 
-#: google-calendar-events/includes/register-settings.php:40
-msgid ""
-"Save your settings when uninstalling this plugin. Useful when upgrading or "
-"re-installing."
+#: includes/register-settings.php:53
+#, fuzzy
+msgid "Save your settings when uninstalling this plugin."
 msgstr ""
 "Spara dina inställningar när du avinstallerar denna plugin. Användbart vid "
 "uppgradering eller ominstallation."
 
-#: google-calendar-events/includes/register-settings.php:169
-#, php-format
+#: includes/register-settings.php:54
+#, fuzzy
+msgid "Useful when upgrading or re-installing."
+msgstr ""
+"Spara dina inställningar när du avinstallerar denna plugin. Användbart vid "
+"uppgradering eller ominstallation."
+
+#: includes/register-settings.php:182
 msgid ""
 "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
 "Callback-funktionen som används för <strong>%s</strong> inställningen saknas."
 
-#: google-calendar-events/includes/shortcodes.php:95
+#: includes/shortcodes.php:95
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "shortcode settings and make sure they are correct."
@@ -382,7 +429,7 @@ msgstr ""
 "Det fanns ett problem med ett eller flera av dina överförings-ID. "
 "Kontrollera dina shortcode-inställningar och se till att de är korrekta."
 
-#: google-calendar-events/views/admin/display-options-meta.php:39
+#: views/admin/display-options-meta.php:39
 msgid ""
 "Check this box to use the simple display options below instead of the Event "
 "Builder code on the left."
@@ -390,72 +437,72 @@ msgstr ""
 "Markera rutan för att använda enkla visningsalternativ nedan i stället för  "
 "Event Builder - koden till vänster."
 
-#: google-calendar-events/views/admin/display-options-meta.php:44
+#: views/admin/display-options-meta.php:44
 msgid "Start date / time display"
 msgstr "Startdatum / tid visning"
 
-#: google-calendar-events/views/admin/display-options-meta.php:45
+#: views/admin/display-options-meta.php:45
 msgid "Select how to display the start date / time."
 msgstr "Välj hur du vill visa startdatum / tid."
 
-#: google-calendar-events/views/admin/display-options-meta.php:47
-#: google-calendar-events/views/admin/display-options-meta.php:61
+#: views/admin/display-options-meta.php:47
+#: views/admin/display-options-meta.php:61
 msgid "None"
 msgstr "Inget"
 
-#: google-calendar-events/views/admin/display-options-meta.php:48
+#: views/admin/display-options-meta.php:48
 msgid "Start time"
 msgstr "Starttid"
 
-#: google-calendar-events/views/admin/display-options-meta.php:49
+#: views/admin/display-options-meta.php:49
 msgid "Start date"
 msgstr "Startdatum"
 
-#: google-calendar-events/views/admin/display-options-meta.php:50
+#: views/admin/display-options-meta.php:50
 msgid "Start time and date"
 msgstr "Starttid och -datum"
 
-#: google-calendar-events/views/admin/display-options-meta.php:51
+#: views/admin/display-options-meta.php:51
 msgid "Start date and time"
 msgstr "Startdatum och -tid"
 
-#: google-calendar-events/views/admin/display-options-meta.php:53
+#: views/admin/display-options-meta.php:53
 msgid "Text to display before the start time."
 msgstr "Text som ska visas framför starttiden."
 
-#: google-calendar-events/views/admin/display-options-meta.php:58
+#: views/admin/display-options-meta.php:58
 msgid "End time/date display"
 msgstr "Sluttid / -datum visning"
 
-#: google-calendar-events/views/admin/display-options-meta.php:59
+#: views/admin/display-options-meta.php:59
 msgid "Select how to display the end date / time."
 msgstr "Välj hur du vill visa slutdatum / -tid."
 
-#: google-calendar-events/views/admin/display-options-meta.php:62
+#: views/admin/display-options-meta.php:62
 msgid "End time"
 msgstr "Sluttid"
 
-#: google-calendar-events/views/admin/display-options-meta.php:63
+#: views/admin/display-options-meta.php:63
 msgid "End date"
 msgstr "Slutdatum"
 
-#: google-calendar-events/views/admin/display-options-meta.php:64
+#: views/admin/display-options-meta.php:64
 msgid "End time and date"
 msgstr "Sluttid och -datum"
 
-#: google-calendar-events/views/admin/display-options-meta.php:65
+#: views/admin/display-options-meta.php:65
 msgid "End date and time"
 msgstr "Slutdatum och -tid"
 
-#: google-calendar-events/views/admin/display-options-meta.php:67
+#: views/admin/display-options-meta.php:67
 msgid "Text to display before the end time."
 msgstr "Text att visa framför sluttiden."
 
-#: google-calendar-events/views/admin/display-options-meta.php:72
+#: views/admin/display-options-meta.php:72
 msgid "Separator"
 msgstr "Avskiljare"
 
-#: google-calendar-events/views/admin/display-options-meta.php:74
+#: views/admin/display-options-meta.php:74
 msgid ""
 "If you have chosen to display both the time and date above, enter the text / "
 "characters to display between the time and date here (including any spaces)."
@@ -463,23 +510,23 @@ msgstr ""
 "Om du har valt att visa både tiden och datumet ovan, ange text / tecken att "
 "visa mellan tid och datum här (inklusive eventuella mellanslag)."
 
-#: google-calendar-events/views/admin/display-options-meta.php:80
+#: views/admin/display-options-meta.php:80
 msgid "Location"
 msgstr "Plats"
 
-#: google-calendar-events/views/admin/display-options-meta.php:82
+#: views/admin/display-options-meta.php:82
 msgid "Show the location of events?"
 msgstr "Visa platsen för händelserna?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:83
+#: views/admin/display-options-meta.php:83
 msgid "Text to display before the location."
 msgstr "Text att visa framför platsen."
 
-#: google-calendar-events/views/admin/display-options-meta.php:88
+#: views/admin/display-options-meta.php:88
 msgid "Description"
 msgstr "Beskrivning"
 
-#: google-calendar-events/views/admin/display-options-meta.php:91
+#: views/admin/display-options-meta.php:91
 msgid ""
 "Show the description of events? (URLs in the description will be made into "
 "links)."
@@ -487,41 +534,41 @@ msgstr ""
 "Visa beskrivningen av händelserna? (URL: er i beskrivningen kommer att göras "
 "till länkar)."
 
-#: google-calendar-events/views/admin/display-options-meta.php:93
+#: views/admin/display-options-meta.php:93
 msgid "Text to display before the description."
 msgstr "Text att visa framför beskrivningen."
 
-#: google-calendar-events/views/admin/display-options-meta.php:95
+#: views/admin/display-options-meta.php:95
 msgid ""
 "Maximum number of words to show from description. Leave blank for no limit."
 msgstr ""
 "Maximalt antal ord för att visa av beskrivningen. Lämna tomt för gränslöst."
 
-#: google-calendar-events/views/admin/display-options-meta.php:100
+#: views/admin/display-options-meta.php:100
 msgid "Event Link"
 msgstr "Händelselänk"
 
-#: google-calendar-events/views/admin/display-options-meta.php:103
+#: views/admin/display-options-meta.php:103
 msgid "Show a link to the Google Calendar page for an event?"
 msgstr "Visa en länk till sidan Google Kalender för en händelse?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:107
+#: views/admin/display-options-meta.php:107
 msgid "Links open in a new window / tab?"
 msgstr "Länkar öppnas i ett nytt fönster / flik?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:109
+#: views/admin/display-options-meta.php:109
 msgid "The link text to be displayed."
 msgstr "Länktexten som ska visas."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:77
+#: views/admin/gce-feed-meta-display.php:69
 msgid "Want to be in the know?"
 msgstr "Vill du känna till?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:80
+#: views/admin/gce-feed-meta-display.php:72
 msgid "Get notified when new features are released"
 msgstr "Få ett meddelande när nya funktioner släpps"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:91
+#: views/admin/gce-feed-meta-display.php:90
 msgid ""
 "Copy and paste this shortcode to display this Google Calendar feed on any "
 "post or page."
@@ -529,7 +576,7 @@ msgstr ""
 "Kopiera och klistra in denna shortcode för att visa denna Google Kalender-"
 "överföring på valfritt inlägg eller sida."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:92
+#: views/admin/gce-feed-meta-display.php:91
 msgid ""
 "To avoid display issues, make sure to paste the shortcode in the Text tab of "
 "the post editor."
@@ -537,39 +584,47 @@ msgstr ""
 "För att undvika problem med visningen, se till att klistra in shortcoden på "
 "Textfliken i inläggsredigeraren."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:97
+#: views/admin/gce-feed-meta-display.php:96
 msgid "Google Calendar ID"
 msgstr "Google Kalender-ID"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:101
+#: views/admin/gce-feed-meta-display.php:100
 msgid "The Google Calendar ID."
 msgstr "Google Kalender ID:t."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:101
+#: views/admin/gce-feed-meta-display.php:100
 msgid "Example"
 msgstr "Exempel"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:103
+#: views/admin/gce-feed-meta-display.php:102
 msgid "How to find your Google Calendar ID"
 msgstr "Hur du hittar din Google Kalender-ID"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:109
+#: views/admin/gce-feed-meta-display.php:115
+msgid "Timezone"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:122
+msgid "It is recommended to use the calendar default timezone."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:127
 msgid "Search Query"
 msgstr "Sökfråga"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:112
+#: views/admin/gce-feed-meta-display.php:130
 msgid "Find and show events based on a search query."
 msgstr "Hitta och visa händelser baserat på en sökfråga."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:117
+#: views/admin/gce-feed-meta-display.php:135
 msgid "Expand Recurring Events?"
 msgstr "Expandera Återkommande Händelser?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:119
+#: views/admin/gce-feed-meta-display.php:137
 msgid "Yes"
 msgstr "Ja"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:120
+#: views/admin/gce-feed-meta-display.php:138
 msgid ""
 "Display recurring events each time they occur. If disabled, events will be "
 "displayed only the first time they occur."
@@ -577,15 +632,15 @@ msgstr ""
 "Visa återkommande händelser varje gång de förekommer. Om avstängd, visas "
 "händelser endast första gången de förekommer."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:125
+#: views/admin/gce-feed-meta-display.php:143
 msgid "Multiple Day Events"
 msgstr "Flerdagars Händelser"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:127
+#: views/admin/gce-feed-meta-display.php:145
 msgid "Show on each day"
 msgstr "Visa för varje dag"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:128
+#: views/admin/gce-feed-meta-display.php:146
 msgid ""
 "Display multiple day events on each day that they span. If disabled, "
 "multiple day events will be displayed only on the first day they occur."
@@ -593,70 +648,66 @@ msgstr ""
 "Visa flerdagars händelser varje dag som de omfattar. Om avstängd, visas "
 "flera dagars händelser endast på den första dagen som de inträffar."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:133
+#: views/admin/gce-feed-meta-display.php:151
 msgid "Display Mode"
 msgstr "Visningsläge"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:136
-#: google-calendar-events/views/widgets.php:286
+#: views/admin/gce-feed-meta-display.php:154 views/widgets.php:294
 msgid "Grid (Month view)"
 msgstr "Tabell (Månadsvy)"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:139
-#: google-calendar-events/views/widgets.php:289
+#: views/admin/gce-feed-meta-display.php:157 views/widgets.php:297
 msgid "Custom Date Range (List)"
 msgstr "Anpassat Datumintervall (Lista)"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:141
+#: views/admin/gce-feed-meta-display.php:158 views/widgets.php:298
+#, fuzzy
+msgid "Custom Date Range (Grid)"
+msgstr "Anpassat Datumintervall (Lista)"
+
+#: views/admin/gce-feed-meta-display.php:160
 msgid "Select how to display this feed."
 msgstr "Välj hur du vill visa denna överföring."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:146
+#: views/admin/gce-feed-meta-display.php:165
 msgid "Events per Page"
 msgstr "Händelser per Sida"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:149
-#: google-calendar-events/views/widgets.php:304
+#: views/admin/gce-feed-meta-display.php:168 views/widgets.php:313
 msgid "Number of Days"
 msgstr "Antal Dagar"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:150
-#: google-calendar-events/views/widgets.php:305
+#: views/admin/gce-feed-meta-display.php:169 views/widgets.php:314
 msgid "Number of Events"
 msgstr "Antal Händelser"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:151
-#: google-calendar-events/views/widgets.php:306
+#: views/admin/gce-feed-meta-display.php:170 views/widgets.php:315
 msgid "One Week"
 msgstr "En Vecka"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:152
-#: google-calendar-events/views/widgets.php:307
+#: views/admin/gce-feed-meta-display.php:171 views/widgets.php:316
 msgid "One Month"
 msgstr "En Månad"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:157
+#: views/admin/gce-feed-meta-display.php:176
 msgid "How many events to display per page (List View only)."
 msgstr "Hur många händelser som ska visas per sida (endast Listvy)."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:162
+#: views/admin/gce-feed-meta-display.php:181
 msgid "Display Start Date Offset"
 msgstr "Visa Start Datum Offset"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:165
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:177
-#: google-calendar-events/views/widgets.php:321
+#: views/admin/gce-feed-meta-display.php:184
+#: views/admin/gce-feed-meta-display.php:196 views/widgets.php:330
 msgid "Number of Days Back"
 msgstr "Antal Dagar bakåt"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:166
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:192
-#: google-calendar-events/views/widgets.php:322
+#: views/admin/gce-feed-meta-display.php:185
+#: views/admin/gce-feed-meta-display.php:215 views/widgets.php:331
 msgid "Number of Days Forward"
 msgstr "Antal Dagar Framåt"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:169
-#: google-calendar-events/views/widgets.php:326
+#: views/admin/gce-feed-meta-display.php:188 views/widgets.php:335
 msgid ""
 "Change to initially display events on a date other than today (List View "
 "only)."
@@ -664,89 +715,94 @@ msgstr ""
 "Ändra till att från början visa händelser på ett annat datum än idag (endast "
 "Listvy)."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:174
+#: views/admin/gce-feed-meta-display.php:193
 msgid "Earliest Feed Event Date"
 msgstr "Tidigaste Händelseöverföringsdatum"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:178
+#: views/admin/gce-feed-meta-display.php:197
 msgid "Number of Months Back"
 msgstr "Antal Månader Bakåt"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:179
+#: views/admin/gce-feed-meta-display.php:198
 msgid "Number of Years Back"
 msgstr "Antal År Bakåt"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:184
+#: views/admin/gce-feed-meta-display.php:204
 msgid "Set how far back to retrieve events regardless of initial display."
 msgstr "Ange hur långt tillbaka händelser ska hämtas oavsett första visning."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:189
+#: views/admin/gce-feed-meta-display.php:206
+msgid ""
+"<strong>Note:</strong> Total events are currently limited to 2,500 by the "
+"Google Calendar API."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:212
 msgid "Latest Feed Event Date"
 msgstr "Senaste Händelseöverföringsdatum"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:193
+#: views/admin/gce-feed-meta-display.php:216
 msgid "Number of Months Forward"
 msgstr "Antal Månader Framåt"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:194
+#: views/admin/gce-feed-meta-display.php:217
 msgid "Number of Years Forward"
 msgstr "Antal År Framåt"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:199
+#: views/admin/gce-feed-meta-display.php:222
 msgid ""
 "Set how far in the future to retrieve events regardless of initial display."
 msgstr "Ange hur långt i framtiden händelser sk hämtas oavsett första visning."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:204
+#: views/admin/gce-feed-meta-display.php:227
 msgid "Use Custom Date Range"
 msgstr "Använd Anpassat Datumintervall"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:210
-msgid "Set a specific range of events to retrieve."
-msgstr "Ange ett specifikt händelseinervall som ska hämtas."
+#: views/admin/gce-feed-meta-display.php:233
+msgid ""
+"Set a specific range of events to retrieve. Leaving either field blank will "
+"set the date to the current day."
+msgstr ""
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:216
-#: google-calendar-events/views/widgets.php:336
+#: views/admin/gce-feed-meta-display.php:239 views/widgets.php:345
 msgid "Show Paging Links"
 msgstr "Visa Paging-länkar"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:219
+#: views/admin/gce-feed-meta-display.php:242
 msgid "Display Next and Back navigation links."
 msgstr "Visa Navigeringslänkarna Nästa och Föregående."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:224
-#: google-calendar-events/views/widgets.php:339
+#: views/admin/gce-feed-meta-display.php:247 views/widgets.php:348
 msgid "Show Tooltips"
 msgstr "Visa Inforutor"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:227
+#: views/admin/gce-feed-meta-display.php:250
 msgid "Display tooltips when hovering over events (Grid View only)."
 msgstr "Visa inforutor när man hovrar över händelser (endast Tabellvy)."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:232
+#: views/admin/gce-feed-meta-display.php:255
 msgid "Date Format"
 msgstr "Datumformat"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:236
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:247
-#, php-format
+#: views/admin/gce-feed-meta-display.php:259
+#: views/admin/gce-feed-meta-display.php:270
 msgid "Use %sPHP date formatting%s."
 msgstr "Använd % sPHP datumformatering %s."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:237
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:248
+#: views/admin/gce-feed-meta-display.php:260
+#: views/admin/gce-feed-meta-display.php:271
 msgid "Leave blank to use the default."
 msgstr "Lämna tomt för att använda förinställt."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:243
+#: views/admin/gce-feed-meta-display.php:266
 msgid "Time Format"
 msgstr "Tidsformat"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:254
+#: views/admin/gce-feed-meta-display.php:277
 msgid "Cache Duration"
 msgstr "Varaktighet för Cache"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:257
+#: views/admin/gce-feed-meta-display.php:280
 msgid ""
 "The length of time, in seconds, to cache the feed (43200 = 12 hours). If "
 "this feed changes regularly, you may want to reduce the cache duration."
@@ -755,27 +811,29 @@ msgstr ""
 "denna överföring ändras regelbundet, kanske du vill minska tidsgränsen för "
 "cache."
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:6
-msgid "Documentation & getting started"
-msgstr "Dokumentation & komma igång"
+#: views/admin/gce-feed-sidebar-help.php:6
+#, fuzzy
+msgid "Documentation"
+msgstr "Plats"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:11
+#: views/admin/gce-feed-sidebar-help.php:11
 msgid "Community support forums"
 msgstr "Användarnas supportforum"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:16
-msgid "Rate this plugin"
-msgstr "Betygsätt denna plugin"
-
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:21
-msgid "View our roadmap & vote"
-msgstr "Läs vår färdplan & rösta"
-
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:26
+#: views/admin/gce-feed-sidebar-help.php:16
 msgid "Get notified of new features"
 msgstr "Få meddelande om nya funktioner"
 
-#: google-calendar-events/views/widgets.php:28
+#: views/admin/gce-feed-sidebar-help.php:21
+msgid "Your review helps more folks find our plugin. Thanks so much!"
+msgstr ""
+
+#: views/admin/gce-feed-sidebar-help.php:25
+#, fuzzy
+msgid "Review this Plugin Now"
+msgstr "Betygsätt denna plugin"
+
+#: views/widgets.php:28
 msgid ""
 "Display a list or calendar grid of events from one or more Google Calendar "
 "feeds you have added"
@@ -783,7 +841,7 @@ msgstr ""
 "Visa en lista eller kalender tabell med händelser från en eller flera Google "
 "Kalender överföringar som du har lagt till"
 
-#: google-calendar-events/views/widgets.php:159
+#: views/widgets.php:167
 msgid ""
 "No valid Feed IDs have been entered for this widget. Please check that you "
 "have entered the IDs correctly in the widget settings (Appearance > "
@@ -793,7 +851,7 @@ msgstr ""
 "att du har angett ID:na korrekt i widgetinställningarna (Utseende > "
 "Widgets), och att Överföringarna inte har raderats."
 
-#: google-calendar-events/views/widgets.php:199
+#: views/widgets.php:207
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "widget settings and make sure they are correct."
@@ -801,51 +859,51 @@ msgstr ""
 "Det fanns ett problem med ett eller flera av dina överförings-ID. "
 "Kontrollera dina widget-inställningar och se till att de är korrekta."
 
-#: google-calendar-events/views/widgets.php:205
+#: views/widgets.php:213
 msgid "You have not added any feeds yet."
 msgstr "Du har inte lagt några överföringar ännu."
 
-#: google-calendar-events/views/widgets.php:248
+#: views/widgets.php:256
 msgid "There are no feeds created yet."
 msgstr "Det har inte skapats några överföringar ännu."
 
-#: google-calendar-events/views/widgets.php:249
+#: views/widgets.php:257
 msgid "Add your first feed!"
 msgstr "Lägg till din första överföring!"
 
-#: google-calendar-events/views/widgets.php:259
+#: views/widgets.php:267
 msgid "Events on"
 msgstr "Händelser den"
 
-#: google-calendar-events/views/widgets.php:273
+#: views/widgets.php:281
 msgid "Title:"
 msgstr "Rubrik:"
 
-#: google-calendar-events/views/widgets.php:278
+#: views/widgets.php:286
 msgid "Feeds to Display (comma separated list - i.e. 101,102,103):"
 msgstr "Överföringar att Visa (kommaseparerad lista - dvs 101,102,103):"
 
-#: google-calendar-events/views/widgets.php:284
+#: views/widgets.php:292
 msgid "Display Events as:"
 msgstr "Visa Händelser som:"
 
-#: google-calendar-events/views/widgets.php:294
+#: views/widgets.php:303
 msgid "Sort Order (List View only):"
 msgstr "Sorteringsordning (endast Listvy):"
 
-#: google-calendar-events/views/widgets.php:296
+#: views/widgets.php:305
 msgid "Ascending"
 msgstr "Stigande"
 
-#: google-calendar-events/views/widgets.php:297
+#: views/widgets.php:306
 msgid "Descending"
 msgstr "Fallande"
 
-#: google-calendar-events/views/widgets.php:302
+#: views/widgets.php:311
 msgid "Events per Page (List View only):"
 msgstr "Händelser per Sida (endast Listvy):"
 
-#: google-calendar-events/views/widgets.php:315
+#: views/widgets.php:324
 msgid ""
 "This setting will pull from the custom date range set in the main feed "
 "settings and cannot be changed here."
@@ -853,14 +911,64 @@ msgstr ""
 "Denna inställning kommer att hämta från det anpassade datumintervall som "
 "angetts i de generella överföringsinställningarna och kan inte ändras här."
 
-#: google-calendar-events/views/widgets.php:319
+#: views/widgets.php:328
 msgid "Display Start Date Offset (List View only):"
 msgstr "Visa Startdatum Offset (endast Listvy):"
 
-#: google-calendar-events/views/widgets.php:330
+#: views/widgets.php:339
 msgid ""
 "Display Title on Tooltip/List Item (e.g. 'Events on 7th March'). Grouped "
 "lists always have a title displayed."
 msgstr ""
 "Visa Rubrik i Inforuta/Listobjekt (t.ex. \"Händelser den 7:e Mars\"). "
 "Grupperade listor visas alltid med en rubrik."
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/google-calendar-events/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Show off your Google calendar in grid (month) or list view, in a post, page "
+"or widget, and in a style that matches your site."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Moonstone Media"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://moonstonemediagroup.com"
+msgstr ""
+
+#: includes/class-gce-event.php:562
+msgctxt "human_time_diff"
+msgid ", "
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:118
+msgctxt "Use the calendar default setting"
+msgid "Calendar default"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:119
+msgctxt "Use this site default setting"
+msgid "Site default"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:231
+msgctxt "separator between custom date range fields"
+msgid "to"
+msgstr ""
+
+#~ msgid "Helpful Links"
+#~ msgstr "Användbara länkar"
+
+#~ msgid "Set a specific range of events to retrieve."
+#~ msgstr "Ange ett specifikt händelseinervall som ska hämtas."
+
+#~ msgid "Documentation & getting started"
+#~ msgstr "Dokumentation & komma igång"
+
+#~ msgid "View our roadmap & vote"
+#~ msgstr "Läs vår färdplan & rösta"
