@@ -6,7 +6,7 @@ module.exports = function( grunt ) {
 			'google-calendar-events/**'
 		];
 
-	console.log( pkg.title + ' - ' + version );
+	console.log( pkg.title + ' - ' + pkg.version );
 
 	grunt.initConfig( {
 
