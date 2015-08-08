@@ -12,18 +12,11 @@
 (function($) {
 	'use strict';
 
-	// Set debug flag.
-	var script_debug = ( (typeof gce != 'undefined') && gce.script_debug == true);
-
 	$(function() {
 
 		var $body = $( 'body' );
 		
 		if( typeof gce_grid != 'undefined' ) {
-
-			if (script_debug) {
-				console.log('gce_grid', gce_grid);
-			}
 			
 			var tooltip_elements = '';
 

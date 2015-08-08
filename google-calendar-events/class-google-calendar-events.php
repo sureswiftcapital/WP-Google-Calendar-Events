@@ -83,7 +83,6 @@ class Google_Calendar_Events {
 
 			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce',
 					array(
-						'script_debug' => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ),
 						'ajaxurl'      => admin_url( 'admin-ajax.php' ),
 						'loadingText'  => __( 'Loading...', 'gce' ),
 					) );
