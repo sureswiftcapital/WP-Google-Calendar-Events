@@ -18,11 +18,11 @@
 	</ul>
 
 	<p>
-		<?php _e( 'Your review helps more folks find our plugin. Thanks so much!', 'gce' ); ?>
+		<?php _e( 'Are you finding our GCal plugin helpful? 5-star ratings keep us motivated!', 'gce' ); ?> :)
 	</p>
 	<div class="centered">
 		<a href="https://wordpress.org/support/view/plugin-reviews/google-calendar-events#postform" class="button-primary" target="_blank">
-			<?php _e( 'Review this Plugin Now', 'gce' ); ?></a>
+			<?php _e( 'Rate our plugin on wordpress.org', 'gce' ); ?></a>
 	</div>
 
 </div>
