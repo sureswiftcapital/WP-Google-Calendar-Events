@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
 "Report-Msgid-Bugs-To: https://github.com/pderksen/WP-Google-Calendar-Events/"
 "issues\n"
-"POT-Creation-Date: 2015-08-07 18:22:35+00:00\n"
-"PO-Revision-Date: 2014-10-23 22:50+0100\n"
+"POT-Creation-Date: 2015-08-14 14:43:32+00:00\n"
+"PO-Revision-Date: 2015-08-09 13:26+0100\n"
 "Last-Translator: Tore Hjartland <tore.hjartland@biologge.no>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.7\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -35,25 +35,25 @@ msgstr "Feeds"
 #: class-google-calendar-events-admin.php:254
 #: class-google-calendar-events-admin.php:289
 msgid "Add Calendar"
-msgstr ""
+msgstr "Legg til kalender"
 
 #: class-google-calendar-events-admin.php:290
 msgid "Add a calendar feed to your post."
-msgstr ""
+msgstr "Legg til en kalender-feed til innlegget ditt."
 
 #: class-google-calendar-events-admin.php:300
 msgid "Insert Calendar"
-msgstr ""
+msgstr "Legg inn kalender"
 
 #: class-google-calendar-events-admin.php:302
 msgid "Could not find any calendars to add to this post."
-msgstr ""
+msgstr "Kunne ikke finne noen kaleder å legge til dette innlegget."
 
 #: class-google-calendar-events-admin.php:303
 msgid "Please add a new calendar feed first."
-msgstr ""
+msgstr "Vennligst legg til en ny kalender-feed først."
 
-#: class-google-calendar-events.php:88
+#: class-google-calendar-events.php:87
 msgid "Loading..."
 msgstr "Laster..."
 
@@ -63,6 +63,9 @@ msgid ""
 "properly. PHP version found: %3$s. WordPress installed version: %4$s. Please "
 "upgrade to meet the minimum requirements."
 msgstr ""
+"Google Events Calendarkrever PHP %1$s og WordPress %2$s for å fungere "
+"skikkelig. PHP-versjon funnet: %3$s. WordPress installert versjon: %4$s. "
+"Vennligst oppgrader for å møte minimumskravene."
 
 #: includes/admin/admin-functions.php:20
 msgid "Cache has been cleared for this feed."
@@ -99,13 +102,15 @@ msgstr "Tøm buffer"
 
 #: includes/admin/admin-notice.php:26
 msgid "GCal API Key Notice"
-msgstr ""
+msgstr "Melding om GCal API-nøkkel"
 
 #: includes/admin/admin-notice.php:28
 msgid ""
 "GCal Events uses the Google Calendar API version 3. By default this plugin "
 "uses a public shared key across all plugin users."
 msgstr ""
+"GCal Events benytter Google Calendar API versjon 3. Som standard benytter "
+"denne utvidelsen en offentlig delt nøkkel for alle brukere av utvidelsen."
 
 #: includes/admin/admin-notice.php:30
 msgid ""
@@ -113,19 +118,21 @@ msgid ""
 "To avoid running into any potential limits you can use your own Google API "
 "key."
 msgstr ""
+"Nøkkelen er begrenset til 500 000 forespørsler per dag og 5 forespørsler per "
+"sekund. For å unngå å møte potensielle begrensninger kan du benytte din egen "
+"Google API-nøkkel."
 
 #: includes/admin/admin-notice.php:33
 msgid "Enter your GCal API key"
-msgstr ""
+msgstr "Skriv inn GCAL API-nøkkelen din"
 
 #: includes/admin/admin-notice.php:34
-#, fuzzy
 msgid "Configure GCal feeds"
-msgstr "Hvordan å finne URL til GCal-feed'en din"
+msgstr "Konfigurer GCal feeds"
 
 #: includes/admin/admin-notice.php:35
 msgid "Hide this"
-msgstr ""
+msgstr "Skjul dette"
 
 #: includes/class-gce-display.php:193 includes/class-gce-display.php:303
 msgid "Back"
@@ -140,7 +147,7 @@ msgstr "Neste"
 #: includes/class-gce-display.php:309 includes/php-calendar.php:55
 #: includes/php-calendar.php:57
 msgid "Previous"
-msgstr ""
+msgstr "Forrige"
 
 #: includes/class-gce-display.php:406
 msgid "No events to display."
@@ -195,31 +202,28 @@ msgid "%s mins"
 msgstr "%s minutter"
 
 #: includes/class-gce-feed.php:94
-#, fuzzy
 msgid ""
 "The Google Calendar ID has not been set. Please make sure to set it "
 "correctly in the Feed settings."
 msgstr ""
-"FeedURLen har ikke blitt satt. Vennligst påse å sette den korrekt i "
-"feedinnstillingene."
+"Google Calendar IDen har ikke blitt satt. Vennligst påse å sette den korrekt "
+"i feedinnstillingene."
 
 #: includes/class-gce-feed.php:192
-#, fuzzy
 msgid ""
 "Some data was retrieved, but could not be parsed successfully. Please ensure "
 "your feed settings are correct."
 msgstr ""
-"Noen data ble hentet, men kunne ikke analyseres med hell. Vennligst sikre  "
-"at feed- URLen er riktig."
+"Noen data ble hentet, men kunne ikke analyseres vellykket. Vennligst sikre  "
+"at feedinnstillingene er korrekte."
 
 #: includes/class-gce-feed.php:195
 msgid "An error has occured."
-msgstr ""
+msgstr "En feil har oppstått."
 
 #: includes/class-gce-feed.php:200
-#, fuzzy
 msgid " Please ensure your calendar ID is correct."
-msgstr "Vennligst sikre at feed-URL'en din er korrekt"
+msgstr "Vennligst sikre at kalender-ID'en din er korrekt."
 
 #: includes/gce-feed-cpt.php:21
 msgid "Google Calendar Feeds"
@@ -295,18 +299,16 @@ msgid "%4$s draft updated. %1$sView %2$s%3$s"
 msgstr "%4$s utkast oppdatert. %1$sVis %2$s%3$s"
 
 #: includes/gce-feed-cpt.php:95
-#, fuzzy
 msgid "Feed Settings"
-msgstr "Lagre innstillinger"
+msgstr "Feed-innstillinger"
 
 #: includes/gce-feed-cpt.php:97
 msgid "Resources"
-msgstr ""
+msgstr "Ressurser"
 
 #: includes/gce-feed-cpt.php:98
-#, fuzzy
 msgid "Display Options"
-msgstr "Visningstype"
+msgstr "Visningsvalg"
 
 #: includes/gce-feed-cpt.php:269
 msgid "Feed ID"
@@ -322,7 +324,7 @@ msgstr "Visningstype"
 
 #: includes/gce-feed-cpt.php:306
 msgid "Grid"
-msgstr "Grid"
+msgstr "Matrise"
 
 #: includes/gce-feed-cpt.php:308 views/admin/gce-feed-meta-display.php:155
 #: views/widgets.php:295
@@ -336,74 +338,78 @@ msgstr "Gruppert list"
 
 #: includes/gce-feed-cpt.php:312
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Tillpasset datointervall"
 
 #: includes/gce-feed-cpt.php:469
 msgid "Feed cache cleared."
 msgid_plural "Cleared cache for %s feeds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Feedbuffer tømt."
+msgstr[1] "Tømt buffer for %s feeds."
 
 #: includes/register-settings.php:29
 msgid "Google API Key"
-msgstr ""
+msgstr "Google API-nøkkel"
 
 #: includes/register-settings.php:30
 msgid ""
 "If left blank all displayed Google calendars will use a public Google API "
 "key shared across all plugin users."
 msgstr ""
+"Dersom tomt vil alle viste Google-kalendere benytte en offentlig Google API-"
+"nøkkel delt med alle brukere av utvidelsen."
 
 #: includes/register-settings.php:31
 msgid ""
 "Currently the shared key is limited to 500,000 requests per day and 5 "
 "requests per second."
 msgstr ""
+"Per i dag er den delte nøkkelen begrenset til 500 000 forespørsler per dag "
+"og 5 forespørsler per sekund."
 
 #: includes/register-settings.php:32
 msgid ""
 "To avoid these limits <a href=\"%s\" target=\"_blank\">click here for "
 "instructions on how to generate and use your own Google API key.</a>"
 msgstr ""
+"For å unngå disse begrensningene <a href=\"%s\" target=\"_blank\">klikk her "
+"for instrukser for hvordan å generere og bruke din egen Google API-nøkkel</a>"
 
 #: includes/register-settings.php:39
 msgid "Always Enqueue Scripts & Styles"
-msgstr ""
+msgstr "Alltid legg Skripter & Maler i kø"
 
 #: includes/register-settings.php:40
 msgid "Enqueue this plugin's scripts and styles on every post and page."
 msgstr ""
+"Legg denne utvidelsens skripter og maler i kø på hvert innlegg og hver side."
 
 #: includes/register-settings.php:41
 msgid "Useful if using shortcodes in widgets or other non-standard locations."
 msgstr ""
+"Nyttig ved bruk av hurtigkoder i widgets eller andre ikke-standard-steder."
 
 #: includes/register-settings.php:46
 msgid "Disable Plugin CSS"
-msgstr ""
+msgstr "Deaktiver utvidelsens CSS"
 
 #: includes/register-settings.php:47
 msgid ""
 "If this option is checked, this plugin's CSS file will not be referenced."
 msgstr ""
+"Derson dette valget er huket av, vil det ikke bli referert til denne "
+"utvidelsens CSS."
 
 #: includes/register-settings.php:52
 msgid "Save Settings"
 msgstr "Lagre innstillinger"
 
 #: includes/register-settings.php:53
-#, fuzzy
 msgid "Save your settings when uninstalling this plugin."
-msgstr ""
-"Lagre innstillingene dine når du avinnstallerer denne utvidelsen. Nyttig ved "
-"oppgradering eller reinstallasjon."
+msgstr "Lagre innstillingene dine når du avinnstallerer denne utvidelsen. "
 
 #: includes/register-settings.php:54
-#, fuzzy
 msgid "Useful when upgrading or re-installing."
-msgstr ""
-"Lagre innstillingene dine når du avinnstallerer denne utvidelsen. Nyttig ved "
-"oppgradering eller reinstallasjon."
+msgstr "Nyttig ved oppgradering eller reinstallasjon."
 
 #: includes/register-settings.php:182
 msgid ""
@@ -412,11 +418,13 @@ msgstr ""
 "Tilbakekallingsfunksjonen som brukes til <strong>%s</strong>-innstillingen "
 "mangler."
 
-#: includes/shortcodes.php:95
+#: includes/shortcodes.php:104
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "shortcode settings and make sure they are correct."
 msgstr ""
+"De oppsto et problem med en eller flere feed'ene dines ID'er. Vennligst "
+"sjekke hurtigodeinnstillingene dine og sørg for at det er korrekte."
 
 #: views/admin/display-options-meta.php:39
 msgid ""
@@ -574,31 +582,28 @@ msgstr ""
 "på innleggsredigereren."
 
 #: views/admin/gce-feed-meta-display.php:96
-#, fuzzy
 msgid "Google Calendar ID"
-msgstr "Google Calendar feeds"
+msgstr "Google Calendar ID"
 
 #: views/admin/gce-feed-meta-display.php:100
-#, fuzzy
 msgid "The Google Calendar ID."
-msgstr "Google Calendar feed-URL."
+msgstr "Google Calendar IDen."
 
 #: views/admin/gce-feed-meta-display.php:100
 msgid "Example"
 msgstr "Eksempel"
 
 #: views/admin/gce-feed-meta-display.php:102
-#, fuzzy
 msgid "How to find your Google Calendar ID"
-msgstr "Hvordan å finne URL til GCal-feed'en din"
+msgstr "Hvordan å finne Google Calendar IDen din"
 
 #: views/admin/gce-feed-meta-display.php:115
 msgid "Timezone"
-msgstr ""
+msgstr "Tidssone"
 
 #: views/admin/gce-feed-meta-display.php:122
 msgid "It is recommended to use the calendar default timezone."
-msgstr ""
+msgstr "Det er anbefalt å benytte kalenderens standard tidssone."
 
 #: views/admin/gce-feed-meta-display.php:127
 msgid "Search Query"
@@ -617,13 +622,12 @@ msgid "Yes"
 msgstr "Ja"
 
 #: views/admin/gce-feed-meta-display.php:138
-#, fuzzy
 msgid ""
 "Display recurring events each time they occur. If disabled, events will be "
 "displayed only the first time they occur."
 msgstr ""
-"Dette vil vise tilbakevendende arrangement hver gang de oppstår. Ellers vil "
-"det bare vise arrangementet første gang det skjer."
+"Vis tilbakevendende arrangement hver gang de oppstår. Dersom deaktivert, vil "
+"det bare vise arrangement første gang de oppstår."
 
 #: views/admin/gce-feed-meta-display.php:143
 msgid "Multiple Day Events"
@@ -638,6 +642,8 @@ msgid ""
 "Display multiple day events on each day that they span. If disabled, "
 "multiple day events will be displayed only on the first day they occur."
 msgstr ""
+"Vis flerdagsarrangement på hver dag de omfatter. Dersom deaktivert, vil "
+"flerdagsarrangement bli vist kun på den første dagen de oppstår."
 
 #: views/admin/gce-feed-meta-display.php:151
 msgid "Display Mode"
@@ -645,44 +651,39 @@ msgstr "Visningsmodus"
 
 #: views/admin/gce-feed-meta-display.php:154 views/widgets.php:294
 msgid "Grid (Month view)"
-msgstr ""
+msgstr "Matrise (månedsvisning)"
 
 #: views/admin/gce-feed-meta-display.php:157 views/widgets.php:297
 msgid "Custom Date Range (List)"
-msgstr ""
+msgstr "Tilpasset datointervall (liste)"
 
 #: views/admin/gce-feed-meta-display.php:158 views/widgets.php:298
 msgid "Custom Date Range (Grid)"
-msgstr ""
+msgstr "Tilpasset datointervall (matrise)"
 
 #: views/admin/gce-feed-meta-display.php:160
-#, fuzzy
 msgid "Select how to display this feed."
-msgstr "Velg hvordan å vise startdato / -tid"
+msgstr "Velg hvordan å vise denne feed'en"
 
 #: views/admin/gce-feed-meta-display.php:165
-#, fuzzy
 msgid "Events per Page"
-msgstr "Antall arrangement å vise per side"
+msgstr "Arrangement per side"
 
 #: views/admin/gce-feed-meta-display.php:168 views/widgets.php:313
 msgid "Number of Days"
-msgstr ""
+msgstr "Antall dager"
 
 #: views/admin/gce-feed-meta-display.php:169 views/widgets.php:314
-#, fuzzy
 msgid "Number of Events"
-msgstr "Antall arrangement å vise per side"
+msgstr "Antall arrangement"
 
 #: views/admin/gce-feed-meta-display.php:170 views/widgets.php:315
-#, fuzzy
 msgid "One Week"
-msgstr "Uker"
+msgstr "Én uke"
 
 #: views/admin/gce-feed-meta-display.php:171 views/widgets.php:316
-#, fuzzy
 msgid "One Month"
-msgstr "Måneder"
+msgstr "Én måned"
 
 #: views/admin/gce-feed-meta-display.php:176
 msgid "How many events to display per page (List View only)."
@@ -695,99 +696,92 @@ msgstr "Vis Startdatooffsett"
 #: views/admin/gce-feed-meta-display.php:184
 #: views/admin/gce-feed-meta-display.php:196 views/widgets.php:330
 msgid "Number of Days Back"
-msgstr ""
+msgstr "Antall dager tilbake"
 
 #: views/admin/gce-feed-meta-display.php:185
 #: views/admin/gce-feed-meta-display.php:215 views/widgets.php:331
 msgid "Number of Days Forward"
-msgstr ""
+msgstr "Antall dager fremover"
 
 #: views/admin/gce-feed-meta-display.php:188 views/widgets.php:335
-#, fuzzy
 msgid ""
 "Change to initially display events on a date other than today (List View "
 "only)."
 msgstr ""
-"Endre dersom du først trenger å vise arrangement på en annen dato enn i dag. "
-"(kun listevisning)."
+"Endre for å vise arrangement på en annen dato enn i dag. (kun listevisning)."
 
 #: views/admin/gce-feed-meta-display.php:193
-#, fuzzy
 msgid "Earliest Feed Event Date"
-msgstr "Maksimum feed sluttdato"
+msgstr "Tidligste arrangementsdato for feed'en"
 
 #: views/admin/gce-feed-meta-display.php:197
-#, fuzzy
 msgid "Number of Months Back"
-msgstr "Antall arrangement å vise per side"
+msgstr "Antall måneder tilbake"
 
 #: views/admin/gce-feed-meta-display.php:198
-#, fuzzy
 msgid "Number of Years Back"
-msgstr "Antall arrangement å vise per side"
+msgstr "Antall år tilbake"
 
 #: views/admin/gce-feed-meta-display.php:204
-#, fuzzy
 msgid "Set how far back to retrieve events regardless of initial display."
 msgstr ""
-"Sett hvor langt tilbake i tid å hente arrangement uavhengig av måned eller "
-"side som vises."
+"Sett hvor langt tilbake i tid å hente arrangement uavhengig av "
+"åpningsvisningen."
 
 #: views/admin/gce-feed-meta-display.php:206
 msgid ""
 "<strong>Note:</strong> Total events are currently limited to 2,500 by the "
 "Google Calendar API."
 msgstr ""
+"<strong>Merk:</strong> Antall arrangemet er per i dag begrenset til 2 500 av "
+"Google Calendar API."
 
 #: views/admin/gce-feed-meta-display.php:212
-#, fuzzy
 msgid "Latest Feed Event Date"
-msgstr "Maksimum feed sluttdato"
+msgstr "Seneste arrangementsdato for feed'en"
 
 #: views/admin/gce-feed-meta-display.php:216
-#, fuzzy
 msgid "Number of Months Forward"
-msgstr "Antall arrangement å vise per side"
+msgstr "Antall måneder fremover"
 
 #: views/admin/gce-feed-meta-display.php:217
-#, fuzzy
 msgid "Number of Years Forward"
-msgstr "Antall arrangement å vise per side"
+msgstr "Antall år fremover"
 
 #: views/admin/gce-feed-meta-display.php:222
-#, fuzzy
 msgid ""
 "Set how far in the future to retrieve events regardless of initial display."
 msgstr ""
-"Sett hvor langt inn i fremtiden å hente arrangement uavhengig av måned eller "
-"side som vises."
+"Sett hvor langt inn i fremtiden å hente arrangement uavhengig av "
+"åpningsvisningen."
 
 #: views/admin/gce-feed-meta-display.php:227
 msgid "Use Custom Date Range"
-msgstr ""
+msgstr "Benytte tilpasset datointervall"
 
 #: views/admin/gce-feed-meta-display.php:233
 msgid ""
 "Set a specific range of events to retrieve. Leaving either field blank will "
 "set the date to the current day."
 msgstr ""
+"Sett et spesifikt intervall av arrangementer å hente. Ved å la et felt stå "
+"tomt vil sette datoen til dagens dato."
 
 #: views/admin/gce-feed-meta-display.php:239 views/widgets.php:345
 msgid "Show Paging Links"
 msgstr "Vis sidelenker"
 
 #: views/admin/gce-feed-meta-display.php:242
-#, fuzzy
 msgid "Display Next and Back navigation links."
-msgstr "Marker dette valget for å vise Neste og Forrige navigasjonslenker."
+msgstr "Vis Neste og Forrige navigasjonslenker."
 
 #: views/admin/gce-feed-meta-display.php:247 views/widgets.php:348
 msgid "Show Tooltips"
-msgstr ""
+msgstr "Vis verktøytips"
 
 #: views/admin/gce-feed-meta-display.php:250
 msgid "Display tooltips when hovering over events (Grid View only)."
-msgstr ""
+msgstr "Vis verktøytips ved sveving over arrangement (kun matrisevisning)."
 
 #: views/admin/gce-feed-meta-display.php:255
 msgid "Date Format"
@@ -820,9 +814,8 @@ msgstr ""
 "feed'en endres regelmessig, kan det være lurt å redusere buffervarighet."
 
 #: views/admin/gce-feed-sidebar-help.php:6
-#, fuzzy
 msgid "Documentation"
-msgstr "Sted"
+msgstr "Dokumentasjon"
 
 #: views/admin/gce-feed-sidebar-help.php:11
 msgid "Community support forums"
@@ -833,13 +826,13 @@ msgid "Get notified of new features"
 msgstr "Bli varslet om nye funksjoner"
 
 #: views/admin/gce-feed-sidebar-help.php:21
-msgid "Your review helps more folks find our plugin. Thanks so much!"
+msgid ""
+"Are you finding our GCal plugin helpful? 5-star ratings keep us motivated!"
 msgstr ""
 
 #: views/admin/gce-feed-sidebar-help.php:25
-#, fuzzy
-msgid "Review this Plugin Now"
-msgstr "Ranger denne utvidelsen"
+msgid "Rate our plugin on wordpress.org"
+msgstr ""
 
 #: views/widgets.php:28
 msgid ""
@@ -864,6 +857,8 @@ msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "widget settings and make sure they are correct."
 msgstr ""
+"Det oppsto et problem med en eller flere av dine feeds IDer. Vennligst sjekk "
+"widgetinnstillingene dine og sørg for at de er korrekte."
 
 #: views/widgets.php:213
 msgid "You have not added any feeds yet."
@@ -878,13 +873,12 @@ msgid "Add your first feed!"
 msgstr "Legg til din første feed!"
 
 #: views/widgets.php:267
-#, fuzzy
 msgid "Events on"
-msgstr "Arrangementer"
+msgstr "Arrangementer på"
 
 #: views/widgets.php:281
 msgid "Title:"
-msgstr ""
+msgstr "Tittel:"
 
 #: views/widgets.php:286
 msgid "Feeds to Display (comma separated list - i.e. 101,102,103):"
@@ -907,15 +901,16 @@ msgid "Descending"
 msgstr "Synkende"
 
 #: views/widgets.php:311
-#, fuzzy
 msgid "Events per Page (List View only):"
-msgstr "Antall arrangement å vise per side (Kun listevisning):"
+msgstr "Antall arrangement per side (kun listevisning):"
 
 #: views/widgets.php:324
 msgid ""
 "This setting will pull from the custom date range set in the main feed "
 "settings and cannot be changed here."
 msgstr ""
+"Denne innstillingen vil hente fra datointervallet satt i hovedinnstillingene "
+"for feed'en og kan ikke endres her."
 
 #: views/widgets.php:328
 msgid "Display Start Date Offset (List View only):"
@@ -931,41 +926,50 @@ msgstr ""
 
 #. Plugin URI of the plugin/theme
 msgid "https://wordpress.org/plugins/google-calendar-events/"
-msgstr ""
+msgstr "https://wordpress.org/plugins/google-calendar-events/"
 
 #. Description of the plugin/theme
 msgid ""
 "Show off your Google calendar in grid (month) or list view, in a post, page "
 "or widget, and in a style that matches your site."
 msgstr ""
+"Vis Googlekalenderen din i matrise- (måned) eller listevisning, i et innlegg "
+"eller widget, samt i en stil som matcher websidene dine."
 
 #. Author of the plugin/theme
 msgid "Moonstone Media"
-msgstr ""
+msgstr "Moonstone Media"
 
 #. Author URI of the plugin/theme
 msgid "http://moonstonemediagroup.com"
-msgstr ""
+msgstr "http://moonstonemediagroup.com"
 
 #: includes/class-gce-event.php:562
 msgctxt "human_time_diff"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: views/admin/gce-feed-meta-display.php:118
 msgctxt "Use the calendar default setting"
 msgid "Calendar default"
-msgstr ""
+msgstr "Kalenderstandard"
 
 #: views/admin/gce-feed-meta-display.php:119
 msgctxt "Use this site default setting"
 msgid "Site default"
-msgstr ""
+msgstr "Websidestandard"
 
 #: views/admin/gce-feed-meta-display.php:231
 msgctxt "separator between custom date range fields"
 msgid "to"
-msgstr ""
+msgstr "til"
+
+#~ msgid "Your review helps more folks find our plugin. Thanks so much!"
+#~ msgstr ""
+#~ "Tilbakemeldingen din hjelper flere å finne utvidelsen vår. Takk så mye!"
+
+#~ msgid "Review this Plugin Now"
+#~ msgstr "Gi denne utvidelsen en anmeldelse nå"
 
 #~ msgid ""
 #~ "The feed could not be found (404). Please ensure your feed URL is correct."

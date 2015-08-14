@@ -11,9 +11,6 @@ function gce_print_calendar( $feed_ids, $display = 'grid', $args = array(), $wid
 	if( $uid == null ) {
 		STATIC $uid = 1;
 	}
-
-
-	// Load scripts
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-qtip' );
 	wp_enqueue_script( GCE_PLUGIN_SLUG . '-public' );
 

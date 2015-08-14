@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Google Calendar Events v2.1.4\n"
 "Report-Msgid-Bugs-To: https://github.com/pderksen/WP-Google-Calendar-Events/"
 "issues\n"
-"POT-Creation-Date: 2015-08-07 18:22:35+00:00\n"
+"POT-Creation-Date: 2015-08-14 14:43:32+00:00\n"
 "PO-Revision-Date: 2014-11-26 10:07:04+0000\n"
 "Last-Translator: Andrius Mazeika <andrius@mazeika.info>\n"
 "Language-Team: \n"
@@ -70,7 +70,7 @@ msgid "Please add a new calendar feed first."
 msgstr "Patikrinkite, ar teisingai įvestas kalendoriaus ID."
 
 # @ gce
-#: class-google-calendar-events.php:88
+#: class-google-calendar-events.php:87
 msgid "Loading..."
 msgstr "Kraunama..."
 
@@ -501,7 +501,7 @@ msgstr ""
 "Nerasta atsakymo (callback) funkcija, naudojama <strong>%s</strong> "
 "nustatyme."
 
-#: includes/shortcodes.php:95
+#: includes/shortcodes.php:104
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "shortcode settings and make sure they are correct."
@@ -992,14 +992,13 @@ msgid "Get notified of new features"
 msgstr "Gaukite pranešimus apie naujas įskiepio galimybes"
 
 #: views/admin/gce-feed-sidebar-help.php:21
-msgid "Your review helps more folks find our plugin. Thanks so much!"
+msgid ""
+"Are you finding our GCal plugin helpful? 5-star ratings keep us motivated!"
 msgstr ""
 
-# @ gce
 #: views/admin/gce-feed-sidebar-help.php:25
-#, fuzzy
-msgid "Review this Plugin Now"
-msgstr "Įvertinkite šį įskiepį"
+msgid "Rate our plugin on wordpress.org"
+msgstr ""
 
 # @ gce
 #: views/widgets.php:28
@@ -1141,6 +1140,11 @@ msgstr ""
 msgctxt "separator between custom date range fields"
 msgid "to"
 msgstr ""
+
+# @ gce
+#, fuzzy
+#~ msgid "Review this Plugin Now"
+#~ msgstr "Įvertinkite šį įskiepį"
 
 # @ gce
 #~ msgid "Helpful Links"

@@ -11,12 +11,22 @@
 
 /**
  * Adds support for the new [gcal] shortcode
- * 
+ *
  * Supports the old [google-calendar-events] shortcode
- * 
+ *
  * @since 2.0.0
+ *
+ * @param  array $attr
+ * @return string
  */
 function gce_gcal_shortcode( $attr ) {
+
+	// Calendar scripts and styles.
+	global $gce_options;
+	if( ! isset( $gce_options['disable_css'] ) ) {
+		wp_enqueue_style( 'google-calendar-events-public' );
+	}
+	wp_enqueue_script( 'google-calendar-events-public' );
 
 	extract( shortcode_atts( array(
 					'id'                    => null,
@@ -31,17 +41,16 @@ function gce_gcal_shortcode( $attr ) {
 					'offset_direction'      => null,
 					'show_tooltips'         => null
 				), $attr, 'gce_feed' ) );
-	
-	// If no ID is specified then return
-	if( empty( $id ) ) {
-		return;
+
+	if ( ! $id || is_null( $id ) ) {
+		return '';
 	}
-	
+
 	$invalid_id = false;
-	
+
 	$paging_interval = null;
 	$max_events = null;
-	
+
 	$feed_ids = explode( ',', str_replace( ' ', '', $id ) );
 
 	foreach( $feed_ids as $k => $v ) {
@@ -54,55 +63,55 @@ function gce_gcal_shortcode( $attr ) {
 			$feed_ids[$k] = get_the_ID();
 			$v = get_the_ID();
 		}
-		
+
 		wp_reset_postdata();
 
 		if( empty( $display ) ) {
 			$display = get_post_meta( $v, 'gce_display_mode', true );
 		}
-		
+
 		if( $interval == null ) {
 			$interval = get_post_meta( $v, 'gce_events_per_page', true );
 		}
-		
+
 		if( $interval_count == null ) {
 			$interval_count = get_post_meta( $v, 'gce_per_page_num', true );
 		}
-		
+
 		if( $offset_interval_count == null ) {
 			$offset_interval_count = get_post_meta( $v, 'gce_list_start_offset_num', true );
 		}
-		
+
 		if( $offset_direction == null ) {
 			$offset_direction = get_post_meta( $v, 'gce_list_start_offset_direction', true );
 		}
-		
+
 		if( $paging == null ) {
 			$paging = get_post_meta( $v, 'gce_paging', true );
 		}
-		
+
 		if( $show_tooltips == null ) {
 			$show_tooltips = get_post_meta( $v, 'gce_show_tooltips', true );
 		}
-		
+
 		if( ! ( 'publish' == get_post_status( $v ) ) ) {
 			$invalid_id = true;
 		}
 	}
-	
+
 	if( $invalid_id ) {
 		if( current_user_can( 'manage_options' ) ) {
 			return '<p>' . __( 'There was a problem with one or more of your feed IDs. Please check your shortcode settings and make sure they are correct.', 'gce' ) . '</p>';
 		}
 	}
-	
-	if( $paging == 'false' ) { 
+
+	if( $paging == 'false' ) {
 		$paging = 0;
-	} else if( $paging == 'true' ) { 
+	} else if( $paging == 'true' ) {
 		$paging = 1;
 	}
-	
-	
+
+
 	if( $offset_direction == 'back' ) {
 		$offset_direction = -1;
 	} else {
@@ -110,7 +119,7 @@ function gce_gcal_shortcode( $attr ) {
 	}
 
 	$start_offset = $offset_interval_count * 86400 * $offset_direction;
-	
+
 	if( $interval == 'days' ) {
 		$paging_interval = $interval_count * 86400;
 		$paging_type = 'days';
@@ -131,7 +140,7 @@ function gce_gcal_shortcode( $attr ) {
 			$display = $type;
 		}
 	}
-	
+
 	if( $display == 'grouped-list' ) {
 		$display = 'list-grouped';
 	}
@@ -148,17 +157,17 @@ function gce_gcal_shortcode( $attr ) {
 		'paging'          => $paging,
 		'show_tooltips'   => $show_tooltips
 	);
-	
+
 	$args['start_offset'] = $start_offset;
-		
+
 	if( ! empty( $paging_type ) ) {
 		$args['paging_type'] = $paging_type;
 	}
-	
+
 	$feed_ids = implode( '-', $feed_ids );
 
 	return gce_print_calendar( $feed_ids, $display, $args );
-	
+
 }
 add_shortcode( 'gcal', 'gce_gcal_shortcode' );
 add_shortcode( 'google-calendar-events', 'gce_gcal_shortcode' );

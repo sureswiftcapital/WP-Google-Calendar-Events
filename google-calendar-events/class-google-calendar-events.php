@@ -18,7 +18,7 @@ class Google_Calendar_Events {
 	 *
 	 * @var     string
 	 */
-	protected $version = '2.2.8';
+	protected $version = '2.2.9';
 
 	/**
 	 * Unique identifier for the plugin.
@@ -62,70 +62,62 @@ class Google_Calendar_Events {
 
 		$this->setup_constants();
 
+		$this->plugin_textdomain();
+
 		add_action( 'init', array( $this, 'register_public_scripts' ) );
 		add_action( 'init', array( $this, 'register_public_styles' ) );
 
 		// Load scripts when posts load so we know if we need to include them or not
-		add_filter( 'the_posts', array( $this, 'load_scripts' ) );
-
-		// Load plugin text domain
-		$this->plugin_textdomain();
-
+		add_action( 'wp_head', array( $this, 'load_scripts' ) );
 		add_action( 'wp_footer', array( $this, 'localize_main_script' ) );
+	}
+
+	/**
+	 * Load scripts conditionally.
+	 */
+	public function load_scripts() {
+
+		global $gce_options, $post;
+		$post_type = isset( $post->post_type ) ? $post->post_type : null;
+		$content   = isset( $post->post_content ) ? $post->post_content : '';
+
+		$conditions = array(
+			has_shortcode( $content, 'gcal' ),
+			'gce_feed' == $post_type,
+			isset( $gce_options['always_enqueue'] )
+		);
+
+		if ( in_array( true, $conditions ) ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		}
+
+	}
+
+	public function enqueue_scripts() {
+
+		if ( ! isset( $gce_options['disable_css'] ) ) {
+			wp_enqueue_style( $this->plugin_slug . '-public' );
+		}
+		wp_enqueue_script( $this->plugin_slug . '-public' );
+
+		$this->show_scripts = true;
 	}
 
 	public function localize_main_script() {
 
 		if( $this->show_scripts ) {
+
 			global $localize;
 
 			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
 
 			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce',
-					array(
-						'ajaxurl'      => admin_url( 'admin-ajax.php' ),
-						'loadingText'  => __( 'Loading...', 'gce' ),
-					) );
-		}
-	}
-
-	public function load_scripts( $posts ) {
-
-		global $gce_options;
-
-		// Init enqueue flag.
-		$do_enqueue = false;
-
-		if ( isset( $gce_options['always_enqueue'] ) ) {
-
-			$do_enqueue = true;
-
-		} elseif ( ! empty( $posts ) ) {
-
-			foreach ( $posts as $post ) {
-
-				if ( ( strpos( $post->post_content, '[gcal' ) !== false ) || ( $post->post_type == 'gce_feed' ) ) {
-
-					$do_enqueue = true;
-					break;
-				}
-			}
+				array(
+					'ajaxurl'      => admin_url( 'admin-ajax.php' ),
+					'loadingText'  => __( 'Loading...', 'gce' ),
+				) );
 		}
 
-		if ( true == $do_enqueue ) {
-
-			// Load CSS after checking to see if it is supposed to be disabled or not (based on settings)
-			if( ! isset( $gce_options['disable_css'] ) ) {
-				wp_enqueue_style( $this->plugin_slug . '-public' );
-			}
-
-			// Load JS
-			wp_enqueue_script( $this->plugin_slug . '-public' );
-
-			$this->show_scripts = true;
-		}
-
-		return $posts;
 	}
 
 	/**
@@ -196,7 +188,6 @@ class Google_Calendar_Events {
 		// AND this was probably causing issues with themes including the Isotope jQuery library.
 		// http://qtip2.com/guides#integration.isotope
 
-		// Use unminified JS if SCRIPT_DEBUG exists and set to true.
 		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_script( $this->plugin_slug . '-qtip', plugins_url( 'js/jquery.qtip' . $min . '.js', __FILE__ ), array( 'jquery' ), $this->version, true );
@@ -209,7 +200,10 @@ class Google_Calendar_Events {
 	 * @since 2.0.0
 	 */
 	public function register_public_styles() {
-		wp_register_style( $this->plugin_slug . '-qtip', plugins_url( 'css/jquery.qtip.min.css', __FILE__ ), array(), $this->version );
+
+		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		wp_register_style( $this->plugin_slug . '-qtip', plugins_url( 'css/jquery.qtip' . $min . '.css', __FILE__ ), array(), $this->version );
 		wp_register_style( $this->plugin_slug . '-public', plugins_url( 'css/gce-style.css', __FILE__ ), array( $this->plugin_slug . '-qtip' ), $this->version );
 	}
 

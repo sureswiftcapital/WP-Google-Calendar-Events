@@ -5,7 +5,7 @@
  * Description: Show off your Google calendar in grid (month) or list view, in a post, page or widget, and in a style that matches your site.
  * Author: Moonstone Media
  * Author URI: http://moonstonemediagroup.com
- * Version: 2.2.8
+ * Version: 2.2.9
  * Text Domain: gce
  * Domain Path: /languages/
  *

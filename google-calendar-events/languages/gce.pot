@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Google Calendar Events 2.2.8\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/pderksen/WP-Google-Calendar-Events/issues\n"
-"POT-Creation-Date: 2015-08-07 18:40:03+00:00\n"
+"POT-Creation-Date: 2015-08-14 14:43:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Please add a new calendar feed first."
 msgstr ""
 
-#: class-google-calendar-events.php:88
+#: class-google-calendar-events.php:87
 msgid "Loading..."
 msgstr ""
 
@@ -399,7 +399,7 @@ msgstr ""
 msgid "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
 
-#: includes/shortcodes.php:95
+#: includes/shortcodes.php:104
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "shortcode settings and make sure they are correct."
@@ -778,11 +778,11 @@ msgid "Get notified of new features"
 msgstr ""
 
 #: views/admin/gce-feed-sidebar-help.php:21
-msgid "Your review helps more folks find our plugin. Thanks so much!"
+msgid "Are you finding our GCal plugin helpful? 5-star ratings keep us motivated!"
 msgstr ""
 
 #: views/admin/gce-feed-sidebar-help.php:25
-msgid "Review this Plugin Now"
+msgid "Rate our plugin on wordpress.org"
 msgstr ""
 
 #: views/widgets.php:28

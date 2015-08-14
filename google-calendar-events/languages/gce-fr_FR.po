@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
 "Report-Msgid-Bugs-To: https://github.com/pderksen/WP-Google-Calendar-Events/"
 "issues\n"
-"POT-Creation-Date: 2015-08-07 18:22:35+00:00\n"
+"POT-Creation-Date: 2015-08-14 14:43:32+00:00\n"
 "PO-Revision-Date: 2015-07-27 16:44+0100\n"
 "Last-Translator: Vincent B <vincent@yahoo.fr>\n"
 "Language-Team: Jojaba <jojaba@gmail.com>\n"
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Please add a new calendar feed first."
 msgstr "Assurez-vous que l'ID de votre agenda est correcte."
 
-#: class-google-calendar-events.php:88
+#: class-google-calendar-events.php:87
 msgid "Loading..."
 msgstr "Chargement..."
 
@@ -429,7 +429,7 @@ msgstr ""
 "La fonction de rappel utilisée pour la configuration de <strong>%s</strong> "
 "est introuvable."
 
-#: includes/shortcodes.php:95
+#: includes/shortcodes.php:104
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "shortcode settings and make sure they are correct."
@@ -850,13 +850,13 @@ msgid "Get notified of new features"
 msgstr "Être averti des nouvelles fonctionnalités"
 
 #: views/admin/gce-feed-sidebar-help.php:21
-msgid "Your review helps more folks find our plugin. Thanks so much!"
+msgid ""
+"Are you finding our GCal plugin helpful? 5-star ratings keep us motivated!"
 msgstr ""
-"Votre revue aide plus de personnes à trouver notre plugin. Merci beaucoup !"
 
 #: views/admin/gce-feed-sidebar-help.php:25
-msgid "Review this Plugin Now"
-msgstr "Noter ce plugin."
+msgid "Rate our plugin on wordpress.org"
+msgstr ""
 
 #: views/widgets.php:28
 msgid ""
@@ -987,6 +987,14 @@ msgstr ""
 msgctxt "separator between custom date range fields"
 msgid "to"
 msgstr ""
+
+#~ msgid "Your review helps more folks find our plugin. Thanks so much!"
+#~ msgstr ""
+#~ "Votre revue aide plus de personnes à trouver notre plugin. Merci "
+#~ "beaucoup !"
+
+#~ msgid "Review this Plugin Now"
+#~ msgstr "Noter ce plugin."
 
 #~ msgid "Helpful Links"
 #~ msgstr "Liens utiles"
