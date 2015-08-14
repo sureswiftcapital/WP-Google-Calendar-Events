@@ -21,13 +21,6 @@
  */
 function gce_gcal_shortcode( $attr ) {
 
-	// Calendar scripts and styles.
-	global $gce_options;
-	if( ! isset( $gce_options['disable_css'] ) ) {
-		wp_enqueue_style( 'google-calendar-events-public' );
-	}
-	wp_enqueue_script( 'google-calendar-events-public' );
-
 	extract( shortcode_atts( array(
 					'id'                    => null,
 					'display'               => '',

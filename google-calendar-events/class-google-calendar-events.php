@@ -38,7 +38,22 @@ class Google_Calendar_Events {
 	 */
 	protected static $instance = null;
 
-	public $show_scripts = false;
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @since     1.0.0
+	 *
+	 * @return    object    A single instance of this class.
+	 */
+	public static function get_instance() {
+
+		// If the single instance hasn't been set, set it now.
+		if ( null == self::$instance ) {
+			self::$instance = new self;
+		}
+
+		return self::$instance;
+	}
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
@@ -48,6 +63,7 @@ class Google_Calendar_Events {
 	 */
 	private function __construct() {
 
+		// Load files.
 		$this->includes();
 
 		$old = get_option( 'gce_version' );
@@ -60,120 +76,29 @@ class Google_Calendar_Events {
 			$this->upgrade();
 		}
 
+		// Init plugin.
 		$this->setup_constants();
-
 		$this->plugin_textdomain();
 
+		// Register scripts.
 		add_action( 'init', array( $this, 'register_public_scripts' ) );
 		add_action( 'init', array( $this, 'register_public_styles' ) );
 
 		// Load scripts when posts load so we know if we need to include them or not
-		add_action( 'wp_head', array( $this, 'load_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'localize_main_script' ), 100 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
 	}
 
 	/**
-	 * Load scripts conditionally.
+	 * Load the plugin text domain for translation.
+	 *
+	 * @since    2.0.0
 	 */
-	public function load_scripts() {
-
-		global $gce_options, $post;
-		$post_type = isset( $post->post_type ) ? $post->post_type : null;
-		$content   = isset( $post->post_content ) ? $post->post_content : '';
-
-		$conditions = array(
-			has_shortcode( $content, 'gcal' ),
-			'gce_feed' == $post_type,
-			isset( $gce_options['always_enqueue'] )
+	public function plugin_textdomain() {
+		load_plugin_textdomain(
+			'gce',
+			false,
+			dirname( plugin_basename( GCE_MAIN_FILE ) ) . '/languages/'
 		);
-
-		if ( in_array( true, $conditions ) ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
-		}
-
-	}
-
-	public function enqueue_scripts() {
-
-		if ( ! isset( $gce_options['disable_css'] ) ) {
-			wp_enqueue_style( $this->plugin_slug . '-public' );
-		}
-		wp_enqueue_script( $this->plugin_slug . '-public' );
-
-		$this->show_scripts = true;
-		$this->localize_main_script();
-	}
-
-	public function localize_main_script() {
-
-		if( $this->show_scripts ) {
-
-			global $localize;
-
-			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce_grid', $localize );
-
-			wp_localize_script( GCE_PLUGIN_SLUG . '-public', 'gce',
-				array(
-					'ajaxurl'      => admin_url( 'admin-ajax.php' ),
-					'loadingText'  => __( 'Loading...', 'gce' ),
-				) );
-		}
-
-	}
-
-	/**
-	 * Load the upgrade file
-	 *
-	 * @since 2.0.0
-	 */
-	public function upgrade() {
-		include_once( 'includes/admin/upgrade.php' );
-	}
-
-	/**
-	 * Setup public constants
-	 *
-	 * @since 2.0.0
-	 */
-	public function setup_constants() {
-		if( ! defined( 'GCE_DIR' ) ) {
-			define( 'GCE_DIR', dirname( __FILE__ ) );
-		}
-
-		if( ! defined( 'GCE_PLUGIN_SLUG' ) ) {
-			define( 'GCE_PLUGIN_SLUG', $this->plugin_slug );
-		}
-	}
-
-	/**
-	 * Include all necessary files
-	 *
-	 * @since 2.0.0
-	 */
-	public static function includes() {
-		global $gce_options;
-
-		// First include common files between admin and public
-		include_once( 'includes/misc-functions.php' );
-		include_once( 'includes/gce-feed-cpt.php' );
-		include_once( 'includes/class-gce-display.php' );
-		include_once( 'includes/class-gce-event.php' );
-		include_once( 'includes/class-gce-feed.php' );
-		include_once( 'includes/shortcodes.php' );
-		include_once( 'views/widgets.php' );
-
-		// Now include files specifically for public or admin
-		if( is_admin() ) {
-			// Admin includes
-			include_once( 'includes/admin/admin-functions.php' );
-		} else {
-			// Public includes
-		}
-
-		// Setup our main settings options
-		include_once( 'includes/register-settings.php' );
-
-		$gce_options = gce_get_settings();
 	}
 
 	/**
@@ -209,6 +134,88 @@ class Google_Calendar_Events {
 	}
 
 	/**
+	 * Load scripts conditionally.
+	 */
+	public function load_scripts() {
+
+		global $gce_options, $post;
+		$post_type = isset( $post->post_type ) ? $post->post_type : null;
+		$content   = isset( $post->post_content ) ? $post->post_content : '';
+
+		$conditions = array(
+			has_shortcode( $content, 'gcal' ),
+			'gce_feed' == $post_type,
+			isset( $gce_options['always_enqueue'] )
+		);
+
+		if ( in_array( true, $conditions ) ) {
+
+			if ( ! isset( $gce_options['disable_css'] ) ) {
+				wp_enqueue_style( $this->plugin_slug . '-public' );
+			}
+
+			wp_enqueue_script( $this->plugin_slug . '-public' );
+			wp_localize_script( $this->plugin_slug . '-public', 'gce',	array(
+				'ajaxurl'     => admin_url( 'admin-ajax.php' ),
+				'loadingText' => __( 'Loading...', 'gce' ),
+			) );
+		}
+	}
+
+	/**
+	 * Load the upgrade file
+	 *
+	 * @since 2.0.0
+	 */
+	public function upgrade() {
+		include_once( 'includes/admin/upgrade.php' );
+	}
+
+	/**
+	 * Setup public constants
+	 *
+	 * @since 2.0.0
+	 */
+	public function setup_constants() {
+		if( ! defined( 'GCE_DIR' ) ) {
+			define( 'GCE_DIR', dirname( __FILE__ ) );
+		}
+
+		if( ! defined( 'GCE_PLUGIN_SLUG' ) ) {
+			define( 'GCE_PLUGIN_SLUG', $this->plugin_slug );
+		}
+	}
+
+	/**
+	 * Include all necessary files
+	 *
+	 * @since 2.0.0
+	 */
+	public static function includes() {
+
+		global $gce_options;
+
+		// Front facing side.
+		include_once( 'includes/misc-functions.php' );
+		include_once( 'includes/gce-feed-cpt.php' );
+		include_once( 'includes/class-gce-display.php' );
+		include_once( 'includes/class-gce-event.php' );
+		include_once( 'includes/class-gce-feed.php' );
+		include_once( 'includes/shortcodes.php' );
+		include_once( 'views/widgets.php' );
+
+		// Admin.
+		if ( is_admin() ) {
+			include_once( 'includes/admin/admin-functions.php' );
+		}
+
+		// Setup our main settings options.
+		include_once( 'includes/register-settings.php' );
+
+		$gce_options = gce_get_settings();
+	}
+
+	/**
 	 * Return the plugin slug.
 	 *
 	 * @since    2.0.0
@@ -230,33 +237,4 @@ class Google_Calendar_Events {
 		return $this->version;
 	}
 
-	/**
-	 * Return an instance of this class.
-	 *
-	 * @since     1.0.0
-	 *
-	 * @return    object    A single instance of this class.
-	 */
-	public static function get_instance() {
-
-		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance ) {
-			self::$instance = new self;
-		}
-
-		return self::$instance;
-	}
-
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since    2.0.0
-	 */
-	public function plugin_textdomain() {
-		load_plugin_textdomain(
-			'gce',
-			false,
-			dirname( plugin_basename( GCE_MAIN_FILE ) ) . '/languages/'
-		);
-	}
 }
