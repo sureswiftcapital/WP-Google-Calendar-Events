@@ -145,7 +145,8 @@ class Google_Calendar_Events {
 		$conditions = array(
 			has_shortcode( $content, 'gcal' ),
 			'gce_feed' == $post_type,
-			isset( $gce_options['always_enqueue'] )
+			isset( $gce_options['always_enqueue'] ),
+			is_active_widget( false, false, 'gce_widget', true )
 		);
 
 		if ( in_array( true, $conditions ) ) {

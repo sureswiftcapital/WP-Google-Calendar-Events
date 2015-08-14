@@ -27,23 +27,6 @@ class GCE_Widget extends WP_Widget {
 			$name = __( 'Google Calendar Events', 'gce' ),
 			array( 'description' => __( 'Display a list or calendar grid of events from one or more Google Calendar feeds you have added', 'gce' ) )
 		);
-
-		if ( is_active_widget( false, false, $this->id_base, true ) ) {
-
-			Google_Calendar_Events::get_instance()->show_scripts = true;
-
-            add_action( 'wp_enqueue_scripts', array( $this, 'gce_widget_add_styles' ) );
-			wp_enqueue_script( 'google-calendar-events-public' );
-		}
-	}
-
-	function gce_widget_add_styles() {
-
-		global $gce_options;
-
-		if(  ! isset( $gce_options['disable_css'] ) ) {
-			wp_enqueue_style( 'google-calendar-events-public' );
-		}
 	}
 
 	/**
