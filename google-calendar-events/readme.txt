@@ -90,8 +90,8 @@ There are three ways to install this plugin.
 == Changelog ==
 
 = 2.2.9 - August 14, 2015 =
-* Fix: only when using site timezone in feed, links pointing to Google events will be adjusted for timezone.
-* Fix: load scripts only on posts and pages with a calendar.
+* Fix: Event links pointing to Google Calendar have a timezone argument from feed setting.
+* Fix: Improved assets loading, only load scripts on posts and pages that have a calendar.
 * Localization: Updated Norwegian translations.
 
 = 2.2.8 - August 7, 2015 =
