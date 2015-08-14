@@ -69,7 +69,7 @@ class Google_Calendar_Events {
 
 		// Load scripts when posts load so we know if we need to include them or not
 		add_action( 'wp_head', array( $this, 'load_scripts' ) );
-		add_action( 'wp_footer', array( $this, 'localize_main_script' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'localize_main_script' ), 100 );
 	}
 
 	/**
@@ -88,7 +88,7 @@ class Google_Calendar_Events {
 		);
 
 		if ( in_array( true, $conditions ) ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
 		}
 
 	}
@@ -101,6 +101,7 @@ class Google_Calendar_Events {
 		wp_enqueue_script( $this->plugin_slug . '-public' );
 
 		$this->show_scripts = true;
+		$this->localize_main_script();
 	}
 
 	public function localize_main_script() {

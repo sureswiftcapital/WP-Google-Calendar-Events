@@ -195,9 +195,17 @@ class GCE_Event {
 
 		//If link should be displayed add to $markup
 		if ( ! empty( $display_options['display_link'] ) ) {
+
 			$target = ( ! empty( $display_options['display_link_target'] ) ? 'target="blank"' : '' );
 
-			$ctz  = get_option( 'timezone_string' );
+			$ctz = gce_get_wp_timezone();
+
+			if ( isset( $this->feed->id ) ) {
+				$tz_option = esc_attr( get_post_meta( $this->feed->id, '_feed_timezone_setting', true ) );
+				if ( 'use_calendar' == $tz_option ) {
+					$ctz = '';
+				}
+			}
 
 			// Check if it is a hangouts link first
 			if( strpos( $this->link, 'plus.google.com/events/' ) !== false ) {
