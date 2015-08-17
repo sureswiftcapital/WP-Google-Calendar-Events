@@ -89,7 +89,7 @@ There are three ways to install this plugin.
 
 == Changelog ==
 
-= 2.2.91 - August 16, 2015 =
+= 2.2.91 - August 18, 2015 =
 * Fix: Calendar not working correctly with custom date range grid after 2.2.9 changes.
 
 = 2.2.9 - August 14, 2015 =
