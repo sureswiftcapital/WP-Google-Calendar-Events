@@ -18,7 +18,7 @@ class Google_Calendar_Events {
 	 *
 	 * @var     string
 	 */
-	protected $version = '2.2.91';
+	protected $version = '2.3.0';
 
 	/**
 	 * Unique identifier for the plugin.
@@ -86,6 +86,7 @@ class Google_Calendar_Events {
 
 		// Load scripts when posts load so we know if we need to include them or not
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'theme_compatibility' ), 1000 );
 	}
 
 	/**
@@ -160,6 +161,20 @@ class Google_Calendar_Events {
 				'ajaxurl'     => admin_url( 'admin-ajax.php' ),
 				'loadingText' => __( 'Loading...', 'gce' ),
 			) );
+		}
+
+	}
+
+	public function theme_compatibility() {
+		if ( wp_script_is( $this->plugin_slug . '-public', 'enqueued' )  ) {
+			$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+			wp_enqueue_script(
+				'gce-imagesloaded',
+				plugins_url( 'js/imagesloaded.pkgd' . $min . '.js', __FILE__ ),
+				array( $this->plugin_slug . '-qtip' ),
+				'3.1.8',
+				true
+			);
 		}
 	}
 

@@ -3,7 +3,7 @@ Contributors: pderksen, nickyoung87, nekojira, rosshanney
 Tags: google calendar, google, calendar, events, gcal
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 2.2.91
+Stable tag: 2.3.0
 License: GPLv2 or later
 
 Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
@@ -88,6 +88,10 @@ There are three ways to install this plugin.
 1. Event display builder editor
 
 == Changelog ==
+
+= 2.3.0 - August 24, 2015 =
+* Fix: Improve timezone handling when sending a request to Google.
+* Tweak: Reintroduced imagesloaded library to improve compatibility with themes using Isotope and Masonry.
 
 = 2.2.91 - August 18, 2015 =
 * Fix: Calendar not working correctly with custom date range grid after 2.2.9 changes.
