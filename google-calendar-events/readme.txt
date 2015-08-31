@@ -33,16 +33,18 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 
 ## Available Translations ##
 
-* Spanish - Provided by Eduardo Larequi of [educacion.navarra.es/web/pnte/](http://www.educacion.navarra.es/web/pnte/).
-* Italian - Provided by Francesco Paccagnella of [pacca.it](http://www.pacca.it/).
+* Catalan - Provided by Toni Ginard & Monica Grau of [agora.xtec.cat](http://agora.xtec.cat/).
+* Dutch - Provided by Henri van Werkhoven.
+* Finnish - Provided by Ville Myllymäki.
 * French - Provided by Vincent Bray.
 * German - Provided by Stefanie Drucker of [kreativhuhn.at](http://www.kreativhuhn.at/).
+* Italian - Provided by Francesco Paccagnella of [pacca.it](http://www.pacca.it/).
+* Lithuanian - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
 * Norwegian - Provided by Tore Hjartland of [aliom.no](http://www.aliom.no/).
 * Polish - Provided by Michał Pasternak of [iplweb.pl](http://iplweb.pl/).
-* Lithuanian - Provided by Andrius Mazeika of [mazeika.info](http://mazeika.info/).
-* Dutch - Provided by Henri van Werkhoven.
-* Catalan - Provided by Toni Ginard & Monica Grau of [agora.xtec.cat](http://agora.xtec.cat/).
+* Portuguese (Brazilian) - Provided by CodeLayer.
 * Russian - Provided by Vadim Reutskiy.
+* Spanish - Provided by Eduardo Larequi of [educacion.navarra.es/web/pnte/](http://www.educacion.navarra.es/web/pnte/).
 * Swedish - Provided by Familjedaghemmet Chicos of [chicos.nu](http://www.chicos.nu/).
 
 == Installation ==
@@ -91,6 +93,7 @@ There are several ways to install this plugin.
 = 2.3.1 - August 31, 2015 =
 * Fix: Fallback for DateTime::setTimestamp() for installations still using PHP 5.2.
 * Fix: Support HTML in events description when using `html="true"` attribute in shortcode.
+* Localization: Added Finnish translations, courtesy of Ville Myllymäki.
 
 = 2.3.0 - August 24, 2015 =
 
