@@ -118,14 +118,36 @@ class GCE_Feed {
 		}
 
 		// Time boundaries.
-		$time = new DateTime();
-		if ( 'use_site' == $timezone_option ) {
-			$time->setTimezone( new DateTimeZone( $timezone ) );
+		if ( version_compare( PHP_VERSION, '5.3.0' ) === -1 ) {
+
+			$ts = $this->feed_start;
+			$time = new DateTime( "@$ts" );
+			if ( 'use_site' == $timezone_option ) {
+				$time->setTimezone( new DateTimeZone( $timezone ) );
+			}
+			$args['timeMin'] = urlencode( $time->format( 'c' ) );
+
+			$ts = $this->feed_end;
+			$time = new DateTime( "@$ts" );
+			if ( 'use_site' == $timezone_option ) {
+				$time->setTimezone( new DateTimeZone( $timezone ) );
+			}
+			$args['timeMax'] = urlencode( $time->format( 'c' ) );
+
+		} else {
+
+			$time = new DateTime();
+
+			if ( 'use_site' == $timezone_option ) {
+				$time->setTimezone( new DateTimeZone( $timezone ) );
+			}
+
+			$time->setTimestamp( $this->feed_start );
+			$args['timeMin'] = urlencode( $time->format( 'c' ) );
+			$time->setTimestamp( $this->feed_end );
+			$args['timeMax'] = urlencode( $time->format( 'c' ) );
+
 		}
-		$time->setTimestamp( $this->feed_start );
-		$args['timeMin'] = urlencode( $time->format( 'c' ) );
-		$time->setTimestamp( $this->feed_end );
-		$args['timeMax'] = urlencode( $time->format( 'c' ) );
 
 		// Max no. of events.
 		$args['maxResults'] = 2500;

@@ -5,7 +5,7 @@
  * Description: Show off your Google calendar in grid (month) or list view, in a post, page or widget, and in a style that matches your site.
  * Author: Moonstone Media
  * Author URI: http://moonstonemediagroup.com
- * Version: 2.3.0
+ * Version: 2.3.1
  * Text Domain: gce
  * Domain Path: /languages/
  *
@@ -18,7 +18,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set the plugin PHP and WP requirements.
-$gce_requires = array( 'wp' => '3.9.0', 'php' => '5.3.0' );
+$gce_requires = array( 'wp' => '3.9.0', 'php' => '5.2.4' );
 // Constants before PHP 5.6 can't store arrays.
 define( 'GCE_REQUIREMENTS', serialize( $gce_requires ) );
 // Checks if the requirements are met.
