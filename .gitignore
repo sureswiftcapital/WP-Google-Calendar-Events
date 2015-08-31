@@ -35,3 +35,5 @@ nbproject
 /node_modules
 /vendor
 composer.lock
+/tmp
+*.tmp
