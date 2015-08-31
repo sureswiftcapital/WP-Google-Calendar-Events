@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
 "Report-Msgid-Bugs-To: https://github.com/pderksen/WP-Google-Calendar-Events/"
 "issues\n"
-"POT-Creation-Date: 2015-08-14 14:43:32+00:00\n"
+"POT-Creation-Date: 2015-08-31 09:04:08+00:00\n"
 "PO-Revision-Date: 2015-02-26 09:45+0100\n"
 "Last-Translator: Francesco Paccagnella <translations@pacca.it>\n"
 "Language-Team: \n"
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Please add a new calendar feed first."
 msgstr "Assicurarsi che l'ID del calendario sia corretto."
 
-#: class-google-calendar-events.php:87
+#: class-google-calendar-events.php:162
 msgid "Loading..."
 msgstr "Caricamento..."
 
@@ -154,51 +154,51 @@ msgstr ""
 msgid "No events to display."
 msgstr "Nessun evento da visualizzare."
 
-#: includes/class-gce-event.php:529
+#: includes/class-gce-event.php:555
 msgid "%s year"
 msgstr "%s anno"
 
-#: includes/class-gce-event.php:529
+#: includes/class-gce-event.php:555
 msgid "%s years"
 msgstr "%s anni"
 
-#: includes/class-gce-event.php:530
+#: includes/class-gce-event.php:556
 msgid "%s month"
 msgstr "%s mese"
 
-#: includes/class-gce-event.php:530
+#: includes/class-gce-event.php:556
 msgid "%s months"
 msgstr "%s mesi"
 
-#: includes/class-gce-event.php:531
+#: includes/class-gce-event.php:557
 msgid "%s week"
 msgstr "%s settimana"
 
-#: includes/class-gce-event.php:531
+#: includes/class-gce-event.php:557
 msgid "%s weeks"
 msgstr "%s settimane"
 
-#: includes/class-gce-event.php:532
+#: includes/class-gce-event.php:558
 msgid "%s day"
 msgstr "%s giorno"
 
-#: includes/class-gce-event.php:532
+#: includes/class-gce-event.php:558
 msgid "%s days"
 msgstr "%s giorni"
 
-#: includes/class-gce-event.php:533
+#: includes/class-gce-event.php:559
 msgid "%s hour"
 msgstr "%s ora"
 
-#: includes/class-gce-event.php:533
+#: includes/class-gce-event.php:559
 msgid "%s hours"
 msgstr "%s ore"
 
-#: includes/class-gce-event.php:534
+#: includes/class-gce-event.php:560
 msgid "%s min"
 msgstr "%s minuto"
 
-#: includes/class-gce-event.php:534
+#: includes/class-gce-event.php:560
 msgid "%s mins"
 msgstr "%s minuti"
 
@@ -210,7 +210,7 @@ msgstr ""
 "L'ID di Google Calendar non è stato impostato. Assicurarsi di averlo "
 "inserito correttamente nelle impostazioni dei Feed."
 
-#: includes/class-gce-feed.php:192
+#: includes/class-gce-feed.php:226
 msgid ""
 "Some data was retrieved, but could not be parsed successfully. Please ensure "
 "your feed settings are correct."
@@ -218,11 +218,11 @@ msgstr ""
 "Qualche dato è stato ricevuto, ma non può essere analizzato correttamente. "
 "Assicurarsi che le impostazioni del feed siano corrette."
 
-#: includes/class-gce-feed.php:195
+#: includes/class-gce-feed.php:229
 msgid "An error has occured."
 msgstr "Si è verificato un errore."
 
-#: includes/class-gce-feed.php:200
+#: includes/class-gce-feed.php:234
 msgid " Please ensure your calendar ID is correct."
 msgstr "Assicurarsi che l'ID del calendario sia corretto."
 
@@ -328,12 +328,12 @@ msgid "Grid"
 msgstr "Griglia"
 
 #: includes/gce-feed-cpt.php:308 views/admin/gce-feed-meta-display.php:155
-#: views/widgets.php:295
+#: views/widgets.php:274
 msgid "List"
 msgstr "Lista"
 
 #: includes/gce-feed-cpt.php:310 views/admin/gce-feed-meta-display.php:156
-#: views/widgets.php:296
+#: views/widgets.php:275
 msgid "Grouped List"
 msgstr "Lista Raggruppata"
 
@@ -423,7 +423,7 @@ msgstr ""
 "La funzione richiamata utilizzata per l'impostazione <strong>%s</strong> è "
 "assente."
 
-#: includes/shortcodes.php:104
+#: includes/shortcodes.php:97
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "shortcode settings and make sure they are correct."
@@ -659,15 +659,15 @@ msgstr ""
 msgid "Display Mode"
 msgstr "Modo di Visualizzazione"
 
-#: views/admin/gce-feed-meta-display.php:154 views/widgets.php:294
+#: views/admin/gce-feed-meta-display.php:154 views/widgets.php:273
 msgid "Grid (Month view)"
 msgstr "Griglia (visualizzazione mensile)"
 
-#: views/admin/gce-feed-meta-display.php:157 views/widgets.php:297
+#: views/admin/gce-feed-meta-display.php:157 views/widgets.php:276
 msgid "Custom Date Range (List)"
 msgstr "Estensione Data Personalizzata (Lista)"
 
-#: views/admin/gce-feed-meta-display.php:158 views/widgets.php:298
+#: views/admin/gce-feed-meta-display.php:158 views/widgets.php:277
 #, fuzzy
 msgid "Custom Date Range (Grid)"
 msgstr "Estensione Data Personalizzata (Lista)"
@@ -680,19 +680,19 @@ msgstr "Selezionare come visualizzare questo feed."
 msgid "Events per Page"
 msgstr "Eventi per Pagina"
 
-#: views/admin/gce-feed-meta-display.php:168 views/widgets.php:313
+#: views/admin/gce-feed-meta-display.php:168 views/widgets.php:292
 msgid "Number of Days"
 msgstr "Numero di Giorni"
 
-#: views/admin/gce-feed-meta-display.php:169 views/widgets.php:314
+#: views/admin/gce-feed-meta-display.php:169 views/widgets.php:293
 msgid "Number of Events"
 msgstr "Numero di Eventi"
 
-#: views/admin/gce-feed-meta-display.php:170 views/widgets.php:315
+#: views/admin/gce-feed-meta-display.php:170 views/widgets.php:294
 msgid "One Week"
 msgstr "Una Settimana"
 
-#: views/admin/gce-feed-meta-display.php:171 views/widgets.php:316
+#: views/admin/gce-feed-meta-display.php:171 views/widgets.php:295
 msgid "One Month"
 msgstr "Un Mese"
 
@@ -706,16 +706,16 @@ msgid "Display Start Date Offset"
 msgstr "Offset Data di Inizio"
 
 #: views/admin/gce-feed-meta-display.php:184
-#: views/admin/gce-feed-meta-display.php:196 views/widgets.php:330
+#: views/admin/gce-feed-meta-display.php:196 views/widgets.php:309
 msgid "Number of Days Back"
 msgstr "Numero di Giorni Indietro"
 
 #: views/admin/gce-feed-meta-display.php:185
-#: views/admin/gce-feed-meta-display.php:215 views/widgets.php:331
+#: views/admin/gce-feed-meta-display.php:215 views/widgets.php:310
 msgid "Number of Days Forward"
 msgstr "Numero di Giorni in Avanti"
 
-#: views/admin/gce-feed-meta-display.php:188 views/widgets.php:335
+#: views/admin/gce-feed-meta-display.php:188 views/widgets.php:314
 msgid ""
 "Change to initially display events on a date other than today (List View "
 "only)."
@@ -776,7 +776,7 @@ msgid ""
 "set the date to the current day."
 msgstr ""
 
-#: views/admin/gce-feed-meta-display.php:239 views/widgets.php:345
+#: views/admin/gce-feed-meta-display.php:239 views/widgets.php:324
 msgid "Show Paging Links"
 msgstr "Visualizza Link di Pagina"
 
@@ -784,7 +784,7 @@ msgstr "Visualizza Link di Pagina"
 msgid "Display Next and Back navigation links."
 msgstr "Visualizza i link di navigazione Avanti ed Indietro."
 
-#: views/admin/gce-feed-meta-display.php:247 views/widgets.php:348
+#: views/admin/gce-feed-meta-display.php:247 views/widgets.php:327
 msgid "Show Tooltips"
 msgstr "Visualizza Tooltips"
 
@@ -855,7 +855,7 @@ msgstr ""
 "Visualizza una lista o una griglia di eventi da uno o più feed di Google "
 "Calendar che sono stati aggiunti"
 
-#: views/widgets.php:167
+#: views/widgets.php:146
 msgid ""
 "No valid Feed IDs have been entered for this widget. Please check that you "
 "have entered the IDs correctly in the widget settings (Appearance > "
@@ -865,7 +865,7 @@ msgstr ""
 "aver inserito correttamente gli ID nelle impostazioni del widget (Aspetto > "
 "Widgets), e che i Feed non siano stati cancellati."
 
-#: views/widgets.php:207
+#: views/widgets.php:186
 msgid ""
 "There was a problem with one or more of your feed IDs. Please check your "
 "widget settings and make sure they are correct."
@@ -873,52 +873,52 @@ msgstr ""
 "C'è stato un problema con uno o più ID dei feed. Verificare le impostazioni "
 "del widget e assicurarsi che siano corrette."
 
-#: views/widgets.php:213
+#: views/widgets.php:192
 msgid "You have not added any feeds yet."
 msgstr "Non è stato aggiunto ancora alcun feed."
 
-#: views/widgets.php:256
+#: views/widgets.php:235
 msgid "There are no feeds created yet."
 msgstr "Non è ancora stato creato alcun feed."
 
-#: views/widgets.php:257
+#: views/widgets.php:236
 msgid "Add your first feed!"
 msgstr "Aggiungere il primo feed!"
 
-#: views/widgets.php:267
+#: views/widgets.php:246
 msgid "Events on"
 msgstr "Eventi"
 
-#: views/widgets.php:281
+#: views/widgets.php:260
 msgid "Title:"
 msgstr "Titolo:"
 
-#: views/widgets.php:286
+#: views/widgets.php:265
 msgid "Feeds to Display (comma separated list - i.e. 101,102,103):"
 msgstr ""
 "Feed da Visualizzare (come lista separata da virgole, esempio 101,102,103)"
 
-#: views/widgets.php:292
+#: views/widgets.php:271
 msgid "Display Events as:"
 msgstr "Visualizza Eventi come:"
 
-#: views/widgets.php:303
+#: views/widgets.php:282
 msgid "Sort Order (List View only):"
 msgstr "Ordinamento (solo nella visualizzazione a lista):"
 
-#: views/widgets.php:305
+#: views/widgets.php:284
 msgid "Ascending"
 msgstr "Ascendente"
 
-#: views/widgets.php:306
+#: views/widgets.php:285
 msgid "Descending"
 msgstr "Discendente"
 
-#: views/widgets.php:311
+#: views/widgets.php:290
 msgid "Events per Page (List View only):"
 msgstr "Eventi per Pagina (solamente Visualizzazione Lista):"
 
-#: views/widgets.php:324
+#: views/widgets.php:303
 msgid ""
 "This setting will pull from the custom date range set in the main feed "
 "settings and cannot be changed here."
@@ -926,11 +926,11 @@ msgstr ""
 "Questa impostazione è recuperata dal range di date personalizzato nelle "
 "impostazioni principali del feed e non può essere modificata qui."
 
-#: views/widgets.php:328
+#: views/widgets.php:307
 msgid "Display Start Date Offset (List View only):"
 msgstr "Offset della Data di Inizio (solo nella visualizzazione a lista):"
 
-#: views/widgets.php:339
+#: views/widgets.php:318
 msgid ""
 "Display Title on Tooltip/List Item (e.g. 'Events on 7th March'). Grouped "
 "lists always have a title displayed."
@@ -956,7 +956,7 @@ msgstr ""
 msgid "http://moonstonemediagroup.com"
 msgstr ""
 
-#: includes/class-gce-event.php:562
+#: includes/class-gce-event.php:588
 #, fuzzy
 msgctxt "human_time_diff"
 msgid ", "

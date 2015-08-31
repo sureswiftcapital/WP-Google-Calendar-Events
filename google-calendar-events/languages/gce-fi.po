@@ -1,7 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Google Calendar Events\n"
-"POT-Creation-Date: 2014-10-28 10:39-0700\n"
+"Report-Msgid-Bugs-To: https://github.com/pderksen/WP-Google-Calendar-Events/"
+"issues\n"
+"POT-Creation-Date: 2015-08-31 09:04:08+00:00\n"
 "PO-Revision-Date: 2015-08-29 02:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ville Myllymäki <ville.myllymaki@iki.fi>\n"
@@ -15,318 +17,408 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: google-calendar-events\n"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:64
-#: google-calendar-events/class-google-calendar-events-admin.php:65
-#: google-calendar-events/includes/register-settings.php:44
+#: class-google-calendar-events-admin.php:138
+#: class-google-calendar-events-admin.php:139
+#: class-google-calendar-events-admin.php:235
+#: includes/register-settings.php:68
 #, fuzzy
 msgid "General Settings"
 msgstr "Yleiset asetukset"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:122
-#: google-calendar-events/views/widgets.php:27
+#. Plugin Name of the plugin/theme
 msgid "Google Calendar Events"
 msgstr "Google Calendar Events"
 
-#: google-calendar-events/class-google-calendar-events-admin.php:134
+#: class-google-calendar-events-admin.php:236
 msgid "Feeds"
 msgstr "Syötteet"
 
-#: google-calendar-events/class-google-calendar-events.php:142
+#: class-google-calendar-events-admin.php:254
+#: class-google-calendar-events-admin.php:289
+msgid "Add Calendar"
+msgstr ""
+
+#: class-google-calendar-events-admin.php:290
+msgid "Add a calendar feed to your post."
+msgstr ""
+
+#: class-google-calendar-events-admin.php:300
+msgid "Insert Calendar"
+msgstr ""
+
+#: class-google-calendar-events-admin.php:302
+msgid "Could not find any calendars to add to this post."
+msgstr ""
+
+#: class-google-calendar-events-admin.php:303
+msgid "Please add a new calendar feed first."
+msgstr ""
+
+#: class-google-calendar-events.php:162
 msgid "Loading..."
 msgstr "Lataa..."
 
-#: google-calendar-events/includes/admin/admin-functions.php:20
+#: google-calendar-events.php:34
+msgid ""
+"Google Events Calendar requires PHP %1$s and WordPress %2$s to function "
+"properly. PHP version found: %3$s. WordPress installed version: %4$s. Please "
+"upgrade to meet the minimum requirements."
+msgstr ""
+
+#: includes/admin/admin-functions.php:20
 msgid "Cache has been cleared for this feed."
 msgstr "Tämän syötteen välimuisti on tyhjätty."
 
-#: google-calendar-events/includes/admin/admin-functions.php:35
-#: google-calendar-events/includes/admin/admin-functions.php:57
+#: includes/admin/admin-functions.php:35 includes/admin/admin-functions.php:56
 msgid "Starts:"
 msgstr "Alkaa:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:36
-#: google-calendar-events/includes/admin/admin-functions.php:59
+#: includes/admin/admin-functions.php:36 includes/admin/admin-functions.php:58
 msgid "Ends:"
 msgstr "Loppuu:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:37
-#: google-calendar-events/includes/admin/admin-functions.php:61
+#: includes/admin/admin-functions.php:37 includes/admin/admin-functions.php:60
 msgid "Location:"
 msgstr "Sijainti:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:38
-#: google-calendar-events/includes/admin/admin-functions.php:62
+#: includes/admin/admin-functions.php:38 includes/admin/admin-functions.php:61
 msgid "Description:"
 msgstr "Kuvaus:"
 
-#: google-calendar-events/includes/admin/admin-functions.php:39
+#: includes/admin/admin-functions.php:39
 msgid "More details..."
 msgstr "Lisätietoja..."
 
-#: google-calendar-events/includes/admin/admin-functions.php:64
+#: includes/admin/admin-functions.php:63
 msgid "More Details"
 msgstr "Lisätietoja"
 
-#: google-calendar-events/includes/admin/admin-functions.php:78
-#: google-calendar-events/includes/gce-feed-cpt.php:256
+#: includes/admin/admin-functions.php:77 includes/gce-feed-cpt.php:328
+#: includes/gce-feed-cpt.php:381
 msgid "Clear Cache"
 msgstr "Tyhjää välimuisti"
 
-#: google-calendar-events/includes/class-gce-display.php:179
-#: google-calendar-events/includes/class-gce-display.php:270
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:185
-#: google-calendar-events/views/widgets.php:252
+#: includes/admin/admin-notice.php:26
+msgid "GCal API Key Notice"
+msgstr ""
+
+#: includes/admin/admin-notice.php:28
+msgid ""
+"GCal Events uses the Google Calendar API version 3. By default this plugin "
+"uses a public shared key across all plugin users."
+msgstr ""
+
+#: includes/admin/admin-notice.php:30
+msgid ""
+"This key is limited to 500,000 requests per day and 5 requests per second. "
+"To avoid running into any potential limits you can use your own Google API "
+"key."
+msgstr ""
+
+#: includes/admin/admin-notice.php:33
+msgid "Enter your GCal API key"
+msgstr ""
+
+#: includes/admin/admin-notice.php:34
+#, fuzzy
+msgid "Configure GCal feeds"
+msgstr "Miten löydät GCalin feedin osoitteen"
+
+#: includes/admin/admin-notice.php:35
+msgid "Hide this"
+msgstr ""
+
+#: includes/class-gce-display.php:193 includes/class-gce-display.php:303
 msgid "Back"
 msgstr "Takaisin"
 
-#: google-calendar-events/includes/class-gce-display.php:183
-#: google-calendar-events/includes/class-gce-display.php:271
+#: includes/class-gce-display.php:197 includes/class-gce-display.php:304
+#: includes/class-gce-display.php:310 includes/php-calendar.php:61
+#: includes/php-calendar.php:63
 msgid "Next"
 msgstr "Seuraava"
 
-#: google-calendar-events/includes/class-gce-display.php:366
+#: includes/class-gce-display.php:309 includes/php-calendar.php:55
+#: includes/php-calendar.php:57
+msgid "Previous"
+msgstr ""
+
+#: includes/class-gce-display.php:406
 msgid "No events to display."
 msgstr "Ei näytettäviä tapahtumia."
 
-#: google-calendar-events/includes/class-gce-event.php:504
-#, php-format
+#: includes/class-gce-event.php:555
 msgid "%s year"
 msgstr "%s vuosi"
 
-#: google-calendar-events/includes/class-gce-event.php:504
-#, php-format
+#: includes/class-gce-event.php:555
 msgid "%s years"
 msgstr "%s vuotta"
 
-#: google-calendar-events/includes/class-gce-event.php:505
-#, php-format
+#: includes/class-gce-event.php:556
 msgid "%s month"
 msgstr "%s kuukausi"
 
-#: google-calendar-events/includes/class-gce-event.php:505
-#, php-format
+#: includes/class-gce-event.php:556
 msgid "%s months"
 msgstr "%s kuukautta"
 
-#: google-calendar-events/includes/class-gce-event.php:506
-#, php-format
+#: includes/class-gce-event.php:557
 msgid "%s week"
 msgstr "%s viikko"
 
-#: google-calendar-events/includes/class-gce-event.php:506
-#, php-format
+#: includes/class-gce-event.php:557
 msgid "%s weeks"
 msgstr "%s viikkoa"
 
-#: google-calendar-events/includes/class-gce-event.php:507
-#, php-format
+#: includes/class-gce-event.php:558
 msgid "%s day"
 msgstr "%s päivä"
 
-#: google-calendar-events/includes/class-gce-event.php:507
-#, php-format
+#: includes/class-gce-event.php:558
 msgid "%s days"
 msgstr "%s päivää"
 
-#: google-calendar-events/includes/class-gce-event.php:508
-#, php-format
+#: includes/class-gce-event.php:559
 msgid "%s hour"
 msgstr "%s tunti"
 
-#: google-calendar-events/includes/class-gce-event.php:508
-#, php-format
+#: includes/class-gce-event.php:559
 msgid "%s hours"
 msgstr "%s tuntia"
 
-#: google-calendar-events/includes/class-gce-event.php:509
-#, php-format
+#: includes/class-gce-event.php:560
 msgid "%s min"
 msgstr "%s minuutti"
 
-#: google-calendar-events/includes/class-gce-event.php:509
-#, php-format
+#: includes/class-gce-event.php:560
 msgid "%s mins"
 msgstr "%s minuuttia"
 
-#: google-calendar-events/includes/class-gce-feed.php:81
+#: includes/class-gce-feed.php:94
+#, fuzzy
 msgid ""
-"The feed URL has not been set. Please make sure to set it correctly in the "
-"Feed settings."
+"The Google Calendar ID has not been set. Please make sure to set it "
+"correctly in the Feed settings."
 msgstr ""
 "Syötteen URL-osoite ei ole asetettuna. Tarkista, että olet asettanut sen "
 "syötteen asetuksista."
 
-#: google-calendar-events/includes/class-gce-feed.php:177
+#: includes/class-gce-feed.php:226
+#, fuzzy
 msgid ""
 "Some data was retrieved, but could not be parsed successfully. Please ensure "
-"your feed URL is correct."
+"your feed settings are correct."
 msgstr ""
 "Osa tiedoista saatiin ladattua, mutta niitä ei voitu validoida kunnolla. "
 "Tarkista, että syötteen osoite on oikein."
 
-#: google-calendar-events/includes/class-gce-feed.php:183
-msgid ""
-"The feed could not be found (404). Please ensure your feed URL is correct."
+#: includes/class-gce-feed.php:229
+msgid "An error has occured."
 msgstr ""
-"Syötettä ei saatu ladattua (virhe 404). Tarkista, että syötteen osoite on "
-"oikein."
 
-#: google-calendar-events/includes/class-gce-feed.php:186
-msgid ""
-"Access to this feed was denied (403). Please ensure you have public sharing "
-"enabled for your calendar."
-msgstr ""
-"Pääsy tähän syötteeseen evätty (virhe 403). Tarkista, että olet asettanut "
-"kalenterin julkiseksi Google kalenterin asetuksista."
-
-#: google-calendar-events/includes/class-gce-feed.php:189
-#, php-format
-msgid ""
-"The feed data could not be retrieved. Error code: %s. Please ensure your "
-"feed URL is correct."
-msgstr ""
-"Syötettä ei voitu hakea. Virhekoodi: %s. Tarkista, että syötteen URL-osoite "
-"on oikein."
-
-#: google-calendar-events/includes/class-gce-feed.php:194
-msgid " Please ensure your feed URL is correct."
+#: includes/class-gce-feed.php:234
+#, fuzzy
+msgid " Please ensure your calendar ID is correct."
 msgstr "Tarkista, että syötteen URL-osoite on oikein."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:21
+#: includes/gce-feed-cpt.php:21
 msgid "Google Calendar Feeds"
 msgstr "Google Kalenterin Syötteet"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:22
-#: google-calendar-events/includes/gce-feed-cpt.php:24
-#: google-calendar-events/includes/gce-feed-cpt.php:72
+#: includes/gce-feed-cpt.php:22 includes/gce-feed-cpt.php:24
+#: includes/gce-feed-cpt.php:72
 msgid "Feed"
 msgstr "Syöte"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:23
+#: includes/gce-feed-cpt.php:23
 msgid "GCal Events"
 msgstr "GCal tapahtumat"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:25
+#: includes/gce-feed-cpt.php:25
 msgid "Add New"
 msgstr "Lisää uusi"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:26
+#: includes/gce-feed-cpt.php:26
 msgid "Add New Feed"
 msgstr "Lisää uusi syöte"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:27
+#: includes/gce-feed-cpt.php:27
 msgid "New Feed"
 msgstr "Uusi syöte"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:28
+#: includes/gce-feed-cpt.php:28
 msgid "Edit Feed"
 msgstr "Muokkaa syötettä"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:29
+#: includes/gce-feed-cpt.php:29
 msgid "View Feed"
 msgstr "Näytä syöte"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:30
+#: includes/gce-feed-cpt.php:30
 msgid "All GCal Feeds"
 msgstr "Kaikki GCAL syötteet"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:31
+#: includes/gce-feed-cpt.php:31
 msgid "Search GCal Feeds"
 msgstr "Etsi GCAL syötteitä"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:32
+#: includes/gce-feed-cpt.php:32
 msgid "No feeds found."
 msgstr "Syötteitä ei löytynyt."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:33
+#: includes/gce-feed-cpt.php:33
 msgid "No feeds found in Trash."
 msgstr "Syötteitä ei löytynyt roskakorista."
 
-#: google-calendar-events/includes/gce-feed-cpt.php:70
+#: includes/gce-feed-cpt.php:70
 msgid "feed"
 msgstr "syöte"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:75
-#: google-calendar-events/includes/gce-feed-cpt.php:76
-#, php-format
+#: includes/gce-feed-cpt.php:75 includes/gce-feed-cpt.php:76
 msgid "%4$s updated. %1$sView %2$s%3$s"
 msgstr "%4$s päivitetty. %1$sNäytä %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:77
-#, php-format
+#: includes/gce-feed-cpt.php:77
 msgid "%4$s published. %1$sView %2$s%3$s"
 msgstr "%4$s julkaistu. %1$sNäytä %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:78
-#, php-format
+#: includes/gce-feed-cpt.php:78
 msgid "%4$s saved. %1$sView %2$s%3$s"
 msgstr "%4$s tallennettu. %1$sNäytä %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:79
-#, php-format
+#: includes/gce-feed-cpt.php:79
 msgid "%4$s submitted. %1$sView %2$s%3$s"
 msgstr "%4$s lähetetty. %1$sNäytä %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:80
-#, php-format
+#: includes/gce-feed-cpt.php:80
 msgid "%4$s draft updated. %1$sView %2$s%3$s"
 msgstr "%4$s vedos tallennettu. %1$sNäytä %2$s%3$s"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:97
-msgid "Helpful Links"
-msgstr "Hyödyllisiä linkkejä"
+#: includes/gce-feed-cpt.php:95
+#, fuzzy
+msgid "Feed Settings"
+msgstr "Tallenna asetukset"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:209
+#: includes/gce-feed-cpt.php:97
+msgid "Resources"
+msgstr ""
+
+#: includes/gce-feed-cpt.php:98
+#, fuzzy
+msgid "Display Options"
+msgstr "Näyttötapa"
+
+#: includes/gce-feed-cpt.php:269
 msgid "Feed ID"
 msgstr "Syöte ID"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:210
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:73
+#: includes/gce-feed-cpt.php:270 views/admin/gce-feed-meta-display.php:79
 msgid "Feed Shortcode"
 msgstr "Syötteen lyhytkoodi"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:211
+#: includes/gce-feed-cpt.php:271
 msgid "Display Type"
 msgstr "Näyttötapa"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:238
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:152
-#: google-calendar-events/views/widgets.php:218
+#: includes/gce-feed-cpt.php:306
 msgid "Grid"
 msgstr "Ruudukko"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:240
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:153
-#: google-calendar-events/views/widgets.php:219
+#: includes/gce-feed-cpt.php:308 views/admin/gce-feed-meta-display.php:155
+#: views/widgets.php:274
 msgid "List"
 msgstr "Lista"
 
-#: google-calendar-events/includes/gce-feed-cpt.php:242
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:154
-#: google-calendar-events/views/widgets.php:220
+#: includes/gce-feed-cpt.php:310 views/admin/gce-feed-meta-display.php:156
+#: views/widgets.php:275
 msgid "Grouped List"
 msgstr "Ryhmitelty lista"
 
-#: google-calendar-events/includes/register-settings.php:29
+#: includes/gce-feed-cpt.php:312
+msgid "Custom Date Range"
+msgstr ""
+
+#: includes/gce-feed-cpt.php:469
+msgid "Feed cache cleared."
+msgid_plural "Cleared cache for %s feeds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/register-settings.php:29
+msgid "Google API Key"
+msgstr ""
+
+#: includes/register-settings.php:30
+msgid ""
+"If left blank all displayed Google calendars will use a public Google API "
+"key shared across all plugin users."
+msgstr ""
+
+#: includes/register-settings.php:31
+msgid ""
+"Currently the shared key is limited to 500,000 requests per day and 5 "
+"requests per second."
+msgstr ""
+
+#: includes/register-settings.php:32
+msgid ""
+"To avoid these limits <a href=\"%s\" target=\"_blank\">click here for "
+"instructions on how to generate and use your own Google API key.</a>"
+msgstr ""
+
+#: includes/register-settings.php:39
+msgid "Always Enqueue Scripts & Styles"
+msgstr ""
+
+#: includes/register-settings.php:40
+msgid "Enqueue this plugin's scripts and styles on every post and page."
+msgstr ""
+
+#: includes/register-settings.php:41
+msgid "Useful if using shortcodes in widgets or other non-standard locations."
+msgstr ""
+
+#: includes/register-settings.php:46
+msgid "Disable Plugin CSS"
+msgstr ""
+
+#: includes/register-settings.php:47
+msgid ""
+"If this option is checked, this plugin's CSS file will not be referenced."
+msgstr ""
+
+#: includes/register-settings.php:52
 msgid "Save Settings"
 msgstr "Tallenna asetukset"
 
-#: google-calendar-events/includes/register-settings.php:30
-msgid ""
-"Save your settings when uninstalling this plugin. Useful when upgrading or "
-"re-installing."
+#: includes/register-settings.php:53
+#, fuzzy
+msgid "Save your settings when uninstalling this plugin."
 msgstr ""
 "Tallenna asetukset kun lisäosa poistetaan. Näppärää kun lisäosa päivitetään "
 "tai asennetaan uudestaan."
 
-#: google-calendar-events/includes/register-settings.php:132
-#, php-format
+#: includes/register-settings.php:54
+#, fuzzy
+msgid "Useful when upgrading or re-installing."
+msgstr ""
+"Tallenna asetukset kun lisäosa poistetaan. Näppärää kun lisäosa päivitetään "
+"tai asennetaan uudestaan."
+
+#: includes/register-settings.php:182
 msgid ""
 "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
 "<strong>%s</strong>-asetukselle käytettyä takaisinkutsufunktiota ei löydy."
 
-#: google-calendar-events/views/admin/display-options-meta.php:39
+#: includes/shortcodes.php:97
+msgid ""
+"There was a problem with one or more of your feed IDs. Please check your "
+"shortcode settings and make sure they are correct."
+msgstr ""
+
+#: views/admin/display-options-meta.php:39
 msgid ""
 "Check this box to use the simple display options below instead of the Event "
 "Builder code on the left."
@@ -334,72 +426,72 @@ msgstr ""
 "Valitse tämä laatikko käyttääksesi yksinkertaista näyttövalintaa alla. "
 "Muuten käytetään Event Builder-koodia vasemmalla."
 
-#: google-calendar-events/views/admin/display-options-meta.php:44
+#: views/admin/display-options-meta.php:44
 msgid "Start date / time display"
 msgstr "Aloitusaika / ajan näyttö"
 
-#: google-calendar-events/views/admin/display-options-meta.php:45
+#: views/admin/display-options-meta.php:45
 msgid "Select how to display the start date / time."
 msgstr "Valitse, kuinka aloituspäivä/aika näytetään."
 
-#: google-calendar-events/views/admin/display-options-meta.php:47
-#: google-calendar-events/views/admin/display-options-meta.php:61
+#: views/admin/display-options-meta.php:47
+#: views/admin/display-options-meta.php:61
 msgid "None"
 msgstr "Ei mitään"
 
-#: google-calendar-events/views/admin/display-options-meta.php:48
+#: views/admin/display-options-meta.php:48
 msgid "Start time"
 msgstr "Aloitusaika"
 
-#: google-calendar-events/views/admin/display-options-meta.php:49
+#: views/admin/display-options-meta.php:49
 msgid "Start date"
 msgstr "Aloituspäivä"
 
-#: google-calendar-events/views/admin/display-options-meta.php:50
+#: views/admin/display-options-meta.php:50
 msgid "Start time and date"
 msgstr "Aloitus aika ja päivä"
 
-#: google-calendar-events/views/admin/display-options-meta.php:51
+#: views/admin/display-options-meta.php:51
 msgid "Start date and time"
 msgstr "Aloitus päivä ja aika"
 
-#: google-calendar-events/views/admin/display-options-meta.php:53
+#: views/admin/display-options-meta.php:53
 msgid "Text to display before the start time."
 msgstr "Ennen aloitusaikaa näytettävä teksti"
 
-#: google-calendar-events/views/admin/display-options-meta.php:58
+#: views/admin/display-options-meta.php:58
 msgid "End time/date display"
 msgstr "Loppumisajan/päivän näyttö"
 
-#: google-calendar-events/views/admin/display-options-meta.php:59
+#: views/admin/display-options-meta.php:59
 msgid "Select how to display the end date / time."
 msgstr "Valitse, miten loppumispäivä/aika näytetään."
 
-#: google-calendar-events/views/admin/display-options-meta.php:62
+#: views/admin/display-options-meta.php:62
 msgid "End time"
 msgstr "Loppumisaika"
 
-#: google-calendar-events/views/admin/display-options-meta.php:63
+#: views/admin/display-options-meta.php:63
 msgid "End date"
 msgstr "Loppumisaika"
 
-#: google-calendar-events/views/admin/display-options-meta.php:64
+#: views/admin/display-options-meta.php:64
 msgid "End time and date"
 msgstr "Loppumisaika ja -päivä"
 
-#: google-calendar-events/views/admin/display-options-meta.php:65
+#: views/admin/display-options-meta.php:65
 msgid "End date and time"
 msgstr "Loppumispäivä ja -aika"
 
-#: google-calendar-events/views/admin/display-options-meta.php:67
+#: views/admin/display-options-meta.php:67
 msgid "Text to display before the end time."
 msgstr "Ennen päättymisaikaa näytettävä teksti."
 
-#: google-calendar-events/views/admin/display-options-meta.php:72
+#: views/admin/display-options-meta.php:72
 msgid "Separator"
 msgstr "Erottaja"
 
-#: google-calendar-events/views/admin/display-options-meta.php:74
+#: views/admin/display-options-meta.php:74
 msgid ""
 "If you have chosen to display both the time and date above, enter the text / "
 "characters to display between the time and date here (including any spaces)."
@@ -407,23 +499,23 @@ msgstr ""
 "Jos olet valinnut sekä ajan että päivän näytettäväksi, kirjoita niiden "
 "välillä näytettävät kirjaimet/merkit, sisältäen välilyönnit."
 
-#: google-calendar-events/views/admin/display-options-meta.php:80
+#: views/admin/display-options-meta.php:80
 msgid "Location"
 msgstr "Sijainti"
 
-#: google-calendar-events/views/admin/display-options-meta.php:82
+#: views/admin/display-options-meta.php:82
 msgid "Show the location of events?"
 msgstr "Näytä tapahtuman sijainti?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:83
+#: views/admin/display-options-meta.php:83
 msgid "Text to display before the location."
 msgstr "Ennen sijaintia näytettävä teksti."
 
-#: google-calendar-events/views/admin/display-options-meta.php:88
+#: views/admin/display-options-meta.php:88
 msgid "Description"
 msgstr "Kuvaus"
 
-#: google-calendar-events/views/admin/display-options-meta.php:91
+#: views/admin/display-options-meta.php:91
 msgid ""
 "Show the description of events? (URLs in the description will be made into "
 "links)."
@@ -431,128 +523,289 @@ msgstr ""
 "Näytetäänkö kuvausten tapahtuma? (URL-osoitteet kuvauksessa tehdään "
 "linkeiksi)."
 
-#: google-calendar-events/views/admin/display-options-meta.php:93
+#: views/admin/display-options-meta.php:93
 msgid "Text to display before the description."
 msgstr "Ennen kuvausta näytettävä teksti."
 
-#: google-calendar-events/views/admin/display-options-meta.php:95
+#: views/admin/display-options-meta.php:95
 msgid ""
 "Maximum number of words to show from description. Leave blank for no limit."
 msgstr ""
 "Suurin sanamäärä näytettäväksi kuvauksesta. Jätä tyhjäksi, jos et halua "
 "rajoittaa."
 
-#: google-calendar-events/views/admin/display-options-meta.php:100
+#: views/admin/display-options-meta.php:100
 msgid "Event Link"
 msgstr "Tapahtuman linkki"
 
-#: google-calendar-events/views/admin/display-options-meta.php:103
+#: views/admin/display-options-meta.php:103
 msgid "Show a link to the Google Calendar page for an event?"
 msgstr "Näytä linkki tapahtuman Google kalenteri-sivulle?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:107
+#: views/admin/display-options-meta.php:107
 msgid "Links open in a new window / tab?"
 msgstr "Linkit aukeavat uuteen ikkunaan/välilehteen?"
 
-#: google-calendar-events/views/admin/display-options-meta.php:109
+#: views/admin/display-options-meta.php:109
 msgid "The link text to be displayed."
 msgstr "Näytettävä linkkiteksti."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:54
-msgid ""
-"We're <strong>smack dab</strong> in the middle of building additional "
-"features for this plugin. Have ideas?"
-msgstr ""
-"Meillä on tiukka uusien ominaisuuksien rakennus kesken. Onko sinulla ideoita?"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:57
-msgid "Visit our roadmap and tell us what you're looking for"
-msgstr "Katsele aikajanaa ja kerro mitä haluaisit tietää"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:63
+#: views/admin/gce-feed-meta-display.php:69
 msgid "Want to be in the know?"
 msgstr "Haluatko pysyä ajan tasalla?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:66
+#: views/admin/gce-feed-meta-display.php:72
 msgid "Get notified when new features are released"
 msgstr "Pyydä muistutus, kun uusia ominaisuuksia julkaistaan"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:77
+#: views/admin/gce-feed-meta-display.php:90
 msgid ""
 "Copy and paste this shortcode to display this Google Calendar feed on any "
 "post or page."
 msgstr "Kopioi ja liitä tämä lyhytkoodi artikkeliin tai sivulle näyttääksesi "
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:78
+#: views/admin/gce-feed-meta-display.php:91
 msgid ""
 "To avoid display issues, make sure to paste the shortcode in the Text tab of "
 "the post editor."
 msgstr "Välttääksesi ongelmia, liitä lyhytkoodi editorin tekstitilassa."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:83
-msgid "GCal Feed URL"
-msgstr "GCal Feedin osoite"
+#: views/admin/gce-feed-meta-display.php:96
+#, fuzzy
+msgid "Google Calendar ID"
+msgstr "Google Kalenterin Syötteet"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:87
-msgid "The Google Calendar feed URL."
+#: views/admin/gce-feed-meta-display.php:100
+#, fuzzy
+msgid "The Google Calendar ID."
 msgstr "Google kalenterin feedin osoite."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:87
+#: views/admin/gce-feed-meta-display.php:100
 msgid "Example"
 msgstr "Esimerkki"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:89
-msgid "How to find your GCal feed URL"
+#: views/admin/gce-feed-meta-display.php:102
+#, fuzzy
+msgid "How to find your Google Calendar ID"
 msgstr "Miten löydät GCalin feedin osoitteen"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:95
+#: views/admin/gce-feed-meta-display.php:115
+msgid "Timezone"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:122
+msgid "It is recommended to use the calendar default timezone."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:127
 msgid "Search Query"
 msgstr "Hakusana"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:98
+#: views/admin/gce-feed-meta-display.php:130
 msgid "Find and show events based on a search query."
 msgstr "Etsi ja näytä tapahtumat hakusanan perusteella."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:103
+#: views/admin/gce-feed-meta-display.php:135
 msgid "Expand Recurring Events?"
 msgstr "Laajenna toistuvat tapahtumat?"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:105
+#: views/admin/gce-feed-meta-display.php:137
 msgid "Yes"
 msgstr "Kyllä"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:106
+#: views/admin/gce-feed-meta-display.php:138
+#, fuzzy
 msgid ""
-"This will show recurring events each time they occur, otherwise it will only "
-"show the event the first time it occurs."
+"Display recurring events each time they occur. If disabled, events will be "
+"displayed only the first time they occur."
 msgstr ""
 "Näytetään toistuvat tapahtumat joka kerta. Muuten näytetään vain "
 "ensimmäisellä kerralla."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:111
+#: views/admin/gce-feed-meta-display.php:143
+msgid "Multiple Day Events"
+msgstr "Monipäiväiset tapahtumat"
+
+#: views/admin/gce-feed-meta-display.php:145
+msgid "Show on each day"
+msgstr "Näytä jokaisena päivänä"
+
+#: views/admin/gce-feed-meta-display.php:146
+msgid ""
+"Display multiple day events on each day that they span. If disabled, "
+"multiple day events will be displayed only on the first day they occur."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:151
+msgid "Display Mode"
+msgstr "Näyttötila"
+
+#: views/admin/gce-feed-meta-display.php:154 views/widgets.php:273
+msgid "Grid (Month view)"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:157 views/widgets.php:276
+msgid "Custom Date Range (List)"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:158 views/widgets.php:277
+msgid "Custom Date Range (Grid)"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:160
+#, fuzzy
+msgid "Select how to display this feed."
+msgstr "Valitse, kuinka aloituspäivä/aika näytetään."
+
+#: views/admin/gce-feed-meta-display.php:165
+#, fuzzy
+msgid "Events per Page"
+msgstr "Tapahtumien määrä per sivu"
+
+#: views/admin/gce-feed-meta-display.php:168 views/widgets.php:292
+msgid "Number of Days"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:169 views/widgets.php:293
+#, fuzzy
+msgid "Number of Events"
+msgstr "Tapahtumien määrä per sivu"
+
+#: views/admin/gce-feed-meta-display.php:170 views/widgets.php:294
+msgid "One Week"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:171 views/widgets.php:295
+#, fuzzy
+msgid "One Month"
+msgstr "Kuukaudet"
+
+#: views/admin/gce-feed-meta-display.php:176
+msgid "How many events to display per page (List View only)."
+msgstr "Miten monta tapahtumaa sivua kohti (listanäkymä vain)."
+
+#: views/admin/gce-feed-meta-display.php:181
+msgid "Display Start Date Offset"
+msgstr "Miten monta päivää tapahtumien näyttämistä siirretään "
+
+#: views/admin/gce-feed-meta-display.php:184
+#: views/admin/gce-feed-meta-display.php:196 views/widgets.php:309
+msgid "Number of Days Back"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:185
+#: views/admin/gce-feed-meta-display.php:215 views/widgets.php:310
+msgid "Number of Days Forward"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:188 views/widgets.php:314
+#, fuzzy
+msgid ""
+"Change to initially display events on a date other than today (List View "
+"only)."
+msgstr "Muuta jos haluat näyttää muun kuin kuluvan päivän (Vain listanäkymä)"
+
+#: views/admin/gce-feed-meta-display.php:193
+#, fuzzy
+msgid "Earliest Feed Event Date"
+msgstr "Kaukaisimman feedin loppumisaika"
+
+#: views/admin/gce-feed-meta-display.php:197
+#, fuzzy
+msgid "Number of Months Back"
+msgstr "Tapahtumien määrä per sivu"
+
+#: views/admin/gce-feed-meta-display.php:198
+#, fuzzy
+msgid "Number of Years Back"
+msgstr "Tapahtumien määrä per sivu"
+
+#: views/admin/gce-feed-meta-display.php:204
+#, fuzzy
+msgid "Set how far back to retrieve events regardless of initial display."
+msgstr ""
+"Miten kauas menneisyyteen haetaan huolimatta siitä, mikä kuukausi tai sivu "
+"näytetään."
+
+#: views/admin/gce-feed-meta-display.php:206
+msgid ""
+"<strong>Note:</strong> Total events are currently limited to 2,500 by the "
+"Google Calendar API."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:212
+#, fuzzy
+msgid "Latest Feed Event Date"
+msgstr "Kaukaisimman feedin loppumisaika"
+
+#: views/admin/gce-feed-meta-display.php:216
+#, fuzzy
+msgid "Number of Months Forward"
+msgstr "Tapahtumien määrä per sivu"
+
+#: views/admin/gce-feed-meta-display.php:217
+#, fuzzy
+msgid "Number of Years Forward"
+msgstr "Tapahtumien määrä per sivu"
+
+#: views/admin/gce-feed-meta-display.php:222
+#, fuzzy
+msgid ""
+"Set how far in the future to retrieve events regardless of initial display."
+msgstr ""
+"Miten pitkälle tapahtumia haetaan riippumatta kuukaudesta tai näytettävästä "
+"sivusta."
+
+#: views/admin/gce-feed-meta-display.php:227
+msgid "Use Custom Date Range"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:233
+msgid ""
+"Set a specific range of events to retrieve. Leaving either field blank will "
+"set the date to the current day."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:239 views/widgets.php:324
+msgid "Show Paging Links"
+msgstr "Näytä navigaatiolinkit"
+
+#: views/admin/gce-feed-meta-display.php:242
+#, fuzzy
+msgid "Display Next and Back navigation links."
+msgstr "Valitse, jos haluat nähdä takaisin ja eteenpäin-navigointilinkit."
+
+#: views/admin/gce-feed-meta-display.php:247 views/widgets.php:327
+msgid "Show Tooltips"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:250
+msgid "Display tooltips when hovering over events (Grid View only)."
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:255
 msgid "Date Format"
 msgstr "Päivämäärän formaatti"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:115
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:126
-#, php-format
+#: views/admin/gce-feed-meta-display.php:259
+#: views/admin/gce-feed-meta-display.php:270
 msgid "Use %sPHP date formatting%s."
 msgstr "Käytä %sPHP date formatting%s."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:116
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:127
+#: views/admin/gce-feed-meta-display.php:260
+#: views/admin/gce-feed-meta-display.php:271
 msgid "Leave blank to use the default."
 msgstr "Tyhjänä käytetään oletuksia."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:122
+#: views/admin/gce-feed-meta-display.php:266
 msgid "Time Format"
 msgstr "Aikamuoto"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:133
+#: views/admin/gce-feed-meta-display.php:277
 msgid "Cache Duration"
 msgstr "Välimuistin pituus"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:136
+#: views/admin/gce-feed-meta-display.php:280
 msgid ""
 "The length of time, in seconds, to cache the feed (43200 = 12 hours). If "
 "this feed changes regularly, you may want to reduce the cache duration."
@@ -560,135 +813,29 @@ msgstr ""
 "Feedin välimuistin päivitysväli (43200 = 12 tuntia). Jos feedi päivittyy "
 "säännöllisesti, saatat haluta pienentää päivitysväliä."
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:141
-msgid "Multiple Day Events"
-msgstr "Monipäiväiset tapahtumat"
+#: views/admin/gce-feed-sidebar-help.php:6
+#, fuzzy
+msgid "Documentation"
+msgstr "Sijainti"
 
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:143
-msgid "Show on each day"
-msgstr "Näytä jokaisena päivänä"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:144
-msgid ""
-"Show events that span multiple days on each day that they span, rather than "
-"just the first day."
-msgstr ""
-"Näytä monen päivän tapahtumat jokaisena päivänä sen sijaan, että se "
-"näytettäisiin vain ensimmäisenä päivänä."
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:149
-msgid "Display Mode"
-msgstr "Näyttötila"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:156
-msgid "Choose how you want your calendar to be displayed."
-msgstr "Valitse, miten haluat kalenterisi näkyvän."
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:161
-msgid "Show Paging Links"
-msgstr "Näytä navigaatiolinkit"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:163
-#: google-calendar-events/views/widgets.php:227
-msgid "Check this option to display Next and Back navigation links."
-msgstr "Valitse, jos haluat nähdä takaisin ja eteenpäin-navigointilinkit."
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:168
-msgid "Number of Events per Page"
-msgstr "Tapahtumien määrä per sivu"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:172
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:183
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:197
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:211
-#: google-calendar-events/views/widgets.php:242
-#: google-calendar-events/views/widgets.php:250
-msgid "Days"
-msgstr "Päivät"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:173
-#: google-calendar-events/views/widgets.php:243
-msgid "Events"
-msgstr "Tapahtumat"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:175
-msgid "How many events to display per page (List View only)."
-msgstr "Miten monta tapahtumaa sivua kohti (listanäkymä vain)."
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:180
-msgid "Display Start Date Offset"
-msgstr "Miten monta päivää tapahtumien näyttämistä siirretään "
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:186
-#: google-calendar-events/views/widgets.php:253
-msgid "Ahead"
-msgstr "Eteenpäin"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:188
-msgid ""
-"Change if you need to initially display events on a date other than today "
-"(List View only)."
-msgstr "Muuta jos haluat näyttää muun kuin kuluvan päivän (Vain listanäkymä)"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:193
-msgid "Minimum Feed Start Date"
-msgstr "Pienin feedin lähtöpäivä"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:198
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:212
-msgid "Months"
-msgstr "Kuukaudet"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:199
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:213
-msgid "Years"
-msgstr "Vuodet"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:201
-msgid "back"
-msgstr "takaisin"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:202
-msgid ""
-"Set how far back to retrieve events regardless of month or page being "
-"displayed."
-msgstr ""
-"Miten kauas menneisyyteen haetaan huolimatta siitä, mikä kuukausi tai sivu "
-"näytetään."
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:207
-msgid "Maximum Feed End Date"
-msgstr "Kaukaisimman feedin loppumisaika"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:215
-msgid "forward"
-msgstr "eteenpäin"
-
-#: google-calendar-events/views/admin/gce-feed-meta-display.php:216
-msgid ""
-"Set how far in the future to retrieve events regardless of month or page "
-"being displayed."
-msgstr ""
-"Miten pitkälle tapahtumia haetaan riippumatta kuukaudesta tai näytettävästä "
-"sivusta."
-
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:6
-msgid "Documentation & getting started"
-msgstr "Dokumentaatio & aloitusopas"
-
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:12
+#: views/admin/gce-feed-sidebar-help.php:11
 msgid "Community support forums"
 msgstr "Community support forum"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:18
+#: views/admin/gce-feed-sidebar-help.php:16
 msgid "Get notified of new features"
 msgstr "Saa ilmoitukset uusista ominaisuuksista"
 
-#: google-calendar-events/views/admin/gce-feed-sidebar-help.php:24
-msgid "Rate this plugin"
-msgstr "Arvostele tämä liitännäinen"
+#: views/admin/gce-feed-sidebar-help.php:21
+msgid ""
+"Are you finding our GCal plugin helpful? 5-star ratings keep us motivated!"
+msgstr ""
 
-#: google-calendar-events/views/widgets.php:28
+#: views/admin/gce-feed-sidebar-help.php:25
+msgid "Rate our plugin on wordpress.org"
+msgstr ""
+
+#: views/widgets.php:28
 msgid ""
 "Display a list or calendar grid of events from one or more Google Calendar "
 "feeds you have added"
@@ -696,7 +843,7 @@ msgstr ""
 "Näytä lista tai ruudukko vähintään yhdestä Google kalenteri-feedistä jonka "
 "olet lisännyt"
 
-#: google-calendar-events/views/widgets.php:111
+#: views/widgets.php:146
 msgid ""
 "No valid Feed IDs have been entered for this widget. Please check that you "
 "have entered the IDs correctly in the widget settings (Appearance > "
@@ -706,55 +853,184 @@ msgstr ""
 "syöttänyt oikean ID:n vimpaimen asetuksiin (Ulkoasu >> Vimpaimet) ja että "
 "Feedejä ei ole poistettu."
 
-#: google-calendar-events/views/widgets.php:144
+#: views/widgets.php:186
+msgid ""
+"There was a problem with one or more of your feed IDs. Please check your "
+"widget settings and make sure they are correct."
+msgstr ""
+
+#: views/widgets.php:192
 msgid "You have not added any feeds yet."
 msgstr "Et ole lisännyt yhtään feediä."
 
-#: google-calendar-events/views/widgets.php:186
+#: views/widgets.php:235
 msgid "There are no feeds created yet."
 msgstr "Yhtään feediä ei ole luotu."
 
-#: google-calendar-events/views/widgets.php:187
+#: views/widgets.php:236
 msgid "Add your first feed!"
 msgstr "Lisää ensimmäinen feedi!"
 
-#: google-calendar-events/views/widgets.php:211
+#: views/widgets.php:246
+#, fuzzy
+msgid "Events on"
+msgstr "Tapahtumat"
+
+#: views/widgets.php:260
+msgid "Title:"
+msgstr ""
+
+#: views/widgets.php:265
 msgid "Feeds to Display (comma separated list - i.e. 101,102,103):"
 msgstr "Lisättävät feedit (pilkulla eroteltu lista, esim 101,102,103):"
 
-#: google-calendar-events/views/widgets.php:216
+#: views/widgets.php:271
 msgid "Display Events as:"
 msgstr "Näytä tapahtumat kuten:"
 
-#: google-calendar-events/views/widgets.php:225
-msgid "Show Paging Links:"
-msgstr "Näytä kelauslinkit:"
-
-#: google-calendar-events/views/widgets.php:231
+#: views/widgets.php:282
 msgid "Sort Order (List View only):"
 msgstr "Aseta järjestys (vain listanäkymä):"
 
-#: google-calendar-events/views/widgets.php:233
+#: views/widgets.php:284
 msgid "Ascending"
 msgstr "Nouseva"
 
-#: google-calendar-events/views/widgets.php:234
+#: views/widgets.php:285
 msgid "Descending"
 msgstr "Laskeva"
 
-#: google-calendar-events/views/widgets.php:239
-msgid "Number of Events per Page (List View only):"
+#: views/widgets.php:290
+#, fuzzy
+msgid "Events per Page (List View only):"
 msgstr "Tapahtumien määrä per sivu (vain listanäkymä):"
 
-#: google-calendar-events/views/widgets.php:248
+#: views/widgets.php:303
+msgid ""
+"This setting will pull from the custom date range set in the main feed "
+"settings and cannot be changed here."
+msgstr ""
+
+#: views/widgets.php:307
 msgid "Display Start Date Offset (List View only):"
 msgstr ""
 "Miten monta päivää tapahtumien näyttämistä siirretään (vain listanäkymä):"
 
-#: google-calendar-events/views/widgets.php:258
+#: views/widgets.php:318
 msgid ""
 "Display Title on Tooltip/List Item (e.g. 'Events on 7th March'). Grouped "
 "lists always have a title displayed."
 msgstr ""
 "Näytä tapahtuman otsikko vihjelaatikossa tai listalla (esim. \"tapahtumat 7. "
 "maaliskuuta). Yhdistetyt tapahtumat näytetään aina otsikon kanssa."
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/google-calendar-events/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Show off your Google calendar in grid (month) or list view, in a post, page "
+"or widget, and in a style that matches your site."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Moonstone Media"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://moonstonemediagroup.com"
+msgstr ""
+
+#: includes/class-gce-event.php:588
+msgctxt "human_time_diff"
+msgid ", "
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:118
+msgctxt "Use the calendar default setting"
+msgid "Calendar default"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:119
+msgctxt "Use this site default setting"
+msgid "Site default"
+msgstr ""
+
+#: views/admin/gce-feed-meta-display.php:231
+msgctxt "separator between custom date range fields"
+msgid "to"
+msgstr ""
+
+#~ msgid ""
+#~ "The feed could not be found (404). Please ensure your feed URL is correct."
+#~ msgstr ""
+#~ "Syötettä ei saatu ladattua (virhe 404). Tarkista, että syötteen osoite on "
+#~ "oikein."
+
+#~ msgid ""
+#~ "Access to this feed was denied (403). Please ensure you have public "
+#~ "sharing enabled for your calendar."
+#~ msgstr ""
+#~ "Pääsy tähän syötteeseen evätty (virhe 403). Tarkista, että olet asettanut "
+#~ "kalenterin julkiseksi Google kalenterin asetuksista."
+
+#~ msgid ""
+#~ "The feed data could not be retrieved. Error code: %s. Please ensure your "
+#~ "feed URL is correct."
+#~ msgstr ""
+#~ "Syötettä ei voitu hakea. Virhekoodi: %s. Tarkista, että syötteen URL-"
+#~ "osoite on oikein."
+
+#~ msgid "Helpful Links"
+#~ msgstr "Hyödyllisiä linkkejä"
+
+#~ msgid ""
+#~ "We're <strong>smack dab</strong> in the middle of building additional "
+#~ "features for this plugin. Have ideas?"
+#~ msgstr ""
+#~ "Meillä on tiukka uusien ominaisuuksien rakennus kesken. Onko sinulla "
+#~ "ideoita?"
+
+#~ msgid "Visit our roadmap and tell us what you're looking for"
+#~ msgstr "Katsele aikajanaa ja kerro mitä haluaisit tietää"
+
+#~ msgid "GCal Feed URL"
+#~ msgstr "GCal Feedin osoite"
+
+#~ msgid ""
+#~ "Show events that span multiple days on each day that they span, rather "
+#~ "than just the first day."
+#~ msgstr ""
+#~ "Näytä monen päivän tapahtumat jokaisena päivänä sen sijaan, että se "
+#~ "näytettäisiin vain ensimmäisenä päivänä."
+
+#~ msgid "Choose how you want your calendar to be displayed."
+#~ msgstr "Valitse, miten haluat kalenterisi näkyvän."
+
+#~ msgid "Days"
+#~ msgstr "Päivät"
+
+#~ msgid "Ahead"
+#~ msgstr "Eteenpäin"
+
+#~ msgid "Minimum Feed Start Date"
+#~ msgstr "Pienin feedin lähtöpäivä"
+
+#~ msgid "Years"
+#~ msgstr "Vuodet"
+
+#~ msgid "back"
+#~ msgstr "takaisin"
+
+#~ msgid "forward"
+#~ msgstr "eteenpäin"
+
+#~ msgid "Documentation & getting started"
+#~ msgstr "Dokumentaatio & aloitusopas"
+
+#~ msgid "Rate this plugin"
+#~ msgstr "Arvostele tämä liitännäinen"
+
+#~ msgid "Show Paging Links:"
+#~ msgstr "Näytä kelauslinkit:"
