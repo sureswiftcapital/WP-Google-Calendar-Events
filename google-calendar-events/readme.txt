@@ -47,30 +47,29 @@ This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a
 
 == Installation ==
 
-There are three ways to install this plugin.
+There are several ways to install this plugin.
 
-= 1. Admin Search =
-1. In your Admin, go to menu Plugins > Add.
+= Admin Search =
+1. In your WordPress admin, go to `Plugins > Add`.
 1. Search for `Google Calendar`.
-1. Find the plugin that's labeled `Google Calendar Events`.
-1. Look for the author name `Moonstone Media` on the plugin.
-1. Click to install.
+1. Find the plugin that's labeled `Google Calendar Events` by `Moonstone Media`.
+1. Click `Install Now`.
 1. Activate the plugin.
 1. A new menu item `GCal Events` will appear in the main menu.
 
-= 2. Download & Upload =
-1. Download the plugin (a zip file) on the right column of this page.
-1. In your Admin, go to menu Plugins > Add.
-1. Select the tab "Upload".
-1. Upload the .zip file you just downloaded.
+= Admin Upload =
+1. Download the plugin zip file using the large orange button to the right.
+1. In your WordPress admin, go to `Plugins > Add`.
+1. Select `Upload Plugin` at the top.
+1. Find and upload the zip file you just downloaded.
 1. Activate the plugin.
 1. A new menu item `GCal Events` will appear in the main menu.
 
-= 3. FTP Upload =
-1. Download the plugin (.zip file) on the right column of this page.
+= FTP Upload =
+1. Download the plugin zip file using the large orange button to the right.
 1. Unzip the zip file contents.
 1. Upload the `google-calendar-events` folder to the `/wp-content/plugins/` directory of your site.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
+1. Activate the plugin on the `Installed Plugins` listing.
 1. A new menu item `GCal Events` will appear in the main menu.
 
 == Frequently Asked Questions ==
@@ -90,13 +89,16 @@ There are three ways to install this plugin.
 == Changelog ==
 
 = 2.3.0 - August 24, 2015 =
+
 * Fix: Improve timezone handling when sending a request to Google.
 * Tweak: Reintroduced imagesloaded library to improve compatibility with themes using Isotope and Masonry.
 
 = 2.2.91 - August 18, 2015 =
+
 * Fix: Calendar not working correctly with custom date range grid after 2.2.9 changes.
 
 = 2.2.9 - August 14, 2015 =
+
 * Fix: Event links pointing to Google Calendar have a timezone argument from feed setting.
 * Fix: Improved assets loading, only load scripts on posts and pages that have a calendar.
 * Localization: Updated Norwegian translations.
