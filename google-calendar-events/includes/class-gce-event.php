@@ -361,15 +361,11 @@ class GCE_Event {
 				$description = trim( $this->description );
 
 				if ( 0 != $limit ) {
-					preg_match( '/([\S]+\s*){0,' . $limit . '}/', esc_html( $this->description ), $description );
+					preg_match( '/([\S]+\s*){0,' . $limit . '}/', $this->description, $description );
 					$description = trim( $description[0] );
 				}
 
 				if ( $markdown || $html ) {
-
-					if ( $autolink ) {
-						$description = make_clickable( $description );
-					}
 
 					if ( $markdown && function_exists( 'Markdown' ) ) {
 						$description = Markdown( $description );
@@ -383,10 +379,10 @@ class GCE_Event {
 
 					$description = nl2br( esc_html( $description ) );
 
-					if ( $autolink ) {
-						$description = make_clickable( $description );
-					}
+				}
 
+				if ( $autolink ) {
+					$description = make_clickable( $description );
 				}
 
 				return $m[1] . $description . $m[6];

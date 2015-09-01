@@ -198,7 +198,7 @@ class GCE_Feed {
 								foreach ( $raw_data['items'] as $event ) {
 									$id          = ( isset( $event['id'] ) ? esc_html( $event['id'] ) : '' );
 									$title       = ( isset( $event['summary'] ) ? esc_html( $event['summary'] ) : '' );
-									$description = ( isset( $event['description'] ) ? esc_html( $event['description'] ) : '' );
+									$description = ( isset( $event['description'] ) ? $event['description'] : '' );
 									$link        = ( isset( $event['htmlLink'] ) ? esc_url( $event['htmlLink'] ) : '' );
 									$location    = ( isset( $event['location'] ) ? esc_html( $event['location'] ) : '' );
 
