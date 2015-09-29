@@ -121,9 +121,8 @@ class Google_Calendar_Events_Admin {
 		            '<p><a href="https://www.getdrip.com/forms/9434542/submissions/new" class="button-secondary" target="_blank">' .__( 'Get notified of important updates', 'gce' ) . '</a></p>';
 
 		$url = add_query_arg( array( 'gce_dismiss_admin_update_notices' => true ) );
-		$dismiss_icon = sprintf( '<a class="dashicons-before dashicons-dismiss gce-dismiss-notice" href="%1$s"></a>', $url );
-		$dismiss_link = sprintf( '<a href="%1$s">' . __( 'Dismiss this notice', 'gce' ) . '</a>', $url );
-
+		$dismiss_icon = sprintf( '<a class="dashicons-before dashicons-dismiss gce-dismiss-notice" href="%s"></a>', $url );
+		$dismiss_link = sprintf( '<br><a href="%s">' . __( 'Dismiss this notice', 'gce' ) . '</a>', $url );
 
 		echo '<div class="notice error gce-dismissible-notice">' .
 		        $dismiss_icon . $message . $dismiss_link .
