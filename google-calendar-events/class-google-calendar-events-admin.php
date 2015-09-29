@@ -61,7 +61,7 @@ class Google_Calendar_Events_Admin {
 
 		if ( isset( $_GET['gce_dismiss_admin_update_notices'] ) ) {
 			delete_option( 'gce_admin_update_notices' );
-		} elseif ( 'show' == get_option( 'gce_admin_update_notices' ) ) {
+		} elseif ( 'show' == get_option( 'gce_admin_update_notices' ) && current_user_can( 'manage_options' ) ) {
 			add_action( 'admin_head', array( $this, 'dismissible_admin_notices_styles' ) );
 			add_action( 'admin_notices', array( $this, 'show_admin_update_notices' ) );
 		}
