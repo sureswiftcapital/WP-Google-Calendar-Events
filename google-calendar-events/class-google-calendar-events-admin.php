@@ -122,7 +122,7 @@ class Google_Calendar_Events_Admin {
 
 		$url = add_query_arg( array( 'gce_dismiss_admin_update_notices' => true ) );
 		$dismiss_icon = sprintf( '<a class="dashicons-before dashicons-dismiss gce-dismiss-notice" href="%s"></a>', $url );
-		$dismiss_link = sprintf( '<br><a href="%s">' . __( 'Dismiss this notice', 'gce' ) . '</a>', $url );
+		$dismiss_link = sprintf( '<p><a href="%s">' . __( 'Dismiss this notice', 'gce' ) . '</a></p>', $url );
 
 		echo '<div class="notice error gce-dismissible-notice">' .
 		        $dismiss_icon . $message . $dismiss_link .
