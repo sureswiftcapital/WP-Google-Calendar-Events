@@ -61,13 +61,13 @@ class Google_Calendar_Events_Admin {
 
 		if ( isset( $_GET['gce_dismiss_admin_update_notices'] ) ) {
 			delete_option( 'gce_admin_update_notices' );
-		} elseif ( 'show' == get_option( 'gce_admin_update_notices' ) ) {
+		} elseif ( 'show' == get_option( 'gce_admin_update_notices' ) && current_user_can( 'manage_options' ) ) {
 			add_action( 'admin_head', array( $this, 'dismissible_admin_notices_styles' ) );
 			add_action( 'admin_notices', array( $this, 'show_admin_update_notices' ) );
 		}
 
 		// Add admin notice after plugin activation. Also check if should be hidden.
-		add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
+		// add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
 
 		// Add media button for adding a shortcode.
 		add_action( 'media_buttons', array( $this, 'add_shortcode_button' ), 100 );
@@ -173,7 +173,7 @@ class Google_Calendar_Events_Admin {
 	public static function activate() {
 		flush_rewrite_rules();
 		add_option( 'gce_admin_update_notices', 'show' );
-		update_option( 'gce_show_admin_install_notice', 1 );
+		//update_option( 'gce_show_admin_install_notice', 1 );
 	}
 
 	/**
