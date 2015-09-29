@@ -26,7 +26,7 @@ Parses Google Calendar feeds and displays the events as a calendar grid or list 
 
 ###Updates###
 
-* [Get notified when major features are announced](https://www.getdrip.com/forms/9434542/submissions/new)
+* [Get notified when new features are released](http://eepurl.com/0_VsT)
 * [Follow this project on Github](https://github.com/moonstonemedia/WP-Google-Calendar-Events)
 
 This plugin was originally created by [Ross Hanney](http://www.rhanney.co.uk), a web developer based in the UK specialising in WordPress and PHP.
@@ -89,6 +89,10 @@ There are several ways to install this plugin.
 1. Event display builder editor
 
 == Changelog ==
+
+= 2.4.0 - September 29, 2015 =
+* Announcement: Simple Calendar is coming, changes ahead.
+* Deprecation: If you are using the bundled API key, please update with one of your own.
 
 = 2.3.2 - September 1, 2015 =
 * Fix: Bug in HTML support in events description.

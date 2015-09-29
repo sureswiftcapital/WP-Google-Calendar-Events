@@ -20,7 +20,7 @@ class Google_Calendar_Events_Admin {
 	 * @var      object
 	 */
 	protected static $instance = null;
-	
+
 	protected $version = '';
 
 	/**
@@ -42,23 +42,30 @@ class Google_Calendar_Events_Admin {
 
 		$plugin = Google_Calendar_Events::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
-		
+
 		$this->version = $plugin->get_plugin_version();
-		
+
 		add_filter( 'plugin_action_links_' . plugin_basename( plugin_dir_path( __FILE__ ) . $this->plugin_slug . '.php' ), array( $this, 'add_action_links' ) );
-		
+
 		// Setup admin side constants
 		add_action( 'init', array( $this, 'define_admin_constants' ) );
-		
+
 		// Add admin styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
-		
+
 		// Add admin JS
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
-		
+
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ), 2 );
-		
+
+		if ( isset( $_GET['gce_dismiss_admin_update_notices'] ) ) {
+			delete_option( 'gce_admin_update_notices' );
+		} elseif ( 'show' == get_option( 'gce_admin_update_notices' ) ) {
+			add_action( 'admin_head', array( $this, 'dismissible_admin_notices_styles' ) );
+			add_action( 'admin_notices', array( $this, 'show_admin_update_notices' ) );
+		}
+
 		// Add admin notice after plugin activation. Also check if should be hidden.
 		add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
 
@@ -66,7 +73,51 @@ class Google_Calendar_Events_Admin {
 		add_action( 'media_buttons', array( $this, 'add_shortcode_button' ), 100 );
 		add_action( 'edit_form_after_editor', array( $this, 'add_shortcode_panel' ), 100 );
 	}
-	
+
+	/**
+	 * @since 2.4.0
+	 */
+	public function dismissible_admin_notices_styles() {
+		?>
+		<style type="text/css">
+			body a.gce-dismiss-notice {
+				color: #ccc;
+				float: right;
+				margin-top: 9px;
+				text-decoration: none;
+			}
+			body a.gce-dismiss-notice:active,
+			body a.gce-dismiss-notice:focus {
+				outline: 0;
+			}
+			body a.gce-dismiss-notice:hover {
+				color: #aaa;
+			}
+		</style>
+		<?php
+	}
+
+	/**
+	 * @since 2.4.0
+	 */
+	public function show_admin_update_notices() {
+
+		$message = '<p>' . __( 'Changes ahead', 'gce' ) . '</p>';
+
+		$settings = get_option( 'gce_general_settings' );
+		if ( isset( $settings['api_key'] ) ) {
+			$legacy_key = '';
+			if ( $legacy_key == $settings['api_key'] ) {
+				$message .= '<p>' . __( 'You should update your API key', 'gce' ) . '</p>';
+			}
+		}
+
+		$url = add_query_arg( array( 'gce_dismiss_admin_update_notices' => true ) );
+		$dismiss =  sprintf( '<a class="dashicons-before dashicons-dismiss gce-dismiss-notice" href="%1$s"></a>', $url );
+
+		echo '<div class="notice error gce-dismissible-notice">' . $dismiss . $message . '</div>';
+	}
+
 	/**
 	 * Show notice after plugin install/activate
 	 * Also check if user chooses to hide it.
@@ -78,7 +129,7 @@ class Google_Calendar_Events_Admin {
 		if ( false == get_option( 'gce_show_admin_install_notice' ) ) {
 			return;
 		}
-		
+
 		$screen = get_current_screen();
 
 		// Delete stored value if "hide" button click detected (custom querystring value set to 1).
@@ -92,7 +143,7 @@ class Google_Calendar_Events_Admin {
 			include_once( 'includes/admin/admin-notice.php' );
 		}
 	}
-	
+
 	/**
 	 * Check if viewing one of this plugin's admin pages.
 	 *
@@ -104,7 +155,7 @@ class Google_Calendar_Events_Admin {
 		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
 			return false;
 		}
-		
+
 		$screen = get_current_screen();
 
 		if ( $screen->id == 'edit-gce_feed' || $screen->id == 'gce_feed' || in_array( $screen->id, $this->plugin_screen_hook_suffix ) || $screen->id == 'widgets' ) {
@@ -113,7 +164,7 @@ class Google_Calendar_Events_Admin {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Fired when the plugin is activated.
 	 *
@@ -121,6 +172,7 @@ class Google_Calendar_Events_Admin {
 	 */
 	public static function activate() {
 		flush_rewrite_rules();
+		add_option( 'gce_admin_update_notices', 'show' );
 		update_option( 'gce_show_admin_install_notice', 1 );
 	}
 
@@ -130,7 +182,7 @@ class Google_Calendar_Events_Admin {
 	public static function deactivate() {
 		flush_rewrite_rules();
 	}
-	
+
 	public function add_plugin_admin_menu() {
 		// Add Help submenu page
 		$this->plugin_screen_hook_suffix[] = add_submenu_page(
@@ -142,14 +194,14 @@ class Google_Calendar_Events_Admin {
 			array( $this, 'display_admin_page' )
 		);
 	}
-	
+
 	public function display_admin_page() {
 		include_once( 'views/admin/admin.php' );
 	}
-	
+
 	 /**
 	 * Enqueue JS for the admin area
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function enqueue_admin_scripts() {
@@ -162,10 +214,10 @@ class Google_Calendar_Events_Admin {
 			wp_enqueue_script( 'gce-admin', plugins_url( 'js/gce-admin.js', __FILE__ ), array( 'jquery' ), $this->version, true );
 		}
 	}
-	
+
 	/**
 	 * Enqueue styles for the admin area
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function enqueue_admin_styles() {
@@ -181,14 +233,14 @@ class Google_Calendar_Events_Admin {
 
 			// Use minified CSS from CDN referenced at https://code.jquery.com/ui/
 			wp_enqueue_style( 'jquery-ui-smoothness', '//code.jquery.com/ui/' . $queryui->ver . '/themes/smoothness/jquery-ui.min.css', array(), $this->version );
- 			
+
  			wp_enqueue_style( 'gce-admin', plugins_url( 'css/admin.css', __FILE__ ), array(), $this->version, 'all' );
  		}
 	}
-	
+
 	/**
 	 * Define constants that will be used throughout admin specific code
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function define_admin_constants() {
@@ -213,10 +265,10 @@ class Google_Calendar_Events_Admin {
 
 		return self::$instance;
 	}
-	
+
 	/**
 	 * Return plugin name
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function get_plugin_title() {

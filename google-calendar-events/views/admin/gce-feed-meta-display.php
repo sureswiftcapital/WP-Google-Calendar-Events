@@ -68,8 +68,8 @@
 <div id="gce-admin-promo">
 	<?php echo __( 'Want to be in the know?', 'gce' ); ?>
 	<strong>
-		<a href="https://www.getdrip.com/forms/9434542/submissions/new" target="_blank">
-			<?php echo __( 'Get notified when major features are announced', 'gce' ); ?>
+		<a href="http://eepurl.com/0_VsT" target="_blank">
+			<?php echo __( 'Get notified when new features are released', 'gce' ); ?>
 		</a>
 	</strong>
 </div>

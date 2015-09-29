@@ -12,7 +12,7 @@
 		</li>
 		<li>
 			<div class="dashicons dashicons-arrow-right-alt2"></div>
-			<a href="https://www.getdrip.com/forms/9434542/submissions/new" target="_blank">
+			<a href="http://eepurl.com/0_VsT" target="_blank">
 				<?php _e( 'Get notified of new features', 'gce' ); ?></a>
 		</li>
 	</ul>

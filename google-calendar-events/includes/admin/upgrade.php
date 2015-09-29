@@ -14,56 +14,56 @@ add_action( 'init', 'gce_upgrade', 20 );
 
 /**
  * Main GCE Upgrade function. Call this and branch of from here depending on what we need to do
- * 
+ *
  * @since 2.0.0
  */
 function gce_upgrade() {
-	
+
 	$version = get_option( 'gce_version' );
-	
+
 	if( ! empty( $version ) ) {
-		
+
 		// Clear out cache when upgrading no matter the version
 		gce_upgrade_clear_cache();
-		
+
 		// Check if under version 2 and run the v2 upgrade if we are
 		if( version_compare( $version, '2.0.0-beta1', '<' ) && false === get_option( 'gce_upgrade_has_run' ) ) {
 			gce_v2_upgrade();
 		}
-		
+
 		// Version 2.0.4 upgrade
 		if( version_compare( $version, '2.0.4', '<' ) ) {
 			gce_v204_upgrade();
 		}
-		
+
 		// Version 2.0.6 upgrade
 		if( version_compare( $version, '2.0.6', '<' ) ) {
 			gce_v206_upgrade();
 		}
-		
+
 		if( version_compare( $version, '2.1.0', '<' ) ) {
 			gce_v210_upgrade();
 		}
-		
+
 		if( version_compare( $version, '2.2.0', '<' ) ) {
 			gce_v220_upgrade();
 		}
-		
+
 		if( version_compare( $version, '2.2.2', '<' ) ) {
 			gce_v222_upgrade();
 		}
 	}
-	
+
 	$new_version = Google_Calendar_Events::get_instance()->get_plugin_version();
 	update_option( 'gce_version', $new_version );
-	
+
 	add_option( 'gce_upgrade_has_run', 1 );
 }
 
 function gce_v222_upgrade() {
 	// Need to set the new option for always enqueuing scripts as default enabled for upgrading users
 	$options = get_option( 'gce_settings_general' );
-	
+
 	if( false !== $options ) {
 		$options['always_enqueue'] = 1;
 		update_option( 'gce_settings_general', $options );
@@ -73,50 +73,50 @@ function gce_v222_upgrade() {
 function gce_v220_upgrade() {
 	// Update feeds
 	$q = new WP_Query( 'post_type=gce_feed' );
-	
+
 	if( $q->have_posts() ) {
 		while( $q->have_posts() ) {
-			
+
 			$q->the_post();
-			
+
 			$gce_list_max_num        = get_post_meta( get_the_ID(), 'gce_list_max_num', true );
 			$gce_list_max_length     = get_post_meta( get_the_ID(), 'gce_list_max_length', true );
 			$gce_feed_start_interval = get_post_meta( get_the_ID(), 'gce_feed_start_interval', true );
 			$gce_feed_start          = get_post_meta( get_the_ID(), 'gce_feed_start', true );
 			$gce_feed_end_interval   = get_post_meta( get_the_ID(), 'gce_feed_end_interval', true );
 			$gce_feed_end            = get_post_meta( get_the_ID(), 'gce_feed_end', true );
-			
+
 			update_post_meta( get_the_ID(), 'gce_per_page_num', $gce_list_max_num );
 			update_post_meta( get_the_ID(), 'gce_events_per_page', $gce_list_max_length );
 			update_post_meta( get_the_ID(), 'gce_feed_start', $gce_feed_start_interval );
 			update_post_meta( get_the_ID(), 'gce_feed_start_num', $gce_feed_start );
 			update_post_meta( get_the_ID(), 'gce_feed_end', $gce_feed_end_interval );
 			update_post_meta( get_the_ID(), 'gce_feed_end_num', $gce_feed_end );
-			
+
 			// Add new show tooltips option checked as default
 			update_post_meta( get_the_ID(), 'gce_show_tooltips', 1 );
-			
+
 		}
 	}
-	
+
 	wp_reset_postdata();
-	
+
 
 	// Update widgets for new UI
 	$widget = get_option( 'widget_gce_widget' );
-	
+
 	if( is_array( $widget ) && ! empty( $widget ) ) {
 		foreach( $widget as $a => $b ) {
 			if( ! is_array( $b ) ) {
 				continue;
-			} 
+			}
 
 			foreach( $b as $k => $v ) {
 				$widget[$a]['per_page_num']    = $widget[$a]['list_max_num'];
 				$widget[$a]['events_per_page'] = $widget[$a]['list_max_length'];
 			}
 		}
-		
+
 		update_option( 'widget_gce_widget', $widget );
 	}
 }
@@ -125,66 +125,66 @@ function gce_v220_upgrade() {
  * Run the upgrade to version 2.1.0
  */
 function gce_v210_upgrade() {
-	
+
 	$q = new WP_Query( 'post_type=gce_feed' );
-	
+
 	if( $q->have_posts() ) {
 		while( $q->have_posts() ) {
 			$q->the_post();
-			
+
 			$url = get_post_meta( get_the_ID(), 'gce_feed_url', true );
-			
+
 			// https://www.google.com/calendar/feeds/umsb0ekhivs1a2ubtq6vlqvcjk%40group.calendar.google.com/public/basic
-			
+
 			$url = str_replace( 'https://www.google.com/calendar/feeds/', '', $url );
 			$url = str_replace( '/public/basic', '', $url );
 			$url = str_replace( '%40', '@', $url );
-			
+
 			update_post_meta( get_the_ID(), 'gce_feed_url', $url );
 		}
 	}
-	
+
 	wp_reset_postdata();
 }
 
 /*
  * Run the upgrade to version 2.0.6
- * 
+ *
  * @since 2.0.4
  */
 function gce_v206_upgrade() {
-	
+
 	// Update feeds
 	$q = new WP_Query( 'post_type=gce_feed' );
-	
+
 	if( $q->have_posts() ) {
 		while( $q->have_posts() ) {
 			$q->the_post();
-			
+
 			update_post_meta( get_the_ID(), 'gce_feed_start', '1' );
 			update_post_meta( get_the_ID(), 'gce_feed_start_interval', 'months' );
 			update_post_meta( get_the_ID(), 'gce_feed_end', '2' );
 			update_post_meta( get_the_ID(), 'gce_feed_end_interval', 'years' );
 		}
 	}
-	
+
 	wp_reset_postdata();
 }
 
 /*
  * Run the upgrade to version 2.0.4
- * 
+ *
  * @since 2.0.4
  */
 function gce_v204_upgrade() {
-	
+
 	// Update feeds
 	$q = new WP_Query( 'post_type=gce_feed' );
-	
+
 	if( $q->have_posts() ) {
 		while( $q->have_posts() ) {
 			$q->the_post();
-			
+
 			update_post_meta( get_the_ID(), 'gce_paging', '1' );
 			update_post_meta( get_the_ID(), 'gce_list_max_num', '7' );
 			update_post_meta( get_the_ID(), 'gce_list_max_length', 'days' );
@@ -192,18 +192,18 @@ function gce_v204_upgrade() {
 			update_post_meta( get_the_ID(), 'gce_list_start_offset_direction', 'back' );
 		}
 	}
-	
+
 	wp_reset_postdata();
-	
+
 
 	// Update widgets
 	$widget = get_option( 'widget_gce_widget' );
-	
+
 	if( is_array( $widget ) && ! empty( $widget ) ) {
 		foreach( $widget as $a => $b ) {
 			if( ! is_array( $b ) ) {
 				continue;
-			} 
+			}
 
 			foreach( $b as $k => $v ) {
 				$widget[$a]['paging']                      = '1';
@@ -213,21 +213,21 @@ function gce_v204_upgrade() {
 				$widget[$a]['list_start_offset_direction'] = 'back';
 			}
 		}
-		
+
 		update_option( 'widget_gce_widget', $widget );
 	}
 }
 
 /*
  * Run the upgrade to version 2.0.0
- * 
+ *
  * @since 2.0.0
  */
 function gce_v2_upgrade() {
 	$old_options = get_option( 'gce_options' );
-	
+
 	if( false !== $old_options ) {
-		
+
 		if( ! empty( $old_options ) ) {
 			foreach( $old_options as $key => $value ) {
 				convert_to_cpt_posts( $value );
@@ -240,7 +240,7 @@ function gce_v2_upgrade() {
 
 /**
  * Converts the old database options to the new CPT layout for 2.0.0+
- * 
+ *
  * @since 2.0.0
  */
 function convert_to_cpt_posts( $args ) {
@@ -251,25 +251,25 @@ function convert_to_cpt_posts( $args ) {
 			'post_status'    => 'publish',
 			'post_type'      => 'gce_feed'
 		);
-	
+
 	if( $args['use_builder'] == true ) {
 		$post['post_content'] = $args['builder'];
 	}
-	
+
 	$post_id = wp_insert_post( $post );
-	
+
 	create_cpt_meta( $post_id, $args );
-	
+
 	clear_old_transients( $args['id'] );
 }
 
 /**
  * Add the CPT post meta based on options set for the old feeds prior to v2
- * 
+ *
  * @since 2.0.0
  */
 function create_cpt_meta( $id, $args ) {
-	
+
 	// Convert the dropdown values to the new values for "Retrieve Events From"
 	switch( $args['retrieve_from'] ) {
 		case 'now':
@@ -288,11 +288,11 @@ function create_cpt_meta( $id, $args ) {
 		case 'date':
 			$from = 'custom_date';
 			break;
-		default: 
+		default:
 			$from = 'start_time';
 			break;
 	}
-	
+
 	// Convert the dropdown values to the new values for "Retrieve Events Until"
 	switch( $args['retrieve_until'] ) {
 		case 'now':
@@ -311,13 +311,13 @@ function create_cpt_meta( $id, $args ) {
 		case 'date':
 			$until = 'custom_date';
 			break;
-		default: 
+		default:
 			$until = 'end_time';
 			break;
 	}
-	
+
 	$gce_expand_recurring = ( isset( $args['expand_recurring'] ) ? ( $args['expand_recurring'] == 'true' ? '1' : '0' ) : '1' );
-	
+
 	// An array to hold all of our post meta ids and values so that we can loop through and add as post meta easily
 	$post_meta_fields = array(
 		'gce_feed_url'         => $args['url'],
@@ -335,9 +335,9 @@ function create_cpt_meta( $id, $args ) {
 		'gce_search_query'     => ( isset( $args['query'] ) ? $args['query'] : '' ),
 		'gce_expand_recurring' => $gce_expand_recurring
 	);
-	
+
 	if( $args['use_builder'] == 'false' || $args['use_builder'] == false ) {
-		$display_meta = array( 
+		$display_meta = array(
 			'gce_display_simple'            => 1,
 			'gce_display_start'             => $args['display_start'],
 			'gce_display_start_text'        => $args['display_start_text'],
@@ -353,10 +353,10 @@ function create_cpt_meta( $id, $args ) {
 			'gce_display_link_tab'          => ( $args['display_link_target'] == 'on' ? '1' : '0' ),
 			'gce_display_link_text'         => $args['display_link_text']
 		);
-		
+
 		$post_meta_fields = array_merge( $post_meta_fields, $display_meta );
 	}
-	
+
 	// Loop through each $post_meta_field and add as an entry
 	foreach( $post_meta_fields as $k => $v ) {
 		update_post_meta( $id, $k, $v );
@@ -370,30 +370,30 @@ function gce_convert_timestamp( $t ) {
 
 /**
  * Remove the old transient values from the database
- * 
+ *
  * @since 2.0.0
  */
 function clear_old_transients( $id ) {
-	
+
 	delete_transient( 'gce_feed_' . $id );
 	delete_transient( 'gce_feed_' . $id . '_url' );
 	delete_transient( 'gce_feed_ids' );
 }
 
-/** 
+/**
  * Update widget IDs
- * 
+ *
  * @since 2.0.0
  */
 function update_widget_feed_ids() {
-	
+
 	$widget = get_option( 'widget_gce_widget' );
-	
+
 	if( is_array( $widget ) && ! empty( $widget ) ) {
 		foreach( $widget as $a => $b ) {
 			if( ! is_array( $b ) ) {
 				continue;
-			} 
+			}
 
 			foreach( $b as $k => $v ) {
 
@@ -402,15 +402,15 @@ function update_widget_feed_ids() {
 				}
 
 				$id = $v;
-				
+
 				//$multi = str_replace( ' ', '', $v );
-				
+
 				$multi = explode( ',', str_replace( ' ', '', $id ) );
-				
+
 				if( is_array( $multi ) ) {
-					
+
 					$new_ids = '';
-					
+
 					foreach( $multi as $m ) {
 						$q = new WP_Query( "post_type=gce_feed&meta_key=old_gce_id&meta_value=$m&order=ASC" );
 
@@ -419,13 +419,13 @@ function update_widget_feed_ids() {
 							$q->the_post();
 							// Set our ID to the old ID if found
 							$m = get_the_ID();
-							
+
 							$new_ids .= $m . ',';
 						}
 					}
-					
+
 					wp_reset_postdata();
-					
+
 					$widget[$a][$k] = substr( $new_ids, 0, -1 );
 				} else {
 
@@ -437,36 +437,36 @@ function update_widget_feed_ids() {
 						// Set our ID to the old ID if found
 						$id = get_the_ID();
 					}
-					
+
 					wp_reset_postdata();
 
 					$widget[$a][$k] = $id;
 				}
 			}
 		}
-		
+
 		update_option( 'widget_gce_widget', $widget );
 	}
-	
+
 }
 
-/** 
+/**
  * Update widget IDs
- * 
+ *
  * @since 2.0.6.3
  */
 function gce_upgrade_clear_cache() {
 	// Update feeds
 	$q = new WP_Query( 'post_type=gce_feed' );
-	
+
 	if( $q->have_posts() ) {
 		while( $q->have_posts() ) {
-			
+
 			$q->the_post();
-			
+
 			delete_transient( 'gce_feed_' . get_the_ID() );
 		}
 	}
-	
+
 	wp_reset_postdata();
 }
