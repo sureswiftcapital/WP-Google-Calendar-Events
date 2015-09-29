@@ -1,6 +1,5 @@
-Google Calendar Events for WordPress
-=========================
+# Google Calendar Events for WordPress
 
-Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
+This repository is no longer maintained and it's here to support legacy versions of the Google Calendar Events plugin originally authored by [Ross Hanney](http://rhanney.co.uk/).
 
-Rewritten from the ground up, but originally authored by [Ross Hanney](http://rhanney.co.uk/).
+The project repository has been moved into another project: https://github.com/moonstonemedia/Simple-Calendar
