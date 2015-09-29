@@ -3,7 +3,7 @@ Contributors: pderksen, nickyoung87, nekojira, rosshanney
 Tags: google calendar, google, calendar, events, gcal
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 2.3.2
+Stable tag: 2.4.0
 License: GPLv2 or later
 
 Parses Google Calendar feeds and displays the events as a calendar grid or list on a page, post or widget.
