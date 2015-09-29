@@ -106,17 +106,15 @@ class Google_Calendar_Events_Admin {
 
 		$message = '';
 
-		//if ( isset( $settings['api_key'] ) ) {
-			$legacy_key = '';
-
-			if ( $legacy_key == $settings['api_key'] ) {
+		if ( isset( $settings['api_key'] ) ) {
+			if ( 'AIzaSyAssdKVved1mPVY0UJCrx96OUOF9u17AuY' == $settings['api_key'] ) {
 				$message .= '<h3>' . __( 'Google API Key Notice', 'gce' ) . '</h3>' .
 				            '<p>' . __( 'This plugin now requires you to use your own Google API key to avoid running into limit requests.', 'gce' ) . '</p>' .
 				            '<p><a href="' . admin_url( 'edit.php?post_type=gce_feed&page=google-calendar-events_general_settings' ) . '" class="button-primary">' . __( 'Enter your Google API key', 'gce' ) . '</a>&nbsp;&nbsp;&nbsp;&nbsp;' .
 				            '<a href="' . gce_ga_campaign_url( 'http://wpdocs.philderksen.com/google-calendar-events/getting-started/api-key-settings/', 'gce_lite', 'settings_link', 'docs' ) . '" class="button-secondary" target="_blank">' . __( 'Instructions', 'gce' ) . '</a>' .
 				            '</p>';
 			}
-		//}
+		}
 
 		$message .= '<h3>' . __( 'Plugin Upgrade Notice', 'gce' ) . '</h3>' .
 		            '<p>' . __( 'Simple Calendar 3.0 is a pretty major update and will be released very soon.', 'gce' ) . '</p>' .
