@@ -102,18 +102,16 @@ class Google_Calendar_Events_Admin {
 	 */
 	public function show_admin_update_notices() {
 
-		$settings = get_option( 'gce_general_settings' );
-
 		$message = '';
 
-		if ( isset( $settings['api_key'] ) ) {
-			if ( 'AIzaSyAssdKVved1mPVY0UJCrx96OUOF9u17AuY' == $settings['api_key'] ) {
-				$message .= '<h3>' . __( 'Google API Key Notice', 'gce' ) . '</h3>' .
-				            '<p>' . __( 'This plugin now requires you to use your own Google API key to avoid running into limit requests.', 'gce' ) . '</p>' .
-				            '<p><a href="' . admin_url( 'edit.php?post_type=gce_feed&page=google-calendar-events_general_settings' ) . '" class="button-primary">' . __( 'Enter your Google API key', 'gce' ) . '</a>&nbsp;&nbsp;&nbsp;&nbsp;' .
-				            '<a href="' . gce_ga_campaign_url( 'http://wpdocs.philderksen.com/google-calendar-events/getting-started/api-key-settings/', 'gce_lite', 'settings_link', 'docs' ) . '" class="button-secondary" target="_blank">' . __( 'Instructions', 'gce' ) . '</a>' .
-				            '</p>';
-			}
+		$settings = get_option( 'gce_general_settings' );
+		$key = isset( $settings['api_key'] ) ? $settings['api_key'] : '';
+		if ( empty( $key ) || 'AIzaSyAssdKVved1mPVY0UJCrx96OUOF9u17AuY' == $key ) {
+			$message .= '<h3>' . __( 'Google API Key Notice', 'gce' ) . '</h3>' .
+			            '<p>' . __( 'This plugin now requires you to use your own Google API key to avoid running into limit requests.', 'gce' ) . '</p>' .
+			            '<p><a href="' . admin_url( 'edit.php?post_type=gce_feed&page=google-calendar-events_general_settings' ) . '" class="button-primary">' . __( 'Enter your Google API key', 'gce' ) . '</a>&nbsp;&nbsp;&nbsp;&nbsp;' .
+			            '<a href="' . gce_ga_campaign_url( 'http://wpdocs.philderksen.com/google-calendar-events/getting-started/api-key-settings/', 'gce_lite', 'settings_link', 'docs' ) . '" class="button-secondary" target="_blank">' . __( 'Instructions', 'gce' ) . '</a>' .
+			            '</p>';
 		}
 
 		$message .= '<h3>' . __( 'Plugin Upgrade Notice', 'gce' ) . '</h3>' .
@@ -123,9 +121,13 @@ class Google_Calendar_Events_Admin {
 		            '<p><a href="https://www.getdrip.com/forms/9434542/submissions/new" class="button-secondary" target="_blank">' .__( 'Get notified of important updates', 'gce' ) . '</a></p>';
 
 		$url = add_query_arg( array( 'gce_dismiss_admin_update_notices' => true ) );
-		$dismiss =  sprintf( '<a class="dashicons-before dashicons-dismiss gce-dismiss-notice" href="%1$s"></a>', $url );
+		$dismiss_icon = sprintf( '<a class="dashicons-before dashicons-dismiss gce-dismiss-notice" href="%1$s"></a>', $url );
+		$dismiss_link = sprintf( '<a href="%1$s">' . __( 'Dismiss this notice', 'gce' ) . '</a>', $url );
 
-		echo '<div class="notice error gce-dismissible-notice">' . $dismiss . $message . '</div>';
+
+		echo '<div class="notice error gce-dismissible-notice">' .
+		        $dismiss_icon . $message . $dismiss_link .
+		     '</div>';
 	}
 
 	/**
