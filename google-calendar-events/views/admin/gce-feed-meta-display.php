@@ -69,7 +69,7 @@
 	<?php echo __( 'Want to be in the know?', 'gce' ); ?>
 	<strong>
 		<a href="https://www.getdrip.com/forms/9434542/submissions/new" target="_blank">
-			<?php echo __( 'Get notified when new features are released', 'gce' ); ?>
+			<?php echo __( 'Get notified of important updates', 'gce' ); ?>
 		</a>
 	</strong>
 </div>
