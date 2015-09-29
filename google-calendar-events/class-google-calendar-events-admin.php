@@ -67,7 +67,7 @@ class Google_Calendar_Events_Admin {
 		}
 
 		// Add admin notice after plugin activation. Also check if should be hidden.
-		add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
+		// add_action( 'admin_notices', array( $this, 'show_admin_notice' ) );
 
 		// Add media button for adding a shortcode.
 		add_action( 'media_buttons', array( $this, 'add_shortcode_button' ), 100 );
@@ -173,7 +173,7 @@ class Google_Calendar_Events_Admin {
 	public static function activate() {
 		flush_rewrite_rules();
 		add_option( 'gce_admin_update_notices', 'show' );
-		update_option( 'gce_show_admin_install_notice', 1 );
+		//update_option( 'gce_show_admin_install_notice', 1 );
 	}
 
 	/**
