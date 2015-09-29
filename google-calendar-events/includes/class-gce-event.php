@@ -360,9 +360,14 @@ class GCE_Event {
 
 				$description = trim( $this->description );
 
-				if ( 0 != $limit ) {
-					preg_match( '/([\S]+\s*){0,' . $limit . '}/', $this->description, $description );
-					$description = trim( $description[0] );
+				if ( $limit > 0 ) {
+					if ( str_word_count( $description, 0 ) > $limit ) {
+						$words = str_word_count( $description, 2 );
+						$pos = array_keys( $words );
+						$description = substr( $description, 0, $pos[ $limit ] ) . '...';
+					}
+					//preg_match( '/([\S]+\s*){0,' . $limit . '}/', $this->description, $description );
+					//$description = trim( $description[0] );
 				}
 
 				if ( $markdown || $html ) {
