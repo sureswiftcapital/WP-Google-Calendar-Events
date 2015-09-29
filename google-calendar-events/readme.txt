@@ -92,7 +92,7 @@ There are several ways to install this plugin.
 
 = 2.4.0 - September 29, 2015 =
 * Announcement: Simple Calendar is coming, changes ahead.
-* Deprecation: If you are using the bundled API key, please update with one of your own.
+* Deprecation: The bundled/default Google API key reached it's quota and was shut off. Using your own API key is now required.
 
 = 2.3.2 - September 1, 2015 =
 * Fix: Bug in HTML support in events description.
