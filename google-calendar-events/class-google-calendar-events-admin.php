@@ -104,7 +104,7 @@ class Google_Calendar_Events_Admin {
 
 		$message = '';
 
-		$settings = get_option( 'gce_general_settings' );
+		$settings = get_option( 'gce_settings_general' );
 		$key = isset( $settings['api_key'] ) ? $settings['api_key'] : '';
 		if ( empty( $key ) || 'AIzaSyAssdKVved1mPVY0UJCrx96OUOF9u17AuY' == $key ) {
 			$message .= '<h3>' . __( 'Google API Key Notice', 'gce' ) . '</h3>' .
