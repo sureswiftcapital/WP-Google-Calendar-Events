@@ -3,7 +3,7 @@ module.exports = function( grunt ) {
 	var pkg = grunt.file.readJSON( 'package.json' ),
 		// Files to include in a release
 		distFiles =  [
-			'google-calendar-events/**'
+			'google-calendar-events-legacy/**'
 		];
 
 	console.log( pkg.title + ' - ' + pkg.version );
@@ -34,7 +34,7 @@ module.exports = function( grunt ) {
 				]
 			},
 			files: {
-				src:  ['google-calendar-events/**/*.php'],
+				src:  ['google-calendar-events-legacy/**/*.php'],
 				expand: true
 			}
 		},
@@ -42,7 +42,7 @@ module.exports = function( grunt ) {
 		makepot: {
 			target: {
 				options: {
-					cwd: 'google-calendar-events',
+					cwd: 'google-calendar-events-legacy',
 					domainPath: '/languages',
 					exclude: [],
 					include: [],
@@ -65,7 +65,7 @@ module.exports = function( grunt ) {
 
 		po2mo: {
 			files: {
-				src: 'google-calendar-events/languages/*.po',
+				src: 'google-calendar-events-legacy/languages/*.po',
 				expand: true
 			}
 		},
@@ -98,7 +98,7 @@ module.exports = function( grunt ) {
 			deploy: {
 				options: {
 					plugin_slug: 'google-calendar-events-legacy',
-					build_dir: 'build/google-calendar-events',
+					build_dir: 'build/google-calendar-events-legacy',
 					max_buffer: 400 * 1024
 				}
 			}
