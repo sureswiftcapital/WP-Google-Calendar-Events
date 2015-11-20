@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Google Calendar Events
+ * Plugin Name: Google Calendar Events (2.4 Legacy)
  * Plugin URI: https://wordpress.org/plugins/google-calendar-events/
  * Description: Show off your Google calendar in grid (month) or list view, in a post, page or widget, and in a style that matches your site.
  * Author: Moonstone Media
  * Author URI: http://moonstonemediagroup.com
- * Version: 2.4.0
+ * Version: 2.4.1
  * Text Domain: gce
  * Domain Path: /languages/
  *
