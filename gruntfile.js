@@ -46,7 +46,7 @@ module.exports = function( grunt ) {
 					domainPath: '/languages',
 					exclude: [],
 					include: [],
-					mainFile: 'google-calendar-events.php',
+					mainFile: 'google-calendar-events-legacy.php',
 					potComments: '',
 					potFilename: 'gce.pot',
 					potHeaders: {
@@ -86,7 +86,7 @@ module.exports = function( grunt ) {
 			main: {
 				options: {
 					mode: 'zip',
-					archive: './build/google-calendar-events-<%= pkg.version %>.zip'
+					archive: './build/google-calendar-events-legacy-<%= pkg.version %>.zip'
 				},
 				expand: true,
 				src: distFiles,
@@ -97,7 +97,7 @@ module.exports = function( grunt ) {
 		wp_deploy: {
 			deploy: {
 				options: {
-					plugin_slug: 'google-calendar-events',
+					plugin_slug: 'google-calendar-events-legacy',
 					build_dir: 'build/google-calendar-events',
 					max_buffer: 400 * 1024
 				}
