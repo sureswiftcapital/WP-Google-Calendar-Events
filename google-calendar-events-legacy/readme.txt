@@ -1,18 +1,20 @@
 === Google Calendar Events (2.4 Legacy) ===
 Contributors: pderksen, nickyoung87, nekojira, rosshanney
 Tags: google calendar, google, calendar, events, gcal
-Requires at least: 3.9
+Requires at least: 4.0
 Tested up to: 4.4
 Stable tag: trunk
 License: GPLv2 or later
 
-Fork of the Google Calendar Events 2.4 WordPress plugin. Now maintained here on GitHub disconnected from "Simple Calendar" on WordPress.org to provide critical patches.
+Fork of the Google Calendar Events 2.4 WordPress plugin. Intended for backwards compatibility only.
 
-https://github.com/moonstonemedia/WP-Google-Calendar-Events
+Now maintained on GitHub disconnected from "Simple Calendar" on WordPress.org to provide only critical security patches.
 
-Warning: New features will not be added to this plugin. All new development will take place for Simple Calendar 3.0 and beyond.
+All new features added to Simple Calendar going forward.
 
-https://github.com/moonstonemedia/Simple-Calendar
+Google Calendar Events 2.4 Legacy on GitHub: https://github.com/moonstonemedia/WP-Google-Calendar-Events
+
+Simple Calendar 3.0+ on GitHub: https://github.com/moonstonemedia/Simple-Calendar
 
 == Changelog ==
 

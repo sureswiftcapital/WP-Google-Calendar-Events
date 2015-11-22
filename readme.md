@@ -1,5 +1,13 @@
 # Google Calendar Events for WordPress
 
-This repository is no longer maintained and it's here to support legacy versions of the Google Calendar Events plugin originally authored by [Ross Hanney](http://rhanney.co.uk/).
+Fork of the Google Calendar Events 2.4 WordPress plugin. Intended for backwards compatibility only.
 
-The project repository has been moved into another project: https://github.com/moonstonemedia/Simple-Calendar
+Now maintained on GitHub disconnected from "Simple Calendar" on WordPress.org to provide only critical security patches.
+
+All new features added to Simple Calendar going forward.
+
+[Google Calendar Events 2.4 Legacy on GitHub](https://github.com/moonstonemedia/WP-Google-Calendar-Events)
+
+[Simple Calendar 3.0+ on GitHub](https://github.com/moonstonemedia/Simple-Calendar)
+
+Originally authored by [Ross Hanney](http://rhanney.co.uk/).

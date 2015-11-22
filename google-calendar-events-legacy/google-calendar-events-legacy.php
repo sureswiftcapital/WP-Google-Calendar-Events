@@ -2,14 +2,14 @@
 /**
  * Plugin Name: Google Calendar Events (2.4 Legacy)
  * Plugin URI: https://wordpress.org/plugins/google-calendar-events/
- * Description: Show off your Google calendar in grid (month) or list view, in a post, page or widget, and in a style that matches your site.
+ * Description: Fork of the Google Calendar Events 2.4 WordPress plugin. Intended for backwards compatibility only.
  * Author: Moonstone Media
  * Author URI: http://moonstonemediagroup.com
  * Version: 2.4.1
  * Text Domain: gce
  * Domain Path: /languages/
  *
- * Copyright 2014 Moonstone Media/Phil Derksen. All rights reserved.
+ * Copyright 2015 Moonstone Media/Phil Derksen. All rights reserved.
  */
 
 // If this file is called directly, abort.
