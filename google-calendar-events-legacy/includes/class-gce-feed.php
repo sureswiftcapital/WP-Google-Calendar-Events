@@ -29,7 +29,7 @@ class GCE_Feed {
 	public $events = array();
 
 	// Google API Key
-	private $api_key = 'AIzaSyAssdKVved1mPVY0UJCrx96OUOF9u17AuY';
+	private $api_key = '';
 
 	/**
 	 * Class constructor

@@ -102,23 +102,11 @@ class Google_Calendar_Events_Admin {
 	 */
 	public function show_admin_update_notices() {
 
-		$message = '';
-
-		$settings = get_option( 'gce_settings_general' );
-		$key = isset( $settings['api_key'] ) ? $settings['api_key'] : '';
-		if ( empty( $key ) || 'AIzaSyAssdKVved1mPVY0UJCrx96OUOF9u17AuY' == $key ) {
-			$message .= '<h3>' . __( 'Google API Key Notice', 'gce' ) . '</h3>' .
-			            '<p>' . __( 'This plugin now requires you to use your own Google API key to avoid running into limit requests.', 'gce' ) . '</p>' .
-			            '<p><a href="' . admin_url( 'edit.php?post_type=gce_feed&page=google-calendar-events_general_settings' ) . '" class="button-primary">' . __( 'Enter your Google API key', 'gce' ) . '</a>&nbsp;&nbsp;&nbsp;&nbsp;' .
-			            '<a href="' . gce_ga_campaign_url( 'http://wpdocs.philderksen.com/google-calendar-events/getting-started/api-key-settings/', 'gce_lite', 'settings_link', 'docs' ) . '" class="button-secondary" target="_blank">' . __( 'Instructions', 'gce' ) . '</a>' .
-			            '</p>';
-		}
-
-		$message .= '<h3>' . __( 'Plugin Upgrade Notice', 'gce' ) . '</h3>' .
-		            '<p>' . __( 'Simple Calendar 3.0 is a pretty major update and will be released very soon.', 'gce' ) . '</p>' .
-		            '<p>' . __( 'To make sure you\'re prepared, you can ', 'gce' ) .
-		            '<a href="https://wordpress.org/support/topic/simple-calendar-30-beta-now-available" target="_blank">' . __( 'read about (and try out) the current beta here', 'gce' ) . '</a></p>' .
-		            '<p><a href="https://www.getdrip.com/forms/9434542/submissions/new" class="button-secondary" target="_blank">' .__( 'Get notified of important updates', 'gce' ) . '</a></p>';
+		$message = '<p>' . __( 'This is a fork of the Google Calendar Events 2.4 WordPress plugin and intended for backwards compatibility only.', 'gce' ) . '</p>' .
+		           '<p>' . __( 'All new features will be added to Simple Calendar 3.0+ going forward.', 'gce' ) . '</p>' .
+		           '<p><a href="https://wordpress.org/plugins/google-calendar-events/" target="_blank">' . __( 'Get Simple Calendar 3.0', 'gce' ) . '</a> ' .
+		           '<strong style="color:red;">' . __( 'Make sure to uninstall this plugin first.', 'gce' ) . '</strong></p>' .
+		           '<p><a href="https://www.getdrip.com/forms/9434542/submissions/new" class="button-secondary" target="_blank">' .__( 'Get notified of important updates', 'gce' ) . '</a></p>';
 
 		$url = add_query_arg( array( 'gce_dismiss_admin_update_notices' => true ) );
 		$dismiss_icon = sprintf( '<a class="dashicons-before dashicons-dismiss gce-dismiss-notice" href="%s"></a>', $url );
