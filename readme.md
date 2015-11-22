@@ -2,7 +2,7 @@
 
 Fork of the Google Calendar Events 2.4 WordPress plugin. Intended for backwards compatibility only.
 
-Now maintained on GitHub disconnected from "Simple Calendar" on WordPress.org to provide only critical security patches.
+Disconnected from "Simple Calendar" (formerly Google Calendar Events) on WordPress.org to provide only critical security patches.
 
 All new features added to Simple Calendar going forward.
 
