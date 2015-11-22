@@ -1,9 +1,9 @@
 {
   "name": "google-calendar-events-legacy",
-  "title": "Google Calendar Events (2.4 Legacy)",
-  "description": "Google Calendar Events 2.4 Legacy. Intended for backwards compatibility only.",
+  "title": "Legacy Google Calendar Events 2.4",
+  "description": "Fork of the Google Calendar Events 2.4 WordPress plugin. Intended for backwards compatibility only.",
   "version": "2.4.1",
-  "homepage": "https://wordpress.org/plugins/google-calendar-events/",
+  "homepage": "https://wordpress.org/plugins/legacy-google-calendar-events/",
   "repository": {
     "type": "git",
     "url": "https://github.com/moonstonemedia/WP-Google-Calendar-Events"

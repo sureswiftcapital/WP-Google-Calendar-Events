@@ -1,4 +1,4 @@
-# Google Calendar Events for WordPress
+# Legacy Google Calendar Events 2.4 WordPress Plugin
 
 Fork of the Google Calendar Events 2.4 WordPress plugin. Intended for backwards compatibility only.
 

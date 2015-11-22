@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Google Calendar Events (2.4 Legacy)
- * Plugin URI: https://wordpress.org/plugins/google-calendar-events/
+ * Plugin Name: Legacy Google Calendar Events 2.4
+ * Plugin URI: https://wordpress.org/plugins/legacy-google-calendar-events/
  * Description: Fork of the Google Calendar Events 2.4 WordPress plugin. Intended for backwards compatibility only.
  * Author: Moonstone Media
  * Author URI: http://moonstonemediagroup.com
