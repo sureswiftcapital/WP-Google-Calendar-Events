@@ -8,6 +8,8 @@ License: GPLv2 or later
 
 Fork of the Google Calendar Events 2.4 WordPress plugin. Intended for backwards compatibility only.
 
+== Description ==
+
 Disconnected from "Simple Calendar" (formerly Google Calendar Events) on WordPress.org to provide only critical security patches.
 
 All new features added to Simple Calendar going forward.
@@ -22,6 +24,6 @@ Originally authored by [Ross Hanney](http://rhanney.co.uk/).
 
 == Changelog ==
 
-= 2.4.1 - TODO =
+= 2.4.1 - November 22, 2015 =
 
 * Announcement: Plugin forked and disconnected from "Simple Calendar" on WordPress.org.
