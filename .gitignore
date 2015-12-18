@@ -1,40 +1,38 @@
+# PhpStorm
+.idea
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# Grunt
+/node_modules
+
+# Bower
+/bower_components
+
+# Composer
+# Ignore the /vendor/ directory for people using composer
+/vendor
+
+# If the vendor directory isn't being commited the composer.lock file should also be ignored
+/composer.lock
+
+# Sass
+/.sass-cache
+
+# Tests
+phpunit.xml
+
+# Logs
+/logs
+
+# wordpress.org
+/build
+
 # Mac crap
 .DS_Store
 
 # Windows crap
 ehthumbs.db
 Thumbs.db
-
-# PhpStorm IDE
-.idea
-
-# Netbeans IDE
-nbproject
-
-# Sublime
-*.sublime-project
-*.sublime-workspace
-
-# Zip files
-*.zip
-
-# POT files
-/*.pot
-
-# temporary (refactor branch)
-/apigen
-/apidocs
-/svn
-/assets
-/docs
-/bower_components
-/includes
-/languages
-/libraries
-/build
-/release
-/node_modules
-/vendor
-composer.lock
-/tmp
-*.tmp
