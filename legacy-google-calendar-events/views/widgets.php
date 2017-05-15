@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class GCE_Widget extends WP_Widget {
 
-	function GCE_Widget() {
+	function __construct() {
 		parent::__construct(
 			false, // Adding a name here doesn't seem to affect the upgrade. If widget stuff starts acting weird then check this first though.
 			$name = __( 'Google Calendar Events', 'gce' ),
