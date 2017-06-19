@@ -1,5 +1,5 @@
 === Legacy Google Calendar Events 2.4 ===
-Contributors: pderksen, nickyoung87, nekojira, rosshanney
+Contributors: simplecalendar, sureswiftcapital, pderksen, nickyoung87, nekojira, rosshanney
 Tags: google calendar, google, calendar, events, gcal
 Requires at least: 4.0
 Tested up to: 4.4
